@@ -1,0 +1,114 @@
++ set -o pipefail
++ export ECF_PORT=3155
++ ECF_PORT=3155
++ export ECF_HOST=login1.juno.cmcc.scc
++ ECF_HOST=login1.juno.cmcc.scc
++ export ECF_NAME=/gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update
++ ECF_NAME=/gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update
++ export ECF_PASS=TNhsTHmF
++ ECF_PASS=TNhsTHmF
++ export ECF_TRYNO=3
++ ECF_TRYNO=3
++ export ECF_TRIES=0
++ ECF_TRIES=0
++ export ECF_RID=1581634
++ ECF_RID=1581634
++ export PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/imagemagick/7.0.8-7-2475g3fynku56e7rbgq65zz2xbmy6k26/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/ncview/2.1.8-sds5t7td2iyndfz25r537rsyxvx63wn6/bin:/work/cmcc/gc02720/.conda/envs/spreads/bin:/juno/opt/anaconda/3-2022.10/condabin:/users_home/cmcc/gc02720/.local/bin:/users_home/cmcc/gc02720/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/imagemagick/7.0.8-7-2475g3fynku56e7rbgq65zz2xbmy6k26/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/ncview/2.1.8-sds5t7td2iyndfz25r537rsyxvx63wn6/bin:/work/cmcc/gc02720/.conda/envs/spreads/bin:/juno/opt/anaconda/3-2022.10/condabin:/users_home/cmcc/gc02720/.local/bin:/users_home/cmcc/gc02720/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ ecflow_client --init=1581634
++ trap ERROR 0
++ trap '{ echo "Killed by a signal"; ERROR ; }' 1 2 3 4 5 6 7 8 10 12 13 15
+++ date
++ ecflow_client --label=info 'Starting... Fri Sep  1 14:14:09 CEST 2023'
++ export SCRIPTDIR=/users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts
++ SCRIPTDIR=/users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts
++ export nens=5
++ nens=5
+++ echo /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update
+++ sed s/update//g
++ donepath=/gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/
++ export CESMEXP=cesm-exp
++ CESMEXP=cesm-exp
++ export case_name=gio_ecflow1
++ case_name=gio_ecflow1
++ export CLONESROOT=/work/cmcc/gc02720/cesm-exp/gio_ecflow1
++ CLONESROOT=/work/cmcc/gc02720/cesm-exp/gio_ecflow1
++ export CASEROOT0001=/work/cmcc/gc02720/cesm-exp/gio_ecflow1/gio_ecflow1_0001
++ CASEROOT0001=/work/cmcc/gc02720/cesm-exp/gio_ecflow1/gio_ecflow1_0001
+++ echo gio_ecflow1
+++ tr '[:lower:]' '[:upper:]'
++ export TMPROOT=/work/cmcc/gc02720/CMCC-CM/TMPGIO_ECFLOW1
++ TMPROOT=/work/cmcc/gc02720/CMCC-CM/TMPGIO_ECFLOW1
++ source /etc/profile.d/modules.sh
+++ '[' -n /bin/bash ']'
+++ '[' bash = sh ']'
+++ shell=bash
+++ '[' -f /juno/opt/module-environment/5.2.0/init/bash ']'
+++ . /juno/opt/module-environment/5.2.0/init/bash
++++ unset _mlshdbg
++++ '[' 0 = 1 ']'
++++ unset _mlre _mlIFS
++++ '[' -n x ']'
++++ _mlIFS=' 	
+'
++++ IFS=' '
++++ '[' -n '' ']'
+++++ /usr/bin/tclsh /juno/opt/module-environment/5.2.0/libexec/modulecmd.tcl bash autoinit
++++ eval '_module_raw() {
+   eval "$(/usr/bin/tclsh '\''/juno/opt/module-environment/5.2.0/libexec/modulecmd.tcl'\'' bash "$@")";
+   _mlstatus=$?;
+   return $_mlstatus;
+};
+module() {
+   local _mlredir=0;
+   if [ -n "${MODULES_REDIRECT_OUTPUT+x}" ]; then
+      if [ "$MODULES_REDIRECT_OUTPUT" = '\''0'\'' ]; then
+         _mlredir=0;
+      elif [ "$MODULES_REDIRECT_OUTPUT" = '\''1'\'' ]; then
+         _mlredir=1;
+      fi;
+   fi;
+   case " $@ " in
+      *'\'' --no-redirect '\''*) _mlredir=0 ;;
+      *'\'' --redirect '\''*) _mlredir=1 ;;
+   esac;
+   if [ $_mlredir -eq 0 ]; then
+      _module_raw "$@";
+   else
+      _module_raw "$@" 2>&1;
+   fi;
+};
+export -f _module_raw;
+export -f module;
+ml() { module ml "$@"; };
+export -f ml;
+MODULES_CMD=/juno/opt/module-environment/5.2.0/libexec/modulecmd.tcl; export MODULES_CMD;
+unset __MODULES_AUTOINIT_INPROGRESS;
+MODULESHOME=/juno/opt/module-environment/5.2.0; export MODULESHOME;
+test 0;'
+++++ export -f _module_raw
+++++ export -f module
+++++ export -f ml
+++++ MODULES_CMD=/juno/opt/module-environment/5.2.0/libexec/modulecmd.tcl
+++++ export MODULES_CMD
+++++ unset __MODULES_AUTOINIT_INPROGRESS
+++++ MODULESHOME=/juno/opt/module-environment/5.2.0
+++++ export MODULESHOME
+++++ test 0
++++ '[' -n x ']'
++++ IFS=' 	
+'
++++ unset _mlIFS
++++ unset _mlre _mlv _mlrv
++++ '[' -n '' ']'
+++ export MODULES_AUTO_HANDLING=0
+++ MODULES_AUTO_HANDLING=0
++ source /data/cmcc/mg20022/d4o/install/INTEL/source.me
+/users_home/cmcc/gc02720/spreads/spreads_ui/gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update.job3: line 60: /data/cmcc/mg20022/d4o/install/INTEL/source.me: Permission denied
+++ ERROR
+++ set +e
+++ wait
+++ ecflow_client --abort=trap
+++ trap 0
+++ exit 0

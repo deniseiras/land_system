@@ -1,0 +1,15 @@
+#!/bin/bash
+
+cmd=$(readlink -f $0)
+cmddir=$(dirname $cmd)
+
+cd $cmddir/..
+
+source ../load-modules-d4o.zeus
+module load gcc_9.1.0
+
+set -x
+build/build.without_git.job - zeus 5.17 4
+
+
+

@@ -1,0 +1,86 @@
++ pwd
++ hostname
++ export I_MPI_EXTRA_FILESYSTEM=1
++ I_MPI_EXTRA_FILESYSTEM=1
++ export I_MPI_EXTRA_FILESYSTEM_FORCE=gpfs
++ I_MPI_EXTRA_FILESYSTEM_FORCE=gpfs
++ export I_MPI_DEBUG=5
++ I_MPI_DEBUG=5
++ export I_MPI_PLATFORM=icx
++ I_MPI_PLATFORM=icx
++ export I_MPI_SHM=icx
++ I_MPI_SHM=icx
++ export I_MPI_HYDRA_BOOTSTRAP=lsf
++ I_MPI_HYDRA_BOOTSTRAP=lsf
+++ echo n100-ibj 72 n059-ibj 72 n152-ibj 72 n075-ibj 72 n037-ibj 72 n113-ibj 72 n106-ibj 72 n073-ibj 72 n098-ibj 72 n141-ibj 72 n074-ibj 72 n148-ibj 72 n137-ibj 72 n094-ibj 72 n092-ibj 72
+++ perl -pe 's/\s+/\n/g'
+++ grep -Pv '^\d+$'
+++ sort -u
+++ wc -l
++ export I_MPI_HYDRA_BRANCH_COUNT=15
++ I_MPI_HYDRA_BRANCH_COUNT=15
++ export I_MPI_JOB_ABORT_SIGNAL=6
++ I_MPI_JOB_ABORT_SIGNAL=6
++ export I_MPI_JOB_TIMEOUT_SIGNAL=6
++ I_MPI_JOB_TIMEOUT_SIGNAL=6
++ npes=1080
++ echo 'Number of processes to be used: 1080'
++ export 'LAUNCHCMD=mpirun -np 1080 -bind-to core -prepend-rank'
++ LAUNCHCMD='mpirun -np 1080 -bind-to core -prepend-rank'
++ export OMP_NUM_THREADS=1
++ OMP_NUM_THREADS=1
++ export KMP_AFFINITY=disabled
++ KMP_AFFINITY=disabled
++ export I_MPI_PIN=1
++ I_MPI_PIN=1
++ export I_MPI_OFI_PROVIDER=mlx
++ I_MPI_OFI_PROVIDER=mlx
++ export I_MPI_FABRICS=shm:ofi
++ I_MPI_FABRICS=shm:ofi
++ export d4o_debug=1:0
++ d4o_debug=1:0
++ export d4o_catalog=catalog.db
++ d4o_catalog=catalog.db
++ export d4o_departures=no
++ d4o_departures=no
++ export d4o_inflation=yes
++ d4o_inflation=yes
+++ perl -ne '{printf("%d",$1), exit if (m{^\s*ens_size\s*=\s*(\d+)})}' input.nml
+Can't open input.nml: No such file or directory.
++ export d4o_ens_size=
++ d4o_ens_size=
++ export d4o_shmem=1
++ d4o_shmem=1
++ export non_blocking_comms=T
++ non_blocking_comms=T
++ export 'd4o_hdr=deglat >= -90 and deglat <= 90'
++ d4o_hdr='deglat >= -90 and deglat <= 90'
++ export 'd4o_body=dart_qc = 0'
++ d4o_body='dart_qc = 0'
++ rm -fv dart_log.nml dart_log.out
++ wait
+++ wc -l
+++ ls -C1 '*.[0-9]*.db'
+ls: cannot access '*.[0-9]*.db': No such file or directory
++ export d4o_update_threads=0
++ d4o_update_threads=0
++ echo 0
++ printenv
++ pwd
++ ls -ltra
++ ldd ./filter
+ldd: ./filter: No such file or directory
++ :
++ rc=0
++ [[ '' = '' ]]
++ /usr/bin/time -v mpirun -np 1080 -bind-to core -prepend-rank ./filter
++ rc=255
++ mv dart_log.nml dart_log.nml.835390
+mv: cannot stat 'dart_log.nml': No such file or directory
++ :
++ mv dart_log.out dart_log.out.835390
+mv: cannot stat 'dart_log.out': No such file or directory
++ :
++ '[' 255 -eq 0 ']'
++ echo 'Error in filter'
++ exit 1

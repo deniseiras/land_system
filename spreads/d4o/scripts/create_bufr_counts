@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -eu
+
+for d in ${@:-}
+do
+    if [[ -d $d ]] ; then
+	for f in $(ls -l $d | egrep ^-rw | sort -n --key=5,5 | awk '{print $NF}' | xargs -r -n1 basename)
+	do
+	    cd $d >/dev/null 2>&1
+	    cmd="bufr_count $f"
+	    printf "$(pwd): %s ..." $cmd
+	    count=$($cmd)
+	    printf " %d BUFR-messages : " $count
+	    cmd="ln -fsv $f $f.count-$count"
+	    $cmd
+	    cd - >/dev/null 2>&1
+	done
+    fi
+done
+

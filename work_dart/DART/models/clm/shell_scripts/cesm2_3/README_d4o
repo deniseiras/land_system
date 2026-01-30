@@ -1,0 +1,79 @@
+Guide to create runs compatible with d4o
+
+1. control run
+CLM5_CMCC_d4o
+DART_params_d4o.csh
+
+
+2. soil moisture run
+DART_params_d4o_sm.csh
+CLM5_CMCC_d4o_sm
+
+./CLM5_CMCC_d4o_sm
+
+cd /work/cmcc/lg07622/land/work/template/d4o_sm
+- need to fix  env_batch.xml for
+<directive> -app spreads_filter </directive>
+
+./case.submit
+
+./CESM_DART_config
+
+./xmlchange CONTINUE_RUN=TRUE
+
+copy assimilate.csh from
+/work/cmcc/lg07622/land/DART/models/clm/shell_scripts/cesm2_3/spreads/d4o
+to not abort the code (line 119) due to the lack of observations (now read from d4o database)
+
+copy input_nml_sm from 
+/work/cmcc/lg07622/land/DART/models/clm/shell_scripts/cesm2_3/spreads/d4o
+replacing input_nml
+* adusjt the number of members accordingly
+
+copy the following executables from the d4o compilation (e.g. /work/cmcc/lg07622/LDAS/spreads/d4o/flattened/clm)
+clm_to_dart.dir/clm_to_dart
+dart_to_clm.dir/dart_to_clm
+fill_inflation_restart.dir/fill_inflation_restart
+filter.dir/filter
+
+the following bash files should also be copied from
+/work/cmcc/lg07622/land/DART/models/clm/shell_scripts/cesm2_3/spreads/d4o
+because the executables are now into the run direcory (instead of ../bld as before)
+run_clm_to_dart.bash
+run_dart_to_clm.bash
+run_filter.bash
+run_inflation.bash
+run_dart_to_clm_snow.bash (if snow DA)
+
+Observations must be first created at
+/work/cmcc/lg07622/land/datain/d4o
+and then copied into the run directory
+
+./assimilate.csh /work/cmcc/lg07622/land/work/template/d4o_sm 0
+
+SNOW DA
+
+copy from /work/cmcc/lg07622/land/DART/models/clm/shell_scripts/cesm2_3/spreads/d4o
+run_dart_to_clm_snow.bash into run
+assimilate_snow.csh into ../run chagining to assimilate.csh
+create run/tmp directory
+
+
+checking the databases
+module load intel-2021.6.0/sqlite/3.40.0-v3tky
+alias sqlite="sqlite3 -readonly -batch -init /dev/null -nullvalue NULL -box"
+sqlite 2011-01-09-00000_LAI.db "select id,reportype,entryno,kind,(select distinct description from toc where kind=body.kind) as description,obsvalue,prior_mean,posterior_mean,qc,dart_qc,member,prior,posterior from hdr join body on id=body.hdr_id join ens on id=ens.hdr_id and entryno=body_entryno where description in ('MODIS_LEAF_AREA_INDEX') limit 20"
+sqlite 2011-01-09-00000_LAI.db "select id,reportype,entryno,kind,(select distinct description from toc where kind=body.kind) as description,obsvalue,prior_mean,posterior_mean,qc,dart_qc,member,prior,posterior from hdr join body on id=body.hdr_id join ens on id=ens.hdr_id and entryno=body_entryno where description in ('MODIS_LEAF_AREA_INDEX') and dart_qc=0 limit 20"
+
+sqlite 2011-01-09-00000_LAI.db  "SELECT id, (SELECT DISTINCT description FROM toc WHERE kind = body.kind) AS description, obsvalue, prior_mean, posterior_mean, (obsvalue - posterior_mean)/(obsvalue-prior_mean) AS correction_ratio, (obsvalue - posterior_mean) AS 'O-A',(obsvalue-prior_mean) AS 'O-B', dart_qc, member, prior, posterior FROM hdr JOIN body ON id = body.hdr_id JOIN ens ON id = ens.hdr_id AND entryno = body_entryno WHERE dart_qc = 0 AND member = 1 LIMIT 20"
+LPRM_SOIL_MOISTURE
+sqlite 2000-01-04-00000_SM.db "select id,reportype,entryno,kind,(select distinct description from toc where kind=body.kind) as description,obsvalue,prior_mean,posterior_mean,qc,dart_qc,member,prior,posterior from hdr join body on id=body.hdr_id join ens on id=ens.hdr_id and entryno=body_entryno where description in ('LPRM_SOIL_MOISTURE') limit 20"
+
+sqlite 2000-01-04-00000_SM.db "select id,reportype,entryno,kind,(select distinct description from toc where kind=body.kind) as description,obsvalue,prior_mean,posterior_mean, 100*(posterior-prior)/obsvalue AS increment_percent,qc,dart_qc,member,prior,posterior from hdr join body on id=body.hdr_id join ens on id=ens.hdr_id and entryno=body_entryno where description in ('LPRM_SOIL_MOISTURE') AND increment_percent > 1"
+
+sqlite 2000-01-04-00000_SM.db "select id,reportype,entryno,kind,(select distinct description from toc where kind=body.kind) as description,obsvalue,prior_mean,posterior_mean, 100*(posterior-prior)/obsvalue AS increment_percent,qc,dart_qc,member,prior,posterior from hdr join body on id=body.hdr_id join ens on id=ens.hdr_id and entryno=body_entryno where description in ('LPRM_SOIL_MOISTURE') AND increment_percent > 10"
+
+
+
+
+

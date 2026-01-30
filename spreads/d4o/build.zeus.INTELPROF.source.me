@@ -1,0 +1,43 @@
+module purge
+module load cmake/3.17.3
+module load intel20.1/20.1.217
+module load intel20.1/szip/2.1.1
+module load curl/7.70.0
+module load impi20.1/19.7.217
+module load anaconda/3.9 # gives access to python 3
+module load dbi/1.643
+module load sqlite/3.38.0
+module load dbd-sqlite/1.70
+module load gcc_9.1.0
+export TBBMALLOC_DIR=$TBBROOT/lib/intel64/gcc4.8
+if [[ -d $TBBMALLOC_DIR ]] ; then
+    export LD_LIBRARY_PATH="${TBBMALLOC_DIR}:$LD_LIBRARY_PATH"
+    export TBB_MALLOC_USE_HUGE_PAGES=1 # TBB: Use huge pages (if available)
+#    export TBB_MALLOC_SET_HUGE_SIZE_THRESHOLD=0 # Cache large objects from 
+else
+    unset TBBMALLOC_DIR
+fi
+module -t list
+
+export PATH=.:/zeus/opt/sqlite/3.38.0/bin:/data/cmcc/ss35621/d4o/install/INTELPROF/d4o/bin:/data/cmcc/ss35621/d4o/install/ecbuild/bin:/data/cmcc/ss35621/d4o/install/INTELPROF/netcdf/bin:/data/cmcc/ss35621/d4o/install/INTELPROF/hdf5/bin:/data/cmcc/ss35621/d4o/install/INTELPROF/hdf4/bin:/data/cmcc/ss35621/d4o/install/INTELPROF/eckit/bin:/data/cmcc/ss35621/d4o/install/INTELPROF/eccodes/bin:/data/cmcc/ss35621/d4o/install/INTELPROF/odc/bin:/data/cmcc/ss35621/d4o/install/INTELPROF/b2o/bin:/data/cmcc/ss35621/d4o/install/INTELPROF/rttov123/bin:$PATH
+export LD_LIBRARY_PATH=/data/cmcc/ss35621/d4o/install/INTELPROF/d4o/lib:/data/cmcc/ss35621/d4o/install/INTELPROF/netcdf/lib:/data/cmcc/ss35621/d4o/install/INTELPROF/hdf5/lib:/data/cmcc/ss35621/d4o/install/INTELPROF/hdf4/lib:/data/cmcc/ss35621/d4o/install/INTELPROF/hdf-eos2/lib:/data/cmcc/ss35621/d4o/install/INTELPROF/eckit/lib:/data/cmcc/ss35621/d4o/install/INTELPROF/eccodes/lib:/data/cmcc/ss35621/d4o/install/INTELPROF/odc/lib:/data/cmcc/ss35621/d4o/install/INTELPROF/b2o/lib:/data/cmcc/ss35621/d4o/install/INTELPROF/rttov123/lib:${LD_LIBRARY_PATH:-}
+export LD_LIBRARY_PATH=$(trim_path LD_LIBRARY_PATH)
+export PATH=$(trim_path PATH)
+export ODB_SCHEMA_DIR=/data/cmcc/ss35621/d4o/install/INTELPROF/b2o/share/b2o
+export ODB_SCHEMA_FILE=/data/cmcc/ss35621/d4o/install/INTELPROF/b2o/share/b2o/cma.ddl
+export d4odir=/data/cmcc/ss35621/d4o/install/INTELPROF/d4o
+export D4ODIR=/data/cmcc/ss35621/d4o/install/INTELPROF/d4o
+export NETCDF=/data/cmcc/ss35621/d4o/install/INTELPROF/netcdf
+export NETCDF_DIR=$NETCDF
+export HDF5=/data/cmcc/ss35621/d4o/install/INTELPROF/hdf5
+export HDF5_DIR=$HDF5
+export HDFDIR=$HDF5
+export HDF5DIR=$HDF5
+export HDF4=/data/cmcc/ss35621/d4o/install/INTELPROF/hdf4
+export HDF4_DIR=$HDF4
+export HDF4DIR=$HDF4
+export HDFEOSDIR=/data/cmcc/ss35621/d4o/install/INTELPROF/hdf-eos2
+export FINCL=-I/zeus/opt/intel20/intel/compilers_and_libraries_2020.1.217/linux/mpi/intel64/include
+export SQLITE_DIR=/zeus/opt/sqlite/3.38.0
+export COMPILER=INTELPROF
+export RTTOV=/data/cmcc/ss35621/d4o/install/INTELPROF/rttov123

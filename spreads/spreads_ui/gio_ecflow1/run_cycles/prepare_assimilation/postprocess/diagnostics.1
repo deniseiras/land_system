@@ -1,0 +1,571 @@
++ set -o pipefail
++ export ECF_PORT=3155
++ ECF_PORT=3155
++ export ECF_HOST=login1.juno.cmcc.scc
++ ECF_HOST=login1.juno.cmcc.scc
++ export ECF_NAME=/gio_ecflow1/run_cycles/prepare_assimilation/postprocess/diagnostics
++ ECF_NAME=/gio_ecflow1/run_cycles/prepare_assimilation/postprocess/diagnostics
++ export ECF_PASS=JYUjnOY9
++ ECF_PASS=JYUjnOY9
++ export ECF_TRYNO=1
++ ECF_TRYNO=1
++ export ECF_TRIES=0
++ ECF_TRIES=0
++ export ECF_RID=2440944
++ ECF_RID=2440944
++ export PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/imagemagick/7.0.8-7-2475g3fynku56e7rbgq65zz2xbmy6k26/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/ncview/2.1.8-sds5t7td2iyndfz25r537rsyxvx63wn6/bin:/work/cmcc/gc02720/.conda/envs/spreads/bin:/juno/opt/anaconda/3-2022.10/condabin:/users_home/cmcc/gc02720/.local/bin:/users_home/cmcc/gc02720/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/imagemagick/7.0.8-7-2475g3fynku56e7rbgq65zz2xbmy6k26/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/ncview/2.1.8-sds5t7td2iyndfz25r537rsyxvx63wn6/bin:/work/cmcc/gc02720/.conda/envs/spreads/bin:/juno/opt/anaconda/3-2022.10/condabin:/users_home/cmcc/gc02720/.local/bin:/users_home/cmcc/gc02720/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ ecflow_client --init=2440944
++ trap ERROR 0
++ trap '{ echo "Killed by a signal"; ERROR ; }' 1 2 3 4 5 6 7 8 10 12 13 15
++ export SCRIPTDIR=/users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts
++ SCRIPTDIR=/users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts
+++ ecflow_client --query event /gio_ecflow1/run_cycles:FORECAST
++ FORECAST=set
++ '[' set == set ']'
++ export FORECAST=TRUE
++ FORECAST=TRUE
++ '[' '!' -d /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics ']'
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ '[' TRUE == TRUE ']'
++ set +e
++ ls -d /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600 /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200 /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800 /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000 /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600 /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200 /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-64800 /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000 /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600 /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200 /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-64800 /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000 /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600 /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200 /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-64800 /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000 /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600 /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-43200 /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-64800
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-64800
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-64800
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-64800
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-43200
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-64800
++ '[' 0 -eq 0 ']'
++ ./run.ksh gio_ecflow1
++ case_name=gio_ecflow1
++ pwd
++ datahome=/users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ cd /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1
++ ls -d gio_ecflow1-2017-10-02-21600 gio_ecflow1-2017-10-02-43200 gio_ecflow1-2017-10-02-64800 gio_ecflow1-2017-10-03-00000 gio_ecflow1-2017-10-03-21600 gio_ecflow1-2017-10-03-43200 gio_ecflow1-2017-10-03-64800 gio_ecflow1-2017-10-04-00000 gio_ecflow1-2017-10-04-21600 gio_ecflow1-2017-10-04-43200 gio_ecflow1-2017-10-04-64800 gio_ecflow1-2017-10-05-00000 gio_ecflow1-2017-10-05-21600 gio_ecflow1-2017-10-05-43200 gio_ecflow1-2017-10-05-64800 gio_ecflow1-2017-10-06-00000 gio_ecflow1-2017-10-06-21600 gio_ecflow1-2017-10-06-43200 gio_ecflow1-2017-10-06-64800
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-02-21600
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-02-21600
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-02-21600/utest_all.npz ]
++ echo 'SKIP gio_ecflow1 2017-10-02-21600'
+SKIP gio_ecflow1 2017-10-02-21600
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-02-43200
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-02-43200
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-02-43200/utest_all.npz ]
++ echo 'SKIP gio_ecflow1 2017-10-02-43200'
+SKIP gio_ecflow1 2017-10-02-43200
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-02-64800
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-02-64800
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-02-64800/utest_all.npz ]
++ echo 'SKIP gio_ecflow1 2017-10-02-64800'
+SKIP gio_ecflow1 2017-10-02-64800
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-03-00000
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-03-00000
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-03-00000/utest_all.npz ]
++ echo 'SKIP gio_ecflow1 2017-10-03-00000'
+SKIP gio_ecflow1 2017-10-03-00000
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-03-21600
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-03-21600
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-03-21600/utest_all.npz ]
++ echo 'SKIP gio_ecflow1 2017-10-03-21600'
+SKIP gio_ecflow1 2017-10-03-21600
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-03-43200
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-03-43200
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-03-43200/utest_all.npz ]
++ echo 'SKIP gio_ecflow1 2017-10-03-43200'
+SKIP gio_ecflow1 2017-10-03-43200
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-03-64800
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-03-64800
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-03-64800/utest_all.npz ]
++ echo 'SKIP gio_ecflow1 2017-10-03-64800'
+SKIP gio_ecflow1 2017-10-03-64800
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-04-00000
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-04-00000
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-04-00000/utest_all.npz ]
++ echo 'SKIP gio_ecflow1 2017-10-04-00000'
+SKIP gio_ecflow1 2017-10-04-00000
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-04-21600
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-04-21600
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-04-21600/utest_all.npz ]
++ echo 'SKIP gio_ecflow1 2017-10-04-21600'
+SKIP gio_ecflow1 2017-10-04-21600
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-04-43200
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-04-43200
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-04-43200/utest_all.npz ]
++ echo 'SKIP gio_ecflow1 2017-10-04-43200'
+SKIP gio_ecflow1 2017-10-04-43200
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-04-64800
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-04-64800
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-04-64800/utest_all.npz ]
++ echo 'SKIP gio_ecflow1 2017-10-04-64800'
+SKIP gio_ecflow1 2017-10-04-64800
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-05-00000
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-05-00000
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-05-00000/utest_all.npz ]
++ echo 'SKIP gio_ecflow1 2017-10-05-00000'
+SKIP gio_ecflow1 2017-10-05-00000
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-05-21600
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-05-21600
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-05-21600/utest_all.npz ]
++ echo 'SKIP gio_ecflow1 2017-10-05-21600'
+SKIP gio_ecflow1 2017-10-05-21600
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-05-43200
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-05-43200
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-05-43200/utest_all.npz ]
++ echo 'SKIP gio_ecflow1 2017-10-05-43200'
+SKIP gio_ecflow1 2017-10-05-43200
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-05-64800
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-05-64800
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-05-64800/utest_all.npz ]
++ echo 'SKIP gio_ecflow1 2017-10-05-64800'
+SKIP gio_ecflow1 2017-10-05-64800
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-06-00000
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-06-00000
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-06-00000/utest_all.npz ]
++ echo 'SKIP gio_ecflow1 2017-10-06-00000'
+SKIP gio_ecflow1 2017-10-06-00000
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-06-21600
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-06-21600
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-06-21600/utest_all.npz ]
++ echo 'SKIP gio_ecflow1 2017-10-06-21600'
+SKIP gio_ecflow1 2017-10-06-21600
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-06-43200
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-06-43200
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-06-43200/utest_all.npz ]
++ echo 'SKIP gio_ecflow1 2017-10-06-43200'
+SKIP gio_ecflow1 2017-10-06-43200
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ echo gio_ecflow1-2017-10-06-64800
++ sed 's/gio_ecflow1\-//g'
++ dt=2017-10-06-64800
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-06-64800/utest_all.npz ]
++ mkdir -p src/gio_ecflow1/2017-10-06-64800
++ cp -f quick_spreads_diag_exec.bash quick_spreads_diag.py src/gio_ecflow1/2017-10-06-64800/
++ cd src/gio_ecflow1/2017-10-06-64800
++ sed -i $'s/assim_date/\'2017-10-06-64800\'/g' quick_spreads_diag.py
++ sed -i s@mg20022@gc02720@g quick_spreads_diag.py
++ sed -i s/case_name/gio_ecflow1_2017-10-06-64800/g quick_spreads_diag_exec.bash
++ sed -i $'s@NOME@\'gio_ecflow1\'@g' quick_spreads_diag.py
++ bsub
++ 0< quick_spreads_diag_exec.bash
+Job has been assigned to project 'R000'.
+Job <176838> is submitted to queue <p_long>.
++ sleep 1
++ set -e
++ sleep 30
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/viewer
++ cp viewer_preprocess_quick_spreads.py run_viewer_preprocess_quick_spreads.py
++ sed -i s@mg20022/CMCC-CM@gc02720/CMCC-CM@g run_viewer_preprocess_quick_spreads.py
++ sed -i s@spreads_official@gio_ecflow1@g run_viewer_preprocess_quick_spreads.py
++ ./run_viewer_preprocess_quick_spreads.py
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.AMV.4.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.AMV.11.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.AMV.3.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.AMV.10.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.ARC.1.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.SND.1.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.AMSU.1.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.AMSU.12.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.SND.2.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.AMSU.11.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.AMV.13.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.AMV.5.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.AMV.12.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.ARC.3.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.AMV.2.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.GPSRO.1.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.AMSU.2.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.AMV.1.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.ARC.2.2017-10-02-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600/gio_ecflow1.spreads.AMSU.3.2017-10-02-21600.db
+END1 : 49.310343742370605
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.AMSU.10.2017-10-02-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.AMSU.12.2017-10-02-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.AMSU.3.2017-10-02-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.AMSU.2.2017-10-02-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.GPSRO.1.2017-10-02-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.ARC.3.2017-10-02-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.ARC.2.2017-10-02-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.AMV.4.2017-10-02-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.AMV.1.2017-10-02-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.AMV.12.2017-10-02-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.AMV.11.2017-10-02-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.AMSU.11.2017-10-02-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.AMSU.1.2017-10-02-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.ARC.1.2017-10-02-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.AMV.3.2017-10-02-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.SND.1.2017-10-02-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.AMV.13.2017-10-02-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.AMV.2.2017-10-02-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-43200/gio_ecflow1.spreads.SND.2.2017-10-02-43200.db
+END1 : 46.733866930007935
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800/gio_ecflow1.spreads.GPSRO.1.2017-10-02-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800/gio_ecflow1.spreads.AMV.11.2017-10-02-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800/gio_ecflow1.spreads.ARC.3.2017-10-02-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800/gio_ecflow1.spreads.AMSU.2.2017-10-02-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800/gio_ecflow1.spreads.ARC.2.2017-10-02-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800/gio_ecflow1.spreads.AMV.10.2017-10-02-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800/gio_ecflow1.spreads.AMSU.12.2017-10-02-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800/gio_ecflow1.spreads.AMV.3.2017-10-02-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800/gio_ecflow1.spreads.AMSU.10.2017-10-02-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800/gio_ecflow1.spreads.AMSU.11.2017-10-02-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800/gio_ecflow1.spreads.AMV.2.2017-10-02-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800/gio_ecflow1.spreads.AMSU.1.2017-10-02-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800/gio_ecflow1.spreads.ARC.1.2017-10-02-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800/gio_ecflow1.spreads.SND.2.2017-10-02-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800/gio_ecflow1.spreads.AMSU.3.2017-10-02-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800/gio_ecflow1.spreads.AMV.1.2017-10-02-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800/gio_ecflow1.spreads.AMV.12.2017-10-02-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-64800/gio_ecflow1.spreads.SND.1.2017-10-02-64800.db
+END1 : 46.73711061477661
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.ARC.1.2017-10-03-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.AMV.2.2017-10-03-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.GPSRO.1.2017-10-03-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.ARC.3.2017-10-03-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.AMSU.10.2017-10-03-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.AMSU.1.2017-10-03-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.AMV.3.2017-10-03-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.AMV.13.2017-10-03-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.SND.1.2017-10-03-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.AMV.1.2017-10-03-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.SND.2.2017-10-03-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.AMSU.12.2017-10-03-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.AMV.4.2017-10-03-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.ARC.2.2017-10-03-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.AMV.12.2017-10-03-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.AMSU.11.2017-10-03-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.AMV.11.2017-10-03-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.AMSU.2.2017-10-03-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-00000/gio_ecflow1.spreads.AMSU.3.2017-10-03-00000.db
+END1 : 50.89276719093323
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.ARC.3.2017-10-03-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.AMV.10.2017-10-03-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.AMV.5.2017-10-03-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.ARC.1.2017-10-03-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.AMV.1.2017-10-03-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.AMSU.2.2017-10-03-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.GPSRO.1.2017-10-03-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.AMV.11.2017-10-03-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.AMV.12.2017-10-03-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.AMSU.3.2017-10-03-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.AMV.3.2017-10-03-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.SND.2.2017-10-03-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.SND.1.2017-10-03-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.AMV.13.2017-10-03-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.AMSU.1.2017-10-03-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.AMV.2.2017-10-03-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.AMSU.10.2017-10-03-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.AMSU.12.2017-10-03-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-21600/gio_ecflow1.spreads.AMSU.11.2017-10-03-21600.db
+END1 : 43.734317779541016
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.AMV.12.2017-10-03-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.AMV.2.2017-10-03-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.AMSU.3.2017-10-03-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.AMV.1.2017-10-03-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.AMV.3.2017-10-03-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.ARC.1.2017-10-03-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.AMSU.1.2017-10-03-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.GPSRO.1.2017-10-03-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.SND.1.2017-10-03-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.AMV.13.2017-10-03-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.ARC.3.2017-10-03-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.AMSU.11.2017-10-03-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.AMV.4.2017-10-03-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.AMSU.10.2017-10-03-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.AMSU.2.2017-10-03-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.ARC.2.2017-10-03-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.AMSU.12.2017-10-03-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.SND.2.2017-10-03-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-43200/gio_ecflow1.spreads.AMV.11.2017-10-03-43200.db
+END1 : 50.569448471069336
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-64800/gio_ecflow1.spreads.AMV.3.2017-10-03-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-64800/gio_ecflow1.spreads.ARC.3.2017-10-03-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-64800/gio_ecflow1.spreads.GPSRO.1.2017-10-03-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-64800/gio_ecflow1.spreads.AMV.2.2017-10-03-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-64800/gio_ecflow1.spreads.AMSU.1.2017-10-03-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-64800/gio_ecflow1.spreads.SND.2.2017-10-03-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-64800/gio_ecflow1.spreads.ARC.1.2017-10-03-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-64800/gio_ecflow1.spreads.AMV.11.2017-10-03-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-64800/gio_ecflow1.spreads.AMSU.2.2017-10-03-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-64800/gio_ecflow1.spreads.AMSU.11.2017-10-03-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-64800/gio_ecflow1.spreads.AMV.12.2017-10-03-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-64800/gio_ecflow1.spreads.SND.1.2017-10-03-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-03-64800/gio_ecflow1.spreads.AMV.1.2017-10-03-64800.db
+END1 : 47.03683519363403
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000/gio_ecflow1.spreads.SND.1.2017-10-04-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000/gio_ecflow1.spreads.AMV.3.2017-10-04-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000/gio_ecflow1.spreads.ARC.1.2017-10-04-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000/gio_ecflow1.spreads.AMSU.12.2017-10-04-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000/gio_ecflow1.spreads.AMSU.11.2017-10-04-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000/gio_ecflow1.spreads.SND.2.2017-10-04-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000/gio_ecflow1.spreads.AMSU.3.2017-10-04-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000/gio_ecflow1.spreads.AMV.4.2017-10-04-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000/gio_ecflow1.spreads.AMSU.1.2017-10-04-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000/gio_ecflow1.spreads.AMV.11.2017-10-04-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000/gio_ecflow1.spreads.ARC.3.2017-10-04-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000/gio_ecflow1.spreads.AMV.10.2017-10-04-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000/gio_ecflow1.spreads.AMSU.2.2017-10-04-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000/gio_ecflow1.spreads.GPSRO.1.2017-10-04-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000/gio_ecflow1.spreads.AMV.2.2017-10-04-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000/gio_ecflow1.spreads.AMV.1.2017-10-04-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000/gio_ecflow1.spreads.AMV.13.2017-10-04-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-00000/gio_ecflow1.spreads.AMV.12.2017-10-04-00000.db
+END1 : 43.731743574142456
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.AMSU.1.2017-10-04-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.AMSU.11.2017-10-04-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.AMV.1.2017-10-04-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.AMV.13.2017-10-04-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.AMSU.12.2017-10-04-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.GPSRO.1.2017-10-04-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.AMV.3.2017-10-04-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.AMSU.2.2017-10-04-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.ARC.3.2017-10-04-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.SND.2.2017-10-04-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.AMV.5.2017-10-04-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.AMV.11.2017-10-04-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.SND.1.2017-10-04-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.ARC.2.2017-10-04-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.AMV.12.2017-10-04-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.AMSU.3.2017-10-04-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.AMV.2.2017-10-04-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.ARC.1.2017-10-04-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-21600/gio_ecflow1.spreads.AMV.4.2017-10-04-21600.db
+END1 : 45.99329662322998
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200/gio_ecflow1.spreads.SND.2.2017-10-04-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200/gio_ecflow1.spreads.ARC.3.2017-10-04-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200/gio_ecflow1.spreads.ARC.1.2017-10-04-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200/gio_ecflow1.spreads.AMSU.1.2017-10-04-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200/gio_ecflow1.spreads.AMSU.3.2017-10-04-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200/gio_ecflow1.spreads.GPSRO.1.2017-10-04-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200/gio_ecflow1.spreads.AMV.12.2017-10-04-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200/gio_ecflow1.spreads.AMV.2.2017-10-04-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200/gio_ecflow1.spreads.AMV.13.2017-10-04-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200/gio_ecflow1.spreads.SND.1.2017-10-04-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200/gio_ecflow1.spreads.AMV.4.2017-10-04-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200/gio_ecflow1.spreads.AMV.11.2017-10-04-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200/gio_ecflow1.spreads.AMSU.2.2017-10-04-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200/gio_ecflow1.spreads.AMV.1.2017-10-04-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200/gio_ecflow1.spreads.AMSU.11.2017-10-04-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200/gio_ecflow1.spreads.AMSU.12.2017-10-04-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-43200/gio_ecflow1.spreads.AMV.3.2017-10-04-43200.db
+END1 : 49.20456862449646
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-64800/gio_ecflow1.spreads.AMSU.10.2017-10-04-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-64800/gio_ecflow1.spreads.AMSU.11.2017-10-04-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-64800/gio_ecflow1.spreads.AMV.12.2017-10-04-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-64800/gio_ecflow1.spreads.AMV.1.2017-10-04-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-64800/gio_ecflow1.spreads.AMV.3.2017-10-04-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-64800/gio_ecflow1.spreads.AMSU.1.2017-10-04-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-64800/gio_ecflow1.spreads.AMSU.2.2017-10-04-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-64800/gio_ecflow1.spreads.SND.2.2017-10-04-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-64800/gio_ecflow1.spreads.GPSRO.1.2017-10-04-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-64800/gio_ecflow1.spreads.ARC.1.2017-10-04-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-64800/gio_ecflow1.spreads.SND.1.2017-10-04-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-64800/gio_ecflow1.spreads.AMV.10.2017-10-04-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-64800/gio_ecflow1.spreads.AMV.11.2017-10-04-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-64800/gio_ecflow1.spreads.ARC.3.2017-10-04-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-64800/gio_ecflow1.spreads.ARC.2.2017-10-04-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-04-64800/gio_ecflow1.spreads.AMV.2.2017-10-04-64800.db
+END1 : 46.68166494369507
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.AMV.3.2017-10-05-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.AMV.12.2017-10-05-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.SND.1.2017-10-05-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.ARC.2.2017-10-05-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.AMV.13.2017-10-05-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.ARC.3.2017-10-05-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.AMSU.11.2017-10-05-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.AMSU.2.2017-10-05-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.GPSRO.1.2017-10-05-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.AMSU.1.2017-10-05-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.AMV.11.2017-10-05-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.SND.2.2017-10-05-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.AMSU.3.2017-10-05-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.ARC.1.2017-10-05-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.AMSU.10.2017-10-05-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.AMSU.12.2017-10-05-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.AMV.4.2017-10-05-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.AMV.2.2017-10-05-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-00000/gio_ecflow1.spreads.AMV.1.2017-10-05-00000.db
+END1 : 49.41302490234375
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.AMV.12.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.AMSU.12.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.AMV.5.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.ARC.2.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.AMSU.11.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.AMV.13.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.SND.2.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.AMV.3.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.AMSU.1.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.SND.1.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.GPSRO.1.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.AMV.1.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.AMV.2.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.ARC.3.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.ARC.1.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.AMSU.10.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.AMSU.3.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.AMV.11.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.AMV.10.2017-10-05-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-21600/gio_ecflow1.spreads.AMSU.2.2017-10-05-21600.db
+END1 : 48.605700731277466
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.AMV.4.2017-10-05-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.AMSU.1.2017-10-05-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.ARC.3.2017-10-05-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.AMV.10.2017-10-05-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.AMSU.2.2017-10-05-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.AMV.3.2017-10-05-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.AMSU.11.2017-10-05-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.ARC.1.2017-10-05-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.AMV.13.2017-10-05-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.AMSU.10.2017-10-05-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.AMSU.12.2017-10-05-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.AMV.11.2017-10-05-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.SND.1.2017-10-05-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.AMV.12.2017-10-05-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.AMV.2.2017-10-05-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.AMSU.3.2017-10-05-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.SND.2.2017-10-05-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.AMV.1.2017-10-05-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-43200/gio_ecflow1.spreads.GPSRO.1.2017-10-05-43200.db
+END1 : 50.61804509162903
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-64800/gio_ecflow1.spreads.AMV.2.2017-10-05-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-64800/gio_ecflow1.spreads.ARC.3.2017-10-05-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-64800/gio_ecflow1.spreads.AMV.3.2017-10-05-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-64800/gio_ecflow1.spreads.ARC.1.2017-10-05-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-64800/gio_ecflow1.spreads.AMSU.11.2017-10-05-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-64800/gio_ecflow1.spreads.GPSRO.1.2017-10-05-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-64800/gio_ecflow1.spreads.AMSU.1.2017-10-05-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-64800/gio_ecflow1.spreads.AMV.1.2017-10-05-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-64800/gio_ecflow1.spreads.AMV.11.2017-10-05-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-64800/gio_ecflow1.spreads.SND.1.2017-10-05-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-64800/gio_ecflow1.spreads.AMSU.2.2017-10-05-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-64800/gio_ecflow1.spreads.AMV.12.2017-10-05-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-05-64800/gio_ecflow1.spreads.SND.2.2017-10-05-64800.db
+END1 : 47.84039115905762
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000/gio_ecflow1.spreads.AMSU.3.2017-10-06-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000/gio_ecflow1.spreads.AMV.4.2017-10-06-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000/gio_ecflow1.spreads.AMSU.12.2017-10-06-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000/gio_ecflow1.spreads.ARC.3.2017-10-06-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000/gio_ecflow1.spreads.AMV.1.2017-10-06-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000/gio_ecflow1.spreads.GPSRO.1.2017-10-06-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000/gio_ecflow1.spreads.AMV.11.2017-10-06-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000/gio_ecflow1.spreads.AMSU.2.2017-10-06-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000/gio_ecflow1.spreads.AMV.12.2017-10-06-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000/gio_ecflow1.spreads.AMV.2.2017-10-06-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000/gio_ecflow1.spreads.SND.1.2017-10-06-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000/gio_ecflow1.spreads.AMV.3.2017-10-06-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000/gio_ecflow1.spreads.AMSU.1.2017-10-06-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000/gio_ecflow1.spreads.AMSU.11.2017-10-06-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000/gio_ecflow1.spreads.ARC.1.2017-10-06-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000/gio_ecflow1.spreads.AMV.13.2017-10-06-00000.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-00000/gio_ecflow1.spreads.SND.2.2017-10-06-00000.db
+END1 : 49.759047985076904
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600/gio_ecflow1.spreads.AMSU.3.2017-10-06-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600/gio_ecflow1.spreads.AMV.13.2017-10-06-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600/gio_ecflow1.spreads.AMV.5.2017-10-06-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600/gio_ecflow1.spreads.GPSRO.1.2017-10-06-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600/gio_ecflow1.spreads.SND.1.2017-10-06-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600/gio_ecflow1.spreads.AMSU.1.2017-10-06-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600/gio_ecflow1.spreads.AMV.3.2017-10-06-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600/gio_ecflow1.spreads.AMV.11.2017-10-06-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600/gio_ecflow1.spreads.AMSU.12.2017-10-06-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600/gio_ecflow1.spreads.AMSU.11.2017-10-06-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600/gio_ecflow1.spreads.AMV.1.2017-10-06-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600/gio_ecflow1.spreads.ARC.1.2017-10-06-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600/gio_ecflow1.spreads.ARC.3.2017-10-06-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600/gio_ecflow1.spreads.AMV.2.2017-10-06-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600/gio_ecflow1.spreads.AMSU.2.2017-10-06-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600/gio_ecflow1.spreads.AMV.12.2017-10-06-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600/gio_ecflow1.spreads.AMV.4.2017-10-06-21600.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-21600/gio_ecflow1.spreads.SND.2.2017-10-06-21600.db
+END1 : 47.55823516845703
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-43200/gio_ecflow1.spreads.AMSU.11.2017-10-06-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-43200/gio_ecflow1.spreads.AMV.2.2017-10-06-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-43200/gio_ecflow1.spreads.ARC.1.2017-10-06-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-43200/gio_ecflow1.spreads.SND.1.2017-10-06-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-43200/gio_ecflow1.spreads.GPSRO.1.2017-10-06-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-43200/gio_ecflow1.spreads.AMV.11.2017-10-06-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-43200/gio_ecflow1.spreads.AMV.12.2017-10-06-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-43200/gio_ecflow1.spreads.ARC.3.2017-10-06-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-43200/gio_ecflow1.spreads.AMV.13.2017-10-06-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-43200/gio_ecflow1.spreads.AMV.1.2017-10-06-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-43200/gio_ecflow1.spreads.AMV.3.2017-10-06-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-43200/gio_ecflow1.spreads.AMSU.2.2017-10-06-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-43200/gio_ecflow1.spreads.AMSU.1.2017-10-06-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-43200/gio_ecflow1.spreads.AMV.10.2017-10-06-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-43200/gio_ecflow1.spreads.SND.2.2017-10-06-43200.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-43200/gio_ecflow1.spreads.AMV.4.2017-10-06-43200.db
+END1 : 48.069575548172
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-64800/gio_ecflow1.spreads.AMV.1.2017-10-06-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-64800/gio_ecflow1.spreads.ARC.1.2017-10-06-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-64800/gio_ecflow1.spreads.AMV.11.2017-10-06-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-64800/gio_ecflow1.spreads.ARC.3.2017-10-06-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-64800/gio_ecflow1.spreads.AMV.12.2017-10-06-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-64800/gio_ecflow1.spreads.SND.2.2017-10-06-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-64800/gio_ecflow1.spreads.AMSU.2.2017-10-06-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-64800/gio_ecflow1.spreads.AMSU.1.2017-10-06-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-64800/gio_ecflow1.spreads.AMV.10.2017-10-06-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-64800/gio_ecflow1.spreads.AMSU.11.2017-10-06-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-64800/gio_ecflow1.spreads.SND.1.2017-10-06-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-64800/gio_ecflow1.spreads.GPSRO.1.2017-10-06-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-64800/gio_ecflow1.spreads.AMV.3.2017-10-06-64800.db
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-06-64800/gio_ecflow1.spreads.AMV.2.2017-10-06-64800.db
+END1 : 39.27137231826782
++ echo ''
+
++ echo '----- END TASK ---'
+----- END TASK ---
++ echo ''
+
++ ecflow_client --label=Info 'OK... 20230903  23:48'
++ wait
++ ecflow_client --complete
++ trap 0
++ exit 0

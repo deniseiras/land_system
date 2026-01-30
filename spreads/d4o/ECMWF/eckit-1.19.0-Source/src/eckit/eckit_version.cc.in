@@ -1,0 +1,20 @@
+#include "eckit/eckit_version.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+const char * eckit_version()     { return "@eckit_VERSION@"; }
+
+const char * eckit_version_str() { return "@eckit_VERSION_STR@"; }
+
+unsigned int eckit_version_int()
+{
+  return 10000*@eckit_VERSION_MAJOR@ + 100*@eckit_VERSION_MINOR@ + 1*@eckit_VERSION_PATCH@;
+}
+
+const char * eckit_git_sha1() { return "@eckit_GIT_SHA1@"; }
+
+#ifdef __cplusplus
+}
+#endif

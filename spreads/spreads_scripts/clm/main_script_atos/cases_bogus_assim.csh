@@ -1,0 +1,28 @@
+#!/bin/csh 
+#BSUB -n 1
+#BSUB -R "span[ptile=1]"
+#BSUB -q p_short
+#BSUB -W 0:01
+#BSUB -P R000
+#BUSB -M 1GB 
+#BSUB -R "rusage[mem=1GB]"
+##BSUB -x 
+##BSUB -u giovanni.conti83@gmail.com
+#BSUB -J assim_bogus_assim 
+##BSUB -o assimilate.out
+##BSUB -e assimilate.err
+##BSUB -sla SC_dev_dart
+#BSUB -I
+
+
+echo "start -- BOGUS ASSIM"
+
+echo "`date` -- END BOGUS ASSIM"
+
+exit 0
+
+# <next few lines under version control, do not edit>
+# $URL$
+# $Revision$
+# $Date$
+

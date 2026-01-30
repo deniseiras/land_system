@@ -1,0 +1,25 @@
+module purge
+unset LIBRARY_PATH
+module load --auto anaconda/3-2022.10
+module load --auto intel-2021.6.0/2021.6.0
+module load --auto intel-2021.6.0/libszip/2.1.1-tvhyi 
+module load --auto impi-2021.6.0/2021.6.0 
+module load --auto intel-2021.6.0/sqlite/3.40.0-v3tky
+module load --auto intel-2021.6.0/perl-dbi/1.643-3satl
+module load --auto intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+module load --auto intel-2021.6.0/jasper/2.0.32-rofnd
+module load --auto intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+#module load --auto intel-2021.6.0/libunwind-dbg/1.6.2-nw3c2
+module load --auto intel-2021.6.0/libunwind/1.6.2-3lp4l
+module load --auto gcc-12.2.0/12.2.0
+export LIBRARY_PATH+=":$LD_LIBRARY_PATH" # without this line the build.juno does not find -ljpeg f.ex.
+export TBBMALLOC_DIR=/juno/opt/intel/oneapi_2022.2.0/tbb/latest/lib/intel64/gcc4.8
+if [[ -d $TBBMALLOC_DIR ]] ; then
+    export LD_LIBRARY_PATH="${TBBMALLOC_DIR}:$LD_LIBRARY_PATH"
+    export TBB_MALLOC_USE_HUGE_PAGES=1 # TBB: Use huge pages (if available)
+#    export TBB_MALLOC_SET_HUGE_SIZE_THRESHOLD=0 # Cache large objects from 
+else
+    unset TBBMALLOC_DIR
+fi
+module -t list
+

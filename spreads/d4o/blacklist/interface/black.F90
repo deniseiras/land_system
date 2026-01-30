@@ -1,0 +1,918 @@
+SUBROUTINE BLACK(ROBHDR,ROBODY,YDGP5,YDSETINFO,KLEN)
+
+!**** SUBROUTINE BLACK - INTERFACE TO PERFORM BLACKLISTING
+
+!          HEIKKI JARVINEN   ECMWF          15/MAR/1995
+!          DRASKO VASILJEVIC ECMWF          21/10/1999
+
+!*    PURPOSE
+!     -------
+
+!        INTERFACE TO PERFORM BLACKLISTING
+
+!**   INTERFACE
+!     ---------
+
+!     ***CALL BLACK(...)
+!     WHERE KOBS = NUMBER OF THE OBSERVATION SET
+
+!        BLACK IS CALLED BY SUBROUTINE DECIS
+
+!*    METHOD
+!     ------
+
+!        IFS PROVIDES AN INTERFACE TO THE BLACKLIST. THE EXPRESSIONS
+!     OF THE BLACKLIST FILE ARE EVALUATED OUTSIDE IFS.  DECISIONS BASED
+!     ON BLACKLIST ARE FEEDBACK TO THE CMA.
+
+!*    EXTERNALS
+!     ---------
+
+!        BLACKBOX - IFS INTERFACE TO BLACKLIST
+!        FEBLRE   - FEEDBACK BLACKLIST INFORMATION OF THE REPORT
+!        FEBLDA   - FEEDBACK BLACKLIST INFORMATION OF THE DATUM
+
+!**   MODIFICATIONS
+!     -------------
+!     01/04/19  E. Holm    : Add solar elevation and retrieval quality for REO3
+!     01/05/08  g kelly    : Add line number to black for atovs
+!     01/08/07  A. Dethof  : Add FOV, CLC, CP, PT for REO3
+!     02/04/17  C. Koepken : Add window channel definition for METEOSAT, GOES
+!     03/04/29  L.v.Bremen : Add satellite zenith angle definition for SATOB AMV
+!     04/01/14  E. Andersson:Add sonde type. Compute solar elevation.
+!     04/12/03  S. Saarinen: Dimension IFEEDBACK increased (0:NFEEDBACK-1 => 0:NFEEDBACK)
+!     05/03/23  M. Szyndel: Add MTSAT and FY-2
+!     06/04/06  S.Healy: Changes for GPSRO blacklisting
+!     06/08/21  S.Healy: use of retrtype for screening rising occs and "non-nominal" data 
+!     06/11/10  A.Collard: Add IASI
+!     07/03/07  P.Poli: blacklisting for GPSRO at MF uses RETRTYPE
+!     07/06/01  H.Hersbach: Add sea-ice fraction
+!     07/08/16  V. Guidard: Add IASI (after A. Collard)
+!     07/11/14  N.Bormann: Add alternative window channel departure (for AMSU-A)
+!     07/11/30  S. SAARINEN: Added IFS-cycle by request of the WAVE-group
+!     07/12/11  S. SAARINEN: New abort() function in blacklist --> BLINFO == 8 triggers a controlled abort
+!     08/01/08  P. Bauer: Add NSSMI
+!     08/02/06  C.Facani: Add radars
+!     09/02/25  H.Hersbach: allow blacklisting on ASCAT EARS
+!     09/03/09  Q. Lu   : Add FY3A IRAS, MWTS, MWHS and MWRI
+!     09/05/21  A.Geer: Allow passive monitoring of all-sky (NSSMI) radiances
+!     09/08/28  R. El Kathib : optimisation (inlining of NFLGDSE: keyword=black )
+!     10/03/31  A.Fouilloux: Add a new codetype for MERIS
+!     10/09/22  A.Geer: All-sky AMSU-A
+!     21/03/11  C.Lupu: Add csr_pclear for GEOS
+!     11/03/21  J. Hague: YGOM Derived type added
+!     11/03/22  N.Bormann: Add ATMS
+!     11/02/17  P. Lopez: Allow passive monitoring of ground-based radar rain rates
+!     12/10/19  LF. Meunier: Choice of the window channels for ATMS and SSMIS
+!     12/11/07  P. Marguinaud fix uninitialized variable
+!     11/11/23  C. Lupu: Changes for ASR from Met-9
+!     10/10/11  TonyMc     Add CRIS
+!  03-Jan-2012  A. Geer: New obstype for all-sky  
+!  26-Mar-2012  A. Geer  GOM modernisation
+!  25-May-2012  P. Poli: Add source@hdr and collection_identifier@conv
+!  08-Feb-2013  E. Di Tomaso, N. Bormann: Add second QC channel for MHS/AMSU-B
+!  19-Jul-2013  A. Geer: Tidied SQLs and code to make things slightly less dangerous
+!  21-Nov-2013  LF Meunier, P Chambon: Add SAPHIR
+!  27-Nov-2013  LF Meunier: Cleaning for the SPECIFC variable
+!  19-Nov-2014  C. Lupu     Updates to sensors and platform lists from rttov_consts
+!  17-Sept-2015 P. Chambon: Add GMI
+!  23-Sep-2015  V. GUidard: Add AHI
+!  12-Fev-2015  F Suzat: Add MWHS2
+!  12-Oct-2015  J. Letertre-Danczak : add AHI
+!  29-Mar-2016  A. Geer     Use Gom plus to access model data
+!  15-Jan-2018  M. Rennie Distinguish types of Aeolus obs with retrtype@hdr
+!  2018         C. Burrows - V. Guidard : Add ABI
+!  16-Jul-2018  C. Burrows: Add CSR standard deviation
+!  14-Nov-2018  M. Martet: Add radar azimuth
+!  18-Mar-2019  P. Lean     Add aircraft_type and heading
+!  11-Jul-2019  C. Burrows: Add GIIRS
+!  29-Apr-2020  R. Eresmaa: Add HIRAS and IKFS2
+! -----------------------------------------------------------------------------------
+
+USE PARKIND1  ,ONLY : JPIM , JPRB, JPRD
+USE YOMHOOK   ,ONLY : LHOOK, DR_HOOK
+USE YOMLUN   , ONLY : NULOUT, NULERR
+USE YOMCST   , ONLY : RG
+USE YOMCOCTP , ONLY : NSYNOP, NSATOB, NSTB87, NTEMP, NPILOT, NSATEM, NGTHRB,&
+ & NSTRESAT, NLIMB, NGPSRO, NSSMI, NRADAR, NSCATT, NTCWC, NGBRAD, NRADRR,&
+ & NALLSKY, NDRIBU, NAIREP, NPAOB, NPGPS, NRALT, NLIDAR, NDWLPCD
+USE YOMANCS  , ONLY : NMDI     ,RMDI     ,RDEGREES
+USE YOMBLINIT, ONLY : NBHEAD   ,NBBODY   ,NBDATA   ,NFEEDBACK
+USE YOMCT0   , ONLY : LECMWF
+USE YOMVAR   , ONLY : LVARBC, LPERTMRPAS
+USE YOMANA   , ONLY : NANDAT, NANTIM
+USE RTTOV_CONST, ONLY : INST_ID_HIRS, INST_ID_MSU,&
+ & INST_ID_IRAS,INST_ID_MWTS,INST_ID_MWHS,INST_ID_MWRI,&
+ & INST_ID_MWTS2, INST_ID_MWHS2,&
+ & INST_ID_AMSUA,INST_ID_AMSUB ,INST_ID_SSMIS,INST_ID_MHS,&
+ & INST_ID_VTPR1, INST_ID_VTPR2, INST_ID_AIRS, INST_ID_IASI,&
+ & INST_ID_MVIRI,INST_ID_GOESIM,&
+ & INST_ID_SEVIRI,INST_ID_MTSATIM,INST_ID_VISSR,&
+ & INST_ID_ATMS, INST_ID_CRIS, INST_ID_SAPHIR, INST_ID_GMI, &
+ & INST_ID_AHI, INST_ID_ABI, INST_ID_MWHS2, &
+ & INST_ID_AMSR2, INST_ID_MTVZAGY, INST_ID_GIIRS, INST_ID_HIRAS, &
+ & INST_ID_IKFS2, NINST
+USE YOMOBS, ONLY : LSLRW10, LSOE
+USE YOMCMBDY, ONLY : NCMABFOC, NCMABFBP
+USE YOMSCREE , ONLY : NDFLMX, NDFLMN, NFLLIM
+USE YOMSCC   , ONLY : NAEMEMBER
+USE VARNO_MODULE, ONLY : VARNO
+USE VARBC_SETUP, ONLY : L_NOCYCLINGRUN ! AJGDB needs OOPS
+USE GOM_PLUS,  ONLY : TYPE_GOM_PLUS, IH
+USE IFS_DBASE_VIEW_MOD, ONLY: IFS_DBASE_VIEW
+USE OBSOP_SETS, ONLY : TYPE_SET_INFO
+
+IMPLICIT NONE
+
+TYPE(IFS_DBASE_VIEW), INTENT(INOUT)  :: ROBHDR,ROBODY
+TYPE(TYPE_GOM_PLUS) , INTENT(IN)     :: YDGP5
+TYPE(TYPE_SET_INFO),INTENT(IN)       :: YDSETINFO
+INTEGER(KIND=JPIM),INTENT(IN)        :: KLEN
+REAL(KIND=JPRB)                      :: ZDATA(NBDATA)
+INTEGER(KIND=JPIM)                   :: IFEEDBACK(0:NFEEDBACK)
+
+INTEGER(KIND=JPIM) ::  ICDTYP, IBLINFO,&
+ & IVCO, IVNM, IFL, IFLAG, IVNM1,&
+ & ICHAN,&
+ & IOBTYP, IODATE, IOTIME, IPRINT_BODY,&
+ & IPRINT_HEAD, IRETRT, IRETRT_TMP,&
+ & ISQN, ISENSOR, ISYPCD, I_NMDI_BODY,&
+ & I_NMDI_HEAD, JBODY, JBODY1, JOBS, JBL,&
+ & IMAPOMM , IMM, IDD, IHH,&
+ & IFILL_FBVECTOR_HEAD, IFILL_FBVECTOR_BODY,&
+ & ISTATION_IDENTIFIER,&
+ & ICOLLECTION_IDENTIFIER, IAEOL_CLASS, IAEOL_CHANNEL,&
+ & IAIRCRAFT_TYPE
+INTEGER(KIND=JPIM) :: IWINDOW_CH(0:NINST-1)
+INTEGER(KIND=JPIM) :: IWINDOW_CH2(0:NINST-1) ! Alternative
+
+REAL(KIND=JPRB) :: ZMAJOR, ZMINOR
+INTEGER(KIND=JPIM) :: IFS_CYCLE, ICHECK_IFS_CYCLE_ENV_FIRST
+CHARACTER(LEN=80) :: CLERRMSG
+CHARACTER(LEN=8) ::  CLSTID, CLAIRCRAFT_TYPE
+
+REAL(KIND=JPRB) :: ZCCC, ZPPP, ZPPP1,&
+ & ZPRL, ZWCD, ZWCD2, ZLATIT, ZLONGI, ZMODOR, ZSTALT, ZTEMPT, ZSOE, ZHEADING
+INTEGER(KIND=JPIM) :: ICMFLG, IGOM
+LOGICAL :: LLRAD, LLSAT, LLFOUND
+
+REAL(KIND=JPRB) :: ZHOOK_HANDLE
+
+#include "diurnal.intfb.h"
+
+#include "abor1.intfb.h"
+
+#include "blackbox.h"
+#include "create_statid.h"
+
+#include "fcobs.func.h"
+
+!*
+!     ------------------------------------------------------------------
+
+IF (LHOOK) CALL DR_HOOK('BLACK',0,ZHOOK_HANDLE)
+
+!        1.       INITIALIZE
+!                 ----------
+
+IVNM=-1
+
+!*          1.0   INFORM
+
+IF(YDSETINFO%ID == 1)WRITE(NULOUT,'('' *** BLACKLISTING '')')
+
+!*          1.2   ENABLE/DISABLE DEBUG PRINTING
+
+IPRINT_HEAD = 0
+IPRINT_BODY = 0
+
+!*          1.3   ENABLE/DISABLE RUNTIME DYNAMIC MISSING DATA IND. TESTS
+
+I_NMDI_HEAD = 0
+I_NMDI_BODY = 0
+
+!*          1.4   FILL IFEEDBACK-VECTOR (=1) OR NOT (=0 ; DOESN'T WORK YET)
+
+IFILL_FBVECTOR_HEAD = 1
+IFILL_FBVECTOR_BODY = 1
+
+!*          1.5   Identify  window channel, for each sensor
+
+IWINDOW_CH(:)=0
+IWINDOW_CH(INST_ID_HIRS)  = 8
+IWINDOW_CH(INST_ID_SSMIS) = 2
+IWINDOW_CH(INST_ID_MTVZAGY) = 10
+IWINDOW_CH(INST_ID_AMSR2) = 12
+IWINDOW_CH(INST_ID_MSU)   = 1
+IWINDOW_CH(INST_ID_IRAS)  = 9
+IWINDOW_CH(INST_ID_MWTS)  = 1
+IWINDOW_CH(INST_ID_MWHS)  = 1  ! equivalent to AMSU-B/MHS channel 2 
+IWINDOW_CH(INST_ID_MWTS2)  = 1
+IF (LECMWF) THEN
+  IWINDOW_CH(INST_ID_MWHS2)  = 10  ! equivalent to AMSU-B/MHS channel 2 
+ELSE
+  IWINDOW_CH(INST_ID_MWHS2)  = 1
+ENDIF
+IWINDOW_CH(INST_ID_MWRI)  = 1
+IWINDOW_CH(INST_ID_AMSUA) = 4
+IWINDOW_CH(INST_ID_AMSUB) = 2
+IWINDOW_CH(INST_ID_MHS)   = 2
+IWINDOW_CH(INST_ID_VTPR1) = 8
+IWINDOW_CH(INST_ID_VTPR2) = 8
+IWINDOW_CH(INST_ID_AIRS)  = 787
+IWINDOW_CH(INST_ID_IASI)  = 2239
+IWINDOW_CH(INST_ID_CRIS)  = 501 
+IWINDOW_CH(INST_ID_MVIRI) = 2
+IWINDOW_CH(INST_ID_SEVIRI) = 6
+IWINDOW_CH(INST_ID_MTSATIM) = 1
+IWINDOW_CH(INST_ID_VISSR) = 1
+IWINDOW_CH(INST_ID_GOESIM) = 3  ! (IFS/RTTOV-number. channel 4, 10.9um on instrument)
+IWINDOW_CH(INST_ID_ATMS)  = 5
+IWINDOW_CH(INST_ID_SAPHIR)  = 6
+IWINDOW_CH(INST_ID_GMI)     = 7
+IWINDOW_CH(INST_ID_AHI) = 7
+IWINDOW_CH(INST_ID_ABI) = 7
+IWINDOW_CH(INST_ID_HIRAS) = 501
+IWINDOW_CH(INST_ID_IKFS2) = 865
+
+IWINDOW_CH2(:)=0
+IWINDOW_CH2(INST_ID_AMSUA) = 3
+IWINDOW_CH2(INST_ID_SSMIS) = 8
+IWINDOW_CH2(INST_ID_AMSR2) = 13
+IWINDOW_CH2(INST_ID_GMI) = 11
+IF (LECMWF) THEN
+  IWINDOW_CH2(INST_ID_ATMS)  = 3
+ELSE
+  IWINDOW_CH2(INST_ID_ATMS)  = 17
+ENDIF
+IWINDOW_CH2(INST_ID_AMSUB) = 1
+IWINDOW_CH2(INST_ID_MHS)  = 1
+IWINDOW_CH2(INST_ID_MWHS2) = 10
+
+!*          1.6   Get IFS-cycle (the IFS_CYCLE -word in blacklist language [CY33R1 onwards])
+
+ICHECK_IFS_CYCLE_ENV_FIRST = 1
+CALL CODB_VERSIONS(ZMAJOR, ZMINOR, IFS_CYCLE, ICHECK_IFS_CYCLE_ENV_FIRST)
+
+!*
+!     ------------------------------------------------------------------
+
+!        2.       LOOP OVER ALL THE REPORTS IN THE SET
+!                 ------------------------------------
+
+REPORT_LOOP: DO JOBS = 1,KLEN
+
+!*          2.1   INITIALIZE INPUT DATA
+
+  ZDATA(:) = RMDI
+
+  ! Find the position in the GOMs. AJGDB to use findloc when F2008 is allowed
+  ! AJGDB this would be unnecessary (i.e. IGOM=JOBS) if the ecset.sql and black*.sql 
+  ! could return observations in a set in consistent order. The problem is solved with 
+  ! "orderby seqno" under hop but in screening that would not be reproducible with before.
+  IMAPOMM = ROBHDR%INDEX%MAPOMM(JOBS)
+  LLFOUND=.FALSE.
+  DO IGOM=1,YDSETINFO%LNSET
+    IF(IMAPOMM == YDSETINFO%MAPOMM(IGOM)) THEN
+      LLFOUND=.TRUE.
+      EXIT
+    ENDIF
+  ENDDO
+  IF(.NOT.LLFOUND) CALL ABOR1('BLACK: GOM ID MISMATCH')
+
+!*
+!     ------------------------------------------------------------------
+
+!        3.       FILL THE INPUT VECTOR WITH HEADER & MODEL INFORMATION
+!                 -----------------------------------------------------
+
+!           3.25  CURRENT ANALYSIS DATE
+
+  ZDATA(25) = NANDAT
+
+!           3.26  CURRENT ANALYSIS TIME
+
+  ZDATA(26) = NANTIM
+
+!           3.38  IFS_CYCLE (e.g. CY33R1.001 would make IFS_CYCLE to be 331001)
+
+  ZDATA(38) = IFS_CYCLE
+
+!           3.1   OBSERVATION TYPE
+
+  IOBTYP = ROBHDR%HDR%OBSTYPE(JOBS)
+  ZDATA( 1) = IOBTYP
+
+  IF(IOBTYP == NRALT) THEN
+!   For RALT data, let's not do anything
+    CYCLE REPORT_LOOP
+  ENDIF
+
+!           3.2   STATION ID
+
+  ZDATA( 2) = ROBHDR%HDR%STATID(JOBS)
+
+!           3.3   CODE TYPE
+
+  ICDTYP = ROBHDR%HDR%CODETYPE(JOBS)
+  ZDATA( 3) = ICDTYP
+
+  ! A.Geer: this is dangerous code. Obviously we need a complete new IFS-ODB interface, but in
+  ! response to untraceable occasional errors in the screen->decis->blackhat chain of ODb access, in
+  ! the short-term I am attempting to standardise the blacklist access to the ODB so that the SQLs
+  ! (black*.sql) differ only where absolutely necessary. The logic in terms of access to these
+  ! SQLs needs to be consistent through blackhat.F90, black.F90 and ctxinitdb.F90 and the SQLs themselves.
+
+  ! Users of radiance table (clear-sky or all-sky) - this should match the WHERE in black_robhdr_4.sql 
+  LLRAD = (IOBTYP == NSATEM .AND. ICDTYP == NGTHRB) .OR. (IOBTYP == NALLSKY .AND. ICDTYP == NSSMI)
+ 
+  ! Users of the sat table - to match wheres in black_*_2,3,4,7,8.sql and logic in blackhat.F90
+  LLSAT = LLRAD .OR. IOBTYP == NSATOB .OR. IOBTYP == NSCATT .OR. &
+       & (IOBTYP == NSATEM .AND. ICDTYP == NSTRESAT) .OR. IOBTYP == NLIMB   
+
+!           3.4   INSTRUMENT TYPE
+
+  ZDATA( 4) = ROBHDR%HDR%INSTRUMENT_TYPE(JOBS)
+
+!           3.5   OBSERVATION DATE
+
+  IODATE = ROBHDR%HDR%DATE(JOBS)
+  ZDATA( 5) = IODATE
+
+!           3.6   OBSERVATION TIME
+
+  IOTIME = ROBHDR%HDR%TIME(JOBS)
+  ZDATA( 6) = IOTIME
+
+!           3.7   LATITUDE (IN DEGREES)
+
+  ZLATIT = ROBHDR%HDR%LAT(JOBS)*RDEGREES
+  ZDATA( 7) = ZLATIT
+
+!           3.8   LONGITUDE (IN DEGREES)
+
+  ZLONGI = ROBHDR%HDR%LON(JOBS)*RDEGREES
+  ZDATA( 8) = ZLONGI
+
+!           3.9   STATION ALTITUDE
+
+  ZSTALT = ROBHDR%HDR%STALT(JOBS)
+  ZDATA( 9) = ZSTALT
+!*
+!             3.9.1   CHECK FOR SYNOP/TEMP/PILOT REPORTS
+
+  IF (LECMWF) THEN
+    ! AJGDB this looks very dangerous! In this case, the blacklisting code is not activated 
+    ! and unless the dodgy observation has already been rejected, it will go straight into the
+    ! assimilation?
+    IF(ZSTALT == RMDI) THEN
+      IF(IOBTYP == NSYNOP .OR. IOBTYP == NTEMP .OR. IOBTYP == NPILOT) THEN
+        CYCLE REPORT_LOOP
+      ENDIF
+    ENDIF
+  ENDIF
+
+!           3.10 RLINE NUMBER         
+  IF(LLRAD) THEN
+    ZDATA(10) = ROBHDR%RADIANCE%SCANLINE(JOBS)
+  ENDIF
+
+!           3.11  RETRIEVAL TYPE (FOR SATOB/TOVS/GPSRO/DWL REPORTS)
+
+  IF(IOBTYP == NSATOB) THEN
+    IRETRT = ROBHDR%SATOB%COMP_METHOD(JOBS)
+  ELSEIF (IOBTYP == NLIMB .AND. ICDTYP == NGPSRO) THEN  
+    IF (LECMWF) THEN
+    ! gpsro retrieval type
+       IRETRT_TMP = ROBHDR%HDR%RETRTYPE(JOBS)
+    ! default    
+       IRETRT = 0
+    ! if rising occ set IRETRT=1
+       IF (BTEST(IRETRT_TMP,13)) IRETRT=1
+    ! "non-nominal" bending angle or phase data        
+       IF (BTEST(IRETRT_TMP,11) .OR. BTEST(IRETRT_TMP,12)) IRETRT=2        
+    ELSE
+       IRETRT = ROBHDR%HDR%RETRTYPE(JOBS)
+    ENDIF
+  ELSEIF (IOBTYP == NLIDAR .AND. ICDTYP == NDWLPCD) THEN
+    ! Distinguish different types of Aeolus observations
+    IRETRT_TMP = ROBHDR%HDR%RETRTYPE(JOBS)
+    ! default    
+    IRETRT = 0
+    ! decode hashed retrtype
+    IAEOL_CLASS=IRETRT_TMP/100000000
+    IAEOL_CHANNEL=(IRETRT_TMP - IAEOL_CLASS*100000000)/10000000
+
+    ! Mie_Channel       = 1
+    ! Rayleigh_Channel  = 2
+    ! cloudy = 1
+    ! clear  = 2
+
+    ! Mie-clear
+    IF ((IAEOL_CHANNEL == 1) .AND. (IAEOL_CLASS == 2)) IRETRT=1
+    ! Mie-cloudy
+    IF ((IAEOL_CHANNEL == 1) .AND. (IAEOL_CLASS == 1)) IRETRT=2
+    ! Rayleigh-clear
+    IF ((IAEOL_CHANNEL == 2) .AND. (IAEOL_CLASS == 2)) IRETRT=3
+    ! Rayleigh-cloudy
+    IF ((IAEOL_CHANNEL == 2) .AND. (IAEOL_CLASS == 1)) IRETRT=4
+
+  ELSE 
+    IRETRT = NMDI
+  ENDIF
+  ZDATA(11) = IRETRT
+
+!           3.12  SATOB AMV QUALITY INDICATOR 1,2,3
+
+  IF(IOBTYP == NSATOB .AND. ICDTYP == NSTB87) THEN
+    ZDATA(12) = ROBHDR%SATOB%QI_FC(JOBS)
+    ZDATA(13) = ROBHDR%SATOB%RFF(JOBS)
+    ZDATA(14) = ROBHDR%SATOB%QI_NOFC(JOBS)
+  ENDIF
+
+!           3.22  SATELLITE SENSOR INDICATOR 
+  ISENSOR   = ROBHDR%HDR%SENSOR(JOBS)
+  ZDATA(22) = ROBHDR%HDR%SENSOR(JOBS)
+
+!           3.23  FIELD OF VIEW NUMBER         
+  IF(LLRAD) THEN
+    ZDATA(23) = ROBHDR%RADIANCE%SCANPOS(JOBS)
+  ELSEIF(IOBTYP == NSATEM .AND. ICDTYP == NSTRESAT) THEN
+    ZDATA(23) = ROBHDR%RESAT%SCANPOS(JOBS)
+  ENDIF
+
+!           3.24   SATELLITE ZENITH ANGLE (IN DEGREES)
+  IF(LLSAT) THEN
+    ZDATA(24) = ROBHDR%SAT%ZENITH(JOBS)
+  ENDIF
+
+!           3.27   SOLAR ELEVATION (IN DEGREES)
+
+  IF(IOBTYP == NSATEM .AND. ICDTYP == NSTRESAT) THEN
+    ZSOE = ROBHDR%RESAT%SOLAR_ELEVATION(JOBS)
+  ELSE
+    IMM=MOD(IODATE/100,100)
+    IDD=MOD(IODATE,100)
+    IHH=IOTIME/10000
+    CALL DIURNAL(IMM,IDD,IHH,ZLATIT,ZLONGI,ZSOE)
+  ENDIF
+   IF ((.NOT. LECMWF).AND. (.NOT. LSOE)) THEN
+     ZSOE=90._JPRB
+   ENDIF
+  ZDATA(27) = ZSOE
+
+  IF(IOBTYP == NSATEM .AND. ICDTYP == NSTRESAT) THEN
+
+    ! 3.28   QUALITY OF OZONE RETRIEVAL, REO3
+    ! 3.29   Cloud Cover 
+    ! 3.30   Cloud Top Pressure
+    ! 3.31   PRODUCT TYPE    
+    ZDATA(28) = ROBHDR%RESAT%QUALITY_RETRIEVAL(JOBS)
+    ZDATA(29) = ROBHDR%RESAT%CLOUD_COVER(JOBS)
+    ZDATA(30) = ROBHDR%RESAT%CLOUD_TOP_PRESS(JOBS)
+    ZDATA(31) = ROBHDR%RESAT%PRODUCT_TYPE(JOBS)
+
+  ENDIF
+
+!           3.32   SONDE TYPE
+
+  IF(IOBTYP == NTEMP) THEN
+    ZDATA(32) = ROBHDR%CONV%SONDE_TYPE(JOBS)
+  ENDIF
+
+!           3.33   SPECIFIC
+
+  IF (.NOT.LECMWF) THEN
+    ! Monitored channels rejection
+    IF ((IOBTYP == NSATEM).AND.((ISENSOR == INST_ID_AIRS).OR.&
+       &(ISENSOR == INST_ID_IASI).OR.(ISENSOR == INST_ID_CRIS).OR.&
+       &(ISENSOR == INST_ID_GIIRS))) THEN
+      IF (L_NOCYCLINGRUN) THEN
+        ZDATA(33) = -1.
+      ELSE
+        ZDATA(33) = 1.
+      ENDIF
+    ! 10m winds rejections
+    ELSEIF (IOBTYP == NSYNOP) THEN
+      IF (LSLRW10) THEN
+        ZDATA(33) = 1.0_JPRB
+      ELSE
+        ZDATA(33) = 0.0_JPRB
+      ENDIF
+    ENDIF
+  ENDIF
+
+  IF(IOBTYP == NSATEM .AND. ICDTYP == NSTRESAT) THEN
+
+    ! 3.39  RETRIEVAL SOURCE
+    ! 3.40  SURFACE TYPE INDICATOR
+    ZDATA(39) = ROBHDR%RESAT%RETRSOURCE(JOBS)
+    ZDATA(40) = ROBHDR%RESAT%SURFACE_TYPE_INDICATOR(JOBS)
+
+  ELSEIF(LLRAD) THEN
+
+    ! 3.40  SURFACE TYPE INDICATOR (given for a few microwave imagers)
+    ZDATA(40) = ROBHDR%RADIANCE%TYPESURF(JOBS) 
+
+  ENDIF
+
+!           3.41  SOLAR ZENITH ANGLE (IN DEGREES)
+
+  IF(LLSAT) THEN
+    ZDATA(41) = ROBHDR%SAT%SOLAR_ZENITH(JOBS)
+  ENDIF
+
+!           3.42   REPORT TYPE
+
+  ZDATA(42) = ROBHDR%HDR%REPORTYPE(JOBS)
+
+!           3.43   SOLAR HOUR 
+
+  ZDATA(43) = RMDI
+
+!           3.44   STATION IDENTIFIER
+
+  ISTATION_IDENTIFIER = NMDI
+  IF (IOBTYP == NTEMP) THEN
+    CLSTID = TRANSFER(ROBHDR%HDR%STATID(JOBS), CLSTID)
+    CALL CREATE_STATID(CLSTID, ISTATION_IDENTIFIER)
+  ENDIF
+  ZDATA(44) = ISTATION_IDENTIFIER
+
+!           3.45  SATELLITE IDENTIFIER
+
+  IF (LLSAT) THEN
+    ZDATA(45) = ROBHDR%SAT%SATELLITE_IDENTIFIER(JOBS)
+  ENDIF
+
+!           3.46-3.50 CLOUD AMOUNT (low, middle, high) used by SEVIRI only
+
+  IF(LLRAD) THEN
+    ZDATA(46)=ROBHDR%RADIANCE%ASR_PCLEAR(JOBS)
+    ZDATA(47)=ROBHDR%RADIANCE%ASR_PCLOUDY(JOBS)
+    ZDATA(48)=ROBHDR%RADIANCE%ASR_PCLOUDY_LOW(JOBS)
+    ZDATA(49)=ROBHDR%RADIANCE%ASR_PCLOUDY_MIDDLE(JOBS)
+    ZDATA(50)=ROBHDR%RADIANCE%ASR_PCLOUDY_HIGH(JOBS)
+  ENDIF
+
+!           3.51  SOURCE AT HDR
+
+  ZDATA(51) = ROBHDR%HDR%SOURCE(JOBS)
+
+!           3.52  COLLECTION IDENTIFIER AT CONV
+
+  ICOLLECTION_IDENTIFIER = NMDI
+  IF (IOBTYP == NSYNOP .OR. IOBTYP == NTEMP .OR. IOBTYP == NPILOT &
+   & .OR. IOBTYP == NAIREP .OR. IOBTYP == NDRIBU .OR. IOBTYP == NPAOB) THEN
+    ICOLLECTION_IDENTIFIER = ROBHDR%CONV%COLLECTION_IDENTIFIER(JOBS)
+  ENDIF
+  ZDATA(52) = ICOLLECTION_IDENTIFIER
+
+!           3.53  AIRCRAFT_TYPE AT CONV
+  IAIRCRAFT_TYPE = NMDI
+  IF (IOBTYP == NAIREP) THEN
+    CLAIRCRAFT_TYPE = TRANSFER(ROBHDR%CONV%AIRCRAFT_TYPE(JOBS), CLAIRCRAFT_TYPE)
+    CALL CREATE_STATID(CLAIRCRAFT_TYPE, IAIRCRAFT_TYPE)
+  ENDIF
+  ZDATA(53) = IAIRCRAFT_TYPE
+
+
+!           3.54  HEADING AT CONV
+  ZHEADING = RMDI
+  IF (IOBTYP == NAIREP) THEN
+    ZHEADING = ROBHDR%CONV%HEADING(JOBS)
+  ENDIF
+  ZDATA(54) = ZHEADING
+
+
+!           3.15  MODEL OROGRAPHY
+
+  ZMODOR = ROBHDR%MODSURF%OROGRAPHY(JOBS)
+  ZDATA(15) = ZMODOR
+
+!           3.16  LAND/SEA MASK (INTEGER)
+!           3.17  LAND/SEA MASK (REAL)
+  ZDATA(16)=NINT(YDGP5%LS(IGOM,IH))
+  ZDATA(17)=YDGP5%LS(IGOM,IH)
+
+!           3.18  MODEL SURFACE PRESSURE (IN HECTOPASCALS)
+  ZDATA(18) = YDGP5%PRESH(IGOM,YDGP5%NFLEVG,IH)*0.01_JPRB
+
+!           3.19  MODEL SURFACE TEMPERATURE
+  ZDATA(19) = YDGP5%TS(IGOM,IH)
+
+!           3.20  MODEL 2 METRE TEMPERATURE
+
+  ZDATA(20) = RMDI
+
+!           3.21  MODEL TOP LEVEL PRESSURE (IN HECTOPASCALS)
+
+  ZDATA(21) = 0.01_JPRB*YDGP5%PRESF(IGOM,1,IH)
+
+!           3.22  MODEL SEA ICE FRACTION (FROM 0 TO 1)
+  ZDATA(34) = YDGP5%CI(IGOM,IH)
+
+!           3.23  GENERATING CENTRE
+
+  IF(LLSAT) THEN      ! ASCAT
+    ZDATA(35) = ROBHDR%SAT%GEN_CENTRE(JOBS)
+    ZDATA(36) = ROBHDR%SAT%GEN_SUBCENTRE(JOBS)
+    ZDATA(37) = ROBHDR%SAT%DATASTREAM(JOBS)
+  ENDIF
+
+!*          3.24  PERFORM BLACKLISTING FOR OBSERVATION HEADER
+
+  CALL BLACKBOX(NULOUT,1,IPRINT_HEAD,&
+   & I_NMDI_HEAD, IFILL_FBVECTOR_HEAD,&
+   & IBLINFO,ZCCC,IFEEDBACK,NFEEDBACK,&
+   & ZDATA,NBHEAD)  
+
+!           3.25  CHANGE REPORT STATUS, TO BLACKLISTED
+!                 IBLINFO == 8 triggers abort
+
+!           3.26.0 PASSIVE MODE FOR VARIATIONAL BIAS CORRECTION, MODIFY 
+!                OBSERVATION ERROR
+!                IBLINFO == 3 is used to set the STATUS to PASSIVE.
+
+1000 FORMAT('***ERROR: BLACKLIST-TRIGGERED ABORT. CHECK BLACKLIST CONDITIONS NEAR LINE#',I6)
+
+  IF (IBLINFO == 8) THEN
+
+    WRITE(CLERRMSG,1000) IFEEDBACK(0) 
+    WRITE(NULOUT,'(1X,A)') TRIM(CLERRMSG)
+    WRITE(NULERR,'(1X,A)') TRIM(CLERRMSG)
+    CALL ABOR1(TRIM(CLERRMSG))
+    
+  ELSEIF( LVARBC .AND. IBLINFO == 3 .AND. &
+   & (((IOBTYP == NSATEM .OR. IOBTYP == NALLSKY) .AND. &
+   &  (ICDTYP == NGTHRB .OR. ICDTYP == NSSMI .OR. ICDTYP == NTCWC)) .OR. &
+   &  (IOBTYP == NGBRAD .AND.  ICDTYP == NRADRR)    .OR. &
+   &  (IOBTYP == NSYNOP .AND. ICDTYP == NPGPS)) ) THEN
+
+    IF ( NAEMEMBER > 0 .AND. LPERTMRPAS ) THEN
+      ROBHDR%HDR%REPORT_STATUS(JOBS) = ZCHSTAT_BLACKLST(ROBHDR%HDR%REPORT_STATUS(JOBS))
+    ELSE
+      ROBHDR%HDR%REPORT_STATUS(JOBS) = ZCHSTAT_PASSIVE(ROBHDR%HDR%REPORT_STATUS(JOBS))
+    ENDIF
+
+  ELSEIF( LVARBC .AND. IBLINFO == 3 .AND. &
+   & IOBTYP == NSYNOP .AND. ICDTYP == NPGPS ) THEN
+
+    ROBHDR%HDR%REPORT_STATUS(JOBS) = ZCHSTAT_PASSIVE(ROBHDR%HDR%REPORT_STATUS(JOBS))
+ 
+
+  ELSEIF( IBLINFO /= 0 )THEN
+
+!           3.26.1 SET BLACKLIST FLAG IN STATUS WORD
+!                  not anymore because it does not go well
+!                  with feedback; new solution needed
+
+
+    ROBHDR%HDR%REPORT_STATUS(JOBS) = ZCHSTAT_BLACKLST(ROBHDR%HDR%REPORT_STATUS(JOBS))
+
+    ! Blacklist for atmospheric analysis, but not emissivity atlas
+    ! by setting status to use_emiskf_only (but not active)
+    IF( IBLINFO == 4 .AND. &
+   & IOBTYP == NSATEM .AND. ICDTYP == NGTHRB .AND. IVNM == VARNO%RAWBT) THEN
+      ROBHDR%HDR%REPORT_STATUS(JOBS) = ZCHSTAT_USE_EMISKF_ONLY(ROBHDR%HDR%REPORT_STATUS(JOBS))
+    ENDIF
+!           3.26.2 SET HEADER (REPORT) BLACKLIST FLAGS
+
+    IF (IFILL_FBVECTOR_HEAD > 0) THEN
+      DO JBL=1,MIN(NBHEAD,32)
+        IF (IFEEDBACK(JBL) /= 0) THEN
+          ROBHDR%HDR%REPORT_BLACKLIST(JOBS) = ZCHEV1(ROBHDR%HDR%REPORT_BLACKLIST(JOBS),JBL)
+        ENDIF
+      ENDDO
+    ENDIF
+    
+!           3.26.3 ALSO CHANGE DATUM STATUS, TO BLACKLISTED
+
+    DO JBODY = ROBODY%REPORT_START_ROW(JOBS),ROBODY%REPORT_END_ROW(JOBS)
+      ROBODY%BODY%DATUM_STATUS(JBODY) = ZCHSTAT_BLACKLST(ROBODY%BODY%DATUM_STATUS(JBODY))
+    ENDDO
+
+    CYCLE REPORT_LOOP
+  ENDIF
+!*
+!     ------------------------------------------------------------------
+
+!        4.       LOOP OVER ALL VARIABLES IN THE REPORT
+!                 -------------------------------------
+
+!*          4.1   Find window channel departure.
+
+  IF(LLRAD .AND. ISENSOR >= 0 .AND. ISENSOR <= NINST-1) THEN
+    ZWCD  = 1000000.0_JPRB
+    ZWCD2 = 1000000.0_JPRB
+    DO JBODY = ROBODY%REPORT_START_ROW(JOBS),ROBODY%REPORT_END_ROW(JOBS)
+      IF(ROBODY%BODY%VARNO(JBODY) == VARNO%RAWBT) THEN
+        ICHAN = ROBODY%BODY%VERTCO_REFERENCE_1(JBODY)
+        IF(ICHAN == IWINDOW_CH(ISENSOR))  ZWCD = ROBODY%BODY%FG_DEPAR(JBODY)
+        IF(ICHAN == IWINDOW_CH2(ISENSOR)) ZWCD2 = ROBODY%BODY%FG_DEPAR(JBODY)
+      ENDIF
+    ENDDO
+  ELSE
+    ZWCD  = RMDI
+    ZWCD2 = RMDI
+  ENDIF
+
+
+!*          4.2   START LOOP
+
+  DATUM_LOOP: DO JBODY = ROBODY%REPORT_START_ROW(JOBS),ROBODY%REPORT_END_ROW(JOBS)
+    ISQN = ROBODY%BODY%ENTRYNO(JBODY)
+!*
+!     ------------------------------------------------------------------
+
+!        5.       FILL THE INPUT VECTOR WITH BODY ENTRY INFORMATION
+!                 -------------------------------------------------
+
+!           5.1   VARIABLE NAME
+
+    IVNM = ROBODY%BODY%VARNO(JBODY)
+    ZDATA(NBHEAD+ 1) = IVNM
+
+!           5.2   TYPE OF VERTICAL COORDINATE
+
+    IVCO = ROBODY%BODY%VERTCO_TYPE(JBODY)
+    ZDATA(NBHEAD+ 2) = IVCO
+
+!           5.3   PRESSURE (IN HECTOPASCALS/METRES)
+
+    ZPPP = ROBODY%BODY%VERTCO_REFERENCE_1(JBODY)
+    IF(IVCO == 1) THEN
+      ZDATA(NBHEAD+ 3) = 0.01_JPRB*ZPPP
+    ELSEIF(IVCO == 2) THEN
+      ZDATA(NBHEAD+ 3) = ZPPP/RG
+    ELSEIF(IVCO == 6 .AND. IOBTYP==NLIMB) THEN
+! For GPSRO impact parameter -> impact height (m)
+      ZDATA(NBHEAD+ 3) = ZPPP-ROBHDR%GNSSRO%RADCURV(JOBS)
+    ELSE
+      ZDATA(NBHEAD+ 3) = ZPPP
+    ENDIF
+
+!           5.4   REFERENCE LEVEL PRESSURE (IN HECTOPASCALS/METRES)
+
+    ZPRL = ROBODY%BODY%VERTCO_REFERENCE_2(JBODY)
+    IF(IVCO == 1) ZPRL = 0.01_JPRB*ZPRL
+    IF(IVCO == 2) THEN
+      IF(ZPRL /= 0 .AND. IOBTYP /= NLIMB .AND. ICDTYP /= NGPSRO) ZPRL = ZPRL/RG
+    ENDIF
+    ZDATA(NBHEAD+ 4) = ZPRL
+
+!           5.5   SYNOP PRESSURE CODE
+    IF(IOBTYP == NSYNOP) THEN
+      ISYPCD = ROBODY%CONV_BODY%PPCODE(JBODY)
+    ELSE
+      ISYPCD = NMDI
+    ENDIF
+    ZDATA(NBHEAD+ 5) = ISYPCD
+
+!           5.6   OBSERVED VALUE
+
+    ZDATA(NBHEAD+ 6) = ROBODY%BODY%OBSVALUE(JBODY)
+
+!           5.7   FIRST GUESS DEPARTURE
+
+    ZDATA(NBHEAD+ 7) = ROBODY%BODY%FG_DEPAR(JBODY)
+
+!           5.8   FINAL OBSERVATION ERROR
+
+    ZDATA(NBHEAD+ 8) = ROBODY%ERRSTAT%FINAL_OBS_ERROR(JBODY)
+
+!           5.9   FIRST GUESS ERROR
+
+    ZDATA(NBHEAD+ 9) = ROBODY%ERRSTAT%FG_ERROR(JBODY)
+
+!           5.10  WINDOW CHANNEL FG DEPARTURE (1C ONLY)
+
+    ZDATA(NBHEAD+10) = ZWCD
+    ZDATA(NBHEAD+13) = ZWCD2
+
+!           5.11  FOR R/S, PASS OBSERVED TEMPERATURE
+
+    ZTEMPT = RMDI
+    IF(IOBTYP == NTEMP) THEN
+      DATUM_LOOPT: DO JBODY1 = ROBODY%REPORT_START_ROW(JOBS),ROBODY%REPORT_END_ROW(JOBS)
+        ZPPP1 = ROBODY%BODY%VERTCO_REFERENCE_1(JBODY1)
+        IVNM1 = ROBODY%BODY%VARNO(JBODY1)
+        IF(ZPPP1 == ZPPP .AND. &
+         & (IVNM1 == VARNO%T .OR. IVNM1 == VARNO%T2M) ) &
+         & ZTEMPT = ROBODY%BODY%OBSVALUE(JBODY1)  
+      ENDDO DATUM_LOOPT
+    ENDIF
+    ZDATA(NBHEAD+11) = ZTEMPT
+
+!           5.12  RADAR ELEVATION
+
+    IF(IOBTYP == NRADAR) THEN
+        ZDATA(NBHEAD+12) = ROBODY%RADAR_BODY%ELEVATION(JBODY)
+        ZDATA(NBHEAD+17) = ROBODY%RADAR_BODY%AZIMUTH(JBODY)
+    ENDIF
+
+!           5.13  TRIP LEVEL FOR AIRS CHANNEL SENSITIVITY TO SURFACE
+!           5.13b  CSR_PCLEAR and CSR standard deviation
+
+    IF(LLRAD) THEN
+      ZDATA(NBHEAD+14) = ROBODY%RADIANCE_BODY%TAUSFC(JBODY)
+      ZDATA(NBHEAD+15) = ROBODY%RADIANCE_BODY%CSR_PCLEAR(JBODY)
+      ZDATA(NBHEAD+16) = ROBODY%ERRSTAT%REPRES_ERROR(JBODY)
+    ENDIF
+
+!*          5.14  PERFORM BLACKLISTING FOR OBSERVATION BODY ENTRY
+
+    CALL BLACKBOX(NULOUT,2,IPRINT_BODY,&
+     & I_NMDI_BODY, IFILL_FBVECTOR_BODY,&
+     & IBLINFO,ZCCC,IFEEDBACK,NFEEDBACK,&
+     & ZDATA,NBHEAD+NBBODY)  
+
+!           5.15  FEEDBACK BLACKLIST INFORMATION OF THE BODY ENTRY
+!                 IBLINFO = 1-monthly, 2-constant, 3-experimental, 4-whitelist, 5-use_emiskf_only
+!                 IBLINFO == 8 triggers abort
+
+    IF (IBLINFO == 8) THEN
+
+      WRITE(CLERRMSG,1000) IFEEDBACK(0) 
+      WRITE(NULOUT,'(1X,A)') TRIM(CLERRMSG)
+      WRITE(NULERR,'(1X,A)') TRIM(CLERRMSG)
+      CALL ABOR1(TRIM(CLERRMSG))
+
+    ELSEIF( LVARBC .AND. IBLINFO == 3 .AND. &
+      &     ((((IOBTYP == NSATEM .AND. ICDTYP == NGTHRB) .OR. &
+      &      (IOBTYP == NALLSKY .AND. ICDTYP == NSSMI)) .AND. IVNM == VARNO%RAWBT) .OR. &
+      &     (IOBTYP == NGBRAD .AND. ICDTYP == NRADRR .AND. &
+      &      IVNM == VARNO%LNPRC) .OR. &
+      &     (IVNM == VARNO%APDSS)) ) THEN
+!              5.15.1  VARIATIONAL BIAS CORRECTION
+!                IBLINFO == 3 is used to set the STATUS to PASSIVE.
+
+      ROBODY%BODY%DATUM_STATUS(JBODY) = ZCHSTAT_PASSIVE(ROBODY%BODY%DATUM_STATUS(JBODY))
+
+  ELSEIF( LVARBC .AND. IBLINFO == 3 .AND. &
+   & IOBTYP == NSYNOP .AND. ICDTYP == NPGPS ) THEN
+
+      ROBODY%BODY%DATUM_STATUS(JBODY) = ZCHSTAT_PASSIVE(ROBODY%BODY%DATUM_STATUS(JBODY))
+
+
+    ELSEIF(IBLINFO /= 0) THEN
+
+      ROBODY%BODY%DATUM_STATUS(JBODY) = ZCHSTAT_BLACKLST(ROBODY%BODY%DATUM_STATUS(JBODY))
+
+      ! Blacklist for atmospheric analysis, but not emissivity atlas
+      ! by setting status to use_emiskf_only (but not active)
+      IF( IBLINFO == 4 .AND. &
+     & IOBTYP == NSATEM .AND. ICDTYP == NGTHRB .AND. IVNM == VARNO%RAWBT) THEN
+        ROBODY%BODY%DATUM_STATUS(JBODY) = ZCHSTAT_USE_EMISKF_ONLY(ROBODY%BODY%DATUM_STATUS(JBODY))
+      ENDIF
+
+!              5.15.2 SET BODY BLACKLIST FLAGS
+      IF (IFILL_FBVECTOR_BODY > 0) THEN
+        DO JBL=1,MIN(NBBODY,32)
+          IF (IFEEDBACK(NBHEAD+JBL) /= 0) THEN
+            ROBODY%BODY%DATUM_BLACKLIST(JBODY) = ZCHEV1(ROBODY%BODY%DATUM_BLACKLIST(JBODY),JBL)
+          ENDIF
+        ENDDO
+      ENDIF
+
+!              5.15.3  SET FLAG
+      IFL = 0
+      IF(ZCCC /= 0) IFL = AINT(ZCCC/0.25_JPRB)
+      IFLAG = MAX(MIN(IFL,NFLLIM(3)),NFLLIM(0))
+!      Inlining of NFLGDSE : set datum flag
+!      Initialize ad test the flag value before inserting
+      ICMFLG=ROBODY%BODY%DATUM_ANFLAG(JBODY)
+      IF(IFLAG < NDFLMN .OR. IFLAG > NDFLMX) THEN
+        WRITE(NULERR,'('' *** DATUM FLAG OUT OF RANGE '')')
+        WRITE(NULERR,'(''     - flag value '',I4)') IFLAG
+        WRITE(NULERR,'(''     - min.limit  '',I4)') NDFLMN
+        WRITE(NULERR,'(''     - max.limit  '',I4)') NDFLMX
+        CALL ABOR1('BLACK: DATUM FLAG OUT OF RANGE')
+      ENDIF 
+      CALL MVBITS(IFLAG,0,NCMABFOC,ICMFLG,NCMABFBP)
+!      Update the datum flag word
+      ROBODY%BODY%DATUM_ANFLAG(JBODY)=ICMFLG  
+    ENDIF
+!*
+!     ------------------------------------------------------------------
+
+!        6.       CLOSE THE LOOP OVER THE ...
+!                 ---------------------------
+
+!           6.1   ... DATUM
+
+  ENDDO DATUM_LOOP
+
+!           6.1   ... REPORT
+
+ENDDO REPORT_LOOP
+!*
+!     ------------------------------------------------------------------
+
+!        7.       RETURN
+!                 ------
+
+IF (LHOOK) CALL DR_HOOK('BLACK',1,ZHOOK_HANDLE)
+
+
+END SUBROUTINE BLACK

@@ -1,0 +1,264 @@
+#!/bin/bash
+#
+# Usage: d4ojoin  output.db  # allTS/output.db must not exist
+#        d4ojoin -output.db  # allTS/output.db gets auto-deleted before creation
+#        d4ojoinall          # will automatically detect all databases to be joined unless they already exists under the allTS/
+#        d4ojoinall -        # as the plain "d4ojoinall" w/o arguments, but allTS/ directory with files will be removed first
+# 
+# Input files will be gathered from timeslot-wise identical file i.e. "output.db"-files from "TS*/output.db"
+# Output file will be ALWAYS placed under the "allTS/output.db"
+# Please note that the "d4ojoinall" (unlike d4ojoin) also automatically creates catalog-file "allTS/catalog.db"
+# 
+# Use env backup=0 to disable creation of allTS/backups/ for backup of the allTS/*db databases with "d4ojoinall"
+# 
+
+cmdname=$(basename $0)
+cmdfile=$(readlink -f $0)
+cmddir=$(dirname $cmdfile)
+cmdfile=$cmddir/$cmdname
+
+kmd=$(basename $0)
+PS4='+ [$kmd:${LINENO}]: '
+
+function Usage()
+{
+    egrep -A11 '^# Usage:' $cmdfile | perl -pe 's/^# //'
+}
+
+d4ocatalog=$cmddir/d4ocatalog
+[[ -x $d4ocatalog ]] || d4ocatalog=$(which d4ocatalog 2>/dev/null || echo "d4ocatalog")
+
+set -eu
+
+if [[ "$cmdname" = "d4ojoinall" ]] ; then
+    if [[ $# -gt 1 ]] ; then
+	Usage
+	exit 2
+    elif [[ $# -eq 0 ]] ; then # auto-detection of relevant files
+	files=""
+	for ff in "TS*/*.[0-9]*.db"
+	do
+	    for f in $(eval echo "$ff")
+	    do
+		if [[ -r $f ]] ; then
+		    f=$(basename $f)
+		    files+=":$f"
+		fi
+	    done
+	done
+	files=$(echo "$files" | perl -pe 's/^://; s/:/\n/g;' | sort -u -n -t. -k2 | perl -pe 's/\n/ /g;' | perl -pe 's/\s+$//;')
+
+	export LOGS=${LOGS:-logs}
+	mkdir -pv $LOGS || :
+	
+	pid=$$
+	errfile=$(readlink -f $LOGS/errors-in-d4ojoinall.$pid.txt)
+	rm -f $errfile
+	
+	rc=0
+	for f in $files
+	do
+	    ($cmddir/d4ojoin $f || echo "Error: Failed to d4ojoin $f" >> $errfile) &
+	done
+	wait
+	if [[ -s $errfile ]] ; then
+	    rc=4
+	else # all perfect
+	    # create catalog file
+	    cd allTS
+	    $d4ocatalog catalog.db "*.[0-9]*.db"
+	    cd -
+	    ls -l allTS/*.[0-9]*.db || :
+	    if [[ "${backup:-1}" = "1" ]] ; then
+		echo "Creating backup databases into allTS/backups/ ..."
+		mkdir -pv allTS/backups
+		for f in allTS/*.db
+		do
+		    cp -pv $f allTS/backups/ &
+		done
+		wait
+		ls -l allTS/backups/ || :
+	    fi
+	fi
+	exit $rc
+    elif [[ "${1:-}" = "-" ]] ; then
+	rm -rfv allTS
+	$cmddir/d4ojoinall
+	exit 0
+    else
+	Usage
+	exit 3
+    fi
+else
+    if [[ $# -ne 1 ]] ; then
+	Usage
+	exit 1
+    else
+	out=$1
+    fi
+fi
+
+first=$(echo $out | cut -c1)
+delete=0
+[[ "$first" = "-" ]] && delete=1
+
+if [[ "$first" = "-" ]] ; then
+    out=$(echo $out | cut -c2-)
+fi
+out="allTS/$(basename $out)"
+mkdir -p allTS || :
+
+if [[ $delete -eq 1 ]] ; then
+    rm -rfv $out
+fi
+
+if [[ -f $out ]] ; then
+    echo "Error: Output dbfile '$out' already exists"
+    Usage
+    exit 2
+fi
+
+fsize=$(stat -c %s $out 2>/dev/null || echo 0)
+out=$(readlink -f $out)
+bnout=$(basename $out)
+
+shift
+
+files=""
+for ff in "TS*/$bnout"
+do
+    for f in $(eval echo "$ff")
+    do
+        if [[ -r $f ]] ; then
+	    [[ "$(readlink -f $f)" != "$out" ]] && files+=":$f"
+        fi
+    done
+done
+
+files=$(echo "$files" | perl -pe 's/^://; s/:/\n/g;' | sort -u | sort -tS -k2,2n | perl -pe 's/\n/ /g;' | perl -pe 's/\s+$//;')
+
+callcliro="sqlite3 -batch -init /dev/null -nullvalue NULL -noheader -csv -readonly"
+callclicr="sqlite3 -batch -init /dev/null -nullvalue NULL"
+
+pid=$$
+export TMPSLASH=${TMPSLASH:-/tmp} # potentially /dev/shm
+export tmpdir=$TMPSLASH/$USER/d4ojoin.$pid
+echo "[$(date +%s.%N)] $(date): Temporary dumps written to $tmpdir on host $(hostname -f)"
+mkdir -pv $tmpdir
+
+#set -x
+
+declare -A cols
+declare -A status
+tables=""
+schema="$tmpdir/.schema"
+create="$tmpdir/.create"
+hdr_id_tables=""
+n=0
+for f in $files
+do
+    f=$(readlink -f $f)
+    ((++n))
+    ffsize=$(stat -c %s $f 2>/dev/null || echo 0)
+    fsize=$(stat -c %s $out 2>/dev/null || echo 0)
+    echo "[$(date +%s.%N)] $(date): Will join input database#$n '$f' ($ffsize bytes) to '$out' ($fsize bytes) ..."
+    if [[ $n -eq 1 ]] ; then
+	# discover tables, columns & schema
+	tables=$($callcliro $f "select name from sqlite_master where type='table'" | grep -Pv '^sqlite_' | perl -pe 's/\n/ /' | perl -pe 's/\s*$//')
+	for tbl in $tables
+	do
+            cols[$tbl]=$($callcliro $f "select '$tbl'||'.'||name from pragma_table_info('$tbl')" | perl -pe 's/\n/,/' | perl -pe 's/,\s*$//')
+	    c=${cols[$tbl]}
+	    hdr_id=0
+	    echo "$c" | grep -Pq '\.hdr_id\b' || hdr_id=$?
+	    [[ $hdr_id -eq 0 ]] && hdr_id_tables+="$tbl "
+	    rc=0
+	    echo "$c" | grep -Pq '\.status\b' || rc=$?
+	    if [[ $rc -eq 0 ]] ; then
+		status[$tbl]=1
+	    else
+		status[$tbl]=0
+	    fi
+	done
+
+	# dump schema once
+	$callcliro $f ".schema" > $schema
+
+	# start create'ing -file
+	cat /dev/null > $create
+        echo ".output /dev/null" >> $create
+        echo "PRAGMA foreign_keys = OFF;" >> $create
+        #echo "PRAGMA foreign_keys = ON;" >> $create
+        echo "PRAGMA synchronous = OFF;"  >> $create
+        #echo "PRAGMA journal_mode = MEMORY;" >> $create
+        echo "PRAGMA journal_mode = OFF;" >> $create
+	echo "PRAGMA locking_mode = EXCLUSIVE;" >> $create
+	#echo "PRAGMA page_size = 4096;" >> $create
+	echo "PRAGMA cache_size = ${PRAGMA_CACHE_SIZE:--100000};" >> $create # kibibytes if < 0, pages if > 0
+	echo ".output" >> $create
+        echo ".read $schema" >> $create
+    fi
+
+    #echo ".shell date" >> $create
+    #echo ".print SELECT'ing from database $f ($ffsize bytes)" >> $create
+    echo '.shell echo "[$(date +%s.%N)] $(date): SELECTing from database '"$f ($ffsize bytes)"'"' >> $create
+    echo "attach database 'file:$f?mode=ro' as dbold;" >> $create
+
+    for tbl in $tables
+    do
+	c=${cols[$tbl]}
+	cnotbl=$(echo "$c" | perl -pe "s/\b$tbl\.(\w+)\b/\$1/g")
+	cid=$(echo "$c" | perl -pe "s/(\S+)/dbold.\$1/g")
+	ncols=$(echo "$c" | awk -F, '{print NF}')
+	if [[ "$tbl" = "status_bits" ]] ; then
+	    echo ".print ... DELETE FROM $tbl" >> $create
+	    echo "DELETE FROM $tbl;" >> $create # delete any existing contents
+	fi
+	where=""
+	#-- As per discussion 23-Feb-2023 : d4ojoin does not "discriminate" against joining even if "<table>.status" & 1 wasn't == 1
+	#   Uncomment next line and we will discriminate again !
+	#-- [[ ${status[$tbl]} -eq 1 ]] && where=" WHERE status & 1 = 1"
+	nrows=$($callcliro $f "SELECT count(*) FROM $tbl$where" 2>/dev/null || echo "0")
+	echo ".print ... INSERT INTO $tbl : $ncols columns x $nrows rows" >> $create
+	#[[ $nrows -ge 10000 ]] && echo ".timer on" >> $create
+	if [[ "$where" = "" ]] ; then
+	    echo "INSERT INTO $tbl ($cnotbl) SELECT $cid FROM dbold.$tbl;" >> $create
+	else
+	    echo "INSERT INTO $tbl ($cnotbl) SELECT $cid FROM dbold.$tbl WHERE dbold.$tbl.status & 1 = 1;" >> $create
+	fi
+	#[[ $nrows -ge 10000 ]] && echo ".timer off" >> $create
+    done
+    
+    echo "detach database dbold;" >> $create
+
+done
+
+#echo ".dbinfo" >> $create
+echo ".stats" >> $create
+
+echo ".print '#table,nrows,ncols'" >> $create
+echo ".mode csv" >> $create
+for tbl in $tables
+do
+    echo "SELECT '$tbl' AS 'table', count(*) AS nrows, (SELECT count(*) FROM pragma_table_info('$tbl')) AS ncols FROM '$tbl';" >> $create
+done
+
+rc=0
+if [[ -s $schema ]] ; then
+    echo "[$(date +%s.%N)] $(date): Joining $n databases into '$out' ..."
+    $callclicr $out < $create || rc=$?
+    [[ $rc -eq 0 ]] && $cmddir/d4ofixtoc $out
+    fsize=$(stat -c %s $out 2>/dev/null || echo 0)
+    echo "[$(date +%s.%N)] $(date): Done with '$out' ($fsize bytes) : rc=$rc"
+    ls -ltra $out || :
+fi
+
+set -x
+ls -ltra $tmpdir
+[[ $rc -eq 0 ]] && rm -rfv $tmpdir
+
+exit $rc
+
+
+
+

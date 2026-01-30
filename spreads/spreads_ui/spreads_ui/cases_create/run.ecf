@@ -1,0 +1,419 @@
+%include <includes/head.h>
+
+#    DIRHOME=${ECF_HOME}/operation/model1/assimilation ; mkdir -p ${DIRHOME}
+
+
+echo "${ECF_HOME}/%SUITE%"
+date
+# %include <includes/tail.h>
+
+###!/bin/bash
+#BSUB -n 6
+#BSUB -R "span[ptile=6]"
+#BSUB -q s_medium
+#BSUB -W 4:00
+#BSUB -P R000
+#BSUB -x 
+#BSUB -J create 
+#BSUB -I
+
+
+#===========================================================
+# Generate an ensemble of clones of a particular template.
+# This is useful if you plan to run an ensemble of CAM si-
+# mulation on a small cluster.
+#
+# Here I'm considering a template that is an hybrid case!
+#
+#===========================================================
+# Experiment name
+export case_name=%CASE_NAME%
+export CESMEXP="cesm-exp"
+
+# Where to copy the clones (Use a clear name for the experiment. The dir name must 
+# not appears in the case.template.original)
+export clonesroot="/work/cmcc/${USER}/${CESMEXP}/${case_name}"
+
+# CESM2 Directory
+# mkdir -p ${ECF_HOME}/source/CMCC-CM/case_template
+# cd ${ECF_HOME}/source/CMCC-CM/case_template
+# set +e
+# rsync -azh /work/cmcc/mg20022/ecflow/source/CMCC-CM/case_template/ .
+# set -e
+
+cd ${ECF_HOME}
+
+# Number of clones
+export nens=%NENS%
+
+# DART directory
+# export dartroot="/work/cmcc/${USER}/CMCC-DART-RSYNC/CMCC-DART/"
+export dartroot=%ECF_HOME%/../
+export MODEL_PATH=%MODEL_PATH%
+# DA working dir
+# tmpdir="%ECF_HOME%/source/CMCC-CM/TMP"$(echo "${case_name}" | tr [:lower:] [:upper:])
+tmpdir="/work/cmcc/${USER}/CMCC-CM/TMP"$(echo "${case_name}" | tr [:lower:] [:upper:])
+
+# Archive (to remove previous files)
+archdir="/work/cmcc/${USER}/CMCC-CM/archive"
+
+# Set the obs dir
+#baseobsdir="/work/cmcc/${USER}/observations"
+baseobsdir=%BASEOBSDIR%
+
+# Time slots used for the FGAT implementation (note: for every time timeslot you need to have an output from the model!)
+nts=%DEP%
+
+# Choose your exp template
+script_name_original=%CASE_TEMPLATE%
+
+# Chose the input namelist for DART
+dartnamelist=%DART_NML_TEMPLATE%
+
+# Ref date (YYYY-MM-DD-SSSSS)
+rd=%STARTDATE%
+RDATE="${rd:0:4}-${rd:4:2}-${rd:6:2}-${rd:8:5}"
+
+# Start date
+rd=%REFDATE%
+SDATE="${rd:0:4}-${rd:4:2}-${rd:6:2}-${rd:8:5}"
+
+# IC dir
+ICDIR=%STAGEDIR%
+
+# IC refcase
+ICREFCASE=%REFCASE%
+# SST dataset period
+SST_YEAR_START=2017
+SST_YEAR_END=2017
+
+export CIME_MACH=%ECF_HOSTNAME%
+export CESMDATAROOT='/data/inputs/CESM'
+
+#perl
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_TYPE=en_US.UTF-8
+
+# ==============================================================================
+# Prepare the environment
+# ==============================================================================
+
+# ==============================================================================
+# standard commands:
+#
+# Make sure that this script is using standard system commands
+# instead of aliases defined by the user.
+# If the standard commands are not in the location listed below,
+# change the 'set' commands to use them.
+# The verbose (-v) argument has been separated from these command definitions
+# because these commands may not accept it on some systems.  On those systems
+# set VERBOSE = ''
+# ==============================================================================
+
+
+# Load the environmental variable (CESMEXP)
+#. /users_home/cmcc/gc02720/.bashrc
+source /etc/profile.d/modules.sh
+# export PATH="/zeus/opt/anaconda/3.8/bin:$PATH
+# export PATH="/zeus/opt/anaconda/3.8/bin:$PATH"
+if [ %ECF_HOSTNAME% == 'zeus' ];then
+   # BASHRC
+   module load impi20.1/19.7.217 impi20.1/netcdf/C_4.7.4-F_4.5.3_CXX_4.3.1 impi20.1/hdf5/1.12.0 intel20.1/20.1.217 intel20.1/cdo/1.9.8 intel20.1/eccodes/2.17.0 intel20.1/h4cflib/1.3 intel20.1/hdf4/4.2.13 intel20.1/hdf5/1.12.0 intel20.1/magics/3.3.1 intel20.1/nco/4.9.3 intel20.1/ncview/2.1.8 intel20.1/netcdf/C_4.7.4-F_4.5.3_CXX_4.3.1
+   module load ncl/6.6.2
+   # source /users_home/cmcc/mg20022/.bashrc
+
+   # Daniele env
+  source /zeus/opt/anaconda/3.9/etc/profile.d/conda.sh
+
+  module load anaconda/3.9
+#   conda activate /users_home/cmcc/dp16116/.conda/envs/py38CS2
+# whereis python
+# python --version
+#    conda activate ecflow
+#   conda activate /work/cmcc/mg20022/.conda/envs/ecflow
+
+elif [ %ECF_HOSTNAME% == 'juno' ]; then
+
+   echo "d4o modules for juno"
+   source %ECF_CLONE%/../d4o/load-modules-d4o.juno
+
+fi
+
+#perl
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_TYPE=en_US.UTF-8
+
+
+# For DART
+
+export CESMDIR=%MODELDIR%
+export DIVISION=csp
+
+echo " "
+module list
+echo " "
+
+
+# ==============================================================================
+# standard commands:
+#
+# Make sure that this script is using standard system commands
+# instead of aliases defined by the user.
+# If the standard commands are not in the location listed below,
+# change the 'set' commands to use them.
+# The verbose (-v) argument has been separated from these command definitions
+# because these commands may not accept it on some systems.  On those systems
+# set VERBOSE = ''
+# ==============================================================================
+
+VERBOSE='-v'
+MOVE='/usr/bin/mv -f'
+COPY='/usr/bin/cp --preserve=timestamps -f'
+LINK='/usr/bin/ln -s'
+LIST='/usr/bin/ls'
+REMOVE='/usr/bin/rm -f'
+
+#maindir=`pwd`
+maindir="%ECF_HOME%/source/%CASE_NAME%/main_scripts"
+
+echo -e "\n START EXPERIMENT CREATION \n"
+
+# Parameters check
+if [ ${nts} -eq 13 ];then
+     tcentral=7
+else
+     echo " Time slots division not supported yet "
+     exit 222
+fi
+
+# if [ ! -d "%ECF_HOME%/source/template" ]; then
+#   cp -r --preserve /work/cmcc/mg20022/ecflow/source/template "%ECF_HOME%/source/template"
+# fi
+
+# if [ ! -d "%ECF_HOME%/source/%CASE_NAME%" ]; then
+# cp -r --preserve %ECF_CLONE%/../spreads_scripts/cam-fv %ECF_HOME%/source/%CASE_NAME%
+rsync -arz %ECF_CLONE%/../spreads_scripts/cam-fv/* %ECF_HOME%/source/%CASE_NAME%
+# fi
+
+cd %ECF_HOME%/source/%CASE_NAME%/main_scripts
+
+script_name="case.template"
+${COPY} ${dartnamelist} input.nml
+
+sed -i "s/NUM_INSTANCE_TEMPLATE/${nens}/g" input.nml
+
+echo -e "\n Remove dir of a previus experiment with the same name if it exists!\n"
+if [ -d ${archdir}/${case_name} ]; then
+   ${REMOVE} -fr ${archdir}/${case_name}
+fi 
+if [ -d ${tmpdir} ]; then
+   ${REMOVE} -fr ${tmpdir}
+fi 
+if [ -d ${clonesroot} ]; then
+   ${REMOVE} -fr ${clonesroot}
+   ${REMOVE} -fr /work/cmcc/${USER}/CMCC-CM/${case_name}_*
+fi
+
+# if forecast active in the previous experiment
+dirff=/work/cmcc/${USER}/cesm-exp/${case_name}-forecast
+if [ -d ${dirff} ]; then
+   ${REMOVE} -fr ${dirff}
+   ${REMOVE} -fr /work/cmcc/${USER}/CMCC-CM/${case_name}_f_*
+fi
+
+# set the obs dir
+${COPY} cases_assimilate_template.csh cases_assimilate.csh
+sed -i "s@TEMPLATE_OBS_EXP@${baseobsdir}@g" cases_assimilate.csh
+
+containerdir=`echo ${clonesroot} | cut -d'/' -f6`
+dateref=%REFDATE%
+startdate=%STARTDATE%
+
+
+echo %ECF_HOSTNAME%
+${COPY} ../case_archive/${script_name_original} ../case_archive/${script_name}
+sed -i "s@TEMPLATE_DIR_EXP@${containerdir}@g" ../case_archive/${script_name}
+sed -i "s@setenv refcase     ic_phase1@setenv refcase     %REFCASE%@g" ../case_archive/${script_name}
+sed -i "s@setenv refyear     RYYYY@setenv refyear     ${dateref:0:4}@g" ../case_archive/${script_name}
+sed -i "s@setenv refmon      RMM@setenv refmon      ${dateref:4:2}@g" ../case_archive/${script_name}
+sed -i "s@setenv refday      RDD@setenv refday      ${dateref:6:2}@g" ../case_archive/${script_name}
+sed -i "s@setenv reftod      RSSSS@setenv reftod   ${dateref:8:5}@g" ../case_archive/${script_name}
+sed -i "s@setenv mach         host@setenv mach         %ECF_HOSTNAME%@g" ../case_archive/${script_name}
+sed -i "s@setenv cesmroot     path_to_model/spreads-cmcc-cm@setenv cesmroot     %MODEL_PATH%/%MODELDIR%@g" ../case_archive/${script_name}
+
+sed -i "s@setenv start_year    YYYY@setenv start_year     ${startdate:0:4}@g" ../case_archive/${script_name}
+sed -i "s@setenv start_month   MM@setenv start_month      ${startdate:4:2}@g" ../case_archive/${script_name}
+sed -i "s@setenv start_day     DD@setenv start_day      ${startdate:6:2}@g" ../case_archive/${script_name}
+sed -i "s@setenv start_tod     SSSS@setenv start_tod   ${startdate:8:5}@g" ../case_archive/${script_name}
+
+sed -i "s@stagedir stagedir@stagedir %STAGEDIR%@g" ../case_archive/${script_name}
+
+
+# NEW MOD
+sed -i "s/TEMPLATE_DIR_EXP/${containerdir}/g" ../case_archive/${script_name}
+
+sed -i "s/ICCASE_TEMPLATE/${ICREFCASE}/g" ../case_archive/${script_name}
+sed -i "s/RY_TEMPLATE/${RDATE:0:4}/g" ../case_archive/${script_name}
+sed -i "s/RM_TEMPLATE/${RDATE:5:2}/g" ../case_archive/${script_name}
+sed -i "s/RD_TEMPLATE/${RDATE:8:2}/g" ../case_archive/${script_name}
+sed -i "s/RS_TEMPLATE/${RDATE:11:5}/g" ../case_archive/${script_name}
+sed -i "s@ICDIR_TEMPLATE@${ICDIR}@g" ../case_archive/${script_name}
+sed -i "s/SY_TEMPLATE/${SDATE:0:4}/g" ../case_archive/${script_name}
+sed -i "s/SM_TEMPLATE/${SDATE:5:2}/g" ../case_archive/${script_name}
+sed -i "s/SD_TEMPLATE/${SDATE:8:2}/g" ../case_archive/${script_name}
+sed -i "s/SS_TEMPLATE/${SDATE:11:5}/g" ../case_archive/${script_name}
+sed -i "s/SST_Y_START_TEMPLATE/${SST_YEAR_START}/g" ../case_archive/${script_name}
+sed -i "s/SST_Y_END_TEMPLATE/${SST_YEAR_END}/g" ../case_archive/${script_name}
+
+#===========================================================
+#
+#===========================================================
+# Create the first case
+# set +e
+
+echo -e "Phase 1 (start): creation of a new case from template ...\n"
+
+csh ../case_archive/${script_name} 
+
+case=`awk '/setenv case /{print $NF}' ../case_archive/$script_name`
+cesmroot=`awk '/setenv cesmroot/{print $NF}' ../case_archive/$script_name | \
+          sed "s@\\\${MODEL_PATH}@$MODEL_PATH@g;\
+               s@\\\${CESMDIR}@$CESMDIR@g"`
+caseroot=`awk '/setenv caseroot/{print $NF}' ../case_archive/$script_name| \
+          sed "s@\\\${USER}@$USER@g;\
+               s@\\\${CESMEXP}@$CESMEXP@g;\
+               s@\\\${case}@$case@g"`
+
+echo -e "Template case created"
+echo -e "Phase 1 (end)\n"
+
+#===========================================================
+#
+#===========================================================
+# Clone the case nens time
+
+echo -e "Phase 2 (start): creation of the clones ...\n"
+
+inst=1
+while [ $inst -le $nens ];do
+
+   echo -e "member $inst\n"
+
+   # Following the CESM strategy for 'inst_string'
+   inst_string=$(printf _%%04d $inst)
+   
+   new_case="$clonesroot/$case_name$inst_string"
+   # mkdir -p  ${new_case}
+   # Create the clone 
+   # %MODEL_PATH%/spreads-cmcc-cm/cime/scripts/create_clone \
+
+   ${cesmroot}/cime/scripts/create_clone \
+      --case     $new_case          \
+      --clone    $caseroot          \
+
+   # Modify the I.C. for each clone, then  build
+   # Remember that each job contain ONLY one member
+   cd $new_case
+   
+
+   
+   RUNDIR=`./xmlquery RUNDIR       --value`
+   refcase=`./xmlquery RUN_REFCASE --value`
+   stagedir=`./xmlquery RUN_REFDIR --value`
+   refdate=`./xmlquery RUN_REFDATE --value`
+   reftod=`./xmlquery RUN_REFTOD   --value`
+   COMP_ROF=`./xmlquery COMP_ROF   --value`   
+   init_time="${refdate}-$reftod"
+   
+   echo "finidat='${refcase}${inst_string}.clm2.r.${init_time}.nc'">> user_nl_clm
+   echo "finidat_hydros='${refcase}${inst_string}.hydros.r.${init_time}.nc'">> user_nl_hydros
+   sed -i "s/ICE_IC_TEMPLATE/${refcase}${inst_string}.cice.r.${init_time}.nc/g" user_nl_cice
+   sed -i "s/NCDATA_TEMPLATE/cam_initial${inst_string}.nc/g" user_nl_cam
+
+   echo "Staging initial files for instance $inst of $nens"
+
+   cd $RUNDIR
+
+   ${LINK} -f ${stagedir}/${refcase}${inst_string}.clm2.r.${init_time}.nc  .
+   ${LINK} -f ${stagedir}/${refcase}${inst_string}.cice.r.${init_time}.nc  .
+   ${LINK} -f ${stagedir}/${refcase}${inst_string}.cam.i.${init_time}.nc   cam_initial${inst_string}.nc
+   ${LINK} -f ${stagedir}/${refcase}${inst_string}.hydros.r.${init_time}.nc .   
+   # Build the case
+
+   cd $new_case
+   echo ''
+   echo 'Copy executable'
+   echo ''
+
+   ./xmlchange --file env_build.xml --id BUILD_COMPLETE --val TRUE
+   ./xmlchange --file env_build.xml --id BUILD_STATUS --val 0
+   
+#   ./xmlchange PIO_NUMTASKS=-99
+   # two nodes 18, one node 6
+#   ./xmlchange PIO_STRIDE=6
+   
+   sed -i "s@fv_nspltrac            = 9@fv_nspltrac            = 12@g" user_nl_cam
+   sed -i "s@fv_nspltvrm            = 9@fv_nspltvrm            = 12@g" user_nl_cam
+   sed -i "s@fv_nsplit              = 18@fv_nsplit              = 24@g" user_nl_cam
+   
+   cp /work/cmcc/${USER}/CMCC-CM/case_template/bld/cesm.exe  ${RUNDIR}/../bld/cesm.exe
+
+   inst=$(echo "${inst}+1" | bc)
+done
+
+echo -e "Phase 2 (end): \n"
+
+echo -e "Copy DART necessary files  in the tmp working dir"
+mkdir $tmpdir
+${MOVE} ${maindir}/input.nml $tmpdir/.
+${COPY} $tmpdir/input.nml $tmpdir/input.nml.original
+${COPY} $dartroot/d4o/flattened/cam-fv/filter.dir/filter $tmpdir/.
+${COPY} $dartroot/d4o/flattened/cam-fv/fill_inflation_restart.dir/fill_inflation_restart  $tmpdir/.
+
+# ${COPY} $dartroot/assimilation_code/programs/gen_sampling_err_table/work/sampling_error_correction_table.nc $tmpdir/.
+${COPY} $dartroot/d4o/flattened/utility/sampling_error_correction_table.nc $tmpdir/.
+${COPY} ${dartroot}/d4o/scripts/d4ojoin* ${tmpdir}/.
+${COPY} ${dartroot}/d4o/scripts/catalogd4o ${tmpdir}/.
+
+echo " Copy RTTOV db file"
+# ${COPY} $dartroot/observations/forward_operators/rttov_sensor_db.csv $tmpdir/.
+# ${COPY} ${rttovdir}/rtcoef_rttov12/rttov7pred54L/rtcoef_eos_2_amsua.dat  $tmpdir/.
+${COPY} $dartroot/d4o/flattened/utility/rttov_sensor_db.csv $tmpdir/.
+${COPY} $dartroot/d4o/ECMWF/rttov123/rtcoef_rttov12/rttov7pred54L/*  $tmpdir/.
+
+
+
+# Inside the TMP dir we need to create time-slots dir that will contain copy of the filter and links to the other needed files
+ts=1
+while [ $ts -le $nts ];do
+
+   echo -e "time slot creation: TS= $ts"
+   tsname="TS$ts"
+   mkdir $tmpdir/$tsname
+
+   # Copy and link all the necessary files
+   ${COPY} $tmpdir/input.nml $tmpdir/${tsname}/input.nml 
+
+   # Copy filter and fill_inflation_restart
+   ${COPY} $dartroot/d4o/flattened/cam-fv/filter.dir/filter $tmpdir/$tsname/.
+   # ${COPY} $dartroot/d4o/flattened/cam-fv/fill_inflation_restart.dir/fill_inflation_restart $tmpdir/$tsname/.
+   
+   # Link support files and tables for filter
+   ${COPY}  $dartroot/d4o/flattened/utility/sampling_error_correction_table.nc    $tmpdir/$tsname/.    
+   ${COPY}  $dartroot/d4o/flattened/utility/rttov_sensor_db.csv    $tmpdir/$tsname/.    
+   # ${COPY}  $dartroot/d4o/ECMWF/rttov123/rtcoef_rttov12/rttov7pred54L/rtcoef_eos_2_amsua.dat    $tmpdir/$tsname/.    
+   ${COPY}  $dartroot/d4o/ECMWF/rttov123/rtcoef_rttov12/rttov7pred54L/*    $tmpdir/$tsname/.    
+
+   ts=$(echo "${ts}+1" | bc)
+done
+
+
+# echo -e "\n Modify case_assimilate.sh using the right number of nodes! TO DO!!!!\n"
+echo -e "\n END EXPERIMENT CREATION \n"
+ecflow_client --label=info "END EXPERIMENT CREATION: $(date)"
+
+%include <includes/tail.h>

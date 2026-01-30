@@ -1,0 +1,217 @@
+#!/bin/bash
+#
+# Usage: catalogd4o catalog-output-d4o.db d4o-input.db(s)
+#    or  d4ocatalog catalog-output-d4o.db d4o-input.db(s)
+#
+# Creates a catalog database out of d4o-input.dbs (must contain obsdef-table)
+#
+# Special cases : if catalog-output-d4o.db == "-" then catalog.db will be the (new) catalog database name
+#                 if catalog-output-d4o.db == "+/path/foo.db" then catalog info will be appended to the (possibly) existing "/path/foo.db"
+#                 if catalog-output-d4o.db == "+" then catalog info will be appended to the (possibly) existing "catalog.db"
+#
+# If env backup=0 then stops creating catalogs under backups/
+#
+
+set -eu
+
+set -o pipefail
+
+kmd=$(basename $0)
+PS4='+ [$kmd:${LINENO}]: '
+#set -x
+
+sqlite3=$(which sqlite3 2>/dev/null || echo sqlite3)
+$sqlite3 -version -batch # if this fails, then an automatic non-zero exit
+
+cmd=$(readlink -f $0)
+cmdname=$(basename $cmd)
+cmddir=$(readlink -f $(dirname $cmd))
+
+now=$(date +%s)
+generic="catalog.$now.db"
+
+if [[ $# -ge 2 ]] ; then
+    catdb=$1
+    shift
+    if [[ "$catdb" = "-" ]] ; then # using generic catalog.db
+        catdb=$generic
+        rm -f $catdb
+    elif [[ "$(echo "$catdb" | cut -c1)" = "+" ]] ; then # append to the existing catalog (if exists)
+        catdb=$(echo "$catdb" | cut -c2-)
+        if [[ "$catdb" = "" ]] ; then
+           catdb=$generic
+        fi
+    else
+        rm -f $catdb
+    fi
+    catdb=$(basename $catdb)
+    catdb=$(echo "$catdb" | perl -pe 's%^\./%%') # remove "./" from the front
+    echo "$catdb" | grep -Pq '\.db$' || catdb+=".db" # make sure the suffix is ".db"
+
+    #echo "catdb=$catdb"
+    #echo "res=$res"
+    
+    cols="thinning,varno,kind,description,ecmwf_varno_description,ecmwf_obs_description,ecmwf_sat_description"
+    cols+=",obstype,codetype,sensor_id,sat_id,bufrtype,subtype,reportype,group_id,sat_instr,platform_id,rttov_sensor_id,rttov_sat_id"
+    nulls=$(echo $cols | perl -pe "s/(\w+)/NULL/g")
+    blanks=$(echo $cols | perl -pe "s/(\w+)/''/g")
+
+    pid=$$
+    catsql=${TMPDIR:-.}/$(basename $catdb .db).sql.$pid
+    cat > $catsql <<'EOF'
+CREATE TABLE IF NOT EXISTS catalog (
+  label text DEFAULT NULL,
+  dbfile text,
+  dbfile_size integer,
+  -- adopted from table TOC
+  timeslot INTEGER DEFAULT NULL,  -- timeslot number (or NULL if not present)
+  timeslot_start TEXT DEFAULT NULL,  -- start timestamp (YYYYMMDDHHMMSS, inclusive) for timeslot in concern (or NULL if timeslot NULL)
+  timeslot_end TEXT DEFAULT NULL,  -- end timestamp (YYYYMMDDHHMMSS, inclusive) for timeslot in concern (or NULL if timeslot NULL)
+  numtsl INTEGER DEFAULT 0,  -- number of timeslots (0 if no timeslots)
+  basetimestamp numeric DEFAULT NULL,  -- timestamp of the the basetime (if provided), in format YYYYMMDDHHMMSS
+  numens INTEGER DEFAULT 0,  -- number of ensembles (excluding control)
+  nhdr INTEGER DEFAULT 0,  -- number of hdr-table entries this varno stems from
+  nsat INTEGER DEFAULT 0,  -- number of sat-table entries this varno stems from (can be zero)
+  nbody INTEGER DEFAULT 0,  -- number of body-table entries i.e. number of observations
+  thinning INTEGER DEFAULT 1, -- the applied thinning of hdr entries if > 1 : mod(rowid,thinning)<>0 rows will be set hdr.status=0
+  varno INTEGER DEFAULT NULL,  -- ECMWF variable number
+  kind INTEGER DEFAULT NULL,  -- DART observation kind
+  description TEXT DEFAULT '',  -- explicit descriptive name (with units)
+  ecmwf_varno_description TEXT DEFAULT '',  -- ECMWF variable description (if available)
+  ecmwf_obs_description TEXT DEFAULT '',  -- ECMWF description based on (obstype,codetype,bufrtype,subtype) (when available)
+  ecmwf_sat_description TEXT DEFAULT '',  -- ECMWF description based on (sensor_id, sat_id & sat_instr) (when available)
+  obstype INTEGER DEFAULT NULL,  -- observation type
+  codetype INTEGER DEFAULT NULL,  -- observation codetype
+  sensor_id INTEGER DEFAULT NULL,  -- ECMWF (satellite) observation sensor_id
+  sat_id INTEGER DEFAULT NULL,  -- ECMWF satellite identifier (aka sat.sat_id)
+  bufrtype INTEGER DEFAULT NULL,  -- ECMWF BUFR observation type
+  subtype INTEGER DEFAULT NULL,  -- ECMWF BUFR observation subtype
+  reportype INTEGER DEFAULT NULL,  -- ECMWF MARS report type
+  group_id INTEGER DEFAULT NULL,  -- ECMWF MARS observation group
+  sat_instr INTEGER DEFAULT NULL,  -- ECMWF satellite instrument (aka sat.sat_instr)
+  platform_id INTEGER DEFAULT NULL,  -- SPREADS platform_id
+  rttov_sensor_id INTEGER DEFAULT NULL,  -- RTTOV (satellite) observation sensor_id
+  rttov_sat_id INTEGER DEFAULT NULL,  -- RTOV satellite identifier (aka sat.sat_id)
+  input_file TEXT DEFAULT '',  -- input file name
+  input_filesize TEXT DEFAULT 0,  -- input file size in bytes
+  input_filetype TEXT DEFAULT '',  -- input file type, one of {'obs_seq'|'obs_seq.gz'|'odc'|'bufr'}
+  input_range_begin TEXT DEFAULT 0,  -- input file range begin (e.g. the first BUFR-message, or first ODC-row)
+  input_range_end TEXT DEFAULT 0,  -- input file range end (e.g. the last BUFR-message, or last ODC-row that was included)
+  input_filter TEXT DEFAULT NULL  -- input file filter (e.g. ODC-row filter)
+);
+EOF
+    sortkey1=4 # timeslot
+    sortkey2=4 # timeslot
+    batchopt='-batch -init /dev/null -nullvalue NULL'
+    $sqlite3 $batchopt $catdb ".read $catsql"
+    inode_catdb=$(stat -c %i $catdb 2>/dev/null || echo 0)
+    rm -f $catsql
+    files=$(eval echo "$@") # just in case they were given in syntax "bufr*db"
+    for f in $files # "$@"
+    do
+        inode_f=$(stat -c %i $f 2>/dev/null || echo 0)
+        if [[ -s $f ]] && [[ $inode_f -ne $inode_catdb ]] ; then # exclude catalog.db inode
+            label=$(basename $f .db | perl -pe 's/^(\w+)\..*$/$1/')
+	    dbfile=$(echo $(dirname $f)/$(basename $f .db).db | perl -pe 's%^\./%%')
+	    $cmddir/d4ofixtoc $f
+            $sqlite3 -readonly -noheader $batchopt -csv $f \
+                     "SELECT '$label' AS label\
+                     ,'$dbfile' AS dbfile\
+                     ,$(stat -c %s $f) AS dbfile_size\
+                     ,timeslot,timeslot_start,timeslot_end,numtsl,basetimestamp,numens,SUM(nhdr),SUM(nsat),SUM(nbody),$cols\
+                     ,input_file,input_filesize,input_filetype,input_range_begin,input_range_end,input_filter FROM toc \
+                     GROUP BY dbfile,dbfile_size,timeslot,timeslot_start,timeslot_end,$cols,input_file,input_filesize,input_filetype,input_range_begin,input_range_end,input_filter"
+        fi
+    done | sort -n -t, --key=$sortkey1,$sortkey2 | $sqlite3 $batchopt $catdb ".import --csv --skip 0 |cat catalog"
+
+    # remove any previous summaries
+    $sqlite3 $batchopt $catdb "DELETE FROM catalog WHERE label IS NULL"
+    
+    # remove duplicate rows
+    groupby=$($sqlite3 $batchopt -header -csv $catdb "SELECT * FROM catalog LIMIT 1" | head -n1) # grab the header-line only
+    if [[ "$groupby" = "" ]] ; then
+	echo "*** Catalog database ($catdb) is empty -- maybe input databases did not contain any data in their TOC-tables ?"
+	sql="SELECT count(*) FROM toc"
+	for f in $files # "$@"
+	do
+            inode_f=$(stat -c %i $f 2>/dev/null || echo 0)
+            if [[ -s $f ]] && [[ $inode_f -ne $inode_catdb ]] ; then
+		nrows=$($sqlite3 $batchopt -noheader $f "$sql")
+		echo -e "\tNumber of rows in TOC-table, database $f = $nrows"
+	    fi
+	done
+	rm -fv $catdb
+	exit 0
+    else
+	# NULLs fed in via CSV-file are actually character strings "NULL" -- make them proper NULLs here:
+	sql="select name from pragma_table_info('catalog')" # obtain all column names for table 'catalog'
+	for c in $($sqlite3 -readonly -csv -noheader $batchopt $catdb "$sql")
+	do
+	    sql="UPDATE catalog SET $c = NULL WHERE $c = 'NULL' COLLATE NOCASE" # case-insensitive matching
+	    $sqlite3 $batchopt $catdb "$sql"
+	done
+
+	# Duplicate removal
+	$sqlite3 $batchopt $catdb "DELETE FROM catalog WHERE _rowid_ NOT in (SELECT MIN(_rowid_) FROM catalog GROUP BY $groupby)"
+	
+	# update summaries
+	sql="INSERT INTO catalog (dbfile_size,nhdr,nsat,nbody) SELECT SUM(dbfile_size),SUM(nhdr),SUM(nsat),SUM(nbody) FROM catalog"
+	$sqlite3 $batchopt $catdb "$sql"
+
+	#set -x
+	catcsv="$(dirname $catdb)/$(basename $catdb .db).csv"
+	catcsv=$(echo "$catcsv" | perl -pe 's%^\./%%') # remove "./" from the front
+	cattxt="$(dirname $catdb)/$(basename $catdb .db).txt"
+	cattxt=$(echo "$cattxt" | perl -pe 's%^\./%%') # remove "./" from the front
+	#sql="SELECT * FROM catalog WHERE label IS NOT NULL"
+	sql="SELECT reportype,SUM(nbody) AS num_obs,description,kind,bufrtype,subtype,varno,obstype,codetype"
+	sql+=",IIF(platform_id IS NOT NULL,platform_id,NULL) AS platform_id"
+	sql+=",IIF(rttov_sat_id IS NOT NULL,rttov_sat_id,NULL) AS rttov_sat_id"
+	sql+=",IIF(rttov_sensor_id IS NOT NULL,rttov_sensor_id,NULL) AS rttov_sensor_id"
+	sql+=",IIF(sat_instr IS NOT NULL,sat_instr,NULL) AS sat_instr"
+	sql+=",IIF(sat_id IS NOT NULL,sat_id,NULL) AS sat_id"
+	sql+=",IIF(sensor_id IS NOT NULL,sensor_id,NULL) AS sensor_id"
+	sql+=",printf('%s|%s|%s',ecmwf_varno_description,ecmwf_obs_description,ecmwf_sat_description) AS ecmwf_composite_description"
+	sql+=" FROM catalog WHERE label IS NOT NULL"
+	sql+=" GROUP BY reportype,description,kind,bufrtype,subtype,varno,obstype,codetype,platform_id,rttov_sat_id,rttov_sensor_id,sat_instr,sat_id,sensor_id"
+	sql+=" ORDER BY reportype,kind,varno"
+	
+	echo "*** A sample catalog outputs follow ..."
+	
+	echo "$sql"
+	$sqlite3 -readonly $batchopt -box $catdb "$sql"
+
+	sql="SELECT dbfile,max(thinning) AS thinning"
+	sql+=", max(numens) AS num_ensembles, max(numtsl) AS num_timeslots, count(distinct timeslot) AS num_timeslots_with_data, SUM(nbody) AS num_obs"
+	sql+=", GROUP_CONCAT(DISTINCT timeslot) AS timeslot_coverage"
+	sql+=", GROUP_CONCAT(DISTINCT reportype) AS reportype_coverage"
+#	sql+=", GROUP_CONCAT(DISTINCT obstype) AS obstype_coverage"
+#	sql+=", GROUP_CONCAT(DISTINCT varno) AS varno_coverage"
+#	sql+=", GROUP_CONCAT(DISTINCT kind) AS kind_coverage"
+	sql+=" FROM catalog WHERE label IS NOT NULL GROUP BY dbfile ORDER BY length(dbfile),dbfile"
+
+	echo "$sql"
+	$sqlite3 -readonly $batchopt -box $catdb "$sql"
+
+	sql="SELECT timeslot,MAX(basetimestamp) AS basetimestamp,timeslot_start,timeslot_end,SUM(nbody) AS num_obs"
+	sql+=" FROM catalog WHERE label IS NOT NULL"
+	sql+=" AND timeslot is NOT NULL"
+	sql+=" GROUP BY 1,3,4 ORDER BY 1"
+
+	echo "$sql"
+        $sqlite3 -readonly $batchopt -box $catdb "$sql"
+	
+	#-$sqlite3 -readonly $batchopt -line $catdb "$sql LIMIT 3" | $cmddir/mode_paste 
+	#$sqlite3 -readonly $batchopt -csv -header $catdb "$sql" > $catcsv
+	#$sqlite3 -readonly $batchopt -line $catdb "$sql" | $cmddir/mode_paste > $cattxt
+	#echo "*** Complete outputs in the files below"
+	#ls -ltr $(pwd)/$catdb $(pwd)/$catcsv $(pwd)/$cattxt
+	ls -ltr $(pwd)/$catdb
+
+	if [[ "${backup:-1}" = "1" ]] ; then
+	    mkdir -pv $(pwd)/backups
+	    /bin/cp -pv $(pwd)/$catdb $(pwd)/backups
+	fi
+   
+    fi
+fi

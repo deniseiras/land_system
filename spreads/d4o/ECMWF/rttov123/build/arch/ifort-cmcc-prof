@@ -1,0 +1,22 @@
+#OPT=-O2
+OPT=-O3
+FC=ifort
+FC77=ifort
+CC=icc
+LDFLAGS_ARCH=-g -qopenmp -Wl,-rpath='$$ORIGIN'/../lib
+CFLAGS_ARCH=-g -fPIC -qopenmp -traceback -finstrument-functions
+FFLAGS_ARCH=-g -fPIC $(OPT) -fp-model source -qopenmp -traceback -finstrument-functions
+
+#AR=ar r
+AR=$(CC) -g -shared -o
+EXT_LIB=$(EXT_SO)
+
+# Loop unrolling causes ifort v13 and later to take a long time to compile these subroutines
+FFLAGS_ARCH_rttov_opdep_9_ad=-g -fPIC $(OPT) -unroll0 -fp-model source -qopenmp -finstrument-functions
+FFLAGS_ARCH_rttov_opdep_9_k=-g -fPIC $(OPT) -unroll0 -fp-model source -qopenmp -finstrument-functions
+
+# -fp-model source ensures more consistent floating point results
+
+F2PY=f2py --fcompiler=intelem
+F2PYFLAGS_ARCH="-fPIC"
+F2PYLDFLAGS_ARCH=

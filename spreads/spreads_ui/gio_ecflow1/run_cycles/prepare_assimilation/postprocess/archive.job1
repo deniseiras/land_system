@@ -1,0 +1,180 @@
+#!/bin/bash  
+set -e          # stop the shell on first error
+set -u          # fail when using an undefined variable
+set -x          # echo script lines as they are executed
+set -o pipefail # fail if last(rightmost) command exits with a non-zero status
+ 
+# Defines the variables that are needed for any communication with ECF
+export ECF_PORT=3155    # The server port number
+export ECF_HOST=login1.juno.cmcc.scc    # The host name where the server is running
+export ECF_NAME=/gio_ecflow1/run_cycles/prepare_assimilation/postprocess/archive    # The name of this current task
+export ECF_PASS=RiezzjWk    # A unique password, used for job validation & zombie detection
+export ECF_TRYNO=1  # Current try number of the task
+export ECF_TRIES=0            # Number of tries before abort
+export ECF_RID=$$             # record the process id. Also used for zombie detection
+# export NO_ECF=1             # uncomment to run as a standalone task on the command line
+ 
+# Define the path where to find ecflow_client
+# make sure client and server use the *same* version.
+# Important when there are multiple versions of ecFlow
+export PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:$PATH
+ 
+# Tell ecFlow we have started
+ecflow_client --init=$$
+ 
+ 
+# Define a error handler
+ERROR() {
+   set +e                      # Clear -e flag, so we don't fail
+   wait                        # wait for background process to stop
+   ecflow_client --abort=trap  # Notify ecFlow that something went wrong, using 'trap' as the reason
+   trap 0                      # Remove the trap
+   exit 0                      # End the script cleanly, server monitors child, an exit 1, will cause another abort and zombie
+}
+ 
+ 
+# Trap any calls to exit and errors caught by the -e flag
+trap ERROR 0
+ 
+ 
+# Trap any signal that may cause the script to fail
+trap '{ echo "Killed by a signal"; ERROR ; }' 1 2 3 4 5 6 7 8 10 12 13 15
+
+export SCRIPTDIR="/users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts"
+
+cd ${SCRIPTDIR}
+
+export nens=5
+
+# Number of forecast members
+export FENS=5
+
+export CESMEXP='cesm-exp'
+export case_name=gio_ecflow1
+export CLONESROOT="/work/cmcc/${USER}/${CESMEXP}/${case_name}"
+export NTSLOTS=13
+export CASEROOT0001="$CLONESROOT/${case_name}_0001"
+
+source /etc/profile.d/modules.sh
+source /data/cmcc/${USER}/d4o/install/INTEL/source.me
+
+if [ juno == 'zeus' ];then
+
+   source /etc/profile.d/modules.sh
+
+   module load impi20.1/19.7.217 impi20.1/netcdf/C_4.7.4-F_4.5.3_CXX_4.3.1 impi20.1/hdf5/1.12.0 intel20.1/20.1.217 intel20.1/cdo/1.9.8 intel20.1/eccodes/2.17.0 intel20.1/h4cflib/1.3 intel20.1/hdf4/4.2.13 intel20.1/hdf5/1.12.0 intel20.1/magics/3.3.1 intel20.1/nco/4.9.3 intel20.1/ncview/2.1.8 intel20.1/netcdf/C_4.7.4-F_4.5.3_CXX_4.3.1
+   module load ncl/6.6.2
+   source /zeus/opt/anaconda/3.9/etc/profile.d/conda.sh
+   module load anaconda/3.9
+   # conda activate /work/cmcc/mg20022/.conda/envs/ecflow
+elif [ juno == 'juno' ]; then
+
+   echo 'new env'
+
+fi
+
+export TMPROOT="/work/cmcc/${USER}/CMCC-CM/TMP"$(echo "${case_name}" | tr [:lower:] [:upper:])
+
+cd ${TMPROOT}
+INFVAL=$(grep inf_flavor input.nml)
+export INFVAL=$(echo $INFVAL | sed -e "s#[=,'\.]# #g" | awk '{print $2}')
+
+cd ${CASEROOT0001}
+export archive=$(./xmlquery DOUT_S_ROOT   --value)
+export RUNDIR=$(./xmlquery RUNDIR        --value)
+export CASESRUNROOT=$(echo $RUNDIR | sed -e "s/\/${case_name}_0001\/run//g")
+
+if [ ! -d ${archive}/esp/hist ];then 
+    mkdir -p ${archive}/esp/hist
+fi
+
+cd ${RUNDIR}
+
+export FILE=$(head -n 1 rpointer.atm)
+export ATM_DATE_EXT=$(echo "${FILE}" | cut -d "." -f 4)
+export ATM_DATE=$(echo "$ATM_DATE_EXT" | cut -d "-" -f 3,4)
+
+cd ${TMPROOT}/allTS
+export adir="${archive}/${case_name}/${case_name}-${ATM_DATE_EXT}"
+mkdir -p ${adir}
+
+echo ""
+echo "`date` -- START   ANALYSIS ARCHIVING"
+
+set +e
+
+mv -f *.e*${ATM_DATE_EXT}*  ${adir}
+mv -f *.i*${ATM_DATE_EXT}*  ${adir}
+mv -f *${ATM_DATE_EXT}.db  ${adir}
+mv -f cam_dart_log.${ATM_DATE_EXT}*  ${adir}
+mv -f *cam_obs_seq_final* ${adir}
+
+# inflation archive, remove the oldest files
+if [ $INFVAL -eq 0 ]; then
+    echo  "\n No inflation used. Inflations files not hidden.\n"
+else
+    echo  "\n Inflation used. Hide inflation files and delete the old ones.\n"
+    mkdir -p ../.HIDE_${case_name}
+    cp -f *.rh.cam_*inf*${ATM_DATE_EXT}*  ${adir}
+    mv -f *.rh.cam_*inf*${ATM_DATE_EXT}*  ../.HIDE_${case_name}
+
+    old_inf_files=$(ls -rt1 *.rh.cam_*inf*.nc | wc -l)
+    
+    if [ $old_inf_files -eq 0 ]; then
+        echo "Nothing to remove"
+    else
+        echo "Remove old inflation files"
+        rm -rf *.dart.rh.cam_*inf*.nc
+    fi
+fi
+
+for TS in $(echo {1..13});do
+
+    cd ${TMPROOT}/TS${TS}
+    mv -f cam_dart_log.${ATM_DATE_EXT}*  ${adir}/TS${TS}_cam_dart_log.${ATM_DATE_EXT}*
+
+done
+
+# Restart management
+member=1
+while [ ${member} -le ${nens} ];do
+
+   inst_string=$(printf _%04d $member)
+   cd ${CASESRUNROOT}/${case_name}${inst_string}/run
+
+   echo "\n Restart processes date $ATM_DATE \n"
+   ## Save the restarts at the beginning of the year
+   if [ ${ATM_DATE} == "01-00000" ]; then
+     echo "\n Copy the restart files ... \n"
+     cp -f *.h0*${ATM_DATE_EXT}* ${adir}/
+     cp -f *.r*${ATM_DATE_EXT}* ${adir}/
+     cp -f *.rs*${ATM_DATE_EXT}* ${adir}/
+     cp -f *.rs1*${ATM_DATE_EXT}* ${adir}/
+     cp -f rpointer* ${adir}
+   fi
+   member=$(echo "${member}+1" | bc)
+
+done
+
+echo "`date` -- END   ANALYSIS ARCHIVING"
+
+cd ${SCRIPTDIR}
+cat check_assi.flag
+sed -i 's/0/1/g' check_assi.flag
+echo " wrote 1 in check_assi.flag"
+cat check_assi.flag
+
+ecflow_client --requeue=force /gio_ecflow1/run_cycles/ctrl
+ecflow_client --requeue=force /gio_ecflow1/run_cycles/clean
+ecflow_client --requeue=force /gio_ecflow1/run_cycles/forecast/daily_forecast
+
+sleep 10
+
+echo ""
+echo "----- END TASK ---"
+echo ""
+ecflow_client --label=Info "OK... 20230903  23:48"
+wait                      # wait for background process to stop
+ecflow_client --complete  # Notify ecFlow of a normal end
+trap 0                    # Remove all traps
+exit 0  

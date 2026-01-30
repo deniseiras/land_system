@@ -1,0 +1,13 @@
+code	description
+0	Land Surface
+1	Sea Surface
+2	Upper Air Sounding
+3	Satellite Sounding
+4	AIREP
+5	SATOB
+6	Ground-based radar
+12	ERS-SSMI-SCAT
+21	Radiances    (Satellite Measured) 
+30	SMOS
+253	PAOB
+8	Synoptic features

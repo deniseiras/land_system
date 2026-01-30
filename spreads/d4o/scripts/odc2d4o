@@ -1,0 +1,41 @@
+#!/bin/bash
+#
+# Usage: odc2d4o odcfile npools [parallel]
+#
+
+set -eu
+
+odcfile=${1:-"/dev/null"}
+npools=${2:-0}
+parallel=${3:-0}
+
+re='\.odc$'
+if [[ $npools -gt 0 ]] && [[ -s $odcfile ]] && [[ $odcfile =~ $re ]] ; then
+    rowcount=$(odc count $odcfile 2>/dev/null || echo 0)
+    if [[ $rowcount -gt 0 ]] ; then
+	[[ $npools -le $rowcount ]] || npools=$rowcount
+	pathdb=${4:-$(dirname $(readlink -f $odcfile))}
+	mergedb=$(basename $odcfile .odc)
+	rowinc=$(((rowcount+npools-1)/npools))
+	echo "$(basename $0): odcfile=$odcfile npools=$npools parallel=$parallel pathdb=$pathdb # mergedb=$mergedb rowcount=$rowcount rowinc=$rowinc"
+	first=1
+	last=0
+	progress=""
+	for ((poolno = 1; poolno <= npools; ++poolno))
+	do
+	    ((last += rowinc))
+	    [[ $last -le $rowcount ]] || last=$rowcount
+	    [[ $poolno -lt $npools ]] || progress=" --progress"
+	    cmd="obseqd4o -i $odcfile --poolno=$poolno --odc_range=$first:$last --pathdb=$pathdb --mergedb=$mergedb$progress ${5:-}"
+	    echo $cmd
+	    if [[ $parallel -eq 0 ]] ; then
+		$cmd
+	    else
+		$cmd &
+		sleep 1
+	    fi
+	    ((first = last+1))
+	done
+	[[ $parallel -eq 0 ]] || wait
+    fi
+fi

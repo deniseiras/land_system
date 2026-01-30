@@ -1,0 +1,236 @@
+!------------------------------------------------------------------------
+! This file is used to modify datm.streams.xml generated in $RUNDIR
+! Entries should have the form
+!  <streamname>:<stream_variable>= <new stream_value> (NO Quotes!!!)
+! The following are accepted values for a stream named foo
+!  foo:meshfile = character string
+!  foo:datafiles = comma separated string of full pathnames (e.g. file1,file2,file3...)
+!  foo:datavars = comma separated string of field pairs  (e.g. foo foobar,foo2 foobar2...)
+!  foo:taxmode = one of [cycle, extend, limit]
+!  foo:tintalgo = one of [lower,upper,nearest,linear,coszen]
+!  foo:readmode = single (only suported mode right now)
+!  foo:mapalgo = one of [bilinear,redist,nn,consf,consd,none]
+!  foo:dtlimit = real (1.5 is default)
+!  foo:year_first = integer
+!  foo:year_last = integer
+!  foo:year_align = integer
+!  foo:vectors = null or the names of the vector fields in the model (i.e. Sa_u:Sa_v)
+!  foo:lev_dimname: = one of [null,name of level dimenion name]
+!  foo:offset = integer
+! As an example:
+!   foo:year_first = 1950
+! would change the stream year_first stream_entry to 1950 for the foo stream block
+! NOTE: multi-line inputs are enabled by adding a \ at the end of the line
+! As an emaple:
+! foo:datafiles=foo1,foo2, \
+!     foo3
+! Will yield the following new entry for datafiles in stream foo
+!   <datafiles>
+!      <file>foo1</file>
+!      <file>foo2</file>
+!      <file>foo3</file>
+!   </datafiles>
+!------------------------------------------------------------------------
+presaero.hist:datafiles=/data/inputs/CESM/inputdata/atm/cam/chem/trop_mozart_aero/aero/aerosoldep_WACCM.ensmean_monthly_hist_1849-2015_0.9x1.25_CMIP6_c180926.nc
+presaero.hist:taxmode=cycle
+presaero.hist:tintalgo=linear
+presaero.hist:readmode=single
+presaero.hist:mapalgo=bilinear
+presaero.hist:dtlimit=1.5
+presaero.hist:year_first=1849
+presaero.hist:year_last=2004
+presaero.hist:year_align=1849
+presaero.hist:vectors=null
+presaero.hist:lev_dimname=null
+presaero.hist:meshfile=/data/inputs/CESM/inputdata/share/meshes/fv0.9x1.25_141008_polemod_ESMFmesh.nc
+presaero.hist:datavars=  BCDEPWET   Faxa_bcphiwet,\
+      BCPHODRY   Faxa_bcphodry,\
+      BCPHIDRY   Faxa_bcphidry,\
+      OCDEPWET   Faxa_ocphiwet,\
+      OCPHIDRY   Faxa_ocphidry,\
+      OCPHODRY   Faxa_ocphodry,\
+      DSTX01WD   Faxa_dstwet1,\
+      DSTX01DD   Faxa_dstdry1,\
+      DSTX02WD   Faxa_dstwet2,\
+      DSTX02DD   Faxa_dstdry2,\
+      DSTX03WD   Faxa_dstwet3,\
+      DSTX03DD   Faxa_dstdry3,\
+      DSTX04WD   Faxa_dstwet4,\
+      DSTX04DD   Faxa_dstdry4
+presaero.hist:offset=0
+
+
+CLMGSWP3v1.Solar:taxmode=cycle
+CLMGSWP3v1.Solar:tintalgo=coszen
+CLMGSWP3v1.Solar:readmode=single
+CLMGSWP3v1.Solar:mapalgo=bilinear
+CLMGSWP3v1.Solar:dtlimit=1.5
+CLMGSWP3v1.Solar:year_first=2002
+CLMGSWP3v1.Solar:year_last=2004
+CLMGSWP3v1.Solar:year_align=2002
+CLMGSWP3v1.Solar:vectors=null
+CLMGSWP3v1.Solar:lev_dimname=null
+CLMGSWP3v1.Solar:meshfile=/data/inputs/CESM/inputdata/atm/datm7/atm_forcing.datm7.GSWP3.0.5d.v1.c170516/clmforc.GSWP3.c2011.0.5x0.5.TPQWL.SCRIP.210520_ESMFmesh.nc
+CLMGSWP3v1.Solar:datafiles= /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2002-01.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2002-02.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2002-03.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2002-04.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2002-05.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2002-06.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2002-07.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2002-08.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2002-09.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2002-10.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2002-11.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2002-12.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2003-01.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2003-02.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2003-03.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2003-04.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2003-05.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2003-06.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2003-07.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2003-08.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2003-09.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2003-10.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2003-11.nc,\
+                     /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Solar/clmforc.EDA24.0.5d.Solr.2003-12.nc
+
+CLMGSWP3v1.Solar:datavars=FSDS     Faxa_swdn
+CLMGSWP3v1.Solar:offset=0
+
+
+CLMGSWP3v1.Precip:taxmode=cycle
+CLMGSWP3v1.Precip:tintalgo=nearest
+CLMGSWP3v1.Precip:readmode=single
+CLMGSWP3v1.Precip:mapalgo=bilinear
+CLMGSWP3v1.Precip:dtlimit=1.5
+CLMGSWP3v1.Precip:year_first=2002
+CLMGSWP3v1.Precip:year_last=2004
+CLMGSWP3v1.Precip:year_align=2002
+CLMGSWP3v1.Precip:vectors=null
+CLMGSWP3v1.Precip:lev_dimname=null
+CLMGSWP3v1.Precip:meshfile=/data/inputs/CESM/inputdata/atm/datm7/atm_forcing.datm7.GSWP3.0.5d.v1.c170516/clmforc.GSWP3.c2011.0.5x0.5.TPQWL.SCRIP.210520_ESMFmesh.nc
+CLMGSWP3v1.Precip:datafiles= /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2002-01.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2002-02.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2002-03.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2002-04.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2002-05.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2002-06.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2002-07.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2002-08.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2002-09.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2002-10.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2002-11.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2002-12.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2003-01.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2003-02.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2003-03.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2003-04.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2003-05.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2003-06.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2003-07.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2003-08.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2003-09.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2003-10.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2003-11.nc,\
+                              /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/Precip/clmforc.EDA24.0.5d.Prec.2003-12.nc
+                            
+
+CLMGSWP3v1.Precip:datavars=PRECTmms Faxa_precn
+CLMGSWP3v1.Precip:offset=0
+
+
+CLMGSWP3v1.TPQW:taxmode=cycle
+CLMGSWP3v1.TPQW:tintalgo=linear
+CLMGSWP3v1.TPQW:readmode=single
+CLMGSWP3v1.TPQW:mapalgo=bilinear
+CLMGSWP3v1.TPQW:dtlimit=1.5
+CLMGSWP3v1.TPQW:year_first=2002
+CLMGSWP3v1.TPQW:year_last=2004
+CLMGSWP3v1.TPQW:year_align=2002
+CLMGSWP3v1.TPQW:vectors=null
+CLMGSWP3v1.TPQW:lev_dimname=null
+CLMGSWP3v1.TPQW:meshfile=/data/inputs/CESM/inputdata/atm/datm7/atm_forcing.datm7.GSWP3.0.5d.v1.c170516/clmforc.GSWP3.c2011.0.5x0.5.TPQWL.SCRIP.210520_ESMFmesh.nc
+CLMGSWP3v1.TPQW:datafiles= /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2002-01.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2002-02.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2002-03.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2002-04.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2002-05.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2002-06.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2002-07.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2002-08.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2002-09.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2002-10.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2002-11.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2002-12.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2003-01.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2003-02.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2003-03.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2003-04.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2003-05.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2003-06.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2003-07.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2003-08.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2003-09.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2003-10.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2003-11.nc,\
+                           /work/cmcc/spreads-lnd/work/forcing/EDA/EDA_n24/TPHWL/clmforc.EDA24.0.5d.TPQWL.2003-12.nc
+
+
+CLMGSWP3v1.TPQW:datavars=TBOT     Sa_tbot,\
+      WIND     Sa_wind,\
+      QBOT     Sa_shum,\
+      PSRF     Sa_pbot
+CLMGSWP3v1.TPQW:offset=0
+
+
+presndep.hist:datafiles=/data/inputs/CESM/inputdata/lnd/clm2/ndepdata/fndep_clm_hist_b.e21.BWHIST.f09_g17.CMIP6-historical-WACCM.ensmean_1849-2015_monthly_0.9x1.25_c180926.nc
+presndep.hist:taxmode=cycle
+presndep.hist:tintalgo=linear
+presndep.hist:readmode=single
+presndep.hist:mapalgo=bilinear
+presndep.hist:dtlimit=1.5
+presndep.hist:year_first=1849
+presndep.hist:year_last=2004
+presndep.hist:year_align=1849
+presndep.hist:vectors=null
+presndep.hist:lev_dimname=null
+presndep.hist:meshfile=/data/inputs/CESM/inputdata/share/meshes/fv0.9x1.25_141008_polemod_ESMFmesh.nc
+presndep.hist:datavars=NDEP_NHx_month    Faxa_ndep_nhx,\
+          NDEP_NOy_month    Faxa_ndep_noy
+presndep.hist:offset=0
+
+preso3.hist:datafiles=/data/inputs/CESM/inputdata/cdeps/datm/ozone/O3_surface.f09_g17.CMIP6-historical-WACCM.001.monthly.185001-201412.nc
+preso3.hist:taxmode=cycle
+preso3.hist:tintalgo=linear
+preso3.hist:readmode=single
+preso3.hist:mapalgo=bilinear
+preso3.hist:dtlimit=1.5
+preso3.hist:year_first=1850
+preso3.hist:year_last=2004
+preso3.hist:year_align=1850
+preso3.hist:vectors=null
+preso3.hist:lev_dimname=null
+preso3.hist:meshfile=/data/inputs/CESM/inputdata/share/meshes/fv0.9x1.25_141008_polemod_ESMFmesh.nc
+preso3.hist:datavars= O3  Sa_o3
+preso3.hist:offset=0
+
+
+co2tseries.20tr:datafiles=/data/inputs/CESM/inputdata/atm/datm7/CO2/fco2_datm_global_simyr_1750-2014_CMIP6_c180929.nc
+co2tseries.20tr:taxmode=extend
+co2tseries.20tr:tintalgo=linear
+co2tseries.20tr:readmode=single
+co2tseries.20tr:mapalgo=none
+co2tseries.20tr:dtlimit=1.e30
+co2tseries.20tr:year_first=1850
+co2tseries.20tr:year_last=2004
+co2tseries.20tr:year_align=1850
+co2tseries.20tr:vectors=null
+co2tseries.20tr:lev_dimname=null
+co2tseries.20tr:meshfile=none
+co2tseries.20tr:datavars=CO2   Sa_co2diag
+co2tseries.20tr:offset=0
+
+
+

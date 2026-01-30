@@ -1,0 +1,470 @@
+name	type	description
+expver@desc	string	mars key - experiment id
+class@desc	pk1int	mars key - ecmwf classification for data
+stream@desc	pk1int	mars key - forecasting system used to generate data
+type@desc	pk1int	mars key - type of field used to retrieve data
+andate@desc	YYYYMMDD	analysis date
+antime@desc	HHMMSS	analysis time
+inidate@desc	YYYYMMDD	the starting date for the whole assimilation period
+initime@desc	HHMMSS	the starting time for the whole assimilation period
+creadate@desc	YYYYMMDD	creation date
+creatime@desc	HHMMSS	creation time
+creaby@desc	string	created by whom (username)
+moddate@desc	YYYYMMDD	modification date
+modtime@desc	HHMMSS	modification time
+modby@desc	string	modified by whom (username)
+mxup_traj@desc	pk1int	max. no. of updates for this database (= $mxup_traj)
+numtsl@desc	pk1int	total number of timeslots
+latlon_rad@desc	pk1int	equal to 1 if (lat,lon) is in radians, equal to 0 if in degrees
+enda_member@desc	pk1int	enda-member number : 0=control, >0 member#
+timeslot@poolmask	pk1int	timeslot number
+obstype@poolmask	pk1int	ifs observation type
+codetype@poolmask	pk1int	ifs codetype
+sensor@poolmask	pk1int	ifs local satellite sensor (not necessarily wmo)
+bufrtype@poolmask	pk1int	wmo bufr type
+subtype@poolmask	pk1int	wmo bufr subtype
+poolno@poolmask	pk1int	pool number
+hdr_count@poolmask	pk1int	number of reports
+body_count@poolmask	pk1int	number of datum
+max_bodylen@poolmask	pk1int	maximum number of datum
+timeslot@timeslot_index	pk1int	timeslot number
+enddate@timeslot_index	YYYYMMDD	end date of the timeslot
+endtime@timeslot_index	HHMMSS	end time of the timeslot
+target@index	pk1int	target pool number for ccma
+procid@index	pk1int	normally the same as pool number (in ecma)
+timeslot@index	pk1int	timeslot number
+kset@index	pk1int	kset as from ecset
+abnob@index	pk1int	ecxxx-array pointer
+mapomm@index	pk1int	gomxxx-array pointer
+seqno@hdr	pk1int	observation sequence
+subseqno@hdr	pk1int	observation sequence for sub-windows
+bufrtype@hdr	pk1int	bufr-type
+subtype@hdr	pk1int	bufr subtype for reference
+subsetno@hdr	pk9int	multisubset number in bufr-msg (=0 for single subset) useful for odb2bufr
+groupid@hdr	pk1int	mars key - observation group
+reportype@hdr	pk1int	mars key - report type for mar
+obstype@hdr	pk1int	observation type
+codetype@hdr	pk1int	observation code type
+sensor@hdr	pk1int	ecmwf satellite local (rttov) sensor indicator
+retrtype@hdr	pk1int	observation retrieval type
+instrument_type@hdr	pk1int	observation instrument type
+stalt@hdr	pk9real	altitude
+date@hdr	YYYYMMDD	obs. date
+time@hdr	HHMMSS	obs. exact time
+distribtype@hdr	pk1int	type of distribution - default is 0 i.e. no redistribution
+distribid@hdr	pk1int	target pool when data is re-distributed (for instance on model grid)
+gp_dist@hdr	pk9real	dist to nearest gp - only if observations need to be distributed on model grid
+gp_number@hdr	pk1int	jrof - grid point number (on the local pe grid)
+numlev@hdr	pk1int	no. of distinct pressure levels in bodies
+numactiveb@hdr	pk1int	no. of active body entries (i.e. status.active@body == 1)
+checksum@hdr	pk9real	a check sum of obsvalues where press
+sortbox@hdr	pk1int	sorting box
+areatype@hdr	pk1int	observation area type
+report_status@hdr	STATUS_t	report's status
+report_event1@hdr	REPORT_EVENT1_t	report's events (part 1)
+report_description[4]@hdr	string	satellite name (4 words, up to 32 bytes see suobarea.f90)
+report_rdbflag@hdr	REPORT_RDBFLAG_t	report's flags
+report_blacklist@hdr	REPORT_BLACKLIST_t	report's blacklist events
+report_event2@hdr	REPORT_EVENT2_t	report events (part 2) word pos.
+thinningkey[$NUMTHBOX]@hdr	pk9real	thinning key
+thinningtimekey@hdr	pk9real	thinning time key
+sitedep@hdr	pk1int	site dependent
+source@hdr	string	source id of obs. (character*8) : re-analysis purposes
+lat@hdr	pk9real	latitude
+lon@hdr	pk9real	longitude
+trlat@hdr	pk9real	transformed lat.
+trlon@hdr	pk9real	transformed lon.
+statid@hdr	string	station id (character*8)
+enda_count@hdr	pk1int	number of enda-members active for this hdr-entry
+window_offset@hdr	pk1int	use for subwindows to identify the subwindow
+member@enkf[1:$NMXENKF]	pk1int	enkf-member number
+hprior@enkf[1:$NMXENKF]	pk9real	h(x)
+max_fcdiag@fcdiagnostic	pk1int	number of forecast diagnostic valid for this experiment
+fc_depar@fcdiagnostic_body[1:$NMXFCDIAG]	pk9real	forecast departure
+fc_step@fcdiagnostic_body[1:$NMXFCDIAG]	YYYYMMDD	corresponding forecast step
+report_rrflag@gbrad	pk1int	rain rate status flag - see yomgbrad.f90
+rrvalue@gbrad_body	pk9real	simulated rain rates
+rrvaluetl@gbrad_body	pk9real	simulated tl of rain rates
+rrvaluead@gbrad_body	pk9real	simulated ad of rain rates
+flight_phase@conv	pk1int	bufr aircraft flight phase
+flight_dp_o_dt@conv	pk9real	aircraft flight dp/dt
+anemoht@conv	pk9real	height of anemometer
+baroht@conv	pk9real	height of barometre
+station_type@conv	pk1int	synop/ships (needed to find out if dribu)
+sonde_type@conv	pk1int	in order to do bias corr. of temps
+collection_identifier@conv	pk1int	Identifier for a collection within a specific source
+unique_identifier@conv	pk1int	Unique record identifier for a given date and time and source
+ppcode@conv_body	pk1int	pressure code
+level@conv_body	LEVEL_t	pilot level id.
+datum_qcflag@conv_body	pk9real	quality flag coming from bufr for windprofiler
+msg@bufr	bufr	bufr-data in bulk 4-byte chunks
+satellite_identifier@sat	pk1int	wmo satellite platform identifier
+satellite_instrument@sat	pk1int	wmo satellite instrument on board
+zenith@sat	pk9real	satellite instrument zenith angle
+azimuth@sat	pk9real	satellite instrument azimuth angle
+solar_zenith@sat	pk9real	solar zenith angle
+solar_azimuth@sat	pk9real	solar azimuth angle
+gen_centre@sat	pk1int	wmo generating centre
+gen_subcentre@sat	pk1int	wmo generating sub-centre
+datastream@sat	pk1int	datastream
+lsm@modsurf	pk9real	model land-sea mask
+seaice@modsurf	pk9real	model sea-ice  mask
+orography@modsurf	pk9real	model orography
+snow_depth@modsurf	pk9real	model snow depth (m)
+t2m@modsurf	pk9real	2m temperature
+albedo@modsurf	pk9real	albedo
+windspeed10m@modsurf	pk9real	10 metre wind speed
+u10m@modsurf	pk9real	10 metre u wind component
+v10m@modsurf	pk9real	10 metre v wind component
+surface_class@modsurf	pk1int	surface type (used for radiances only see satrad/emiss/amsu_sfc.f90)
+tsfc@modsurf	pk9real	model skin temperature (used for some radiances only)
+scanline@radiance	pk1int	scan line number
+scanpos@radiance	pk1int	position number along scan / field of view number
+orbit@radiance	pk1int	orbit number
+typesurf@radiance	pk1int	type of surface
+corr_version@radiance	pk1int	non linear correction version (a set of coefficients for each version)
+cldcover@radiance	pk1int	cloud percentage from visnir for airs
+cldptop[1:3]@radiance	pk9real	cloud top press. from tovs hirs radiances: 3 values for 3 differents methods
+cldne[1:3]@radiance	pk9real	cloud emissivity from tovs hirs radiances: 3 values for 3 differents methods
+skintemper@radiance	pk9real	skin temperture background error
+skintemp[$NMXUPD]@radiance	pk9real	skin temperature, per nresupd
+asr_pcloudy@radiance	pk1int	All-sky cloud amount in segment ASR radiances
+asr_pclear@radiance	pk1int	All-sky amount segment cloud free ASR radiances
+asr_pcloudy_low@radiance	pk1int	All-sky cloud amount in segment low-clouds
+asr_pcloudy_middle@radiance	pk1int	All-sky cloud amount in segment middle-clouds
+asr_pcloudy_high@radiance	pk1int	All-sky cloud amount in segment high-clouds
+csr_pclear@radiance_body	pk9real	percentage of clear pixels in mean csr
+cld_fg_depar@radiance_body	pk9real	fg departure for cloudy radiances
+rank_cld@radiance_body	pk9real	channel ranking for cloud detection for airs and iasi only.
+tausfc@radiance_body	pk9real	surface transmittance for radiances - to be moved to radiance_body table
+skintemp_retr@radiance_body	pk9real	skin temperature retrieved from observations, emissivity atlas and fg
+emis_rtin@radiance_body	pk9real	input surface emissivity for rttov (can be outside 0-1 to prompt internal calculations)
+emis_atlas@radiance_body	pk9real	surface emissivity estimate from an atlas
+emis_retr@radiance_body	pk9real	surface emissivity retrieved from observations and fg
+emis_fg@radiance_body	pk9real	surface emissivity used in fg simulations (pre-set or rttov-internal)
+cold_nedt@radiance_body	pk9real	noise-equivalent delta temperature while viewing cold target
+warm_nedt@radiance_body	pk9real	noise-equivalent delta temperature while viewing cold target
+channel_qc@radiance_body	pk1int	channel quality 12 bits
+nobs_averaged@radiance_body	pk1int	number of obs. used for averaging obsvalues (mask can be 2x2, 3x3, etc.)
+stdev_averaged@radiance_body	pk9real	Standard deviation of averaged values
+fg_rain_rate@allsky	pk9real	surface rain @ fg [mm h-1]
+fg_snow_rate@allsky	pk9real	surface frozen precipitation @ fg [ mm h-1]
+fg_tcwv@allsky	pk9real	total column water vapour @ fg [ kg m-2]
+fg_cwp@allsky	pk9real	cloud liquid water path @ fg [ kg m-2 ]
+fg_iwp@allsky	pk9real	cloud ice water path @ fg [ kg m-2 ]
+fg_rwp@allsky	pk9real	rain water path @ fg [ kg m-2 ]
+fg_swp@allsky	pk9real	snow water path @ fg [ kg m-2 ]
+fg_rttov_cld_fraction@allsky	pk9real	cloud fraction used in rttov_scatt [0-1]
+an_rain_rate@allsky	pk9real	surface rain @ fg [mm h-1]
+an_snow_rate@allsky	pk9real	surface frozen precipitation @ fg [ mm h-1]
+an_tcwv@allsky	pk9real	total column water vapour @ fg [ kg m-2]
+an_cwp@allsky	pk9real	cloud liquid water path @ fg [ kg m-2 ]
+an_iwp@allsky	pk9real	cloud ice water path @ fg [ kg m-2 ]
+an_rwp@allsky	pk9real	rain water path @ fg [ kg m-2 ]
+an_swp@allsky	pk9real	snow water path @ fg [ kg m-2 ]
+an_rttov_cld_fraction@allsky	pk9real	cloud fraction used in rttov_scatt [0-1]
+gnorm_10mwind@allsky	pk9real	norm of gradient against 10m wind
+gnorm_skintemp@allsky	pk9real	norm of gradient against skin temperature
+gnorm_temp@allsky	pk9real	norm of gradient against temperature
+gnorm_q@allsky	pk9real	norm of gradient against specific humidity
+gnorm_rainflux@allsky	pk9real	norm of gradient against rain flux
+gnorm_snowflux@allsky	pk9real	norm of gradient against snow flux
+gnorm_clw@allsky	pk9real	norm of gradient against cloud water
+gnorm_ciw@allsky	pk9real	norm of gradient against cloud ice
+gnorm_cc@allsky	pk9real	norm of gradient against cloud cover
+ob_p19@allsky	pk9real	19 ghz normalised polarisation difference observed
+fg_p19@allsky	pk9real	19 ghz normalised polarisation difference first guess
+an_p19@allsky	pk9real	19 ghz normalised polarisation difference analysis
+ob_p37@allsky	pk9real	19 ghz normalised polarisation difference observed
+fg_p37@allsky	pk9real	19 ghz normalised polarisation difference first guess
+an_p37@allsky	pk9real	19 ghz normalised polarisation difference analysis
+report_tbcloud@allsky	pk1int	cloud and rain cloud bitfield flag determined from tb bitfield - see yommwave.f90
+tbvalue@allsky_body	pk9real	simulated brightness temperature
+tbvaluetl@allsky_body	pk9real	simulated tl of brightness temperature
+tbvaluead@allsky_body	pk9real	simulated ad in brightness temperature
+datum_tbflag@allsky_body	pk1int	status flag for all-sky  - see yommwave.f90
+tbclear@allsky_body	pk9real	diagnostic clear-sky fg brightness temperature
+ctop[$NMXUPD]@cloud_sink	pk9real	ctop per nresupd
+camt[$NMXUPD]@cloud_sink	pk9real	camt per nresupd
+ctopbg@cloud_sink	pk9real	ctop background
+ctoper@cloud_sink	pk9real	ctop background error
+ctopinc@cloud_sink	pk9real	ctop increment
+camtbg@cloud_sink	pk9real	camt background
+camter@cloud_sink	pk9real	camt background error
+camtinc@cloud_sink	pk9real	camt increment
+avhrr_mean_ir@collocated_imager_information	pk9real	mean avhrr ch 5 radiances in fov
+avhrr_stddev_ir@collocated_imager_information	pk9real	std. dev. of avhrr ch 5 radiances in fov
+avhrr_num_clusters@collocated_imager_information	pk9real	number of avhrr clusters fov
+avhrr_mean_vis@collocated_imager_information	pk9real	mean avhrr ch 1 radiances in fov
+avhrr_stddev_vis@collocated_imager_information	pk9real	std. dev. of avhrr ch 1 radiances in fov
+avhrr_max_cluster@collocated_imager_information	pk9real	fractional size of maximum avhrr cluster (iasi)
+avhrr_coldest_cluster_ir@collocated_imager_information	pk9real	mean avhrr ch 5 radiances for coldest cluster
+avhrr_warmest_cluster_ir@collocated_imager_information	pk9real	mean avhrr ch 5 radiances for warmest cluster
+avhrr_largest_cluster_ir@collocated_imager_information	pk9real	mean avhrr ch 5 radiances for largest cluster
+provider_qc@collocated_imager_information	pk1int	qc as determined by data provider
+report_aux[$NUMAUX]@auxiliary	pk9real	auxiliary header-like entries
+datum_aux[$NUMAUX]@auxiliary_body	pk9real	auxiliary body-like entries
+instrument_type@resat	pk1int	satellite instrument
+product_type@resat	pk1int	product type for retrieved atmospheric gases
+lat_fovcorner[1:4]@resat	pk9real	latitude field of view corner 1-4
+lon_fovcorner[1:4]@resat	pk9real	longitude field of view corner 1-4
+solar_elevation@resat	pk9real	solar elevation
+scanpos@resat	pk1int	scan position i.e. field of view number
+cloud_cover@resat	pk9real	cloud cover
+cloud_top_press@resat	pk9real	pressure at top of cloud
+quality_retrieval@resat	pk1int	quality of retrieval
+number_layers@resat	pk1int	number of retrieved layers
+snow_ice_indicator@resat	pk1int	snow/ice indicator
+surface_type_indicator@resat	pk1int	surface type
+methane_correction@resat	pk9real	sciamachy methane correction factor
+surface_height@resat	pk9real	surface height
+retrsource@resat	pk1int	source/originator of retrieved atmospheric constituent
+nak@resat_averaging_kernel	pk1int	number of averaging kernel elements
+wak[$mx_ak]@resat_averaging_kernel	pk9real	averaging kernel weights
+pak[$mx_ak]@resat_averaging_kernel	pk9real	averaging kernel pressures
+apak[$mx_ak]@resat_averaging_kernel	pk9real	averaging kernel prior profile
+radcurv@gnssro	pk9real	radius of curvature
+undulation@gnssro	pk9real	undulation at obs location
+obs_dndz@gnssro_body	pk9real	vertical gradient of refractivity (dn/dz in m-1) from the observation
+obs_refractivity@gnssro_body	pk9real	refractivity observation
+bg_dndz@gnssro_body	pk9real	vertical gradient of refractivity (dn/dz in m-1) from the background
+bg_refractivity@gnssro_body	pk9real	refractivity from the background
+bg_layerno@gnssro_body	pk9real	background layer number in which the observation is found (1=layer
+obs_tvalue@gnssro_body	pk9real	observed temperature
+obs_zvalue@gnssro_body	pk9real	observed geopotential height
+bg_tvalue@gnssro_body	pk9real	background temperature
+comp_method@satob	pk1int	cloud motion comp. method
+instdata@satob	pk1int	ins. data used in proc.
+dataproc@satob	pk1int	data proc. technique used
+QI_fc@satob	pk1int	eumetsat quality indicators: with forecast dependence
+QI_nofc@satob	pk1int	eumetsat quality indicators: without forecast dependence
+RFF@satob	pk1int	cimss quality indicator: recursive filter flag
+segment_size_x@satob	pk9real	resolution, x-direction
+segment_size_y@satob	pk9real	resolution, y-direction
+chan_freq@satob	pk9real	satellite channel centre frequency [hz] (02197) for subtype=87 only
+tb@satob	pk9real	coldest cluster temperature
+t@satob	pk9real	temperature at satob p
+shear@satob	pk9real	diff. in speed 50hpa above/below
+t200@satob	pk9real	200 hpa temperature
+t500@satob	pk9real	500 hpa temperature
+top_mean_t@satob	pk9real	mean temperature between 80 hpa
+top_wv@satob	pk9real	integrated wv above p
+dt_by_dp@satob	pk9real	diff in temp. 50hpa above/below
+p_best@satob	pk9real	"best fit" pressure
+u_best@satob	pk9real	u at "best fit" pressure
+v_best@satob	pk9real	v at "best fit" pressuree
+dd_best@satob	pk9real	wind direction at "best fit" pressure
+ff_best@satob	pk9real	wind speed at "best fit" pressure
+p_old@satob	pk9real	originally assigned pressure
+u_old@satob	pk9real	u at old pressure
+v_old@satob	pk9real	v at old pressure
+height_assignment_method@satob	pk1int	height assignment method ( bufr code table 002231)
+tracer_correlation_method@satob	pk1int	tracer correlation method( bufr code table 002232)
+land_sea@satob	pk1int	land/sea qualifier( bufr code table 008012)
+tracking_error_u@satob	pk9real	error in u due to amv tracking (m/s)
+tracking_error_v@satob	pk9real	error in v due to amv tracking (m/s)
+h_assignment_error_u@satob	pk9real	error in u due to to height assignment error (m/s)
+h_assignment_error_v@satob	pk9real	error in v due to to height assignment error (m/s)
+error_in_h_assignment@satob	pk9real	error in height assignment (pa)
+ee@satob	pk9real	Expected error (Le Marshall et al. 2004). Units: m/s
+cellno@scatt	pk1int	wave-vector cell no.
+nretr_amb@scatt	pk1int	number of retrieved ambiguities
+prodflag@scatt	pk1int	ecmwf product flag
+wvc_qf@scatt	pk1int	original wind vector cell quality flag
+azimuth@scatt_body	pk9real	beam azimuth angle
+incidence@scatt_body	pk9real	beam incidence angle
+Kp@scatt_body	pk9real	kp (instrument noise antenna noise)
+invresid@scatt_body	pk9real	wind-inversion residual
+dirskill@scatt_body	pk9real	directional skill
+mpc@scatt_body	pk1int	missing packet counter
+Kp_qf@scatt_body	pk1int	ascat kp quality flag
+sigma0_qf@scatt_body	pk1int	sigma 0 usability flag
+sigma0_sm@scatt_body	pk9real	effective sigma0 for soil moisture
+soilmoist_sd@scatt_body	pk9real	soil moisture std error
+soilmoist_cf@scatt_body	pk1int	soil moisture correction flag
+soilmoist_pf@scatt_body	pk1int	soil moisture processing flag
+land_fraction@scatt_body	pk9real	ascat land fraction
+wetland_fraction@scatt_body	pk9real	ascat wetland fraction
+topo_complex@scatt_body	pk9real	ascat topographic complexity
+likelihood@scatt_body	pk9real	likelihood computed in the model (added for mf)
+snapshot_id@smos	pk1int	snapshot indentifier
+grid_point_id@smos	pk1int	grid point identifier
+electron_count@smos	pk9real	total electron count
+sun_bt@smos	pk9real	direct sun bt
+snapshot_acc@smos	pk9real	snapshot accuracy
+rad_acc_pure@smos	pk9real	radiometric accuracy(pure polarisation)
+rad_acc_cross@smos	pk9real	radiometric accuracy(cross polarisation)
+footprint_axis[2]@smos	pk9real	footprint axis
+polarisation@smos	pk1int	polarisation
+water_fraction@smos	pk9real	water fraction
+incidence_angle@smos	pk9real	incidence angle
+faradey_rot_angle@smos	pk9real	faradey ratational angle
+pixel_rot_angle@smos	pk9real	pixel radiometric accuracy
+info@smos	pk1int	smos information flag
+snapshot_quality@smos	pk1int	snapshot owerall quality
+report_tbflag@smos	pk1int	observation flag in grid point
+tbvalue@smos	pk9real	modelled brightness temperature
+ident@radar_station	pk1int	radar identifier
+type@radar_station	string	type of radar
+lat@radar_station	pk9real	latitude of the radar
+lon@radar_station	pk9real	longitude of the radar
+stalt@radar_station	pk9real	altitude of the radar
+antenht@radar_station	pk9real	height of the antenna
+beamwidth@radar_station	pk9real	aperture at 3dbz
+frequency@radar_station	pk9real	pulse frequency
+iternoconv_1dv@radar	pk1int	number of iterations (1dvar)
+failure_1dv@radar	pk1int	error indicator (1dvar)
+qmod[$mx_radar_niv]@radar	pk9real	humidity at model levels
+zsimp[$mx_radar_niv]@radar	pk9real	simple reflectivity
+flgdyn@radar_body	pk1int	dynamic quality flag
+time@radar_body	HHMMSS	site starting hour associated to one pixel ???
+distance@radar_body	pk9real	distance to the radar (meters)
+elevation@radar_body	pk9real	elevation
+polarisation@radar_body	pk9real	polarity
+anaprop@radar_body	pk1int	indicator of anaprop ???
+reflcost@radar_body	pk9real	cost function of the 1dvar
+azimuth@radar_body	pk9real	azimuth (of the measurement (angle n/radar->pixel))
+press@radar_body	pk9real	pressure 1dvar
+temp[2]@radar_body	pk9real	temperature 1dvar
+q[2]@radar_body	pk9real	specific humidity
+temp_1dv@radar_body	pk9real	error 1dvar for temperature
+q_1dv@radar_body	pk9real	error 1dvar for humidity
+ntan@limb	pk1int	number of sweeps
+ztan[$mx_limb_tan]@limb	pk9real	tangent height
+ptan[$mx_limb_tan]@limb	pk9real	tangent pressure
+thtan[$mx_limb_tan]@limb	pk9real	along-orbit angle, relative to lat/long
+cloud_index[$mx_limb_tan]@limb	pk9real	remedios
+window_rad[$mx_limb_tan]@limb	pk9real	radiance in 960.7 cm-1 channel
+entryno@body	pk1int	entry sq. no.
+obsvalue@body	pk9real	observed variable
+varno@body	pk1int	variable number
+vertco_type@body	pk1int	vertical coordinate type
+vertco_reference_1@body	pk9real	vertical coordinate reference 1
+vertco_reference_2@body	pk9real	vertical coordinate reference 2
+datum_anflag@body	DATUM_FLAG_t	observation flags
+datum_status@body	TYPEOF(report_status@hdr)	new feature equivalent to old def : "status status_t"
+datum_event1@body	DATUM_EVENT1_t	observation events (part 1)
+datum_rdbflag@body	DATUM_RDBFLAG_t	observation flags (rdb)
+datum_blacklist@body	DATUM_BLACKLIST_t	observation blacklist events
+datum_event2@body	DATUM_EVENT2_t	datum events (part 2) word pos.
+varbc_ix@body	pk1int	varbc group index
+biascorr@body	pk9real	radiance bias correction
+biascorr_fg@body	pk9real	fg bias correction
+tbcorr@body	pk9real	correction to brightness temperature (radiance only)
+an_depar@body	pk9real	observed minus analysed value
+fg_depar@body	pk9real	observed minus first guess value
+actual_depar@body	pk9real	we store the actual departure during the minimization
+qc_a@body	pk9real	var qc prior probability of gross error (by variable and obstype)
+qc_l@body	pk9real	var qc width of the distribution
+qc_pge@body	pk9real	var qc a posteriori probability of gross error
+fc_sens_obs@body	pk9real	forecast sensitivity to the observations
+an_sens_obs@body	pk9real	analysis sensitivity to the obs
+nlayer@body	pk1int	layer number used in resat varbc
+enda_count@body	pk1int	number of enda-members active for this body-entry
+final_obs_error@errstat	pk9real	final observation error (combination of prescribed and persistence errors)
+obs_error@errstat	pk9real	prescribed observation error
+repres_error@errstat	pk9real	representativeness error
+pers_error@errstat	pk9real	persistence error
+fg_error@errstat	pk9real	first guess error
+obs_ak_error@errstat	pk9real	observation error without contribution from profile error
+obs_corr_ev[$NUMEV]@errstat	pk9real	obs. err. correlation eigenvectors
+obs_corr_mask@errstat	pk1int	obs. error correlation mask
+obs_corr_diag[$NUMDIAG]@errstat	pk9real	obs. err. correlation diagnostics
+eda_spread@errstat	pk9real	(Unscaled) spread from the EDA. The units depend on the data - they are the same as
+for obsvalue.
+hires@update[1:$NMXUPD]	pk9real	obs. minus upd. u high res. value (filled by each trajectory)
+lores@update[1:$NMXUPD]	pk9real	obs. minus upd. u low res. value  (filled by each minimisation)
+datum_tbflag_hires@update[1:$NMXUPD]	pk1int	status flag for all-sky  - see yommwave.f90 (for backup to avoid ccma copy)
+datum_status_hires@update[1:$NMXUPD]	TYPEOF(report_status@hdr)	status flag at hires (for backup to avoid ccma copy)
+obs_diags[1:2]@update[1:$NMXUPD]	pk9real	diagnostics in observation space (yannick - note: hardcoded #2 -()
+aeolus_hdrflag@aeolus_hdr	aeolus_hdrflag_t	aeolus header flags
+productname[8]@aeolus_hdr	string	productname of originating l1b data
+geoid_seprtn@aeolus_hdr	pk9real	height of geoid above wgs84 ellipsoid
+mie_gwdhls@aeolus_hdr	pk9real	mie ground wind detection horizontal los wind
+mie_gwdhlswt@aeolus_hdr	pk9real	mie ground wind detection horizontal los weight
+ray_gwdhls@aeolus_hdr	pk9real	rayleigh ground wind detection horizontal los wind
+ray_gwdhlswt@aeolus_hdr	pk9real	rayleigh ground wind detection horizontal los weight
+laser_wavlen@aeolus_hdr	pk9real	wavelength of laser
+mie_errquant[3]@aeolus_hdr	pk9real	l1b mie error coefficients
+ray_errquant[4]@aeolus_hdr	pk9real	l1b rayleigh error coefficients
+tripod_corrn[16]@aeolus_hdr	pk9real	tripod correction coefficients
+mie_calib_valid@aeolus_hdr	pk1int	mie calibration valid flag
+mie_msmnsens@aeolus_hdr	pk9real	mie measurement mean sensitivity
+mie_mszrfreq@aeolus_hdr	pk9real	mie measurement zero frequency
+mie_msrspesd@aeolus_hdr	pk9real	mie measurement response error standard deviation
+mie_rpmnsens@aeolus_hdr	pk9real	mie reference pulse mean sensitivity
+ray_calib_valid@aeolus_hdr	pk1int	rayleigh calibration valid
+ray_msmnsens@aeolus_hdr	pk9real	rayleigh measurement mean sensitivity
+ray_mszrfreq@aeolus_hdr	pk9real	rayleigh measurement zero frequency
+ray_msrspesd@aeolus_hdr	pk9real	rayleigh measurement response error standard deviation
+ray_rpmnsens@aeolus_hdr	pk9real	rayleigh reference pulse mean sensitivity
+dem_int_lat@aeolus_hdr	pk9real	latitude of the intersection of the dem and line-of-sight
+dem_int_lon@aeolus_hdr	pk9real	longitude of the intersection of the dem and line-of-sight
+dem_int_alt@aeolus_hdr	pk9real	altitude relative to the geoid of the intersection of the dem and los
+calib_stepno@aeolus_hdr_cal	pk1int	calibration step number
+mie_frequency_offset@aeolus_hdr_cal	pk9real	mie frequency offset
+mie_meas_response@aeolus_hdr_cal	pk9real	mie measurement response
+mie_meas_response_err@aeolus_hdr_cal	pk9real	mie measurement response error
+mie_ref_pulse_response@aeolus_hdr_cal	pk9real	mie reference pulse response
+mie_ref_pulse_response_err@aeolus_hdr_cal	pk9real	mie reference pulse response error
+ray_frequency_offset@aeolus_hdr_cal	pk9real	rayleigh frequency offset
+ray_meas_response@aeolus_hdr_cal	pk9real	rayleigh measurement response
+ray_meas_response_err@aeolus_hdr_cal	pk9real	rayleigh measurement response error
+ray_ref_pulse_response@aeolus_hdr_cal	pk9real	rayleigh reference pulse response
+ray_ref_pulse_response_err@aeolus_hdr_cal	pk9real	rayleigh reference pulse response error
+azimuth@aeolus_1b	pk9real	beam azimuth angle
+channel@aeolus_1b	pk1int	flag for mie or rayleigh
+aeolus_bin1b@aeolus_1b	pk1int	1b bin number
+aeolus_meas@aeolus_1b	pk1int	measurement number
+lat@aeolus_1b	pk9real	latitude of measurement bin
+lon@aeolus_1b	pk9real	longitude of measurement bin
+altitude@aeolus_1b	pk9real	altitude of measurement bin
+aocs_los_veloc@aeolus_1b	pk9real	attitude and orbit control sub-system line-of-sight velocity
+scat_ratio@aeolus_1b	pk9real	scattering ratio
+mie_ref_pulse[$NUMAEOLUSSPECTROM]@aeolus_1b	pk9real	mie accd read-out for the reference pulses
+raya_refpulse@aeolus_1b	pk9real	rayleigh channel a read-out for the reference pulses
+rayb_refpulse@aeolus_1b	pk9real	rayleigh channel b read-out for the reference pulses
+mie_meas_data[$NUMAEOLUSSPECTROM]@aeolus_1b	pk9real	mie accd read-out for the measurement channel
+mie_usefulsig@aeolus_1b	pk9real	mie useful signal
+raya_usefulsig@aeolus_1b	pk9real	rayleigh channel a useful signal
+rayb_usefulsig@aeolus_1b	pk9real	rayleigh channel b useful signal
+msbininvalid@aeolus_1b	pk1int	
+mie_snr@aeolus_1b	pk9real	mie channel signal-to-noise ratio
+raya_snr@aeolus_1b	pk9real	rayleigh channel a signal-to-noise ratio
+rayb_snr@aeolus_1b	pk9real	rayleigh channel b signal-to-noise ratio
+lat@aeolus_auxmet	pk9real	latitude
+lon@aeolus_auxmet	pk9real	longitude
+lev@aeolus_auxmet	pk9real	model level (zero for surface values)
+ptop@aeolus_auxmet	pk9real	pressure at top of layer
+pnom@aeolus_auxmet	pk9real	nominal pressure within layer
+ztop@aeolus_auxmet	pk9real	geopotential height at top of layer
+znom@aeolus_auxmet	pk9real	nominal geopotential height within layer
+u@aeolus_auxmet	pk9real	uwind
+v@aeolus_auxmet	pk9real	vwind
+t@aeolus_auxmet	pk9real	temperature
+rh@aeolus_auxmet	pk9real	relative humidity
+q@aeolus_auxmet	pk9real	specific humidity
+cc@aeolus_auxmet	pk9real	cloud cover
+clwc@aeolus_auxmet	pk9real	cloud liquid water content
+ciwc@aeolus_auxmet	pk9real	cloud ice water content
+error_t@aeolus_auxmet	pk9real	error estimate for temperature
+error_rh@aeolus_auxmet	pk9real	error estimate for relative humidity
+error_p@aeolus_auxmet	pk9real	error estimate for pressure
+azimuth@aeolus_2b	pk9real	beam azimuth angle
+channel@aeolus_2b	pk1int	flag for mie or rayleigh
+bin2b@aeolus_2b	pk1int	2b bin number
+hlos_method@aeolus_2b	pk1int	hlos method
+cog_lat@aeolus_2b	pk9real	cog latitude
+cog_lon@aeolus_2b	pk9real	cog longitude
+cog_zbase@aeolus_2b	pk9real	cog height of layer base
+cog_ztop@aeolus_2b	pk9real	cog height of layer top
+hlos@aeolus_2b	pk9real	hlos in observation bin
+hlos_err@aeolus_2b	pk9real	hlos err estimate
+r_leo[3]	pk9real	vector location of LEO platform (ECF cartesian coordinates) [m]
+v_leo[3]	pk9real	vector speed of LEO platform (ECI cartesian cordinates) [m/s]
+r_gps[3]	pk9real	vector location of GPS platform (ECF cartesian coordinates) [m]
+v_gps[3]	pk9real	vector speed of GPS platform (ECI cartesian cordinates) [m/s]
+centre_of_curvature[3]	pk9real	vector location of centre of curvature (ECF cartesian coordinates) [m]
+time_increment	pk9real	time increment [s]
+heading@conv	pk9real	heading
+aircraft_type@conv	string	aircraft type

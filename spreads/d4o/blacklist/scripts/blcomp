@@ -1,0 +1,31 @@
+#!/bin/bash
+
+thisdir=$(pwd)
+
+cmd=$(which $0)
+cmdname=$(basename $cmd)
+cmddir=$(cd $(dirname $cmd); pwd)
+
+set -eux
+
+#cd $cmddir
+
+#blacklist_file=${1:-"Blacklist.all"}
+blacklist_file=${1:-"$cmddir/Blacklist.dev"}
+bl95x=${2:-"$cmddir/bl95.x"}
+ccodeobj=${3:-"C_code.o"}
+
+if [[ -x $bl95x ]] ; then
+    env BL_CC="${BL_CC:-gcc}" BL_CFLAGS="${BL_CFLAGS:--g -O1 -fPIC}" BL_GEN_C=1 $bl95x $blacklist_file
+fi
+
+if [[ "$ccodeobj" != "" ]] ; then
+    if [[ ! -f $ccodeobj ]] ; then
+	ccodesrc=$(echo $ccodeobj | perl -pe 's/\.o$/.c/')
+	cat > $ccodesrc <<EOF
+void FromBar2Pub4Foo() { }
+EOF
+	${BL_CC:-"gcc"} ${BL_CFLAGS:-"-g -O1 -fPIC"} -c $ccodesrc -o $ccodeobj 
+    fi
+fi
+

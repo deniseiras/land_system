@@ -1,0 +1,11 @@
+#!/bin/bash
+
+NUMENS=${1:-100}
+
+if [[ -r obs_seq.conv.out.gz ]] && [[ -r obs_seq.amsua.out ]] ; then
+    set -xe
+    time obseqd4o obs_seq.conv.out.gz obs_seq.amsua.out --pathdb=mixed-ens/1x --mergedb=mixed.db --stochastic=$NUMENS
+    time obseqd4o obs_seq.conv.out.gz obs_seq.amsua.out --pathdb=mixed-ens/3x --copies=3 --mergedb=mixed.db --stochastic=$NUMENS
+    time obseqd4o obs_seq.conv.out.gz obs_seq.amsua.out --pathdb=mixed-det/1x --mergedb=mixed.db --deterministic
+    time obseqd4o obs_seq.conv.out.gz obs_seq.amsua.out --pathdb=mixed-det/3x --copies=3 --mergedb=mixed.db --deterministic
+fi

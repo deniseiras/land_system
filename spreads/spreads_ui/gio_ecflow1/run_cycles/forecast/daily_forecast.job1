@@ -1,0 +1,327 @@
+#!/bin/bash  
+set -e          # stop the shell on first error
+set -u          # fail when using an undefined variable
+set -x          # echo script lines as they are executed
+set -o pipefail # fail if last(rightmost) command exits with a non-zero status
+ 
+# Defines the variables that are needed for any communication with ECF
+export ECF_PORT=3155    # The server port number
+export ECF_HOST=login1.juno.cmcc.scc    # The host name where the server is running
+export ECF_NAME=/gio_ecflow1/run_cycles/forecast/daily_forecast    # The name of this current task
+export ECF_PASS=PkKuMP9i    # A unique password, used for job validation & zombie detection
+export ECF_TRYNO=1  # Current try number of the task
+export ECF_TRIES=0            # Number of tries before abort
+export ECF_RID=$$             # record the process id. Also used for zombie detection
+# export NO_ECF=1             # uncomment to run as a standalone task on the command line
+ 
+# Define the path where to find ecflow_client
+# make sure client and server use the *same* version.
+# Important when there are multiple versions of ecFlow
+export PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:$PATH
+ 
+# Tell ecFlow we have started
+ecflow_client --init=$$
+ 
+ 
+# Define a error handler
+ERROR() {
+   set +e                      # Clear -e flag, so we don't fail
+   wait                        # wait for background process to stop
+   ecflow_client --abort=trap  # Notify ecFlow that something went wrong, using 'trap' as the reason
+   trap 0                      # Remove the trap
+   exit 0                      # End the script cleanly, server monitors child, an exit 1, will cause another abort and zombie
+}
+ 
+ 
+# Trap any calls to exit and errors caught by the -e flag
+trap ERROR 0
+ 
+ 
+# Trap any signal that may cause the script to fail
+trap '{ echo "Killed by a signal"; ERROR ; }' 1 2 3 4 5 6 7 8 10 12 13 15
+
+export SCRIPTDIR="/users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts"
+
+cd ${SCRIPTDIR}
+
+export nens=5
+donepath=$(echo /gio_ecflow1/run_cycles/forecast/daily_forecast | sed 's/daily_forecast//g')
+
+export CESMEXP='cesm-exp'
+export case_name=gio_ecflow1
+export CLONESROOT="/users_home/cmcc/${USER}/${CESMEXP}/${case_name}"
+export NTSLOTS=13
+export CASEROOT0001="$CLONESROOT/${case_name}_0001"
+export TMPROOT="/work/cmcc/${USER}/CMCC-CM/TMP"$(echo "${case_name}" | tr [:lower:] [:upper:])
+export CESMDATAROOT='/data/inputs/CESM'
+
+FORECAST=$(ecflow_client --query event /gio_ecflow1/run_cycles:FORECAST)
+if [ $FORECAST == 'set' ];then
+    export FORECAST="TRUE"
+else
+    export FORECAST="FALSE"
+
+fi
+
+FSOI_Jo=$(ecflow_client --query event /gio_ecflow1/run_cycles:FSOI_Jo)
+if [ $FSOI_Jo == 'set' ];then
+    export FSOI_Jo="TRUE"
+else
+    export FSOI_Jo="FALSE"
+
+fi
+
+Z00=$(ecflow_client --query event /gio_ecflow1/run_cycles/forecast:00Z)
+if [ $Z00 == 'set' ];then
+    export Z00="TRUE"
+else
+    export Z00="FALSE"
+
+fi
+
+Z12=$(ecflow_client --query event /gio_ecflow1/run_cycles/forecast:12Z)
+if [ $Z12 == 'set' ];then
+    export Z12="TRUE"
+else
+    export Z12="FALSE"
+
+fi
+
+ALLZ=$(ecflow_client --query event /gio_ecflow1/run_cycles/forecast:ALL)
+if [ $ALLZ == 'set' ];then
+    export ALLZ="TRUE"
+else
+    export ALLZ="FALSE"
+
+fi
+
+# confirm with Giovanni
+# sed -i "s@CASESCONTAINERF=/work/cmcc@CASESCONTAINERF=/users_home/cmcc@g" cases_forecast.sh
+
+if [[ ${ALLZ} == "TRUE" || ${Z00} == "TRUE" || ${Z12} == "TRUE" ]];then
+    nohup ./cases_forecast.sh gio_ecflow1 5 5 $FSOI_Jo 1 &
+    # nohup ./cases_forecast.sh gio_ecflow1 5 5 $FSOI_Jo 1 >/dev/null 2>&1 &
+    # ./cases_forecast.sh gio_ecflow1 5 5 $FSOI_Jo 1
+    ecflow_client --label=info "LAST FORECAST: $(date)"
+fi
+
+# grep "1" check_assi.flag
+# status=$?
+# if [ $status -eq 0 ];then
+
+#    # Take the name of the experiment to check the time of the last assimilation cycle
+#    EXPNAME=gio_ecflow1
+#    NENS=5
+#    FENS=5
+
+#    # CESMDIR is defined in .bashrc
+
+
+#    # DO NOT CHANGE THESE VARS! If you want have a more flexible code set them in bashrc or 
+#    # read them from cases_create since it needs to know some of them for the initial cleaning
+#    MAINCONTAINER=/users_home/cmcc/${USER}/cesm-exp
+#    CASESCONTAINERF=/work/cmcc/${USER}/cesm-exp
+#    CASESCONTAINER=/work/cmcc/${USER}/CESM2
+#    ARCHIVE=${CASESCONTAINER}/archive
+
+#    # FDAYS=15
+#    FDAYS=1
+
+#    # 4 cycles per days!
+#    FSAVE=$(echo "${FDAYS}*4" | bc -l)
+
+#    LINK='/usr/bin/ln -s'
+
+#    echo -e "\n START FORECAST PROCEDURE \n"
+
+#    echo " Forecast cases container dir = $CASESCONTAINERF"
+#    echo " Container dir = $CASESCONTAINER"
+#    echo " Archive dir = $ARCHIVE"
+#    echo " Experiment name = $EXPNAME"
+#    echo " Numeber of instances = $NENS"
+#    echo " Number of forecast = $FENS"
+
+
+#    # Check that FENS<=NENS
+#    if [ ${FENS} -gt ${NENS} ];then
+#       echo " ERROR: the number of forecast members can not be bigger than the EnKF ensemble, "
+#       echo "        set FENS to $NENS "
+#       FENS=${NENS}
+#       echo " FENS = ${FENS}"
+#    fi
+
+
+#    echo " "
+#    echo " Check time of the last assimilation cycle"
+#    # If 00Z or 12Z do the forecast, otherwise skip at the end doing nothing
+#    lcycle=$(ls -ltr ${ARCHIVE}/${EXPNAME} | tail -1 | awk '{print $(NF)}')
+#    yy=$(echo $lcycle | cut -d'-' -f2)
+#    mm=$(echo $lcycle | cut -d'-' -f3)
+#    dd=$(echo $lcycle | cut -d'-' -f4)
+#    ss=$(echo $lcycle | cut -d'-' -f5)
+#    date="${yy}-${mm}-${dd}-${ss}"
+#    echo " Last assimilation cycle time (s): ${ss}"
+
+#    if [ ${ss} -eq 00000 ] || [ ${ss} -eq 43200 ];then
+
+#       echo " Time correct, create the forecast experiment"
+
+#       # Create the forecast experiment in the work dir.
+#       # Home dir has not enough space. 
+
+#       # If not already present create a directory containing the forecast cases
+#       echo " Create the forecast container if not present"
+#       mkdir -p ${CASESCONTAINERF}/${EXPNAME}-forecast 
+
+#       # Then clone the main experiment
+#       inst=1
+#       while [ $inst -le $FENS ];do
+
+#          echo -e " "
+#          echo -e " forecast member $inst\n"
+
+#          # Following the CESM strategy for 'inst_string'
+#          inst_string=$(printf _%04d $inst)
+#          new_case="${CASESCONTAINERF}/${EXPNAME}-forecast/${EXPNAME}_f${inst_string}-${date}"
+#          new_case_run=${CASESCONTAINER}/${EXPNAME}_f${inst_string}-${date}
+#          casemain="${MAINCONTAINER}/${EXPNAME}/${EXPNAME}${inst_string}"  
+
+#          # Remove old dir if necessary
+#          if [ -d "${new_case}" ]; then rm -Rf ${new_case}; fi
+#          if [ -d "${new_case_run}" ]; then rm -Rf ${new_case_run}; fi
+
+#          # Create the clone 
+#          ${CESMDIR}/cime/scripts/create_clone  \
+#                   --case     $new_case          \
+#                   --clone    $casemain          \
+
+#          # Change the simulation parameters: i.c., output frequency, simulation lenght   
+#          cd $new_case
+         
+#          RUNDIR=`./xmlquery RUNDIR       --value`
+#          stagedir=${CASESCONTAINER}/${EXPNAME}${inst_string}/run
+
+#          # Remove the wrong i.c. for land
+#          sed -i '/finidat/d' ./user_nl_clm
+#          # Write the correct i.c. for land
+#          echo "finidat='${EXPNAME}${inst_string}.clm2.r.${date}.nc'">> user_nl_clm
+#          # Remove the wrong i.c. for rivers
+#          sed -i '/finidat_rtm/d' ./user_nl_mosart
+#          # Write the correct i.c. for rivers
+#          echo "finidat_rtm='${EXPNAME}${inst_string}.mosart.r.${date}.nc'">> user_nl_mosart
+#          # Remove the wrong i.c. for cice
+#          sed -i '/ice_ic/d' ./user_nl_cice
+#          # Write the correct i.c. for cice
+#          echo "ice_ic='${EXPNAME}${inst_string}.cice.r.${date}.nc'">> user_nl_cice
+#          # We consider the experiment as an hybrid since we cloned an hybrid
+#          # the initial condition can be considered cam_initial_XXXX we just need to link the correct one
+
+#          ./preview_namelists || exit 75
+         
+#          # Link the correct i.c.
+#          echo " Staging initial files for instance $inst"
+      
+#          cd $RUNDIR
+
+#          ${LINK} -f ${stagedir}/${EXPNAME}${inst_string}.clm2.r.${date}.nc  .
+#          ${LINK} -f ${stagedir}/${EXPNAME}${inst_string}.cice.r.${date}.nc  .
+#          ${LINK} -f ${stagedir}/${EXPNAME}${inst_string}.cam.i.${date}.nc   cam_initial${inst_string}.nc
+#          ${LINK} -f ${stagedir}/${EXPNAME}${inst_string}.mosart.r.${date}.nc . 
+         
+#          cd $new_case
+#          # Change other xml and namelist settings
+#          # assimilation is off we do not read every time from ncdata
+#          ./xmlchange DATA_ASSIMILATION_ATM=FALSE
+#          ./xmlchange CONTINUE_RUN=FALSE
+#          # dynamical and remapping timesteps
+#          sed -i '/fv_nspltrac/d' ./user_nl_cam
+#          sed -i '/fv_nspltvrm/d' ./user_nl_cam
+#          sed -i '/fv_nsplit/d' ./user_nl_cam
+#          echo "fv_nspltrac=16">> ./user_nl_cam
+#          echo "fv_nspltvrm=16">> ./user_nl_cam
+#          echo "fv_nsplit=64">> ./user_nl_cam
+#          # physical time step     
+#          ./xmlchange  ATM_NCPL=48
+
+#          # if FSOI_Jo is not required we do not need of cam.i 
+#          if [[ ${FSOI_Jo}=="FALSE" ]]; then
+#             echo "FSOI_Jo is FALSE we do not need *cam.i* output"
+#             sed -i '/inithist/d' ./user_nl_cam 
+#             echo "inithist='NONE'">> ./user_nl_cam
+#          else
+#             echo "FSOI_Jo is TRUE we do need *cam.i* output"
+#             sed -i '/inithist/d' ./user_nl_cam 
+#             echo "inithist='6-HOURLY'">> ./user_nl_cam
+#          fi    
+
+
+#          # no cam.i     
+#          sed -i '/inithist/d' ./user_nl_cam 
+#          echo "inithist='NONE'">> ./user_nl_cam
+      
+#          # only variables in  .h0 file in output
+#          sed -i '/fincl2/d' ./user_nl_cam 
+#          sed -i '/fincl1/d' ./user_nl_cam 
+#          sed -i '/nhtfrq/d' ./user_nl_cam 
+#          sed -i '/mfilt/d' ./user_nl_cam 
+#          echo "fincl1='PHIS:I','T:I','U:I','V:I','Q:I','PS:I','PSL:I','Z500:I','T850:I'">> ./user_nl_cam
+#          echo "nhtfrq=-6">> ./user_nl_cam
+#          echo "mfilt=${FSAVE}">> ./user_nl_cam
+
+#          # rest options, no restart file in output
+#          ./xmlchange RUN_REFDIR=${stagedir}
+#          ./xmlchange RUN_REFCASE=${EXPNAME}
+#          ./xmlchange RUN_REFDATE=${yy}-${mm}-${dd}
+#          ./xmlchange RUN_REFTOD=${ss}
+#          ./xmlchange RUN_STARTDATE=${yy}-${mm}-${dd}
+#          ./xmlchange START_TOD=${ss}
+         
+#          ./xmlchange STOP_OPTION=ndays
+#          ./xmlchange STOP_N=${FDAYS}
+#          ./xmlchange REST_OPTION=none
+#          #./xmlchange REST_N=6
+
+      
+#          # modify clm output
+#          sed -i '/hist_nhtfrq/d' ./user_nl_clm 
+#          sed -i '/hist_mfilt/d' ./user_nl_clm
+#          echo "hist_nhtfrq=-6">> ./user_nl_clm
+#          echo "hist_mfilt=${FSAVE}">> ./user_nl_clm
+         
+
+#          # change the queue
+#          ./xmlchange JOB_QUEUE=p_medium
+#          ./xmlchange JOB_WALLCLOCK_TIME="4:00" 
+
+
+#          # Change the executable 
+#          echo ''
+#          echo 'Copy executable'
+#          echo ''
+
+#          ./xmlchange --file env_build.xml --id BUILD_COMPLETE --val TRUE
+#          ./xmlchange --file env_build.xml --id BUILD_STATUS --val 0
+#          cp ${CASESCONTAINER}/${EXPNAME}${inst_string}/bld/cesm.exe  ${RUNDIR}/../bld/cesm.exe
+         
+#          # Run the forecast
+#          echo " Run forecast${inst_string}"
+#          ./case.submit
+
+#          inst=$(echo "${inst}+1" | bc)
+#       done 
+
+#    fi
+
+#    echo -e "\n END FORECAST PROCEDURE \n"
+
+# fi
+
+
+echo ""
+echo "----- END TASK ---"
+echo ""
+ecflow_client --label=Info "OK... 20230904  00:04"
+wait                      # wait for background process to stop
+ecflow_client --complete  # Notify ecFlow of a normal end
+trap 0                    # Remove all traps
+exit 0  

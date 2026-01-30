@@ -1,0 +1,1046 @@
+# FSOI_Jo diagnostic computation for ensemble systems adaptation to 
+# check the functional relation between simulated obs and analysis.
+#
+#
+# Skeleton for single cycle! Need to be extended.
+# @author: Giovanni Conti 
+# @date: 30 March 2023
+
+# Remarks:
+# The procedure is based on a subsampling of the entire model space.
+# Localization distances are computed in an approximate way.
+
+
+
+# Import session.
+#------------------------------------------
+#------------------------------------------
+import os
+import sqlite3
+import pandas as pd
+import numpy as np
+import math
+from netCDF4 import Dataset
+import bisect
+import datetime
+from fsoijo_plot import *
+
+
+
+
+# Functions definition.
+#------------------------------------------
+#------------------------------------------
+# Find the closest index.
+def find_closest_index(x, y):
+    i = bisect.bisect_left(x, y)
+    if i == 0:
+        return 0
+    elif i == len(x):
+        return len(x) - 1
+    else:
+        before = x[i-1]
+        after = x[i]
+        if after - y < y - before:
+            return i
+        else:
+            return i-1
+
+
+
+# Gaspari and Cohn localization function.
+def gaspari_cohn(r):
+    """Gaspari-Cohn function. r=z/cutoff"""
+    if type(r) is float:
+        ra = np.array([r])
+    else:
+        ra = r
+    ra = np.abs(ra)
+    gp = np.zeros_like(ra)
+    i=np.where(ra<=1.)[0]
+    gp[i]=-0.25*ra[i]**5+0.5*ra[i]**4+0.625*ra[i]**3-5./3.*ra[i]**2+1.
+    i=np.where((ra>1.)*(ra<=2.))[0]
+    gp[i]=1./12.*ra[i]**5-0.5*ra[i]**4+0.625*ra[i]**3+5./3.*ra[i]**2-5.*ra[i]+4.-2./3./ra[i]
+    if type(r) is float:
+        gp = gp[0]
+    return gp
+
+
+
+
+
+# Parameters definition. 
+#------------------------------------------
+#------------------------------------------
+#******************************************
+#    MODIFY THE PARAMETERS HERE!
+#******************************************
+
+# Exp name.
+ename = "junov4"
+
+# Analysis date ("YYYY-MM-DD-SSSSS").
+adate = "2017-10-02-43200"
+
+# Forecast date ("YYYY-MM-DD-SSSSS").
+fdate = "2017-10-03-43200"
+
+# Path to the exp archive
+patharc   = '/work/cmcc/gc02720/CESM2/archive'
+
+path2an   = patharc + '/' + ename + '-forecast/' + ename + '_forecast-' + adate 
+path2db   = path2an + '/fsoi_jo-db'
+
+# Number of grid points. We will have a map of NGLAT*NGLON cells.
+NGLAT = 10
+NGLON = 20
+
+obs2proc  = ['RADIOSONDE_U_WIND_COMPONENT', \
+             'RADIOSONDE_V_WIND_COMPONENT', \
+             'RADIOSONDE_TEMPERATURE', \
+             'AIRCRAFT_U_WIND_COMPONENT', \
+             'AIRCRAFT_V_WIND_COMPONENT', \
+             'AIRCRAFT_TEMPERATURE', \
+             'ACARS_U_WIND_COMPONENT', \
+             'ACARS_V_WIND_COMPONENT', \
+             'ACARS_TEMPERATURE', \
+             'SAT_U_WIND_COMPONENT', \
+             'SAT_V_WIND_COMPONENT', \
+             'GPSRO_REFRACTIVITY', \
+#             'VADWND_U_WIND_COMPONENT',\
+#             'VADWND_V_WIND_COMPONENT',\
+             'EOS_2_AMSUA_TB', \
+             'NOAA_15_AMSUA_TB', \
+             'NOAA_16_AMSUA_TB', \
+             'NOAA_17_AMSUA_TB', \
+             'NOAA_18_AMSUA_TB', \
+             'NOAA_19_AMSUA_TB', \
+             'METOP_1_AMSUA_TB', \
+             'METOP_2_AMSUA_TB' \
+            ]
+
+#AMSUA
+#obs2proc  = ['EOS_2_AMSUA_TB', \
+#             'NOAA_15_AMSUA_TB', \
+#             'NOAA_16_AMSUA_TB', \
+#             'NOAA_17_AMSUA_TB', \
+#             'NOAA_18_AMSUA_TB', \
+#             'NOAA_19_AMSUA_TB', \
+#             'METOP_1_AMSUA_TB', \
+#             'METOP_2_AMSUA_TB' \
+#            ]
+
+
+#ARC
+#obs2proc  = ['AIRCRAFT_U_WIND_COMPONENT', \
+#             'AIRCRAFT_V_WIND_COMPONENT', \
+#             'AIRCRAFT_TEMPERATURE', \
+#             'ACARS_U_WIND_COMPONENT', \
+#             'ACARS_V_WIND_COMPONENT', \
+#             'ACARS_TEMPERATURE' \
+#             ]
+
+name_gr_scatter='scatter_all'
+
+# Number of ensemble members.
+nens = 3
+
+# Type of localization: 'GC' for Gaspari-Cohn, 'Box' for Box.
+loc_type = 'Box'
+
+# The computation for the localization distances is approximate! It must be improved.
+# Horizontal localization, half width Gaspari-Cohn (Km).
+cutoff = 0.15 # radian
+vert_normalization_scale_height = 1.5 # scale_height/radian
+REarth = 6371 # Km
+
+loch  = REarth*cutoff
+vloch = vert_normalization_scale_height * cutoff # scale_height units. Used in the barometric equation to get the vertical localization.
+
+# Vertical threshold in hPa.
+vthreshold = 1
+# Reference pressure in hPa.
+P0 = 1013
+
+# Where to save the output, plot and data.
+path2sv = path2db + '/diag-' + fdate
+
+# FSOI-Jo with OI approximation?
+use_oi = 'FALSE'
+
+# Plot samples img?
+plot_img = 'TRUE'
+
+# Chose level of output. 
+# DEBUG = 1 only cells indication, DEBUG = 2 add vertical information, DEBUG = 3 also obs retrieve info
+# DEBUG = 4 print also the pandas query dataframe
+DEBUG = 1
+
+
+# The computation is really hard and we need to speed it up choosing only same particular layer of interest
+# level 83 is too much. 
+#AMSUA
+reflevs=(850,600,500,200,150,90,50,25,10,5,2.5)
+#reflevs=(500, 200, 150)
+
+#AMV
+#reflevs=(500,200)
+
+#******************************************
+#    DO NOT MODIFY BELOW 
+#******************************************
+
+# Get the current date and time
+start_t = datetime.datetime.now()
+print('\n',start_t)
+
+#------------------------------------------
+# Print the parameters used.
+print('\n Computation parameters:')
+print('Experiment name: ', ename)
+print('Analysis date: ', adate)
+print('Forecast date: ', fdate)
+print('Path archive: ', patharc)
+print('Path analysis: ', path2an)
+print('Path forecast: ', path2db)
+print('Path save: ', path2sv)
+print('Comp. grid NGLAT: ', NGLAT)
+print('Comp. grid NGLON: ', NGLON)
+print('Observation to process: ', obs2proc)
+print('Reference levels: ', reflevs)
+
+
+
+#---------------------------------------------
+# Create the save dir if needed
+if not os.path.exists(path2sv):
+     try:
+         os.mkdir(path2sv)
+     except OSError:
+         print ("\nCreation of the directory %s failed" % path2sv)
+     else:
+         print ("\nSuccessfully created the directory %s " % path2sv)
+
+
+
+
+
+
+
+
+
+
+# Computation.
+#------------------------------------------
+#------------------------------------------
+
+print('\n Start the computation...')
+
+# Determine how many db are present in the current dir.
+listdb=[]
+rescatalog=False
+catalog_file=''
+for file in os.listdir(path2db):
+    if file.endswith(".db"):
+       if 'catalog' in file:
+          rescatalog=True
+          catalog_file=file
+          print('\ncatalog: ' + catalog_file)
+       else:
+         listdb.append(os.path.join(path2db, file))
+listdb.sort()
+print("\ndatabases: ", listdb)
+
+# From catalog determine all the different kind of observation.
+# We always have a catalog.db (the last element of the list), 
+# so create a connection.
+#rescatalog=any(item in path2db+'/'+'catalog.db' for item in listdb)
+if rescatalog!=True:
+   print('\nERROR: catalog not present!\n')
+   exit()
+
+con=sqlite3.connect(path2db + '/'+ catalog_file)
+df = pd.read_sql("select * from catalog", con)
+con.close()
+dartotype=df['description'].unique()
+# Remove 'none' and '' from the list if present.
+dartotype=dartotype[dartotype != np.array(None)]
+dartotype=dartotype[dartotype != np.array('')]
+print("\nList of different SPREADS obs type:\n", dartotype, "\n")
+
+
+# Check that some of the obs in the list obs2proc is present in 
+# the dbs, otherwise exit.
+cnt=0
+for o2p in obs2proc:
+    if np.where(dartotype==o2p) != []:
+       cnt=cnt+1
+if cnt==0:
+   print('ERROR, no observations to study in the dbs')
+   exit()
+
+
+# Mask the dbs that must be excluded in the computation
+maskdb = []
+
+for db in listdb:
+    if any('AMSUA' in obs for obs in obs2proc) and 'AMSU' in db:
+        maskdb.append(1)
+    elif any('SAT' in obs for obs in obs2proc) and 'AMV' in db:
+        maskdb.append(1)
+    elif any('AIRCRAFT' in obs or 'ACARS' in obs for obs in obs2proc) and 'ARC' in db:
+        maskdb.append(1)
+    elif any('RADIOSONDE' in obs for obs in obs2proc) and 'SND' in db:
+        maskdb.append(1)
+    elif any('GPSRO' in obs for obs in obs2proc) and 'GPSRO'in db:
+        maskdb.append(1)
+    elif any('VADWND' in obs for obs in obs2proc) and 'WDP' in db:
+        maskdb.append(1)
+    else:
+        maskdb.append(0)
+
+# Create the empty FSOI and OI maps for the obs 2 process,
+# define the grid of the map.
+# The following define a support reference grid that allow to
+# create a coarse grid by considering the closest gridpoint of 
+# the model grid to the center of the cells of the support grid.
+elat = np.linspace(90,-90,NGLAT+1,endpoint=True)   
+elon = np.linspace(0,360,NGLON+1,endpoint=True)   
+# Centers of the cells.
+clon = elon[:-1] + 0.5*(elon[1]-elon[0]) 
+clat = elat[:-1] + 0.5*(elat[1]-elat[0]) 
+
+
+print(' tmp coarse grid ')
+print(' clon: ',clon)
+print(' clat: ',clat)
+print(' clon: ',clon)
+
+aname = path2an + '/' + ename + '_f_0001-' + adate + '.cam.h0.' + adate + '.nc'
+dset  = Dataset(aname, mode='r')
+lon   = dset.variables['lon'][:]
+lat   = dset.variables['lat'][:]
+#slon  = dset.variables['slon'][:]
+#slat  = dset.variables['slat'][:]
+lev   = dset.variables['lev'][:]
+dset.close()
+
+
+
+if len(reflevs) == 0:
+    print('\nAll the original levels will be used in the computation... go on vacation in the meanwhile')
+else:
+    print("\nOnly the closest levels to the reference levels will be involved in the computation")
+    # Compute the absolute differece between lev and reflevs
+    diff = np.abs(lev[:, np.newaxis] - np.array(reflevs))
+    
+    # Find the closes index
+    closest_indices = np.argmin(diff, axis=0)
+    
+    # Seleziona solo i valori di lev più vicini ai valori di riferimento
+    lev = lev[closest_indices]
+
+    print('lev: ', lev) 
+    print('closest_indices: ', closest_indices)  # Array
+
+
+
+
+
+# FSOI 
+#fsoi = np.zeros([len(obs2proc), len(lev), NGLAT, NGLON]) 
+#if use_oi=="TRUE":
+#   fsoi_oi = np.zeros([len(obs2proc), len(lev), NGLAT, NGLON]) 
+
+# Analysis and Forecast on the same coarser grid.
+#an_mean = np.zeros([NGLAT,NGLON])
+#fo_mean = np.zeros([NGLAT,NGLON])
+# Index mapping.
+idlat = np.zeros([NGLAT,NGLON], dtype=int)
+idlon = np.zeros([NGLAT,NGLON], dtype=int)
+# Coarse grid points.
+co_lat = np.zeros(NGLAT)
+co_lon = np.zeros(NGLON)
+
+
+scatt_anT_amsua=np.array([])
+scatt_anQ_amsua=np.array([])
+scatt_anU_amsua=np.array([])
+scatt_anV_amsua=np.array([])
+scatt_pr_amsua=np.array([])
+
+scatt_anT_amsua_ch8=np.array([])
+scatt_anQ_amsua_ch8=np.array([])
+scatt_anU_amsua_ch8=np.array([])
+scatt_anV_amsua_ch8=np.array([])
+scatt_anT_amsua_ch9=np.array([])
+scatt_anQ_amsua_ch9=np.array([])
+scatt_anU_amsua_ch9=np.array([])
+scatt_anV_amsua_ch9=np.array([])
+scatt_anT_amsua_ch10=np.array([])
+scatt_anQ_amsua_ch10=np.array([])
+scatt_anU_amsua_ch10=np.array([])
+scatt_anV_amsua_ch10=np.array([])
+scatt_anT_amsua_ch11=np.array([])
+scatt_anQ_amsua_ch11=np.array([])
+scatt_anU_amsua_ch11=np.array([])
+scatt_anV_amsua_ch11=np.array([])
+scatt_anT_amsua_ch12=np.array([])
+scatt_anQ_amsua_ch12=np.array([])
+scatt_anU_amsua_ch12=np.array([])
+scatt_anV_amsua_ch12=np.array([])
+scatt_anT_amsua_ch13=np.array([])
+scatt_anQ_amsua_ch13=np.array([])
+scatt_anU_amsua_ch13=np.array([])
+scatt_anV_amsua_ch13=np.array([])
+scatt_anT_amsua_ch14=np.array([])
+scatt_anQ_amsua_ch14=np.array([])
+scatt_anU_amsua_ch14=np.array([])
+scatt_anV_amsua_ch14=np.array([])
+scatt_pr_amsua_ch8=np.array([])
+scatt_pr_amsua_ch9=np.array([])
+scatt_pr_amsua_ch10=np.array([])
+scatt_pr_amsua_ch11=np.array([])
+scatt_pr_amsua_ch12=np.array([])
+scatt_pr_amsua_ch13=np.array([])
+scatt_pr_amsua_ch14=np.array([])
+
+scatt_anT_sndw=np.array([])
+scatt_anQ_sndw=np.array([])
+scatt_anU_sndw=np.array([]) 
+scatt_anV_sndw=np.array([])
+scatt_pr_sndw=np.array([])
+
+scatt_anT_sndt=np.array([]) 
+scatt_anQ_sndt=np.array([])
+scatt_anU_sndt=np.array([])
+scatt_anV_sndt=np.array([])
+scatt_pr_sndt=np.array([])
+
+scatt_anT_satw=np.array([])  
+scatt_anQ_satw=np.array([])   
+scatt_anU_satw=np.array([])   
+scatt_anV_satw=np.array([])   
+scatt_pr_satw=np.array([])
+
+scatt_anT_arcw=np.array([])   
+scatt_anQ_arcw=np.array([])   
+scatt_anU_arcw=np.array([])   
+scatt_anV_arcw=np.array([])   
+scatt_pr_arcw=np.array([])
+
+scatt_anT_arct=np.array([])   
+scatt_anQ_arct=np.array([])  
+scatt_anU_arct=np.array([])   
+scatt_anV_arct=np.array([])   
+scatt_pr_arct=np.array([])
+
+scatt_anT_gpsro=np.array([])
+scatt_anQ_gpsro=np.array([]) 
+scatt_anU_gpsro=np.array([]) 
+scatt_anV_gpsro=np.array([]) 
+scatt_pr_gpsro=np.array([])
+
+scatt_anT_wdp=np.array([])     
+scatt_anQ_wdp=np.array([])     
+scatt_anU_wdp=np.array([])     
+scatt_anV_wdp=np.array([])     
+scatt_pr_wdp=np.array([])
+
+
+
+
+if use_oi=="TRUE":
+   # Load OI data.
+   print(' BE SURE OI CONTAINS THE SAME LIST OF OBS YOU WANT TO USE FOR FSOI_Jo!') 
+   oiname  = path2sv + '/data_oi.nc'
+   print(' path to oi data: ', oiname)
+   dset    = Dataset(oiname, mode='r')
+   oi      = dset.variables['oi'][:]
+   oi_sigma_o      = dset.variables['oi_sigma_o'][:]
+   oi_lat  = dset.variables['c_lat'][:]
+   oi_lon  = dset.variables['c_lon'][:]
+   dset.close()
+   if oi.shape[0]!=len(obs2proc):
+      print(' ERROR the number of obs type in oi are different than the one you want to use here!')
+      quit()
+
+
+
+# Main computation.
+#------------------------------------------
+# Loop through the cells
+ncel=1
+for jj in range( NGLON ):
+       
+    # Define the closest lon index of the model grid to the center of the cell.
+    ilon = find_closest_index(lon, clon[jj]) 
+    idlon[:,jj] = int(ilon)       
+                          
+    if use_oi=="TRUE":
+       i_oi_lon = find_closest_index(oi_lon, clon[jj]) 
+ 
+    for ii in range( NGLAT ):
+      
+        if DEBUG>=1: 
+            print("\n\n Process cell ",ncel," out of ",NGLON*NGLAT)
+        
+        ncel=ncel+1
+          
+        # Define the closest lat index of the model grid to the center of the cell.
+        ilat = find_closest_index(lat, clat[ii])
+        idlat[ii,:] = int(ilat)       
+    
+        if use_oi=="TRUE":
+           i_oi_lat = find_closest_index(oi_lat, clat[ii]) 
+
+ 
+        # Retrieve the central cell analysis columns for the whole ensemble.
+        print('load ensemble columns  . . .')
+        ens_T_an = np.zeros([len(lev),nens]);
+        ens_Q_an = np.zeros([len(lev),nens]);
+        ens_U_an = np.zeros([len(lev),nens]);
+        ens_V_an = np.zeros([len(lev),nens]);
+        for ee in range( nens ):
+              print('member: ',ee+1)
+              # Define the correct name of the member.
+              width = 4                  
+              instr = str(ee+1).zfill(width)
+              # Load the state vector variables from all the members.
+              aname = path2an + '/' + ename + '_f_' + instr  +'-' + adate + '.cam.h0.' + adate + '.nc'
+              dset  = Dataset(aname, mode='r')
+              if len(reflevs) > 0:
+                  ens_T_an[:,ee]  = dset.variables['T'][0,closest_indices,idlat[ii,jj],idlon[ii,jj]]
+                  ens_Q_an[:,ee]  = dset.variables['Q'][0,closest_indices,idlat[ii,jj],idlon[ii,jj]]
+                  ens_U_an[:,ee]  = dset.variables['U'][0,closest_indices,idlat[ii,jj],idlon[ii,jj]]
+                  ens_V_an[:,ee]  = dset.variables['V'][0,closest_indices,idlat[ii,jj],idlon[ii,jj]]
+              else:
+                  ens_T_an[:,ee]  = dset.variables['T'][0,:,idlat[ii,jj],idlon[ii,jj]]
+                  ens_Q_an[:,ee]  = dset.variables['Q'][0,:,idlat[ii,jj],idlon[ii,jj]]
+                  ens_U_an[:,ee]  = dset.variables['U'][0,:,idlat[ii,jj],idlon[ii,jj]]
+                  ens_V_an[:,ee]  = dset.variables['V'][0,:,idlat[ii,jj],idlon[ii,jj]]
+              dset.close() # END ee cycle (ensemble member analysis cycle).
+
+
+        # Compute the horizontal localization interval for the obs retrieval.
+        # Given a location in degree (clat, clon), we need to consider approximately all the observations
+        # in a rectangle of sides [clat+dlato, clat-dlato] and [clon-dlono, clon+dlono]. 
+        lat_deg2km = 110.574 # Km/degree
+        #dlato = 2 * loch/lat_deg2km  
+        dlato =  loch/lat_deg2km  
+        latu = lat[idlat[ii,jj]] + dlato
+        latd = lat[idlat[ii,jj]] - dlato
+        if latu > 90:
+           latu = 90
+        if latd < -90:
+           latd = -90
+ 
+        deg2rad = math.pi/180
+        lon_deg2km = 111.320*np.cos(deg2rad*lat[idlat[ii,jj]]) # Km/degree
+        #dlono = 2 * loch/lon_deg2km
+        dlono =  loch/lon_deg2km
+        lonl = lon[idlon[ii,jj]] - dlono
+        lonr = lon[idlon[ii,jj]] + dlono
+        if lonl < 0:
+           lonl = 0
+        if lonr > 360:
+           lonr = 360
+         
+        if DEBUG>=1: 
+            # Retrieve observation in these intervals.
+            print(' Retrieve obs in these intervals (deg):')
+            print('lat in [',latu,'    ',latd,']') 
+            print('lon in [',lonl,'    ',lonr,']') 
+
+        # Check all the possible dbs containing the observations needed.
+        maskcnt=0
+        for db in listdb[:]:
+            if maskdb[maskcnt]==0:
+               continue
+            maskcnt=maskcnt+1    
+
+            print('\nworking with db: ',db)
+
+            # Retrieve a column of observations. 
+            con=sqlite3.connect(db)
+            #dfo = pd.read_sql("select obsvalue, obs_error, kind, prior, posterior, dart_qc, member, deglat, deglon,\
+            #                  levelht, vertco_type, (select distinct description from toc where kind=body.kind) \
+            #                  as description from hdr join body on id=body.hdr_id join ens on id=ens.hdr_id and \
+            #                  entryno=body_entryno where deglat>"+ str(latd) + " and deglat<" + str(latu) + " and deglon>"\
+            #                  + str(lonl) + " and deglon<" + str(lonr) +" and dart_qc=0", con)
+            dfo = pd.read_sql("select entryno,id,obsvalue, obs_error, prior_mean, prior_spread, kind, prior, posterior, dart_qc, member, deglat, deglon,\
+                              levelht, vertco_type, (select distinct description from toc where kind=body.kind) \
+                              as description from hdr join body on id=body.hdr_id join ens on id=ens.hdr_id and \
+                              entryno=body_entryno where deglat>"+ str(latd) + " and deglat<" + str(latu) + " and deglon>"\
+                              + str(lonl) + " and deglon<" + str(lonr) +" and dart_qc=0", con)
+            con.close()
+
+            # If there are not observation skip.
+            if len(dfo['obsvalue'].tolist())<=0:
+               print(' No obs in this cell from this db.')
+               continue
+            
+            # Inside d4o we have Pa not hPa. 
+            print(' Convert levelht in hPa.')         
+            dfo['levelht'] = dfo['levelht']/100
+
+            #dbg
+            #dfo.to_pickle("mydata_2.pkl")
+            #quit() 
+            if DEBUG>=4:
+               print('\n')
+               print(dfo)
+            
+
+            # Loop through the column but skip above a certain threshold.
+            for kk in range( len(lev) ):
+                 # If level is above 0.1 hPa skip the computation. 
+                 clev = lev[kk]
+                 if clev < vthreshold: 
+                    continue
+                 # Conversion in Km for the computation of the vertical localization.
+                 #dclev = (1-(clev/P0)**0.190284)*44307.69396/1000 
+                  
+
+
+                 if DEBUG>=2:
+                    print('\n Processing lev: ',clev,' level ',kk,'out of ', len(lev))
+                 
+                 # Compute vertical localization box for the obs retrieval
+                 ulev = clev * np.exp(-vloch)
+                 dlev = clev * np.exp(vloch)
+                 if ulev < vthreshold:
+                    ulev = vthreshold
+                 if dlev > P0:
+                    dlev = P0 
+    
+ 
+                 # Get all the obs, prior, obs var, inside the vertical localization interval
+                 # CHECK THAT HEIGHT IS IN Pa otherwise you need a conversion!
+                 qstr="levelht>"+ f'{ulev:.2f}' +" and levelht<"+ f'{dlev:.2f}'
+                 
+                 #dbg
+                 #import difflib
+                 #d = difflib.Differ()
+                 #diff = d.compare([qstr], [ss])
+                 #print('\n'.join(diff))
+
+                 do_ens_total = dfo.query(str(qstr))
+                 
+                 if len(do_ens_total['obsvalue'].tolist())<=0:
+                    if DEBUG>=2:
+                       print(' No obs in this vertical interval at this location.')
+                       print(qstr)
+                    continue
+
+                 if DEBUG>=4:
+                     print('\n')
+                     print(qstr)
+                     print(do_ens_total)
+ 
+                 # If there are obs then retrieve all the analysis ensemble members component at this level.
+                 Tan_ens = ens_T_an[kk,:]
+                 Qan_ens = ens_Q_an[kk,:]
+                 Uan_ens = ens_U_an[kk,:]
+                 Van_ens = ens_V_an[kk,:]
+                     
+                 # Loop beetween the different obs type
+                 idx_o2p=0
+                 for o2p in obs2proc:
+                     if DEBUG>=2: 
+                        print('Processing observation: ',o2p)
+                     # Find different obs of this type.
+                     qstr = "description=="+"'"+o2p +"'"
+                     #print(qstr)
+                     do_ens_type = do_ens_total.query(qstr)
+                     if len(do_ens_type['obsvalue'].tolist())<=0:
+                          if DEBUG>=3:
+                              print(' No obs of this type '+ o2p +' in this interval.') 
+                
+                          continue
+
+                     if DEBUG>=4:
+                        print(do_ens_type)
+                       
+                      
+                     # Retrieve prior by entryno, id and member!!!!!!!!
+                     m1           = do_ens_type.query('member==1')
+                     prior        = np.zeros([len(m1),nens])
+                     prior_mean   = np.zeros([len(m1)])
+                     prior_spread = np.zeros([len(m1)])
+                     sigma_o      = np.zeros([len(m1)])
+                     obs          = np.zeros([len(m1)])
+                     levelht      = np.zeros([len(m1)])
+                     deglat       = np.zeros([len(m1)])
+                     deglon       = np.zeros([len(m1)])
+                     prior[:,0]   = m1['prior']
+                     for iee in range(nens-1):
+                         mm=iee+2
+                         prior[:,iee+1] = do_ens_type.query("entryno=="+str(m1['entryno'].tolist()) + " and id=="+str(m1['id'].tolist())+" and member=="+str(mm) )['prior']
+
+                     # Retrieve the other related quantity needed for the final computation.
+                     prior_mean[:]     = do_ens_type.query("entryno=="+str(m1['entryno'].tolist()) + " and id=="+str(m1['id'].tolist())+" and member==1" )['prior_mean']
+                     prior_spread[:]   = do_ens_type.query("entryno=="+str(m1['entryno'].tolist()) + " and id=="+str(m1['id'].tolist())+" and member==1" )['prior_spread']
+                     sigma_o[:]        = do_ens_type.query("entryno=="+str(m1['entryno'].tolist()) + " and id=="+str(m1['id'].tolist())+" and member==1" )['obs_error']
+                     obs[:]            = do_ens_type.query("entryno=="+str(m1['entryno'].tolist()) + " and id=="+str(m1['id'].tolist())+" and member==1" )['obsvalue']
+                     levelht[:]        = do_ens_type.query("entryno=="+str(m1['entryno'].tolist()) + " and id=="+str(m1['id'].tolist())+" and member==1" )['levelht']
+                     deglat[:]         = do_ens_type.query("entryno=="+str(m1['entryno'].tolist()) + " and id=="+str(m1['id'].tolist())+" and member==1" )['deglat']
+                     deglon[:]         = do_ens_type.query("entryno=="+str(m1['entryno'].tolist()) + " and id=="+str(m1['id'].tolist())+" and member==1" )['deglon']
+
+                     #print('levelht=',levelht[:])
+
+                     if use_oi=="TRUE":
+                        oi_val         = oi[idx_o2p, kk, i_oi_lat, i_oi_lon]
+                        oi_sigma_o_val = oi_sigma_o[idx_o2p, kk, i_oi_lat, i_oi_lon]
+                        if oi_val==0:
+                           omega_fac=0
+                        else:
+                           omega_fac      = np.sqrt( oi_val**2/(oi_val**2 + oi_sigma_o_val**2) )
+
+         
+                     if loc_type=='GC':
+                         # Vertical distance in Km. Remember that levelht has been already converted in hPa.
+                         #do  = (1-(levelht[iss]/P0)**0.190284)*44307.69396/1000 
+                         #dv  = dclev-do
+                         dv  = np.log(clev) - np.log(levelht)
+                         gcv = gaspari_cohn(dv/vloch)
+                         # Horizontal distance in Km by exploiting the Haversine Formul by exploiting the Haversine formula.
+                         # https://en.wikipedia.org/wiki/Great-circle_distance  CHECK
+                         phi1    =  lat[idlat[ii,jj]]*np.pi/180
+                         phi2    =  deglat[:]*np.pi/180
+                         lambda1 =  lon[idlon[ii,jj]]*np.pi/180
+                         lambda2 =  deglon[:]*np.pi/180
+                         dsigma  = 2 * np. arcsin( np.sqrt( np.sin( 0.5*(phi1-phi2) )**2 + (1 - np.sin( 0.5*(phi1-phi2) )**2 - np.sin( 0.5*(phi1+phi2) )**2 )*np.sin( 0.5*(lambda1-lambda2) )**2 )  )
+                         dh      = REarth*dsigma
+                         gch     = gaspari_cohn(dh/loch) 
+                         gcloc = gch * gcv
+                  
+
+                     loc=1 
+                     for iss in range( len(m1) ):
+                  #        # Compute the correlation.
+                  #        #print('before')
+                  #        crT=np.corrcoef(Tan_ens,prior[iss,:])[0,1]
+                  #        crQ=np.corrcoef(Qan_ens,prior[iss,:])[0,1]
+                  #        crU=np.corrcoef(Uan_ens,prior[iss,:])[0,1]
+                  #        crV=np.corrcoef(Van_ens,prior[iss,:])[0,1]
+                
+                  #        #print(Tan_ens) 
+                  #        #print(Qan_ens) 
+                  #        #print(Uan_ens) 
+                  #        #print(Van_ens) 
+                  #        #print(prior[iss,:]) 
+                  #        #print('after')
+
+                  #        # Compute the 3D distance to apply the Gaspary and Cohn correction.
+                  #        if loc_type=='GC':   
+                  #           loc = gcloc[iss]
+ 
+                  #        # compute the fsoi
+                  #        fsoi[idx_o2p, kk, ii, jj] = fsoi[idx_o2p, kk, ii, jj] - (obs[iss]-prior_mean[iss])*(crT + crQ + crU + crV)*loc*prior_spread[iss]/(sigma_o[iss]**2)
+
+                  #        if use_oi=="TRUE":
+                  #           fsoi_oi[idx_o2p, kk, ii, jj] = fsoi_oi[idx_o2p, kk, ii, jj] - (obs[iss]-prior_mean[iss]) * (crT + crQ + crU + crV) * loc * omega_fac/sigma_o[iss]
+
+                            if o2p in ['EOS_2_AMSUA_TB', 'NOAA_15_AMSUA_TB', 'NOAA_16_AMSUA_TB', 'NOAA_17_AMSUA_TB', 'NOAA_18_AMSUA_TB', 'NOAA_19_AMSUA_TB', 'METOP_1_AMSUA_TB', 'METOP_2_AMSUA_TB']:
+                                scatt_anT_amsua = np.append(scatt_anT_amsua, Tan_ens)  
+                                scatt_anQ_amsua = np.append(scatt_anQ_amsua, Qan_ens)  
+                                scatt_anU_amsua = np.append(scatt_anU_amsua, Uan_ens)  
+                                scatt_anV_amsua = np.append(scatt_anV_amsua, Van_ens)  
+                                scatt_pr_amsua = np.append(scatt_pr_amsua, prior[iss,:])
+                                if levelht[iss]==150:
+                                    scatt_pr_amsua_ch8 = np.append(scatt_pr_amsua_ch8, prior[iss,:])
+                                    scatt_anT_amsua_ch8 = np.append(scatt_anT_amsua_ch8, Tan_ens)  
+                                    scatt_anQ_amsua_ch8 = np.append(scatt_anQ_amsua_ch8, Qan_ens)  
+                                    scatt_anU_amsua_ch8 = np.append(scatt_anU_amsua_ch8, Uan_ens)  
+                                    scatt_anV_amsua_ch8 = np.append(scatt_anV_amsua_ch8, Van_ens)  
+                                elif levelht[iss]==90:
+                                    scatt_pr_amsua_ch9 = np.append(scatt_pr_amsua_ch9, prior[iss,:])
+                                    scatt_anT_amsua_ch9 = np.append(scatt_anT_amsua_ch9, Tan_ens)  
+                                    scatt_anQ_amsua_ch9 = np.append(scatt_anQ_amsua_ch9, Qan_ens)  
+                                    scatt_anU_amsua_ch9 = np.append(scatt_anU_amsua_ch9, Uan_ens)  
+                                    scatt_anV_amsua_ch9 = np.append(scatt_anV_amsua_ch9, Van_ens)  
+                                elif levelht[iss]==50:
+                                    scatt_pr_amsua_ch10 = np.append(scatt_pr_amsua_ch10, prior[iss,:])
+                                    scatt_anT_amsua_ch10 = np.append(scatt_anT_amsua_ch10, Tan_ens)  
+                                    scatt_anQ_amsua_ch10 = np.append(scatt_anQ_amsua_ch10, Qan_ens)  
+                                    scatt_anU_amsua_ch10 = np.append(scatt_anU_amsua_ch10, Uan_ens)  
+                                    scatt_anV_amsua_ch10 = np.append(scatt_anV_amsua_ch10, Van_ens)  
+                                elif levelht[iss]==25:
+                                    scatt_pr_amsua_ch11 = np.append(scatt_pr_amsua_ch11, prior[iss,:])
+                                    scatt_anT_amsua_ch11 = np.append(scatt_anT_amsua_ch11, Tan_ens)  
+                                    scatt_anQ_amsua_ch11 = np.append(scatt_anQ_amsua_ch11, Qan_ens)  
+                                    scatt_anU_amsua_ch11 = np.append(scatt_anU_amsua_ch11, Uan_ens)  
+                                    scatt_anV_amsua_ch11 = np.append(scatt_anV_amsua_ch11, Van_ens)  
+                                elif levelht[iss]==10:
+                                    scatt_pr_amsua_ch12 = np.append(scatt_pr_amsua_ch12, prior[iss,:])
+                                    scatt_anT_amsua_ch12 = np.append(scatt_anT_amsua_ch12, Tan_ens)  
+                                    scatt_anQ_amsua_ch12 = np.append(scatt_anQ_amsua_ch12, Qan_ens)  
+                                    scatt_anU_amsua_ch12 = np.append(scatt_anU_amsua_ch12, Uan_ens)  
+                                    scatt_anV_amsua_ch12 = np.append(scatt_anV_amsua_ch12, Van_ens)  
+                                elif levelht[iss]==5:
+                                    scatt_pr_amsua_ch13 = np.append(scatt_pr_amsua_ch13, prior[iss,:])
+                                    scatt_anT_amsua_ch13 = np.append(scatt_anT_amsua_ch13, Tan_ens)  
+                                    scatt_anQ_amsua_ch13 = np.append(scatt_anQ_amsua_ch13, Qan_ens)  
+                                    scatt_anU_amsua_ch13 = np.append(scatt_anU_amsua_ch13, Uan_ens)  
+                                    scatt_anV_amsua_ch13 = np.append(scatt_anV_amsua_ch13, Van_ens)  
+                                elif levelht[iss]==2.5:
+                                    scatt_pr_amsua_ch14 = np.append(scatt_pr_amsua_ch14, prior[iss,:])
+                                    scatt_anT_amsua_ch14 = np.append(scatt_anT_amsua_ch14, Tan_ens)  
+                                    scatt_anQ_amsua_ch14 = np.append(scatt_anQ_amsua_ch14, Qan_ens)  
+                                    scatt_anU_amsua_ch14 = np.append(scatt_anU_amsua_ch14, Uan_ens)  
+                                    scatt_anV_amsua_ch14 = np.append(scatt_anV_amsua_ch14, Van_ens)  
+                            elif o2p in ['RADIOSONDE_U_WIND_COMPONENT','RADIOSONDE_V_WIND_COMPONENT']:
+                                #print('appending sndw prior:', prior[iss,:])
+                                #print('appending sndw prior:', Tan_ens)
+                                scatt_anT_sndw = np.append(scatt_anT_sndw, Tan_ens)  
+                                scatt_anQ_sndw = np.append(scatt_anQ_sndw, Qan_ens)  
+                                scatt_anU_sndw = np.append(scatt_anU_sndw, Uan_ens)  
+                                scatt_anV_sndw = np.append(scatt_anV_sndw, Van_ens)  
+                                scatt_pr_sndw = np.append(scatt_pr_sndw, prior[iss,:])
+                            elif o2p in ['RADIOSONDE_TEMPERATURE']:
+                                #print('appending sndt prior:', prior[iss,:])
+                                #print('appending Tan_ens prior:', Tan_ens)
+                                scatt_anT_sndt = np.append(scatt_anT_sndt, Tan_ens)  
+                                scatt_anQ_sndt = np.append(scatt_anQ_sndt, Qan_ens)  
+                                scatt_anU_sndt = np.append(scatt_anU_sndt, Uan_ens)  
+                                scatt_anV_sndt = np.append(scatt_anV_sndt, Van_ens)  
+                                scatt_pr_sndt = np.append(scatt_pr_sndt, prior[iss,:])
+                            elif o2p in ['SAT_U_WIND_COMPONENT', 'SAT_V_WIND_COMPONENT']:
+                                #print('appending satw prior:', prior[iss,:])
+                                scatt_anT_satw = np.append(scatt_anT_satw, Tan_ens)  
+                                scatt_anQ_satw = np.append(scatt_anQ_satw, Qan_ens)  
+                                scatt_anU_satw = np.append(scatt_anU_satw, Uan_ens)  
+                                scatt_anV_satw = np.append(scatt_anV_satw, Van_ens)  
+                                scatt_pr_satw = np.append(scatt_pr_satw, prior[iss,:])
+                            elif o2p in ['AIRCRAFT_U_WIND_COMPONENT','AIRCRAFT_V_WIND_COMPONENT','ACARS_U_WIND_COMPONENT','ACARS_V_WIND_COMPONENT']:
+                                #print('appending arcw prior:', prior[iss,:])
+                                scatt_anT_arcw = np.append(scatt_anT_arcw, Tan_ens)  
+                                scatt_anQ_arcw = np.append(scatt_anQ_arcw, Qan_ens)  
+                                scatt_anU_arcw = np.append(scatt_anU_arcw, Uan_ens)  
+                                scatt_anV_arcw = np.append(scatt_anV_arcw, Van_ens)  
+                                scatt_pr_arcw = np.append(scatt_pr_arcw, prior[iss,:])
+                            elif o2p in ['AIRCRAFT_TEMPERATURE','ACARS_TEMPERATURE']:
+                                #print('appending arct prior:', prior[iss,:])
+                                scatt_anT_arct = np.append(scatt_anT_arct, Tan_ens)  
+                                scatt_anQ_arct = np.append(scatt_anQ_arct, Qan_ens)  
+                                scatt_anU_arct = np.append(scatt_anU_arct, Uan_ens)  
+                                scatt_anV_arct = np.append(scatt_anV_arct, Van_ens)  
+                                scatt_pr_arct = np.append(scatt_pr_arct, prior[iss,:])
+                            elif o2p in ['GPSRO_REFRACTIVITY']:
+                                #print('appending gpsro prior:', prior[iss,:])
+                                scatt_anT_gpsro = np.append(scatt_anT_gpsro, Tan_ens)  
+                                scatt_anQ_gpsro = np.append(scatt_anQ_gpsro, Qan_ens)  
+                                scatt_anU_gpsro = np.append(scatt_anU_gpsro, Uan_ens)  
+                                scatt_anV_gpsro = np.append(scatt_anV_gpsro, Van_ens)  
+                                scatt_pr_gpsro = np.append(scatt_pr_gpsro, prior[iss,:])
+                            elif o2p in ['VADWND_U_WIND_COMPONENT','VADWND_V_WIND_COMPONENT']:
+                                #print('appending wdp prior:', prior[iss,:])
+                                scatt_anT_wdp = np.append(scatt_anT_wdp, Tan_ens)  
+                                scatt_anQ_wdp = np.append(scatt_anQ_wdp, Qan_ens)  
+                                scatt_anU_wdp = np.append(scatt_anU_wdp, Uan_ens)  
+                                scatt_anV_wdp = np.append(scatt_anV_wdp, Van_ens)  
+                                scatt_pr_wdp = np.append(scatt_pr_wdp, prior[iss,:])
+                            else:
+                                print("No type in the list:", o2p)
+             
+
+
+
+                     idx_o2p=idx_o2p+1 # END o2p cycle
+
+
+
+    
+np.savez(name_gr_scatter+'.npz', scatt_anT_amsua=scatt_anT_amsua, scatt_anQ_amsua=scatt_anQ_amsua, scatt_anU_amsua=scatt_anU_amsua, scatt_anV_amsua=scatt_anV_amsua, scatt_pr_amsua=scatt_pr_amsua,
+                                 scatt_anT_amsua_ch8=scatt_anT_amsua_ch8, scatt_anQ_amsua_ch8=scatt_anQ_amsua_ch8, scatt_anU_amsua_ch8=scatt_anU_amsua_ch8, 
+                                 scatt_anV_amsua_ch8=scatt_anV_amsua_ch8, scatt_pr_amsua_ch8=scatt_pr_amsua_ch8,
+                                 scatt_anT_amsua_ch9=scatt_anT_amsua_ch9, scatt_anQ_amsua_ch9=scatt_anQ_amsua_ch9, scatt_anU_amsua_ch9=scatt_anU_amsua_ch9, 
+                                 scatt_anV_amsua_ch9=scatt_anV_amsua_ch9, scatt_pr_amsua_ch9=scatt_pr_amsua_ch9,
+                                 scatt_anT_amsua_ch10=scatt_anT_amsua_ch10, scatt_anQ_amsua_ch10=scatt_anQ_amsua_ch10, scatt_anU_amsua_ch10=scatt_anU_amsua_ch10, 
+                                 scatt_anV_amsua_ch10=scatt_anV_amsua_ch10, scatt_pr_amsua_ch10=scatt_pr_amsua_ch10,
+                                 scatt_anT_amsua_ch11=scatt_anT_amsua_ch11, scatt_anQ_amsua_ch11=scatt_anQ_amsua_ch11, scatt_anU_amsua_ch11=scatt_anU_amsua_ch11, 
+                                 scatt_anV_amsua_ch11=scatt_anV_amsua_ch11, scatt_pr_amsua_ch11=scatt_pr_amsua_ch11,
+                                 scatt_anT_amsua_ch12=scatt_anT_amsua_ch12, scatt_anQ_amsua_ch12=scatt_anQ_amsua_ch12, scatt_anU_amsua_ch12=scatt_anU_amsua_ch12, 
+                                 scatt_anV_amsua_ch12=scatt_anV_amsua_ch12, scatt_pr_amsua_ch12=scatt_pr_amsua_ch12,
+                                 scatt_anT_amsua_ch13=scatt_anT_amsua_ch13, scatt_anQ_amsua_ch13=scatt_anQ_amsua_ch13, scatt_anU_amsua_ch13=scatt_anU_amsua_ch13, 
+                                 scatt_anV_amsua_ch13=scatt_anV_amsua_ch13, scatt_pr_amsua_ch13=scatt_pr_amsua_ch13,
+                                 scatt_anT_amsua_ch14=scatt_anT_amsua_ch14, scatt_anQ_amsua_ch14=scatt_anQ_amsua_ch14, scatt_anU_amsua_ch14=scatt_anU_amsua_ch14, 
+                                 scatt_anV_amsua_ch14=scatt_anV_amsua_ch14, scatt_pr_amsua_ch14=scatt_pr_amsua_ch14,
+                                 scatt_anT_sndw=scatt_anT_sndw,   scatt_anQ_sndw=scatt_anQ_sndw,   scatt_anU_sndw=scatt_anU_sndw,   scatt_anV_sndw=scatt_anV_sndw,   scatt_pr_sndw=scatt_pr_sndw,
+                                 scatt_anT_sndt=scatt_anT_sndt,   scatt_anQ_sndt=scatt_anQ_sndt,   scatt_anU_sndt=scatt_anU_sndt,   scatt_anV_sndt=scatt_anV_sndt,   scatt_pr_sndt=scatt_pr_sndt,
+                                 scatt_anT_satw=scatt_anT_satw,   scatt_anQ_satw=scatt_anQ_satw,   scatt_anU_satw=scatt_anU_satw,   scatt_anV_satw=scatt_anV_satw,   scatt_pr_satw=scatt_pr_satw,
+                                 scatt_anT_arcw=scatt_anT_arcw,   scatt_anQ_arcw=scatt_anQ_arcw,   scatt_anU_arcw=scatt_anU_arcw,   scatt_anV_arcw=scatt_anV_arcw,   scatt_pr_arcw=scatt_pr_arcw,
+                                 scatt_anT_arct=scatt_anT_arct,   scatt_anQ_arct=scatt_anQ_arct,   scatt_anU_arct=scatt_anU_arct,   scatt_anV_arct=scatt_anV_arct,   scatt_pr_arct=scatt_pr_arct,
+                                 scatt_anT_gpsro=scatt_anT_gpsro, scatt_anQ_gpsro=scatt_anQ_gpsro, scatt_anU_gpsro=scatt_anU_gpsro, scatt_anV_gpsro=scatt_anV_gpsro, scatt_pr_gpsro=scatt_pr_gpsro,
+                                 scatt_anT_wdp=scatt_anT_wdp,     scatt_anQ_wdp=scatt_anQ_wdp,     scatt_anU_wdp=scatt_anU_wdp,     scatt_anV_wdp=scatt_anV_wdp,     scatt_pr_wdp=scatt_pr_wdp, lev=lev, obs2proc=obs2proc)
+
+
+
+
+# Coordinate of the new coarser grid.
+tmp=idlat[:,0];
+co_lat = lat[tmp] 
+tmp=idlon[0,:]
+co_lon = lon[tmp]  
+
+#print(idlat)
+#print(idlon)
+
+
+
+print(' coarse grid ')
+print(' co_lon: ',co_lon)
+print(' co_lat: ',co_lat)
+
+
+## Count the total number of observations used per type. This counting makes sense only if I consider a sub grid that, with the localization area,
+## can cover the whole domain.
+#print('\n counting the used observation per obs type ...')
+#ocount = np.zeros(len(obs2proc))
+#for io in range(len(obs2proc)):
+#    cnt = 0
+#    for db in listdb[:]:
+#        print('\nworking with db: ',db)
+#        con=sqlite3.connect(db)
+#        dfo = pd.read_sql("select count(*), id,reportype,entryno,kind,(select distinct description from toc where kind=body.kind) \
+#                           as description,dart_qc,member from hdr join body on id=body.hdr_id join ens on id=ens.hdr_id and entryno=body_entryno \
+#                           where description in ('"+ obs2proc[io] +"') and dart_qc=0 and member=1", con)
+#        con.close() 
+#        ocount[io] = ocount[io] + dfo['count(*)']
+#
+#print('count obs used: ', ocount)
+
+
+
+
+
+
+
+
+
+# Plotting
+#------------------------------------------
+#------------------------------------------
+#if plot_img=='TRUE':
+#   # Consider four different regions: Global
+#   # NH, SH, TR for the bar plot. 
+#   G_fsoi  = fsoi
+#   tmp_idlat = np.where(clat>30)
+#   NH_fsoi = fsoi[:,:,tmp_idlat, :] 
+#   tmp_idlat = np.where(clat<-30) 
+#   SH_fsoi = fsoi[:,:,tmp_idlat, :] 
+#   tmp_idlat = np.where( (clat>=-30) & (clat<=30) ) 
+#   TR_fsoi = fsoi[:,:,tmp_idlat,:]
+#
+#   fsoi_plot_bar(fsoi, obs2proc, title='Global'+'\n Date: '+fdate , xlabel='$FSOI-J_o$ %', ylabel='', psave=path2sv+'/bar_global.png', fs=16, dpi=100)
+#   fsoi_plot_bar(NH_fsoi, obs2proc, title='Northern Hemisphere'+'\n Date: '+fdate, xlabel='$FSOI-J_o$ %', ylabel='', psave=path2sv+'/bar_nh.png', fs=16, dpi=100)
+#   fsoi_plot_bar(SH_fsoi, obs2proc, title='Southern Hemisphere'+'\n Date: '+fdate, xlabel='$FSOI-J_o$ %', ylabel='', psave=path2sv+'/bar_sh.png', fs=16, dpi=100)
+#   fsoi_plot_bar(TR_fsoi, obs2proc, title='Tropics'+'\n Date: '+fdate, xlabel='', ylabel='$FSOI-J_o$ %', psave=path2sv+'/bar_tr.png', fs=16, dpi=100)
+
+## For the maps consider three reference levels
+## 850 hPa, 500h Pa, 200 hPa and the vertical average. 
+
+#   fsoi_map = fsoi.mean(axis=(0,1))
+#   fsoi_plot_map(fsoi_map, title='FSOI-Jo, All Obs., Vertical Integration.'+'\n Date: '+fdate , xlabel='', ylabel='', psave=path2sv+'/all_obs_vint_map.png', fs=16, dpi=100) 
+#   idlev = find_closest_index(lev, 850)
+#   fsoi_map = fsoi[:,idlev,:,:].mean(axis=0)
+#   fsoi_plot_map(fsoi_map, title='FSOI-Jo, All Obs., Model Level: '+ str(lev[idlev])  +'\n Date: '+fdate , xlabel='', ylabel='', psave=path2sv+'/all_obs_850_map.png', fs=16, dpi=100) 
+#   idlev = find_closest_index(lev, 500)
+#   fsoi_map = fsoi[:,idlev,:,:].mean(axis=0)
+#   fsoi_plot_map(fsoi_map, title='FSOI-Jo, All Obs., Model Level: '+ str(lev[idlev])  +'\n Date: '+fdate , xlabel='', ylabel='', psave=path2sv+'/all_obs_500_map.png', fs=16, dpi=100) 
+#   idlev = find_closest_index(lev, 200)
+#   fsoi_map = fsoi[:,idlev,:,:].mean(axis=0)
+#   fsoi_plot_map(fsoi_map, title='FSOI-Jo, All Obs., Model Level: '+ str(lev[idlev])  +'\n Date: '+fdate , xlabel='', ylabel='', psave=path2sv+'/all_obs_200_map.png', fs=16, dpi=100) 
+
+
+# Profiles?? 
+
+
+
+# Data saving session.
+#------------------------------------------
+#------------------------------------------
+print('\n Save data . . .')
+
+#with Dataset(path2sv+'/data.nc', 'w', format='NETCDF4_CLASSIC') as ds:
+ 
+    # Add 1D variables  
+    #------------------------------------------
+#    ds.createDimension('model_lon',len(lon))
+#    model_lon_var = ds.createVariable('model_lon', 'f8', ('model_lon',))
+#    model_lon_var.units='degree' 
+#    model_lon_var.long_name='longitude coordinate of the original model' 
+#    #ds.variables['model_lon'][:] = lon   
+#    model_lon_var[:] = lon
+
+#    ds.createDimension('model_lat',len(lat))
+#    model_lat_var = ds.createVariable('model_lat', 'f8', ('model_lat',))
+#    model_lat_var.units = 'degree' 
+#    model_lat_var.long_name = 'latitude coordinate of the original model' 
+#    model_lat_var[:] = lat   
+ 
+#    ds.createDimension('model_lev',len(lev))
+#    model_lev_var = ds.createVariable('model_lev', 'f8', ('model_lev',))
+#    model_lev_var.units = 'hPa' 
+#    model_lev_var.long_name = 'vertical coordinate of the original model' 
+#    model_lev_var[:] = lev   
+    
+#    ds.createDimension('c_lat',len(co_lat))
+#    co_lat_var = ds.createVariable('c_lat', 'f8', ('c_lat',))
+#    co_lat_var.units = 'degree' 
+#    co_lat_var.long_name = 'latitude coordinate of the coarser diag grid' 
+#    co_lat_var[:] = co_lat   
+
+#    ds.createDimension('c_lon',len(co_lon))
+#    co_lon_var = ds.createVariable('c_lon', 'f8', ('c_lon',))
+#    co_lon_var.units = 'degree' 
+#    co_lon_var.long_name = 'longitude coordinate of the coarser diag grid' 
+#    co_lon_var[:] = co_lon   
+    
+
+
+    # Add 2D variables  
+    #------------------------------------------
+#    idlat_var = ds.createVariable('idlat', 'f8', ('c_lat', 'c_lon'))
+#    idlat_var.units = ''
+#    idlat_var.long_name = 'Matrix indices for the mapping between the model and the coarse grid. It contains the lat indices correspondednt to positions in model grid.'
+#    idlat_var[:] = idlat
+
+#    idlon_var = ds.createVariable('idlon', 'f8', ('c_lat', 'c_lon'))
+#    idlon_var.units = ''
+#    idlon_var.long_name = 'Matrix indices for the mapping between the model and the coarse grid. It contains the lat indices correspondednt to positions in model grid.'
+#    idlon_var[:] = idlon
+
+    # Add 4D variables  
+    #------------------------------------------
+#    ds.createDimension('num_obs_types', len(obs2proc))
+#    fsoi_var = ds.createVariable('fsoi', 'f8', ('num_obs_types', 'model_lev', 'c_lat', 'c_lon'))
+#    fsoi_var.units = ''
+#    fsoi_var.long_name = 'FSOI-Jo. First dimension is the list of obs type: ' + str(obs2proc)
+#    fsoi_var[:] = fsoi
+
+#    oi_var = ds.createVariable('fsoi_oi', 'f8', ('num_obs_types', 'model_lev', 'c_lat', 'c_lon'))
+#    oi_var.units = ''
+#    oi_var.long_name = 'FSOI-Jo_OI approximation. First dimension is the list of obs type: ' + str(obs2proc)
+#    oi_var[:] = fsoi_oi
+    
+#    oi_var = ds.createVariable('oi', 'f8', ('num_obs_types', 'model_lev', 'c_lat', 'c_lon'))
+#    oi_var.units = ''
+#    oi_var.long_name = 'OI First dimension is the list of obs type: ' + str(obs2proc)
+#    oi_var[:] = oi
+    
+#    ds.setncattr('title', 'Simplified FSOI for ensemble filtering: forecast date: ' + fdate)
+#    ds.setncattr('author', 'G. C.')
+    
+
+
+# END
+#------------------------------------------
+#------------------------------------------
+# Get the current date and time
+final_t = datetime.datetime.now()
+print('\n',final_t)
+print('Execution Time: ',final_t-start_t)
+
+print('\n -------------------- END ------------------- \n')

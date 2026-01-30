@@ -1,0 +1,37 @@
+# sqlite='sqlite3 -readonly -batch -init /dev/null -nullvalue NULL -box'
+# $sqlite $(dirname $ODB_SCHEMA_FILE)/odb_code_mappings_with_descriptions.db "select id as reportype,obstype,codetype,bufrtype,subtype,description from odb_code_mappings_with_descriptions where description like '%gpsro%'" -table
++-----------+---------+----------+----------+---------+-----------------------+
+| reportype | obstype | codetype | bufrtype | subtype |      description      |
++-----------+---------+----------+----------+---------+-----------------------+
+| 7013      | 10      | 250      | 3        | 250     | METOP-B GPSRO         |
+| 7001      | 10      | 250      | 3        | 250     | METOP-A GPSRO         |
+| 7019      | 10      | 250      | 3        | 250     | METOP-C GPSRO         |
+| 7002      | 10      | 250      | 3        | 250     | CHAMP GPSRO           |
+| 7010      | 10      | 250      | 3        | 250     | TerraSAR-X GPSRO      |
+| 7015      | 10      | 250      | 3        | 250     | TanDEM-X GPSRO        |
+| 7023      | 10      | 250      | 3        | 250     | PAZ GPSRO             |
+| 7017      | 10      | 250      | 3        | 250     | Megha-Tropiques GPSRO |
+| 7003      | 10      | 250      | 3        | 250     | GRACE A GPSRO         |
+| 7014      | 10      | 250      | 3        | 250     | GRACE B GPSRO         |
+| 7004      | 10      | 250      | 3        | 250     | COSMIC-1 GPSRO        |
+| 7005      | 10      | 250      | 3        | 250     | COSMIC-2 GPSRO        |
+| 7006      | 10      | 250      | 3        | 250     | COSMIC-3 GPSRO        |
+| 7007      | 10      | 250      | 3        | 250     | COSMIC-4 GPSRO        |
+| 7008      | 10      | 250      | 3        | 250     | COSMIC-5 GPSRO        |
+| 7009      | 10      | 250      | 3        | 250     | COSMIC-6 GPSRO        |
+| 7011      | 10      | 250      | 3        | 250     | CNOFS GPSRO           |
+| 7012      | 10      | 250      | 3        | 250     | SAC-C GPSRO           |
+| 7018      | 10      | 250      | 3        | 250     | KOMPSAT-5 GPSRO       |
+| 7016      | 10      | 250      | 3        | 250     | FY-3C GPSRO           |
+| 7024      | 10      | 250      | 3        | 250     | COSMIC2 E1 GPSRO      |
+| 7025      | 10      | 250      | 3        | 250     | COSMIC2 E2 GPSRO      |
+| 7026      | 10      | 250      | 3        | 250     | COSMIC2 E3 GPSRO      |
+| 7027      | 10      | 250      | 3        | 250     | COSMIC2 E4 GPSRO      |
+| 7028      | 10      | 250      | 3        | 250     | COSMIC2 E5 GPSRO      |
+| 7029      | 10      | 250      | 3        | 250     | COSMIC2 E6 GPSRO      |
+| 7022      | 10      | 250      | 3        | 250     | FY-3D GPSRO           |
+| 7020      | 10      | 250      | 3        | 250     | GRACE C GPSRO         |
+| 7021      | 10      | 250      | 3        | 250     | GRACE D GPSRO         |
+| 7030      | 10      | 250      | 3        | 250     | SPIRE Lemur 3U GPSRO  |
+| 7031      | 10      | 250      | 3        | 250     | Sentinel 6A GPSRO     |
++-----------+---------+----------+----------+---------+-----------------------+

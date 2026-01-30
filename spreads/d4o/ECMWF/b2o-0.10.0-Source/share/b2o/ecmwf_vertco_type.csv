@@ -1,0 +1,16 @@
+vertco_type:int,label:text,description:text
+1,pressure,pressure (in Pa)
+2,gpheight,geopotential height
+3,tovs_cha,TOVS channel
+4,scat_cha,Scatterometer channel
+5,modlevno,model level number
+6,imp_param,impact parameter
+7,cha_number,channel number
+8,cha_wavelength,channel wavelength (in metres)
+9,cha_frequency,channel frequency (in Hz)
+10,ocean_depth,depth below surface (in metres)
+11,derived_pressure,derivedpressure (in Pa)
+12,amb_wind_num,ambivalent wind number
+13,cloud_top_pressure,cloud top pressure (in Pa)
+14,tangent_height,tangent height (metres) for SBUV
+15,model_pressure,model level pressure (in Pa)

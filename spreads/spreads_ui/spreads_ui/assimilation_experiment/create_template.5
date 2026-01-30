@@ -1,0 +1,96 @@
++ set -o pipefail
++ export ECF_PORT=3145
++ ECF_PORT=3145
++ export ECF_HOST=login1.juno.cmcc.scc
++ ECF_HOST=login1.juno.cmcc.scc
++ export ECF_NAME=/spreads_ui/assimilation_experiment/create_template
++ ECF_NAME=/spreads_ui/assimilation_experiment/create_template
++ export ECF_PASS=o7caih8E
++ ECF_PASS=o7caih8E
++ export ECF_TRYNO=5
++ ECF_TRYNO=5
++ export ECF_TRIES=0
++ ECF_TRIES=0
++ export ECF_RID=3381645
++ ECF_RID=3381645
++ export PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/users_home/cmcc/mg20022/.vscode-server/bin/441438abd1ac652551dbe4d408dfcec8a499b8bf/bin/remote-cli:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/work/cmcc/mg20022/.conda/envs/ecflow/bin:/users_home/cmcc/mg20022/anaconda3/condabin:/users_home/cmcc/mg20022/.local/bin:/users_home/cmcc/mg20022/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/users_home/cmcc/mg20022/.vscode-server/bin/441438abd1ac652551dbe4d408dfcec8a499b8bf/bin/remote-cli:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/work/cmcc/mg20022/.conda/envs/ecflow/bin:/users_home/cmcc/mg20022/anaconda3/condabin:/users_home/cmcc/mg20022/.local/bin:/users_home/cmcc/mg20022/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ ecflow_client --init=3381645
++ trap ERROR 0
++ trap '{ echo "Killed by a signal"; ERROR ; }' 1 2 3 4 5 6 7 8 10 12 13 15
++ cp /users_home/cmcc/gc02720/spreads/spreads_ui/experiments/template_3.def /users_home/cmcc/gc02720/spreads/spreads_ui/new.def
++ sed -i 's@suite template@suite new@g' /users_home/cmcc/gc02720/spreads/spreads_ui/new.def
++ sed -i 's@edit ECF_HOME@edit ECF_HOME /users_home/cmcc/gc02720/spreads/spreads_ui@g' /users_home/cmcc/gc02720/spreads/spreads_ui/new.def
++ sed -i 's@edit ECF_HOSTNAME@edit ECF_HOSTNAME juno@g' /users_home/cmcc/gc02720/spreads/spreads_ui/new.def
++ sed -i 's@edit ECF_INCLUDE@edit ECF_INCLUDE /users_home/cmcc/gc02720/spreads/spreads_ui/includes@g' /users_home/cmcc/gc02720/spreads/spreads_ui/new.def
++ sed -i 's@edit ECF_CLONE@edit ECF_CLONE /users_home/cmcc/gc02720/spreads/spreads_ui@g' /users_home/cmcc/gc02720/spreads/spreads_ui/new.def
++ sed -i 's@edit MAXTRY@edit MAXTRY 5@g' /users_home/cmcc/gc02720/spreads/spreads_ui/new.def
++ sed -i 's@edit CASE_NAME@edit CASE_NAME new@g' /users_home/cmcc/gc02720/spreads/spreads_ui/new.def
++ sed -i 's@edit NENS@edit NENS 3@g' /users_home/cmcc/gc02720/spreads/spreads_ui/new.def
++ sed -i 's@edit BASEOBSDIR@edit BASEOBSDIR /work/cmcc/gc02720/b2d4o_EXP4@g' /users_home/cmcc/gc02720/spreads/spreads_ui/new.def
++ sed -i 's@edit REFCASE@edit REFCASE ic_phase1@g' /users_home/cmcc/gc02720/spreads/spreads_ui/new.def
++ sed -i 's@edit REFDATE@edit REFDATE 2017100200000@g' /users_home/cmcc/gc02720/spreads/spreads_ui/new.def
++ sed -i 's@edit DEP@edit DEP 13@g' /users_home/cmcc/gc02720/spreads/spreads_ui/new.def
++ sed -i 's@edit CASE_TEMPLATE@edit CASE_TEMPLATE case.template-juno.original@g' /users_home/cmcc/gc02720/spreads/spreads_ui/new.def
++ sed -i 's@edit DART_NML_TEMPLATE@edit DART_NML_TEMPLATE input.nml.original.rad@g' /users_home/cmcc/gc02720/spreads/spreads_ui/new.def
++ sed -i 's@edit MODELDIR@edit MODELDIR cesm2.3_beta11_cm3_v7z@g' /users_home/cmcc/gc02720/spreads/spreads_ui/new.def
++ sed -i 's@edit STARTDATE@edit STARTDATE 2017100200000@g' /users_home/cmcc/gc02720/spreads/spreads_ui/new.def
++ mkdir -p /users_home/cmcc/gc02720/spreads/spreads_ui/new
++ rsync -azh --info=progress2 --exclude '*.job*' --human-readable /users_home/cmcc/gc02720/spreads/spreads_ui/experiments/template/ /users_home/cmcc/gc02720/spreads/spreads_ui/new/
+              0   0%    0.00kB/s    0:00:00 (xfr#0, to-chk=66/74)          1.30K   0%    0.00kB/s    0:00:00            1.30K   0%    0.00kB/s    0:00:00 (xfr#1, to-chk=69/74)         10.62K   6%    9.10MB/s    0:00:00 (xfr#2, to-chk=46/74)         14.36K   9%   12.75MB/s    0:00:00 (xfr#3, to-chk=38/74)         21.43K  13%    9.83MB/s    0:00:00 (xfr#4, to-chk=30/74)         26.99K  17%   12.54MB/s    0:00:00 (xfr#5, to-chk=1/74)          26.99K  17%  802.70kB/s    0:00:00 (xfr#5, to-chk=0/74)         26.99K  17%  802.70kB/s    0:00:00 (xfr#5, to-chk=0/74)         26.99K  17%  802.70kB/s    0:00:00 (xfr#5, to-chk=0/74)         26.99K  17%  802.70kB/s    0:00:00 (xfr#5, to-chk=0/74)         26.99K  17%  802.70kB/s    0:00:00 (xfr#5, to-chk=0/74)         26.99K  17%  802.70kB/s    0:00:00 (xfr#5, to-chk=0/74)         26.99K  17%  802.70kB/s    0:00:00 (xfr#5, to-chk=0/74)         26.99K  17%  802.70kB/s    0:00:00 (xfr#5, to-chk=0/74)         26.99K  17%  802.70kB/s    0:00:00 (xfr#5, to-chk=0/74)         26.99K  17%  802.70kB/s    0:00:00 (xfr#5, to-chk=0/74)         26.99K  17%  802.70kB/s    0:00:00 (xfr#5, to-chk=0/74)
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/new/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure
++ rm -rf dep_10.ecf dep_11.ecf dep_12.ecf dep_13.ecf dep_1.ecf dep_2.ecf dep_3.ecf dep_4.ecf dep_5.ecf dep_6.ecf dep_7.ecf dep_8.ecf dep_9.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_1.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_2.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_3.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_4.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_5.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_6.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_7.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_8.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_9.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_10.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_11.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_12.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_13.ecf
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/new/run_cycles/background/run
++ rm -rf mem_10.ecf mem_11.ecf mem_12.ecf mem_13.ecf mem_1.ecf mem_2.ecf mem_3.ecf mem_4.ecf mem_5.ecf mem_6.ecf mem_7.ecf mem_8.ecf mem_9.ecf
++ for n in {1..3}
++ ln -s member.ecf mem_1.ecf
++ for n in {1..3}
++ ln -s member.ecf mem_2.ecf
++ for n in {1..3}
++ ln -s member.ecf mem_3.ecf
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui
++ set +e
++ ecflow_client --check /new
+
++ '[' 0 -eq 1 ']'
++ ecflow_client --delete yes /new
++ ecflow_client --load=new.def force
++ ecflow_client --begin=new
++ set -e
++ echo ''
+
++ echo '----- END TASK ---'
+----- END TASK ---
++ echo ''
+
++ ecflow_client --label=Info 'OK... 20230609  08:47'
++ wait
++ ecflow_client --complete
++ trap 0
++ exit 0

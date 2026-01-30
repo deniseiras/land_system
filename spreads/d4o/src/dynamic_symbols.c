@@ -1,0 +1,1 @@
+../blacklist/library/dynamic_symbols.c

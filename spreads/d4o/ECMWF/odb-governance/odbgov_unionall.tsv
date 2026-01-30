@@ -1,0 +1,503 @@
+id	description	group_id	group	bufrtype_id	bufrtype	subtype_id	subtype	obstype_id	obstype	codetype_id	codetype	sensor_id	sensor	satellite_instrument_id	satellite_instrument	satellite_identifier_id	satellite_identifier	accumulation_length
+16001	Automatic Land SYNOP	17	CONV	0	Land Surface	3	Automatic Land SYNOP	1	SYNOP	14	Automatic Land SYNOP	-1	-1	-1	-1	-1	-1	-1
+16002	Manual Land SYNOP	17	CONV	0	Land Surface	1	Manual Land SYNOP	1	SYNOP	11	Manual Land SYNOP	-1	-1	-1	-1	-1	-1	-1
+16003	Abbreviated SYNOP	17	CONV	0	Land Surface	9	Abbreviated SYNOP	1	SYNOP	11	Manual Land SYNOP	-1	-1	-1	-1	-1	-1	-1
+16004	METAR	17	CONV	0	Land Surface	140	METAR	1	SYNOP	140	METAR	-1	-1	-1	-1	-1	-1	-1
+16005	DRIBU	17	CONV	1	Sea Surface	21	DRIBU	4	BUOY	165	DRIBU	-1	-1	-1	-1	-1	-1	-1
+16006	Automatic SHIP	17	CONV	1	Sea Surface	13	Automatic SHIP	1	SYNOP	24	Automatic SHIP	-1	-1	-1	-1	-1	-1	-1
+16007	Reduced SHIP	17	CONV	1	Sea Surface	19	Reduced SHIP	1	SYNOP	23	Reduced SHIP	-1	-1	-1	-1	-1	-1	-1
+16008	SHIP	17	CONV	1	Sea Surface	11	SHIP	1	SYNOP	21	SHIP	-1	-1	-1	-1	-1	-1	-1
+16009	Abbreviated SHIP	17	CONV	1	Sea Surface	9	Abbreviated SYNOP	1	SYNOP	21	SHIP	-1	-1	-1	-1	-1	-1	-1
+16010	DRIBU-BATHY	17	CONV	1	Sea Surface	22	DRIBU-BATHY	4	BUOY	63	DRIBU-BATHY	-1	-1	-1	-1	-1	-1	-1
+16011	DRIBU-TESAC	17	CONV	1	Sea Surface	23	DRIBU-TESAC	4	BUOY	64	DRIBU-TESAC	-1	-1	-1	-1	-1	-1	-1
+16012	Ground-Based GPS	17	CONV	1	Sea Surface	110	Ground-based GPS	1	SYNOP	110	Ground-based GPS	-1	-1	-1	-1	-1	-1	-1
+16013	Land PILOT	17	CONV	2	Upper Air Sounding	91	PILOT	6	PILOT	32	Land PILOT	-1	-1	-1	-1	-1	-1	-1
+16014	PILOT SHIP	17	CONV	2	Upper Air Sounding	92	PILOT SHIP	6	PILOT	33	PILOT SHIP	-1	-1	-1	-1	-1	-1	-1
+16015	American Wind Profiler 1	17	CONV	2	Upper Air Sounding	95	American Wind Profiler 1	6	PILOT	34	American Wind Profiler	-1	-1	-1	-1	-1	-1	-1
+16016	American Wind Profiler 2	17	CONV	2	Upper Air Sounding	96	Wind Profiler	6	PILOT	34	American Wind Profiler	-1	-1	-1	-1	-1	-1	-1
+16017	European Wind Profiler	17	CONV	2	Upper Air Sounding	96	Wind Profiler	6	PILOT	134	European Wind Profiler	-1	-1	-1	-1	-1	-1	-1
+16018	Japanese Wind Profiler	17	CONV	2	Upper Air Sounding	96	Wind Profiler	6	PILOT	131	Japanese Wind Profiler	-1	-1	-1	-1	-1	-1	-1
+16019	TEMP SHIP	17	CONV	2	Upper Air Sounding	102	TEMP SHIP	5	TEMP	36	TEMP SHIP	-1	-1	-1	-1	-1	-1	-1
+16020	DROP Sonde	17	CONV	2	Upper Air Sounding	103	DROP Sonde	5	TEMP	135	DROP Sonde	-1	-1	-1	-1	-1	-1	-1
+16021	Mobile TEMP	17	CONV	2	Upper Air Sounding	106	MOBILE TEMP	5	TEMP	37	MOBILE TEMP	-1	-1	-1	-1	-1	-1	-1
+16022	Land TEMP	17	CONV	2	Upper Air Sounding	101	Land TEMP	5	TEMP	35	Land TEMP	-1	-1	-1	-1	-1	-1	-1
+16023	ROCOB TEMP	17	CONV	2	Upper Air Sounding	104	ROCOB TEMP	5	TEMP	39	ROCOB TEMP	-1	-1	-1	-1	-1	-1	-1
+16024	SHIP ROCOB TEMP	17	CONV	2	Upper Air Sounding	105	SHIP ROCOB TEMP	5	TEMP	40	SHIP ROCOB TEMP	-1	-1	-1	-1	-1	-1	-1
+16026	AIREP	17	CONV	4	AIREP	142	AIREP	2	AIREP	141	AIREP	-1	-1	-1	-1	-1	-1	-1
+16027	CODAR	17	CONV	4	AIREP	141	AIREP	2	AIREP	41	CODAR	-1	-1	-1	-1	-1	-1	-1
+16028	COLBA	17	CONV	4	AIREP	143	COLBA	2	AIREP	241	COLBA	-1	-1	-1	-1	-1	-1	-1
+16029	AMDAR	17	CONV	4	AIREP	144	AMDAR	2	AIREP	144	AMDAR	-1	-1	-1	-1	-1	-1	-1
+16030	ACARS	17	CONV	4	AIREP	145	ACARS	2	AIREP	145	ACARS	-1	-1	-1	-1	-1	-1	-1
+16031	PAOB	17	CONV	253	PAOB	164	PAOB	8	PAOB	180	PAOB	-1	-1	-1	-1	-1	-1	-1
+16032	PAOB via Sat code	17	CONV	3	Satellite Sounding	161	PAOB	8	PAOB	180	PAOB	-1	-1	-1	-1	-1	-1	-1
+16037	SATEM 500km Low Level Temperature	17	CONV	3	Satellite Sounding	61	500km Low Level Temperature	7	SATEM	86	SATEM	-1	-1	-1	-1	-1	-1	-1
+16038	SATEM 500km PWC	17	CONV	3	Satellite Sounding	62	500km PWC	7	SATEM	86	SATEM	-1	-1	-1	-1	-1	-1	-1
+16039	SATEM 500km High Level Temperature	17	CONV	3	Satellite Sounding	63	500km High Level Temperature	7	SATEM	86	SATEM	-1	-1	-1	-1	-1	-1	-1
+16040	SATEM 500km Merged	17	CONV	3	Satellite Sounding	65	500km Merged	7	SATEM	86	SATEM	-1	-1	-1	-1	-1	-1	-1
+16041	SATEM 250km Low Level Temperature	17	CONV	3	Satellite Sounding	71	250km Low Level Temperature	7	SATEM	186	SATEM	-1	-1	-1	-1	-1	-1	-1
+16042	SATEM 250km PWC	17	CONV	3	Satellite Sounding	72	250km PWC	7	SATEM	186	SATEM	-1	-1	-1	-1	-1	-1	-1
+16043	SATEM 250km High Level Temperature	17	CONV	3	Satellite Sounding	73	250km High Level Temperature	7	SATEM	186	SATEM	-1	-1	-1	-1	-1	-1	-1
+16044	SATEM 250km Merged	17	CONV	3	Satellite Sounding	75	250km Merged	7	SATEM	186	SATEM	-1	-1	-1	-1	-1	-1	-1
+16084	BUFR DRIFTING BUOYS	17	CONV	1	Sea Surface	182	BUFR DRIFTING BUOYS	4	BUOY	189	BUFR DRIFTING BUOYS	-1	-1	-1	-1	-1	-1	-1
+16083	BUFR MOORED BUOYS	17	CONV	1	Sea Surface	181	BUFR MOORED BUOYS	4	BUOY	188	BUFR MOORED BUOYS	-1	-1	-1	-1	-1	-1	-1
+16082	WIGOS AMDAR	17	CONV	4	AIREP	146	WIGOS AMDAR	2	AIREP	146	WIGOS AMDAR	-1	-1	-1	-1	-1	-1	-1
+16074	BUFR SHIP SYNOP	17	CONV	1	Sea Surface	180	BUFR SHIP SYNOP	1	SYNOP	182	BUFR SHIP SYNOP	-1	-1	-1	-1	-1	-1	-1
+16069	BUFR SHIP PILOT	17	CONV	2	Upper Air Sounding	113	BUFR SHIP PILOT	6	PILOT	113	BUFR SHIP PILOT	-1	-1	-1	-1	-1	-1	-1
+16068	BUFR LAND PILOT	17	CONV	2	Upper Air Sounding	112	BUFR LAND PILOT	6	PILOT	112	BUFR LAND PILOT	-1	-1	-1	-1	-1	-1	-1
+16065	Automatic METAR	17	CONV	0	Land Surface	147	AUTO METAR	1	SYNOP	140	METAR	-1	-1	-1	-1	-1	-1	-1
+16045	BUFR LAND TEMP	17	CONV	2	Upper Air Sounding	109	Land High Resolution Temp	5	TEMP	109	Land High Resolution Temp	-1	-1	-1	-1	-1	-1	-1
+16046	BUFR SHIP TEMP	17	CONV	2	Upper Air Sounding	111	SHIP High Resolution TEMP	5	TEMP	111	SHIP High Resolution TEMP	-1	-1	-1	-1	-1	-1	-1
+16066	TAMDAR	17	CONV	4	AIREP	148	TAMDAR	2	AIREP	148	TAMDAR	-1	-1	-1	-1	-1	-1	-1
+25001	Ground-Based Radar	26	GBRAD	6	Ground-based radar	125	Radar rain rate	14	Ground-based weather radar	3	Radar Rain Rates	-1	-1	-1	-1	-1	-1	-1
+16067	ACARs with mixing ratio	17	CONV	4	AIREP	149	ACARs with mixing ratio	2	AIREP	149	ACARs with mixing ratio	-1	-1	-1	-1	-1	-1	-1
+16025	Additional Land Surface Data	17	CONV	0	Land Surface	28	SNOW DEPTH	1	SYNOP	17	Additional Land Surface Data	-1	-1	-1	-1	-1	-1	-1
+16076	BUFR LAND SYNOP	17	CONV	0	Land Surface	170	BUFR LAND SYNOP	1	SYNOP	170	BUFR LAND SYNOP	-1	-1	-1	-1	-1	-1	-1
+16076	BUFR LAND SYNOP	17	CONV	0	Land Surface	172	BUFR LAND SYNOP 2	1	SYNOP	170	BUFR LAND SYNOP	-1	-1	-1	-1	-1	-1	-1
+16076	BUFR LAND SYNOP	17	CONV	0	Land Surface	176	BUFR LAND SYNOP WMO Region 6	1	SYNOP	170	BUFR LAND SYNOP	-1	-1	-1	-1	-1	-1	-1
+16076	BUFR LAND SYNOP	17	CONV	0	Land Surface	178	BUFR LAND SYNOP 1 HOURLY	1	SYNOP	178	BUFR LAND SYNOP 1 HOURLY	-1	-1	-1	-1	-1	-1	-1
+16086	BUFR TEMP DROP	17	CONV	2	Upper Air Sounding	230	BUFR TEMP DROP	5	TEMP	230	BUFR TEMP DROP	-1	-1	-1	-1	-1	-1	-1
+16087	BUFR TEMP DESCENT	17	CONV	2	Upper Air Sounding	231	BUFR TEMP DESCENT	5	TEMP	231	BUFR TEMP DESCENT	-1	-1	-1	-1	-1	-1	-1
+16088	Mode-S	17	CONV	4	AIREP	150	Mode-S	2	AIREP	147	Mode-S	-1	-1	-1	-1	-1	-1	-1
+16089	ADS-C	17	CONV	4	AIREP	151	ADS-C	2	AIREP	151	ADS-C	-1	-1	-1	-1	-1	-1	-1
+16090	Crowd AWS	17	CONV	0	Land Surface	179	Crowd AWS	1	SYNOP	179	Crowd AWS	-1	-1	-1	-1	-1	-1	-1
+9001	Old ERS 1 Scatterometer	10	SCATT	12	ERS-SSMI-SCAT	8	ERS-1	9	Scatterometer	8	Old ERS 1	150	Scatterometer	150	SCATTEROMETER	1	ERS 1	-1
+9002	New ERS 1 Scatterometer	10	SCATT	12	ERS-SSMI-SCAT	122	ERS	9	Scatterometer	122	ERS	150	Scatterometer	150	SCATTEROMETER	1	ERS 1	-1
+5001	ERS 2 GOME O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	170	GOME	170	GOME	2	ERS 2	-1
+9003	ERS 2 Scatterometer	10	SCATT	12	ERS-SSMI-SCAT	122	ERS	9	Scatterometer	122	ERS	150	Scatterometer	150	SCATTEROMETER	2	ERS 2	-1
+35002	ERS-2 GOME layer integrated mass density with averaging kernels	36	RESAT Averaging Kernels	3	Satellite Sounding	209	Layer integrated mass density with averaging kernels	7	SATEM	206	Retrieved Atmospheric Constituents	170	GOME	170	GOME	2	ERS 2	-1
+5025	ERS 2 GOME MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	170	GOME	170	GOME	2	ERS 2	-1
+5050	ERS-2 GOME Layer integrated mass density	6	RESAT	3	Satellite Sounding	208	Layer integrated mass density	7	SATEM	206	Retrieved Atmospheric Constituents	170	GOME	170	GOME	2	ERS 2	-1
+9007	METOP-B ASCAT	10	SCATT	12	ERS-SSMI-SCAT	139	ASCAT	9	Scatterometer	139	ASCAT	190	ASCAT	190	ASCAT	3	METOP-1 (Metop-B)	-1
+25	METOP-B HIRS Radiances	1	HIRS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	0	HIRS	607	HIRS/4	3	METOP-1 (Metop-B)	-1
+1009	METOP-B AMSUA Radiances	2	AMSUA	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	3	AMSUA	570	AMSU-A	3	METOP-1 (Metop-B)	-1
+3004	METOP-B MHS Radiances	4	MHS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	15	MHS	203	MHS	3	METOP-1 (Metop-B)	-1
+7013	METOP-B GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	202	GRAS	202	GRAS	3	METOP-1 (Metop-B)	-1
+11002	METOP-B IASI Radiances	12	IASI	3	Satellite Sounding	240	IASI	7	SATEM	210	Radiances	16	IASI	221	IASI	3	METOP-1 (Metop-B)	-1
+21009	METOP-B AMSUA Radiances All-sky	22	AMSUA All-sky	3	Satellite Sounding	55	ATOVS	16	ALLSKY	215	SSMI/TRMM	3	AMSUA	570	AMSU-A	3	METOP-1 (Metop-B)	-1
+5057	METOP-B GOME-2 O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	220	GOME-2	220	GOME-2	3	METOP-1 (Metop-B)	-1
+35011	METOP-B IASI layer integrated mass density with averaging kernels and a priori profile	36	RESAT Averaging Kernels	3	Satellite Sounding	229	Layer integrated mass density with averaging kernels and a priori profile	7	SATEM	206	Retrieved Atmospheric Constituents	221	IASI	221	IASI	3	METOP-1 (Metop-B)	-1
+44004	MHS METOP-B MHS Radiances All-sky	45	MHS All-sky	3	Satellite Sounding	55	ATOVS	16	ALLSKY	215	SSMI/TRMM	15	MHS	203	MHS	3	METOP-1 (Metop-B)	-1
+5061	METOP-B GOME-2 Layer integrated mass density	6	RESAT	3	Satellite Sounding	208	Layer integrated mass density	7	SATEM	206	Retrieved Atmospheric Constituents	220	GOME-2	220	GOME-2	3	METOP-1 (Metop-B)	-1
+35012	METOP-B GOME-2 layer integrated mass density with averaging kernels	36	RESAT Averaging Kernels	3	Satellite Sounding	209	Layer integrated mass density with averaging kernels	7	SATEM	206	Retrieved Atmospheric Constituents	220	GOME-2	220	GOME-2	3	METOP-1 (Metop-B)	-1
+35013	METOP-B GOME-2 layer integrated mass density with averaging kernels and a priori profile	36	RESAT Averaging Kernels	3	Satellite Sounding	229	Layer integrated mass density with averaging kernels and a priori profile	7	SATEM	206	Retrieved Atmospheric Constituents	220	GOME-2	220	GOME-2	3	METOP-1 (Metop-B)	-1
+5062	METOP-B GOME-2 MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	220	GOME-2	220	GOME-2	3	METOP-1 (Metop-B)	-1
+5072	METOP-B GOME-2 PMAP	6	RESAT	3	Satellite Sounding	207	MODIS aerosol	7	SATEM	206	Retrieved Atmospheric Constituents	220	GOME-2	220	GOME-2	3	METOP-1 (Metop-B)	-1
+35017	METOP-B IASI layer volumetric mixing ratio with averaging kernels and a priori profile	36	RESAT Averaging Kernels	3	Satellite Sounding	228	Layer volumetric mixing ratio with averaging kernels and a priori profile	7	SATEM	206	Retrieved Atmospheric Constituents	221	IASI	221	IASI	3	METOP-1 (Metop-B)	-1
+5087	METOP-B IASI Layer integrated mass density	6	RESAT	3	Satellite Sounding	208	Layer integrated mass density	7	SATEM	206	Retrieved Atmospheric Constituents	221	IASI	221	IASI	3	METOP-1 (Metop-B)	-1
+15	METOP-A HIRS Radiances	1	HIRS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	0	HIRS	607	HIRS/4	4	METOP-2 (Metop-A)	-1
+1007	METOP-A AMSUA Radiances	2	AMSUA	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	3	AMSUA	570	AMSU-A	4	METOP-2 (Metop-A)	-1
+3002	METOP-A MHS Radiances	4	MHS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	15	MHS	203	MHS	4	METOP-2 (Metop-A)	-1
+5013	METOP-A GOME-2 O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	220	GOME-2	220	GOME-2	4	METOP-2 (Metop-A)	-1
+7001	METOP-A GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	202	GRAS	202	GRAS	4	METOP-2 (Metop-A)	-1
+9005	METOP-A ASCAT	10	SCATT	12	ERS-SSMI-SCAT	139	ASCAT	9	Scatterometer	139	ASCAT	190	ASCAT	190	ASCAT	4	METOP-2 (Metop-A)	-1
+11001	METOP-A IASI Radiances	12	IASI	3	Satellite Sounding	240	IASI	7	SATEM	210	Radiances	16	IASI	221	IASI	4	METOP-2 (Metop-A)	-1
+21007	METOP-A AMSUA Radiances All-sky	22	AMSUA All-sky	3	Satellite Sounding	55	ATOVS	16	ALLSKY	215	SSMI/TRMM	3	AMSUA	570	AMSU-A	4	METOP-2 (Metop-A)	-1
+5024	METOP-A IASI Layer integrated mass density	6	RESAT	3	Satellite Sounding	208	Layer integrated mass density	7	SATEM	206	Retrieved Atmospheric Constituents	221	IASI	221	IASI	4	METOP-2 (Metop-A)	-1
+35004	METOP-A GOME-2 layer integrated mass density with averaging kernels	36	RESAT Averaging Kernels	3	Satellite Sounding	209	Layer integrated mass density with averaging kernels	7	SATEM	206	Retrieved Atmospheric Constituents	220	GOME-2	220	GOME-2	4	METOP-2 (Metop-A)	-1
+35005	METOP-A IASI layer volumetric mixing ratio with averaging kernels and a priori profile	36	RESAT Averaging Kernels	3	Satellite Sounding	228	Layer volumetric mixing ratio with averaging kernels and a priori profile	7	SATEM	206	Retrieved Atmospheric Constituents	221	IASI	221	IASI	4	METOP-2 (Metop-A)	-1
+35007	METOP-A IASI layer integrated mass density with averaging kernels and a priori profile	36	RESAT Averaging Kernels	3	Satellite Sounding	229	Layer integrated mass density with averaging kernels and a priori profile	7	SATEM	206	Retrieved Atmospheric Constituents	221	IASI	221	IASI	4	METOP-2 (Metop-A)	-1
+5037	METOP-A GOME-2 MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	220	GOME-2	220	GOME-2	4	METOP-2 (Metop-A)	-1
+5047	METOP-A GOME-2 Layer integrated mass density	6	RESAT	3	Satellite Sounding	208	Layer integrated mass density	7	SATEM	206	Retrieved Atmospheric Constituents	220	GOME-2	220	GOME-2	4	METOP-2 (Metop-A)	-1
+35010	METOP-A GOME-2 layer integrated mass density with averaging kernels and a priori profile	36	RESAT Averaging Kernels	3	Satellite Sounding	229	Layer integrated mass density with averaging kernels and a priori profile	7	SATEM	206	Retrieved Atmospheric Constituents	220	GOME-2	220	GOME-2	4	METOP-2 (Metop-A)	-1
+44002	MHS METOP-A MHS Radiances All-sky	45	MHS All-sky	3	Satellite Sounding	55	ATOVS	16	ALLSKY	215	SSMI/TRMM	15	MHS	203	MHS	4	METOP-2 (Metop-A)	-1
+5071	METOP-A GOME-2 PMAP	6	RESAT	3	Satellite Sounding	207	MODIS aerosol	7	SATEM	206	Retrieved Atmospheric Constituents	220	GOME-2	220	GOME-2	4	METOP-2 (Metop-A)	-1
+9011	Metop-C ASCAT	10	SCATT	12	ERS-SSMI-SCAT	139	ASCAT	9	Scatterometer	139	ASCAT	190	ASCAT	190	ASCAT	5	METOP-3 (Metop-C)	-1
+5085	METOP-C GOME-2 O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	220	GOME-2	220	GOME-2	5	METOP-3 (Metop-C)	-1
+5086	METOP-C GOME-2 PMAP	6	RESAT	3	Satellite Sounding	207	MODIS aerosol	7	SATEM	206	Retrieved Atmospheric Constituents	220	GOME-2	220	GOME-2	5	METOP-3 (Metop-C)	-1
+5088	METOP-C GOME-2 Layer integrated mass density	6	RESAT	3	Satellite Sounding	208	Layer integrated mass density	7	SATEM	206	Retrieved Atmospheric Constituents	220	GOME-2	220	GOME-2	5	METOP-3 (Metop-C)	-1
+35021	METOP-C IASI layer volumetric mixing ratio with averaging kernels and a priori profile	36	RESAT Averaging Kernels	3	Satellite Sounding	228	Layer volumetric mixing ratio with averaging kernels and a priori profile	7	SATEM	206	Retrieved Atmospheric Constituents	221	IASI	221	IASI	5	METOP-3 (Metop-C)	-1
+35020	METOP-C GOME-2 layer integrated mass density with averaging kernels and a priori profile	36	RESAT Averaging Kernels	3	Satellite Sounding	229	Layer integrated mass density with averaging kernels and a priori profile	7	SATEM	206	Retrieved Atmospheric Constituents	220	GOME-2	220	GOME-2	5	METOP-3 (Metop-C)	-1
+5089	METOP-C IASI Layer integrated mass density	6	RESAT	3	Satellite Sounding	208	Layer integrated mass density	7	SATEM	206	Retrieved Atmospheric Constituents	221	IASI	221	IASI	5	METOP-3 (Metop-C)	-1
+35019	METOP-C GOME-2 layer integrated mass density with averaging kernels	36	RESAT Averaging Kernels	3	Satellite Sounding	209	Layer integrated mass density with averaging kernels	7	SATEM	206	Retrieved Atmospheric Constituents	220	GOME-2	220	GOME-2	5	METOP-3 (Metop-C)	-1
+35018	METOP-C IASI layer integrated mass density with averaging kernels and a priori profile	36	RESAT Averaging Kernels	3	Satellite Sounding	229	Layer integrated mass density with averaging kernels and a priori profile	7	SATEM	206	Retrieved Atmospheric Constituents	221	IASI	221	IASI	5	METOP-3 (Metop-C)	-1
+11003	METOP-C IASI Radiances	12	IASI	3	Satellite Sounding	240	IASI	7	SATEM	210	Radiances	16	IASI	221	IASI	5	METOP-3 (Metop-C)	-1
+1010	METOP-C AMSUA Radiances	2	AMSUA	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	3	AMSUA	570	AMSU-A	5	METOP-3 (Metop-C)	-1
+21010	METOP-C AMSUA Radiances All-Sky	22	AMSUA All-sky	3	Satellite Sounding	55	ATOVS	16	ALLSKY	215	SSMI/TRMM	3	AMSUA	570	AMSU-A	5	METOP-3 (Metop-C)	-1
+3005	METOP-C MHS Radiances	4	MHS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	15	MHS	203	MHS	5	METOP-3 (Metop-C)	-1
+7019	METOP-C GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	202	GRAS	202	GRAS	5	METOP-3 (Metop-C)	-1
+44005	MHS METOP-C MHS Radiances All-sky	45	MHS All-sky	3	Satellite Sounding	55	ATOVS	16	ALLSKY	215	SSMI/TRMM	15	MHS	203	MHS	5	METOP-3 (Metop-C)	-1
+7002	CHAMP GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	102	GPS	102	CHAMP GPS sounder	41	CHAMP	-1
+7010	TerraSAR-X GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	103	IGOR	103	IGOR	42	TerraSAR-X	-1
+7015	TanDEM-X GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	103	IGOR	103	IGOR	43	TanDEM-X	-1
+7023	PAZ GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	103	IGOR	103	IGOR	44	PAZ	-1
+18001	SMOS	19	SMOS	30	SMOS	203	SMOS	7	SATEM	400	SMOS	18	MIRAS	176	MIRAS	46	SMOS	-1
+45001	AEOLUS HLOS Wind Level 2B	46	Doppler Wind Lidar	2	Upper Air Sounding	251	Aeolus L2B wind lidar	15	LIDAR	187	Doppler Wind Lidar	-1	MISSING	130	ALADIN	48	AEOLUS	-1
+4020	METEOSAT 4 GEOS Radiances	5	GEOS	5	SATOB	89	GEOS Radiances	7	SATEM	210	Radiances	20	MVIRI	205	MVIRI	51	METEOSAT 4	-1
+4017	METEOSAT 5 GEOS Radiances	5	GEOS	5	SATOB	89	GEOS Radiances	7	SATEM	210	Radiances	20	MVIRI	205	MVIRI	52	METEOSAT 5	-1
+4021	METEOSAT 6 GEOS Radiances	5	GEOS	5	SATOB	89	GEOS Radiances	7	SATEM	210	Radiances	20	MVIRI	205	MVIRI	53	METEOSAT 6	-1
+4007	METEOSAT 7 GEOS Radiances	5	GEOS	5	SATOB	89	GEOS Radiances	7	SATEM	210	Radiances	20	MVIRI	205	MVIRI	54	METEOSAT 7	-1
+4008	METEOSAT 8 GEOS Radiances	5	GEOS	5	SATOB	189	GEOS Radiances	7	SATEM	210	Radiances	21	SEVIRI RADIANCES	207	SEVIRI	55	METEOSAT 8	-1
+5002	METEOSAT 8 SEVIRI O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	207	SEVIRI	207	SEVIRI	55	METEOSAT 8	-1
+5026	METEOSAT 8 SEVIRI MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	207	SEVIRI	207	SEVIRI	55	METEOSAT 8	-1
+4018	METEOSAT 8 GEOS Allsky Radiances	5	GEOS	5	SATOB	190	GEOS Allsky Radiances	7	SATEM	210	Radiances	21	SEVIRI RADIANCES	207	SEVIRI	55	METEOSAT 8	-1
+4009	METEOSAT 9 GEOS Radiances	5	GEOS	5	SATOB	189	GEOS Radiances	7	SATEM	210	Radiances	21	SEVIRI RADIANCES	207	SEVIRI	56	METEOSAT 9	-1
+5003	METEOSAT 9 SEVIRI O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	207	SEVIRI	207	SEVIRI	56	METEOSAT 9	-1
+4013	METEOSAT 9 GEOS Allsky Radiances	5	GEOS	5	SATOB	190	GEOS Allsky Radiances	7	SATEM	210	Radiances	21	SEVIRI RADIANCES	207	SEVIRI	56	METEOSAT 9	-1
+5027	METEOSAT 9 SEVIRI MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	207	SEVIRI	207	SEVIRI	56	METEOSAT 9	-1
+5063	METEOSAT-9 SEVIRI aerosol optical depth	6	RESAT	3	Satellite Sounding	223	Satellite aerosol optical depth	7	SATEM	206	Retrieved Atmospheric Constituents	207	SEVIRI	207	SEVIRI	56	METEOSAT 9	-1
+4016	METEOSAT 10 GEOS Allsky Radiances	5	GEOS	5	SATOB	190	GEOS Allsky Radiances	7	SATEM	210	Radiances	21	SEVIRI RADIANCES	207	SEVIRI	57	METEOSAT 10	-1
+5058	METEOSAT 10 SEVIRI O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	207	SEVIRI	207	SEVIRI	57	METEOSAT 10	-1
+5064	METEOSAT-10 SEVIRI aerosol optical depth	6	RESAT	3	Satellite Sounding	223	Satellite aerosol optical depth	7	SATEM	206	Retrieved Atmospheric Constituents	207	SEVIRI	207	SEVIRI	57	METEOSAT 10	-1
+5014	ENVISAT SCIAMACHY O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	175	SCIAMACHY	175	SCIAMACHY	60	ENVISAT	-1
+5015	ENVISAT GOMOS O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	172	GOMOS	172	GOMOS	60	ENVISAT	-1
+5016	ENVISAT MIPAS O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	161	MIPAS	161	MIPAS	60	ENVISAT	-1
+6001	ENVISAT MERIS TCWV	7	MERIS	3	Satellite Sounding	212	MERIS	7	SATEM	214	TCWC	174	MERIS	174	MERIS	60	ENVISAT	-1
+35003	ENVISAT SCIAMACHY layer integrated mass density with averaging kernels	36	RESAT Averaging Kernels	3	Satellite Sounding	209	Layer integrated mass density with averaging kernels	7	SATEM	206	Retrieved Atmospheric Constituents	175	SCIAMACHY	175	SCIAMACHY	60	ENVISAT	-1
+35006	ENVISAT SCIAMACHY layer volumetric mixing ratio with averaging kernels and a priori profile	36	RESAT Averaging Kernels	3	Satellite Sounding	228	Layer volumetric mixing ratio with averaging kernels and a priori profile	7	SATEM	206	Retrieved Atmospheric Constituents	175	SCIAMACHY	175	SCIAMACHY	60	ENVISAT	-1
+5038	ENVISAT SCIAMACHY MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	175	SCIAMACHY	175	SCIAMACHY	60	ENVISAT	-1
+5039	ENVISAT GOMOS MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	172	GOMOS	172	GOMOS	60	ENVISAT	-1
+5040	ENVISAT MIPAS MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	161	MIPAS	161	MIPAS	60	ENVISAT	-1
+5045	ENVISAT SCIAMACHY Layer volumetric mixing ratio	6	RESAT	3	Satellite Sounding	215	Layer volumetric mixing ratio	7	SATEM	206	Retrieved Atmospheric Constituents	175	SCIAMACHY	175	SCIAMACHY	60	ENVISAT	-1
+5046	ENVISAT SCIAMACHY Layer integrated mass density	6	RESAT	3	Satellite Sounding	208	Layer integrated mass density	7	SATEM	206	Retrieved Atmospheric Constituents	175	SCIAMACHY	175	SCIAMACHY	60	ENVISAT	-1
+5049	TERRA MOPITT Layer integrated mass density	6	RESAT	3	Satellite Sounding	208	Layer integrated mass density	7	SATEM	206	Retrieved Atmospheric Constituents	90	MOPITT	90	MOPITT	60	ENVISAT	-1
+5067	ENVISAT AATSR Aerosol	6	RESAT	3	Satellite Sounding	207	MODIS aerosol	7	SATEM	206	Retrieved Atmospheric Constituents	10	SSMIS	10	AATSR	60	ENVISAT	-1
+4023	METEOSAT 11 GEOS Allsky Radiances	5	GEOS	5	SATOB	190	GEOS Allsky Radiances	7	SATEM	210	Radiances	21	SEVIRI RADIANCES	207	SEVIRI	70	METEOSAT 11	-1
+5080	METEOSAT 11 SEVIRI aerosol optical depth	6	RESAT	3	Satellite Sounding	223	Satellite aerosol optical depth	7	SATEM	206	Retrieved Atmospheric Constituents	207	SEVIRI	207	SEVIRI	70	METEOSAT 11	-1
+5069	TOMS ADEOS-I	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	431	TOMS	431	TOMS	120	ADEOS	-1
+41001	GCOM-W1 AMSR-2 Radiances All-sky	42	AMSR-2 All-sky	3	Satellite Sounding	60	AMSR-2	16	ALLSKY	215	SSMI/TRMM	63	AMSR-2	478	AMSR2	122	GCOM-W1	-1
+5021	GOSAT TANSO-FTS Layer volumetric mixing ratio	6	RESAT	3	Satellite Sounding	215	Layer volumetric mixing ratio	7	SATEM	206	Retrieved Atmospheric Constituents	516	TANSO-FTS	516	TANSO-FTS	140	GOSAT	-1
+35009	GOSAT TANSO-FTS layer volumetric mixing ratio with averaging kernels and a priori profile	36	RESAT Averaging Kernels	3	Satellite Sounding	228	Layer volumetric mixing ratio with averaging kernels and a priori profile	7	SATEM	206	Retrieved Atmospheric Constituents	516	TANSO-FTS	516	TANSO-FTS	140	GOSAT	-1
+4010	MTSAT-1R GEOS Radiances	5	GEOS	5	SATOB	189	GEOS Radiances	7	SATEM	210	Radiances	24	MTSATIMG	294	JAMI	171	MTSAT-1R	-1
+4012	MTSAT-2 GEOS Radiances	5	GEOS	5	SATOB	189	GEOS Radiances	7	SATEM	210	Radiances	24	MTSATIMG	294	JAMI	172	MTSAT-2	-1
+4022	Himawari 8 GEOS radiances	5	GEOS	5	SATOB	189	GEOS Radiances	7	SATEM	210	Radiances	56	AHI	297	AHI	173	Himawari-8	-1
+4024	Himawari 9 GEOS radiances	5	GEOS	5	SATOB	189	GEOS Radiances	7	SATEM	210	Radiances	56	AHI	297	AHI	174	Himawari-9	-1
+4	NOAA 8 HIRS Radiances	1	HIRS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	0	HIRS	605	HIRS/2	200	NOAA 8	-1
+30004	NOAA 8 MSU Radiances	31	MSU	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	1	MSU	623	MSU	200	NOAA 8	-1
+31004	NOAA 8 SSU Radiances	32	SSU	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	2	SSU	627	SSU	200	NOAA 8	-1
+16	NOAA 8 HIRS Radiances	1	HIRS	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	0	HIRS	605	HIRS/2	200	NOAA 8	-1
+30010	NOAA 8 MSU TOVS1B Radiances	31	MSU	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	1	MSU	623	MSU	200	NOAA 8	-1
+31009	NOAA 8 SSU TOVS1B Radiances	32	SSU	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	2	SSU	627	SSU	200	NOAA 8	-1
+5	NOAA 9 HIRS Radiances	1	HIRS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	0	HIRS	605	HIRS/2	201	NOAA 9	-1
+5006	NOAA 9 SBUV-2 O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	624	SBUV-2	624	SBUV/2	201	NOAA 9	-1
+30005	NOAA 9 MSU Radiances	31	MSU	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	1	MSU	623	MSU	201	NOAA 9	-1
+31005	NOAA 9 SSU Radiances	32	SSU	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	2	SSU	627	SSU	201	NOAA 9	-1
+17	NOAA 9 HIRS Radiances	1	HIRS	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	0	HIRS	605	HIRS/2	201	NOAA 9	-1
+31010	NOAA 9 SSU TOVS1B Radiances	32	SSU	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	2	SSU	627	SSU	201	NOAA 9	-1
+5030	NOAA 9 SBUV-2 MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	624	SBUV-2	624	SBUV/2	201	NOAA 9	-1
+30017	NOAA 9 MSU TOVS1B Radiances	31	MSU	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	1	MSU	623	MSU	201	NOAA 9	-1
+6	NOAA 10 HIRS Radiances	1	HIRS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	0	HIRS	605	HIRS/2	202	NOAA 10	-1
+30006	NOAA 10 MSU Radiances	31	MSU	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	1	MSU	623	MSU	202	NOAA 10	-1
+18	NOAA 10 HIRS Radiances	1	HIRS	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	0	HIRS	605	HIRS/2	202	NOAA 10	-1
+30011	NOAA 10 MSU TOVS1B Radiances	31	MSU	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	1	MSU	623	MSU	202	NOAA 10	-1
+7	NOAA 11 HIRS Radiances	1	HIRS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	0	HIRS	605	HIRS/2	203	NOAA 11	-1
+5007	NOAA 11 SBUV-2 O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	624	SBUV-2	624	SBUV/2	203	NOAA 11	-1
+30007	NOAA 11 MSU Radiances	31	MSU	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	1	MSU	623	MSU	203	NOAA 11	-1
+31006	NOAA 11 SSU Radiances	32	SSU	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	2	SSU	627	SSU	203	NOAA 11	-1
+19	NOAA 11 HIRS Radiances	1	HIRS	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	0	HIRS	605	HIRS/2	203	NOAA 11	-1
+30012	NOAA 11 MSU TOVS1B Radiances	31	MSU	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	1	MSU	623	MSU	203	NOAA 11	-1
+31011	NOAA 11 SSU TOVS1B Radiances	32	SSU	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	2	SSU	627	SSU	203	NOAA 11	-1
+5031	NOAA 11 SBUV-2 MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	624	SBUV-2	624	SBUV/2	203	NOAA 11	-1
+8	NOAA 12 HIRS Radiances	1	HIRS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	0	HIRS	605	HIRS/2	204	NOAA 12	-1
+23	NOAA 12 HIRS Radiances	1	HIRS	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	0	HIRS	605	HIRS/2	204	NOAA 12	-1
+30008	NOAA 12 MSU Radiances	31	MSU	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	1	MSU	623	MSU	204	NOAA 12	-1
+31007	NOAA 12 SSU Radiances	32	SSU	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	2	SSU	627	SSU	204	NOAA 12	-1
+30018	NOAA 12 MSU TOVS1B Radiances	31	MSU	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	1	MSU	623	MSU	204	NOAA 12	-1
+31016	NOAA 12 SSU TOVS1B Radiances	32	SSU	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	2	SSU	627	SSU	204	NOAA 12	-1
+9	NOAA 14 HIRS Radiances	1	HIRS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	0	HIRS	605	HIRS/2	205	NOAA 14	-1
+5008	NOAA 14 SBUV-2 O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	624	SBUV-2	624	SBUV/2	205	NOAA 14	-1
+24	NOAA 14 HIRS Radiances	1	HIRS	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	0	HIRS	605	HIRS/2	205	NOAA 14	-1
+30009	NOAA 14 MSU Radiances	31	MSU	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	1	MSU	623	MSU	205	NOAA 14	-1
+31008	NOAA 14 SSU Radiances	32	SSU	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	2	SSU	627	SSU	205	NOAA 14	-1
+5032	NOAA 14 SBUV-2 MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	624	SBUV-2	624	SBUV/2	205	NOAA 14	-1
+31015	NOAA 14 SSU TOVS1B Radiances	32	SSU	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	2	SSU	627	SSU	205	NOAA 14	-1
+30016	NOAA 14 MSU TOVS1B Radiances	31	MSU	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	1	MSU	623	MSU	205	NOAA 14	-1
+10	NOAA 15 HIRS Radiances	1	HIRS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	0	HIRS	606	HIRS/3	206	NOAA 15	-1
+1001	NOAA 15 AMSUA Radiances	2	AMSUA	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	3	AMSUA	570	AMSU-A	206	NOAA 15	-1
+2001	NOAA 15 AMSUB Radiances	3	AMSUB	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	4	AMSUB	574	AMSU-B	206	NOAA 15	-1
+21001	NOAA 15 AMSUA Radiances All-sky	22	AMSUA All-sky	3	Satellite Sounding	55	ATOVS	16	ALLSKY	215	SSMI/TRMM	3	AMSUA	570	AMSU-A	206	NOAA 15	-1
+43001	AMSUB NOAA 15 AMSUB Radiances All-sky	44	AMSUB All-sky	3	Satellite Sounding	55	ATOVS	16	ALLSKY	215	SSMI/TRMM	4	AMSUB	574	AMSU-B	206	NOAA 15	-1
+11	NOAA 16 HIRS Radiances	1	HIRS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	0	HIRS	606	HIRS/3	207	NOAA 16	-1
+1002	NOAA 16 AMSUA Radiances	2	AMSUA	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	3	AMSUA	570	AMSU-A	207	NOAA 16	-1
+2002	NOAA 16 AMSUB Radiances	3	AMSUB	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	4	AMSUB	574	AMSU-B	207	NOAA 16	-1
+5009	NOAA 16 SBUV-2 O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	624	SBUV-2	624	SBUV/2	207	NOAA 16	-1
+21002	NOAA 16 AMSUA Radiances All-sky	22	AMSUA All-sky	3	Satellite Sounding	55	ATOVS	16	ALLSKY	215	SSMI/TRMM	3	AMSUA	570	AMSU-A	207	NOAA 16	-1
+5033	NOAA 16 SBUV-2 MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	624	SBUV-2	624	SBUV/2	207	NOAA 16	-1
+43002	AMSUB NOAA 16 AMSUB Radiances All-sky	44	AMSUB All-sky	3	Satellite Sounding	55	ATOVS	16	ALLSKY	215	SSMI/TRMM	4	AMSUB	574	AMSU-B	207	NOAA 16	-1
+12	NOAA 17 HIRS Radiances	1	HIRS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	0	HIRS	606	HIRS/3	208	NOAA 17	-1
+1003	NOAA 17 AMSUA Radiances	2	AMSUA	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	3	AMSUA	570	AMSU-A	208	NOAA 17	-1
+2003	NOAA 17 AMSUB Radiances	3	AMSUB	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	4	AMSUB	574	AMSU-B	208	NOAA 17	-1
+5010	NOAA 17 SBUV-2 O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	624	SBUV-2	624	SBUV/2	208	NOAA 17	-1
+21003	NOAA 17 AMSUA Radiances All-sky	22	AMSUA All-sky	3	Satellite Sounding	55	ATOVS	16	ALLSKY	215	SSMI/TRMM	3	AMSUA	570	AMSU-A	208	NOAA 17	-1
+5034	NOAA 17 SBUV-2 MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	624	SBUV-2	624	SBUV/2	208	NOAA 17	-1
+43003	AMSUB NOAA 17 AMSUB Radiances All-sky	44	AMSUB All-sky	3	Satellite Sounding	55	ATOVS	16	ALLSKY	215	SSMI/TRMM	4	AMSUB	574	AMSU-B	208	NOAA 17	-1
+13	NOAA 18 HIRS Radiances	1	HIRS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	0	HIRS	607	HIRS/4	209	NOAA 18	-1
+1004	NOAA 18 AMSUA Radiances	2	AMSUA	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	3	AMSUA	570	AMSU-A	209	NOAA 18	-1
+2004	NOAA 18 AMSUB Radiances	3	AMSUB	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	4	AMSUB	574	AMSU-B	209	NOAA 18	-1
+5011	NOAA 18 SBUV-2 O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	624	SBUV-2	624	SBUV/2	209	NOAA 18	-1
+21004	NOAA 18 AMSUA Radiances All-sky	22	AMSUA All-sky	3	Satellite Sounding	55	ATOVS	16	ALLSKY	215	SSMI/TRMM	3	AMSUA	570	AMSU-A	209	NOAA 18	-1
+3003	NOAA 18 MHS Radiances	4	MHS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	15	MHS	203	MHS	209	NOAA 18	-1
+5035	NOAA 18 SBUV-2 MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	624	SBUV-2	624	SBUV/2	209	NOAA 18	-1
+43004	AMSUB NOAA 18 AMSUB Radiances All-sky	44	AMSUB All-sky	3	Satellite Sounding	55	ATOVS	16	ALLSKY	215	SSMI/TRMM	4	AMSUB	574	AMSU-B	209	NOAA 18	-1
+44003	MHS NOAA 18 MHS Radiances All-sky	45	MHS All-sky	3	Satellite Sounding	55	ATOVS	16	ALLSKY	215	SSMI/TRMM	15	MHS	203	MHS	209	NOAA 18	-1
+14	NOAA 19 HIRS Radiances	1	HIRS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	0	HIRS	607	HIRS/4	223	NOAA 19	-1
+1005	NOAA 19 AMSUA Radiances	2	AMSUA	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	3	AMSUA	570	AMSU-A	223	NOAA 19	-1
+3001	NOAA 19 MHS Radiances	4	MHS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	15	MHS	203	MHS	223	NOAA 19	-1
+5012	NOAA 19 SBUV-2 O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	624	SBUV-2	624	SBUV/2	223	NOAA 19	-1
+21005	NOAA 19 AMSUA Radiances All-sky	22	AMSUA All-sky	3	Satellite Sounding	55	ATOVS	16	ALLSKY	215	SSMI/TRMM	3	AMSUA	570	AMSU-A	223	NOAA 19	-1
+5036	NOAA 19 SBUV-2 MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	624	SBUV-2	624	SBUV/2	223	NOAA 19	-1
+44001	MHS NOAA 19 MHS Radiances All-sky	45	MHS All-sky	3	Satellite Sounding	55	ATOVS	16	ALLSKY	215	SSMI/TRMM	15	MHS	203	MHS	223	NOAA 19	-1
+34001	NPP ATMS Radiances	35	ATMS	21	Radiances    (Satellite Measured) 	201	ATMS	7	SATEM	210	Radiances	19	ATMS	621	ATMS	224	NPP	-1
+36001	NPP CRIS Radiances	37	CRIS	21	Radiances    (Satellite Measured) 	202	CRIS	7	SATEM	210	Radiances	27	CRIS	620	CrIRS/NP	224	NPP	-1
+5065	NPP VIIRS aerosol optical thickness	6	RESAT	3	Satellite Sounding	219	VIIRS aerosol optical thickness	7	SATEM	206	Retrieved Atmospheric Constituents	616	VIIRS	375	VIRS	224	NPP	-1
+5068	NPP OMPS O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	947	OMPS	947	OMPS	224	NPP	-1
+49001	NPP ATMS Radiances All-sky	50	ATMS All-sky	21	Radiances    (Satellite Measured) 	201	ATMS	16	ALLSKY	215	SSMI/TRMM	19	ATMS	621	ATMS	224	NPP	-1
+5091	NPP VIIRS aerosol optical depth	6	RESAT	3	Satellite Sounding	207	MODIS aerosol	7	SATEM	206	Retrieved Atmospheric Constituents	616	VIIRS	616	VIIRS	224	NPP	-1
+5092	NPP OMPS-LP O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	947	OMPS	947	OMPS	224	NPP	-1
+10001	DMSP 7 SSMI All-sky	11	SSMI All-sky	12	ERS-SSMI-SCAT	127	SSMI	16	ALLSKY	215	SSMI/TRMM	6	SSM/I	905	SSM/I	240	DMSP 7	-1
+10002	DMSP 8 SSMI All-sky	11	SSMI All-sky	12	ERS-SSMI-SCAT	127	SSMI	16	ALLSKY	215	SSMI/TRMM	6	SSM/I	905	SSM/I	241	DMSP 8	-1
+20001	DMSP 8 SSMI	21	SSMI	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	6	SSM/I	905	SSM/I	241	DMSP 8	-1
+56001	DMSP 8 SSMI 1DVAR TCWV Cloudy-Sky	57	SSMI 1DVAR TCWV Cloudy-Sky	12	ERS-SSMI-SCAT	127	SSMI	7	SATEM	215	SSMI/TRMM	6	SSM/I	905	SSM/I	241	DMSP 8	-1
+10009	DMSP 8 SSMI CMSAF All-sky	11	SSMI All-sky	12	ERS-SSMI-SCAT	128	SSMI CMSAF	16	ALLSKY	215	SSMI/TRMM	6	SSM/I	905	SSM/I	241	DMSP 8	-1
+10003	DMSP 9 SSMI All-sky	11	SSMI All-sky	12	ERS-SSMI-SCAT	127	SSMI	16	ALLSKY	215	SSMI/TRMM	6	SSM/I	905	SSM/I	242	DMSP 9	-1
+20002	DMSP 9 SSMI	21	SSMI	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	6	SSM/I	905	SSM/I	242	DMSP 9	-1
+10004	DMSP 10 SSMI All-sky	11	SSMI All-sky	12	ERS-SSMI-SCAT	127	SSMI	16	ALLSKY	215	SSMI/TRMM	6	SSM/I	905	SSM/I	243	DMSP 10	-1
+20003	DMSP 10 SSMI	21	SSMI	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	6	SSM/I	905	SSM/I	243	DMSP 10	-1
+56002	DMSP 10 SSMI 1DVAR TCWV Cloudy-Sky	57	SSMI 1DVAR TCWV Cloudy-Sky	12	ERS-SSMI-SCAT	127	SSMI	7	SATEM	215	SSMI/TRMM	6	SSM/I	905	SSM/I	243	DMSP 10	-1
+10010	DMSP 10 SSMI CMSAF All-sky	11	SSMI All-sky	12	ERS-SSMI-SCAT	128	SSMI CMSAF	16	ALLSKY	215	SSMI/TRMM	6	SSM/I	905	SSM/I	243	DMSP 10	-1
+10005	DMSP 11 SSMI All-sky	11	SSMI All-sky	12	ERS-SSMI-SCAT	127	SSMI	16	ALLSKY	215	SSMI/TRMM	6	SSM/I	905	SSM/I	244	DMSP 11	-1
+20004	DMSP 11 SSMI	21	SSMI	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	6	SSM/I	905	SSM/I	244	DMSP 11	-1
+56003	DMSP 11 SSMI 1DVAR TCWV Cloudy-Sky	57	SSMI 1DVAR TCWV Cloudy-Sky	12	ERS-SSMI-SCAT	127	SSMI	7	SATEM	215	SSMI/TRMM	6	SSM/I	905	SSM/I	244	DMSP 11	-1
+58001	DMSP 11 SSMT2 Radiances	59	SSMT2	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	33	SSM/T-2	907	SSM/T-2	244	DMSP 11	-1
+10011	DMSP 11 SSMI CMSAF All-sky	11	SSMI All-sky	12	ERS-SSMI-SCAT	128	SSMI CMSAF	16	ALLSKY	215	SSMI/TRMM	6	SSM/I	905	SSM/I	244	DMSP 11	-1
+58002	DMSP 12 SSMT2 Radiances	59	SSMT2	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	33	SSM/T-2	907	SSM/T-2	245	DMSP 12	-1
+10006	DMSP 13 SSMI All-sky	11	SSMI All-sky	12	ERS-SSMI-SCAT	127	SSMI	16	ALLSKY	215	SSMI/TRMM	6	SSM/I	905	SSM/I	246	DMSP 13	-1
+20005	DMSP 13 SSMI	21	SSMI	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	6	SSM/I	905	SSM/I	246	DMSP 13	-1
+56004	DMSP 13 SSMI 1DVAR TCWV Cloudy-Sky	57	SSMI 1DVAR TCWV Cloudy-Sky	12	ERS-SSMI-SCAT	127	SSMI	7	SATEM	215	SSMI/TRMM	6	SSM/I	905	SSM/I	246	DMSP 13	-1
+10012	DMSP 13 SSMI CMSAF All-sky	11	SSMI All-sky	12	ERS-SSMI-SCAT	128	SSMI CMSAF	16	ALLSKY	215	SSMI/TRMM	6	SSM/I	905	SSM/I	246	DMSP 13	-1
+10007	DMSP 14 SSMI All-sky	11	SSMI All-sky	12	ERS-SSMI-SCAT	127	SSMI	16	ALLSKY	215	SSMI/TRMM	6	SSM/I	905	SSM/I	247	DMSP 14	-1
+20006	DMSP 14 SSMI	21	SSMI	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	6	SSM/I	905	SSM/I	247	DMSP 14	-1
+56005	DMSP 14 SSMI 1DVAR TCWV Cloudy-Sky	57	SSMI 1DVAR TCWV Cloudy-Sky	12	ERS-SSMI-SCAT	127	SSMI	7	SATEM	215	SSMI/TRMM	6	SSM/I	905	SSM/I	247	DMSP 14	-1
+58003	DMSP 14 SSMT2 Radiances	59	SSMT2	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	33	SSM/T-2	907	SSM/T-2	247	DMSP 14	-1
+10013	DMSP 14 SSMI CMSAF All-sky	11	SSMI All-sky	12	ERS-SSMI-SCAT	128	SSMI CMSAF	16	ALLSKY	215	SSMI/TRMM	6	SSM/I	905	SSM/I	247	DMSP 14	-1
+10008	DMSP 15 SSMI All-sky	11	SSMI All-sky	12	ERS-SSMI-SCAT	127	SSMI	16	ALLSKY	215	SSMI/TRMM	6	SSM/I	905	SSM/I	248	DMSP 15	-1
+20007	DMSP 15 SSMI	21	SSMI	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	6	SSM/I	905	SSM/I	248	DMSP 15	-1
+56006	DMSP 15 SSMI 1DVAR TCWV Cloudy-Sky	57	SSMI 1DVAR TCWV Cloudy-Sky	12	ERS-SSMI-SCAT	127	SSMI	7	SATEM	215	SSMI/TRMM	6	SSM/I	905	SSM/I	248	DMSP 15	-1
+58004	DMSP 15 SSMT2 Radiances	59	SSMT2	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	33	SSM/T-2	907	SSM/T-2	248	DMSP 15	-1
+10014	DMSP 15 SSMI CMSAF All-sky	11	SSMI All-sky	12	ERS-SSMI-SCAT	128	SSMI CMSAF	16	ALLSKY	215	SSMI/TRMM	6	SSM/I	905	SSM/I	248	DMSP 15	-1
+13001	DMSP 16 SSMIS Radiances All-sky	14	SSMIS All-sky	3	Satellite Sounding	49	SSMIS	16	ALLSKY	215	SSMI/TRMM	10	SSMIS	908	SSMIS	249	DMSP 16	-1
+24001	DMSP 16 SSMIS Radiances	25	SSMIS	3	Satellite Sounding	49	SSMIS	7	SATEM	210	Radiances	10	SSMIS	908	SSMIS	249	DMSP 16	-1
+4002	GOES 8 GEOS Radiances	5	GEOS	5	SATOB	89	GEOS Radiances	7	SATEM	210	Radiances	22	IMAGER	615	IMAGER	252	GOES 8	-1
+4003	GOES 9 GEOS Radiances	5	GEOS	5	SATOB	89	GEOS Radiances	7	SATEM	210	Radiances	22	IMAGER	615	IMAGER	253	GOES 9	-1
+4004	GOES 10 GEOS Radiances	5	GEOS	5	SATOB	89	GEOS Radiances	7	SATEM	210	Radiances	22	IMAGER	615	IMAGER	254	GOES 10	-1
+4005	GOES 11 GEOS Radiances	5	GEOS	5	SATOB	89	GEOS Radiances	7	SATEM	210	Radiances	22	IMAGER	615	IMAGER	255	GOES 11	-1
+4006	GOES 12 GEOS Radiances	5	GEOS	5	SATOB	89	GEOS Radiances	7	SATEM	210	Radiances	22	IMAGER	615	IMAGER	256	GOES 12	-1
+4011	GOES 13 GEOS Radiances	5	GEOS	5	SATOB	89	GEOS Radiances	7	SATEM	210	Radiances	22	IMAGER	615	IMAGER	257	GOES 13	-1
+4014	GOES 14 GEOS Radiances 	5	GEOS	5	SATOB	89	GEOS Radiances	7	SATEM	210	Radiances	22	IMAGER	615	IMAGER	258	GOES 14	-1
+4015	GOES 15 GEOS Radiances 	5	GEOS	5	SATOB	89	GEOS Radiances	7	SATEM	210	Radiances	22	IMAGER	615	IMAGER	259	GOES 15	-1
+9004	QuickSCAT SeaWind	10	SCATT	12	ERS-SSMI-SCAT	137	QSCAT	9	Scatterometer	301	QSCAT	313	SeaWinds	313	SeaWinds	281	QUIKSCAT	-1
+14001	TRMM TMI Radiances All-sky	15	TMI All-sky	3	Satellite Sounding	129	TRMM	16	ALLSKY	215	SSMI/TRMM	9	TMI	365	TMI	282	TRMM	-1
+23001	TRMM TMI Radiances	24	TMI	3	Satellite Sounding	129	TRMM	7	SATEM	210	Radiances	9	TMI	365	TMI	282	TRMM	-1
+19001	CORIOLIS  WINDSAT All-sky	20	WINDSAT All-sky	3	Satellite Sounding	156	WINDSAT	16	ALLSKY	215	SSMI/TRMM	30	WINDSAT	953	MWHS-2 (or WINDSAT for data from Coriolis satellite)	283	CORIOLIS	-1
+13002	DMSP 17 SSMIS Radiances All-sky	14	SSMIS All-sky	3	Satellite Sounding	49	SSMIS	16	ALLSKY	215	SSMI/TRMM	10	SSMIS	908	SSMIS	285	DMSP17	-1
+24002	DMSP 17 SSMIS Radiances	25	SSMIS	3	Satellite Sounding	49	SSMIS	7	SATEM	210	Radiances	10	SSMIS	908	SSMIS	285	DMSP17	-1
+13003	DMSP 18 SSMIS Radiances All-sky	14	SSMIS All-sky	3	Satellite Sounding	49	SSMIS	16	ALLSKY	215	SSMI/TRMM	10	SSMIS	908	SSMIS	286	DMSP18	-1
+24003	DMSP 18 SSMIS Radiances	25	SSMIS	3	Satellite Sounding	49	SSMIS	7	SATEM	210	Radiances	10	SSMIS	908	SSMIS	286	DMSP18	-1
+5017	METEOR 3-5 TOMS O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	431	TOMS	431	TOMS	321	METEOR 3-5	-1
+5041	METEOR 3-5 TOMS MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	431	TOMS	431	TOMS	321	METEOR 3-5	-1
+9006	OceanSat-2 Scatterometer	10	SCATT	12	ERS-SSMI-SCAT	135	OSCAT	9	Scatterometer	302	OSCAT	288	OSCAT	288	SCAT	421	Oceansat-2	-1
+42001	SAPHIR All-sky	43	SAPHIR All-sky	3	Satellite Sounding	211	SAPHIR	16	ALLSKY	215	SSMI/TRMM	34	SAPHIR	941	SAPHIR	440	Megha-Tropiques	-1
+7017	Megha-Tropiques GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	287	ROSA	287	ROSA	440	Megha-Tropiques	-1
+26001	FY-3A MWHS Radiances	27	MWHS	3	Satellite Sounding	154	VASS	7	SATEM	210	Radiances	41	MWHS	936	MWHS	520	FY-3A	-1
+27001	FY-3A MWTS Radiances	28	MWTS	3	Satellite Sounding	154	VASS	7	SATEM	210	Radiances	40	MWTS	934	MWAS	520	FY-3A	-1
+28001	FY-3A MWRI  Radiances All-sky	29	MWRI All-sky	3	Satellite Sounding	153	Micro Wave Radiation Imager (MWRI)	16	ALLSKY	215	SSMI/TRMM	43	MWRI	938	MWRI	520	FY-3A	-1
+29001	FY-3A IRAS Radiances	30	IRAS	3	Satellite Sounding	154	VASS	7	SATEM	210	Radiances	42	IRAS	933	IRAS	520	FY-3A	-1
+29002	FY-3B IRAS Radiances	30	IRAS	3	Satellite Sounding	154	VASS	7	SATEM	210	Radiances	42	IRAS	933	IRAS	521	FY-3B	-1
+28002	FY-3B MWRI  Radiances All-sky	29	MWRI All-sky	3	Satellite Sounding	153	Micro Wave Radiation Imager (MWRI)	16	ALLSKY	215	SSMI/TRMM	43	MWRI	938	MWRI	521	FY-3B	-1
+27002	FY-3B MWTS Radiances	28	MWTS	3	Satellite Sounding	154	VASS	7	SATEM	210	Radiances	40	MWTS	934	MWAS	521	FY-3B	-1
+26002	FY-3B MWHS Radiances	27	MWHS	3	Satellite Sounding	154	VASS	7	SATEM	210	Radiances	41	MWHS	936	MWHS	521	FY-3B	-1
+32001	NOAA 2 VTPR1 Radiances	33	VTPR1	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	7	VTPR1	990	VTPR1	702	NOAA 2	-1
+33001	NOAA 2 VTPR2 Radiances	34	VTPR2	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	8	VTPR2	991	VTPR2	702	NOAA 2	-1
+32002	NOAA 3 VTPR1 Radiances	33	VTPR1	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	7	VTPR1	990	VTPR1	703	NOAA 3	-1
+33002	NOAA 3 VTPR2 Radiances	34	VTPR2	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	8	VTPR2	991	VTPR2	703	NOAA 3	-1
+32003	NOAA 4 VTPR1 Radiances	33	VTPR1	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	7	VTPR1	990	VTPR1	704	NOAA 4	-1
+33003	NOAA 4 VTPR2 Radiances	34	VTPR2	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	8	VTPR2	991	VTPR2	704	NOAA 4	-1
+32004	NOAA 5 VTPR1 Radiances	33	VTPR1	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	7	VTPR1	990	VTPR1	705	NOAA 5	-1
+33004	NOAA 5 VTPR2 Radiances	34	VTPR2	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	8	VTPR2	991	VTPR2	705	NOAA 5	-1
+2	NOAA 6 HIRS Radiances	1	HIRS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	0	HIRS	605	HIRS/2	706	NOAA 6	-1
+30002	NOAA 6 MSU Radiances	31	MSU	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	1	MSU	623	MSU	706	NOAA 6	-1
+31002	NOAA 6 SSU Radiances	32	SSU	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	2	SSU	627	SSU	706	NOAA 6	-1
+20	NOAA 6 HIRS Radiances	1	HIRS	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	0	HIRS	605	HIRS/2	706	NOAA 6	-1
+30013	NOAA 6 MSU TOVS1B Radiances	31	MSU	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	1	MSU	623	MSU	706	NOAA 6	-1
+31012	NOAA 6 SSU TOVS1B Radiances	32	SSU	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	2	SSU	627	SSU	706	NOAA 6	-1
+3	NOAA 7 HIRS Radiances	1	HIRS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	0	HIRS	605	HIRS/2	707	NOAA 7	-1
+30003	NOAA 7 MSU Radiances	31	MSU	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	1	MSU	623	MSU	707	NOAA 7	-1
+31003	NOAA 7 SSU Radiances	32	SSU	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	2	SSU	627	SSU	707	NOAA 7	-1
+21	NOAA 7 HIRS Radiances	1	HIRS	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	0	HIRS	605	HIRS/2	707	NOAA 7	-1
+30014	NOAA 7 MSU TOVS1B Radiances	31	MSU	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	1	MSU	623	MSU	707	NOAA 7	-1
+31013	NOAA 7 SSU TOVS1B Radiances	32	SSU	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	2	SSU	627	SSU	707	NOAA 7	-1
+1	TIROS-N HIRS Radiances	1	HIRS	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	0	HIRS	605	HIRS/2	708	TIROS-N	-1
+30001	TIROS-N MSU Radiances	31	MSU	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	1	MSU	623	MSU	708	TIROS-N	-1
+31001	TIROS-N SSU Radiances	32	SSU	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	2	SSU	627	SSU	708	TIROS-N	-1
+22	TIROS-N HIRS Radiances	1	HIRS	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	0	HIRS	605	HIRS/2	708	TIROS-N	-1
+30015	TIROS-N MSU TOVS1B Radiances	31	MSU	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	1	MSU	623	MSU	708	TIROS-N	-1
+31014	TIROS-N SSU TOVS1B Radiances	32	SSU	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	2	SSU	627	SSU	708	TIROS-N	-1
+7003	GRACE A GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	102	GPS	102	CHAMP GPS sounder	722	GRACE A	-1
+7014	GRACE B GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	102	GPS	102	CHAMP GPS sounder	723	GRACE B	-1
+7004	COSMIC-1 GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	102	GPS	102	CHAMP GPS sounder	740	COSMIC-1	-1
+7005	COSMIC-2 GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	102	GPS	102	CHAMP GPS sounder	741	COSMIC-2	-1
+7006	COSMIC-3 GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	102	GPS	102	CHAMP GPS sounder	742	COSMIC-3	-1
+7007	COSMIC-4 GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	102	GPS	102	CHAMP GPS sounder	743	COSMIC-4	-1
+7008	COSMIC-5 GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	102	GPS	102	CHAMP GPS sounder	744	COSMIC-5	-1
+7009	COSMIC-6 GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	102	GPS	102	CHAMP GPS sounder	745	COSMIC-6	-1
+46001	IRIS Nimbus-3 Radiances	47	IRIS	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	69	IRIS	404	IRIS	763	NIMBUS 3	-1
+46002	IRIS Nimbus-4 Radiances	47	IRIS	3	Satellite Sounding	54	TOVS1B	7	SATEM	210	Radiances	69	IRIS	404	IRIS	764	NIMBUS 4	-1
+5070	NIMBUS 4 BUV	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	624	SBUV-2	334	BUV	764	NIMBUS 4	-1
+5018	NIMBUS 7 SBUV-2  O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	624	SBUV-2	624	SBUV/2	767	NIMBUS 7	-1
+5022	NIMBUS 7 TOMS  O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	431	TOMS	431	TOMS	767	NIMBUS 7	-1
+5042	NIMBUS 7 SBUV-2  MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	624	SBUV-2	624	SBUV/2	767	NIMBUS 7	-1
+5043	NIMBUS 7 TOMS  MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	431	TOMS	431	TOMS	767	NIMBUS 7	-1
+5023	EARTH PROBE TOMS O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	431	TOMS	431	TOMS	782	EARTH PROBE	-1
+5044	EARTH PROBE TOMS MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	431	TOMS	431	TOMS	782	EARTH PROBE	-1
+5020	TERRA MODIS Aerosol	6	RESAT	3	Satellite Sounding	207	MODIS aerosol	7	SATEM	206	Retrieved Atmospheric Constituents	389	MODIS	389	MODIS	783	TERRA	-1
+35001	TERRA MOPITT layer integrated mass density with averaging kernels and a priori profile	36	RESAT Averaging Kernels	3	Satellite Sounding	229	Layer integrated mass density with averaging kernels and a priori profile	7	SATEM	206	Retrieved Atmospheric Constituents	90	MOPITT	90	MOPITT	783	TERRA	-1
+1008	AQUA AMSUA Radiances	2	AMSUA	3	Satellite Sounding	55	ATOVS	7	SATEM	210	Radiances	3	AMSUA	570	AMSU-A	784	AQUA	-1
+22001	AQUA AMSRE Radiances	23	AMSRE	3	Satellite Sounding	59	AMSRE	7	SATEM	210	Radiances	17	AMSRE	479	AMSR-E	784	AQUA	-1
+12001	AQUA AIRS Radiances	13	AIRS	3	Satellite Sounding	57	AIRS	7	SATEM	210	Radiances	11	AIRS	420	AIRS	784	AQUA	-1
+15001	AQUA AMSRE Radiances All-sky	16	AMSRE All-sky	3	Satellite Sounding	59	AMSRE	16	ALLSKY	215	SSMI/TRMM	17	AMSRE	479	AMSR-E	784	AQUA	-1
+21008	AQUA AMSUA Radiances All-sky	22	AMSUA All-sky	3	Satellite Sounding	55	ATOVS	16	ALLSKY	215	SSMI/TRMM	3	AMSUA	570	AMSU-A	784	AQUA	-1
+5019	AQUA MODIS Aerosol	6	RESAT	3	Satellite Sounding	207	MODIS aerosol	7	SATEM	206	Retrieved Atmospheric Constituents	389	MODIS	389	MODIS	784	AQUA	-1
+5004	AURA MLS O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	387	MLS	387	MLS (EOS-Aura)	785	AURA	-1
+5005	AURA OMI O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	394	OMI	394	OMI	785	AURA	-1
+35008	AURA OMI layer integrated mass density with averaging kernels	36	RESAT Averaging Kernels	3	Satellite Sounding	209	Layer integrated mass density with averaging kernels	7	SATEM	206	Retrieved Atmospheric Constituents	394	OMI	394	OMI	785	AURA	-1
+5028	AURA MLS MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	387	MLS	387	MLS (EOS-Aura)	785	AURA	-1
+5029	AURA OMI MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	394	OMI	394	OMI	785	AURA	-1
+5048	AURA OMI Layer integrated mass density	6	RESAT	3	Satellite Sounding	208	Layer integrated mass density	7	SATEM	206	Retrieved Atmospheric Constituents	394	OMI	394	OMI	785	AURA	-1
+7011	CNOFS GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	102	GPS	102	CHAMP GPS sounder	786	C/NOFS	-1
+5066	CALIPSO attenuated aerosol lidar backscatter	6	RESAT	3	Satellite Sounding	221	CALIPSO attenuated aerosol lidar backscatter	7	SATEM	206	Retrieved Atmospheric Constituents	303	CALIOP	303	CALIOP	787	CALIPSO	-1
+62001	Calipso CALIOP backscatter	63	Cloud Lidar	3	Satellite Sounding	225	Cloud backscatter	19	Satellite cloud-aerosol lidar-radar	197	Cloud radar and cloud-aerosol lidar	303	CALIOP	303	CALIOP	787	CALIPSO	-1
+61001	CloudSat CPR reflectivity	62	Cloud reflectivity	3	Satellite Sounding	226	Cloud reflectivity	19	Satellite cloud-aerosol lidar-radar	197	Cloud radar and cloud-aerosol lidar	309	CPR	309	CPR (Cloudsat)	788	CloudSat	-1
+4019	COMS-1 GEOS Radiances 	5	GEOS	5	SATOB	89	GEOS Radiances	7	SATEM	210	Radiances	45	COMS MI	2047	Missing value	810	COMS-1	-1
+7012	SAC-C GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	102	GPS	102	CHAMP GPS sounder	820	SAC-C	-1
+7018	KOMPSAT-5 GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	103	IGOR	103	IGOR	825	KOMPSAT-5	-1
+50001	GPM GMI Radiances All-sky	51	GMI All-sky	3	Satellite Sounding	224	GPM	16	ALLSKY	215	SSMI/TRMM	71	GMI	519	GMI	288	GPM	-1
+55001	FY-3C MWTS2 Radiances	56	MWTS2	3	Satellite Sounding	154	VASS	7	SATEM	210	Radiances	72	MWTS2	954	MWTS2	522	FY-3C	-1
+28003	FY-3C MWRI Radiances All-sky	29	MWRI All-sky	3	Satellite Sounding	153	Micro Wave Radiation Imager (MWRI)	16	ALLSKY	215	SSMI/TRMM	43	MWRI	938	MWRI	522	FY-3C	-1
+57001	FY-3C MWHS2 Radiances All-sky	58	MWHS2 All-sky	3	Satellite Sounding	154	VASS	16	ALLSKY	215	SSMI/TRMM	73	MWHS2	953	MWHS-2 (or WINDSAT for data from Coriolis satellite)	522	FY-3C	-1
+29003	FY-3C IRAS Radiances	30	IRAS	3	Satellite Sounding	154	VASS	7	SATEM	210	Radiances	42	IRAS	933	IRAS	522	FY-3C	-1
+7016	FY-3C GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	958	GNOS	958	GNOS	522	FY-3C	-1
+9008	ISS RapidScat	10	SCATT	12	ERS-SSMI-SCAT	138	RSCAT	9	Scatterometer	302	OSCAT	314	RSCAT	314	RSCAT	801	ISS	-1
+9009	HY-2A HSCAT	10	SCATT	12	ERS-SSMI-SCAT	138	RSCAT	9	Scatterometer	302	OSCAT	686	HSCAT	686	HSCAT	502	HY-2a	-1
+59001	SMAP	60	SMAP	30	SMOS	204	SMAP	7	SATEM	401	SMAP	432	SMAP	432	SMAP	789	SMAP	-1
+13004	DMSP 19 SSMIS Radiances All-sky	14	SSMIS All-sky	3	Satellite Sounding	49	SSMIS	16	ALLSKY	215	SSMI/TRMM	10	SSMIS	908	SSMIS	287	DMSP 19	-1
+24004	DMSP 19 SSMIS Radiances	25	SSMIS	3	Satellite Sounding	49	SSMIS	7	SATEM	210	Radiances	10	SSMIS	908	SSMIS	287	DMSP 19	-1
+5073	SCISAT-1 ACE-FTS MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	92	ACE-FTS	92	ACE-FTS	812	SCISAT-1	-1
+5076	SCISAT-1 ACE-FTS O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	92	ACE-FTS	92	ACE-FTS	812	SCISAT-1	-1
+5075	ODIN SMR MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	959	SMR	959	SMR	813	ODIN	-1
+5077	ODIN OSIRIS O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	91	OSIRIS	91	OSIRIS	813	ODIN	-1
+5078	ODIN SMR O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	959	SMR	959	SMR	813	ODIN	-1
+5074	ODIN OSIRIS MACC O3	6	RESAT	3	Satellite Sounding	205	Retrieved O3 Layers for MACC ozone observation operator	7	SATEM	206	Retrieved Atmospheric Constituents	91	OSIRIS	91	OSIRIS	813	ODIN	-1
+5082	Sentinel 3A SLSTR Aerosol	6	RESAT	3	Satellite Sounding	207	MODIS aerosol	7	SATEM	206	Retrieved Atmospheric Constituents	180	SLSTR	180	SLSTR	61	Sentinel 3A	-1
+5079	Sentinel 5P TROPOMI O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	152	TROPOMI	152	SW	64	Sentinel 5P	-1
+35014	Sentinel 5P TROPOMI layer volumetric mixing ratio with averaging kernels and a priori profile	36	RESAT Averaging Kernels	3	Satellite Sounding	228	Layer volumetric mixing ratio with averaging kernels and a priori profile	7	SATEM	206	Retrieved Atmospheric Constituents	152	TROPOMI	152	SW	64	Sentinel 5P	-1
+35015	Sentinel 5P TROPOMI layer integrated mass density with averaging kernels and a priori profile	36	RESAT Averaging Kernels	3	Satellite Sounding	229	Layer integrated mass density with averaging kernels and a priori profile	7	SATEM	206	Retrieved Atmospheric Constituents	152	TROPOMI	152	SW	64	Sentinel 5P	-1
+35016	Sentinel 5P TROPOMI layer integrated mass density with averaging kernels	36	RESAT Averaging Kernels	3	Satellite Sounding	209	Layer integrated mass density with averaging kernels	7	SATEM	206	Retrieved Atmospheric Constituents	152	TROPOMI	152	SW	64	Sentinel 5P	-1
+5081	Sentinel 5P TROPOMI Layer integrated mass density	6	RESAT	3	Satellite Sounding	208	Layer integrated mass density	7	SATEM	206	Retrieved Atmospheric Constituents	152	TROPOMI	152	SW	64	Sentinel 5P	-1
+4025	GOES 16 GEOS Radiances	5	GEOS	5	SATOB	189	GEOS Radiances	7	SATEM	210	Radiances	44	ABI	617	ABI	270	GOES 16	-1
+9010	ScatSat-1 SCAT	10	SCATT	12	ERS-SSMI-SCAT	138	RSCAT	9	Scatterometer	302	OSCAT	288	OSCAT	288	SCAT	422	ScatSat-1	-1
+34002	NOAA 20 ATMS Radiances	35	ATMS	21	Radiances    (Satellite Measured) 	201	ATMS	7	SATEM	210	Radiances	19	ATMS	621	ATMS	225	NOAA 20	-1
+49002	NOAA 20 ATMS Radiances All-sky	50	ATMS All-sky	21	Radiances    (Satellite Measured) 	201	ATMS	16	ALLSKY	215	SSMI/TRMM	19	ATMS	621	ATMS	225	NOAA 20	-1
+36002	NOAA 20 CRIS Radiances	37	CRIS	21	Radiances    (Satellite Measured) 	202	CRIS	7	SATEM	210	Radiances	27	CRIS	620	CrIRS/NP	225	NOAA 20	-1
+5084	NOAA 20 OMPS O3	6	RESAT	3	Satellite Sounding	206	Retrieved O3 Layers	7	SATEM	206	Retrieved Atmospheric Constituents	947	OMPS	947	OMPS	225	NOAA 20	-1
+5090	NOAA 20 VIIRS aerosol optical depth	6	RESAT	3	Satellite Sounding	207	MODIS aerosol	7	SATEM	206	Retrieved Atmospheric Constituents	616	VIIRS	616	VIIRS	225	NOAA 20	-1
+9012	OceanSat-3 Scatterometer	10	SCATT	12	ERS-SSMI-SCAT	138	RSCAT	9	Scatterometer	302	OSCAT	288	OSCAT	288	SCAT	423	Oceansat-3	-1
+9013	HY-2B HSCAT	10	SCATT	12	ERS-SSMI-SCAT	138	RSCAT	9	Scatterometer	302	OSCAT	686	HSCAT	686	HSCAT	503	Hai Yang 2B (HY - 2B, SOA/NSOAS China)	-1
+9014	CFOSAT Scatterometer	10	SCATT	12	ERS-SSMI-SCAT	166	FSCAT	9	Scatterometer	303	FSCAT	943	FSCAT	943	FSCAT	802	CFOSAT	-1
+5083	Sentinel 3B SLSTR Aerosol	6	RESAT	3	Satellite Sounding	207	MODIS aerosol	7	SATEM	206	Retrieved Atmospheric Constituents	180	SLSTR	180	SLSTR	65	Sentinel 3B	-1
+7024	COSMIC2 E1 GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	104	Tri-G	104	Tri-G	750	COSMIC-2 E1	-1
+7025	COSMIC2 E2 GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	104	Tri-G	104	Tri-G	751	COSMIC-2 E2	-1
+7026	COSMIC2 E3 GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	104	Tri-G	104	Tri-G	752	COSMIC-2 E3	-1
+7027	COSMIC2 E4 GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	104	Tri-G	104	Tri-G	753	COSMIC-2 E4	-1
+7028	COSMIC2 E5 GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	104	Tri-G	104	Tri-G	754	COSMIC-2 E5	-1
+7029	COSMIC2 E6 GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	104	Tri-G	104	Tri-G	755	COSMIC-2 E6	-1
+55002	FY-3D MWTS2 Radiances	56	MWTS2	3	Satellite Sounding	154	VASS	7	SATEM	210	Radiances	72	MWTS2	954	MWTS2	523	FY-3D	-1
+57002	FY-3D MWHS2 Radiances All-sky	58	MWHS2 All-sky	3	Satellite Sounding	154	VASS	16	ALLSKY	215	SSMI/TRMM	73	MWHS2	953	MWHS-2 (or WINDSAT for data from Coriolis satellite)	523	FY-3D	-1
+28004	FY-3D MWRI Radiances All-sky	29	MWRI All-sky	3	Satellite Sounding	153	Micro Wave Radiation Imager (MWRI)	16	ALLSKY	215	SSMI/TRMM	43	MWRI	938	MWRI	523	FY-3D	-1
+7022	FY-3D GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	958	GNOS	958	GNOS	523	FY-3D	-1
+7020	GRACE C GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	104	Tri-G	104	Tri-G	803	GRACE C	-1
+7021	GRACE D GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	104	Tri-G	104	Tri-G	804	GRACE D	-1
+4026	GOES 17 GEOS Radiances	5	GEOS	5	SATOB	189	GEOS Radiances	7	SATEM	210	Radiances	44	ABI	617	ABI	271	GOES 17	-1
+7030	SPIRE Lemur 3U GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	530	SGNOS-A	530	SGNOS-A	269	Spire Lemur 3U CubeSat	-1
+7031	Sentinel 6A GPSRO	8	GPSRO	3	Satellite Sounding	250	GPS Radio Occultation	10	Limb	250	GPS Radio Occultation	104	Tri-G	104	Tri-G	66	Sentinel 6A	-1
+9015	HY-2C HSCAT	10	SCATT	12	ERS-SSMI-SCAT	138	RSCAT	9	Scatterometer	302	OSCAT	686	HSCAT	686	HSCAT	504	Hai Yang 2C (HY-2C, SOA/NSOAS China)	-1
+37004	ERS 1 RALT WAVE	38	WAVE integrated Parameters	12	ERS-SSMI-SCAT	123	RADAR ALTIMETER	12	WAVE	123	RALT	-1	-1	-1	-1	1	ERS 1	-1
+37005	ERS 2 RALT WAVE	38	WAVE integrated Parameters	12	ERS-SSMI-SCAT	123	RADAR ALTIMETER	12	WAVE	123	RALT	-1	-1	-1	-1	2	ERS 2	-1
+8030	METOP-B AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	3	METOP-1 (Metop-B)	-1
+8027	METOP-A AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	4	METOP-2 (Metop-A)	-1
+8059	METOP-C AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	5	METOP-3 (Metop-C)	-1
+37006	CRYOSAT 2 RALT WAVE	38	WAVE integrated Parameters	12	ERS-SSMI-SCAT	217	CRYOSAT-2 RADAR ALTIMETER	12	WAVE	123	RALT	-1	-1	-1	-1	47	CryoSat-2	-1
+8002	METEOSAT 3 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	50	METEOSAT 3	-1
+8003	METEOSAT 4 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	51	METEOSAT 4	-1
+8004	METEOSAT 5 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	52	METEOSAT 5	-1
+8005	METEOSAT 6 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	53	METEOSAT 6	-1
+8006	METEOSAT 7 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	54	METEOSAT 7	-1
+8007	METEOSAT 8 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	55	METEOSAT 8	-1
+8008	METEOSAT 9 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	56	METEOSAT 9	-1
+8031	METEOSAT 10 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	57	METEOSAT 10	-1
+8034	Meteosat-1 AMV	9	SATOB	5	SATOB	82	SATOB AMV	3	SATOB	88	SATOB AMV	-1	-1	-1	-1	58	METEOSAT 1	-1
+8001	METEOSAT 2 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	59	METEOSAT 2	-1
+37001	ENVISAT RALT WAVE	38	WAVE integrated Parameters	12	ERS-SSMI-SCAT	213	ENVISAT RADAR ALTIMETER 	12	WAVE	123	RALT	-1	-1	-1	-1	60	ENVISAT	-1
+8056	METEOSAT 11 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	70	METEOSAT 11	-1
+8043	GMS-3 SATOB-AMV	9	SATOB	5	SATOB	82	SATOB AMV	3	SATOB	88	SATOB AMV	-1	-1	-1	-1	150	GMS 3	-1
+8032	GMS-3 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	150	GMS 3	-1
+8033	GMS-4 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	151	GMS 4	-1
+8009	GMS 5 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	152	GMS 5	-1
+8010	MTSAT-1R AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	171	MTSAT-1R	-1
+8026	MTSAT-2 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	172	MTSAT-2	-1
+8053	Himawari 8 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	173	Himawari-8	-1
+8058	Himawari 9 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	174	Himawari-9	-1
+8036	NOAA 9 AVHRR AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	201	NOAA 9	-1
+8037	NOAA 10 AVHRR AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	202	NOAA 10	-1
+8038	NOAA 11 AVHRR AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	203	NOAA 11	-1
+8039	NOAA 12 AVHRR AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	204	NOAA 12	-1
+8040	NOAA 14 AVHRR AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	205	NOAA 14	-1
+8015	NOAA 15 AVHRR IR AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	206	NOAA 15	-1
+8016	NOAA 16 AVHRR IR AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	207	NOAA 16	-1
+8017	NOAA 17 AVHRR IR AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	208	NOAA 17	-1
+8018	NOAA 18 AVHRR IR AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	209	NOAA 18	-1
+8019	NOAA 19 AVHRR IR AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	223	NOAA 19	-1
+8050	NPP AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	224	NPP	-1
+8051	GOES 6 AMV subtype 82	9	SATOB	5	SATOB	82	SATOB AMV	3	SATOB	88	SATOB AMV	-1	-1	-1	-1	250	GOES 6	-1
+8052	GOES 6 AMV subtype 83	9	SATOB	5	SATOB	83	GOES-6 AMV subtype 83	3	SATOB	88	SATOB AMV	-1	-1	-1	-1	250	GOES 6	-1
+8042	GOES 8 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	252	GOES 8	-1
+8011	GOES 9 WV AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	253	GOES 9	-1
+8012	GOES 10 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	254	GOES 10	-1
+8013	GOES 11 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	255	GOES 11	-1
+8014	GOES 12 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	256	GOES 12	-1
+8025	GOES 13 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	257	GOES 13	-1
+8028	GOES 14 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	258	GOES 14	-1
+8029	GOES 15 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	259	GOES 15	-1
+37002	JASON 1 RALT WAVE	38	WAVE integrated Parameters	12	ERS-SSMI-SCAT	214	JASON RADAR ALTIMETER	12	WAVE	123	RALT	-1	-1	-1	-1	260	JASON 1	-1
+37003	JASON 2 RALT WAVE	38	WAVE integrated Parameters	12	ERS-SSMI-SCAT	216	JASON-2 RADAR ALTIMETER	12	WAVE	123	RALT	-1	-1	-1	-1	261	JASON 2	-1
+8046	KALPANA-1 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	410	KALPANA-1	-1
+37007	SARAL RALT WAVE	38	WAVE integrated Parameters	12	ERS-SSMI-SCAT	218	SARAL RADAR ALTIMETER	12	WAVE	123	RALT	-1	-1	-1	-1	441	SARAL	-1
+8049	INSAT-3D AMVs	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	471	INSAT 3D	-1
+8022	FY-2C IR AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	513	FY-2C	-1
+8023	FY-2D IR AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	514	FY-2D	-1
+8024	FY-2E IR AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	515	FY-2E	-1
+8035	NOAA 7 AVHRR AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	707	NOAA 7	-1
+8020	TERRA MODIS AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	783	TERRA	-1
+8021	AQUA MODIS AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	784	AQUA	-1
+8045	COMS-1 AMV 	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	810	COMS-1	-1
+8048	Dual-Metop AMVs	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	852	Combination of Metop-1 to Metop-3	-1
+8047	Leo-Geo AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	854	Non specific mixture of geostationary and low earth orbiting satellites	-1
+8044	GMS-1 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	153	GMS	-1
+8041	GMS-2 SATOB-AMV	9	SATOB	5	SATOB	82	SATOB AMV	3	SATOB	88	SATOB AMV	-1	-1	-1	-1	154	GMS 2	-1
+8054	FY-2G AMVs	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	517	FY-2G	-1
+37008	JASON 3 RALT WAVE	38	WAVE integrated Parameters	12	ERS-SSMI-SCAT	216	JASON-2 RADAR ALTIMETER	12	WAVE	123	RALT	-1	-1	-1	-1	262	JASON 3	-1
+37009	Sentinel 3A RALT WAVE	38	WAVE integrated Parameters	12	ERS-SSMI-SCAT	220	SENTINEL 3 RADAR ALTIMETER	12	WAVE	123	RALT	-1	-1	-1	-1	61	Sentinel 3A	-1
+8062	Sentinel 3A AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	61	Sentinel 3A	-1
+8057	GOES 16 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	270	GOES 16	-1
+8060	NOAA 20 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	225	NOAA 20	-1
+37010	Sentinel 3B RALT WAVE	38	WAVE integrated Parameters	12	ERS-SSMI-SCAT	220	SENTINEL 3 RADAR ALTIMETER	12	WAVE	123	RALT	-1	-1	-1	-1	65	Sentinel 3B	-1
+8063	Sentinel 3B AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	65	Sentinel 3B	-1
+8061	GOES 17 AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	271	GOES 17	-1
+38001	Sentinel 1A SAR-C	39	WAVE spectra	12	ERS-SSMI-SCAT	232	Sentinel 1 SAR-C	12	WAVE	123	RALT	-1	-1	-1	-1	62	Sentinel 1A	-1
+38002	Sentinel 1B SAR-C	39	WAVE spectra	12	ERS-SSMI-SCAT	232	Sentinel 1 SAR-C	12	WAVE	123	RALT	-1	-1	-1	-1	63	Sentinel 1B	-1
+37012	Sentinel 6A RALT WAVE	38	WAVE integrated Parameters	12	ERS-SSMI-SCAT	233	Sentinel 6 RALT WAVE	12	WAVE	123	RALT	-1	-1	-1	-1	66	Sentinel 6A	-1
+37013	Sentinel 6B RALT WAVE	38	WAVE integrated Parameters	12	ERS-SSMI-SCAT	233	Sentinel 6 RALT WAVE	12	WAVE	123	RALT	-1	-1	-1	-1	67	Sentinel 6B	-1
+8064	Mixed Sentinel AMV	9	SATOB	5	SATOB	87	AMV	3	SATOB	90	AMV	-1	-1	-1	-1	856	Combination of Sentinel-3 satellites	-1
+39001	1h rain gauge accumulation	40	RAINGG	0	Land Surface	126	Rain Gauge	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	3600
+39002	3h rain gauge accumulation	40	RAINGG	0	Land Surface	126	Rain Gauge	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	10800
+39003	6h rain gauge accumulation	40	RAINGG	0	Land Surface	126	Rain Gauge	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	21600
+39004	12h rain gauge accumulation	40	RAINGG	0	Land Surface	126	Rain Gauge	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	43200
+39005	24h rain gauge accumulation	40	RAINGG	0	Land Surface	126	Rain Gauge	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	86400

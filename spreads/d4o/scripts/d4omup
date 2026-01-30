@@ -1,0 +1,274 @@
+#!/bin/bash
+#
+# Usage: d4omup  output.db  # mupdir/output.db must not exist
+#        d4omup -output.db  # mupdir/output.db gets auto-deleted before creation
+#        d4omupall          # will automatically detect all databases to be matched up unless they already exists under the mupdir/
+#        d4omupall -        # as the plain "d4omupall" w/o arguments, but mupdir/ directory with files will be removed first
+# 
+# Input files in the current directory (e.g. "output.db") will be updated ('matched up') with identical filenames under "allTS/output.db"
+# Output of the updated "output.db"-files will be ALWAYS placed under the "mupdir/output.db"
+# Please note that the "d4omupall" (unlike d4omup) also automatically creates catalog-file "mupdir/catalog.db"
+# 
+# NB: The word "mup" stems from the word "matchup" (or "match up") used at ECMWF to update contents of CCMA-databases back to ECMA-databases
+# 
+
+cmdname=$(basename $0)
+cmdfile=$(readlink -f $0)
+cmddir=$(dirname $cmdfile)
+cmdfile=$cmddir/$cmdname
+
+kmd=$(basename $0)
+PS4='+ [$kmd:${LINENO}]: '
+
+function Usage()
+{
+    egrep -A11 '^# Usage:' $cmdfile | perl -pe 's/^# //'
+}
+
+d4ocatalog=$cmddir/d4ocatalog
+[[ -x $d4ocatalog ]] || d4ocatalog=$(which d4ocatalog 2>/dev/null || echo "d4ocatalog")
+
+set -eu
+
+shopt -s extglob # enables extglob i.e. @(x|y|z) regular expressions in bash
+
+if [[ "$cmdname" = "d4omupall" ]] ; then
+    if [[ $# -gt 1 ]] ; then
+	Usage
+	exit 2
+    elif [[ $# -eq 0 ]] ; then # auto-detection of relevant files
+	files=""
+	for ff in "*.[0-9]*.db"
+	do
+	    for f in $(eval echo "$ff")
+	    do
+		if [[ -r $f ]] ; then
+		    f=$(basename $f)
+		    files+=":$f"
+		fi
+	    done
+	done
+	files=$(echo "$files" | perl -pe 's/^://; s/:/\n/g;' | sort -u -n -t. -k2 | perl -pe 's/\n/ /g;' | perl -pe 's/\s+$//;')
+
+	export LOGS=${LOGS:-logs}
+	mkdir -pv $LOGS || :
+	
+	pid=$$
+	errfile=$(readlink -f $LOGS/errors-in-d4omupall.$pid.txt)
+	rm -f $errfile
+	
+	rc=0
+	for f in $files
+	do
+	    ($cmddir/d4omup $f || echo "Error: Failed to d4omup $f" >> $errfile) &
+	done
+	wait
+	if [[ -s $errfile ]] ; then
+	    rc=4
+	else # all perfect
+	    # create catalog file
+	    cd mupdir
+	    $d4ocatalog catalog.db "*.[0-9]*.db"
+	    cd -
+	    ls -l mupdir/*.[0-9]*.db || :
+	fi
+	exit $rc
+    elif [[ "${1:-}" = "-" ]] ; then
+	rm -rfv mupdir
+	$cmddir/d4omupall
+	exit 0
+    else
+	Usage
+	exit 3
+    fi
+else
+    if [[ $# -ne 1 ]] ; then
+	Usage
+	exit 1
+    else
+	out=$1
+    fi
+fi
+
+first=$(echo $out | cut -c1)
+delete=0
+[[ "$first" = "-" ]] && delete=1
+
+if [[ "$first" = "-" ]] ; then
+    out=$(echo $out | cut -c2-)
+fi
+out="mupdir/$(basename $out)"
+mkdir -p mupdir || :
+
+if [[ $delete -eq 1 ]] ; then
+    rm -rfv $out
+fi
+
+if [[ -f $out ]] ; then
+    echo "Error: Output dbfile '$out' already exists"
+    Usage
+    exit 2
+fi
+
+out=$(readlink -f $out)
+bnout=$(basename $out)
+
+cp -pv $bnout $out
+chmod u+rw $out
+fsize=$(stat -c %s $out 2>/dev/null || echo 0)
+
+shift
+
+files=""
+for ff in "allTS/$bnout"
+do
+    for f in $(eval echo "$ff")
+    do
+        if [[ -r $f ]] ; then
+	    [[ "$(readlink -f $f)" != "$out" ]] && files+=":$f"
+        fi
+    done
+done
+
+# Note: there will be one file in $files (or none if it didn't exist)
+files=$(echo "$files" | perl -pe 's/^://; s/:/\n/g;' | sort -u | perl -pe 's/\n/ /g;' | perl -pe 's/\s+$//;')
+
+callcliro="sqlite3 -batch -init /dev/null -nullvalue NULL -noheader -csv -readonly"
+callclimu="sqlite3 -batch -init /dev/null -nullvalue NULL"
+
+pid=$$
+export TMPSLASH=${TMPSLASH:-/tmp} # potentially /dev/shm
+export tmpdir=$TMPSLASH/$USER/d4omup.$pid
+echo "[$(date +%s.%N)] $(date): Temporary dumps written to $tmpdir on host $(hostname -f)"
+mkdir -pv $tmpdir
+
+#set -x
+
+declare -A cols
+tables=""
+schema="$tmpdir/.schema"
+mup="$tmpdir/.mup"
+hdr_id_tables=""
+for f in $files # just ONE file
+do
+    f=$(readlink -f $f)
+    ffsize=$(stat -c %s $f 2>/dev/null || echo 0)
+    fsize=$(stat -c %s $out 2>/dev/null || echo 0)
+    echo "[$(date +%s.%N)] $(date): Will matchup contents of input database '$f' ($ffsize bytes) to '$out' ($fsize bytes) ..."
+    
+    # discover tables, columns & schema
+    tables=$($callcliro $f "select name from sqlite_master where type='table'" | grep -Pv '^sqlite_' | perl -pe 's/\n/ /' | perl -pe 's/\s*$//')
+    for tbl in $tables
+    do
+        cols[$tbl]=$($callcliro $f "select '$tbl'||'.'||name from pragma_table_info('$tbl')" | perl -pe 's/\n/,/' | perl -pe 's/,\s*$//')
+	c=${cols[$tbl]}
+	hdr_id=0
+	echo "$c" | grep -Pq '\.hdr_id\b' || hdr_id=$?
+	[[ $hdr_id -eq 0 ]] && hdr_id_tables+="$tbl "
+    done
+    
+    # dump schema once
+    $callcliro $f ".schema" > $schema
+    
+    # start create'ing -file
+    cat /dev/null > $mup
+    echo ".output /dev/null" >> $mup
+    echo "PRAGMA foreign_keys = OFF;" >> $mup
+    #echo "PRAGMA foreign_keys = ON;" >> $mup
+    echo "PRAGMA synchronous = OFF;"  >> $mup
+    #echo "PRAGMA journal_mode = MEMORY;" >> $mup
+    echo "PRAGMA journal_mode = OFF;" >> $mup
+    echo "PRAGMA locking_mode = EXCLUSIVE;" >> $mup
+    #echo "PRAGMA page_size = 4096;" >> $mup
+    echo "PRAGMA cache_size = ${PRAGMA_CACHE_SIZE:--100000};" >> $mup # kibibytes if < 0, pages if > 0
+    echo ".output" >> $mup
+    #echo ".read $schema" >> $mup
+
+    #echo ".shell date" >> $mup
+    #echo ".print SELECT'ing from database $f ($ffsize bytes)" >> $mup
+    echo '.shell echo "[$(date +%s.%N)] $(date): SELECTing from database '"$f ($ffsize bytes)"'"' >> $mup
+    echo "attach database 'file:$f?mode=ro' as dbold;" >> $mup
+
+    for tbl in $tables
+    do
+	c=${cols[$tbl]}
+	cnotbl=$(echo "$c" | perl -pe "s/\b$tbl\.(\w+)\b/\$1/g")
+	cid=$(echo "$c" | perl -pe "s/(\S+)/dbold.\$1/g")
+	if [[ "$tbl" = "ens" ]] ; then
+	    echo '.shell echo "[$(date +%s.%N)] $(date): Copy entire ENS-table from input database (dbold)"' >> $mup
+	    echo ".print ... DELETE FROM $tbl" >> $mup
+	    echo "DELETE FROM $tbl;" >> $mup # delete any existing contents of ENS-table
+	    ncols=$(echo "$c" | awk -F, '{print NF}')
+	    nrows=$($callcliro $f "SELECT count(*) FROM $tbl" 2>/dev/null || echo "0")
+	    echo ".print ... INSERT INTO $tbl : $ncols columns x $nrows rows" >> $mup
+	    #[[ $nrows -ge 10000 ]] && echo ".timer on" >> $mup
+	    echo "INSERT INTO $tbl ($cnotbl) SELECT $cid FROM dbold.$tbl;" >> $mup
+	    #[[ $nrows -ge 10000 ]] && echo ".timer off" >> $mup
+	    echo '.shell echo "[$(date +%s.%N)] $(date): ENS-table copied"' >> $mup
+	elif [[ "$tbl" = "hdr" ]] ; then
+	    echo '.shell echo "[$(date +%s.%N)] $(date): Update only hdr.status-fields from taken from input database (dbold)"' >> $mup
+	    upd="_upd_${tbl}_$$"
+	    echo "CREATE TEMPORARY TABLE $upd (id INTEGER PRIMARY KEY UNIQUE, status INTEGER);" >> $mup
+	    echo "INSERT INTO $upd (id,status) SELECT dbold.$tbl.id,dbold.$tbl.status FROM dbold.$tbl ORDER BY 1;" >> $mup
+	    #echo "UPDATE $tbl SET status = (SELECT status FROM $upd ORDER BY id) WHERE id IN (SELECT id FROM $upd ORDER BY id);" >> $mup
+	    echo "UPDATE $tbl SET status = r.status FROM (SELECT status,id FROM $upd) AS r WHERE r.id = $tbl.id;" >> $mup # A better formulation ?
+	    echo "DROP TABLE $upd;" >> $mup
+	    echo '.shell echo "[$(date +%s.%N)] $(date): HDR-table matched up"' >> $mup
+	elif [[ "$tbl" = "body" ]] ; then
+	    echo '.shell echo "[$(date +%s.%N)] $(date): Update only multiple BODY-fields from taken from input database (dbold)"' >> $mup
+	    upd="_upd_${tbl}_$$"
+	    echo "CREATE TEMPORARY TABLE $upd (hdr_id INTEGER, entryno INTEGER, status INTEGER" >> $mup
+	    echo ", qc INTEGER, dart_qc INTEGER" >> $mup
+	    echo ", prior_mean REAL, posterior_mean REAL" >> $mup
+	    echo ", prior_spread REAL, posterior_spread REAL" >> $mup
+	    echo ", rms REAL, rmse REAL" >> $mup
+	    echo ", bias_prior REAL, bias_posterior REAL" >> $mup
+	    echo ",PRIMARY KEY(hdr_id,entryno));" >> $mup
+	    cols=",hdr_id,entryno,status,qc,dart_qc,prior_mean,posterior_mean,prior_spread,posterior_spread,rms,rmse,bias_prior,bias_posterior"
+	    dbold_cols=$(echo "$cols" | perl -pe "s/,/,dbold.$tbl./g" | perl -pe 's/^,//')
+	    cols=$(echo "$cols" | perl -pe 's/^,//')
+	    echo "INSERT INTO $upd ($cols) SELECT $dbold_cols FROM dbold.$tbl ORDER BY 1,2;" >> $mup
+	    cols=$(echo "$cols" | perl -pe 's/^.*entryno,//') # starting now from [body.]status-field
+	    rcols=$(echo "$cols" | perl -pe 's/(\w+)/r.$1/g')
+	    #echo "UPDATE $tbl SET ($cols) = (SELECT $cols FROM $upd ORDER BY hdr_id,entryno) WHERE (hdr_id,entryno) IN (SELECT hdr_id,entryno FROM $upd ORDER BY hdr_id,entryno);" >> $mup
+	    echo "UPDATE $tbl SET ($cols) = ($rcols) FROM (SELECT hdr_id,entryno,$cols FROM $upd) AS r WHERE ($tbl.hdr_id,$tbl.entryno) = (r.hdr_id,r.entryno);" >> $mup # A better formulation ?
+	    echo "DROP TABLE $upd;" >> $mup
+	    echo '.shell echo "[$(date +%s.%N)] $(date): BODY-table matched up"' >> $mup
+	fi
+    done
+    
+    echo "detach database dbold;" >> $mup
+    break # since we have just ONE file
+done
+
+#echo ".dbinfo" >> $mup
+echo "VACUUM;" >> $mup
+echo '.shell echo "[$(date +%s.%N)] $(date): Releasing unused space (VACUUM) done"' >> $mup
+echo ".stats" >> $mup
+
+echo ".print '#table,nrows,ncols'" >> $mup
+echo ".mode csv" >> $mup
+for tbl in $tables
+do
+    echo "SELECT '$tbl' AS 'table', count(*) AS nrows, (SELECT count(*) FROM pragma_table_info('$tbl')) AS ncols FROM '$tbl';" >> $mup
+done
+
+rc=0
+if [[ -s $schema ]] ; then
+    echo "[$(date +%s.%N)] $(date): Matching up to '$out' ..."
+    $callclimu $out < $mup || rc=$?
+    [[ $rc -eq 0 ]] && $cmddir/d4ofixtoc $out
+    fsize=$(stat -c %s $out 2>/dev/null || echo 0)
+    echo "[$(date +%s.%N)] $(date): Done with '$out' ($fsize bytes) : rc=$rc"
+    ls -ltra $out || :
+fi
+
+set -x
+ls -ltra $tmpdir
+[[ $rc -eq 0 ]] && rm -rfv $tmpdir
+
+exit $rc
+
+
+
+

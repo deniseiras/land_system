@@ -1,0 +1,119 @@
+
+&preprocess_nml
+   input_obs_qty_mod_file  = '../../../../assimilation_code/modules/observations/DEFAULT_obs_kind_mod.F90'
+   output_obs_qty_mod_file = '../../../../assimilation_code/modules/observations/obs_kind_mod.f90'
+   input_obs_def_mod_file  = '../../../../observations/forward_operators/DEFAULT_obs_def_mod.F90'
+   output_obs_def_mod_file = '../../../../observations/forward_operators/obs_def_mod.f90'
+   quantity_files          = '../../../../assimilation_code/modules/observations/atmosphere_quantities_mod.f90',
+                             '../../../../assimilation_code/modules/observations/chemistry_quantities_mod.f90',
+                             '../../../../assimilation_code/modules/observations/land_quantities_mod.f90',
+                             '../../../../assimilation_code/modules/observations/ocean_quantities_mod.f90'
+   obs_type_files          = '../../../../observations/forward_operators/obs_def_rttov_mod.f90',
+                             '../../../../observations/forward_operators/obs_def_AIRS_mod.f90'
+  /
+
+&convert_airs_L2_nml
+   l2_files           = 'AIRS.2017.01.01.110.L2.RetStd_IR.v6.0.31.1.G19058124823.hdf'
+   l2_file_list       = ''
+   outputfile         = 'obs_seq.test'
+   min_MMR_threshold  = 1.0e-30
+   top_pressure_level = 0.0001
+   along_track_thin   = 0
+   cross_track_thin   = 0
+   lon1               =   0.0
+   lon2               = 360.0
+   lat1               = -90.0
+   lat2               =  90.0
+   version            = 7
+  /
+
+
+
+# AMSU-A channel information from the documentation
+# A2-1, A2-2 | A1-1, A1-2, A1-3,   A1-4, A1-5    A1-6, A1-7 ...   A1-13
+# 23.8, 31.4 | 50.3, 52.8, 53.596, 54.4, 54.940, 55.5, 57.290345, 89 
+#
+# AMSU-A channel information from the data
+# center_freq = 23.8,     31.4,     50.3,     52.8,     53.596, ...
+#               54.4,     54.94,    55.5,     57.29034, 57.29034, ...
+#               57.29034, 57.29034, 57.29034, 57.29034, 89 ;
+#
+# All these are identical:
+# channel_list       = 3,15
+# channel_list       = 'A1-1','A1-13'
+
+&convert_amsu_L1_nml
+   l1_files           = '../data/AIRS.2019.06.22.236.L1B.AMSU_Rad.v5.0.0.0.G19174110442.nc',
+                        '../data/AIRS.2019.06.22.237.L1B.AMSU_Rad.v5.0.0.0.G19174110446.nc'
+   l1_file_list       = ''
+   outputfile         = 'obs_seq.amsua'
+   append_output      = .false.
+   channel_list       = 3,15
+   along_track_thin   = 0
+   cross_track_thin   = 0
+   lon1               =   0.0
+   lon2               = 360.0
+   lat1               = -90.0
+   lat2               =  90.0
+   verbose            = 1
+  /
+
+
+&obs_sequence_nml
+   write_binary_obs_sequence = .false.
+  /
+
+&obs_kind_nml
+  /
+
+&location_nml
+  /
+
+&utilities_nml
+   module_details = .false.
+  /
+
+&obs_sequence_tool_nml
+   filename_seq         = 'obs_seq.amsua'
+   filename_seq_list    = ''
+   filename_out         = 'obs_seq.processed'
+   first_obs_days       = -1
+   first_obs_seconds    = -1
+   last_obs_days        = -1
+   last_obs_seconds     = -1
+   obs_types            = ''
+   keep_types           = .true.
+   min_box              = -888888.0
+   max_box              = -888888.0
+   min_lat              =  -90.0
+   max_lat              =   90.0
+   min_lon              =    0.0
+   max_lon              =  360.0
+   copy_metadata        = ''
+   min_copy             = -888888.0
+   max_copy             = -888888.0
+   copy_type            = ''
+   edit_copy_metadata   = .false.
+   new_copy_metadata    = ''
+   edit_copies          = .false.
+   new_copy_index       = -1
+   new_copy_data        = -888888.0
+   qc_metadata          = ''
+   min_qc               = -888888.0
+   max_qc               = -888888.0
+   edit_qc_metadata     = .false.
+   new_qc_metadata      = ''
+   edit_qcs             = .false.
+   new_qc_index         = -1
+   new_qc_data          = -888888.0
+   synonymous_copy_list = ''
+   synonymous_qc_list   = ''
+   print_only           = .false.
+   gregorian_cal        = .true.
+  /
+
+&obs_def_rttov_nml
+   rttov_sensor_db_file   = '../../../forward_operators/rttov_sensor_db.csv'
+   use_zeeman             = .false.
+  /
+

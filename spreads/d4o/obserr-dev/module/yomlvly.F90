@@ -1,0 +1,33 @@
+MODULE YOMLVLY
+
+USE PARKIND1, ONLY : JPIM, JPRB
+
+IMPLICIT NONE
+
+SAVE
+
+!*     YOMLVLY - OBSERVATION LEVEL/LAYERS
+
+!        D. VASILJEVIC   ECMWF     15/9/94
+
+!     NAME      TYPE                  MEANING
+!     ----      ----                  -------
+
+!     JPMXSTLV    I      MAX. NO. OF STANDARD PRES. LEVELS
+
+!     NMXSTLV     I      MAX. NO. OF STANDARD LEVELS
+!     STPLEV      R      STANDARD PRESSURE LEVELS
+!     STPLEVL     R      LN. OF STANDARD PRESSURE LEVELS
+
+!     NMXLAYER    I      MAX. NO. OF LAYERS
+
+INTEGER(KIND=JPIM), PARAMETER :: JPMXSTLV=15
+
+INTEGER(KIND=JPIM) :: NMXSTLV
+INTEGER(KIND=JPIM) :: NMXLAYER
+REAL(KIND=JPRB) :: STPRELV(JPMXSTLV)
+REAL(KIND=JPRB) :: STPRELVL(JPMXSTLV)
+
+!-----------------------------------------------------------------------
+
+END MODULE YOMLVLY

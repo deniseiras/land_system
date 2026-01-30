@@ -1,0 +1,266 @@
+#!/bin/bash  
+set -e          # stop the shell on first error
+set -u          # fail when using an undefined variable
+set -x          # echo script lines as they are executed
+set -o pipefail # fail if last(rightmost) command exits with a non-zero status
+ 
+# Defines the variables that are needed for any communication with ECF
+export ECF_PORT=3155    # The server port number
+export ECF_HOST=login1.juno.cmcc.scc    # The host name where the server is running
+export ECF_NAME=/preassim_test/run_cycles/background/pre    # The name of this current task
+export ECF_PASS=Cq2kP0Fk    # A unique password, used for job validation & zombie detection
+export ECF_TRYNO=1  # Current try number of the task
+export ECF_TRIES=0            # Number of tries before abort
+export ECF_RID=$$             # record the process id. Also used for zombie detection
+# export NO_ECF=1             # uncomment to run as a standalone task on the command line
+ 
+# Define the path where to find ecflow_client
+# make sure client and server use the *same* version.
+# Important when there are multiple versions of ecFlow
+export PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:$PATH
+ 
+# Tell ecFlow we have started
+ecflow_client --init=$$
+ 
+ 
+# Define a error handler
+ERROR() {
+   set +e                      # Clear -e flag, so we don't fail
+   wait                        # wait for background process to stop
+   ecflow_client --abort=trap  # Notify ecFlow that something went wrong, using 'trap' as the reason
+   trap 0                      # Remove the trap
+   exit 0                      # End the script cleanly, server monitors child, an exit 1, will cause another abort and zombie
+}
+ 
+ 
+# Trap any calls to exit and errors caught by the -e flag
+trap ERROR 0
+ 
+ 
+# Trap any signal that may cause the script to fail
+trap '{ echo "Killed by a signal"; ERROR ; }' 1 2 3 4 5 6 7 8 10 12 13 15
+
+
+#===================================================
+#
+#
+#
+#===================================================
+
+
+cd "/users_home/cmcc/gc02720/spreads/spreads_ui/source/preassim_test/main_scripts"
+
+export case_name=preassim_test
+export NCYCLES=2
+
+# After the first cylce CONT_RUN must be TRUE. (Use FALSE only if it is the start.)
+export CONT_RUN=TRUE
+
+# Activate assimilation or do just a forecast
+ACTIVATE_ASSI=$(ecflow_client --query event /preassim_test/run_cycles:ACTIVATE_ASSI)
+if [ $ACTIVATE_ASSI == 'set' ];then
+    export ACTIVATE_ASSI='TRUE'
+else
+    export ACTIVATE_ASSI='FALSE'
+fi
+
+# Max number of time you try to launch assimilation after failure
+export MAXTRY=5
+
+# Activate forecast at 00Z and 12Z
+FORECAST=$(ecflow_client --query event /preassim_test/run_cycles:FORECAST)
+if [ $FORECAST == 'set' ];then
+    export FORECAST='TRUE'
+else
+    export FORECAST='FALSE'
+fi
+
+
+# if [ ${CONT_RUN} == "FALSE" ] && [ ${ACTIVATE_ASSI} == "FALSE" ];then
+
+echo 1 > check_assi.flag
+
+# fi
+
+# Number of forecast members
+export FENS=80
+
+export CESMEXP="cesm-exp"
+export CESMDATAROOT='/data/inputs/CESM'
+
+# For CMCC-CESM
+export CIME_MODEL='cesm'
+
+#perl
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_TYPE=en_US.UTF-8
+
+if [ juno == 'zeus' ];then
+
+    source /etc/profile.d/modules.sh
+
+    module load impi20.1/19.7.217 impi20.1/netcdf/C_4.7.4-F_4.5.3_CXX_4.3.1 impi20.1/hdf5/1.12.0 intel20.1/20.1.217 intel20.1/cdo/1.9.8 intel20.1/eccodes/2.17.0 intel20.1/h4cflib/1.3 intel20.1/hdf4/4.2.13 intel20.1/hdf5/1.12.0 intel20.1/magics/3.3.1 intel20.1/nco/4.9.3 intel20.1/ncview/2.1.8 intel20.1/netcdf/C_4.7.4-F_4.5.3_CXX_4.3.1
+    module load ncl/6.6.2
+    source /zeus/opt/anaconda/3.9/etc/profile.d/conda.sh
+    module load anaconda/3.9
+    # conda activate /work/cmcc/mg20022/.conda/envs/ecflow
+elif [ juno == 'juno' ]; then
+
+   echo "d4o modules for juno"
+   source /users_home/cmcc/gc02720/spreads/spreads_ui/../d4o/load-modules-d4o.juno
+fi
+
+
+echo -e "\n START CYCLES \n"
+if [ $CONT_RUN == "FALSE" ];then
+    if [ $NCYCLES -eq 1 ];then
+        echo -e "\n Consistent values for CONTINUE_RUN and CYCLES number \n"
+    else
+        echo -e "\n Inconsistent values for CONTINUE_RUN and CYCLES number \n"
+        exit 1
+    fi
+fi
+
+
+# Set some env variables
+SCRIPTDIR=`pwd`
+echo " SCRIPTDIR= $SCRIPTDIR"
+
+export CLONESROOT="/work/cmcc/${USER}/${CESMEXP}/${case_name}"
+
+echo ""
+
+# ncyc=1
+# while [ $ncyc -le $NCYCLES ];do
+
+#    echo -e " cycle number $ncyc"
+
+# if [ $ACTIVATE_ASSI == "FALSE" ];then
+#     echo " No assimilation required, proceed with forecast!"
+# else
+#     echo " Assimilation required!"
+#     # Check that check_assi.flag contain 1
+#     grep "1" check_assi.flag
+#     # store exit status of grep
+#     # if found grep will return 0 exit stauts
+#     # if not found, grep will return a nonzero exit stauts
+#     status=$?
+#     if [ $status -eq 0 ];then
+#         echo " check_assi is positive! "
+#         sed -i 's/1/0/g' check_assi.flag
+#         #echo 0 > check_assi.flag
+#     else
+#         echo " last assimilation cycle had problems!"
+#         #  for(( c=1; c<=MAXTRY; c++ ))
+#         for c in {1..${MAXTRY}};do
+#             cd $SCRIPTDIR
+#             echo -e "\n NEW ASSIMILATION ATTEMPT: $c of $MAXTRY\n"
+#             # Restore hidden files!
+#             #sh cases_restart_management.sh ${case_name} 5 "retrieve"
+#             # bsub < cases_assimilate.csh
+#             ./cases_assimilate.csh ${FGAT}
+#             grep "1" check_assi.flag
+#             statA=$?
+#             if [ $statA -eq 0 ]; then
+#                 #sh cases_restart_management.sh ${case_name} 5 "hide"
+#                 break 
+#             fi  
+#         done
+    
+#     # grep "0" check_assi.flag
+#     # statA=$?
+#     # if [ $statA -eq 0 ];then
+#     #     echo -e "\n No assimilation attempt worked!\n"
+#     #     exit 130
+#     # else
+#     #     # Forecast phase
+#     #     if [ $FORECAST == "TRUE" ];then
+#     #         sh cases_forecast.sh ${case_name} 5 ${FENS}
+#     #     fi
+
+#     #     # Cleanining phase
+#     #     if [ ${CLEANA} == "TRUE" ];then
+#     #         sh cases_clean_archive.sh ${case_name} 5 ${FORECAST}
+#     #     fi
+#     #     fi        
+
+#     fi
+# fi
+
+# Before the case.submit we could need to restore the restart files
+#sh cases_restart_management.sh ${case_name} 5 "retrieve"
+
+string_id=""
+inst=1
+while [ $inst -le 5 ];do
+    inst_string=$(printf _%04d $inst)
+    # Run the case
+    cd $CLONESROOT/$case_name$inst_string
+    echo " Enter in: `pwd`"
+
+    # Clean
+    rm -f cesm.std*
+    rm -f ./logs/run_environment.txt.*
+    rm -f ./timing/cesm_timing* 
+
+    if [ $CONT_RUN == "FALSE" ];then
+        ./xmlchange CONTINUE_RUN=FALSE 
+    else
+        ./xmlchange CONTINUE_RUN=TRUE  
+    fi
+
+    if [ $ACTIVATE_ASSI == "TRUE" ];then
+        echo " Activate assimilation for member ${inst}"
+        ./xmlchange DATA_ASSIMILATION_ATM=TRUE 
+    else
+        echo " Deactivate assimilation for member ${inst}" 
+        ./xmlchange DATA_ASSIMILATION_ATM=FALSE
+    fi
+
+    datevar=$(grep ice_ic user_nl_cice  | awk '{print $3}')
+    datevar=$(cut -d'.' -f4 <<<"$datevar")
+    y=$(cut -d'-' -f1 <<<"$datevar")
+    m=$(cut -d'-' -f2 <<<"$datevar")
+    d=$(cut -d'-' -f3 <<<"$datevar")
+    s=$(cut -d'-' -f4 <<<"$datevar")
+
+    if [ $(grep "sec_init" user_nl_cice) != "" ];then
+        sed -i -e "s/sec_init=.*/sec_init=$s/g" user_nl_cice
+    else
+        echo "sec_init=$s" >> user_nl_cice
+    fi
+
+    if [ $(grep "day_init" user_nl_cice) != "" ];then
+        sed -i -e "s/day_init=.*/day_init=$d/g" user_nl_cice
+    else
+        echo "day_init=$d" >> user_nl_cice
+    fi
+
+    if [ $(grep "month_init" user_nl_cice) != "" ];then
+        sed -i -e "s/month_init=.*/month_init=$m/g" user_nl_cice
+    else
+        echo "month_init=$m" >> user_nl_cice
+    fi
+
+    if [ $(grep "year_init" user_nl_cice) != "" ];then
+        sed -i -e "s/year_init=.*/year_init=$y/g" user_nl_cice
+    else
+        echo "year_init=$y" >> user_nl_cice
+    fi    
+
+    inst=$(echo "${inst}+1" | bc -l)
+
+done
+   
+#    ncyc=$(echo "${ncyc}+1" | bc -l)
+# done
+echo ""
+echo "----- END TASK ---"
+echo ""
+ecflow_client --label=Info "OK... 20230908  16:22"
+wait                      # wait for background process to stop
+ecflow_client --complete  # Notify ecFlow of a normal end
+trap 0                    # Remove all traps
+exit 0  

@@ -1,0 +1,67 @@
+; We may need these, so lets create shorthand notations to avoid tendonitis in our fingers !
+
+; alias syntax is : nickname=formula_without_blanks   ; please do include the ODC table names, like @table
+
+#alias v=varno@body bt=bufrtype@hdr bst=subtype@hdr rt=reportype@hdr
+#alias ch=int(vertco_reference_1@body) vt=vertco_type@body
+
+; Macros to be used in WHERE-conditions e.g. v=<number> and macroX
+; Macros can be used in other macros assuming they have been defined earlier
+
+#define radiosonde  	   bt=2 and bst=101
+#define aircraft	   bt=4 and bst in ( 142,143 , 144)
+#define acars		   bt=4 and bst in (145,146)
+
+#define ch_8_to_14         vt=7 and ch between 8 and 14
+
+#kind                 description  data selection & mapping criteria (WHERE-conditions) ; an optional comment
+    1            SOIL_TEMPERATURE 
+    2          LPRM_SOIL_MOISTURE 
+    3        SMOS_A_SOIL_MOISTURE 
+    4        SMOS_D_SOIL_MOISTURE 
+    5        SMAP_A_SOIL_MOISTURE 
+    6        SMAP_D_SOIL_MOISTURE 
+    7        SSMI_A_SOIL_MOISTURE 
+    8        SSMI_D_SOIL_MOISTURE 
+    9     AMSRE_A_SOIL_MOISTURE_X 
+   10     AMSRE_D_SOIL_MOISTURE_X 
+   11     AMSRE_A_SOIL_MOISTURE_C 
+   12     AMSRE_D_SOIL_MOISTURE_C 
+   13          TRMM_SOIL_MOISTURE 
+   14     WINDSAT_SOIL_MOISTURE_X 
+   15     WINDSAT_SOIL_MOISTURE_C 
+   16           WATER_TABLE_DEPTH 
+   17               SOIL_MOISTURE 
+   18          LAYER_LIQUID_WATER 
+   19                   LAYER_ICE 
+   20              SNOW_THICKNESS 
+   21                  SNOW_WATER 
+   22        MODIS_SNOWCOVER_FRAC 
+   23       MODIS_LEAF_AREA_INDEX 
+   24       GIMMS_LEAF_AREA_INDEX 
+   25          SP_LEAF_AREA_INDEX 
+   26                  MODIS_FPAR 
+   27                     BIOMASS 
+   28                 LEAF_CARBON 
+   29            LIVE_STEM_CARBON 
+   30            DEAD_STEM_CARBON 
+   31             LEAF_AREA_INDEX 
+   32               LEAF_NITROGEN 
+   33       TOWER_AIR_TEMPERATURE 
+   34          TREE_RING_NPP_FLUX 
+   35      TOWER_SOIL_TEMPERATURE 
+   36      TOWER_U_WIND_COMPONENT 
+   37      TOWER_V_WIND_COMPONENT 
+   38      TOWER_GLOBAL_RADIATION 
+   39       TOWER_NET_CARBON_FLUX 
+   40              SURFACE_ALBEDO 
+   41                    OCO2_SIF 
+   42                ECOSTRESS_ET 
+   43              HARMONIZED_SIF 
+   44       SOIL_RESPIRATION_FLUX 
+   45               TOWER_ER_FLUX 
+   46              TOWER_GPP_FLUX 
+   47      TOWER_LATENT_HEAT_FLUX 
+   48     TOWER_NETC_ECO_EXCHANGE 
+   49    TOWER_SENSIBLE_HEAT_FLUX 
+   50    COSMOS_NEUTRON_INTENSITY 

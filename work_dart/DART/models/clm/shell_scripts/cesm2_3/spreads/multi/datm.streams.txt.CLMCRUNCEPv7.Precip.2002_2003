@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<file id="stream" version="1.0">
+<dataSource>
+   GENERIC
+</dataSource>
+<domainInfo>
+  <variableNames>
+     time    time
+        xc      lon
+        yc      lat
+        mask    mask
+        area    area
+  </variableNames>
+  <filePath>
+     /data/inputs/CESM/inputdata/share/domains/domain.clm
+  </filePath>
+  <fileNames>
+     domain.lnd.360x720.130305.nc
+  </fileNames>
+</domainInfo>
+<fieldInfo>
+   <variableNames>
+     PRECTmms precn
+   </variableNames>
+   <filePath>
+	   /work/cmcc/lg07622/land/forcing/ERA5/spreads/Precip6Hrly
+   </filePath>
+   <fileNames>
+    clmforc.NINST.0.5d.Prec.2002-01.nc
+    clmforc.NINST.0.5d.Prec.2002-02.nc
+    clmforc.NINST.0.5d.Prec.2002-03.nc
+    clmforc.NINST.0.5d.Prec.2002-04.nc
+    clmforc.NINST.0.5d.Prec.2002-05.nc
+    clmforc.NINST.0.5d.Prec.2002-06.nc
+    clmforc.NINST.0.5d.Prec.2002-07.nc
+    clmforc.NINST.0.5d.Prec.2002-08.nc
+    clmforc.NINST.0.5d.Prec.2002-09.nc
+    clmforc.NINST.0.5d.Prec.2002-10.nc
+    clmforc.NINST.0.5d.Prec.2002-11.nc
+    clmforc.NINST.0.5d.Prec.2002-12.nc
+    clmforc.NINST.0.5d.Prec.2003-01.nc
+    clmforc.NINST.0.5d.Prec.2003-02.nc
+    clmforc.NINST.0.5d.Prec.2003-03.nc
+    clmforc.NINST.0.5d.Prec.2003-04.nc
+    clmforc.NINST.0.5d.Prec.2003-05.nc
+    clmforc.NINST.0.5d.Prec.2003-06.nc
+    clmforc.NINST.0.5d.Prec.2003-07.nc
+    clmforc.NINST.0.5d.Prec.2003-08.nc
+    clmforc.NINST.0.5d.Prec.2003-09.nc
+    clmforc.NINST.0.5d.Prec.2003-10.nc
+    clmforc.NINST.0.5d.Prec.2003-11.nc
+    clmforc.NINST.0.5d.Prec.2003-12.nc
+   </fileNames>
+   <offset>
+      0
+   </offset>
+</fieldInfo>
+</file>

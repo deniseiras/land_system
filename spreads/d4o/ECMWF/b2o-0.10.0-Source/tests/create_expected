@@ -1,0 +1,199 @@
+#!/bin/bash
+
+function create_expected()
+{
+    label=$1
+    arg=${2:-}
+    extra=$(echo ":$arg"|perl -pe 's/^://; s/^--/-/')
+    {
+	set -xeu
+	cp -fv /zfs1/mps/DART/git/CMCC-DART/d4o/ECMWF/b2o-0.10.0-Source/tests/$label.input .
+	env B2O_PROGRESS=1 b2o --log-level=0 $label.input -o $label$extra.expected $arg
+	set +xeu
+    } 2>&1 | tee $label$extra.txt
+}
+
+create_expected acars
+create_expected acars-mixing-ratio
+create_expected aeolus-l2b # RESOURCES aeolus_mie_settings aeolus_ray_settings
+create_expected ahi-himawari
+create_expected airep
+create_expected airep-with-malformed-flight-number
+create_expected airs
+create_expected airs-uncompressed
+create_expected amdar
+create_expected amdar-wigos
+create_expected amsr2 --all-sky
+create_expected amsua
+create_expected amsua-aqua
+create_expected amsua-aqua-uncompressed
+create_expected amsua-metop-2
+create_expected amsua-noaa-15
+create_expected amsua-noaa-18
+create_expected amsua-noaa-19
+create_expected amsub
+create_expected amv-aqua-modis
+create_expected amv-avhrr-noaa-15
+create_expected amv-avhrr-noaa-18
+create_expected amv-avhrr-noaa-19
+create_expected amv-coms-1
+create_expected amv-dual-metop
+create_expected amv-fy-2e
+create_expected amv-fy-2g
+create_expected amv-goes-13
+create_expected amv-goes-15
+create_expected amv-goes-16
+create_expected amv-himawari-8
+create_expected amv-insat-3d
+create_expected amv-leo-geo
+create_expected amv-meteosat-10
+create_expected amv-meteosat-10-single-subset
+create_expected amv-meteosat-4
+create_expected amv-meteosat-7
+create_expected amv-metop-a
+create_expected amv-metop-b
+create_expected amv-mtsat-2
+create_expected amv-npp
+create_expected amv-npp-with-percent-confidence
+create_expected amv-terra-modis
+create_expected amv-terra-modis-cimss
+create_expected amv-terra-modis-noaa-nesdis
+create_expected ascat
+create_expected ascat-metop-1
+create_expected ascat-metop-c
+create_expected atms
+create_expected atms-noaa-20
+create_expected aura-omi
+create_expected aura-omi-ak
+create_expected aura-omi --cams-ozone
+create_expected aura-omi --cams-and-ifs-ozone
+create_expected bathy
+create_expected buoy-drifting
+create_expected buoy-moored
+create_expected buoy-moored-with-bias-correction # CONDITION eccodes_VERSION VERSION_GREATER_EQUAL 2.14.0
+create_expected cris
+create_expected cris-noaa-20
+create_expected dribu-with-dew-point
+create_expected dribu-with-pressure-bias-correction
+create_expected dribu-with-relative-humidity
+create_expected dribu-with-relative-humidity-but-missing-pressure
+create_expected drop-sonde
+create_expected envisat-meris-tcwv
+create_expected envisat-sciamachy
+create_expected ers
+create_expected gch4
+create_expected geos
+create_expected geos-abi-goes-16
+create_expected geos-ahi-himawari-8
+create_expected geos-allsky-seviri-meteosat-8
+create_expected geos-allsky-seviri-meteosat-11
+create_expected geos-allsky
+create_expected geos-imager-goes-15
+create_expected geos-wrong-zenith-angle
+create_expected gmi-part1 --all-sky
+create_expected gmi-part1-with-lat-180 --all-sky
+create_expected gmi-part2 --all-sky
+create_expected gpsro-aopod-kompsat-5
+create_expected gpsro-cosmic-1
+create_expected gpsro-cosmic-2
+create_expected gpsro-cosmic-6
+create_expected gpsro-gnos-fy-3c
+create_expected gpsro-gnos-fy-3d
+create_expected gpsro-grace-a
+create_expected gpsro-grace-b
+create_expected gpsro-gras-metop-3
+create_expected gpsro-metop-a
+create_expected gpsro-metop-b
+create_expected gpsro-tandem-x
+create_expected gpsro-terrasar-x
+create_expected hirs
+create_expected iasi
+create_expected iasi-metop-1
+create_expected iasi-metop-1-uncompressed
+create_expected iasi-metop-3
+create_expected iasi-metop-b-uncompressed
+create_expected imager-goes-13
+create_expected imager-goes-15
+create_expected ims
+create_expected iras-fy3
+create_expected metar
+create_expected metar-auto
+create_expected metopa-gome2
+create_expected mhs
+create_expected msg
+create_expected mwhs
+create_expected mwhs1-fy3b
+create_expected mwhs2-fy3 --all-sky
+create_expected mwhs2-fy3c-d310071 --all-sky
+create_expected mwhs2-fy3d --all-sky
+create_expected mwhs2-fy3d-uncompressed
+create_expected mwri-fy3c --all-sky
+create_expected mwts2-fy3d
+create_expected nexrad
+create_expected npp-viirs-aot
+create_expected paob
+create_expected pgps
+create_expected pilot-land
+create_expected pilot-land-bufr
+create_expected pilot-land-bufr-with-missing-geopotential-height
+create_expected pilot-ship
+create_expected pilot-ship-bufr
+create_expected profiler-american
+create_expected profiler-european
+create_expected profiler-european-from-norway
+create_expected profiler-japanese
+create_expected qscat
+create_expected rain-gauge
+create_expected reo3
+create_expected resat-ak
+create_expected saphir --all-sky
+create_expected satem-500km-merged
+create_expected seviri-meteosat-8-iodc
+create_expected smos
+create_expected snow
+create_expected ssmi --all-sky
+create_expected ssmis --all-sky
+create_expected synop-land-auto
+create_expected synop-land-bufr
+create_expected synop-land-bufr-with-missing-dew-point
+create_expected synop-land-bufr-2
+create_expected synop-land-bufr-2-with-missing-values
+create_expected synop-land-bufr-2-with-undefined-rainfall
+create_expected synop-land-bufr-2-with-undefined-snowfall
+create_expected synop-land-bufr-hourly
+create_expected synop-land-bufr-region-6
+create_expected synop-land-bufr-with-bias-correction
+create_expected synop-land-bufr-with-missing-pressure
+create_expected synop-land-bufr-with-wigosid
+create_expected synop-land-manual
+create_expected synop-ship
+create_expected synop-ship-abbreviated
+create_expected synop-ship-bufr
+create_expected synop-ship-bufr-with-missing-station-id-SD-26796
+create_expected synop-ship-bufr-with-relative-humidity
+create_expected synop-ship-bufr-with-relative-humidity-but-missing-pressure
+create_expected synop-ship-reduced
+create_expected tamdar
+create_expected temp-descent
+create_expected temp-drop
+create_expected temp-drop-with-malformed-flight-number
+create_expected temp-land
+create_expected temp-land-hires
+create_expected temp-land-hires-huge
+create_expected temp-land-hires-with-missing-pressure
+create_expected temp-land-hires-with-missing-second
+create_expected temp-land-hires-with-missing-significance
+create_expected temp-land-hires-with-one-level
+create_expected temp-land-hires-with-two-identical-levels
+create_expected temp-land-hires-with-wigosid
+create_expected temp-land-with-substituted-values
+create_expected temp-land-zero-pressure-COPE-57
+create_expected temp-mobile
+create_expected temp-mobile-hires
+create_expected temp-ship
+create_expected temp-ship-hires
+create_expected terra-modis-aerosol
+create_expected terra-mopitt-ak
+create_expected tmi --all-sky
+create_expected windsat --all-sky
+

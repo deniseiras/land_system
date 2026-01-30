@@ -1,0 +1,42 @@
+#!/bin/bash
+
+for p in ${*:-$(ls -C1 path_names_*)}
+do
+    x=$(basename $p | perl -pe 's/^path_names_//')
+    f=Makefile.mkmf_$x
+    if [[ -f $f ]] ; then
+	d=../$x.dir
+	echo "Creating $d/Makefile ..."
+	mkdir -pv $d
+	cat $f |\
+	    perl -pe 's%(\s*)\S+/%$1%g' |\
+	    grep -Pv '^\s+cp\s+' |\
+	    fgrep -v fixsystem |\
+	    perl -pe 's/fixsys\S*//' |\
+	    fgrep -v f90: |\
+	    egrep -v '^OFF|^localize|-touch|DEFAULT' |\
+	    grep -Pvi '^(tags:|\t.tags)' > $d/Makefile
+	cd $d
+	perl -pe 's%^(include\s+)(mkmf)%${1}../$2%' -i Makefile
+	perl -pe 's%^(all:)%.SUFFIXES:\n.SUFFIXES: .F90 .o .so\n$1%' -i Makefile
+	perl -pe 's%\.f90%.F90%g' -i Makefile
+	perl -pe 's%\.cppdefs\b%*.mod%' -i Makefile
+	mpifc=1
+	grep -Pq '\bMPIFC\b' Makefile || mpifc=0
+	if [[ $mpifc -eq 1 ]] ; then
+	    rule=$(grep -P '\bMPIFC\b' Makefile | head -n1 | perl -pe 's%\S+\s*$%\$<%')
+	    grep -Pv '\bMPIFC\b' Makefile > Makefile.tmp
+	else
+	    rule=$(grep -P '\bFC\b' Makefile | head -n1 | perl -pe 's%\S+\s*$%\$<%')
+	    grep -Pv '\bFC\b' Makefile > Makefile.tmp
+	fi
+	mv -f Makefile.tmp Makefile
+	echo -e '\n%.o: %.F90' >> Makefile
+	echo -e "$rule" >> Makefile
+	echo -e '\nsymlinks:' >> Makefile
+	echo -e '\tset -e;for X in $(SRC); do ln -fs ../src/$$X .; git add $$X || :; done' >> Makefile
+	make symlinks
+	git add Makefile || :
+	cd -
+    fi
+done

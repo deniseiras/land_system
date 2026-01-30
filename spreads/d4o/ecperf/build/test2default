@@ -1,0 +1,33 @@
+#!/bin/bash
+
+cmd=$(basename $0)
+version=${1:-none}
+
+from=$(echo $cmd | cut -f1 -d2) # e.g. test
+to=$(echo $cmd | cut -f2 -d2) # e.g. default
+
+echo "Executing: ${from}2$to $version"
+
+PROJECT=ecperf
+
+module spider $PROJECT
+
+if [[ "$from" != "" ]] && [[ "$to" != "" ]] && [[ "$version" != none ]] ; then
+    if [[ -d /usr/local/apps/$PROJECT/$version ]] ; then
+	module load modulemgr
+	set -xv
+	modulemgr -v -f sync $PROJECT
+	modulemgr -v tag -o $PROJECT $version $to # do not use -f
+	modulemgr -v tag $PROJECT rm $from # do not use -f
+	#rm -rf /usr/local/apps/$PROJECT/$version
+	modulemgr -v -f sync $PROJECT
+	set +xv
+	module spider $PROJECT
+    else
+	echo "Error: Cannot locate directory /usr/local/apps/$PROJECT/$version"
+	exit 1
+    fi
+else
+    echo "Error: Invalid command '${from}2$to $version'"
+    exit 2
+fi

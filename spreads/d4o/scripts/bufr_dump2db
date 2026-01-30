@@ -1,0 +1,72 @@
+#!/bin/bash
+#
+# Usage: bufr_dump2db [options] bufr_file(s)
+#
+
+set -euo pipefail
+
+cmd=$(readlink -f $0)
+cmdname=$(basename $cmd)
+cmddir=$(readlink -f $(dirname $cmd))
+
+debug=0
+for x in ${@:-}
+do
+    if [[ "$x" = "-debug" ]] || [[ "$x" = "--debug" ]] ; then
+	debug=1
+	break
+    fi
+done
+
+v=""
+[[ $debug -eq 0 ]] || v=v
+
+declare -A bufr
+declare -A msgcount
+dbs=""
+files=""
+for ff in $($cmddir/bufr_dump2csv ${@:-})
+do
+    f=$(echo "$ff" | cut -f1 -d\;)
+    files+=" $f"
+    db=$(basename $f .csv).db
+    bufr[$db]=$(echo "$ff" | cut -f2 -d\;)
+    msgcount[$db]=$(echo "$ff" | cut -f3 -d\;)
+    sql=$(basename $f .csv).sql
+    [[ $debug -eq 0 ]] || echo "$cmdname: Creating database $db from $f ..." >&2
+    env TMPDIR=. TBLMATCH='^[a-z0-9]+' $cmddir/csv2sqlite $f >/dev/null 2>&1
+    #cp -fv ${TMPDIR:-.}/$db . >&2
+    rm -f$v $sql >&2 || :
+    dbs+=" $db"
+    
+done
+
+if [[ "$dbs" != "" ]] ; then
+    sqlite3=$(which sqlite3 2>/dev/null || echo sqlite3)
+    batchopt="-batch -init /dev/null -nullvalue NULL -readonly"
+    for db in $dbs
+    do
+	if [[ -f $db ]] ; then
+	    txt=${TMPDIR:-.}/"$(basename $db .db).txt"
+	    [[ $debug -eq 0 ]] || echo "$cmdname: Creating ${db}-instruction file $txt ..." >&2
+	    {
+		dbsize=$(stat -c %s $db 2>/dev/null || echo 0)
+		csv="$(basename $db .db).csv"
+		csvsize=$(stat -c %s $csv 2>/dev/null || echo 0)
+		bufr=${bufr[$db]}
+		bufrsize=$(stat -c %s $(readlink -f $bufr) 2>/dev/null || echo 0)
+		msgcount=${msgcount[$db]}
+		table=$($sqlite3 $batchopt $db '.tables' 2>/dev/null || echo '<none>')
+		if [[ "$table" != "<none>" ]] ; then
+		    cnt=$($sqlite3 $batchopt -csv $db "SELECT count(*) FROM '$table'" 2>/dev/null || echo 0)
+		    echo "$table $cnt $db $dbsize $csv $csvsize $bufr $bufrsize $msgcount" | perl -pe 's/\s+/;/g; s/\s*[;]?\s*$/\n/'
+		    [[ $debug -eq 0 ]] || (pwd; ls -ltrL $db $csv $bufr) >&2
+		fi
+	    } | tee $txt
+	fi
+    done
+fi
+
+
+
+

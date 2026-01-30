@@ -1,0 +1,124 @@
++ set -o pipefail
++ export ECF_PORT=3155
++ ECF_PORT=3155
++ export ECF_HOST=login1.juno.cmcc.scc
++ ECF_HOST=login1.juno.cmcc.scc
++ export ECF_NAME=/gio_ecflow1/run_cycles/background/run/mem_3
++ ECF_NAME=/gio_ecflow1/run_cycles/background/run/mem_3
++ export ECF_PASS=vGSFdHPi
++ ECF_PASS=vGSFdHPi
++ export ECF_TRYNO=1
++ ECF_TRYNO=1
++ export ECF_TRIES=0
++ ECF_TRIES=0
++ export ECF_RID=1621280
++ ECF_RID=1621280
++ export PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/imagemagick/7.0.8-7-2475g3fynku56e7rbgq65zz2xbmy6k26/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/ncview/2.1.8-sds5t7td2iyndfz25r537rsyxvx63wn6/bin:/work/cmcc/gc02720/.conda/envs/spreads/bin:/juno/opt/anaconda/3-2022.10/condabin:/users_home/cmcc/gc02720/.local/bin:/users_home/cmcc/gc02720/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/imagemagick/7.0.8-7-2475g3fynku56e7rbgq65zz2xbmy6k26/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/ncview/2.1.8-sds5t7td2iyndfz25r537rsyxvx63wn6/bin:/work/cmcc/gc02720/.conda/envs/spreads/bin:/juno/opt/anaconda/3-2022.10/condabin:/users_home/cmcc/gc02720/.local/bin:/users_home/cmcc/gc02720/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ ecflow_client --init=1621280
++ trap ERROR 0
++ trap '{ echo "Killed by a signal"; ERROR ; }' 1 2 3 4 5 6 7 8 10 12 13 15
+++ echo mem_3
+++ sed s/mem_//g
++ its=3
+++ printf %04d 3
++ its=0003
++ export CESMEXP=cesm-exp
++ CESMEXP=cesm-exp
++ export CLONESROOT=/work/cmcc/gc02720/cesm-exp/gio_ecflow1/gio_ecflow1_0003
++ CLONESROOT=/work/cmcc/gc02720/cesm-exp/gio_ecflow1/gio_ecflow1_0003
++ export CESMDATAROOT=/data/inputs/CESM
++ CESMDATAROOT=/data/inputs/CESM
++ export CESMDIR=cesm2.3_beta11_cm3_v7z
++ CESMDIR=cesm2.3_beta11_cm3_v7z
++ export case_name=gio_ecflow1
++ case_name=gio_ecflow1
++ export nens=5
++ nens=5
++ export dartroot=/users_home/cmcc/gc02720/spreads/spreads_ui/../
++ dartroot=/users_home/cmcc/gc02720/spreads/spreads_ui/../
++ export CIME_MODEL=cesm
++ CIME_MODEL=cesm
++ export DIVISION=csp
++ DIVISION=csp
++ export case_name=gio_ecflow1
++ case_name=gio_ecflow1
++ export NCYCLES=20
++ NCYCLES=20
++ export CONT_RUN=TRUE
++ CONT_RUN=TRUE
++ export MAXTRY=5
++ MAXTRY=5
++ export FENS=5
++ FENS=5
++ export CIME_MODEL=cesm
++ CIME_MODEL=cesm
+++ ecflow_client --query event /gio_ecflow1/run_cycles:ACTIVATE_ASSI
++ ACTIVATE_ASSI=set
++ '[' set == set ']'
++ export ACTIVATE_ASSI=TRUE
++ ACTIVATE_ASSI=TRUE
+++ echo gio_ecflow1
+++ tr '[:lower:]' '[:upper:]'
++ tmpdir=/work/cmcc/gc02720/CMCC-CM/TMPGIO_ECFLOW1
++ archdir=/work/cmcc/gc02720/CMCC-CM/archive
++ baseobsdir=/work/cmcc/mg20022/databases/b2d4o_d4o_db
++ nts=13
++ script_name_original=case.template-juno.original-SP
++ dartnamelist=input.nml.original.rad
++ '[' juno == zeus ']'
++ '[' juno == juno ']'
++ echo 'd4o modules for juno'
+d4o modules for juno
++ cd /work/cmcc/gc02720/cesm-exp/gio_ecflow1/gio_ecflow1_0003
++ date
+Sun Sep  3 22:42:22 CEST 2023
++ ./case.submit
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /work/cmcc/gc02720/cesm-exp/gio_ecflow1/gio_ecflow1_0003/env_batch.xml, check files /users_home/cmcc/gc02720/model/cesm2.3_beta11_cm3_v7z/cime/../ccs_config/machines/config_batch.xml
+++ cat /work/cmcc/gc02720/cesm-exp/gio_ecflow1/gio_ecflow1_0003/submit_message
+++ grep 'Submitted job id is'
+++ awk '{print $5}'
++ jobid=176651
+++ echo mem_3
+++ sed s/mem_//g
++ ecflow_client --alter=add variable JOB_ID 176651 /gio_ecflow1/run_cycles/background/run/mem_3
++ ecflow_client --label=info Waiting...
++ bwait -w 'started(176651)'
+started(176651): Wait condition satisfied
+++ date '+%Y-%m-%d %H:%M'
++ start='2023-09-03 22:42'
++ ecflow_client --label=info 'START: 2023-09-03 22:42'
++ bwait -r 1 -w 'ended(176651)'
+ended(176651): Wait condition satisfied
+++ date '+%Y-%m-%d %H:%M'
++ end='2023-09-03 23:12'
++ sleep 30
+++ pwd
++ echo ' Enter in: /work/cmcc/gc02720/cesm-exp/gio_ecflow1/gio_ecflow1_0003'
+ Enter in: /work/cmcc/gc02720/cesm-exp/gio_ecflow1/gio_ecflow1_0003
++ grep 'resubmit_num 0' cesm.stderr.176651
+resubmit_num 0
++ status=0
++ '[' 0 -eq 0 ']'
++ echo ' job finished! '
+ job finished! 
++ '[' TRUE == FALSE ']'
++ ecflow_client --label=info 'START: 2023-09-03 22:42 / FINISH: 2023-09-03 23:12'
++ echo ''
+
++ echo '----- END TASK ---'
+----- END TASK ---
++ echo ''
+
++ ecflow_client --label=Info 'OK... 20230903  20:42'
++ wait
++ ecflow_client --complete
++ trap 0
++ exit 0

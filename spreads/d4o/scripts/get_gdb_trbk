@@ -1,0 +1,64 @@
+#!/bin/bash
+#
+# Usage: get_gdb_trbk LSF_JOBID [USER [EXECUTABLE]]
+#
+# or
+#
+#        env nodes="space separated list of specific nodes" get_gdb_trbk LSF_JOBID [USER [EXECUTABLE]]
+#
+
+if [[ $# -lt 1 ]] ; then
+    echo "Usage: get_gdb_trbk LSF_JOBID [USER [EXECUTABLE]]" >&2
+    exit 1
+fi
+
+set -eu
+
+jobid=$1
+user=${2:-$USER}
+exe=${3:-./filter}
+
+gdb=${gdb:-/usr/bin/gdb}
+
+tstamp=$(date +%s)
+
+nodes_bjobs=nodes.bjobs.$jobid.$tstamp.txt
+nxxx_dat=nxxx.$jobid.$tstamp.txt
+
+bjobs $jobid | tee $nodes_bjobs
+
+rc=0
+head -n2 $nodes_bjobs | tail -n1 | fgrep ' RUN ' || rc=$?
+
+if [[ $rc -eq 0 ]] ; then
+    if [[ "${nodes:-}" = "" ]] ; then
+	perl -ne 'printf("%s ",$1) if (m/\d+\*(n\d+)-/)' $nodes_bjobs > $nxxx_dat
+    else
+	echo $nodes > $nxxx_dat
+    fi
+    for node in $(cat $nxxx_dat)
+    do
+	ssh $node ps -fu $user < /dev/null | grep -P "\d+:\d+:\d+\s+$exe" | awk '{print $2}' > $node.$tstamp.pid &
+    done
+    wait $(jobs -p)
+    for node in $(cat $nxxx_dat)
+    do
+	for pid in $(cat $node.$tstamp.pid)
+	do
+	    echo "#BEGIN $(date -u) node=$node pid=$pid exe=$exe --------- "
+	    cmd="ssh -T $node sudo -u $user $gdb -p $pid --batch --nx --nh --silent -ex bt"
+	    echo "#CMD: $cmd < /dev/null || :"
+	    $cmd < /dev/null || :
+	    echo "#END   $(date -u) node=$node pid=$pid exe=$exe --------- "
+	done > $node.trbk.$jobid.$tstamp.txt 2>&1 &
+    done
+    echo "Waiting for ssh+gdb processes $(jobs -p | perl -pe 's/\n/ /g') to finish on nodes $(cat $nxxx_dat | perl -pe 's/\n/ /g') ..."
+    wait $(jobs -p)
+    egrep '^#' *.trbk.$jobid.$tstamp.txt | perl -pe 's/\(.*\)\s+at\s+/() at /' > trbk.$jobid.$tstamp.txt || :
+    echo ">>> Output in $(readlink -f trbk.$jobid.$tstamp.txt)"
+    rm -f *.trbk.$jobid.$tstamp.txt
+    exit 0
+else
+    echo "The job $jobid not in RUN-mode" >&2
+    exit 2
+fi

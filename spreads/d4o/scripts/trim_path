@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+# Usage: trim_path [PATH|LD_LIBRARY_PATH|...]
+#
+# Removes duplicate entries from colon (:) separated variables, e.g. PATH
+#
+# One variable at a time
+#
+# A typical call:
+#
+# export PATH=$(trim_path PATH)
+#
+
+if [[ $# -eq 1 ]] ; then
+    var=$(echo '$'"$1")
+    eval echo "$var" | tr ':' '\n' | perl -lne 'chomp; print unless $k{$_}; $k{$_}++' | tr '\n' ':' | perl -pe 's/^\s*://; s/:\s*$//; s/[:]+/:/g'
+fi
+

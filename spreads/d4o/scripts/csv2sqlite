@@ -1,0 +1,114 @@
+#!/bin/bash
+
+cmd=$(readlink -f $0)
+cmddir=$(readlink -f $(dirname $cmd))
+
+sqlite3=$(which sqlite3 2>/dev/null || echo sqlite3)
+batchopt="-batch -init /dev/null -nullvalue NULL"
+
+#now=$(date +%s)
+
+export TBLMATCH=${TBLMATCH:-'^\w+'}
+export TBLOUTPUT=${TBLOUTPUT:-1}
+export TBLNAME=${TBLNAME:-""}
+
+for ff in "${@:-}"
+do
+    dash=$(echo "$ff" | cut -c1 | grep -q '-' && echo 1 || echo 0)
+    if [[ $dash -eq 0 ]] ; then
+	f=$ff
+	head1="head -n1 $f"
+	catf="cat $f"
+	skip1="--skip 1"
+    else
+	f=${TMPDIR:-.}/$(basename $(echo "$ff" | cut -c2-) .csv)".csv" # we never create this, though
+	read -r FIRST_LINE
+	head1="echo $FIRST_LINE"
+	catf=cat
+	skip1=""
+    fi
+    #sql=${TMPDIR:-.}/$(echo $(basename $f) | perl -pe 's/\.\w+$//; s/-/_/g;').sql
+    sql=${TMPDIR:-.}/$(basename $f | perl -pe 's/\.\w+$//;').sql
+    #table=$(basename $f | perl -pe 's/^([^.]+)\..*/$1/; s/-/_/g; s/_\d+//; s/(.*)/\L$1/;')
+    #table=$(basename $f | perl -ne 's/^[.]+//g; printf("%s\n",lc($1)) if (m{(^[a-z0-9]+)}i)')
+    table=${TBLNAME:-$(basename $f | perl -ne 's/^[.]+//g; printf("%s\n",lc($1)) if (m{('"$TBLMATCH"')}i)')}
+    [[ "$table" != "" ]] || table=csvdata
+    if echo "$table" | cut -c1-1 | egrep -q '^[0-9]' ; then
+	table=_$table
+    fi
+    colon=1
+    $head1 | grep -q : || colon=0
+    if [[ $colon -eq 0 ]] ; then
+	$head1 | perl -pe 's/^#//;s/"//g;s/[.]/_/g;s/[-]/_minus_/g;s/[+]/_plus_/g;' |\
+	    awk -F, \
+		'BEGIN {printf("DROP TABLE IF EXISTS '$table';\nCREATE TABLE '$table'");} \
+		{d=" (";for (i=1;i<=NF;++i) {printf("%s\n\t'%s' text",d,$i); d=","}} \
+		END {printf(");\n")}' > $sql
+    else
+	$head1 | perl -pe 's/^#//;s/"//g;s/,/:/g;s/[.]/_/g;s/[-]/_minus_/g;s/[+]/_plus_/g;' |\
+	    awk -F: \
+		'BEGIN {printf("DROP TABLE IF EXISTS '$table';\nCREATE TABLE '$table'");} \
+		{d=" (";for (i=1;i<=NF;i+=2) {printf("%s\n\t'%s' %s",d,$i,$(i+1)); d=","}} \
+		END {printf(");\n")}' > $sql
+    fi
+    perl -pe 's/\w+\.(\w+)/$1/;' -i $sql # remove possible prefixing table names
+    #perl -pe 's/(\w+)\@(\w+)/${1}_${2}/;' -i $sql # adjust possible postfixing in (ODB) column@table -names
+    perl -pe 's/(\w+)\@\w+/${1}/;' -i $sql # remove possible postfixing in (ODB) column@table -names
+    perl -pe 's/\bindex\b/idx/i;' -i $sql # illegal syntax ... a quick fix
+    db=$(dirname $sql)/$(basename $sql .sql).db
+    rm -f $db
+    # grep -P "\S" reads only non-empty lines i.e. lines which have at least one non-space character
+    $catf | grep -P "\S" | perl -pe "s/([\"']\h*|\s*[\"'])//g" |\
+	$sqlite3 $db $batchopt "PRAGMA journal_mode = OFF" "PRAGMA locking_mode = EXCLUSIVE" ".read $sql" ".import --csv $skip1 |cat $table" >/dev/null 2>&1
+    
+    # convert string (and case insensitive) "NULL"s to proper NULL's (slow)
+    #for col in $($sqlite3 -readonly $db $batchopt "SELECT name FROM pragma_table_info('$table')" -csv)
+    #do
+    #	$sqlite3 $db $batchopt "UPDATE '$table' SET '$col' = NULL WHERE $col = 'null' COLLATE NOCASE" # can't have WHERE '$col = 'null' COLLATE NOCASE !!!
+    #done
+    
+    # convert string (and case insensitive) "NULL"s to proper NULL's (much faster)
+    {
+	cols=$($sqlite3 -readonly $db $batchopt "SELECT name FROM pragma_table_info('$table')" -csv)
+	echo "PRAGMA journal_mode = OFF;"
+	echo "PRAGMA locking_mode = EXCLUSIVE;"
+	echo "UPDATE $table"
+	delim="SET"
+	for col in $cols
+	do
+	    echo " $delim $col = IIF($col='null' COLLATE NOCASE,NULL,$col)"
+	    delim=","
+	done
+	echo ";"
+    } | $sqlite3 $db $batchopt ".read |cat" >/dev/null 2>&1
+	
+    totrows=$($sqlite3 -readonly $db $batchopt -csv "SELECT count(*) FROM '$table'")
+    if [[ "$TBLOUTPUT" = "1" ]] ; then
+	#    if [[ -x $cmddir/mode_paste ]] ; then
+	#	$sqlite3 $db $batchopt ".mode line" "SELECT * FROM '$table'" | $cmddir/mode_paste
+	#    fi
+	export LINES=${_LINES:-$(stty -a 2>/dev/null | perl -ne 'BEGIN {$lines=45} {$lines=$1 if (m{\brows\s+(\d+)})} END {printf("%d",$lines)}')}
+	if [[ $LINES -gt 0 ]] ; then
+	    maxlines=$(((LINES-5)/2))
+	    [[ $maxlines -gt 0 ]] || maxlines=1
+	else
+	    maxlines=$((totrows+1))
+	fi
+	export COLUMNS=${_COLUMNS:-$(stty -a 2>/dev/null | perl -ne 'BEGIN {$cols=132} {$cols=$1 if (m{\bcolumns\s+(\d+)})} END {printf("%d",$cols)}')}
+	# Please note: the sample output contains extra first column "rowid" that is (normally) not present in the table i.e. will be calculated
+	if [[ $totrows -ge $maxlines ]] ; then
+	    $sqlite3 -readonly $db $batchopt -box "SELECT * FROM (SELECT rowid AS '$table.#',* FROM '$table' WHERE rowid <= $maxlines OR rowid >= $((totrows-maxlines+1)))"
+	else
+	    # A hint: export _LINES=0 and you will get all output:
+	    $sqlite3 -readonly $db $batchopt -box "SELECT rowid AS '$table.#',* FROM '$table'"
+	    #	$sqlite3 -readonly $db $batchopt -box "PRAGMA full_column_names = ON; PRAGMA short_column_names = OFF;" "SELECT rowid as '$table.#',* FROM '$table'"
+	    #	$sqlite3 -readonly $db $batchopt -box "PRAGMA full_column_names = ON; PRAGMA short_column_names = OFF;" "SELECT * FROM '$table'"
+	fi
+    elif [[ "$TBLOUTPUT" = "2" ]] ; then
+	echo "$table;$(readlink -f $db);$(stat -c %s $db);$totrows"
+    fi
+    [[ $dash -eq 0 ]] || break
+done
+
+exit 0
+

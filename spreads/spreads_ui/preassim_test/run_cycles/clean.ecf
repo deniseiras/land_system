@@ -1,0 +1,210 @@
+%include <includes/head.h>
+
+#    DIRHOME=${ECF_HOME}/operation/model1/assimilation ; mkdir -p ${DIRHOME}
+
+export SCRIPTDIR="%ECF_HOME%/source/%CASE_NAME%/main_scripts"
+
+cd ${SCRIPTDIR}
+
+export nens=%NENS%
+donepath=$(echo %ECF_NAME% | sed 's/%TASK%//g')
+
+# Number of forecast members
+FENS=%FENS%
+
+export CESMEXP='cesm-exp'
+export case_name=%CASE_NAME%
+export CLONESROOT="/work/cmcc/${USER}/${CESMEXP}/${case_name}"
+export NTSLOTS=13
+export CASEROOT0001="$CLONESROOT/${case_name}_0001"
+export TMPROOT="/work/cmcc/${USER}/CMCC-CM/TMP"$(echo "${case_name}" | tr [:lower:] [:upper:])
+
+FORECAST=$(ecflow_client --query event /%CASE_NAME%/run_cycles:FORECAST)
+if [ $FORECAST == 'set' ];then
+    export FORECAST='TRUE'
+else
+    export FORECAST='FALSE'
+fi
+# sed -i "s@CASESCONTAINERF=/work/cmcc@CASESCONTAINERF=/users_home/cmcc@g" cases_clean_archive.sh
+
+# ./cases_forecast_clean.sh %CASE_NAME%
+./cases_clean_archive.sh %CASE_NAME% %NENS% $FORECAST %FENS%
+
+sleep 5
+
+./cases_forecast_archive.sh %CASE_NAME%
+
+
+#if [ %NCYCLES% -gt 1 ];then
+    # ./cases_forecast_clean.sh %CASE_NAME%
+#    nohup ./cases_clean_archive.sh %CASE_NAME% %NENS% $FORECAST %FENS% &
+    # nohup ./cases_clean_archive.sh %CASE_NAME% %NENS% $FORECAST %FENS% >/dev/null 2>&1 &
+#fi
+# # grep "1" check_assi.flag
+# # status=$?
+# # if [ $status -eq 0 ];then
+
+# #       # Cleanining phase
+# #       if [ ${CLEANA} == "TRUE" ];then
+# #          sh cases_clean_archive.sh ${case_name} ${nens} ${FORECAST} ${FENS}
+# #       fi
+# # else
+# #    echo " assimilation did not work properly, forecast and cleaning procedures are skipped"
+# # fi 
+
+# # This script is used after cases_assimilate, this means that all the members have finished correctly
+# # and DART filter did not crashed!
+
+# # Take the name of the experiment the ensemble size and the forecast flag
+# EXPNAME=${case_name}
+# NENS=${nens}
+# FORE=${FORECAST}
+# NFORE=${FENS}
+
+# echo -e "\n START CLEANING ARCHIVING PROCEDURE \n"
+
+# CASESCONTAINERF=/work/cmcc/${USER}/cesm-exp
+# CASESCONTAINER=/work/cmcc/${USER}/CMCC-CM
+# ARCHIVE=${CASESCONTAINER}/archive
+
+# # save only 2 days that means 8 cycles!
+# NSAVE=8
+
+# TMPDATE="savelist.txt"
+
+# echo " Forecast cases container dir = $CASESCONTAINERF"
+# echo " Container dir = $CASESCONTAINER"
+# echo " Archive dir = $ARCHIVE"
+# echo " Experiment name = $EXPNAME"
+# echo " Numeber of instances = $NENS"
+# echo " Forecast = $FORE"
+# echo " Forecast N = $NFORE"
+# echo " "
+
+
+# # If the cleaning is active we remove all the output not needed for a
+# # restart. Everithing that is not computed at 6H cycle: 21600, 43200,
+# # 64800, 00000 is removed. After that we check how many cycles we did.
+# echo "Removing intermediate output needed for the model interpolator:"
+# cdir=$(pwd)
+# echo "CDIR= ${cdir}"
+# inst=1
+# while [ $inst -le $NENS ]; do
+#    inst_string=$(printf _%%04d $inst)
+#    cd  ${CASESCONTAINER}/${EXPNAME}${inst_string}/run
+#    for i in $(ls ${EXPNAME}${inst_string}*); do
+#        # take the date
+#        dt=$(echo $i | cut -d'.' -f4)
+#        # take the seconds
+#        ds=$(echo $dt | cut -d'-' -f4)
+#        echo " processing: ${i}"
+#        #echo " dt=${dt}"
+#        echo " ds=${ds}" 
+#       # if (( 10#${ds}==21600 )) || (( 10#${ds}==64800 )) || (( 10#${ds}==43200 )) || ((10#${ds}==00000 )) # if 06Z 18Z
+#        if [ ${ds} -eq 21600 -o ${ds} -eq 64800 -o ${ds} -eq 43200 -o ${ds} -eq 00000 ];then
+#          # skip
+#          echo "skip: ${ds}"
+#        else
+#          echo " removing: $i"
+#          rm $i
+#        fi
+#    done
+#    inst=$(echo "${inst}+1" | bc )
+# done
+# cd ${cdir}
+
+
+# # some operation must be done independently by the forecast
+# # check the number of evolution cycles
+# ncyc=$(ls ${CASESCONTAINER}/${EXPNAME}_0001/run/*cam.i* | wc -l)
+# nmod=$(echo "(${ncyc}%%${NSAVE})" | bc)
+
+# echo " number of saved initial files in DA exp: ${ncyc}"
+# echo " number of saved initial files mod ${NSAVE}: ${nmod}"
+# echo " "
+
+
+# # cleaning condition
+# if [ ${nmod} -eq 1 ] && [ ${ncyc}>${NSAVE} ];then
+#      echo " need to clean"
+#      # list of dates to keep
+#      if [ -f "${TMPDATE}" ]; then  rm -rf ${TMPDATE};  fi
+#      ls ${CASESCONTAINER}/${EXPNAME}_0001/run/*cam.i* | tail -${NSAVE} | cut -d'.' -f4 >> ${TMPDATE}
+#      echo "  keeping:"
+#      cat ${TMPDATE}
+#      echo " "
+
+#      inst=1
+#      while [ $inst -le $NENS ];do
+#          echo -e " cleaning member $inst\n"
+#          # Following the CESM strategy for 'inst_string'
+#          inst_string=$(printf _%%04d $inst)
+
+
+#          for i in $(ls ${CASESCONTAINER}/${EXPNAME}${inst_string}/run/${EXPNAME}*);do
+#            # take the date
+#            dt=$(echo $i | cut -d'.' -f4)
+#            # take the seconds
+#            ds=$(echo $dt | cut -d'-' -f4)
+#            echo " processing: ${i}"
+#            echo " dt=${dt}"
+#            echo " ds=${ds}"
+#            if  ! grep -qxFe ${dt} ${TMPDATE} ;then
+#                 if [ $FORE = "TRUE" ];then # if forecast active
+                  
+#                   # we need to understand if the forecast started and all the members finished the simulation otherwise we can not remove
+#                   # potential i.c. for the forecast!
+#                   # we need to ask: is this file an I.C. for some forecast
+#                   if [ ${ds} -eq 21600 ] || [ ${ds} -eq 64800 ];then # if 06Z 18Z
+#                      # we have forecast only at 00Z and 12Z
+#                      echo " Deleting: $i"
+#                      rm -f "$i"
+#                   else
+#                      if [ ${inst} -le ${NFORE} ];then # if do not exceed the forecast members
+#                         # has the forecast finished?
+#                         echo " check if the forecast has finished"
+#                         grep "resubmit_num 0" ${CASESCONTAINERF}/${EXPNAME}-forecast/${EXPNAME}_f${inst_string}-${dt}/cesm.stderr*
+#                         status=$?
+#                         if [ $status -eq 0 ];then
+#                            echo " job finished! delete forecast i.c. and archive the forecast"
+#                            echo " Deleting: $i"
+#                            rm -f "$i"      
+#                            # delete dir forecast member
+#                            echo " remove ${CASESCONTAINER}/${EXPNAME}_f${inst_string}-${dt}/"
+#                            rm -r  ${CASESCONTAINER}/${EXPNAME}_f${inst_string}-${dt}/          
+#                            echo " remove ${CASESCONTAINERF}/${EXPNAME}-forecast/${EXPNAME}_f${inst_string}-${dt}"
+#                            rm -r  ${CASESCONTAINERF}/${EXPNAME}-forecast/${EXPNAME}_f${inst_string}-${dt}          
+#                         else
+#                            echo " forecast unfinished, do not delete i.c."
+#                         fi
+#                      else
+#                         # we do not have forecast for this member so clean with no mercy
+#                         echo " No forecast required for member ${inst} "    
+#                         echo " Deleting: $i"
+#                         rm -f "$i"
+#                      fi # end if do not exceed the forecast members
+#                   fi # end fi 06Z 18Z
+#                 else
+#                      echo " Deleting: $i"
+#                      rm -f "$i"
+#                 fi # end forecast active
+#            fi
+#          done
+
+#          #clean the logs
+#          echo " clean logs"
+#          rm -f ${CASESCONTAINER}/${EXPNAME}${inst_string}/run/*log*.gz
+
+#          inst=$(echo "${inst}+1" | bc )
+#      done
+
+#      rm  ${TMPDATE}
+   
+# else
+#      echo " no need to clean"
+# fi
+
+echo -e "\n END CLEANING ARCHIVING PROCEDURE \n"
+
+
+%include <includes/tail.h>

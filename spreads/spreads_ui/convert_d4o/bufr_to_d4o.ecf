@@ -1,0 +1,53 @@
+%include <includes/head.h>
+
+#===================================================
+# Take the id of the case.submit processes
+take_id()
+{
+
+  output=$($*)
+  echo $output | head -n1 | cut -d'<' -f2 | cut -d'>' -f1
+}
+
+
+cd %ECF_HOME%/convert_d4o
+start=$(date "+%%Y-%%m-%%d %%H:%%M")
+ecflow_client --label=info "START ${start}"
+ctrl=%DSTART%
+while [ ${ctrl} -le %DEND% ]; do
+
+    rm -rf %CASE_NAME%.err %CASE_NAME%.out
+
+    STOP=$(ecflow_client --query event /spreads_ui/convert_d4o:STOP)
+    if [ $STOP == 'set' ];then
+        break
+    fi
+
+    cp d4o_prep_all.bash %CASE_NAME%.bash
+    # "sh d4o_prep_all.bash %YYYYMM% %CASE_NAME% %TMPSLASH% %INPUTDIR% %WORKDIR% %NENS% %DSTART% %DEND% "
+
+    sed -i 's/\$1/%YYYYMM%/g' %CASE_NAME%.bash
+    sed -i 's/\$2/%CASE_NAME%/g' %CASE_NAME%.bash
+    sed -i 's@\$3@%TMPSLASH%@g' %CASE_NAME%.bash
+    sed -i 's@\$4@%INPUTDIR%@g' %CASE_NAME%.bash
+    sed -i 's@\$5@%WORKDIR%@g' %CASE_NAME%.bash
+    sed -i 's@\$6@%NENS%@g' %CASE_NAME%.bash
+    sed -i "s@\$7@${ctrl}@g" %CASE_NAME%.bash
+    sed -i 's@\$8@%DEND%@g' %CASE_NAME%.bash
+    sed -i 's@d4o_prep@%CASE_NAME%@g' %CASE_NAME%.bash
+    sed -i 's@prep@%CASE_NAME%@g' %CASE_NAME%.bash
+    sed -i 's@BUFR_LIST@%BUFR_LIST%@g' %CASE_NAME%.bash
+
+    ecflow_client --label=info "START ${start} / CYCLE ${ctrl} $(date '+%%Y-%%m-%%d %%H:%%M')"
+    jobid=$(take_id bsub <  %CASE_NAME%.bash)
+    sleep 5
+    bwait -w "ended(${jobid})"
+    ctrl=$(echo "${ctrl}+1" | bc)
+    ecflow_client --alter=add variable DSTART ${ctrl} /spreads_ui/convert_d4o
+
+done
+
+ecflow_client --label=info "START ${start} / FINISH $(date '+%%Y-%%m-%%d %%H:%%M')"
+
+
+%include <includes/tail.h>

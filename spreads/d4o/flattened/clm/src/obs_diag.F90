@@ -1,0 +1,1 @@
+../../shared/obs_diag.F90

@@ -1,0 +1,3 @@
+MODULE mpi
+INCLUDE 'mpif.h'
+END MODULE mpi

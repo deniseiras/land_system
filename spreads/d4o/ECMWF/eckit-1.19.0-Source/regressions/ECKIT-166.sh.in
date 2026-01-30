@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -eux
+
+cd @CMAKE_CURRENT_BINARY_DIR@
+
+exe="./ECKIT-166.x"
+
+if [ "@eckit_HAVE_MPI@" == "1" ] && [ "@MPIEXEC@" != "MPIEXEC-NOTFOUND" ]; then
+
+  @MPIEXEC@ @MPI_ARGS@ @MPIEXEC_NUMPROC_FLAG@ 1 $exe
+
+fi
+
+echo "OK"

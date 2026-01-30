@@ -1,0 +1,16 @@
+#!/bin/bash
+
+export SHELL=/bin/bash
+
+for f in ${*:-}
+do
+    echo "Traceback(s) found in $f :"
+    perl -pe 's/^\d+:\s*//' $f |\
+	grep -Pi '(^Image\s+PC\s+|^\S+\s+([0-9a-f]+)\s+\S+\s+(\d+|unknown)\s+(\S+)\s*$)' |\
+	perl -ne 'chomp; 
+	($x,$h)=split(/\s+/,$_);
+	$s=sprintf("addr2line -fpe %s %s 2>&1\n",$x,$h); 
+	if ($h eq "PC") { $c = -1; printf("---\n"); }
+	printf("[%3.3d] : %s : ",++$c,$_); 
+	($h eq "PC") ? printf("\n") : system($s)'
+done

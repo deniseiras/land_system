@@ -1,0 +1,544 @@
+#!/bin/bash
+#
+# ecperf-record by Sami Saarinen, HPCK, 2021
+
+if [[ -n "${ECPERF_RECORD_DISPLAY_CMD:-}" ]] && [[ "${ECPERF_RECORD_DISPLAY_CMD,,}" =~ ^(yes|1)$ ]] ; then
+    echo "+ ECPERF_RECORD_DISPLAY_CMD: $0 ${@:-}"
+fi
+
+set +eux
+
+shopt -s extglob # enables extglob i.e. @(x|y|z) regular expressions in bash
+
+if [[ $# -ge 1 ]] ; then
+    cmddir=$(dirname $(which $0))
+    cmd=$(basename $0)
+    cmdargs=${@:-}
+
+    lkey=""
+    #lkey+=" "
+    lkey+=" mpirank:"            # An explicit $rank for this MPI-rank
+    lkey+=" delay:"              # -d : PERF_DELAY
+    lkey+=" frequency: hz:"      # -F : PERF_FREQ or PERF_HZ
+    lkey+=" events:"             # -e : PERF_EVENTS
+    lkey+=" groups:"             # -g : PERF_GROUPS
+    lkey+=" graph:"              #    : PERF_GRAPH
+    lkey+=" keep nokeep"         #    : PERF_DATA_KEEP
+    lkey+=" maxsize:"            # -m : PERF_MAXSIZE
+    lkey+=" opts"                #    : PERF_OPTS
+    lkey+=" outputdirectory:"    # -o : PERF_RECORD_DIR
+    lkey+=" paranoid noparanoid" #    : PERF_BE_PARANOID
+    lkey+=" pin nopin"           #    : PERF_TRY2PIN
+    lkey+=" perf:"               #    : PERF_EXE
+    lkey+=" ranks:"              # -r : PERF_RANKS
+    lkey+=" allranks"            # -a : PERF_RANKS=all
+    lkey+=" thruenv nothruenv"   #    : PERF_THRU_ENV
+    lkey+=" maxstack: maxdepth:" #    : PERF_DEPTH
+
+    # If --ranks=node or --ranks=pernode or PERF_RANKS=node or pernode
+    lkey+=" ppn:"                # Number of processes (tasks) per node : used in absence derived from $SLURM_STEP_TASKS_PER_NODE (or $ppn)
+
+    # If --ranks=socket or --ranks=persocket or PERF_RANKS=socket or persocket
+    lkey+=" nsockets:"           # Number of sockets per node : in absence of this (or $nsockets) taken from lscpu-command
+
+    regex=""
+    for k in $lkey
+    do
+	if [[ $k =~ :$ ]] ; then
+	    regex+=" $k"
+	fi
+    done
+    regex=$(echo "$regex" | perl -pe 's/^\s+//; s/:/|/g; s/\s+//g; s/\|$//;')
+    unset k
+    
+    # make sure --long_arg value gets given with '=' i.e. --long_arg=value
+    fixed=$(echo "$@" | perl -pe 's/--('"$regex"')\s+(\S+)/--${1}=${2}/g')
+
+    LONG_FLAGS=""
+    for lf in $lkey
+    do
+	LONG_FLAGS+=" -l $lf"
+    done
+
+    FLAGS="ad:F:e:g:m:o:r:"
+
+    preargs=""
+    pre=1
+    post=""
+    for a in $fixed
+    do
+	if [[ $pre -eq 1 ]] ; then
+	    if [[ "$a" = "--" ]] ; then
+		pre=0
+	    elif [[ ! $a =~ ^- ]] ; then
+		x=$(which "$a" 2>/dev/null || :)
+		if [[ "$x" != "" ]] && [[ -x $x ]] ; then
+		    pre=0
+		    post="$a"
+		else
+		    preargs+=" $a"
+		fi
+	    else
+		preargs+=" $a"
+	    fi
+	else
+	    post+=" $a"
+	fi
+    done
+    unset a x
+
+    rc=0
+    OPTS=`getopt -q -o $FLAGS $LONG_FLAGS -- $preargs 2>/dev/null` || rc=$?
+
+    rc=0
+    args=$(echo "/$OPTS" | perl -pe 's%^/(.*?)\s+--\s+.*$%$1%')
+    opts="$args -- $post"
+    rc=0
+    
+    unset regex fixed preargs pre post args
+    
+    #OPTS=`getopt -o $FLAGS $LONG_FLAGS -- "$@"`
+    #if [[ $? -ne 0 ]] ; then
+    #	echo "${cmd}: (Error) Invalid or unsupported options" >&2
+    #	exit 1
+    #fi
+    #eval set -- "$OPTS"
+    
+    eval set -- "$opts"
+
+    if [[ -n "${ECPERF_RECORD_DISPLAY_CMD:-}" ]] && [[ "${ECPERF_RECORD_DISPLAY_CMD,,}" =~ ^(yes|1)$ ]] ; then
+	echo "+ ECPERF_RECORD_DISPLAY_CMD: $0 ${@:-}"
+    fi
+    
+    abort=no
+    while true
+    do
+	case "$1" in
+	    -a|--allranks) export PERF_RANKS=allranks; shift;;
+	    --mpirank) rank=$2; shift 2;;
+	    -d|--delay) export PERF_DELAY=$2; shift 2;;
+	    -F|--frequency) export PERF_FREQ=$2; shift 2;;
+	    --hz) export PERF_HZ=$2; shift 2;;
+	    -e|--events)
+		if [[ -z "${PERF_EVENTS:-}" ]] ; then
+		    export PERF_EVENTS=$2
+		else
+		    export PERF_EVENTS+=",$2"
+		fi
+		shift 2;;
+	    -g|--groups)
+		if [[ -z "${PERF_GROUPS:-}" ]] ; then
+		    export PERF_GROUPS=$2
+		else
+		    export PERF_GROUPS+=",$2"
+		fi
+		shift 2;;
+	    --graph) export PERF_GRAPH=$2; shift 2;;
+	    --keep) export PERF_DATA_KEEP=yes; shift;;
+	    --nokeep) export PERF_DATA_KEEP=no; shift;;
+	    -m|--maxsize) export PERF_MAXSIZE=$2; shift 2;;
+	    --maxsize|--maxdepth) export PERF_DEPTH=$2; shift 2;;
+	    --opts)
+		if [[ -z "${PERF_OPTS:-}" ]] ; then
+		    export PERF_OPTS=$2
+		else
+		    export PERF_OPTS+=" $2"
+		fi
+		shift 2;;
+	    -o|--outputdirectory) export PERF_RECORD_DIR=$2; shift 2;;
+	    --paranoid) export PERF_BE_PARANOID=yes; shift;;
+	    --noparanoid) export PERF_BE_PARANOID=no; shift;;
+	    --pin) export PERF_TRY2PIN=yes; shift;;
+	    --nopin) export PERF_TRY2PIN=no; shift;;
+	    --ppn) export ppn=$2; shift 2;;
+	    --nsockets) export nsockets=$2; shift 2;;
+	    --perf) export PERF_EXE=$2; shift 2;;
+	    -r|--ranks) export PERF_RANKS=$2; shift 2;;
+	    --thruenv) export PERF_THRU_ENV=yes; shift;;
+	    --nothruenv) export PERF_THRU_ENV=no; shift;;
+	    --) shift; break;;
+	    *) abort=yes; break;;
+	esac
+    done	  
+
+    if [[ "$abort" = "yes" ]] ; then
+	echo "${cmd}: (Error) Invalid or unsupported options" >&2
+	exit 2
+    fi
+    
+    re='^[0-9]+$' # regular expression for a (non-negative) integer
+    
+    if [[ -n "${rank:-}" ]] && [[ $rank =~ $re ]] ; then
+	:
+    elif [[ "${ALPS_APP_PE:-}" != "" ]] ; then
+	rank="$ALPS_APP_PE"
+    elif [[ "${OMPI_COMM_WORLD_RANK:-}" != "" ]] ; then
+	rank="$OMPI_COMM_WORLD_RANK"
+    elif [[ "${PMI_RANK:-}" != "" ]] ; then
+	rank="$PMI_RANK"
+    elif [[ "${PMIX_RANK:-}" != "" ]] ; then
+	rank="$PMIX_RANK"
+    else
+	rank="0"
+    fi
+    
+    if [[ "$rank" != "" ]] ; then
+	# "ecperf" executable, if available, could be more-modern/newer/faster than the version provided by the O/S
+	if [[ -x "${PERF_EXE:-}" ]] ; then
+	    perf=${PERF_EXE}
+	else
+	    perf=ecperf
+	fi
+	perf=$(which $perf 2>/dev/null || which perf 2>/dev/null || echo "perf")
+	export PERF_EXE=$perf
+	
+	# PERF_RANKS values for example: (strings case insensitive)
+	# -1                    : Any rank will be monitored
+	# all (or allranks)     : All ranks will be monitored
+	# pernode (or node)     : First rank on each node will be monitored
+	# persocket (or socket) : First rank on each socket will be monitored
+	# node0,node7;node10    : All the ranks on those nodes where SLURM_NODEID in {0,7,10}
+	# 3                     : yields to rank {3}
+	# 3-5                   : yields to ranks {3,4,5}
+	# 3,4,5                 : yields to ranks {3,4,5}, too
+	# 3:2:7                 : yields to ranks {3,5,7}
+	# ; 0 1-6,8;5:7/20:2:26 : yields to ranks {0,1,2,3,4,5,6,7,8,20,22,24,26}
+	
+	#pr="${PERF_RANKS:-0}"
+	#pr="${PERF_RANKS:-node0}"
+	pr="${PERF_RANKS:-persocket}"
+	#pr="${PERF_RANKS:-pernode}"
+	#pr="${PERF_RANKS:-all}"
+
+	# ${pr,,} means : use lowercase of $pr before comparison
+	
+	if [[ "${pr,,}" =~ ^(allranks|all)$ ]] ; then
+	    pr="-1" 
+	elif [[ "${pr,,}" =~ ^node[0-9]+ ]] ; then
+	    if [[ -z "${SLURM_NODEID:-}" ]] ; then
+		pr=""
+	    else
+		found=0
+		for x in $(echo "${pr,,}" | perl -pe 's%\s+%%g; s%[/;]%,%g; s%,+%,%g; s%$%\n%; s%,%\n%g' | perl -ne 'printf("%s\n",$1) if (m{^node(\d+)$})')
+		do
+		    if [[ "$x" = "${SLURM_NODEID}" ]] ; then
+			found=1
+			break
+		    fi
+		done
+		if [[ $found -eq 1 ]] ; then
+		    pr=$rank
+		else
+		    pr=""
+		fi
+		unset x found
+	    fi
+	elif [[ "${pr,,}" =~ ^(node|pernode)$ ]] ; then
+	    ppn=${ppn:-${SLURM_STEP_TASKS_PER_NODE:-1}}
+	    ppn=$(echo "$ppn" | perl -ne 'print $1 if (m/^(\d+)/)')
+	    #echo "ppn=$ppn"
+	    mod=$((rank % ppn))
+	    if [[ "$mod" = "0" ]] ; then
+		pr=$rank
+	    else
+		pr=""
+	    fi
+	elif [[ "${pr,,}" =~ ^(socket|persocket)$ ]] ; then
+	    #nsockets=${nsockets:-$(lscpu -e=SOCKET|sort -u|grep -Pc '^\s*[0-9]')}
+	    nsockets=${nsockets:-$(grep -P '^physical id\s*:' /proc/cpuinfo | sort -u | wc -l)}
+	    #echo "nsockets=$nsockets"
+	    ppn=${ppn:-${SLURM_STEP_TASKS_PER_NODE:-1}}
+	    ppn=$(echo "$ppn" | perl -ne 'print $1 if (m/^(\d+)/)')
+	    #echo "ppn=$ppn"
+	    mod=$((rank % ((ppn + nsockets - 1)/nsockets)))
+	    if [[ "$mod" = "0" ]] ; then
+		pr=$rank
+	    else
+		pr=""
+	    fi
+	fi
+
+	rc=0 # the default and means : "the rank will be monitored"
+	if [[ "$pr" = "" ]] ; then
+	    rc=1 # the rank will NOT be monitored
+	elif [[ "$pr" = "$rank" ]] || [[ "$pr" = "-1" ]] ; then
+	    rc=0
+	else
+	    echo "/$pr" |\
+		perl -pe 's%[,;/]% %g; s/^\s+//; s/\s+/\n/g;' |\
+		perl -ne 'if (m/^(\d+)$/) {printf("%d\n",$1)} 
+                          elsif (m/^(\d+)[-:](\d+)$/) {for ($1 .. $2) {printf("%d\n",$_)}}
+                          elsif (m/^(\d+):(\d+):(\d+)$/) {for (my $i = $1; $i <= $3; $i += $2) {printf("%d\n",$i)}}
+                         ' | sort -nu | egrep -q '^'"$rank"'$' || rc=$?
+	fi
+	
+	delay=${PERF_DELAY:-0} # delay in ms after starting the program before events gets enabled -- useful to filter out the initial startup phase
+	delay=$(echo "$delay" | perl -pe 's/ms//; s/(\d+)\s*s/1000*$1/e') # Expressed in millisecs; valid formats 1000ms, 1000 ms, 1s, 1 s lead to delay=1000 (millisecs that is)
+	export PERF_DELAY=$delay
+	
+	export PERF_GRAPH=${PERF_GRAPH:-"fp"} # (def) For correct results requires software to have been built with (usually non-default) -fno-omit-frame-pointer : however -g option implies -fno-omit-frame-pointer with Intel
+	#export PERF_GRAPH=${PERF_GRAPH:-"dwarf"} # The "dwarf" with slightly larger overhead, but no need to use -fno-omit-frame-pointer compilation option : e.g. GNU compilers
+	#export PERF_GRAPH=${PERF_GRAPH:-"lbr"} # On some newer Intel chips "lbr" available
+
+	if [[ -n "${PERF_FREQ:-}" ]] ; then
+	    export PERF_HZ=$PERF_FREQ
+	    unset PERF_FREQ
+	else
+	    export PERF_HZ=${PERF_HZ:-17} # can also be "max" ; please use *prime* numbers to avoid being multiple of (say) 100Hz or so
+	fi
+
+	PERF_HZ=$(echo "$PERF_HZ" | perl -pe 's/^\s*(\d+).*/$1/') # retain plain integer number
+	add=".freq-${PERF_HZ}Hz"
+	freqflag="--freq $PERF_HZ"
+
+	export PERF_PROFEXE=$(which "$1" 2>/dev/null || echo "$1") # The executable we are profiling
+	PERF_PROFEXE=$(readlink -f $PERF_PROFEXE)
+	
+	if [[ $rc -eq 0 ]] ; then
+	    export PERF_RECORD_DIR=${PERF_RECORD_DIR:-"$(pwd)/perf-record.dir/$(hostname -s)"}
+	    perfdata=$PERF_RECORD_DIR/exe-$(basename $PERF_PROFEXE).mpi-${rank}
+	    [[ -n "${OMP_NUM_THREADS:-}" ]] && perfdata+=".omp-${OMP_NUM_THREADS}"
+	    [[ -n "${SLURM_JOB_ID:-}" ]] && perfdata+=".jobid-${SLURM_JOB_ID}" # a kind of auto-tag to avoid mixing databases from multiple jobs
+	    perfdata+="$add"
+	    perfrpt=$perfdata
+	    perfdata+=".data"
+	    perfrpt+=".gz"
+	    mkdir -p $(dirname $perfdata) || :
+	    /bin/rm -f $perfdata $perfrpt
+	    go=1
+	else
+	    perfdata=/dev/null
+	    perfrpt=/dev/null
+	    go=0
+	fi
+
+	# Warning: If you pin too many events, then some of them won't score any events
+	#          If that seems to be the case, then export PERF_TRY2PIN=no
+	
+	export PERF_TRY2PIN=${PERF_TRY2PIN:-yes} # no
+	if [[ "${PERF_TRY2PIN,,}" =~ ^(yes|1)$ ]] ; then
+	    pin=":D"
+	else
+	    pin=""
+	fi
+
+	basic="{cycles,instructions}${pin},task-clock"
+
+	if [[ -z "${PERF_EVENTS:-}" ]] ; then
+	    #
+	    # Will take the PERF_GROUPS-path instead, initially :
+	    #
+	    # basic
+	    # hpc
+	    # dcache|cache
+	    # icache
+	    # dtlb|tlb
+	    # itlb
+	    # branch|branches
+	    # stall|stalls|stalled|stalled-cycles
+	    # flops
+	    # allflops|flopsall
+	    #
+	    #   or just raw events, like
+	    # task-clock
+	    # faults
+	    #
+
+	    export PERF_GROUPS="${PERF_GROUPS:-basic}"
+	    PERF_GROUPS=$(echo "$PERF_GROUPS" | perl -pe 's/\s+//g; s/;/,/g; s/[,]+/,/g; s/,$//;') # semicolons to commas
+
+	    e=""
+	    for x in $(echo "$PERF_GROUPS" | perl -pe 's/\s+//; s/[,]+/,/g; s/(,)?$/\n/; s/,/\n/g')
+	    do
+		# {...} creates an inseparable group : measure these events always together
+		# modifier ":D" tries to keep them in PMUs if possible 
+		
+		if [[ "${x,,}" =~ ^basic$ ]] ; then
+		    e+="${basic},"
+		elif [[ "${x,,}" =~ ^hpc$ ]] ; then # could be expensive
+		    e+="{cycles,instructions}${pin},"
+		    e+="{L1-dcache-loads,L1-dcache-load-misses},"
+		    e+="{cache-references,dTLB-load-misses},"
+		    e+="{branch-misses,branch-instructions},"
+		    # e+="fp_ret_sse_avx_ops.all," # dropped .. not very accurate ?
+		    e+="task-clock," # lowest priority
+		elif [[ "${x,,}" =~ ^(cache|dcache)$ ]] ; then
+		    e+="{L1-dcache-loads,L1-dcache-load-misses},"
+		elif [[ "${x,,}" =~ ^icache$ ]] ; then
+		    e+="{L1-icache-loads,L1-icache-load-misses},"
+		elif [[ "${x,,}" =~ ^(tlb|dtlb)$ ]] ; then
+		    e+="{cache-references,dTLB-load-misses},"
+		elif [[ "${x,,}" =~ ^itlb$ ]] ; then
+		    e+="{iTLB-loads,iTLB-load-misses},"
+		elif [[ "${x,,}" =~ ^(branch|branches|)$ ]] ; then
+		    e+="{branch-misses,branch-instructions},"
+		elif [[ "${x,,}" =~ ^(idle|stall|stalls|stalled|stalled-cycles)$ ]] ; then
+		    e+="{stalled-cycles-backend,stalled-cycles-frontend},"
+		elif [[ "${x,,}" =~ ^flops$ ]] ; then
+		    e+="fp_ret_sse_avx_ops.all,"
+		elif [[ "${x,,}" =~ ^(allflops|flopsall)$ ]] ; then
+		    e+="{fp_ret_sse_avx_ops.all,fp_ret_sse_avx_ops.mult_flops,"
+		    e+="fp_ret_sse_avx_ops.add_sub_flops,fp_ret_sse_avx_ops.div_flops,"
+		    e+="fp_ret_sse_avx_ops.mac_flops},"
+		elif [[ "${x,,}" =~ ^l3$ ]] ; then
+		    # TBD: check LLC i.e. Last Level Caches 
+		    # cannot be sampled -- ignored; ok but "perf stat" with -a (system wide) ok ???!
+		    #e+="l3_accesses,l3_misses,"
+		    :
+		elif [[ "$x" = "" ]] ; then
+		    :
+		else
+		    #echo "Unrecognized/unsupported group '$x' -- ignored"
+		    # Otherwise added as plain events e.g. "uops_retired" "faults" etc. see perf list
+		    e+="${x}," # no-lowercase but literal case
+		fi
+	    done
+	    unset x
+
+	    export PERF_EVENTS=$(echo "$e" | perl -pe 's/,$//')
+	    unset e
+	else	    
+	    export PERF_EVENTS=${PERF_EVENTS:-"${basic}"}
+	    PERF_EVENTS=$(echo "$PERF_EVENTS" | perl -pe 's/\s+//g; s/;/,/g; s/[,]+/,/g; s/,$//;') # semicolons to commas
+	fi
+
+	if [[ X"$pin" = X ]] ; then
+	    PERF_EVENTS=$(echo "$PERF_EVENTS" | perl -pe 's/[{}]//g') # no curly brackets
+	fi
+	
+	# Maximum $perfdata file size / task ; when this is reached, the application will crash rather than carrying on by disabling events
+	export PERF_MAXSIZE=${PERF_MAXSIZE:-"100G"}
+
+	# Maximum call stack depth limit when parsing the callchain (in $perf scripts) -- anything beyond the specified depth will be ignored
+	export PERF_DEPTH=${PERF_DEPTH:-127}
+	
+	# Additional options for perf-record
+	export PERF_OPTS=${PERF_OPTS:-}
+	
+	export PERF_THRU_ENV=${PERF_THRU_ENV:-no}
+	if [[ "${PERF_THRU_ENV,,}" =~ ^(yes|1)$ ]] ; then
+	    export PERF_PREFIX_CMD="env LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
+	else
+	    unset PERF_PREFIX_CMD
+	fi
+
+	# Keep $perfdata after $perfrpt has been created ?
+	export PERF_DATA_KEEP=${PERF_DATA_KEEP:-no}
+	
+	export PERF_BE_PARANOID=${PERF_BE_PARANOID:-yes}
+	if [[ "${PERF_BE_PARANOID,,}" =~ ^(yes|1)$ ]] ; then
+	    rc=0
+	    # Is this Bologna compute node {aa|ab|ac|ad}<digit>-<4-digits> ?
+	    # If yes, then try to reset paranoid & kptr to -1 and 0
+	    hostname -s | grep -Pq '^a([a-d])\d+-\d{4}$' || rc=$?
+	    if [[ $rc -eq 0 ]] ; then
+		/usr/bin/sudo /usr/local/root/SUDO/ec_enable_perf -p -1 -k 0 || :
+	    fi
+	fi
+	
+	rc=0
+	if [[ "$rank" = "0" ]] ; then
+	    echo "PERF_PROFEXE=$PERF_PROFEXE"
+	    echo "PERF_EXE=$PERF_EXE"
+	    echo "PERF_RECORD_DIR=$PERF_RECORD_DIR"
+	    echo "PERF_DELAY=$PERF_DELAY"
+	    #echo "PERF_RANKS=$pr"
+	    echo "PERF_RANKS=$PERF_RANKS"
+	    echo "PERF_HZ=${PERF_HZ:-undef}"
+	    echo "PERF_GROUPS=${PERF_GROUPS:-}"
+	    echo "PERF_EVENTS=${PERF_EVENTS:-}"
+	    echo "PERF_DEPTH=$PERF_DEPTH"
+	    echo "PERF_MAXSIZE=$PERF_MAXSIZE"
+	    echo "PERF_OPTS=$PERF_OPTS"
+	    echo "PERF_THRU_ENV=$PERF_THRU_ENV"
+	    echo "PERF_TRY2PIN=$PERF_TRY2PIN"
+	    echo "PERF_PREFIX_CMD=${PERF_PREFIX_CMD:-}"
+	    echo "PERF_GRAPH=$PERF_GRAPH"
+	    echo "PERF_DATA_KEEP=$PERF_DATA_KEEP"
+	    more /proc/sys/kernel/perf_event_paranoid /proc/sys/kernel/kptr_restrict /proc/sys/kernel/nmi_watchdog < /dev/null | cat
+	    set -x
+	    env COLUMNS=132 lscpu || :
+	    hostname
+	    uname -a
+	    uptime
+	    cat /etc/os-release || :
+	    cat /proc/cmdline || :
+	    pwd
+	fi
+
+	$perf record \
+	      --clockid CLOCK_MONOTONIC \
+	      --delay ${PERF_DELAY} \
+	      --max-size=${PERF_MAXSIZE} \
+	      --call-graph=${PERF_GRAPH} \
+	      $freqflag \
+	      -e ${PERF_EVENTS} \
+	      -s --sample-cpu \
+	      ${PERF_OPTS} \
+	      -o $perfdata \
+	      -- ${PERF_PREFIX_CMD:-} "$@" || rc=$?
+	
+	set +xeu
+	if [[ $go -eq 1 ]] ; then
+	    _exe=$(basename $PERF_PROFEXE)
+
+	    rptline="$perf script"
+	    rptline+=" -i $perfdata"
+	    rptline+=" --header -I --reltime --ns"
+	    rptline+=" --inline --full-source-path"
+	    rptline+=" -F tid,cpu,time,period,event,ip,sym,symoff,dso,srcline"
+	    rptline+=" --show-task-events --show-mmap-events"
+	    rptline+=" --demangle --demangle-kernel"
+	    rptline+=" --max-stack=${PERF_DEPTH}"
+	    rptline+=" -c ${_exe}"
+	    
+	    [[ "$rank" = "0" ]] && echo "+ $rptline"
+	    {
+		time $rptline 2>/dev/null
+		# stdbuf --output=L --error=L # wrong syntax : needs cmd to be executed
+		metadata="<METADATA>"
+		echo "# $metadata begin"
+		echo "# rptline : $rptline"
+		{
+		    export PS4="$metadata "
+		    set -x
+		    date
+		    ls -l $perfdata
+		    ls -lh $perfdata
+		    hostname
+		    cat /etc/os-release
+		    cat /proc/cmdline
+		    cat /proc/meminfo
+		    cat /proc/buddyinfo
+		    find /sys/devices/*/events -type f -ls
+		    uname -a
+		    uptime
+		    cat /proc/sys/kernel/perf_event_paranoid
+		    cat /proc/sys/kernel/kptr_restrict
+		    cat /proc/sys/kernel/nmi_watchdog
+		    $perf --version --build-options
+		    env COLUMNS=132 lscpu
+		    getconf -a
+		    printenv
+		} 2>&1 | perl -pe 's/^/# /'
+		echo "# $metadata end"
+	    } | gzip -c > $perfrpt
+
+	    if [[ "${PERF_DATA_KEEP,,}" =~ ^(yes|1)$ ]] ; then
+		echo "Keeping $perfdata" >&2
+	    else
+		/bin/rm -fv $perfdata
+	    fi
+	    echo "Performance report in $perfrpt" >&2
+	    echo "Run performance analysis with ecperf-digest $perfrpt [options]" >&2
+	fi
+	
+	exit $rc
+    fi
+    # Running w/o perf
+    exec "$@"
+else
+    echo "Usage: $0 executable_to_run [args]" >&2
+fi
+
+exit 1

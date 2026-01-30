@@ -1,0 +1,2877 @@
+ Copyright (C) 1995-2019 - All Rights Reserved
+ University Corporation for Atmospheric Research
+ NCAR Command Language Version 6.6.2
+ The use of this software is governed by a License Agreement.
+ See http://www.ncl.ucar.edu/ for more details.
+
+
+Variable: time
+Type: double
+Total Size: 8 bytes
+            1 values
+Number of Dimensions: 1
+Dimensions and sizes:	[time | 1]
+Coordinates: 
+            time: [   0..   0]
+Number Of Attributes: 2
+  calendar :	gregorian
+  units :	days since 2017-01-15 00:00:00
+(0)	   0
+
+Variable: time
+Type: double
+Total Size: 8 bytes
+            1 values
+Number of Dimensions: 1
+Dimensions and sizes:	[time | 1]
+Coordinates: 
+            time: [   0..   0]
+Number Of Attributes: 2
+  calendar :	gregorian
+  units :	days since 2017-01-15 00:00:00
+
+
+Variable: plevs_cam
+Type: double
+Total Size: 560 bytes
+            70 values
+Number of Dimensions: 1
+Dimensions and sizes:	[70]
+Coordinates: 
+(0)	6.037783931711616e-06
+(1)	9.954649884846845e-06
+(2)	1.641247458472606e-05
+(3)	2.705951034176479e-05
+(4)	4.461353318241379e-05
+(5)	7.355671353614923e-05
+(6)	0.0001212753479471473
+(7)	0.0001999459439474549
+(8)	0.0003296529975074236
+(9)	0.0005435074335053969
+(10)	0.0008961023177960215
+(11)	0.001477417408466408
+(12)	0.002435834431366857
+(13)	0.004029967127280543
+(14)	0.006642064343395759
+(15)	0.01095440534390946
+(16)	0.01813067389502976
+(17)	0.02994200091961829
+(18)	0.04936424951483787
+(19)	0.08094959084701259
+(20)	0.1299408004924771
+(21)	0.2006955565957469
+(22)	0.2958213295132737
+(23)	0.4154996778815985
+(24)	0.5606650983681902
+(25)	0.739976219862001
+(26)	0.9683748176903464
+(27)	1.260977319616359
+(28)	1.633817049209028
+(29)	2.106356196047273
+(30)	2.702101492090151
+(31)	3.449138428783044
+(32)	4.380794429220259
+(33)	5.53645013878122
+(34)	6.962197054643184
+(35)	8.711521512363106
+(36)	10.84624174749479
+(37)	13.43719188217074
+(38)	16.56432334380224
+(39)	20.31748838350177
+(40)	24.79722689650953
+(41)	30.11446310952306
+(42)	36.39025226980448
+(43)	43.75526883453131
+(44)	52.34930645301938
+(45)	62.32026472315192
+(46)	74.70972029864788
+(47)	88.96290628612041
+(48)	104.6602492779493
+(49)	123.1273548938334
+(50)	144.8529612645507
+(51)	170.4120058119297
+(52)	200.4808918293566
+(53)	235.8553910050541
+(54)	277.4716573767364
+(55)	326.4310470819473
+(56)	384.029215618968
+(57)	451.7904775589705
+(58)	531.5081079788506
+(59)	617.7058178409934
+(60)	700.3774929083884
+(61)	773.3287393674254
+(62)	831.5295274425298
+(63)	870.7087184898555
+(64)	898.5515121556818
+(65)	924.5089260549285
+(66)	948.368977651
+(67)	969.9327907694969
+(68)	989.0176376875024
+(69)	1005.459324359894
+
+
+Variable: plevE
+Type: double
+Total Size: 1096 bytes
+            137 values
+Number of Dimensions: 1
+Dimensions and sizes:	[137]
+Coordinates: 
+(0)	1.000182509422302
+(1)	2.551303029060364
+(2)	3.884162425994873
+(3)	5.74703049659729
+(4)	8.287471771240234
+(5)	11.67619514465332
+(6)	16.10717725753784
+(7)	21.79732418060303
+(8)	28.98571395874023
+(9)	37.93247604370117
+(10)	48.9173526763916
+(11)	62.2380199432373
+(12)	78.20822906494141
+(13)	97.15581130981445
+(14)	119.4206237792969
+(15)	145.3524551391602
+(16)	175.3089828491211
+(17)	209.6537551879883
+(18)	248.754264831543
+(19)	292.9801635742188
+(20)	342.7015533447266
+(21)	398.2874298095703
+(22)	460.1042633056641
+(23)	528.5147399902344
+(24)	603.8766784667969
+(25)	686.5420227050781
+(26)	776.8559875488281
+(27)	875.1563720703125
+(28)	981.7730407714844
+(29)	1097.027404785156
+(30)	1221.231994628906
+(31)	1354.690246582031
+(32)	1497.696533203125
+(33)	1650.535949707031
+(34)	1813.484130859375
+(35)	1986.8076171875
+(36)	2170.763793945312
+(37)	2365.60107421875
+(38)	2571.559326171875
+(39)	2788.869750976562
+(40)	3017.75537109375
+(41)	3258.431518554688
+(42)	3511.10595703125
+(43)	3775.979370117188
+(44)	4053.210571289062
+(45)	4342.8740234375
+(46)	4644.9833984375
+(47)	4959.522216796875
+(48)	5286.44287109375
+(49)	5625.667724609375
+(50)	5977.20947265625
+(51)	6341.510498046875
+(52)	6719.40869140625
+(53)	7111.871807876855
+(54)	7519.984989295948
+(55)	7944.958712347449
+(56)	8388.157322800409
+(57)	8851.115749114222
+(58)	9335.267908397102
+(59)	9841.628742861474
+(60)	10370.98818408413
+(61)	10924.15294980456
+(62)	11501.94754608488
+(63)	12105.21381106065
+(64)	12734.81038384046
+(65)	13391.61313848523
+(66)	14076.51511314046
+(67)	14790.42719718721
+(68)	15534.27592675015
+(69)	16309.0040196944
+(70)	17115.57265346497
+(71)	17954.95992578566
+(72)	18828.15815197676
+(73)	19736.1763972491
+(74)	20680.03877778351
+(75)	21660.78376122564
+(76)	22679.46750955284
+(77)	23737.16131896526
+(78)	24834.94778112322
+(79)	25973.92551697791
+(80)	27155.20911842585
+(81)	28379.92200699449
+(82)	29649.20386311412
+(83)	30964.20772141218
+(84)	32326.09422680736
+(85)	33736.0389803499
+(86)	35195.22928345203
+(87)	36704.86295667291
+(88)	38266.14713817835
+(89)	39880.29926967621
+(90)	41548.54511028528
+(91)	43272.11730390787
+(92)	45052.25985884666
+(93)	46890.22635364532
+(94)	48787.276943326
+(95)	50742.19316744804
+(96)	52748.32257640362
+(97)	54793.84094387293
+(98)	56866.83891171217
+(99)	58957.35520327091
+(100)	61055.1560189724
+(101)	63149.94157105684
+(102)	65231.54520779848
+(103)	67290.12930655479
+(104)	69316.36005079746
+(105)	71301.55493867397
+(106)	73237.82896625996
+(107)	75118.18672311306
+(108)	76936.58029973507
+(109)	78687.96791493893
+(110)	80368.31124281883
+(111)	81974.54613268375
+(112)	83504.5687417984
+(113)	84957.15723741055
+(114)	86331.89452540874
+(115)	87629.10698354244
+(116)	88849.76784300804
+(117)	89995.39773523808
+(118)	91067.98796188831
+(119)	92069.91221904755
+(120)	93003.84349453449
+(121)	93872.68156766891
+(122)	94679.48362886906
+(123)	95427.41782271862
+(124)	96119.69606649876
+(125)	96759.52898824215
+(126)	97350.09701502323
+(127)	97894.52574706078
+(128)	98395.85776519775
+(129)	98857.02100765705
+(130)	99280.828384161
+(131)	99669.96660482883
+(132)	100026.9890868664
+(133)	100354.299487114
+(134)	100654.1640071869
+(135)	100928.7214887142
+(136)	101179.9655437469
+
+Variable: U70
+Type: float
+Total Size: 72777600 bytes
+            18194400 values
+Number of Dimensions: 3
+Dimensions and sizes:	[70] x [361] x [720]
+Coordinates: 
+warning:Right hand side has no coordinate variable can not delete coordinate variable of a file, use (/ .. /) to avoid this message
+warning:Right hand side has no coordinate variable can not delete coordinate variable of a file, use (/ .. /) to avoid this message
+warning:Right hand side has no coordinate variable can not delete coordinate variable of a file, use (/ .. /) to avoid this message
+warning:["Execute.c":8637]:Execute: Error occurred at or near line 113 in file regrid.ncl
+
+(0)	PIPPOPAPPO
+(0)	------------------------------------------------------------
+(0)	Will be regridding to the SE ne60np4 grid
+(0)	------------------------------------------------------------
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 160.193
+(0)	                          maxSrcData: 208.826
+(0)	                          minDstData: 160.199
+(0)	                          maxDstData: 208.816
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0491962 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  _FillValue :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  missing_value :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 160.193
+(0)	                          maxSrcData: 208.826
+(0)	                          minDstData: 160.199
+(0)	                          maxDstData: 208.816
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0438452 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 160.193
+(0)	                          maxSrcData: 208.826
+(0)	                          minDstData: 160.199
+(0)	                          maxDstData: 208.816
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0439148 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 160.193
+(0)	                          maxSrcData: 208.826
+(0)	                          minDstData: 160.199
+(0)	                          maxDstData: 208.816
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.043313 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 160.193
+(0)	                          maxSrcData: 208.826
+(0)	                          minDstData: 160.199
+(0)	                          maxDstData: 208.816
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0435848 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 160.193
+(0)	                          maxSrcData: 208.826
+(0)	                          minDstData: 160.199
+(0)	                          maxDstData: 208.816
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0435619 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 160.193
+(0)	                          maxSrcData: 208.826
+(0)	                          minDstData: 160.199
+(0)	                          maxDstData: 208.816
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0433989 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 160.193
+(0)	                          maxSrcData: 208.826
+(0)	                          minDstData: 160.199
+(0)	                          maxDstData: 208.816
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0437517 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 160.193
+(0)	                          maxSrcData: 208.826
+(0)	                          minDstData: 160.199
+(0)	                          maxDstData: 208.816
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0439034 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 160.193
+(0)	                          maxSrcData: 208.826
+(0)	                          minDstData: 160.199
+(0)	                          maxDstData: 208.816
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0435276 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 160.193
+(0)	                          maxSrcData: 208.826
+(0)	                          minDstData: 160.199
+(0)	                          maxDstData: 208.816
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0432401 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 160.193
+(0)	                          maxSrcData: 208.826
+(0)	                          minDstData: 160.199
+(0)	                          maxDstData: 208.816
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0432487 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 160.193
+(0)	                          maxSrcData: 208.826
+(0)	                          minDstData: 160.199
+(0)	                          maxDstData: 208.816
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0433841 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 160.193
+(0)	                          maxSrcData: 208.826
+(0)	                          minDstData: 160.199
+(0)	                          maxDstData: 208.816
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.044261 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 160.193
+(0)	                          maxSrcData: 208.826
+(0)	                          minDstData: 160.199
+(0)	                          maxDstData: 208.816
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0442219 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 161.335
+(0)	                          maxSrcData: 209.784
+(0)	                          minDstData: 161.364
+(0)	                          maxDstData: 209.784
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.043889 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 163.846
+(0)	                          maxSrcData: 217.433
+(0)	                          minDstData: 163.85
+(0)	                          maxDstData: 217.432
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0436454 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 166.469
+(0)	                          maxSrcData: 226.086
+(0)	                          minDstData: 166.469
+(0)	                          maxDstData: 226.077
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0440392 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 183.668
+(0)	                          maxSrcData: 234.435
+(0)	                          minDstData: 183.673
+(0)	                          maxDstData: 234.42
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0439544 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 195.553
+(0)	                          maxSrcData: 240.406
+(0)	                          minDstData: 195.554
+(0)	                          maxDstData: 240.384
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0440822 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 204.251
+(0)	                          maxSrcData: 243.374
+(0)	                          minDstData: 204.385
+(0)	                          maxDstData: 243.366
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0442634 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 209.235
+(0)	                          maxSrcData: 245.561
+(0)	                          minDstData: 209.244
+(0)	                          maxDstData: 245.537
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0435891 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 213.745
+(0)	                          maxSrcData: 253.686
+(0)	                          minDstData: 213.789
+(0)	                          maxDstData: 253.642
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.043551 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 220.769
+(0)	                          maxSrcData: 264.866
+(0)	                          minDstData: 220.78
+(0)	                          maxDstData: 264.827
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0434737 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 225.752
+(0)	                          maxSrcData: 274.936
+(0)	                          minDstData: 225.774
+(0)	                          maxDstData: 274.918
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0439172 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 225.376
+(0)	                          maxSrcData: 281.846
+(0)	                          minDstData: 225.542
+(0)	                          maxDstData: 281.824
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0433636 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 226.157
+(0)	                          maxSrcData: 287.488
+(0)	                          minDstData: 226.244
+(0)	                          maxDstData: 287.409
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0430617 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 225.198
+(0)	                          maxSrcData: 290.119
+(0)	                          minDstData: 225.315
+(0)	                          maxDstData: 290.079
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0438147 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 226.017
+(0)	                          maxSrcData: 289.3
+(0)	                          minDstData: 226.083
+(0)	                          maxDstData: 289.292
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0440292 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 229.087
+(0)	                          maxSrcData: 286.881
+(0)	                          minDstData: 229.131
+(0)	                          maxDstData: 286.839
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0443449 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 223.209
+(0)	                          maxSrcData: 279.658
+(0)	                          minDstData: 223.386
+(0)	                          maxDstData: 279.635
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0439773 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 214.896
+(0)	                          maxSrcData: 273.769
+(0)	                          minDstData: 214.905
+(0)	                          maxDstData: 273.63
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0437522 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 209.782
+(0)	                          maxSrcData: 266.579
+(0)	                          minDstData: 209.872
+(0)	                          maxDstData: 266.533
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0434718 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 206.39
+(0)	                          maxSrcData: 259.798
+(0)	                          minDstData: 206.463
+(0)	                          maxDstData: 259.783
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0437851 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 200.319
+(0)	                          maxSrcData: 258.607
+(0)	                          minDstData: 200.404
+(0)	                          maxDstData: 258.406
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0437131 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 195.149
+(0)	                          maxSrcData: 254.067
+(0)	                          minDstData: 195.171
+(0)	                          maxDstData: 253.93
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0434909 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 191.943
+(0)	                          maxSrcData: 247.979
+(0)	                          minDstData: 191.958
+(0)	                          maxDstData: 247.788
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0436139 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 190.643
+(0)	                          maxSrcData: 245.638
+(0)	                          minDstData: 190.653
+(0)	                          maxDstData: 245.579
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0436497 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 189.255
+(0)	                          maxSrcData: 241.515
+(0)	                          minDstData: 189.292
+(0)	                          maxDstData: 241.492
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0438933 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 189.275
+(0)	                          maxSrcData: 239.71
+(0)	                          minDstData: 189.295
+(0)	                          maxDstData: 239.515
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0436368 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 189.874
+(0)	                          maxSrcData: 238.043
+(0)	                          minDstData: 189.932
+(0)	                          maxDstData: 238.02
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0441227 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 190.87
+(0)	                          maxSrcData: 237.117
+(0)	                          minDstData: 190.879
+(0)	                          maxDstData: 237.113
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0440102 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 191.752
+(0)	                          maxSrcData: 236.015
+(0)	                          minDstData: 191.76
+(0)	                          maxDstData: 236.015
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0437822 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 193.113
+(0)	                          maxSrcData: 235.723
+(0)	                          minDstData: 193.116
+(0)	                          maxDstData: 235.713
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.044301 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 194.589
+(0)	                          maxSrcData: 235.747
+(0)	                          minDstData: 194.615
+(0)	                          maxDstData: 235.732
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.043786 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 192.925
+(0)	                          maxSrcData: 235.008
+(0)	                          minDstData: 193.051
+(0)	                          maxDstData: 235.006
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0439215 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 187.142
+(0)	                          maxSrcData: 234.321
+(0)	                          minDstData: 187.465
+(0)	                          maxDstData: 234.28
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.043869 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 184.403
+(0)	                          maxSrcData: 233.534
+(0)	                          minDstData: 184.456
+(0)	                          maxDstData: 233.534
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0441408 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 186.84
+(0)	                          maxSrcData: 233.805
+(0)	                          minDstData: 186.929
+(0)	                          maxDstData: 233.802
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0440998 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 192.703
+(0)	                          maxSrcData: 232.952
+(0)	                          minDstData: 192.731
+(0)	                          maxDstData: 232.941
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0440598 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 198.858
+(0)	                          maxSrcData: 233.496
+(0)	                          minDstData: 199.026
+(0)	                          maxDstData: 233.469
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0440283 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 201.063
+(0)	                          maxSrcData: 234.463
+(0)	                          minDstData: 201.126
+(0)	                          maxDstData: 234.427
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0439596 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 201.852
+(0)	                          maxSrcData: 235.581
+(0)	                          minDstData: 201.909
+(0)	                          maxDstData: 235.575
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0441761 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 204.187
+(0)	                          maxSrcData: 237.942
+(0)	                          minDstData: 204.255
+(0)	                          maxDstData: 237.771
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0439596 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 206.07
+(0)	                          maxSrcData: 242.358
+(0)	                          minDstData: 206.212
+(0)	                          maxDstData: 242.351
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0440245 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 210.527
+(0)	                          maxSrcData: 251.059
+(0)	                          minDstData: 210.533
+(0)	                          maxDstData: 251.016
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0440645 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 213.892
+(0)	                          maxSrcData: 259.704
+(0)	                          minDstData: 213.907
+(0)	                          maxDstData: 259.678
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0438547 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 219.657
+(0)	                          maxSrcData: 267.349
+(0)	                          minDstData: 219.706
+(0)	                          maxDstData: 267.305
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0440845 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 222.914
+(0)	                          maxSrcData: 276.159
+(0)	                          minDstData: 222.916
+(0)	                          maxDstData: 276.102
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0439501 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 227.858
+(0)	                          maxSrcData: 282.916
+(0)	                          minDstData: 227.86
+(0)	                          maxDstData: 282.915
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0440454 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 232.127
+(0)	                          maxSrcData: 288.345
+(0)	                          minDstData: 232.173
+(0)	                          maxDstData: 288.247
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0439825 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 234.842
+(0)	                          maxSrcData: 291.144
+(0)	                          minDstData: 235.028
+(0)	                          maxDstData: 291.106
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0439415 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 236.821
+(0)	                          maxSrcData: 295.851
+(0)	                          minDstData: 236.981
+(0)	                          maxDstData: 295.653
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0442829 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 237.757
+(0)	                          maxSrcData: 299.028
+(0)	                          minDstData: 237.955
+(0)	                          maxDstData: 298.786
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0439215 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 238.236
+(0)	                          maxSrcData: 300.916
+(0)	                          minDstData: 238.568
+(0)	                          maxDstData: 300.865
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0441275 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 238.945
+(0)	                          maxSrcData: 302.898
+(0)	                          minDstData: 239.15
+(0)	                          maxDstData: 302.541
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0441465 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 239.282
+(0)	                          maxSrcData: 305.133
+(0)	                          minDstData: 239.84
+(0)	                          maxDstData: 304.649
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0441551 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 237.545
+(0)	                          maxSrcData: 306.978
+(0)	                          minDstData: 237.89
+(0)	                          maxDstData: 306.565
+(0)	ESMF_copy_varcoords: detected a rectilinear grid.
+(0)	      If you know your grid is rectilinear, then set
+(0)	      opt@DstGridType = "rectilinear" to
+(0)	      prevent this potentially slow test.
+(0)	=====> CPU Elapsed Time: ESMF_regrid_with_weights: 0.0439892 seconds <=====
+
+Variable: var_regrid
+Type: float
+Total Size: 221184 bytes
+            55296 values
+Number of Dimensions: 2
+Dimensions and sizes:	[lat | 192] x [lon | 288]
+Coordinates: 
+            lat: [ -90..  90]
+            lon: [   0..358.75]
+Number Of Attributes: 3
+  missing_value :	9.96921e+36
+  remap :	remapped via ESMF_regrid_with_weights: Bilinear
+  _FillValue :	9.96921e+36
+(0)	ESMF_regrid_with_weights: regridding using interpolation weights ...
+(0)	ESMF_regrid_with_weights: Source Grid:
+(0)	                          rank:      2
+(0)	                          dimensions: 361 720
+(0)	                          original source rank: 2
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/359.5
+(0)	ESMF_regrid_with_weights: Destination Grid:
+(0)	                          dimensions: 192 288
+(0)	                          latitude min/max: -90/90
+(0)	                          longitude min/max:0/358.75
+(0)	ESMF_regrid_with_weights: retrieving interpolation weights ...
+(0)	ESMF_regrid_with_weights: calling sparse_matrix_mult to apply weights...
+(0)	ESMF_regrid_with_weights: dstData
+(0)	                          Dimensions: 192 288
+(0)	                          minSrcData: 236.14
+(0)	                          maxSrcData: 308.67
+(0)	                          minDstData: 236.439
+(0)	                          maxDstData: 308.078
+(0)	ESMF_copy_var

@@ -1,0 +1,263 @@
+# For SPREADS
+
+# FAILCODE :
+const monthly = 1;
+const constant = 2;
+const experimental = 3;
+const use_emiskf_only = 4;
+# ODB constants
+const mdi = -888888.0;
+# OBSTYP :
+const synop = 1;
+const airep = 2;
+const satob = 3;
+const dribu = 4;
+const temp = 5;
+const pilot = 6;
+const satem = 7;
+const paob = 8;
+const scatt = 9;
+const limb = 10;
+const gbrad = 14;
+const ralt = 12;
+const allsky=16;
+const raingg = 17;
+const lidar = 15;
+# CODTYP :
+const satem500 = 86;
+const satem250 = 186;
+const rad1c = 210;
+const rtovs = 211;
+const tovs = 212;
+const ssmi = 215;
+const meris = 214;
+const am_profiler = 34;
+const jp_profiler = 131;
+const eu_profiler = 134;
+const templand = 35;
+const tempship = 36;
+const dropsonde = 135;
+const reo3 = 206;
+const metar = 140;
+const pgps = 110;
+const radar_rr = 3;
+# SENSOR :
+const hirs = 0;
+const msu = 1;
+const ssu = 2;
+const amsua = 3;
+const amsub = 4;
+const ssmi_sensor = 6;
+const vtpr1 = 7;
+const vtpr2 = 8;
+const tmi = 9;
+const ssmis = 10;
+const airs = 11;
+const mhs = 15;
+const iasi = 16;
+const cris = 27;
+const amsre = 17;
+const amsr2 = 63;
+const atms = 19;
+const meteosat = 20;
+const msg = 21;
+const goesimg = 22;
+const mtsatimg = 24;
+const windsat = 30;
+const mwts = 40;
+const mwhs = 41;
+const iras = 42;
+const mwri = 43;
+const envisat = 60;
+const gmi = 71;
+const mwts2 = 72;
+const mwhs2 = 73;
+const ahi = 56;
+const saphir = 34;
+const abi = 44;
+const s5p = 64;
+const s3a=61;
+const s3b=65;
+const snpp=224;
+const noaa20=225;
+# INSTRM :
+const mipas = 161;
+const gome = 170;
+const gomos = 172;
+const sciamachy = 175;
+const seviri = 207;
+const gome2 = 220;
+const omi = 394;
+const toms = 431;
+const sbuv = 624;
+const auramls = 387;
+const iasi_reo3 = 221;
+const modis_sensor = 389;
+const mopitt = 090;
+const omps = 947;
+const tropomi = 152;
+const slstr = 180;
+const viirs = 616;
+# VARIAB :
+const u = 3;
+const v = 4;
+const z = 1;
+const dz = 57;
+const rh = 29;
+const q = 7;
+const pwc = 9;
+const rh2m = 58;
+const q2m = 281;
+const t = 2;
+const td = 59;
+const t2m = 39;
+const td2m = 40;
+const ts = 11;
+const ptend = 30;
+const w = 60;
+const ww = 61;
+const vv = 62;
+const ch = 63;
+const cm = 64;
+const cl = 65;
+const nh = 66;
+const nn = 67;
+const hshs = 68;
+const c = 69;
+const ns = 70;
+const s = 71;
+const e = 72;
+const tgtg = 73;
+const spsp1 = 74;
+const spsp2 = 75;
+const rs = 76;
+const eses = 77;
+const is = 78;
+const trtr = 79;
+const rr = 80;
+const jj = 81;
+const vs = 82;
+const ds = 83;
+const hwhw = 84;
+const pwpw = 85;
+const dwdw = 86;
+const gclg = 87;
+const rhlc = 88;
+const rhmc = 89;
+const rhhc = 90;
+const n = 91;
+const snra = 92;
+const ps = 110;
+const dd = 111;
+const ff = 112;
+const rawbt = 119;
+const rawra = 120;
+const satcl = 121;
+const scatss = 122;
+const du = 5;
+const dv = 6;
+const u10m = 41;
+const v10m = 42;
+const rhlay = 19;
+const auxil = 200;
+const cllqw = 123;
+const ambigv = 124;
+const ambigu = 125;
+const apdss = 128;
+const ro_bangl = 162;
+const rrefl = 192;
+const o3 = 206;
+const hlos = 187;
+const no2 = 181;
+const so2 = 182;
+const co = 183;
+const hcho = 184;
+const go3 = 185;
+const co2 = 186;
+const ch4 = 188;
+const aod = 174;
+const rao = 176;
+const od = 177;
+const rfltnc = 178;
+const lnprc = 203;
+const so2volc = 284;
+# LSMASK :
+const sea = 0;
+const land = 1;
+# PPCODE :
+const psealev = 0;
+const pstalev = 1;
+const g850hpa = 2;
+const g700hpa = 3;
+const p500gpm = 4;
+const p1000gpm = 5;
+const p2000gpm = 6;
+const p3000gpm = 7;
+const p4000gpm = 8;
+const g900hpa = 9;
+const g1000hpa = 10;
+const g500hpa = 11;
+# VERT_CO:
+const pressure = 1;
+const height = 2;
+const tovs_cha = 3;
+const scat_cha = 4;
+#RLSMASK
+const tovsland = 0.01;
+#RETR_TYP for TOVS
+const cloudy = 8;
+const partly_cloudy = 16;
+const clear = 32;
+#RETR_TYP for Satob
+const wvcl = 0;
+const ir = 1;
+const vis = 2;
+const wv = 3;
+const comb_spec_channels = 4;
+const wvmw = 5;
+const wvcl1 = 100;
+const wvcl2 = 200;
+const wvcl3 = 300;
+const ir1 = 101;
+const ir2 = 201;
+const ir3 = 301;
+const vis1 = 102;
+const vis2 = 202;
+const vis3 = 302;
+const wvmw1 = 105;
+const wvmw2 = 205;
+const wvmw3 = 305;
+#SONDE_TYPE for radiosondes
+const st_avk_mrz=27;
+const st_rs80_usa=52;
+const st_rs80=61;
+const st_rs90=71;
+const st_viz=51;
+#DATASTREAM
+const ears=1;
+const pacrars=2;
+const dbmodis=1;
+
+# External variables (non-special, i.e. related to obs. header & model fields)
+external hdr.obstype; # 1) = 'OBSTYP' # observation type
+
+# External variables (SPECIAL, i.e. related to obs. body entry only)
+external body.varno is SPECIAL; # 1) = 'VARIAB' # variable name
+
+
+#
+# CONSTANT Section:
+# - selection of analysis variables
+# - 'constant' setup for use of observations
+# - cycle-dependent satellite data blacklisting
+#
+#----------------------- SYNOP CONSTANT DATA SELECTION ----------------------
+if (hdr.OBSTYPE = ralt) then
+  fail(CONSTANT);
+elif (hdr.obstype = synop) then
+  if body.varno notin (u10m, v10m, rh2m, ps, z) then fail(CONSTANT); endif;
+  #  if (LAT = 0 and LON=0) then fail(CONSTANT); endif;
+return; endif;
+# Do not add any rule here, because this part of the
+# blacklist is never processed. Monthly rules must be put into the
+# relevant if (OBSTYP = ... ) ... return; endif; construct above.

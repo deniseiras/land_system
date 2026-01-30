@@ -1,0 +1,6 @@
+id	name	description	table
+1	Conventional	CONV and SURFCONV	odbadmin_conventionalKind
+2	SATEM	Satelite data	odbadmin_satemKind
+3	SATOB	SATOB	odbadmin_satobKind
+4	TEST	TEST	odbadmin_testKind
+5	Accumulation	Accumulation	odbadmin_accumulationkind

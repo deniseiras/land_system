@@ -1,0 +1,316 @@
+Running: $0 TS5/bufr.*.db
++ make Screening
+mpiifort -g -O3 -std08 -fPIC -qopenmp -convert big_endian -assume buffered_io -assume realloc_lhs -I/data/cmcc/ss35621/d4o/install/INTEL/d4o/include -I/zeus/opt/intel20/intel/compilers_and_libraries_2020.1.217/linux/mpi/intel64/include -I/data/cmcc/ss35621/d4o/install/INTEL/netcdf/include -I/data/cmcc/ss35621/d4o/install/INTEL/rttov123/include -I/data/cmcc/ss35621/d4o/install/INTEL/rttov123/mod -I/data/cmcc/ss35621/d4o/install/INTEL/hdf5/include -I/data/cmcc/ss35621/d4o/install/INTEL/hdf4/include -I/data/cmcc/ss35621/d4o/install/INTEL/hdf-eos2/include -I/usr/include -traceback -no-wrap-margin -fp-model precise  -c Screening.F90
+/zeus/opt/intel20/intel/compilers_and_libraries_2020.1.217/linux/mpi/intel64/include/mpif.h(68): warning #7346: The CHARACTER* form of a CHARACTER declaration is an obsolescent feature in Fortran 2008.
+       CHARACTER*1 MPI_ARGVS_NULL(1,1)
+-----------------^
+/zeus/opt/intel20/intel/compilers_and_libraries_2020.1.217/linux/mpi/intel64/include/mpif.h(69): warning #7346: The CHARACTER* form of a CHARACTER declaration is an obsolescent feature in Fortran 2008.
+       CHARACTER*1 MPI_ARGV_NULL(1)
+-----------------^
+/zeus/opt/intel20/intel/compilers_and_libraries_2020.1.217/linux/mpi/intel64/include/mpif.h(580): warning #6916: Fortran 2008 does not allow this length specification.   [8]
+       integer*8 MPI_DISPLACEMENT_CURRENT
+---------------^
+/zeus/opt/intel20/intel/compilers_and_libraries_2020.1.217/linux/mpi/intel64/include/mpif.h(598): warning #6916: Fortran 2008 does not allow this length specification.   [8]
+       REAL*8 MPI_WTIME, MPI_WTICK
+------------^
+/zeus/opt/intel20/intel/compilers_and_libraries_2020.1.217/linux/mpi/intel64/include/mpif.h(599): warning #6916: Fortran 2008 does not allow this length specification.   [8]
+       REAL*8 PMPI_WTIME, PMPI_WTICK
+------------^
+mpiifort Screening.o -g -O3 -std08 -fPIC -qopenmp -convert big_endian -assume buffered_io -assume realloc_lhs -I/data/cmcc/ss35621/d4o/install/INTEL/d4o/include -I/zeus/opt/intel20/intel/compilers_and_libraries_2020.1.217/linux/mpi/intel64/include -I/data/cmcc/ss35621/d4o/install/INTEL/netcdf/include -I/data/cmcc/ss35621/d4o/install/INTEL/rttov123/include -I/data/cmcc/ss35621/d4o/install/INTEL/rttov123/mod -I/data/cmcc/ss35621/d4o/install/INTEL/hdf5/include -I/data/cmcc/ss35621/d4o/install/INTEL/hdf4/include -I/data/cmcc/ss35621/d4o/install/INTEL/hdf-eos2/include -I/usr/include -traceback -no-wrap-margin -fp-model precise -L/data/cmcc/ss35621/d4o/install/INTEL/d4o/lib -ld4o -L/data/cmcc/ss35621/d4o/install/INTEL/netcdf/lib -lnetcdff -lnetcdf -L/data/cmcc/ss35621/d4o/install/INTEL/rttov123/lib -L/data/cmcc/ss35621/d4o/install/INTEL/hdf5/lib -lrttov12_wrapper -lrttov12_mw_scatt -lrttov12_brdf_atlas -lrttov12_emis_atlas -lrttov12_other -lrttov12_parallel -lrttov12_coef_io -lrttov12_hdf -lrttov12_main  -lhdf5hl_fortran -lhdf5_hl -lhdf5_fortran -lhdf5   -L/data/cmcc/ss35621/d4o/install/INTEL/hdf4/lib -lmfhdf -ldf -L/data/cmcc/ss35621/d4o/install/INTEL/hdf-eos2/lib -lhdfeos -lGctp -L/usr/lib64 -lz -ljpeg -lm -ldl -lrt -o Screening
++ tar -zxf aircraft_2019040506.tgz
++ export d4o_debug=1:0
++ d4o_debug=1:0
++ ./Screening TS5/bufr.1.db
+[0] 2022-12-25 11:45:21: Starting D4O_init() : SQLite 3.38.0 (3038000) -- 2022-02-22 18:58:40 40fa792d359f84c3b9e9d6623743e1a59826274e221df1bde8f47086968a1bab : # of MPI-ranks = 1 : busy_timeout_ms = 0
+[0] D4O_init(): DBpool_maxdb{=100,_pow10=1000,_default=100,_min=10,_max=9999} : DBpool_maxq{=10000,_default=10000,_min=10,_max=2147483}
+[0] d4o_exec(dbh=0,query="PRAGMA full_column_names = ON; PRAGMA short_column_names = OFF")
+[0] d4o_opendb(TS5/bufr.1.db,old) => dbh=0 : flags=2 : db_exists=1
+[0]: new_Q() [rc=0:ncols=1:nparcnt=0] : PRAGMA foreign_keys
+[0] d4o_exec(dbh=0,query="PRAGMA foreign_keys = ON")
+[0]: new_Q() [rc=0:ncols=15:nparcnt=0] : SELECT id,timeslot,reportype,obstype,codetype,bufrtype,subtype,lat,lon,yyyymmdd,hhmmss,epoch,sat_id,sensor_id,sat_instr FROM hdr LEFT OUTER JOIN sat ON id = sat.hdr_id WHERE hdr.status = 1 AND 1 AND 1 ORDER BY id
+ fd4o_getdb(sqlhdr): rc,datahdr%nrows =          495         495
+[0]: new_Q() [rc=0:ncols=13:nparcnt=0] : SELECT id,entryno,varno,kind,obsvalue,qc,vertco_type,levelht,obs_error_variance,channel,member,prior,ens.rowid FROM hdr LEFT OUTER JOIN sat ON id = sat.hdr_id JOIN body ON id = body.hdr_id JOIN ens ON body.hdr_id = ens.hdr_id AND entryno = body_entryno WHERE hdr.status = 1 AND body.status = 1 AND ens.status = 1 AND 1 AND 1 AND 1 AND 1 ORDER BY id,entryno,member
+ fd4o_getdb(sqlbody): rc,databody%nrows =         4455        4455
+ number of rejected entries =         4455  out of         4455
+[0]: new_Q() [rc=0:ncols=0:nparcnt=1] : UPDATE ens SET status = 0 WHERE rowid = ?1
+[0] d4o_putdb: UPDATE ens SET status = 0 WHERE rowid = ?1
+[0] d4o_exec(dbh=0,query="BEGIN DEFERRED TRANSACTION")
+[0] d4o_exec(dbh=0,query="END TRANSACTION")
+[0] 2022-12-25 11:45:22: Ending D4O_fini()
++ set +x
+Processing TS5/bufr.1.db ...
+query#1: .schema
+CREATE TABLE toc (
+  toc_id INTEGER DEFAULT 0 NOT NULL,  -- TOC record id
+  file_id INTEGER DEFAULT 0,  -- input file id
+  thinning INTEGER DEFAULT 1,  -- the applied thinning of hdr entries if > 1 : mod(rowid,thinning)<>0 rows will be set hdr.status=0
+  numens INTEGER DEFAULT 0,  -- number of ensembles
+  numtsl INTEGER DEFAULT 0,  -- number of timeslots (0 if no timeslots)
+  basetimestamp TEXT DEFAULT NULL,  -- timestamp of the the basetime (if provided), in format YYYYMMDDHHMMSS
+  basetime_epoch INTEGER AS (strftime('%s',substr(basetimestamp,1,4)||'-'||substr(basetimestamp,5,2)||'-'||substr(basetimestamp,7,2)||'T'||substr(basetimestamp,9,2)||':'||substr(basetimestamp,11,2)||':'||substr(basetimestamp,13,2)||'Z')) VIRTUAL,  -- number of seconds since 1970-01-01 00:00:00 UTC i.e. date --date='YYYY-MM-DDTHH:MM:SSZ' +%s (derived on-the-fly)
+  timeslot INTEGER DEFAULT NULL,  -- timeslot number (or NULL if not present)
+  timeslot_start TEXT DEFAULT NULL,  -- start timestamp (YYYYMMDDHHMMSS, inclusive) for timeslot in concern (or NULL if timeslot NULL)
+  timeslot_end TEXT DEFAULT NULL,  -- end timestamp (YYYYMMDDHHMMSS, inclusive) for timeslot in concern (or NULL if timeslot NULL)
+  obstype INTEGER DEFAULT NULL,  -- observation type
+  codetype INTEGER DEFAULT NULL,  -- observation codetype
+  platform_id INTEGER DEFAULT NULL,  -- DART platform identification number (see rttov user guide, table 2) -- mw[2]
+  sensor_id INTEGER DEFAULT NULL,  -- (satellite) observation sensor_id
+  sat_id INTEGER DEFAULT NULL,  -- satellite identifier (aka sat.sat_id)
+  varno INTEGER DEFAULT NULL,  -- ECMWF variable number
+  kind INTEGER DEFAULT NULL,  -- DART observation kind (as defined in '/home/mps/.CMCC/install/INTEL/d4o/bin/../include/obs_kind_mod.F90.camfv')
+  bufrtype INTEGER DEFAULT NULL,  -- ECMWF BUFR observation type
+  subtype INTEGER DEFAULT NULL,  -- ECMWF BUFR observation subtype
+  reportype INTEGER DEFAULT NULL,  -- ECMWF MARS report type
+  group_id INTEGER DEFAULT NULL,  -- ECMWF MARS observation group
+  sat_instr INTEGER DEFAULT NULL,  -- satellite instrument (aka sat.sat_instr)
+  wmo_centre INTEGER DEFAULT NULL,  -- WMO Generating Centre
+  wmo_subcentre INTEGER DEFAULT NULL,  -- WMO Generating sub-centre
+  stream INTEGER DEFAULT NULL,  -- Datastream
+  description TEXT DEFAULT '',  -- variable's descriptive name (with units)
+  ecmwf_varno_description TEXT DEFAULT NULL,  -- ECMWF variable description (if available)
+  ecmwf_obs_description TEXT DEFAULT NULL,  -- ECMWF description based on (obstype,codetype,bufrtype,subtype) (when available)
+  ecmwf_sat_description TEXT DEFAULT NULL,  -- ECMWF description based on (sensor_id, sat_id & sat_instr) (when available)
+  nhdr INTEGER DEFAULT 0,  -- number of hdr-table entries this varno stems from
+  nsat INTEGER DEFAULT 0,  -- number of sat-table entries this varno stems from (can be zero)
+  nbody INTEGER DEFAULT 0,  -- number of body-table entries i.e. number of observations
+  ngpsro INTEGER DEFAULT 0,  -- number of gpsro-entries -- treated like body-entries yet there is only one per hdr-entry
+  input_file TEXT DEFAULT '',  -- input file name
+  input_filesize TEXT DEFAULT 0,  -- input file size in bytes
+  input_filetype TEXT DEFAULT '',  -- input file type, one of {'obs_seq'|'obs_seq.gz'|'odc'|'bufr'}
+  input_range_begin TEXT DEFAULT 0,  -- input file range begin (e.g. the first BUFR-message, or first ODC-row)
+  input_range_end TEXT DEFAULT 0,  -- input file range end (e.g. the last BUFR-message, or last ODC-row that was included)
+  input_filter TEXT DEFAULT NULL  -- input file filter (e.g. ODC-row filter)
+  ,PRIMARY KEY(toc_id,file_id)
+);
+CREATE TABLE hdr (
+  id INTEGER PRIMARY KEY NOT NULL UNIQUE,  -- unique report id
+  file_id INTEGER DEFAULT 0,  -- input file id
+  bufrtype INTEGER DEFAULT NULL,  -- ECMWF BUFR obstype
+  subtype INTEGER DEFAULT NULL,  -- ECMWF BUFR subtype
+  obstype INTEGER DEFAULT NULL,  -- observation type
+  codetype INTEGER DEFAULT NULL,  -- observation codetype
+  reportype INTEGER DEFAULT NULL,  -- ECMWF MARS report type
+  group_id INTEGER DEFAULT NULL,  -- ECMWF MARS observation group
+  statid TEXT DEFAULT NULL,  -- station identification
+  stalt REAL DEFAULT NULL,  -- station altitude
+  lat REAL DEFAULT NULL,  -- latitude in radians
+  lon REAL DEFAULT NULL,  -- longitude in radians
+  deglat REAL AS (degrees(lat)) VIRTUAL,  -- latitude in degrees (derived on-the-fly)
+  deglon REAL AS (mod(degrees(lon)+360,360)) VIRTUAL,  -- longitude in degrees, between 0..360 (derived on-the-fly)
+  geoarea INTEGER AS (IIF(((deglat BETWEEN 30 AND 80) AND (deglon-180 BETWEEN -170 AND -50))OR((deglat BETWEEN 45 AND 70) AND (deglon-180 BETWEEN -30 AND   20)),1,IIF(((deglat BETWEEN -60 AND 10) AND (deglon-180 BETWEEN -90 AND -30))OR((deglat BETWEEN -40 AND 30) AND (deglon-180 BETWEEN -20 AND  60)),3,2))) VIRTUAL,  --  geographical area for ECMWF obs errors: 1, 2 or 3
+  timeslot INTEGER DEFAULT NULL,  -- the time slot obs belongs to
+  yyyymmdd INTEGER DEFAULT NULL,  -- integer date of datetime's YYYY-MM-DD, UTC
+  hhmmss INTEGER DEFAULT NULL,  -- integer time of datetime's HH:MM:SS, UTC
+  timestamp TEXT AS (printf('%8.8d%6.6d',yyyymmdd,hhmmss)) VIRTUAL,  -- time stamp in a format YYYYMMDDHHMMSS (derived on-the-fly)
+  epoch INTEGER AS (strftime('%s',substr(timestamp,1,4)||'-'||substr(timestamp,5,2)||'-'||substr(timestamp,7,2)||'T'||substr(timestamp,9,2)||':'||substr(timestamp,11,2)||':'||substr(timestamp,13,2)||'Z')) VIRTUAL,  -- number of seconds since 1970-01-01 00:00:00 UTC i.e. date --date='YYYY-MM-DDTHH:MM:SSZ' +%s (derived on-the-fly)
+  status INTEGER DEFAULT 1,  -- status word (up to 32-bits) for hdr
+  nbody INTEGER DEFAULT 0,  -- number of body-entries (> 0)
+  nsat INTEGER DEFAULT 0,  -- number of sat-entries (0 or 1)
+  ngpsro INTEGER DEFAULT 0,  -- number of gpsro-entries (>= 0)
+  seqno TEXT GENERATED ALWAYS AS (id+0) VIRTUAL  -- global unique report id (offset '+0' will be re-defined once all component dbs available)
+);
+CREATE TABLE sat (
+  hdr_id INTEGER PRIMARY KEY NOT NULL,  -- reference to hdr.id
+  platform_id INTEGER DEFAULT NULL,  -- DART platform identification number (see rttov user guide, table 2) -- mw[2]
+  sensor_id INTEGER DEFAULT NULL,  -- sensor identification number (see rttov user guide, table 2) -- mw[4]
+  sat_instr INTEGER DEFAULT NULL,  -- ECMWF satellite instrument identification
+  sat_id INTEGER DEFAULT NULL,  -- satellite identification number (see rttov user guide, table 2) -- mw[3]
+  wmo_centre INTEGER DEFAULT NULL,  -- WMO Generating Centre
+  wmo_subcentre INTEGER DEFAULT NULL,  -- WMO Generating sub-centre
+  stream INTEGER DEFAULT NULL,  -- Datastream
+  azimuth REAL DEFAULT NULL,  -- satellite azimuth angle (in degrees) -- mw[0]
+  zenith REAL DEFAULT NULL,  -- satellite zenith angle (in degrees) -- mw[1]
+  mag_field REAL DEFAULT NULL,  -- strength of magnetic field -- mw[6]
+  cosbk REAL DEFAULT NULL,  -- cosine of angle between magnetic field and viewing angle -- mw[7]
+  fastem_p1 REAL DEFAULT NULL,  -- FASTEM parameter 1 -- mw[8]
+  fastem_p2 REAL DEFAULT NULL,  -- FASTEM parameter 2 -- mw[9]
+  fastem_p3 REAL DEFAULT NULL,  -- FASTEM parameter 3 -- mw[10]
+  fastem_p4 REAL DEFAULT NULL,  -- FASTEM parameter 4 -- mw[11]
+  fastem_p5 REAL DEFAULT NULL  -- FASTEM parameter 5 -- mw[12]
+  ,FOREIGN KEY(hdr_id) REFERENCES hdr(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+CREATE TABLE body (
+  entryno INTEGER NOT NULL,  -- body entry number within the report (hdr)
+  hdr_id INTEGER NOT NULL,  -- reference to hdr.id
+  varno INTEGER DEFAULT NULL,  -- ECMWF variable number
+  kind INTEGER DEFAULT NULL,  -- DART observation kind (as defined in '/home/mps/.CMCC/install/INTEL/d4o/bin/../include/obs_kind_mod.F90.camfv')
+  ppcode INTEGER DEFAULT NULL,  -- ECMWF ppcode for conventional data (as per ecmwf_ppcode.db)
+  vertco_type INTEGER DEFAULT NULL,  -- vertical coordinate type
+  levelht REAL DEFAULT NULL,  -- vertical coordinate value or level height
+  obs_error_variance REAL DEFAULT 1,  -- obs error variance i.e. (ECMWF) obs_error_sigma^2
+  channel INTEGER DEFAULT NULL,  -- satellite channel number -- mw[5]
+  status INTEGER DEFAULT 1  -- status word (up to 32-bits) for plain body e.g. when the whole body must be rejected
+  ,obsvalue REAL 
+  ,prior_mean REAL 
+  ,posterior_mean REAL 
+  ,prior_spread REAL 
+  ,posterior_spread REAL 
+  ,qc INTEGER DEFAULT 3
+  ,dart_qc INTEGER DEFAULT -1
+  ,PRIMARY KEY(entryno,hdr_id)
+  ,FOREIGN KEY(hdr_id) REFERENCES hdr(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+CREATE TABLE gpsro (
+  body_entryno INTEGER NOT NULL,  -- body entry number within the report (hdr), aligned with corresponding body entry
+  hdr_id INTEGER NOT NULL,  -- reference to body.hdr_id
+  rfict0 REAL DEFAULT 0,
+  ds REAL DEFAULT 0,
+  htop REAL DEFAULT 0,
+  nx REAL DEFAULT 0,
+  ny REAL DEFAULT 0,
+  nz REAL DEFAULT 0,
+  subset0 INTEGER DEFAULT 0  -- reflectivity: 0=N/A, local type: 1=GPSREF, non-local type/excess phase delay: 2=GPSEXC
+  ,PRIMARY KEY(body_entryno,hdr_id)
+  ,FOREIGN KEY(body_entryno,hdr_id) REFERENCES body(entryno,hdr_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+CREATE TABLE ens (
+  body_entryno INTEGER NOT NULL,  -- body entry number within the report (hdr), aligned with corresponding body entry
+  hdr_id INTEGER NOT NULL,  -- reference to hdr.id
+  member INTEGER DEFAULT 0,  -- ensemble member id usually 1 .. 3
+  status INTEGER DEFAULT 1,  -- status word (up to 32-bits) for this member
+  prior REAL DEFAULT NULL,  -- first guess departure stems from this as body.obsvalue - prior
+  posterior REAL DEFAULT NULL  -- analysis departure stems from this body.obsvalue - posterior
+  ,PRIMARY KEY(body_entryno,hdr_id,member)
+  ,FOREIGN KEY(body_entryno,hdr_id) REFERENCES body(entryno,hdr_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+CREATE INDEX idx_hdr_status_1 ON hdr (status) WHERE status = 1;
+CREATE INDEX idx_hdr_timeslot ON hdr (timeslot);
+CREATE INDEX idx_body_status_1 ON body (status) WHERE status = 1;
+CREATE INDEX idx_ens_status_1 ON ens (status) WHERE status = 1;
+CREATE INDEX idx_ens_member ON ens (member);
+CREATE INDEX idx_body_varno ON body (varno);
+CREATE INDEX idx_body_hdr_id ON body (hdr_id);
+CREATE INDEX idx_body_levelht ON body (levelht);
+CREATE INDEX idx_body_ddff2uv ON body (varno,hdr_id,levelht);
+query#2: select id,reportype,obstype,codetype,bufrtype,subtype,lat,lon,deglat,deglon,geoarea,status from hdr where status = 1 order by id limit 10
+┌──────┬───────────┬─────────┬──────────┬──────────┬─────────┬───────────────────┬────────────────────┬────────┬────────┬─────────┬────────┐
+│  id  │ reportype │ obstype │ codetype │ bufrtype │ subtype │        lat        │        lon         │ deglat │ deglon │ geoarea │ status │
+├──────┼───────────┼─────────┼──────────┼──────────┼─────────┼───────────────────┼────────────────────┼────────┼────────┼─────────┼────────┤
+│ 2319 │ 16026     │ 2       │ 141      │ 4        │ 142     │ 0.939161670498149 │ -1.0451031560942   │ 53.81  │ 300.12 │ 2       │ 1      │
+│ 2321 │ 16026     │ 2       │ 141      │ 4        │ 142     │ 1.03323491718064  │ -0.135263017029561 │ 59.2   │ 352.25 │ 2       │ 1      │
+│ 2322 │ 16026     │ 2       │ 141      │ 4        │ 142     │ 1.00496058329833  │ -0.431619924018198 │ 57.58  │ 335.27 │ 2       │ 1      │
+│ 2323 │ 16026     │ 2       │ 141      │ 4        │ 142     │ 0.925024503556995 │ -0.620639082009184 │ 53.0   │ 324.44 │ 2       │ 1      │
+│ 2324 │ 16026     │ 2       │ 141      │ 4        │ 142     │ 1.03340945010584  │ -0.136135681655558 │ 59.21  │ 352.2  │ 2       │ 1      │
+│ 2325 │ 16026     │ 2       │ 141      │ 4        │ 142     │ 0.894481241647094 │ -0.491833783212002 │ 51.25  │ 331.82 │ 2       │ 1      │
+│ 2333 │ 16026     │ 2       │ 141      │ 4        │ 142     │ 0.822922742315326 │ -0.608421777245223 │ 47.15  │ 325.14 │ 2       │ 1      │
+│ 2334 │ 16026     │ 2       │ 141      │ 4        │ 142     │ 0.891863247769102 │ -0.508065345255549 │ 51.1   │ 330.89 │ 2       │ 1      │
+│ 2335 │ 16026     │ 2       │ 141      │ 4        │ 142     │ 0.823446341090925 │ -0.606152849217631 │ 47.18  │ 325.27 │ 2       │ 1      │
+│ 2336 │ 16026     │ 2       │ 141      │ 4        │ 142     │ 0.926071701108191 │ -0.616624824729597 │ 53.06  │ 324.67 │ 2       │ 1      │
+└──────┴───────────┴─────────┴──────────┴──────────┴─────────┴───────────────────┴────────────────────┴────────┴────────┴─────────┴────────┘
+query#3: select count(*) from hdr where status = 1
+┌──────────┐
+│ count(*) │
+├──────────┤
+│ 495      │
+└──────────┘
+query#4: select reportype,obstype,codetype,count(*) from hdr group by reportype,obstype,codetype
+┌───────────┬─────────┬──────────┬──────────┐
+│ reportype │ obstype │ codetype │ count(*) │
+├───────────┼─────────┼──────────┼──────────┤
+│ 16026     │ 2       │ 141      │ 495      │
+└───────────┴─────────┴──────────┴──────────┘
+query#5: select count(*) from body where status = 1
+┌──────────┐
+│ count(*) │
+├──────────┤
+│ 1485     │
+└──────────┘
+query#6: select count(*) from ens where status = 1
+┌──────────┐
+│ count(*) │
+├──────────┤
+│ 0        │
+└──────────┘
+query#7: select id,reportype,entryno,varno,obsvalue,vertco_type,levelht,ppcode from hdr join body on id=hdr_id where body.status = 1 order by id,entryno limit 20
+┌──────┬───────────┬─────────┬───────┬────────────────────┬─────────────┬─────────┬────────┐
+│  id  │ reportype │ entryno │ varno │      obsvalue      │ vertco_type │ levelht │ ppcode │
+├──────┼───────────┼─────────┼───────┼────────────────────┼─────────────┼─────────┼────────┤
+│ 2319 │ 16026     │ 1       │ 2     │ 226.2              │ 2           │ 11280.0 │ NULL   │
+│ 2319 │ 16026     │ 4       │ 3     │ 2.85316954888546   │ 2           │ 11280.0 │ NULL   │
+│ 2319 │ 16026     │ 5       │ 4     │ -0.927050983124842 │ 2           │ 11280.0 │ NULL   │
+│ 2321 │ 16026     │ 1       │ 2     │ 219.2              │ 2           │ 9750.0  │ NULL   │
+│ 2321 │ 16026     │ 4       │ 3     │ -38.5198452832104  │ 2           │ 9750.0  │ NULL   │
+│ 2321 │ 16026     │ 5       │ 4     │ 6.100944136569     │ 2           │ 9750.0  │ NULL   │
+│ 2322 │ 16026     │ 1       │ 2     │ 219.2              │ 2           │ 12500.0 │ NULL   │
+│ 2322 │ 16026     │ 4       │ 3     │ 0.453693457132511  │ 2           │ 12500.0 │ NULL   │
+│ 2322 │ 16026     │ 5       │ 4     │ -12.9920807512482  │ 2           │ 12500.0 │ NULL   │
+│ 2323 │ 16026     │ 1       │ 2     │ 213.2              │ 2           │ 10670.0 │ NULL   │
+│ 2323 │ 16026     │ 4       │ 3     │ 19.7734690185817   │ 2           │ 10670.0 │ NULL   │
+│ 2323 │ 16026     │ 5       │ 4     │ 9.64416522935971   │ 2           │ 10670.0 │ NULL   │
+│ 2324 │ 16026     │ 1       │ 2     │ 220.2              │ 2           │ 9750.0  │ NULL   │
+│ 2324 │ 16026     │ 4       │ 3     │ -37.6301866121797  │ 2           │ 9750.0  │ NULL   │
+│ 2324 │ 16026     │ 5       │ 4     │ 5.28857783648248   │ 2           │ 9750.0  │ NULL   │
+│ 2325 │ 16026     │ 1       │ 2     │ 215.2              │ 2           │ 10670.0 │ NULL   │
+│ 2325 │ 16026     │ 4       │ 3     │ 17.6209709493955   │ 2           │ 10670.0 │ NULL   │
+│ 2325 │ 16026     │ 5       │ 4     │ -21.7600869207952  │ 2           │ 10670.0 │ NULL   │
+│ 2333 │ 16026     │ 1       │ 2     │ 209.2              │ 2           │ 12500.0 │ NULL   │
+│ 2333 │ 16026     │ 4       │ 3     │ 19.8904379073655   │ 2           │ 12500.0 │ NULL   │
+└──────┴───────────┴─────────┴───────┴────────────────────┴─────────────┴─────────┴────────┘
+query#8: select id,reportype,entryno,varno,obsvalue,member,prior,posterior from hdr join body on id=body.hdr_id join ens on body.hdr_id = ens.hdr_id and entryno = body_entryno where ens.status = 0 limit 30
+┌──────┬───────────┬─────────┬───────┬──────────┬────────┬───────┬───────────┐
+│  id  │ reportype │ entryno │ varno │ obsvalue │ member │ prior │ posterior │
+├──────┼───────────┼─────────┼───────┼──────────┼────────┼───────┼───────────┤
+│ 2319 │ 16026     │ 1       │ 2     │ 226.2    │ 1      │ NULL  │ NULL      │
+│ 2321 │ 16026     │ 1       │ 2     │ 219.2    │ 1      │ NULL  │ NULL      │
+│ 2322 │ 16026     │ 1       │ 2     │ 219.2    │ 1      │ NULL  │ NULL      │
+│ 2323 │ 16026     │ 1       │ 2     │ 213.2    │ 1      │ NULL  │ NULL      │
+│ 2324 │ 16026     │ 1       │ 2     │ 220.2    │ 1      │ NULL  │ NULL      │
+│ 2325 │ 16026     │ 1       │ 2     │ 215.2    │ 1      │ NULL  │ NULL      │
+│ 2333 │ 16026     │ 1       │ 2     │ 209.2    │ 1      │ NULL  │ NULL      │
+│ 2334 │ 16026     │ 1       │ 2     │ 220.2    │ 1      │ NULL  │ NULL      │
+│ 2335 │ 16026     │ 1       │ 2     │ 208.2    │ 1      │ NULL  │ NULL      │
+│ 2336 │ 16026     │ 1       │ 2     │ 210.2    │ 1      │ NULL  │ NULL      │
+│ 2337 │ 16026     │ 1       │ 2     │ 219.2    │ 1      │ NULL  │ NULL      │
+│ 2343 │ 16026     │ 1       │ 2     │ 212.2    │ 1      │ NULL  │ NULL      │
+│ 2344 │ 16026     │ 1       │ 2     │ 212.2    │ 1      │ NULL  │ NULL      │
+│ 2345 │ 16026     │ 1       │ 2     │ 226.2    │ 1      │ NULL  │ NULL      │
+│ 2346 │ 16026     │ 1       │ 2     │ 231.2    │ 1      │ NULL  │ NULL      │
+│ 2347 │ 16026     │ 1       │ 2     │ 213.2    │ 1      │ NULL  │ NULL      │
+│ 2348 │ 16026     │ 1       │ 2     │ 233.2    │ 1      │ NULL  │ NULL      │
+│ 2349 │ 16026     │ 1       │ 2     │ 220.2    │ 1      │ NULL  │ NULL      │
+│ 2350 │ 16026     │ 1       │ 2     │ 225.2    │ 1      │ NULL  │ NULL      │
+│ 2351 │ 16026     │ 1       │ 2     │ 208.2    │ 1      │ NULL  │ NULL      │
+│ 2352 │ 16026     │ 1       │ 2     │ 211.2    │ 1      │ NULL  │ NULL      │
+│ 2353 │ 16026     │ 1       │ 2     │ 223.2    │ 1      │ NULL  │ NULL      │
+│ 2354 │ 16026     │ 1       │ 2     │ 218.2    │ 1      │ NULL  │ NULL      │
+│ 2355 │ 16026     │ 1       │ 2     │ 207.2    │ 1      │ NULL  │ NULL      │
+│ 2356 │ 16026     │ 1       │ 2     │ 226.2    │ 1      │ NULL  │ NULL      │
+│ 2357 │ 16026     │ 1       │ 2     │ 217.2    │ 1      │ NULL  │ NULL      │
+│ 2358 │ 16026     │ 1       │ 2     │ 222.2    │ 1      │ NULL  │ NULL      │
+│ 2359 │ 16026     │ 1       │ 2     │ 214.2    │ 1      │ NULL  │ NULL      │
+│ 2360 │ 16026     │ 1       │ 2     │ 216.2    │ 1      │ NULL  │ NULL      │
+│ 2361 │ 16026     │ 1       │ 2     │ 229.2    │ 1      │ NULL  │ NULL      │
+└──────┴───────────┴─────────┴───────┴──────────┴────────┴───────┴───────────┘
+/work/cmcc/ss35621/DV
+total 5131
+-rwxr-xr-x  1 ss35621 b3   10087 Oct 20 07:45 mkmf.template
+-rw-r--r--  1 ss35621 b3      95 Nov  3 11:47 GlobalThinning.F90
+-rw-r--r--  1 ss35621 b3     330 Nov  3 11:51 Makefile
+-rw-r--r--  1 ss35621 b3 2121728 Dec 23 16:37 bufr.1.db
+-rw-r--r--  1 ss35621 b3 2121728 Dec 23 16:37 .bufr.1.db.bck
+-rw-r--r--  1 ss35621 b3    1691 Dec 23 16:37 aircraft_2019040506.txt
+-rw-r--r--  1 ss35621 b3  110592 Dec 23 16:41 catalog.db
+drwxr-xr-x  2 ss35621 b3    4096 Dec 23 16:42 logs
+drwxr-xr-x  2 ss35621 b3    4096 Dec 23 17:17 TS9
+drwxr-xr-x  2 ss35621 b3    4096 Dec 23 17:17 TS8
+drwxr-xr-x  2 ss35621 b3    4096 Dec 23 17:17 TS7
+drwxr-xr-x  2 ss35621 b3    4096 Dec 23 17:17 TS6
+drwxr-xr-x  2 ss35621 b3    4096 Dec 23 17:17 TS13
+drwxr-xr-x  2 ss35621 b3    4096 Dec 23 17:17 TS12
+drwxr-xr-x  2 ss35621 b3    4096 Dec 23 17:17 TS11
+drwxr-xr-x  2 ss35621 b3    4096 Dec 23 17:17 TS10
+drwxr-xr-x  2 ss35621 b3    4096 Dec 23 17:17 TS4
+drwxr-xr-x  2 ss35621 b3    4096 Dec 23 17:17 TS3
+drwxr-xr-x  2 ss35621 b3    4096 Dec 23 17:17 TS2
+drwxr-xr-x  2 ss35621 b3    4096 Dec 23 17:17 TS1
+-rw-r--r--  1 ss35621 b3 2552044 Dec 23 17:18 aircraft_2019040506.tgz
+-rw-r--r--  1 ss35621 b3   10340 Dec 23 17:31 Screening.F90
+drwxr-x---  7 ss35621 b3    4096 Dec 25 11:06 ..
+-rwxr-xr-x  1 ss35621 b3    3098 Dec 25 11:36 doscreening
+-rw-r--r--  1 ss35621 b3     671 Dec 25 11:43 README.txt
+-rw-r--r--  1 ss35621 b3 2315157 Dec 25 11:44 screen.tgz
+-rw-r--r--  1 ss35621 b3   49040 Dec 25 11:45 Screening.o
+-rwxr-xr-x  1 ss35621 b3 1264824 Dec 25 11:45 Screening
+drwxr-xr-x 16 ss35621 b3    4096 Dec 25 11:45 .
+drwxr-xr-x  2 ss35621 b3    4096 Dec 25 11:45 TS5
+-rw-r--r--  1 ss35621 b3   26971 Dec 25 11:45 log.1671965120.txt

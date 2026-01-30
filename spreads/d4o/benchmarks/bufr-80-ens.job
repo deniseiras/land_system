@@ -1,0 +1,84 @@
+#!/bin/bash
+#BSUB -L /bin/bash
+#BSUB -n 36
+#BSUB -R "span[ptile=36]"
+#BSUB -q p_medium
+#BSUB -W 04:00
+#BSUB -P R000
+#BSUB -x
+#BSUB -J bufr2d4o-bufr-80-ens
+#BSUB -o bufr2d4o-bufr-80-ens.%J.out
+#BSUB -e bufr2d4o-bufr-80-ens.%J.out
+
+set -eu
+
+source /usr/share/Modules/init/bash
+source /users_home/cmcc/ss35621/load-modules-d4o.zeus
+source /data/cmcc/ss35621/d4o/install/INTEL/source.me
+
+module -t list
+
+set -x
+
+hostname
+pwd
+
+printenv | egrep ^LSB
+
+npes=$LSB_MAX_NUM_PROCESSORS
+
+echo "Number of processes to be used: $npes"
+
+bjobs -l $LSB_JOBID | perl -pe 's/^\s+//; s/\n//'
+
+rundir=rundir/$LSB_JOBNAME.$LSB_JOBID
+mkdir -pv $rundir
+cd $rundir
+pwd
+
+npools=6
+parallel=1  # 0
+
+bufr=bufr
+
+for BASETIME in 2019040500 # 2019040506 2019040512 2019040518
+do
+    mkdir $BASETIME
+    cd $BASETIME
+    ls -ltr /data/cmcc/ss35621/BIG-DATA/$BASETIME
+
+    cp -pfv /data/cmcc/ss35621/BIG-DATA/$BASETIME/${bufr} .
+
+    pwd
+    ls -ltr
+
+    rc=0
+    
+    tslots="1-13"
+    echo "$(date) -- BEGIN bufr2d4o -- BASETIME = $BASETIME : --split=$tslots"
+
+    (set -x ; time bufr2d4o ${bufr} $npools $parallel --camfv --basetime=$BASETIME --ens=80 --thinning=4 --psplit=$tslots --deferens) > output.log 2>&1 || rc=$?
+
+    echo "$(date) -- END   bufr2d4o -- BASETIME = $BASETIME : rc=$rc"
+
+    # Creating catalog database for this BASETIME (usually created only after ALL BUFRs in the BASETIME were cracked)
+    
+    (set -x; time catalogd4o catalog.db "${bufr}.*.db") >> output.log 2>&1 || rc=$?
+    
+    pwd
+    ls -ltr
+
+    # Create catalog databases under each timeslot dir
+
+    for ts in {1..13}
+    do
+	d=TS$ts
+	if [[ -d $d ]] ; then
+	    cd $d
+	    (set -x; time catalogd4o catalog.db "${bufr}.*.db") >> output.log 2>&1 || rc=$?
+	    cd -
+	fi
+    done
+
+    cd - # back to previous dir
+done

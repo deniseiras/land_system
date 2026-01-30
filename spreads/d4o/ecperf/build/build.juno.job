@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cmd=$(readlink -f $0)
+cmddir=$(dirname $cmd)
+
+cd $cmddir/..
+
+pwd
+source ../load-modules-d4o.juno
+
+set -x
+build/build.without_git.job - juno 5.17 8

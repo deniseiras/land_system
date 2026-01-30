@@ -1,0 +1,280 @@
+#!/bin/bash  
+set -e          # stop the shell on first error
+set -u          # fail when using an undefined variable
+set -x          # echo script lines as they are executed
+set -o pipefail # fail if last(rightmost) command exits with a non-zero status
+ 
+# Defines the variables that are needed for any communication with ECF
+export ECF_PORT=3155    # The server port number
+export ECF_HOST=login1.juno.cmcc.scc    # The host name where the server is running
+export ECF_NAME=/gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update    # The name of this current task
+export ECF_PASS=TNhsTHmF    # A unique password, used for job validation & zombie detection
+export ECF_TRYNO=3  # Current try number of the task
+export ECF_TRIES=0            # Number of tries before abort
+export ECF_RID=$$             # record the process id. Also used for zombie detection
+# export NO_ECF=1             # uncomment to run as a standalone task on the command line
+ 
+# Define the path where to find ecflow_client
+# make sure client and server use the *same* version.
+# Important when there are multiple versions of ecFlow
+export PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:$PATH
+ 
+# Tell ecFlow we have started
+ecflow_client --init=$$
+ 
+ 
+# Define a error handler
+ERROR() {
+   set +e                      # Clear -e flag, so we don't fail
+   wait                        # wait for background process to stop
+   ecflow_client --abort=trap  # Notify ecFlow that something went wrong, using 'trap' as the reason
+   trap 0                      # Remove the trap
+   exit 0                      # End the script cleanly, server monitors child, an exit 1, will cause another abort and zombie
+}
+ 
+ 
+# Trap any calls to exit and errors caught by the -e flag
+trap ERROR 0
+ 
+ 
+# Trap any signal that may cause the script to fail
+trap '{ echo "Killed by a signal"; ERROR ; }' 1 2 3 4 5 6 7 8 10 12 13 15
+
+ecflow_client --label=info "Starting... $(date)"
+
+export SCRIPTDIR="/users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts"
+
+cd ${SCRIPTDIR}
+
+export nens=5
+donepath=$(echo /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update | sed 's/update//g')
+
+export CESMEXP='cesm-exp'
+export case_name=gio_ecflow1
+export CLONESROOT="/work/cmcc/${USER}/${CESMEXP}/${case_name}"
+export CASEROOT0001="$CLONESROOT/${case_name}_0001"
+export TMPROOT="/work/cmcc/${USER}/CMCC-CM/TMP"$(echo "${case_name}" | tr [:lower:] [:upper:])
+
+source /etc/profile.d/modules.sh
+#source /data/cmcc/${USER}/d4o/install/INTEL/source.me
+source /data/cmcc/mg20022/d4o/install/INTEL/source.me
+
+#===================================================
+# Take the id of the case.submit processes
+take_id()
+{
+
+  output=$($*)
+  echo $output | head -n1 | cut -d'<' -f2 | cut -d'>' -f1
+}
+
+if [ juno == 'zeus' ];then
+
+   source /etc/profile.d/modules.sh
+
+   module load impi20.1/19.7.217 impi20.1/netcdf/C_4.7.4-F_4.5.3_CXX_4.3.1 impi20.1/hdf5/1.12.0 intel20.1/20.1.217 intel20.1/cdo/1.9.8 intel20.1/eccodes/2.17.0 intel20.1/h4cflib/1.3 intel20.1/hdf4/4.2.13 intel20.1/hdf5/1.12.0 intel20.1/magics/3.3.1 intel20.1/nco/4.9.3 intel20.1/ncview/2.1.8 intel20.1/netcdf/C_4.7.4-F_4.5.3_CXX_4.3.1
+   module load ncl/6.6.2
+   source /zeus/opt/anaconda/3.9/etc/profile.d/conda.sh
+   module load anaconda/3.9
+   # conda activate /work/cmcc/mg20022/.conda/envs/ecflow
+elif [ juno == 'juno' ]; then
+
+   echo "d4o modules for juno"
+   source /users_home/cmcc/gc02720/spreads/spreads_ui/../d4o/load-modules-d4o.juno
+fi
+
+date
+echo "BEGIN FILTER PROCESSES "
+
+export NTSLOTS=13
+
+# export CASEROOT0001="$CLONESROOT/${case_name}_0001"
+source /data/cmcc/mg20022/d4o/install/INTEL/source.me
+
+cd ${TMPROOT}
+export line=$(grep input_state_file_list input.nml | sed -e "s#[=,'\.]# #g" | awk '{print $2}' )
+export input_file_list_name=$line
+# If the file names in $output_state_file_list = names in $input_state_file_list,
+# then the restart file contents will be overwritten with the states updated by DART.
+export line=$(grep output_state_file_list input.nml | sed -e "s#[=,'\.]# #g" | awk '{print $2}')
+export output_file_list_name=$line
+
+cd ${CASEROOT0001}
+echo $SHELL
+echo " xmlquery start"
+export scomp=`./xmlquery COMP_ATM      --value`
+export CASE=`./xmlquery CASE          --value`
+export ensemble_size=`./xmlquery NINST_ATM     --value`
+export CAM_DYCORE=`./xmlquery CAM_DYCORE    --value`
+export EXEROOT=`./xmlquery EXEROOT       --value`
+export RUNDIR=`./xmlquery RUNDIR        --value`
+export archive=`./xmlquery DOUT_S_ROOT   --value`
+# export TOTALPES=`./xmlquery TOTALPES      --value`
+
+export CONT_RUN=`./xmlquery CONTINUE_RUN  --value`
+# when you make a long forecast run without assimilation and then you want to assimilate obs but you do not have
+# inflation files then  force one cycle CONT_RUN FALSE
+#exportenv CONT_RUN                  FALSE
+
+export CHECK_TIMING=`./xmlquery CHECK_TIMING  --value`
+export DATA_ASSIMILATION_CYCLES=`./xmlquery DATA_ASSIMILATION_CYCLES --value`
+
+export nens=5
+echo " TMPROOT= $TMPROOT"
+
+export CASESRUNROOT=`echo $RUNDIR | sed -e "s/\/${case_name}_0001\/run//g" `
+export MP_DEBUG_NOTIMEOUT=yes
+export NUMTASKS_PERNODE='36'
+
+export save_stages_freq="RESTART_TIMES"
+export BASEOBSDIR="/users_home/cmcc/sm09722/BUFR_D4O"
+export DIVISION=csp
+
+cd ${TMPROOT}
+
+
+# PHASE 1 departures computation
+#-----------------------------------------------------------------------
+echo "ENTER PHASE 1, PRIOR DEPARTURES COMPUTATION"
+export DARTROOT=/users_home/cmcc/gc02720/spreads/spreads_ui/..
+
+cd ${TMPROOT}
+
+# database merging
+#-----------------------------------------------------------------------
+echo "DB MERGING, PREPARATION FOR PHASE 2"
+if [ -d "${TMPROOT}/allTS" ];then
+   rm -Rf ${TMPROOT}/allTS
+fi
+d4ojoinall
+#${TMPROOT}/d4ojoinall
+#cp ${DARTROOT}/d4o/scripts/d4ocatalog ${TMPROOT}/allTS/
+cd ${TMPROOT}/allTS
+#${TMPROOT}/allTS/d4ocatalog catalog.db "*.db"  
+d4ocatalog catalog.db "*.db"  
+
+# PHASE 2 one shot assimilation
+#-----------------------------------------------------------------------
+# copy files from the central time slot to allTS
+echo "ENTER PHASE 2, REGRESSION"
+echo "COPY WHAT WE NEED FOR ASSIMILATION FROM CENTRAL TS=7, IMPLEMENTATION FOR 13 TIME SLOTS"
+cp ${TMPROOT}/TS7/*.dat ${TMPROOT}/allTS
+cp ${TMPROOT}/TS7/fil*  ${TMPROOT}/allTS
+cp ${TMPROOT}/TS7/*.csv ${TMPROOT}/allTS
+cp ${TMPROOT}/TS7/*.nc  ${TMPROOT}/allTS
+cp ${TMPROOT}/TS7/*.nml  ${TMPROOT}/allTS
+cp ${TMPROOT}/TS7/${input_file_list_name}  ${TMPROOT}/allTS
+cp ${TMPROOT}/TS7/${output_file_list_name}  ${TMPROOT}/allTS
+
+echo "change the stages_to_write in order to produce also the forecast for archiving purposes"
+sed -i "s@.*stages_to_write.*=.*@stages_to_write='forecast','output'@g" ${TMPROOT}/allTS/input.nml
+
+cp ${TMPROOT}/run_filter.bash .
+rm -f log_filter.txt
+echo "change the name of the process, for filter, in order to better follow what is happening with bjobs"
+sed -i "s@.*#BSUB -J.*@#BSUB -J gio_ecflow1_allTS@g" run_filter.bash
+nos=$(echo "10*72" | bc)
+sed -i "s@1800@${nos}@g" run_filter.bash
+sed -i "s@p_short@p_short@g" run_filter.bash
+sed -i "s@2:00@02:00@g" run_filter.bash
+jobid=$(take_id bsub < run_filter.bash)
+ecflow_client --alter=add variable JOB_ID "${jobid}" /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update
+sleep 5
+bwait -w "started(${jobid})"
+start=$(date "+%Y-%m-%d %H:%M")
+ecflow_client --label=info "START: $start"
+sleep 60
+bwait -w "ended(${jobid})"
+
+
+# sleep 60
+# try=0
+# stuck=0
+
+# while [ $(bjobs -r ${jobid} | awk '{print $3}' | sed '/^$/d' |  tail -1)  == "RUN" ];do
+
+#    sleep 1m
+
+#    if grep -q " Before computing prior observation values TIME" <<< "$(tail -1 dart_log.out)"; then
+
+#       stuck=$(echo "${stuck}+1" | bc)
+#       # cp dart_log.out dart_log.out_stuck
+#       # cp dart_log.nml dart_log.nml_stuck
+#       # brequeue ${jobid}
+#       ecflow_client --label=info "START: $start / STRUCK:  $stuck minutes / RUNNING"
+#       # sleep 60
+#       # bwait -w "started(*gio_ecflow1_dep_TS${its})"
+
+#       # try=$(echo "${try}+1" | bc)
+#       # stuck=${try}
+
+#       # break
+
+#    fi
+#    # if [ ${try} -eq 5 ];then
+#    #    exit 1
+#    # fi
+
+# done
+
+
+# try=0
+# stuck=0
+# while [ ${try} -lt 5 ];do
+
+#    sleep 5m
+
+#    while [ true ];do
+
+#       sleep 5m
+
+#       if [[ $(bjobs -r ${jobid} | awk '{print $3}' | sed '/^$/d' |  tail -1)  == "RUN" ]];then
+
+#          if grep -q " Before computing prior observation values TIME" <<< "$(tail -1 dart_log.out)"; then
+
+#             cp dart_log.out dart_log.out_stuck
+#             cp dart_log.nml dart_log.nml_stuck
+#             brequeue ${jobid}
+#             try=$(echo "${try}+1" | bc)
+
+#             ecflow_client --label=info "START: $start / STRUCK: $(date) / TRY: ${try}"
+#             sleep 60
+#             bwait -w "started(${jobid})"
+
+#             stuck=${try}
+
+#             break
+
+#          fi
+#          # if [ ${try} -eq 5 ];then
+#          #    exit 1
+#          # fi
+#       else
+#          try=5
+#          break
+#       fi
+#    done
+
+# done
+
+end=$(date "+%Y-%m-%d %H:%M")
+
+if [ $(grep "2" ${TMPROOT}/allTS/filter.flag) ];then
+   echo " phase 1 ended succesfully, in allTS"
+
+   ecflow_client --label=info "Phase 2 ended succesfully, in allTS: START ${start} / FINISH: ${end}"
+else
+   ecflow_client --label=info "Phase 2 ended NOT succesfully: START $start / FINISH: ${end}"
+   # ecflow_client --suspend=/gio_ecflow1/run_cycles/prepare_assimilation/postprocess
+   exit 1
+
+fi
+
+echo ""
+echo "----- END TASK ---"
+echo ""
+ecflow_client --label=Info "OK... 20230901  12:08"
+wait                      # wait for background process to stop
+ecflow_client --complete  # Notify ecFlow of a normal end
+trap 0                    # Remove all traps
+exit 0  

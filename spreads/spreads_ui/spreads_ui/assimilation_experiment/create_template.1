@@ -1,0 +1,100 @@
++ set -o pipefail
++ export ECF_PORT=3155
++ ECF_PORT=3155
++ export ECF_HOST=login1.juno.cmcc.scc
++ ECF_HOST=login1.juno.cmcc.scc
++ export ECF_NAME=/spreads_ui/assimilation_experiment/create_template
++ ECF_NAME=/spreads_ui/assimilation_experiment/create_template
++ export ECF_PASS=2FEYmkx/
++ ECF_PASS=2FEYmkx/
++ export ECF_TRYNO=1
++ ECF_TRYNO=1
++ export ECF_TRIES=0
++ ECF_TRIES=0
++ export ECF_RID=2950979
++ ECF_RID=2950979
++ export PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/imagemagick/7.0.8-7-2475g3fynku56e7rbgq65zz2xbmy6k26/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/ncview/2.1.8-sds5t7td2iyndfz25r537rsyxvx63wn6/bin:/work/cmcc/gc02720/.conda/envs/spreads/bin:/juno/opt/anaconda/3-2022.10/condabin:/users_home/cmcc/gc02720/.local/bin:/users_home/cmcc/gc02720/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/imagemagick/7.0.8-7-2475g3fynku56e7rbgq65zz2xbmy6k26/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/ncview/2.1.8-sds5t7td2iyndfz25r537rsyxvx63wn6/bin:/work/cmcc/gc02720/.conda/envs/spreads/bin:/juno/opt/anaconda/3-2022.10/condabin:/users_home/cmcc/gc02720/.local/bin:/users_home/cmcc/gc02720/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ ecflow_client --init=2950979
++ trap ERROR 0
++ trap '{ echo "Killed by a signal"; ERROR ; }' 1 2 3 4 5 6 7 8 10 12 13 15
++ cp /users_home/cmcc/gc02720/spreads/spreads_ui/experiments/template_5.def /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test.def
++ sed -i 's@suite template@suite preassim_test@g' /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test.def
++ sed -i 's@edit ECF_HOME@edit ECF_HOME /users_home/cmcc/gc02720/spreads/spreads_ui@g' /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test.def
++ sed -i 's@edit ECF_HOSTNAME@edit ECF_HOSTNAME juno@g' /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test.def
++ sed -i 's@edit ECF_INCLUDE@edit ECF_INCLUDE /users_home/cmcc/gc02720/spreads/spreads_ui/includes@g' /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test.def
++ sed -i 's@edit ECF_CLONE@edit ECF_CLONE /users_home/cmcc/gc02720/spreads/spreads_ui@g' /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test.def
++ sed -i 's@edit MAXTRY@edit MAXTRY 5@g' /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test.def
++ sed -i 's@edit CASE_NAME@edit CASE_NAME preassim_test@g' /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test.def
++ sed -i 's@edit NENS@edit NENS 5@g' /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test.def
++ sed -i 's@edit BASEOBSDIR@edit BASEOBSDIR /work/cmcc/mg20022/databases/b2d4o_d4o_db@g' /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test.def
++ sed -i 's@edit REFCASE@edit REFCASE ic_phase1@g' /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test.def
++ sed -i 's@edit REFDATE@edit REFDATE 2017100200000@g' /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test.def
++ sed -i 's@edit DEP@edit DEP 13@g' /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test.def
++ sed -i 's@edit CASE_TEMPLATE@edit CASE_TEMPLATE case.template-juno.original-SP@g' /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test.def
++ sed -i 's@edit DART_NML_TEMPLATE@edit DART_NML_TEMPLATE input.nml.original.rad.preassim@g' /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test.def
++ sed -i 's@edit MODELDIR@edit MODELDIR cesm2.3_beta11_cm3_v7z@g' /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test.def
++ sed -i 's@edit STARTDATE@edit STARTDATE 2017100200000@g' /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test.def
++ mkdir -p /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test
++ rsync -azh --info=progress2 --exclude '*.job*' --human-readable /users_home/cmcc/gc02720/spreads/spreads_ui/experiments/template/ /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test/
+              0   0%    0.00kB/s    0:00:00 (xfr#1, to-chk=72/75)              0   0%    0.00kB/s    0:00:00 (xfr#1, to-chk=67/75)          7.45K   4%    0.00kB/s    0:00:00            7.45K   4%    0.00kB/s    0:00:00 (xfr#2, to-chk=71/75)          8.75K   5%    1.27MB/s    0:00:00 (xfr#3, to-chk=70/75)         14.76K   9%  365.58kB/s    0:00:00 (xfr#4, to-chk=66/75)         14.83K   9%  351.84kB/s    0:00:00 (xfr#5, to-chk=64/75)         18.71K  11%  304.53kB/s    0:00:00 (xfr#6, to-chk=50/75)         26.77K  16%  394.41kB/s    0:00:00 (xfr#7, to-chk=49/75)         31.54K  19%  250.93kB/s    0:00:00 (xfr#8, to-chk=48/75)         41.04K  25%  299.94kB/s    0:00:00 (xfr#9, to-chk=47/75)         41.19K  25%  301.29kB/s    0:00:00 (xfr#10, to-chk=46/75)         72.16K  45%  490.29kB/s    0:00:00 (xfr#11, to-chk=45/75)         99.88K  62%  616.23kB/s    0:00:00 (xfr#12, to-chk=44/75)        113.78K  71%  686.03kB/s    0:00:00 (xfr#13, to-chk=40/75)        117.55K  73%  705.80kB/s    0:00:00 (xfr#14, to-chk=39/75)        118.54K  74%  712.16kB/s    0:00:00 (xfr#15, to-chk=38/75)        118.69K  74%  713.13kB/s    0:00:00 (xfr#16, to-chk=37/75)        126.18K  78%  682.36kB/s    0:00:00 (xfr#17, to-chk=36/75)        134.89K  84%  685.20kB/s    0:00:00 (xfr#18, to-chk=35/75)        134.97K  84%  685.63kB/s    0:00:00 (xfr#19, to-chk=32/75)        139.96K  87%  708.64kB/s    0:00:00 (xfr#20, to-chk=31/75)        147.11K  92%  677.98kB/s    0:00:00 (xfr#21, to-chk=30/75)        147.19K  92%  678.36kB/s    0:00:00 (xfr#22, to-chk=15/75)        152.75K  95%  701.95kB/s    0:00:00 (xfr#23, to-chk=1/75)         159.37K  99%  726.91kB/s    0:00:00 (xfr#24, to-chk=0/75)        159.37K  99%  687.44kB/s    0:00:00 (xfr#24, to-chk=0/75)        159.37K  99%  687.44kB/s    0:00:00 (xfr#24, to-chk=0/75)        159.37K  99%  687.44kB/s    0:00:00 (xfr#24, to-chk=0/75)        159.37K  99%  687.44kB/s    0:00:00 (xfr#24, to-chk=0/75)        159.37K  99%  687.44kB/s    0:00:00 (xfr#24, to-chk=0/75)        159.37K  99%  654.85kB/s    0:00:00 (xfr#24, to-chk=0/75)        159.37K  99%  654.85kB/s    0:00:00 (xfr#24, to-chk=0/75)        159.37K  99%  654.85kB/s    0:00:00 (xfr#24, to-chk=0/75)        159.37K  99%  654.85kB/s    0:00:00 (xfr#24, to-chk=0/75)        159.37K  99%  654.85kB/s    0:00:00 (xfr#24, to-chk=0/75)        159.37K  99%  654.85kB/s    0:00:00 (xfr#24, to-chk=0/75)
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure
++ rm -rf dep_10.ecf dep_11.ecf dep_12.ecf dep_13.ecf dep_1.ecf dep_2.ecf dep_3.ecf dep_4.ecf dep_5.ecf dep_6.ecf dep_7.ecf dep_8.ecf dep_9.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_1.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_2.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_3.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_4.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_5.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_6.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_7.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_8.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_9.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_10.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_11.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_12.ecf
++ for n in {1..13}
++ ln -s departure.ecf dep_13.ecf
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/preassim_test/run_cycles/background/run
++ rm -rf mem_10.ecf mem_11.ecf mem_12.ecf mem_13.ecf mem_1.ecf mem_2.ecf mem_3.ecf mem_4.ecf mem_5.ecf mem_6.ecf mem_7.ecf mem_8.ecf mem_9.ecf
++ for n in {1..5}
++ ln -s member.ecf mem_1.ecf
++ for n in {1..5}
++ ln -s member.ecf mem_2.ecf
++ for n in {1..5}
++ ln -s member.ecf mem_3.ecf
++ for n in {1..5}
++ ln -s member.ecf mem_4.ecf
++ for n in {1..5}
++ ln -s member.ecf mem_5.ecf
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui
++ set +e
++ ecflow_client --check /preassim_test
+Error: request( --check /preassim_test ) failed!  Server reply: PathsCmd:Check: Could not find node at path '/preassim_test'
+
++ '[' 1 -eq 1 ']'
++ ecflow_client --load=preassim_test.def force
++ ecflow_client --begin=preassim_test
++ set -e
++ echo ''
+
++ echo '----- END TASK ---'
+----- END TASK ---
++ echo ''
+
++ ecflow_client --label=Info 'OK... 20230908  09:39'
++ wait
++ ecflow_client --complete
++ trap 0
++ exit 0

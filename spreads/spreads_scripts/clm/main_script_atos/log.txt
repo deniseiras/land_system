@@ -1,0 +1,1433 @@
+nohup: ignoring input
+
+ START CYCLES 
+
+
+ Consistent values for CONTINUE_RUN and CYCLES number 
+
+ SCRIPTDIR= /users_home/cmcc/gc02720/spreads/spreads_scripts/cam-fv/main_scripts
+ CLONESROOT=  /users_home/cmcc/gc02720/cesm-exp/synp5
+ case_name= synp5
+ nens= 10
+
+ cycle number 1
+ Assimilation required!
+1
+ check_assi is positive! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0001
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0001/env_batch.xml, check files /users_home/cmcc/gc02720/model/cmcc-cm/cime/../ccs_config/machines/config_batch.xml
+ Started with 936358
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0002
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0002/env_batch.xml, check files /users_home/cmcc/gc02720/model/cmcc-cm/cime/../ccs_config/machines/config_batch.xml
+ Started with 936367
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0003
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0003/env_batch.xml, check files /users_home/cmcc/gc02720/model/cmcc-cm/cime/../ccs_config/machines/config_batch.xml
+ Started with 936371
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0004
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0004/env_batch.xml, check files /users_home/cmcc/gc02720/model/cmcc-cm/cime/../ccs_config/machines/config_batch.xml
+ Started with 936379
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0005
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0005/env_batch.xml, check files /users_home/cmcc/gc02720/model/cmcc-cm/cime/../ccs_config/machines/config_batch.xml
+ Started with 936387
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0006
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0006/env_batch.xml, check files /users_home/cmcc/gc02720/model/cmcc-cm/cime/../ccs_config/machines/config_batch.xml
+ Started with 936398
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0007
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0007/env_batch.xml, check files /users_home/cmcc/gc02720/model/cmcc-cm/cime/../ccs_config/machines/config_batch.xml
+ Started with 936411
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0008
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0008/env_batch.xml, check files /users_home/cmcc/gc02720/model/cmcc-cm/cime/../ccs_config/machines/config_batch.xml
+ Started with 936421
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0009
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0009/env_batch.xml, check files /users_home/cmcc/gc02720/model/cmcc-cm/cime/../ccs_config/machines/config_batch.xml
+ Started with 936431
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0010
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0010/env_batch.xml, check files /users_home/cmcc/gc02720/model/cmcc-cm/cime/../ccs_config/machines/config_batch.xml
+ Started with 936438
+ string_id =  done(936358) && done(936367) && done(936371) && done(936379) && done(936387) && done(936398) && done(936411) && done(936421) && done(936431) && done(936438)
+Job has been assigned to project 'R000'.
+Job <936440> is submitted to queue <p_short>.
+<<Waiting for dispatch ...>>
+<<Starting on n033-ibj>>
+start -- BOGUS ASSIM
+Thu May 30 14:08:14 CEST 2024 -- END BOGUS ASSIM
+Thu May 30 14:08:14 CEST 2024 -- BEGIN CAM_ASSIMILATE
+FGAT is TRUE
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+ SCRIPTDIR= /users_home/cmcc/gc02720/spreads/spreads_scripts/cam-fv/main_scripts
+ DARTROOT=  /users_home/cmcc/gc02720/spreads
+ CLONESROOT=  /users_home/cmcc/gc02720/cesm-exp/synp5
+ case_name= synp5
+ NTSLOTS = 13
+ CASEROOT0001= /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0001
+ I am inside /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0001 
+ xmlquery start
+ scomp = cam
+ CASE = synp5_0001
+ CAM_DYCORE = fv
+ EXEROOT = /work/cmcc/gc02720/CMCC-CM/synp5_0001/bld
+ RUNDIR = /work/cmcc/gc02720/CMCC-CM/synp5_0001/run
+ archive = /work/cmcc/gc02720/CMCC-CM/archive
+ TOTALPES = 36
+ xmlquery end
+ TOTALPES= 360
+ TMPROOT= /work/cmcc/gc02720/CMCC-CM/TMPSYNP5
+ CASESRUNROOT= /work/cmcc/gc02720/CMCC-CM
+
+ START CHECK JOBS
+
+ SCRIPTDIR= /users_home/cmcc/gc02720/spreads/spreads_scripts/cam-fv/main_scripts
+ CLONESROOT=  /users_home/cmcc/gc02720/cesm-exp/synp5
+ case_name= synp5
+ nens= 10
+
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0001
+resubmit_num 0
+ job finished! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0002
+resubmit_num 0
+ job finished! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0003
+resubmit_num 0
+ job finished! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0004
+resubmit_num 0
+ job finished! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0005
+resubmit_num 0
+ job finished! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0006
+resubmit_num 0
+ job finished! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0007
+resubmit_num 0
+ job finished! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0008
+resubmit_num 0
+ job finished! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0009
+resubmit_num 0
+ job finished! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp5/synp5_0010
+resubmit_num 0
+ job finished! 
+ All jobs finished correctly!
+
+ END CHECK JOBS
+
+rundir
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run
+ FILE = synp5_0001.cam.r.2017-10-02-21600.nc
+ ATM_DATE_EXT = 2017-10-02-21600
+ ATM_DATE = 2017-10-02-21600
+ ATM_YEAR = 2017
+ ATM_MONTH = 10
+ ATM_DAY = 02
+ ATM_SECONDS = 21600
+ ATM_HOUR = 6
+ valid time of model is 2017 10 02 21600 (seconds)
+ valid time of model is 2017 10 02 6 (hours)
+INFVAL =  5
+ Inflation used. Restage  previous inflation files if any exist.
+ No HIDE dir found.
+Thu May 30 14:08:29 CEST 2024 -- BEGIN COPY BLOCK
+Thu May 30 14:08:29 CEST 2024 -- END COPY BLOCK
+stages_except_output = {forecast}
+stages_all = {forecast,output}
+Remove old databases from TS1
+Copy the new databases in TS1
+Remove old databases from TS2
+Copy the new databases in TS2
+Remove old databases from TS3
+Copy the new databases in TS3
+Remove old databases from TS4
+Copy the new databases in TS4
+Remove old databases from TS5
+Copy the new databases in TS5
+Remove old databases from TS6
+Copy the new databases in TS6
+Remove old databases from TS7
+Copy the new databases in TS7
+Remove old databases from TS8
+Copy the new databases in TS8
+Remove old databases from TS9
+Copy the new databases in TS9
+Remove old databases from TS10
+Copy the new databases in TS10
+Remove old databases from TS11
+Copy the new databases in TS11
+Remove old databases from TS12
+Copy the new databases in TS12
+Remove old databases from TS13
+Copy the new databases in TS13
+Thu May 30 14:08:32 CEST 2024 -- BEGIN PREPROCESSING
+Thu May 30 14:08:32 CEST 2024
+BEGIN PYTHON PROCESS 
+Member: 1, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-10800.nc
+Member: 1, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-12600.nc
+Member: 1, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-14400.nc
+Member: 1, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-16200.nc
+Member: 1, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-18000.nc
+Member: 1, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-19800.nc
+Member: 1, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-21600.nc
+Member: 1, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-23400.nc
+Member: 1, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-25200.nc
+Member: 1, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-27000.nc
+Member: 1, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-28800.nc
+Member: 1, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-30600.nc
+Member: 1, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-32400.nc
+Member: 2, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-10800.nc
+Member: 2, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-12600.nc
+Member: 2, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-14400.nc
+Member: 2, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-16200.nc
+Member: 2, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-18000.nc
+Member: 2, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-19800.nc
+Member: 2, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-21600.nc
+Member: 2, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-23400.nc
+Member: 2, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-25200.nc
+Member: 2, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-27000.nc
+Member: 2, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-28800.nc
+Member: 2, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-30600.nc
+Member: 2, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-32400.nc
+Member: 3, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-10800.nc
+Member: 3, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-12600.nc
+Member: 3, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-14400.nc
+Member: 3, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-16200.nc
+Member: 3, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-18000.nc
+Member: 3, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-19800.nc
+Member: 3, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-21600.nc
+Member: 3, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-23400.nc
+Member: 3, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-25200.nc
+Member: 3, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-27000.nc
+Member: 3, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-28800.nc
+Member: 3, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-30600.nc
+Member: 3, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-32400.nc
+Member: 4, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-10800.nc
+Member: 4, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-12600.nc
+Member: 4, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-14400.nc
+Member: 4, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-16200.nc
+Member: 4, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-18000.nc
+Member: 4, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-19800.nc
+Member: 4, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-21600.nc
+Member: 4, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-23400.nc
+Member: 4, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-25200.nc
+Member: 4, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-27000.nc
+Member: 4, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-28800.nc
+Member: 4, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-30600.nc
+Member: 4, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-32400.nc
+Member: 5, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-10800.nc
+Member: 5, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-12600.nc
+Member: 5, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-14400.nc
+Member: 5, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-16200.nc
+Member: 5, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-18000.nc
+Member: 5, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-19800.nc
+Member: 5, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-21600.nc
+Member: 5, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-23400.nc
+Member: 5, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-25200.nc
+Member: 5, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-27000.nc
+Member: 5, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-28800.nc
+Member: 5, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-30600.nc
+Member: 5, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-32400.nc
+Member: 6, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-10800.nc
+Member: 6, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-12600.nc
+Member: 6, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-14400.nc
+Member: 6, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-16200.nc
+Member: 6, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-18000.nc
+Member: 6, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-19800.nc
+Member: 6, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-21600.nc
+Member: 6, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-23400.nc
+Member: 6, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-25200.nc
+Member: 6, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-27000.nc
+Member: 6, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-28800.nc
+Member: 6, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-30600.nc
+Member: 6, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-32400.nc
+Member: 7, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-10800.nc
+Member: 7, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-12600.nc
+Member: 7, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-14400.nc
+Member: 7, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-16200.nc
+Member: 7, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-18000.nc
+Member: 7, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-19800.nc
+Member: 7, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-21600.nc
+Member: 7, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-23400.nc
+Member: 7, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-25200.nc
+Member: 7, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-27000.nc
+Member: 7, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-28800.nc
+Member: 7, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-30600.nc
+Member: 7, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-32400.nc
+Member: 8, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-10800.nc
+Member: 8, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-12600.nc
+Member: 8, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-14400.nc
+Member: 8, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-16200.nc
+Member: 8, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-18000.nc
+Member: 8, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-19800.nc
+Member: 8, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-21600.nc
+Member: 8, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-23400.nc
+Member: 8, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-25200.nc
+Member: 8, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-27000.nc
+Member: 8, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-28800.nc
+Member: 8, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-30600.nc
+Member: 8, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-32400.nc
+Member: 9, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-10800.nc
+Member: 9, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-12600.nc
+Member: 9, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-14400.nc
+Member: 9, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-16200.nc
+Member: 9, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-18000.nc
+Member: 9, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-19800.nc
+Member: 9, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-21600.nc
+Member: 9, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-23400.nc
+Member: 9, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-25200.nc
+Member: 9, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-27000.nc
+Member: 9, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-28800.nc
+Member: 9, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-30600.nc
+Member: 9, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-32400.nc
+Member: 10, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-10800.nc
+Member: 10, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-12600.nc
+Member: 10, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-14400.nc
+Member: 10, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-16200.nc
+Member: 10, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-18000.nc
+Member: 10, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-19800.nc
+Member: 10, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-21600.nc
+Member: 10, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-23400.nc
+Member: 10, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-25200.nc
+Member: 10, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-27000.nc
+Member: 10, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-28800.nc
+Member: 10, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-30600.nc
+Member: 10, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-32400.nc
+Thu May 30 14:15:14 CEST 2024
+END PYTHON PROCESS 
+ Extract information phis from /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.h0.2017-10-02-00000.nc
+ MYSTRING = inf_initial_from_restart    true    false 
+ PRIOR_INF= 5
+ POSTE_INF= 0
+ PRIOR_INFLATION_FROM_RESTART = true
+ USING_PRIOR_INFLATION = true
+ POSTE_INFLATION_FROM_RESTART = ignored
+ USING_POSTE_INFLATION = false
+ CONTINUE_RUN = FALSE
+ nfiles = 0
+ CALLING  FILL INFLATION RESTART
+Thu May 30 14:15:25 CEST 2024
+BEGIN FILTER PROCESSES /work/cmcc/gc02720/CMCC-CM/TMPSYNP5 inflation  
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+[0] 2024-05-30 14:15:29: Starting D4O_init() : SQLite 3.40.0 (3040000) -- 2022-11-16 12:10:08 89c459e766ea7e9165d0beeb124708b955a4950d0f4792f457465d71b158d318 : # of MPI-ranks = 1 : busy_timeout_ms = 0
+[0] 2024-05-30 14:15:32: Ending D4O_fini()
+ END  FILL INFLATION RESTART
+add TS TREFHT LANDFRAC QVMR to the inflation files
+dict_keys(['lon', 'slon', 'lat', 'slat', 'lev', 'ilev', 'hyam', 'hybm', 'hyai', 'hybi', 'gw', 'P0', 'T', 'US', 'VS', 'Q', 'CLDLIQ', 'CLDICE', 'TREFHT', 'LANDFRAC', 'TS', 'QVMR', 'PS', 'date', 'datesec'])
+variable  TS  already exists
+variable  TS  already exists
+variable  TREFHT  already exists
+variable  TREFHT  already exists
+variable  LANDFRAC  already exists
+variable  LANDFRAC  already exists
+variable  QVMR  already exists
+variable  QVMR  already exists
+Posterior Inflation not requested for this assimilation.
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS1/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS1/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS2/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS2/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS3/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS3/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS4/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS4/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS5/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS5/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS6/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS6/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS7/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS7/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS8/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS8/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS9/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS9/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS10/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS10/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS11/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS11/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS12/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS12/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS13/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP5/TS13/input_priorinf_sd.nc'
+Thu May 30 14:15:38 CEST 2024 -- END PREPROCESSING
+Thu May 30 14:15:38 CEST 2024 -- BEGIN FILTER
+ input_file_list_name = cam_init_files
+ output_file_list_name = cam_init_files
+input/output_file_lis_name = cam_init_files
+FGAT ON, TWO STEP ASSIMILATION, d4o_departure=yes/no
+ENTER PHASE 1, PRIOR DEPARTURES COMPUTATION
+inst_string: _0001
+TS1: insert /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-10800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-10800.nc
+TS2: insert /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-12600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-12600.nc
+TS3: insert /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-14400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-14400.nc
+TS4: insert /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-16200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-16200.nc
+TS5: insert /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-18000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-18000.nc
+TS6: insert /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-19800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-19800.nc
+TS7: insert /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-21600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-21600.nc
+TS8: insert /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-23400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-23400.nc
+TS9: insert /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-25200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-25200.nc
+TS10: insert /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-27000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-27000.nc
+TS11: insert /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-28800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-28800.nc
+TS12: insert /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-30600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-30600.nc
+TS13: insert /work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-32400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-32400.nc
+inst_string: _0002
+TS1: insert /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-10800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-10800.nc
+TS2: insert /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-12600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-12600.nc
+TS3: insert /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-14400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-14400.nc
+TS4: insert /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-16200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-16200.nc
+TS5: insert /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-18000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-18000.nc
+TS6: insert /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-19800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-19800.nc
+TS7: insert /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-21600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-21600.nc
+TS8: insert /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-23400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-23400.nc
+TS9: insert /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-25200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-25200.nc
+TS10: insert /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-27000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-27000.nc
+TS11: insert /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-28800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-28800.nc
+TS12: insert /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-30600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-30600.nc
+TS13: insert /work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-32400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-32400.nc
+inst_string: _0003
+TS1: insert /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-10800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-10800.nc
+TS2: insert /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-12600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-12600.nc
+TS3: insert /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-14400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-14400.nc
+TS4: insert /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-16200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-16200.nc
+TS5: insert /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-18000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-18000.nc
+TS6: insert /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-19800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-19800.nc
+TS7: insert /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-21600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-21600.nc
+TS8: insert /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-23400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-23400.nc
+TS9: insert /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-25200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-25200.nc
+TS10: insert /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-27000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-27000.nc
+TS11: insert /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-28800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-28800.nc
+TS12: insert /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-30600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-30600.nc
+TS13: insert /work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-32400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-32400.nc
+inst_string: _0004
+TS1: insert /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-10800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-10800.nc
+TS2: insert /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-12600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-12600.nc
+TS3: insert /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-14400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-14400.nc
+TS4: insert /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-16200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-16200.nc
+TS5: insert /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-18000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-18000.nc
+TS6: insert /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-19800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-19800.nc
+TS7: insert /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-21600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-21600.nc
+TS8: insert /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-23400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-23400.nc
+TS9: insert /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-25200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-25200.nc
+TS10: insert /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-27000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-27000.nc
+TS11: insert /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-28800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-28800.nc
+TS12: insert /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-30600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-30600.nc
+TS13: insert /work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-32400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-32400.nc
+inst_string: _0005
+TS1: insert /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-10800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-10800.nc
+TS2: insert /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-12600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-12600.nc
+TS3: insert /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-14400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-14400.nc
+TS4: insert /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-16200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-16200.nc
+TS5: insert /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-18000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-18000.nc
+TS6: insert /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-19800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-19800.nc
+TS7: insert /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-21600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-21600.nc
+TS8: insert /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-23400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-23400.nc
+TS9: insert /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-25200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-25200.nc
+TS10: insert /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-27000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-27000.nc
+TS11: insert /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-28800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-28800.nc
+TS12: insert /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-30600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-30600.nc
+TS13: insert /work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-32400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-32400.nc
+inst_string: _0006
+TS1: insert /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-10800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-10800.nc
+TS2: insert /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-12600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-12600.nc
+TS3: insert /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-14400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-14400.nc
+TS4: insert /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-16200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-16200.nc
+TS5: insert /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-18000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-18000.nc
+TS6: insert /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-19800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-19800.nc
+TS7: insert /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-21600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-21600.nc
+TS8: insert /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-23400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-23400.nc
+TS9: insert /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-25200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-25200.nc
+TS10: insert /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-27000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-27000.nc
+TS11: insert /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-28800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-28800.nc
+TS12: insert /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-30600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-30600.nc
+TS13: insert /work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-32400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-32400.nc
+inst_string: _0007
+TS1: insert /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-10800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-10800.nc
+TS2: insert /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-12600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-12600.nc
+TS3: insert /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-14400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-14400.nc
+TS4: insert /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-16200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-16200.nc
+TS5: insert /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-18000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-18000.nc
+TS6: insert /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-19800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-19800.nc
+TS7: insert /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-21600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-21600.nc
+TS8: insert /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-23400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-23400.nc
+TS9: insert /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-25200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-25200.nc
+TS10: insert /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-27000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-27000.nc
+TS11: insert /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-28800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-28800.nc
+TS12: insert /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-30600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-30600.nc
+TS13: insert /work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-32400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-32400.nc
+inst_string: _0008
+TS1: insert /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-10800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-10800.nc
+TS2: insert /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-12600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-12600.nc
+TS3: insert /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-14400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-14400.nc
+TS4: insert /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-16200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-16200.nc
+TS5: insert /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-18000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-18000.nc
+TS6: insert /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-19800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-19800.nc
+TS7: insert /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-21600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-21600.nc
+TS8: insert /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-23400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-23400.nc
+TS9: insert /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-25200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-25200.nc
+TS10: insert /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-27000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-27000.nc
+TS11: insert /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-28800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-28800.nc
+TS12: insert /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-30600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-30600.nc
+TS13: insert /work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-32400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-32400.nc
+inst_string: _0009
+TS1: insert /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-10800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-10800.nc
+TS2: insert /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-12600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-12600.nc
+TS3: insert /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-14400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-14400.nc
+TS4: insert /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-16200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-16200.nc
+TS5: insert /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-18000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-18000.nc
+TS6: insert /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-19800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-19800.nc
+TS7: insert /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-21600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-21600.nc
+TS8: insert /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-23400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-23400.nc
+TS9: insert /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-25200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-25200.nc
+TS10: insert /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-27000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-27000.nc
+TS11: insert /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-28800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-28800.nc
+TS12: insert /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-30600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-30600.nc
+TS13: insert /work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-32400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-32400.nc
+inst_string: _0010
+TS1: insert /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-10800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-10800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-10800.nc
+TS2: insert /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-12600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-12600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-12600.nc
+TS3: insert /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-14400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-14400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-14400.nc
+TS4: insert /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-16200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-16200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-16200.nc
+TS5: insert /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-18000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-18000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-18000.nc
+TS6: insert /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-19800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-19800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-19800.nc
+TS7: insert /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-21600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-21600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-21600.nc
+TS8: insert /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-23400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-23400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-23400.nc
+TS9: insert /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-25200.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-25200.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-25200.nc
+TS10: insert /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-27000.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-27000.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-27000.nc
+TS11: insert /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-28800.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-28800.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-28800.nc
+TS12: insert /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-30600.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-30600.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-30600.nc
+TS13: insert /work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-32400.nc in cam_init_files
+/work/cmcc/gc02720/CMCC-CM/synp5_0001/run/synp5_0001.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0002/run/synp5_0002.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0003/run/synp5_0003.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0004/run/synp5_0004.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0005/run/synp5_0005.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0006/run/synp5_0006.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0007/run/synp5_0007.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0008/run/synp5_0008.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0009/run/synp5_0009.cam.i.2017-10-02-32400.nc
+/work/cmcc/gc02720/CMCC-CM/synp5_0010/run/synp5_0010.cam.i.2017-10-02-32400.nc
+change the stages to write (no forecast) in TS1
+change the stages to write (no forecast) in TS2
+change the stages to write (no forecast) in TS3
+change the stages to write (no forecast) in TS4
+change the stages to write (no forecast) in TS5
+change the stages to write (no forecast) in TS6
+change the stages to write (no forecast) in TS7
+change the stages to write (no forecast) in TS8
+change the stages to write (no forecast) in TS9
+change the stages to write (no forecast) in TS10
+change the stages to write (no forecast) in TS11
+change the stages to write (no forecast) in TS12
+change the stages to write (no forecast) in TS13
+CALLING take_f.sh
+Thu May 30 14:17:39 CEST 2024
+BEGIN FILTER PROCESSES /work/cmcc/gc02720/CMCC-CM/TMPSYNP5 filter 13 yes
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+TS1: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS2: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS3: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS4: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS5: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS6: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS7: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS8: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS9: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS10: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS11: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS12: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS13: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+wait for  done(937111) && done(937112) && done(937115) && done(937116) && done(937118) && done(937119) && done(937120) && done(937121) && done(937122) && done(937123) && done(937124) && done(937125) && done(937128)
+Job has been assigned to project 'R000'.
+Job <937129> is submitted to queue <p_short>.
+<<Waiting for dispatch ...>>
+<<Terminated while pending>>
+END take_f.sh
+ERROR in PHASE1
+ assimilation did not work properly, forecast and cleaning procedures are skipped
+
+ END CYCLES 
+

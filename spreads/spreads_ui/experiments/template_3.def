@@ -1,0 +1,172 @@
+suite template
+
+   # defstatus suspended #queued
+
+   edit ECF_HOME 
+   edit ECF_HOSTNAME
+   edit ECF_INCLUDE 
+   edit ECF_CLONE 
+
+   family run_cycles
+
+      edit CASE_NAME 
+      edit NENS
+      edit NCYCLES 1
+      edit CONT_RUN FALSE
+      event ACTIVATE_ASSI set
+      event FORECAST clear
+      edit FENS 3
+      event CLEANA set
+      event FSOI_Jo clear
+      edit FDAYS 1
+      edit MAXTRY 
+      edit TRY 0
+      edit MODELDIR
+      edit BASEOBSDIR
+      edit DEP
+      edit CASE_TEMPLATE
+      edit DART_NML_TEMPLATE
+      event oneshot clear
+      edit MAXCICLY 20
+
+      family background
+         limit l1 3
+         defstatus suspended
+         # defstatus queued
+         task pre
+         family run
+            inlimit l1 1
+            trigger pre==complete
+            task mem_1
+               label info ""
+               edit JOB_ID "None"
+            task mem_2
+               label info ""
+               edit JOB_ID "None"
+            task mem_3
+               label info ""
+               edit JOB_ID "None"
+            endfamily
+      endfamily
+
+      family prepare_assimilation
+         defstatus queued
+         trigger background==complete and ../run_cycles:ACTIVATE_ASSI==set
+         task pre_departure
+            defstatus  queued
+         family one_shot
+            trigger ../../run_cycles:oneshot==set and pre_departure==complete
+            task one_shot
+               label info ""
+               edit JOB_ID "None"
+         endfamily
+   
+         family spreads_assim
+            trigger ../../run_cycles:oneshot==clear and pre_departure==complete
+            defstatus queued
+            family filter_departure_cleaver_screening
+               edit NODES 15
+               edit queue "p_short"
+               edit walltime "00:30"
+               defstatus queued
+               family departure
+                  task dep_1
+                     label info ""
+                     edit JOB_ID "None"
+                     trigger dep_7==complete
+                  task dep_2
+                     label info ""
+                     edit JOB_ID "None"
+                     trigger dep_7==complete
+                  task dep_3
+                     label info ""
+                     edit JOB_ID "None"
+                     trigger dep_7==complete
+                  task dep_4
+                     label info ""
+                     edit JOB_ID "None"
+                     trigger dep_7==complete
+                  task dep_5
+                     label info ""
+                     edit JOB_ID "None"
+                     trigger dep_7==complete
+                  task dep_6
+                     label info ""
+                     edit JOB_ID "None"
+                     trigger dep_7==complete
+                  task dep_7
+                     label info ""
+                     edit JOB_ID "None"
+                  task dep_8
+                     label info ""
+                     edit JOB_ID "None"
+                     trigger dep_7==complete
+                  task dep_9
+                     label info ""
+                     edit JOB_ID "None"
+                     trigger dep_7==complete
+                  task dep_10
+                     label info ""
+                     edit JOB_ID "None"
+                     trigger dep_7==complete
+                  task dep_11
+                     label info ""
+                     edit JOB_ID "None"
+                     trigger dep_7==complete
+                  task dep_12
+                     label info ""
+                     edit JOB_ID "None"
+                     trigger dep_7==complete
+                  task dep_13
+                     label info ""
+                     edit JOB_ID "None"
+                     trigger dep_7==complete
+               endfamily    
+            endfamily
+
+            family filter_assim
+               edit NODES 15
+               edit queue "p_short"
+               edit walltime "02:00"
+               defstatus queued
+               trigger filter_departure_cleaver_screening==complete
+               task update
+                     label info ""
+                     edit JOB_ID "None"
+            endfamily
+         endfamily
+   
+         family postprocess
+            defstatus queued        
+            trigger one_shot==complete or spreads_assim==complete
+            task rename   
+               defstatus queued        
+            task archive
+               defstatus queued
+               trigger rename==complete
+            task diagnostics
+               defstatus queued
+               trigger rename==complete
+         endfamily
+      endfamily
+
+      family forecast
+         event 00Z clear
+         event 12Z clear
+         event ALL clear
+         defstatus queued
+         trigger (prepare_assimilation/postprocess==complete and ../run_cycles:FORECAST==set) or (prepare_assimilation/pre_departure==complete and ../run_cycles:FORECAST==set and ../run_cycles:ACTIVATE_ASSI==clear)
+
+         task daily_forecast
+            label info ""
+      endfamily
+
+      task clean
+         defstatus queued
+         trigger (forecast==complete and ../run_cycles:CLEANA==set) or (../run_cycles:FORECAST==clear and ../run_cycles:CLEANA==set and prepare_assimilation/postprocess==complete)
+     
+      task ctrl
+         trigger prepare_assimilation/postprocess==complete
+
+   endfamily
+endsuite

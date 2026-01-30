@@ -1,0 +1,83 @@
+#!/bin/bash
+#BSUB -L /bin/bash
+#BSUB -n 36
+#BSUB -R "span[ptile=36]"
+#BSUB -q p_medium
+#BSUB -W 04:00
+#BSUB -P R000
+#BSUB -x
+#BSUB -J bufr2d4o-anykind
+#BSUB -o bufr2d4o-anykind.%J.out
+#BSUB -e bufr2d4o-anykind.%J.out
+
+set -eu
+
+source /usr/share/Modules/init/bash
+source /users_home/cmcc/ss35621/load-modules-d4o.zeus
+source /data/cmcc/ss35621/d4o/install/INTEL/source.me
+
+module -t list
+
+set -x
+
+hostname
+pwd
+
+printenv | egrep ^LSB
+
+npes=$LSB_MAX_NUM_PROCESSORS
+
+echo "Number of processes to be used: $npes"
+
+bjobs -l $LSB_JOBID | perl -pe 's/^\s+//; s/\n//'
+
+rundir=rundir/$LSB_JOBNAME.$LSB_JOBID
+mkdir -pv $rundir
+cd $rundir
+pwd
+
+numens=3 # 80
+
+npools=12
+parallel=1  # 0
+
+bufrfiles=$(find /data/cmcc/ss35621/BIG-DATA/20190405{00,06,12,18} -type f|fgrep -v .csv|xargs -r -n1 basename|sort -u)
+
+thisdir=$(pwd)
+for BASETIME in 2019040500 2019040506 2019040512 2019040518
+do
+    cd $thisdir
+    mkdir -pv $BASETIME
+    cd $BASETIME
+    #ls -ltr /data/cmcc/ss35621/BIG-DATA/$BASETIME
+
+    for bufr in $bufrfiles
+    do
+	if [[ -s /data/cmcc/ss35621/BIG-DATA/$BASETIME/${bufr} ]] ; then
+	    mkdir -pv ${bufr}.dir
+	    cd ${bufr}.dir
+
+	    cp -pfv /data/cmcc/ss35621/BIG-DATA/$BASETIME/${bufr} .
+
+	    pwd
+	    ls -ltr
+
+	    rc=0
+    
+	    echo "$(date) -- BEGIN bufr2d4o ${bufr} -- BASETIME = $BASETIME"
+
+	    (set -x ; time bufr2d4o ${bufr} $npools $parallel --anykind --basetime=$BASETIME --ens=$numens --deferens) > output.log 2>&1 || rc=$?
+
+	    echo "$(date) -- END   bufr2d4o ${bufr} -- BASETIME = $BASETIME : rc=$rc"
+
+	    # Creating catalog database for this BASETIME (usually created only after ALL BUFRs in the BASETIME were cracked)
+    
+	    (set -x; time catalogd4o catalog.db "${bufr}.*.db") >> output.log 2>&1 || rc=$?
+    
+	    pwd
+	    ls -ltr
+
+	    cd -
+	fi
+    done
+done

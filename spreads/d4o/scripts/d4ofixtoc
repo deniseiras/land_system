@@ -1,0 +1,79 @@
+#!/bin/bash
+#
+# Usage: d4ofixtoc [database(s)]
+#
+# Updates TOC (Table Of Contents) -table
+#
+
+set -eu
+set -o pipefail
+
+exec >&2
+
+callcliro="sqlite3 -batch -init /dev/null -nullvalue NULL -noheader -csv -readonly"
+callcliwr="sqlite3 -batch -init /dev/null -nullvalue NULL"
+
+pid=$$
+export TMPSLASH=${TMPSLASH:-/tmp} # potentially /dev/shm
+export tmpdir=$TMPSLASH/$USER/d4ofixtoc.$pid
+echo "[$(date +%s.%N)] $(date): Temporary dumps written to $tmpdir on host $(hostname -f)"
+
+mkdir -pv $tmpdir
+rc=0
+for f in ${*:-}
+do
+    db=$f
+    if [[ -s $db ]] && [[ -w $db ]] ; then # exists, size > 0 AND writable
+	db=$(readlink -f $db)
+	
+	echo "[$(date +%s.%N)] $(date): Begin $0 $db"
+	
+	vars="file_id,timeslot,obstype,codetype,platform_id,rttov_sensor_id,rttov_sat_id,sensor_id,sat_id,varno,kind,bufrtype,subtype,reportype,group_id,sat_instr"
+	
+	sql="SELECT COUNT(DISTINCT body.rowid) AS nbody, COUNT(DISTINCT hdr.rowid) AS nhdr, COUNT(DISTINCT sat.rowid) AS nsat"
+	sql+=" ,$vars"
+	sql+=" FROM hdr LEFT OUTER JOIN sat ON id=sat.hdr_id JOIN body ON id=body.hdr_id"
+	sql+=" GROUP BY $vars"
+	sql+=" ORDER BY $vars"
+
+	upd=$tmpdir/$(basename $db .db).upd
+	cat /dev/null > $upd
+        echo ".output /dev/null" >> $upd
+	echo "PRAGMA journal_mode = OFF;" >> $upd
+	echo "PRAGMA locking_mode = EXCLUSIVE;" >> $upd
+        echo ".output" >> $upd
+	echo '.shell echo "[$(date +%s.%N)] $(date): Starting UPDATE toc SET toc_id = -ABS(toc_id)"' >> $upd
+	echo "UPDATE toc SET toc_id = -ABS(toc_id);" >> $upd
+	echo '.shell echo "[$(date +%s.%N)] $(date): Starting UPDATE toc SET toc_id = ABS(toc_id), ... WHERE ..."' >> $upd
+	(echo ""; $callcliro $db "$sql" -line; echo ";") |\
+	    perl -pe 's/^\s*$/;\nUPDATE toc SET toc_id = ABS(toc_id),\n/; s/\b(nsat\s+=\s+\d+)\s*$/$1\nWHERE /; s/\s+=\s+NULL\s*$/ IS NULL\n/; s/(\d+|NULL)\s*$/$1,\n/; s/,\s*$/,/;' |\
+	    perl -pe 's/^;\s*$//;s/,;/;/;s/[ ]+/ /g;' |\
+	    perl -pe 'if (m/^WHERE/) { s/,/ AND /g}' >> $upd
+	echo '.shell echo "[$(date +%s.%N)] $(date): Starting DELETE FROM toc WHERE toc_id < 0"' >> $upd
+	echo "DELETE FROM toc WHERE toc_id < 0;" >> $upd
+
+	#ls -l $upd
+	#exit 123
+
+	$callcliwr $db < $upd || {
+	    rc=$?
+	    echo "[$(date +%s.%N)] $(date): Error(s) in d4ofixtoc: $callcliwr $db < $upd"
+	    break
+	}
+
+	echo "[$(date +%s.%N)] $(date): Done with $0 $db"
+	
+	dbdir=$(dirname $db)
+	dbfile=$(basename $db)
+	if [[ "${backup:-1}" = "1" ]] ; then
+	    if [[ -d $dbdir/backups ]] && [[ -w $dbdir/backups/$dbfile ]] ; then
+		# replace backup with an up to date copy now
+		cp -pv $db $dbdir/backups/$dbfile
+	    fi
+	fi
+    fi
+done
+
+[[ $rc -eq 0 ]] && rm -rfv $tmpdir
+exit $rc
+

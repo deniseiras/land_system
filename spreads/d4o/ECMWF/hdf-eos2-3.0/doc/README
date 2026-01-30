@@ -1,0 +1,305 @@
+Building/Installing HDF-EOS2 using Autoconf/Automake
+----------------------------------------------------
+
+Prerequisite
+------------
+The HDF-EOS2 library requires HDF4 library version 4.2.10 or later. You can download HDF4
+from the HDF Group:
+
+    https://confluence.hdfgroup.org/display/support/Download+HDF4
+
+or, depending upon your system, you may be able to install it from a package. The HDF4
+libary may depend upon other libraries, such as szip, jpeg, and z (compress). The HDF-EOS2
+configure script will do its best to determine these dependencies and find the appropriate
+libraries, but it may occasionally need help. Please refer to the troubleshooting section
+at the bottom of this document.
+
+
+
+Configuring
+-----------
+After downloading and unpacking the tar file, 'cd' into the hdfeos directory and type
+
+    ./configure
+
+This will run a series of tests to determine the necessary library dependencies, and
+configure the makefiles accordingly. The configure script will output a summary of the
+configuration options at completion. These can be useful for troubleshooting.
+
+By default, the HDF-EOS2 libraries and include headers will be installed in /usr/local. This
+can be changed by using the --prefix option when running configure, e.g.
+
+    ./configure --prefix=/custom/install/location
+
+A number of other options may be provided to the configure script. You can get details
+of these options using the command:
+
+    ./configure --help
+
+
+
+
+Building
+--------
+
+To build HDF-EOS2, simply type
+
+    make
+
+from the hdfeos directory.
+
+
+Tests
+-----
+The HDF-EOS2 library comes with some tests. You can run these using the command
+
+    make check
+
+from the hdfeos directory. These test are primarily for internal testing and are not
+part of the official delivery. However, they may provide useful examples. USE AT YOUR
+OWN RISK.
+
+
+
+Installing
+----------
+
+To install HDF-EOS2, simply type
+
+    make install
+
+from the hdfeos directory. You need to make sure you have the necessary permissions to
+install the files in the chosen location.
+
+
+
+
+Build HDF-EOS2 using Visual Studio
+----------------------------------
+For building on Windows, the HDF-EOS2 comes with a Visual Studio 2019 project that can be used to
+build native Windows versions of the libraries. This combines both the GCTP and HDF-EOS2 code into
+a single library. To build on Windows, after starting up Visual Studio load the HDF-EOS2 project
+file in the vs2019/HDF-EOS2 directory. Then select Build -> Build HDF-EOS2 from the menu, or
+type <ctrl> B.
+
+
+
+Fortran API
+-----------
+The HDF-EOS2 library can build a FORTRAN API to provide access to HDF-EOS2 functions from FORTRAN
+programs. By default, the FORTRAN API is disabled. To enable the FORTRAN API on Autoconf systems,
+use the 
+
+    --enable-fortran
+
+option. The configure script will attempt to determine the appropriate API naming convention used
+by the fortran compiler automatically. You can still build the FORTRAN API on Autotools systems
+even if you do not have access to a FORTRAN compiler. To do this, do not use the --enable-fortran
+option, but instead use the options listed below for enabling the API on windows. e.g.
+
+./configure CPPFLAGS="-DFORTRAN_API -DFORTRAN_API_UPPERCASE -DFORTRAN_API_SUFFIX=_"
+
+
+For building the FORTRAN API on Windows using Visual Studio, you will need to configure some
+additional compiler options. These are:
+
+FORTRAN_API                 Just add this as a preprocessor definition (it does not need a
+                            specific value)
+
+FORTRAN_API_UPPERCASE       Add this as a preprocessor definition if your FORTRAN compiler uses
+                            upper-case for external functions names (e.g. ifort)
+
+FORTRAN_API_LOWERCASE       Add this as a preprocessor definition if your FORTRAN compiler uses
+                            lower-case for external functions names.
+
+FORTRAN_API_PREFIX          Add this as a preprocessor definition if your FORTRAN compiler adds
+                            a prefix of any sort to external function names. The value of this
+                            definition should be the character prefix (e.g. _)
+
+FORTRAN_API_SUFFIX          Add this as a preprocessor definition if your FORTRAN compiler adds
+                            a suffix of any sort to external function names. The value of this
+                            definition should be the character suffix (e.g. _)
+
+The HDF-EOS2 Visual Studio project file is preconfigure with FORTRAN_API and FORTRAN_API_UPPERCASE,
+to suit the Intel ifort compiler. Note that a FORTRAN compiler is not actually needed in order
+to generate the FORTRAN API.
+
+
+Troubleshooting
+---------------
+
+General
+-------
+This section contains general troubleshooting tips. Additional sections below detail
+know issues for specific platforms.
+
+* Determining HDF4 Dependencies
+
+    It can be difficult to find out what additional libraries HDF4 depends upon. This is usually
+    libjpeg, and libz, but may also include libsz. You can get an idea of the dependencies
+    by using the h4cc tool (you may have to search for this):
+
+        h4cc -show
+
+    This will produce output similar to the following:
+
+        cc -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong
+           --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -fPIC -Wl,-z,relro
+           -L/usr/lib64/hdf /usr/lib64/hdf/libmfhdf.a /usr/lib64/hdf/libdf.a -ljpeg -lz
+
+    It lists the libraries that HDF4 (and hence HDF-EOS2) programs will need to link against.
+    In this case, -ljpeg (libjpeg) and -lz (libz). If HDF4 was built with szip support, it
+    will also show -lsz (libsz).
+
+
+* Finding libraries
+
+    Most of the libraries need by HDF4 and HDF-EOS2 should be found automatically by
+    the configure script, but if it cannot find them, they can be found using a simple
+    command. e.g. To find the jpeg library:
+
+        find / -name 'libjpeg.*'
+
+    This might produce output as follows:
+
+        /usr/lib64/pkgconfig/libjpeg.pc
+        /usr/lib64/libjpeg.so.62
+        /usr/lib64/libjpeg.so.62.1.0
+        /usr/lib64/libjpeg.so
+
+    In this case, we have a dynamic (shared) jpeg library in /usr/lib64  We can tell configure
+    where to find it as follows:
+
+        ./configure --with-jpeg=/usr/lib64
+
+    If you cannot find a particular library, you will need to install the appropriate
+    package.
+
+
+* Installing missing packages
+
+    Linux distributions generally use a package manager to install software packages, though
+    the specific tool varies depending upon the distribution. For example, CentOS uses 'yum'
+    while Ubuntu uses 'apt'.
+
+    Max OSX systems, while linux like, do not have the 'OS ready' packages for most of the
+    dependencies needed by HDF-EOS2. However, there are independently developed tools such as
+    MacPorts (https://www.macports.org/) and HomeBrew (https://brew.sh/) which are just
+    as capable, and can provide everything you need.
+
+    Packages often come in two different 'flavors' - regular, and 'devel'. The regular versions
+    contain the libraries needed to run programs that use them. The 'devel' packages are
+    developer orientated packages that include headers files needed to compile your own
+    programs using that use the libraries. The following is a list of the key packages
+    needed by HDF-EOS2:
+
+        hdf     The main HDF4 package. A 'devel' version is needed since HDF-EOS2 compiles
+                against this library and needs the header files.
+
+        libjpeg Only needed if hdf uses it, but this is almost always the case. A regular
+                version can be used since HDF-EOS2 does not explicity invoke jpeg functions.
+
+        zlib    Compression library. As with libjpeg, a regular version can be used.
+
+        aec     Adaptive Entropy Encoding library (szip). This may or may not be needed,
+                depending upon how HDF4 was built. If you have access to the h4cc commmand,
+                you can use 'h4cc -show' to determine whether or not it is needed. If
+                the output contains '-lsz', then you need aec. Most package versions of
+                HDF4 do not use aec.
+
+    Examples of command to install packages on some of the common linux distributions are
+    given below.
+
+
+
+
+Linux (Ubuntu/Debian)
+---------------------
+
+* Finding/Installing packages
+
+    These distributions tend to use 'apt' as the package manager. You can search for packages
+    using apt as follows:
+
+        apt-cache search hdf
+
+    A package can be installed as follows:
+
+        apt-get install libhdf4-dev
+
+    One of the advantages of package manages is that if you install a package in this way, it
+    will also install all the depenencies required by the package. You can see which additional
+    packages a given package depends on as follows:
+
+        apt-cache depends libhdf4-dev
+
+    This is also a good way to determine whether or not aec is required.
+
+
+
+Linux (Redhat/Centos)
+---------------------
+
+* Finding/Installing packages
+
+    These distributions tend to use 'yum' as the package manager. You can search for packages
+    using yum as follows:
+
+        yum search hdf
+
+    A package can be installed as follows:
+
+        yum install hdf-devel
+
+    One of the advantages of package manages is that if you install a package in this way, it
+    will also install all the depenencies required by the pacakge. You can see which additional
+    packages a given package depends on as follows:
+
+        yum deplist hdf-devel
+
+    This is also a good way to determine whether or not aec is required.
+
+
+
+Mac OSX
+-------
+
+* Finding/Installing packages using MacPorts
+
+    You can search for packages using MacPorts as follows:
+
+        port search --name "*hdf*"
+
+    A package can be installed as follows (you may need to run this using sudo):
+
+        port install hdf4
+
+    As with Linux base package managers, MacPorts will also install all the depenencies required
+    by a pacakge. You can see which additional packages a given package depends on as follows:
+
+        port info hdf4
+
+    Look for a line beginning 'Library Dependencies'. You can ignore any line beginning with
+    'Build Dependences' since you will not be build HDF4.
+
+
+* Missing library 'System'.
+
+    If your build fails with a message indicating it cannot find a library called 'System',
+    try adding the following configure option:
+
+    ./configure LDFLAGS=-L/usr/local
+
+    This gives the location of the library to the linker.
+
+
+
+Windows Cygwin
+--------------
+Building HDFEOS on Cygwin can be problematic because it depends on how the HDF4 library was built (refer
+to HDF4-README for further details). In general, the following configure command should suffice:
+
+./configure CPPFLAGS="-D__linux__ -D__x86_64__" LIBS="-lxdr" LDFLAGS="-L/usr/local/lib"
+
+You will need to change the library location in LDFLAGS if you installed the HDF4 library in a different
+location, and make sure the CPPFLAGS defines match those used to build the hdf4 library.

@@ -1,0 +1,257 @@
+#!/bin/bash
+# 
+# Usage: synop_station_list.modify [options] d4o-database(s)
+# 
+# Purpose: Adds synop_station_list-table and modifies (lat,lon,stalt) from hdr-table based on synop_station_list.db
+# 
+# [options]
+# -D | --dry-run : dry-run that identifies the positions that need altering, but does NOT change the d4o-database(s)
+# -s dbname | --station-list dbname : supply alternative database where to feed in SYNOP stations (default = $ODB_SCHEMA_DIR/synop_station_list.db)
+# -e epsilon | --epsilon epsilon : epsilon in degrees when matching (deglat,deglon) between d4o-database(s) and SYNOP stations list db
+# 
+
+cmdfile=$(readlink -f $0)
+cmd=$(basename $cmdfile)
+
+errcnt=0
+abort=no
+
+dryrun=0
+stdb=${ODB_SCHEMA_DIR:-}/synop_station_list.db
+eps="0.01" # degrees
+
+function Usage()
+{
+    egrep -A8 '^# Usage:' $cmdfile | perl -pe 's/^# //' >&2
+}
+
+set -eu
+set -o pipefail
+
+cmdargs=${*:-}
+
+lkey="dry-run station-list: epsilon:"
+rkey=$(echo $lkey | perl -pe 's/-//g') # as lkey but w/o '-'
+
+LONG_FLAGS=""
+for lf in $(echo "$lkey $rkey" | perl -pe 's/\s+/\n/g'| sort -u)
+do
+    LONG_FLAGS="$LONG_FLAGS -l $lf"
+done
+
+FLAGS="De:s:"
+
+OPTS=`getopt -o $FLAGS $LONG_FLAGS -- "$@"`
+
+if [[ $? -ne 0 ]] ; then
+    echo "${cmd}: (Error) Invalid or unsupported options from 'getopt'" >&2
+    ((errcnt += 1))
+fi
+
+trueargs=$(echo "$OPTS" | perl -pe "s/^\s+//; s/(--\S+)\s+'/\${1}=/g; s/'//g; s/--\s*$//")
+
+eval set -- "$OPTS"
+
+while true
+do
+    case "$1" in
+        -D|--dry-run|--dryrun) dryrun=1; shift;;
+        -e|--epsilon) eps=$(echo "eps=$2;if(eps < 0)eps=-eps;eps"|bc -lq); shift 2;;
+        -s|--station-list|--stationlist) stdb="$2"; shift 2;;
+        --) shift; break;;
+        *) echo "DEBUG: 1=${1:-}"; echo "DEBUG: 2=${2:-}"; abort=yes; break;;
+    esac
+done
+
+if [[ $abort = yes ]] ; then
+    echo "${cmd}: (Error) Invalid command line arguments : $cmdargs" >&2
+    ((errcnt += 1))
+fi
+
+if [[ $# -lt 1 ]] ; then
+    echo "${cmd}: (Error) At least one d4o-database must be supplied" >&2
+    ((errcnt += 1))
+elif [[ $dryrun -eq 0 ]] ; then
+    for db in "$@"
+    do
+        if [[ ! -w "$db" ]] ; then
+            echo "${cmd}: (Error) Unable to open d4o-database '$db' for reading & writing" >&2
+            ((errcnt += 1))
+        fi
+    done
+elif [[ $dryrun -eq 1 ]] ; then
+    for db in "$@"
+    do
+        if [[ ! -r "$db" ]] ; then
+            echo "${cmd}: (Error) Unable to open d4o-database '$db' for reading" >&2
+            ((errcnt += 1))
+        fi
+    done
+fi
+
+if [[ ! -r "$stdb" ]] ; then
+    echo "${cmd}: (Error) Unable to open station-list database '$stdb' for reading -- have you tried to use the '\$ODB_SCHEMA_DIR/synop_station_list.db' ?" >&2
+    ((errcnt += 1))
+fi
+
+if [[ $errcnt -gt 0 ]] ; then
+    echo " " >&2
+    Usage
+    echo "Interpreted command \"$0 $cmdargs\" as: $cmd $trueargs" >&2
+    echo "${cmd}: (Error) Exiting with error count = $errcnt" >&2
+    exit $errcnt
+fi
+
+# Actions ...
+
+callclirw="sqlite3 -batch -init /dev/null -nullvalue NULL" # (load &) store -- write accessible
+callcliro="sqlite3 -batch -init /dev/null -nullvalue NULL -readonly" # load, only r/o
+
+pid=$$
+export TMPSLASH=${TMPSLASH:-/tmp} # potentially /dev/shm
+export tmpdir=$TMPSLASH/$USER/synop_station_list.$pid
+echo "[$(date +%s.%N)] $(date): Temporary dumps written to $tmpdir on host $(hostname -f)"
+mkdir -pv $tmpdir
+
+create="$tmpdir/.create"
+
+cat /dev/null > $create
+
+echo "attach database 'file:$stdb?mode=ro' as stdb;" > $create
+
+if [[ $dryrun -eq 0 ]] ; then
+    echo ".output /dev/null" >> $create
+    echo "PRAGMA foreign_keys = OFF;" >> $create
+    #echo "PRAGMA foreign_keys = ON;" >> $create
+    echo "PRAGMA synchronous = OFF;"  >> $create
+    #echo "PRAGMA journal_mode = MEMORY;" >> $create
+    echo "PRAGMA journal_mode = OFF;" >> $create
+    echo "PRAGMA locking_mode = EXCLUSIVE;" >> $create
+    #echo "PRAGMA page_size = 4096;" >> $create
+    echo "PRAGMA cache_size = ${PRAGMA_CACHE_SIZE:--100000};" >> $create # kibibytes if < 0, pages if > 0
+    echo ".output" >> $create
+    cat >> $create <<'EOF'
+CREATE TABLE IF NOT EXISTS main.synop_station_list (
+  hdr_id INTEGER PRIMARY KEY NOT NULL UNIQUE,  -- reference to hdr.id
+  oscar_id int, -- WMO Oscar id where the synop station list data stemmed from
+  statid text, -- ECMWF station id (real or fake)
+  wigosId text, -- WMO wigosId
+  deglat real, -- as WMO synop_station_list.latitude
+  deglon real, -- as WMO mod(synop_station_list.longitude+360,360)
+  stalt real, -- as WMO synop_station_list.elevation (if NULL, then old_stalt prevails)
+  old_wigosId text, -- original hdr.wigosId
+  old_deglat real, -- original hdr.deglat
+  old_deglon real, -- original hdr.deglon
+  old_stalt real, -- original hdr.stalt
+  lat_diff real, -- approx. abs. difference between latitudes (in degrees)
+  lon_diff real, -- approx. abs. difference between longitudes (in degrees)
+  stalt_diff real, -- approx. difference between synop_station_list.elevation and ECMWF stalt
+  label text, -- WMO name of the station, region & territory bundled into one label
+  wigosStationIdentifiers text, -- Full history of this identifier
+  FOREIGN KEY(hdr_id) REFERENCES hdr(id)
+);
+CREATE INDEX IF NOT EXISTS main.idx_synop_station_list_hdr_id ON synop_station_list (hdr_id);
+DELETE FROM main.synop_station_list;
+.shell echo "[$(date +%s.%N)] $(date): INSERT INTO main.synop_station_list ..."
+INSERT INTO main.synop_station_list
+EOF
+else
+    echo "PRAGMA full_column_names = ON;" >> $create
+    echo "PRAGMA short_column_names = OFF;" >> $create
+    echo "-- EXPLAIN QUERY PLAN" >> $create
+fi
+
+cat >> $create <<EOF
+SELECT hdr_id, stdb.id, statid
+  ,stdb.wigosId,stdb.lat,stdb.lon,stdb.stalt
+  ,d4o.wigosId,d4o.lat,d4o.lon,d4o.stalt
+  ,printf("%.2f",abs(stdb.lat - d4o.lat)) AS lat_diff
+  ,printf("%.2f",abs(stdb.lon - d4o.lon)) AS lon_diff
+  ,printf("%.1f",stdb.stalt - d4o.stalt) AS stalt_diff
+  ,label, wigosStationIdentifiers
+FROM
+(SELECT DISTINCT
+ stdb.synop_station_list.id AS id,
+ stdb.synop_station_list.wigosId AS wigosId,
+ stdb.synop_station_list.latitude AS lat,
+ mod(stdb.synop_station_list.longitude+360,360) AS lon,
+ IIF(length(stdb.synop_station_list.elevation) > 0,stdb.synop_station_list.elevation,NULL) AS stalt,
+ stdb.synop_station_list.name||";"||stdb.synop_station_list.region||";"||stdb.synop_station_list.territory AS label,
+ wigosStationIdentifiers
+ FROM stdb.synop_station_list
+-- WHERE cast(stdb.synop_station_list.id AS int) BETWEEN 0 AND 1200
+)
+AS stdb
+JOIN
+(SELECT DISTINCT
+ id as hdr_id,
+ statid,
+ wigosId,
+ degrees(lat) AS lat,
+ mod(degrees(lon)+360,360) AS lon,
+ stalt
+ FROM hdr
+ WHERE obstype = 1 AND (statid IS NOT NULL OR wigosId IS NOT NULL)
+--   AND id < 1200
+)
+AS d4o
+ON (INSTR(stdb.wigosStationIdentifiers,"0-20000-0-"||d4o.statid||";") > 0 OR stdb.wigosId = d4o.wigosId) -- Crude matching ?
+WHERE (abs(stdb.lat - d4o.lat) > $eps)
+   OR (abs(stdb.lon - d4o.lon) > $eps)
+   OR (abs(stdb.stalt - d4o.stalt) > 0)
+   OR (length(stdb.stalt) == 0)
+   OR (d4o.stalt IS NULL)
+
+-- ORDER BY cast(stdb.id AS int) -- in general VERY expensive
+-- LIMIT 2000
+-- LIMIT 10
+;
+detach database stdb;
+EOF
+
+if [[ $dryrun -eq 0 ]] ; then # update
+    echo '.shell echo "[$(date +%s.%N)] $(date): UPDATEing hdr-table ..."' >> $create
+    cat >> $create <<EOF
+UPDATE hdr 
+   SET stalt = r.stalt
+  FROM (SELECT s.stalt AS stalt, s.hdr_id AS id FROM synop_station_list AS s JOIN hdr ON s.hdr_id = hdr.id WHERE s.stalt IS NOT NULL AND abs(s.stalt - hdr.stalt) > 0) AS r
+ WHERE hdr.id = r.id;
+
+UPDATE hdr 
+   SET wigosid = r.wigosid
+  FROM (SELECT s.wigosid AS wigosid, s.hdr_id AS id FROM synop_station_list AS s JOIN hdr ON s.hdr_id = hdr.id WHERE s.wigosid IS NOT NULL AND s.wigosid <> hdr.wigosid) AS r
+ WHERE hdr.id = r.id;
+
+UPDATE hdr 
+   SET lat = r.lat
+  FROM (SELECT radians(s.deglat) AS lat, s.hdr_id AS id FROM synop_station_list AS s JOIN hdr ON s.hdr_id = hdr.id WHERE abs(s.deglat - hdr.deglat) > $eps) AS r
+ WHERE hdr.id = r.id;
+
+UPDATE hdr 
+   SET lon = r.lon
+  FROM (SELECT radians(s.deglon) AS lon, s.hdr_id AS id FROM synop_station_list AS s JOIN hdr ON s.hdr_id = hdr.id WHERE abs(s.deglon - hdr.deglon) > $eps) AS r
+ WHERE hdr.id = r.id;
+EOF
+    echo '.shell echo "[$(date +%s.%N)] $(date): All UPDATEs done."' >> $create
+    for db in "$@"
+    do
+    	$callclirw $db < $create || ((errcnt += 1))
+    done
+else # dryrun
+    for db in "$@"
+    do
+	csvfile=cmp.$(basename $db .db).csv
+	$callcliro -csv -header $db < $create > $csvfile & # || ((errcnt += 1))
+	$callcliro -box $db < $create || ((errcnt += 1))
+	wait
+	echo "Output in $csvfile"
+    done
+fi
+
+set -x
+ls -ltra $create
+[[ $errcnt -eq 0 ]] && rm -rfv $tmpdir
+
+exit $errcnt
+
+

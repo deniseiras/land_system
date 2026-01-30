@@ -1,0 +1,305 @@
+# Blacklist for SPREADS
+
+# FAILCODE :
+const monthly = 1;
+const constant = 2; # the default in SPREADS
+const experimental = 3;
+const use_emiskf_only = 4;
+
+# d4o/SPREADS MDI
+const mdi = -888888.0;
+
+# Some ODB/d4o constants (kept from ECMWF -- looked mostly useful)
+
+# hdr.obstype :
+const synop = 1;
+const airep = 2;
+const satob = 3;
+const dribu = 4;
+const temp = 5;
+const pilot = 6;
+const satem = 7;
+const paob = 8;
+const scatt = 9;
+const limb = 10;
+const gbrad = 14;
+const ralt = 12;
+const allsky=16;
+const raingg = 17;
+const lidar = 15;
+
+# hdr.codetype :
+const satem500 = 86;
+const satem250 = 186;
+const rad1c = 210;
+const rtovs = 211;
+const tovs = 212;
+const ssmi = 215;
+const meris = 214;
+const am_profiler = 34;
+const jp_profiler = 131;
+const eu_profiler = 134;
+const templand = 35;
+const tempship = 36;
+const dropsonde = 135;
+const reo3 = 206;
+const metar = 140;
+const pgps = 110;
+const radar_rr = 3;
+const gpsro = 250;
+
+# sat.sensor_id :
+const hirs = 0;
+const msu = 1;
+const ssu = 2;
+const amsua = 3;
+const amsub = 4;
+const ssmi_sensor = 6;
+const vtpr1 = 7;
+const vtpr2 = 8;
+const tmi = 9;
+const ssmis = 10;
+const airs = 11;
+const mhs = 15;
+const iasi = 16;
+const cris = 27;
+const amsre = 17;
+const amsr2 = 63;
+const atms = 19;
+const meteosat = 20;
+const msg = 21;
+const goesimg = 22;
+const mtsatimg = 24;
+const windsat = 30;
+const mwts = 40;
+const mwhs = 41;
+const iras = 42;
+const mwri = 43;
+const envisat = 60;
+const gmi = 71;
+const mwts2 = 72;
+const mwhs2 = 73;
+const ahi = 56;
+const saphir = 34;
+const abi = 44;
+const s5p = 64;
+const s3a=61;
+const s3b=65;
+const snpp=224;
+const noaa20=225;
+
+# sat.sat_instr :
+const mipas = 161;
+const gome = 170;
+const gomos = 172;
+const sciamachy = 175;
+const seviri = 207;
+const gome2 = 220;
+const omi = 394;
+const toms = 431;
+const sbuv = 624;
+const auramls = 387;
+const iasi_reo3 = 221;
+const modis_sensor = 389;
+const mopitt = 090;
+const omps = 947;
+const tropomi = 152;
+const slstr = 180;
+const viirs = 616;
+
+# body.varno :
+const u = 3;
+const v = 4;
+const z = 1;
+const dz = 57;
+const rh = 29;
+const q = 7;
+const pwc = 9;
+const rh2m = 58;
+const q2m = 281;
+const t = 2;
+const td = 59;
+const t2m = 39;
+const td2m = 40;
+const ts = 11;
+const ptend = 30;
+const w = 60;
+const ww = 61;
+const vv = 62;
+const ch = 63;
+const cm = 64;
+const cl = 65;
+const nh = 66;
+const nn = 67;
+const hshs = 68;
+const c = 69;
+const ns = 70;
+const s = 71;
+const e = 72;
+const tgtg = 73;
+const spsp1 = 74;
+const spsp2 = 75;
+const rs = 76;
+const eses = 77;
+const is = 78;
+const trtr = 79;
+const rr = 80;
+const jj = 81;
+const vs = 82;
+const ds = 83;
+const hwhw = 84;
+const pwpw = 85;
+const dwdw = 86;
+const gclg = 87;
+const rhlc = 88;
+const rhmc = 89;
+const rhhc = 90;
+const n = 91;
+const snra = 92;
+const ps = 110;
+const dd = 111;
+const ff = 112;
+const rawbt = 119;
+const rawra = 120;
+const satcl = 121;
+const scatss = 122;
+const du = 5;
+const dv = 6;
+const u10m = 41;
+const v10m = 42;
+const rhlay = 19;
+const auxil = 200;
+const cllqw = 123;
+const ambigv = 124;
+const ambigu = 125;
+const apdss = 128;
+const ro_bangl = 162;
+const rrefl = 192;
+const o3 = 206;
+const hlos = 187;
+const no2 = 181;
+const so2 = 182;
+const co = 183;
+const hcho = 184;
+const go3 = 185;
+const co2 = 186;
+const ch4 = 188;
+const aod = 174;
+const rao = 176;
+const od = 177;
+const rfltnc = 178;
+const lnprc = 203;
+const so2volc = 284;
+
+# body.ppcode :
+const psealev = 0;
+const pstalev = 1;
+const g850hpa = 2;
+const g700hpa = 3;
+const p500gpm = 4;
+const p1000gpm = 5;
+const p2000gpm = 6;
+const p3000gpm = 7;
+const p4000gpm = 8;
+const g900hpa = 9;
+const g1000hpa = 10;
+const g500hpa = 11;
+
+# body.vertco_type:
+const pressure = 1;
+const height = 2;
+const tovs_cha = 3;
+const scat_cha = 4;
+
+
+# External variables (non-special, i.e. related to obs. hdr & sat -tables)
+
+#    # HDR and SAT-related items
+#    sqlhdr = "SELECT id,timeslot,statid"//&
+#         & ",reportype,obstype,codetype,bufrtype,subtype"//&
+#         & ",deglat,deglon,yyyymmdd,hhmmss,epoch,sat_id,sensor_id,sat_instr"//&
+#         & ",hdr.status FROM hdr"//& # for coding convenience put hdr.status last
+#         & " LEFT OUTER JOIN sat ON id = sat.hdr_id"//&
+#         & " WHERE hdr.status & 1 = 1"//&
+#         & d4o_timeslot//&
+#         & d4o_hdr//&
+#         & " ORDER BY id"
+
+external_char hdr.statid;
+external hdr.reportype;
+external hdr.obstype;
+external hdr.codetype;
+external hdr.bufrtype;
+external hdr.subtype;
+external hdr.deglat;
+external hdr.deglon;
+external hdr.yyyymmdd;
+external hdr.hhmmss;
+external sat.sat_id;
+external sat.sensor_id;
+external sat.sat_instr;
+
+# External variables (SPECIAL, i.e. related to obs. body & ens table entries only)
+
+#    # BODY and ENS-related items
+#    sqlbody= "SELECT id,entryno,varno,kind,obsvalue,qc,dart_qc"//&
+#         & ",which_vert,levelht,obs_error,channel,press"//&
+#         & ",member,prior,ens.rowid"//&
+#         & ",body.status,ens.status FROM hdr"//& # for coding convenience put body.status & ens.status last in this order
+#         & " LEFT OUTER JOIN sat ON id = sat.hdr_id"//&
+#         & " JOIN body ON id = body.hdr_id"//&
+#         & " JOIN ens ON body.hdr_id = ens.hdr_id AND entryno = body_entryno"//&
+#         & " WHERE hdr.status & 1 = 1 AND body.status & 1 = 1 AND ens.status & 1 = 1"//&
+#         & d4o_timeslot//&
+#         & d4o_hdr//&
+#         & d4o_body//&
+#         & d4o_ens//&
+#         & " ORDER BY id,entryno,member"
+
+external body.varno ; # is SPECIAL;
+external body.kind ; # is SPECIAL;
+external body.obsvalue ; # is SPECIAL;
+external body.qc ; # is SPECIAL;
+external body.dart_qc ; # is SPECIAL;
+external body.which_vert ; # is SPECIAL;
+external body.obs_error ; # is SPECIAL;
+external body.levelht ; # is SPECIAL;
+external body.channel ; # is SPECIAL;
+external body.press ; # is SPECIAL;
+external ens.member ; # is SPECIAL;
+external ens.fg_depar ; # is SPECIAL;
+
+# Additional variables (possibly not supplied via SQL)
+
+external nandat, nantim; # analysis date & time -- overrideable via environment variables NANDAT & NANTIM
+external phase; # usually indicating screening BEFORE phase-1 (i.e. prescreening) and screening BEFORE phase-2 (i.e. postscreening)
+
+#
+
+if (phase not in (1,2)) then fail(); endif;
+
+if ( hdr.codetype = gpsro ) then
+   if ( body.levelht<5000 || body.levelht>40000 ) then
+            fail();
+    endif;
+endif;
+
+if (hdr.OBSTYPE = ralt) then
+  fail();
+elif (hdr.obstype = synop) then
+  if body.varno notin (u10m, v10m, rh2m, ps, z) then fail(); endif;
+  if (hdr.statid = "." && hdr.statid != "foobar") then fail(); endif;
+  #  if (LAT = 0 and LON=0) then fail(); endif;
+elif (hdr.obstype = airep) then
+  if (hdr.statid != "UAL20") then fail(monthly); endif;
+  if ens.member != mdi && ens.member > 1 then fail(experimental); endif;
+  if (abs(body.obs_error) > 3.3) then fail(); endif; # fail() := fail(constant)
+endif;
+
+# a test only: if (nantim != mdi) then fail(experimental); endif;
+
+return;
+
+# Do not add any rule here, because this part of the
+# blacklist is never processed. Monthly rules must be put into the
+# relevant if (OBSTYP = ... ) ... return; endif; construct above.

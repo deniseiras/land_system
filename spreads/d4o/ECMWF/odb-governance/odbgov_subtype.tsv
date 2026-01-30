@@ -1,0 +1,123 @@
+code	description
+1	Manual Land SYNOP
+3	Automatic Land SYNOP
+8	ERS-1
+9	Abbreviated SYNOP
+11	SHIP
+13	Automatic SHIP
+19	Reduced SHIP
+21	DRIBU
+22	DRIBU-BATHY
+23	DRIBU-TESAC
+49	SSMIS
+54	TOVS1B
+55	ATOVS
+57	AIRS
+59	AMSRE
+61	500km Low Level Temperature
+62	500km PWC
+63	500km High Level Temperature
+65	500km Merged
+71	250km Low Level Temperature
+72	250km PWC
+73	250km High Level Temperature
+75	250km Merged
+87	AMV
+89	GEOS Radiances
+91	PILOT
+92	PILOT SHIP
+95	American Wind Profiler 1
+96	Wind Profiler
+101	Land TEMP
+102	TEMP SHIP
+103	DROP Sonde
+104	ROCOB TEMP
+105	SHIP ROCOB TEMP
+106	MOBILE TEMP
+110	Ground-based GPS
+122	ERS
+125	Radar rain rate
+127	SSMI
+129	TRMM
+135	OSCAT
+137	QSCAT
+139	ASCAT
+140	METAR
+141	AIREP
+142	AIREP
+143	COLBA
+144	AMDAR
+145	ACARS
+153	Micro Wave Radiation Imager (MWRI)
+154	VASS
+156	WINDSAT
+161	PAOB
+164	PAOB
+189	GEOS Radiances
+190	GEOS Allsky Radiances
+201	ATMS
+203	SMOS
+206	Retrieved O3 Layers
+207	MODIS aerosol
+208	Layer integrated mass density
+209	Layer integrated mass density with averaging kernels
+212	MERIS
+215	Layer volumetric mixing ratio
+228	Layer volumetric mixing ratio with averaging kernels and a priori profile
+229	Layer integrated mass density with averaging kernels and a priori profile
+240	IASI
+250	GPS Radio Occultation
+205	Retrieved O3 Layers for MACC ozone observation operator
+28	SNOW DEPTH
+202	CRIS
+123	RADAR ALTIMETER
+210	ENVISAT SAR
+213	ENVISAT RADAR ALTIMETER 
+214	JASON RADAR ALTIMETER
+126	Rain Gauge
+165	Interactive Multisensor Snow and Ice Mapping System
+147	AUTO METAR
+60	AMSR-2
+223	Satellite aerosol optical depth
+219	VIIRS aerosol optical thickness
+221	CALIPSO attenuated aerosol lidar backscatter
+109	Land High Resolution Temp
+111	SHIP High Resolution TEMP
+148	TAMDAR
+149	ACARs with mixing ratio
+112	BUFR LAND PILOT
+113	BUFR SHIP PILOT
+170	BUFR LAND SYNOP
+172	BUFR LAND SYNOP 2
+176	BUFR LAND SYNOP WMO Region 6
+178	BUFR LAND SYNOP 1 HOURLY
+180	BUFR SHIP SYNOP
+82	SATOB AMV
+224	GPM
+146	WIGOS AMDAR
+216	JASON-2 RADAR ALTIMETER
+217	CRYOSAT-2 RADAR ALTIMETER
+218	SARAL RADAR ALTIMETER
+138	RSCAT
+83	GOES-6 AMV subtype 83
+204	SMAP
+128	SSMI CMSAF
+181	BUFR MOORED BUOYS
+182	BUFR DRIFTING BUOYS
+183	BUFR SHIP SYNOP 2
+211	SAPHIR
+220	SENTINEL 3 RADAR ALTIMETER
+226	Cloud reflectivity
+230	BUFR TEMP DROP
+225	Cloud backscatter
+166	FSCAT
+231	BUFR TEMP DESCENT
+251	Aeolus L2B wind lidar
+32	Tropical cyclone
+150	Mode-S
+151	ADS-C
+232	Sentinel 1 SAR-C
+233	Sentinel 6 RALT WAVE
+241	HIRAS
+242	IKFS2
+179	Crowd AWS

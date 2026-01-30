@@ -1,0 +1,278 @@
+#!/bin/bash
+#
+# Usage: d4omerge  /path/output.db input.db(s)   # /path/output.db must not exist
+#        d4omerge  /path/output.db "input.*.db"  # as previous, but input files are expanded automatically
+#        d4omerge -/path/output.db input.db(s)   # /path/output.db gets auto-deleted before creation 
+#        d4omerge +/path/output.db input.db(s)   # /path/output.db gets gets appended by new input databases
+# 
+
+cmdfile=$(readlink -f $0)
+cmddir=$(dirname $cmdfile)
+
+kmd=$(basename $0)
+PS4='+ [$kmd:${LINENO}]: '
+
+function Usage()
+{
+    egrep -A5 '^# Usage:' $cmdfile | perl -pe 's/^# //'
+}
+
+set -eu
+
+if [[ $# -le 1 ]] ; then
+    Usage
+    exit 1
+else
+    out=$1
+fi
+
+first=$(echo $out | cut -c1)
+append=0
+[[ "$first" = "+" ]] && append=1
+delete=0
+[[ "$first" = "-" ]] && delete=1
+
+if [[ "$first" = "+" ]] || [[ "$first" = "-" ]] ; then
+    out=$(echo $out | cut -c2-)
+fi
+
+if [[ $delete -eq 1 ]] ; then
+    rm -rfv $out
+    append=0
+fi
+
+if [[ $append -eq 0 ]] && [[ -f $out ]] ; then
+    echo "Error: Output dbfile '$out' already exists"
+    Usage
+    exit 2
+fi
+
+fsize=$(stat -c %s $out 2>/dev/null || echo 0)
+out=$(readlink -f $out)
+
+shift
+
+files=""
+for ff in "$@"
+do
+    for f in $(eval echo "$ff")
+    do
+        if [[ -r $f ]] ; then
+	    [[ "$(readlink -f $f)" != "$out" ]] && files+=":$f"
+        fi
+    done
+done
+
+files=$(echo "$files" | perl -pe 's/^://; s/:/\n/g;' | sort -u | perl -pe 's/\n/ /g;' | perl -pe 's/\s+$//;')
+
+callcliro="sqlite3 -batch -init /dev/null -nullvalue NULL -noheader -csv -readonly"
+callclicr="sqlite3 -batch -init /dev/null -nullvalue NULL"
+
+pid=$$
+export TMPSLASH=${TMPSLASH:-/tmp} # potentially /dev/shm
+export tmpdir=$TMPSLASH/$USER/d4omerge.$pid
+echo "[$(date +%s.%N)] $(date): Temporary dumps written to $tmpdir on host $(hostname -f)"
+mkdir -pv $tmpdir
+
+#set -x
+
+declare -A cols
+declare -A numrows
+tables=""
+schema="$tmpdir/.schema"
+create="$tmpdir/.create"
+id_offset=0
+hashdr=0
+file_id_offset=0
+hastoc=0
+hdr_id_tables=""
+hassb=0 # has status_bits table (its data must appear just once)
+n=0
+for f in $files
+do
+    f=$(readlink -f $f)
+    ((++n))
+    ffsize=$(stat -c %s $f 2>/dev/null || echo 0)
+    fsize=$(stat -c %s $out 2>/dev/null || echo 0)
+    echo "[$(date +%s.%N)] $(date): Will merge input database#$n '$f' ($ffsize bytes) to '$out' ($fsize bytes) ..."
+    if [[ $n -eq 1 ]] ; then
+	# discover tables, columns & schema
+	tables=$($callcliro $f "select name from sqlite_master where type='table'" | grep -Pv '^sqlite_' | perl -pe 's/\n/ /' | perl -pe 's/\s*$//')
+	for tbl in $tables
+	do
+	    if [[ "$tbl" = "status_bits" ]] ; then
+		hassb=1
+	    fi
+	    if [[ "$tbl" = "toc" ]] ; then
+		hastoc=1
+		cols[$tbl]=$($callcliro $f "select '$tbl'||'.'||name from pragma_table_info('$tbl')" | grep -vP '^\s*toc[.]entry\s*$' | perl -pe 's/\n/,/' | perl -pe 's/,\s*$//')
+	    else
+		cols[$tbl]=$($callcliro $f "select '$tbl'||'.'||name from pragma_table_info('$tbl')" | perl -pe 's/\n/,/' | perl -pe 's/,\s*$//')
+	    fi
+	    [[ "$tbl" = "hdr" ]] && hashdr=1
+	    c=${cols[$tbl]}
+	    #echo "table=$tbl"
+	    #echo "$c"
+	    hdr_id=0
+	    echo "$c" | grep -Pq '\.hdr_id\b' || hdr_id=$?
+	    [[ $hdr_id -eq 0 ]] && hdr_id_tables+="$tbl "
+	    numrows[$tbl]=0
+	done
+
+	if [[ $append -eq 1 ]] ; then
+	    set +eu
+	    [[ $hashdr -eq 1 ]] && nhdr=$($callcliro $out "select max(id) from hdr")
+	    [[ "$nhdr" = ""  ]] && nhdr=0
+	    ((id_offset = nhdr))
+	    
+	    nfid=""
+	    [[ $hastoc -eq 1 ]] && nfid=$($callcliro $out "select max(file_id) from toc")
+	    [[ "$nfid" = ""  ]] && nfid=0
+	    ((file_id_offset = nfid))
+	    set -eu
+	fi
+	
+	# dump schema once, table-by-table (to avoid attempts re-creating sqlite_sequence etc. table internal tables!)
+	cat /dev/null > $schema
+	for tbl in $tables
+	do
+	    $callcliro $f ".schema $tbl" >> $schema
+	done
+
+	#ls -ltr $schema
+	#exit 1
+	
+	# start create'ing -file
+	cat /dev/null > $create
+        echo ".output /dev/null" >> $create
+        echo "PRAGMA foreign_keys = OFF;" >> $create
+        #echo "PRAGMA foreign_keys = ON;" >> $create
+        echo "PRAGMA synchronous = OFF;"  >> $create
+        #echo "PRAGMA journal_mode = MEMORY;" >> $create
+        echo "PRAGMA journal_mode = OFF;" >> $create
+	echo "PRAGMA locking_mode = EXCLUSIVE;" >> $create
+	#echo "PRAGMA page_size = 4096;" >> $create
+	echo "PRAGMA cache_size = ${PRAGMA_CACHE_SIZE:--100000};" >> $create # kibibytes if < 0, pages if > 0
+	echo ".output" >> $create
+	#echo ".trace stderr --plain" >> $create
+        [[ $append -eq 0 ]] && echo ".read $schema" >> $create
+    fi
+
+    #echo ".shell date" >> $create
+    #echo ".print SELECT'ing from database $f ($ffsize bytes)" >> $create
+    echo '.shell echo "[$(date +%s.%N)] $(date): SELECTing from database '"$f ($ffsize bytes)"'"' >> $create
+    echo "attach database 'file:$f?mode=ro' as dbold;" >> $create
+
+    for tbl in $tables
+    do
+	c=${cols[$tbl]}
+	cnotbl=$(echo "$c" | perl -pe "s/\b$tbl\.(\w+)\b/\$1/g")
+	cid=$(echo "$c" | perl -pe "s/(\S+)/dbold.\$1/g" | perl -pe "s/\.(hdr_id|id)\b/.\$1+$id_offset/g" | perl -pe "s/\.(file_id)\b/.\$1+$file_id_offset/g")
+	ncols=$(echo "$c" | awk -F, '{print NF}')
+	nrows=$($callcliro $f "SELECT count(*) FROM $tbl" 2>/dev/null || echo "0")
+	if [[ "$tbl" = "status_bits" ]] ; then
+	    echo ".print ... DELETE FROM $tbl" >> $create
+	    echo "DELETE FROM $tbl;" >> $create # delete any existing contents
+	fi
+	echo ".print ... INSERT INTO $tbl : $ncols columns x $nrows rows" >> $create
+	#[[ $nrows -ge 10000 ]] && echo ".timer on" >> $create
+	echo "INSERT INTO $tbl ($cnotbl) SELECT $cid FROM dbold.$tbl;" >> $create
+	#[[ $nrows -ge 10000 ]] && echo ".timer off" >> $create
+	if [[ "$tbl" = "status_bits" ]] ; then
+	    numrows[$tbl]=$nrows # since we only have them once
+	else
+	    numrows[$tbl]=$((${numrows[$tbl]}+nrows))
+	fi
+    done
+    
+    echo "detach database dbold;" >> $create
+
+    set +eu
+    nhdr=""
+    [[ $hashdr -eq 1 ]] && nhdr=$($callcliro $f "select max(id) from hdr")
+    [[ "$nhdr" = ""  ]] && nhdr=0
+    ((id_offset += nhdr))
+
+    nfid=""
+    [[ $hastoc -eq 1 ]] && nfid=$($callcliro $f "select max(file_id) from toc")
+    [[ "$nfid" = ""  ]] && nfid=0
+    ((file_id_offset += nfid))
+    set -eu
+done
+
+if [[ $hashdr -eq 1 ]] ; then
+    # renumber "id"-columns with a cascading effect on "hdr_id"-columns
+    if [[ "$hdr_id_tables" = "" ]] ; then
+	echo '.shell echo "[$(date +%s.%N)] $(date): Make hdr.id-column numbering consecutive"' >> $create
+    else
+	hdr_id_tables=$(echo "$hdr_id_tables" | perl -pe 's/\s+$//')
+	#echo '.shell echo "[$(date +%s.%N)] $(date): Make hdr.id-column numbering consecutive with cascading effects on dependent tables ('$hdr_id_tables') having hdr_id-columns"' >> $create
+	echo '.shell echo "[$(date +%s.%N)] $(date): Make hdr.id-column numbering including dependent tables ('$hdr_id_tables') having hdr_id-columns"' >> $create
+    fi
+    newids="_new_ids_$$"
+    echo '.shell echo "[$(date +%s.%N)] $(date): CREATE TEMPORARY TABLE '$newids' ..."' >> $create
+    echo "CREATE TEMPORARY TABLE $newids(i INTEGER PRIMARY KEY AUTOINCREMENT, old_id INTEGER UNIQUE);" >> $create
+    idx="_idx_$$"
+    echo "CREATE UNIQUE INDEX $idx ON $newids (old_id);" >> $create # speed up hdr.id update considerably
+    echo "INSERT INTO $newids (old_id) SELECT DISTINCT id FROM hdr ORDER BY id;" >> $create
+    #echo "PRAGMA foreign_keys = ON;" >> $create # ON UPDATE CASCADE gets activated here -- VERY SLOOOW !!
+    echo "PRAGMA foreign_keys = OFF;" >> $create # ON UPDATE CASCADE : no effect -- will do manually via <table>.hdr_id
+    tbl="hdr"
+    echo '.shell echo "[$(date +%s.%N)] $(date): Updating hdr.id ... ('${numrows[$tbl]}' rows)"' >> $create
+    #echo "explain query plan UPDATE hdr SET id = (SELECT i FROM $newids WHERE old_id = hdr.id) WHERE id IN (SELECT old_id FROM $newids);" >> $create
+    #echo ".timer on" >> $create
+    #--echo "UPDATE hdr SET id = (SELECT -i FROM $newids WHERE old_id = hdr.id) WHERE id IN (SELECT old_id FROM $newids);" >> $create
+    echo "UPDATE hdr SET id = r.id FROM (SELECT -i AS id,old_id FROM $newids) AS r WHERE r.old_id = hdr.id;" >> $create # A better formulation ?
+    echo "UPDATE hdr SET id = -id WHERE id < 0;" >> $create
+    #echo ".timer off" >> $create
+    if [[ "$hdr_id_tables" != "" ]] ; then # >>> faster than if relying ON CASCADE -mode : few minutes max versus hours or days !!
+	for tbl in $hdr_id_tables
+	do
+	    nrows=${numrows[$tbl]}
+	    #if [[ $nrows -gt 0 ]] ; then
+		echo '.shell echo "[$(date +%s.%N)] $(date): Updating '$tbl'.hdr_id ... ('$nrows' rows)"' >> $create
+		#echo ".timer on" >> $create
+		#--echo "UPDATE $tbl SET hdr_id = (SELECT -i FROM $newids WHERE old_id = $tbl.hdr_id) WHERE hdr_id IN (SELECT old_id FROM $newids);" >> $create
+		echo "UPDATE $tbl SET hdr_id = r.id FROM (SELECT -i AS id,old_id FROM $newids) AS r WHERE r.old_id = $tbl.hdr_id;" >> $create # A better formulation ? 
+		echo "UPDATE $tbl SET hdr_id = -hdr_id WHERE hdr_id < 0;" >> $create
+		#echo ".timer off" >> $create
+	    #fi
+	done
+    fi
+    echo "DROP TABLE $newids; " >> $create # should drop the $idx INDEX, too
+    echo "DROP INDEX IF EXISTS $idx;" >> $create
+    echo '.shell echo "[$(date +%s.%N)] $(date): Renumbering of id-column(s) done"' >> $create    
+fi
+
+#echo ".dbinfo" >> $create
+echo "VACUUM;" >> $create
+echo '.shell echo "[$(date +%s.%N)] $(date): Releasing unused space (VACUUM) done"' >> $create    
+echo ".stats" >> $create
+
+echo ".print '#table,nrows,ncols'" >> $create
+echo ".mode csv" >> $create
+for tbl in $tables
+do
+    echo "SELECT '$tbl' AS 'table', count(*) AS nrows, (SELECT count(*) FROM pragma_table_info('$tbl')) AS ncols FROM '$tbl';" >> $create
+done
+
+rc=0
+if [[ -s $schema ]] ; then
+    echo "[$(date +%s.%N)] $(date): Merging $n databases into '$out' ..."
+    $callclicr $out < $create || rc=$?
+    [[ $rc -eq 0 ]] && $cmddir/d4ofixtoc $out || rc=$?
+    fsize=$(stat -c %s $out 2>/dev/null || echo 0)
+    echo "[$(date +%s.%N)] $(date): Done with '$out' ($fsize bytes) -- rc=$rc"
+    ls -ltra $out || :
+fi
+
+set -x
+ls -ltra $tmpdir
+#[[ $rc -eq 0 ]] && rm -rfv $tmpdir
+rm -rfv $tmpdir
+
+exit $rc
+
+
+
+

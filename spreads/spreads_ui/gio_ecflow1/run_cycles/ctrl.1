@@ -1,0 +1,38 @@
++ set -o pipefail
++ export ECF_PORT=3155
++ ECF_PORT=3155
++ export ECF_HOST=login1.juno.cmcc.scc
++ ECF_HOST=login1.juno.cmcc.scc
++ export ECF_NAME=/gio_ecflow1/run_cycles/ctrl
++ ECF_NAME=/gio_ecflow1/run_cycles/ctrl
++ export ECF_PASS=7TaPFiMv
++ ECF_PASS=7TaPFiMv
++ export ECF_TRYNO=1
++ ECF_TRYNO=1
++ export ECF_TRIES=0
++ ECF_TRIES=0
++ export ECF_RID=2529961
++ ECF_RID=2529961
++ export PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/imagemagick/7.0.8-7-2475g3fynku56e7rbgq65zz2xbmy6k26/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/ncview/2.1.8-sds5t7td2iyndfz25r537rsyxvx63wn6/bin:/work/cmcc/gc02720/.conda/envs/spreads/bin:/juno/opt/anaconda/3-2022.10/condabin:/users_home/cmcc/gc02720/.local/bin:/users_home/cmcc/gc02720/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/imagemagick/7.0.8-7-2475g3fynku56e7rbgq65zz2xbmy6k26/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/ncview/2.1.8-sds5t7td2iyndfz25r537rsyxvx63wn6/bin:/work/cmcc/gc02720/.conda/envs/spreads/bin:/juno/opt/anaconda/3-2022.10/condabin:/users_home/cmcc/gc02720/.local/bin:/users_home/cmcc/gc02720/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ ecflow_client --init=2529961
++ trap ERROR 0
++ trap '{ echo "Killed by a signal"; ERROR ; }' 1 2 3 4 5 6 7 8 10 12 13 15
++ '[' TRUE == FALSE ']'
++ '[' 20 -lt 20 ']'
++ sleep 2m
++ ecflow_client --requeue=force /gio_ecflow1/run_cycles/background
++ ecflow_client --requeue=force /gio_ecflow1/run_cycles/prepare_assimilation
++ ecflow_client --requeue=force /gio_ecflow1/run_cycles/forecast/daily_forecast
++ ecflow_client --requeue=force /gio_ecflow1/run_cycles/clean
++ echo ''
+
++ echo '----- END TASK ---'
+----- END TASK ---
++ echo ''
+
++ ecflow_client --label=Info 'OK... 20230904  00:04'
++ wait
++ ecflow_client --complete
++ trap 0
++ exit 0

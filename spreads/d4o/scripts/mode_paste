@@ -1,0 +1,70 @@
+#!/usr/bin/env perl
+#
+# mode_paste: takes multiple chunks of SQLite ".mode line" output with similar columns joins them one line per column
+#
+# sqlite3 -readonly -batch -init /dev/null -nullvalue NULL -line database.db "select columns from tables where cond ..." | mode_paste
+#
+# export PERLINE=<value> controls how many chunks per line will be accommodated : default = 5
+#
+
+use strict;
+use warnings;
+
+my ($maxkeylen,$maxdatlen) = (0,0);
+my %keys = ();
+my @keys = ();
+my %dat = ();
+my @in = <>;
+
+for (@in) {
+    chomp;
+    next if (m{^\s*$});
+    if (m{^(\s*[^=]+= )(.*)\s*$}) {
+	my ($key,$dat) = ($1,$2);
+	$maxkeylen = length($key) if ($maxkeylen < length($key));
+	$maxdatlen = length($dat) if ($maxdatlen < length($dat));
+	$keys{$key} = 0,push(@keys,$key) unless (exists($keys{$key}));
+	$keys{$key} += 1;
+	@{$dat{$key}} = () unless (exists($keys{$key}));
+	push(@{$dat{$key}},$dat);
+    }
+}
+
+if (@keys) {
+    my $nchunks = @{$dat{$keys[0]}};
+    my $perline = $nchunks;
+    my $wcols = 0;
+    my $tty = qx(ps h -p $$ -o tty); # much better !!
+    chomp($tty);
+    $tty = sprintf("/dev/%s",$tty) if (length($tty) > 0);
+    if (length($tty) > 0) {
+	#my $wcols = qx(tput cols 2>/dev/null); # returns 80 if terminal did not recognize e.g. called from pipe
+	#printf("tty='%s'\n",$tty);
+	$wcols=qx(stty -a <"$tty" | grep -Po '(?<=columns )\\d+');
+	chomp($wcols);
+	$wcols = 0 unless ($wcols =~ m{^\d+$});
+    }
+    $wcols = $maxkeylen + ($maxdatlen + 3) if ($wcols == 0); # sanity : allow one column 
+    if ($wcols > 0) {
+	# make sure output fits under the current window width
+	while ($perline > 1) {
+	    my $len = $maxkeylen + ($maxdatlen + 3) * $perline;
+	    last if ($len <= $wcols);
+	    --$perline;
+	}
+    }
+    for my $key (@keys) {
+	printf("%*.*s",$maxkeylen,$maxkeylen,$key);
+	my $inc = 0;
+	for my $dat (@{$dat{$key}}) {
+	    if (++$inc > $perline) {
+		printf("\n%*.*s",$maxkeylen,$maxkeylen,"");
+		$inc = 1;
+	    }
+	    printf("%*.*s | ",$maxdatlen,$maxdatlen,$dat);
+	}
+	printf("\n");
+    }
+}
+
+

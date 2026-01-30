@@ -1,0 +1,1051 @@
+STARTING
+
+ 2024-03-25 13:46:58.808813
+
+ Computation parameters:
+ Experiment name:  synp2
+ Start date:  2017-10-02-64800
+ End date:  2017-10-02-64800
+ Path archive:  /work/cmcc/gc02720/CMCC-CM/archive
+ Path experiment:  /work/cmcc/gc02720/CMCC-CM/archive/synp2
+ Path save:  /work/cmcc/gc02720/CMCC-CM/basic_diag/synp2/2017-10-02-64800
+ Observation to process:  ['RADIOSONDE_U_WIND_COMPONENT', 'RADIOSONDE_V_WIND_COMPONENT', 'RADIOSONDE_TEMPERATURE', 'AIRCRAFT_U_WIND_COMPONENT', 'AIRCRAFT_V_WIND_COMPONENT', 'AIRCRAFT_TEMPERATURE', 'ACARS_U_WIND_COMPONENT', 'ACARS_V_WIND_COMPONENT', 'ACARS_TEMPERATURE', 'SAT_U_WIND_COMPONENT', 'SAT_V_WIND_COMPONENT', 'GPSRO_REFRACTIVITY', 'EOS_2_AMSUA_TB', 'NOAA_15_AMSUA_TB', 'NOAA_16_AMSUA_TB', 'NOAA_17_AMSUA_TB', 'NOAA_18_AMSUA_TB', 'NOAA_19_AMSUA_TB', 'METOP_1_AMSUA_TB', 'METOP_2_AMSUA_TB', 'VADWND_U_WIND_COMPONENT', 'VADWND_V_WIND_COMPONENT', 'LAND_SFC_PRESSURE', 'MARINE_SFC_PRESSURE']
+ Reference levels:  (1014, 950, 900, 850, 800, 750, 700, 650, 600, 550, 500, 450, 400, 350, 300, 250, 200, 150, 90, 50, 25, 10, 5, 2.5, 1)
+
+ Successfully created the directory /work/cmcc/gc02720/CMCC-CM/basic_diag/synp2/2017-10-02-64800 
+ Center layers:  [982.0, 925.0, 875.0, 825.0, 775.0, 725.0, 675.0, 625.0, 575.0, 525.0, 475.0, 425.0, 375.0, 325.0, 275.0, 225.0, 175.0, 120.0, 70.0, 37.5, 17.5, 7.5, 3.75, 1.75]
+
+ Start the computation...
+
+ dir to process:  ['synp2-2017-10-02-64800']
+
+ dir:  /work/cmcc/gc02720/CMCC-CM/archive/synp2/synp2-2017-10-02-64800
+ dir number  1  out of  1
+ listdb=  ['/work/cmcc/gc02720/CMCC-CM/archive/synp2/synp2-2017-10-02-64800/synp2.spreads.SYNP.1.2017-10-02-64800.db', '/work/cmcc/gc02720/CMCC-CM/archive/synp2/synp2-2017-10-02-64800/synp2.spreads.SYNP.2.2017-10-02-64800.db', '/work/cmcc/gc02720/CMCC-CM/archive/synp2/synp2-2017-10-02-64800/synp2.spreads.SYNP.3.2017-10-02-64800.db', '/work/cmcc/gc02720/CMCC-CM/archive/synp2/synp2-2017-10-02-64800/synp2.spreads.SYNP.4.2017-10-02-64800.db']
+ listdb len=  4
+ maskdb=  [1, 1, 1, 1]
+ maskdb len=  4
+ loading info from:  /work/cmcc/gc02720/CMCC-CM/archive/synp2/synp2-2017-10-02-64800/synp2.spreads.SYNP.1.2017-10-02-64800.db
+ loading info from:  /work/cmcc/gc02720/CMCC-CM/archive/synp2/synp2-2017-10-02-64800/synp2.spreads.SYNP.2.2017-10-02-64800.db
+ loading info from:  /work/cmcc/gc02720/CMCC-CM/archive/synp2/synp2-2017-10-02-64800/synp2.spreads.SYNP.3.2017-10-02-64800.db
+ loading info from:  /work/cmcc/gc02720/CMCC-CM/archive/synp2/synp2-2017-10-02-64800/synp2.spreads.SYNP.4.2017-10-02-64800.db
+
+ processing obs:  RADIOSONDE_U_WIND_COMPONENT
+ region:  Global
+ No obs:  RADIOSONDE_U_WIND_COMPONENT  in region:  Global  at this time.
+ region:  NH
+ No obs:  RADIOSONDE_U_WIND_COMPONENT  in region:  NH  at this time.
+ region:  SH
+ No obs:  RADIOSONDE_U_WIND_COMPONENT  in region:  SH  at this time.
+ region:  TR
+ No obs:  RADIOSONDE_U_WIND_COMPONENT  in region:  TR  at this time.
+
+ processing obs:  RADIOSONDE_V_WIND_COMPONENT
+ region:  Global
+ No obs:  RADIOSONDE_V_WIND_COMPONENT  in region:  Global  at this time.
+ region:  NH
+ No obs:  RADIOSONDE_V_WIND_COMPONENT  in region:  NH  at this time.
+ region:  SH
+ No obs:  RADIOSONDE_V_WIND_COMPONENT  in region:  SH  at this time.
+ region:  TR
+ No obs:  RADIOSONDE_V_WIND_COMPONENT  in region:  TR  at this time.
+
+ processing obs:  RADIOSONDE_TEMPERATURE
+ region:  Global
+ No obs:  RADIOSONDE_TEMPERATURE  in region:  Global  at this time.
+ region:  NH
+ No obs:  RADIOSONDE_TEMPERATURE  in region:  NH  at this time.
+ region:  SH
+ No obs:  RADIOSONDE_TEMPERATURE  in region:  SH  at this time.
+ region:  TR
+ No obs:  RADIOSONDE_TEMPERATURE  in region:  TR  at this time.
+
+ processing obs:  AIRCRAFT_U_WIND_COMPONENT
+ region:  Global
+ No obs:  AIRCRAFT_U_WIND_COMPONENT  in region:  Global  at this time.
+ region:  NH
+ No obs:  AIRCRAFT_U_WIND_COMPONENT  in region:  NH  at this time.
+ region:  SH
+ No obs:  AIRCRAFT_U_WIND_COMPONENT  in region:  SH  at this time.
+ region:  TR
+ No obs:  AIRCRAFT_U_WIND_COMPONENT  in region:  TR  at this time.
+
+ processing obs:  AIRCRAFT_V_WIND_COMPONENT
+ region:  Global
+ No obs:  AIRCRAFT_V_WIND_COMPONENT  in region:  Global  at this time.
+ region:  NH
+ No obs:  AIRCRAFT_V_WIND_COMPONENT  in region:  NH  at this time.
+ region:  SH
+ No obs:  AIRCRAFT_V_WIND_COMPONENT  in region:  SH  at this time.
+ region:  TR
+ No obs:  AIRCRAFT_V_WIND_COMPONENT  in region:  TR  at this time.
+
+ processing obs:  AIRCRAFT_TEMPERATURE
+ region:  Global
+ No obs:  AIRCRAFT_TEMPERATURE  in region:  Global  at this time.
+ region:  NH
+ No obs:  AIRCRAFT_TEMPERATURE  in region:  NH  at this time.
+ region:  SH
+ No obs:  AIRCRAFT_TEMPERATURE  in region:  SH  at this time.
+ region:  TR
+ No obs:  AIRCRAFT_TEMPERATURE  in region:  TR  at this time.
+
+ processing obs:  ACARS_U_WIND_COMPONENT
+ region:  Global
+ No obs:  ACARS_U_WIND_COMPONENT  in region:  Global  at this time.
+ region:  NH
+ No obs:  ACARS_U_WIND_COMPONENT  in region:  NH  at this time.
+ region:  SH
+ No obs:  ACARS_U_WIND_COMPONENT  in region:  SH  at this time.
+ region:  TR
+ No obs:  ACARS_U_WIND_COMPONENT  in region:  TR  at this time.
+
+ processing obs:  ACARS_V_WIND_COMPONENT
+ region:  Global
+ No obs:  ACARS_V_WIND_COMPONENT  in region:  Global  at this time.
+ region:  NH
+ No obs:  ACARS_V_WIND_COMPONENT  in region:  NH  at this time.
+ region:  SH
+ No obs:  ACARS_V_WIND_COMPONENT  in region:  SH  at this time.
+ region:  TR
+ No obs:  ACARS_V_WIND_COMPONENT  in region:  TR  at this time.
+
+ processing obs:  ACARS_TEMPERATURE
+ region:  Global
+ No obs:  ACARS_TEMPERATURE  in region:  Global  at this time.
+ region:  NH
+ No obs:  ACARS_TEMPERATURE  in region:  NH  at this time.
+ region:  SH
+ No obs:  ACARS_TEMPERATURE  in region:  SH  at this time.
+ region:  TR
+ No obs:  ACARS_TEMPERATURE  in region:  TR  at this time.
+
+ processing obs:  SAT_U_WIND_COMPONENT
+ region:  Global
+ No obs:  SAT_U_WIND_COMPONENT  in region:  Global  at this time.
+ region:  NH
+ No obs:  SAT_U_WIND_COMPONENT  in region:  NH  at this time.
+ region:  SH
+ No obs:  SAT_U_WIND_COMPONENT  in region:  SH  at this time.
+ region:  TR
+ No obs:  SAT_U_WIND_COMPONENT  in region:  TR  at this time.
+
+ processing obs:  SAT_V_WIND_COMPONENT
+ region:  Global
+ No obs:  SAT_V_WIND_COMPONENT  in region:  Global  at this time.
+ region:  NH
+ No obs:  SAT_V_WIND_COMPONENT  in region:  NH  at this time.
+ region:  SH
+ No obs:  SAT_V_WIND_COMPONENT  in region:  SH  at this time.
+ region:  TR
+ No obs:  SAT_V_WIND_COMPONENT  in region:  TR  at this time.
+
+ processing obs:  GPSRO_REFRACTIVITY
+ region:  Global
+ No obs:  GPSRO_REFRACTIVITY  in region:  Global  at this time.
+ region:  NH
+ No obs:  GPSRO_REFRACTIVITY  in region:  NH  at this time.
+ region:  SH
+ No obs:  GPSRO_REFRACTIVITY  in region:  SH  at this time.
+ region:  TR
+ No obs:  GPSRO_REFRACTIVITY  in region:  TR  at this time.
+
+ processing obs:  EOS_2_AMSUA_TB
+ region:  Global
+ No obs:  EOS_2_AMSUA_TB  in region:  Global  at this time.
+ region:  NH
+ No obs:  EOS_2_AMSUA_TB  in region:  NH  at this time.
+ region:  SH
+ No obs:  EOS_2_AMSUA_TB  in region:  SH  at this time.
+ region:  TR
+ No obs:  EOS_2_AMSUA_TB  in region:  TR  at this time.
+
+ processing obs:  NOAA_15_AMSUA_TB
+ region:  Global
+ No obs:  NOAA_15_AMSUA_TB  in region:  Global  at this time.
+ region:  NH
+ No obs:  NOAA_15_AMSUA_TB  in region:  NH  at this time.
+ region:  SH
+ No obs:  NOAA_15_AMSUA_TB  in region:  SH  at this time.
+ region:  TR
+ No obs:  NOAA_15_AMSUA_TB  in region:  TR  at this time.
+
+ processing obs:  NOAA_16_AMSUA_TB
+ region:  Global
+ No obs:  NOAA_16_AMSUA_TB  in region:  Global  at this time.
+ region:  NH
+ No obs:  NOAA_16_AMSUA_TB  in region:  NH  at this time.
+ region:  SH
+ No obs:  NOAA_16_AMSUA_TB  in region:  SH  at this time.
+ region:  TR
+ No obs:  NOAA_16_AMSUA_TB  in region:  TR  at this time.
+
+ processing obs:  NOAA_17_AMSUA_TB
+ region:  Global
+ No obs:  NOAA_17_AMSUA_TB  in region:  Global  at this time.
+ region:  NH
+ No obs:  NOAA_17_AMSUA_TB  in region:  NH  at this time.
+ region:  SH
+ No obs:  NOAA_17_AMSUA_TB  in region:  SH  at this time.
+ region:  TR
+ No obs:  NOAA_17_AMSUA_TB  in region:  TR  at this time.
+
+ processing obs:  NOAA_18_AMSUA_TB
+ region:  Global
+ No obs:  NOAA_18_AMSUA_TB  in region:  Global  at this time.
+ region:  NH
+ No obs:  NOAA_18_AMSUA_TB  in region:  NH  at this time.
+ region:  SH
+ No obs:  NOAA_18_AMSUA_TB  in region:  SH  at this time.
+ region:  TR
+ No obs:  NOAA_18_AMSUA_TB  in region:  TR  at this time.
+
+ processing obs:  NOAA_19_AMSUA_TB
+ region:  Global
+ No obs:  NOAA_19_AMSUA_TB  in region:  Global  at this time.
+ region:  NH
+ No obs:  NOAA_19_AMSUA_TB  in region:  NH  at this time.
+ region:  SH
+ No obs:  NOAA_19_AMSUA_TB  in region:  SH  at this time.
+ region:  TR
+ No obs:  NOAA_19_AMSUA_TB  in region:  TR  at this time.
+
+ processing obs:  METOP_1_AMSUA_TB
+ region:  Global
+ No obs:  METOP_1_AMSUA_TB  in region:  Global  at this time.
+ region:  NH
+ No obs:  METOP_1_AMSUA_TB  in region:  NH  at this time.
+ region:  SH
+ No obs:  METOP_1_AMSUA_TB  in region:  SH  at this time.
+ region:  TR
+ No obs:  METOP_1_AMSUA_TB  in region:  TR  at this time.
+
+ processing obs:  METOP_2_AMSUA_TB
+ region:  Global
+ No obs:  METOP_2_AMSUA_TB  in region:  Global  at this time.
+ region:  NH
+ No obs:  METOP_2_AMSUA_TB  in region:  NH  at this time.
+ region:  SH
+ No obs:  METOP_2_AMSUA_TB  in region:  SH  at this time.
+ region:  TR
+ No obs:  METOP_2_AMSUA_TB  in region:  TR  at this time.
+
+ processing obs:  VADWND_U_WIND_COMPONENT
+ region:  Global
+ No obs:  VADWND_U_WIND_COMPONENT  in region:  Global  at this time.
+ region:  NH
+ No obs:  VADWND_U_WIND_COMPONENT  in region:  NH  at this time.
+ region:  SH
+ No obs:  VADWND_U_WIND_COMPONENT  in region:  SH  at this time.
+ region:  TR
+ No obs:  VADWND_U_WIND_COMPONENT  in region:  TR  at this time.
+
+ processing obs:  VADWND_V_WIND_COMPONENT
+ region:  Global
+ No obs:  VADWND_V_WIND_COMPONENT  in region:  Global  at this time.
+ region:  NH
+ No obs:  VADWND_V_WIND_COMPONENT  in region:  NH  at this time.
+ region:  SH
+ No obs:  VADWND_V_WIND_COMPONENT  in region:  SH  at this time.
+ region:  TR
+ No obs:  VADWND_V_WIND_COMPONENT  in region:  TR  at this time.
+
+ processing obs:  LAND_SFC_PRESSURE
+ region:  Global
+0      -56.016212
+1      -18.155521
+2       57.690918
+3        7.223237
+4      -18.031495
+          ...    
+3427    21.483328
+3428   -32.454365
+3429    34.423636
+3430   -50.057567
+3431    13.611502
+Name: obs-prior, Length: 3432, dtype: float64
+0      -56.016212
+1      -18.155521
+2       57.690918
+3        7.223237
+4      -18.031495
+          ...    
+3427    21.483328
+3428   -32.454365
+3429    34.423636
+3430   -50.057567
+3431    13.611502
+Name: obs-prior, Length: 3432, dtype: float64
+0      -56.016212
+1      -18.155521
+2       57.690918
+3        7.223237
+4      -18.031495
+          ...    
+3427    21.483328
+3428   -32.454365
+3429    34.423636
+3430   -50.057567
+3431    13.611502
+Name: obs-prior, Length: 3432, dtype: float64
+0      -56.016212
+1      -18.155521
+2       57.690918
+3        7.223237
+4      -18.031495
+          ...    
+3427    21.483328
+3428   -32.454365
+3429    34.423636
+3430   -50.057567
+3431    13.611502
+Name: obs-prior, Length: 3432, dtype: float64
+0      -56.016212
+1      -18.155521
+2       57.690918
+3        7.223237
+4      -18.031495
+          ...    
+3427    21.483328
+3428   -32.454365
+3429    34.423636
+3430   -50.057567
+3431    13.611502
+Name: obs-prior, Length: 3432, dtype: float64
+0      -56.016212
+1      -18.155521
+2       57.690918
+3        7.223237
+4      -18.031495
+          ...    
+3427    21.483328
+3428   -32.454365
+3429    34.423636
+3430   -50.057567
+3431    13.611502
+Name: obs-prior, Length: 3432, dtype: float64
+0      -56.016212
+1      -18.155521
+2       57.690918
+3        7.223237
+4      -18.031495
+          ...    
+3427    21.483328
+3428   -32.454365
+3429    34.423636
+3430   -50.057567
+3431    13.611502
+Name: obs-prior, Length: 3432, dtype: float64
+0      -56.016212
+1      -18.155521
+2       57.690918
+3        7.223237
+4      -18.031495
+          ...    
+3427    21.483328
+3428   -32.454365
+3429    34.423636
+3430   -50.057567
+3431    13.611502
+Name: obs-prior, Length: 3432, dtype: float64
+0      -56.016212
+1      -18.155521
+2       57.690918
+3        7.223237
+4      -18.031495
+          ...    
+3427    21.483328
+3428   -32.454365
+3429    34.423636
+3430   -50.057567
+3431    13.611502
+Name: obs-prior, Length: 3432, dtype: float64
+0      -56.016212
+1      -18.155521
+2       57.690918
+3        7.223237
+4      -18.031495
+          ...    
+3427    21.483328
+3428   -32.454365
+3429    34.423636
+3430   -50.057567
+3431    13.611502
+Name: obs-prior, Length: 3432, dtype: float64
+0      -56.016212
+1      -18.155521
+2       57.690918
+3        7.223237
+4      -18.031495
+          ...    
+3427    21.483328
+3428   -32.454365
+3429    34.423636
+3430   -50.057567
+3431    13.611502
+Name: obs-prior, Length: 3432, dtype: float64
+0      -56.016212
+1      -18.155521
+2       57.690918
+3        7.223237
+4      -18.031495
+          ...    
+3427    21.483328
+3428   -32.454365
+3429    34.423636
+3430   -50.057567
+3431    13.611502
+Name: obs-prior, Length: 3432, dtype: float64
+0      -56.016212
+1      -18.155521
+2       57.690918
+3        7.223237
+4      -18.031495
+          ...    
+3427    21.483328
+3428   -32.454365
+3429    34.423636
+3430   -50.057567
+3431    13.611502
+Name: obs-prior, Length: 3432, dtype: float64
+0      -56.016212
+1      -18.155521
+2       57.690918
+3        7.223237
+4      -18.031495
+          ...    
+3427    21.483328
+3428   -32.454365
+3429    34.423636
+3430   -50.057567
+3431    13.611502
+Name: obs-prior, Length: 3432, dtype: float64
+0      -56.016212
+1      -18.155521
+2       57.690918
+3        7.223237
+4      -18.031495
+          ...    
+3427    21.483328
+3428   -32.454365
+3429    34.423636
+3430   -50.057567
+3431    13.611502
+Name: obs-prior, Length: 3432, dtype: float64
+0      -56.016212
+1      -18.155521
+2       57.690918
+3        7.223237
+4      -18.031495
+          ...    
+3427    21.483328
+3428   -32.454365
+3429    34.423636
+3430   -50.057567
+3431    13.611502
+Name: obs-prior, Length: 3432, dtype: float64
+0      -56.016212
+1      -18.155521
+2       57.690918
+3        7.223237
+4      -18.031495
+          ...    
+3427    21.483328
+3428   -32.454365
+3429    34.423636
+3430   -50.057567
+3431    13.611502
+Name: obs-prior, Length: 3432, dtype: float64
+ region:  NH
+0       -65.082983
+1       -15.452249
+2       -31.423907
+3        93.523380
+4       -70.651343
+           ...    
+2125     60.626433
+2126     57.604789
+2127     24.255698
+2128     54.925922
+2129   -201.151917
+Name: obs-prior, Length: 2130, dtype: float64
+0       -65.082983
+1       -15.452249
+2       -31.423907
+3        93.523380
+4       -70.651343
+           ...    
+2125     60.626433
+2126     57.604789
+2127     24.255698
+2128     54.925922
+2129   -201.151917
+Name: obs-prior, Length: 2130, dtype: float64
+0       -65.082983
+1       -15.452249
+2       -31.423907
+3        93.523380
+4       -70.651343
+           ...    
+2125     60.626433
+2126     57.604789
+2127     24.255698
+2128     54.925922
+2129   -201.151917
+Name: obs-prior, Length: 2130, dtype: float64
+0       -65.082983
+1       -15.452249
+2       -31.423907
+3        93.523380
+4       -70.651343
+           ...    
+2125     60.626433
+2126     57.604789
+2127     24.255698
+2128     54.925922
+2129   -201.151917
+Name: obs-prior, Length: 2130, dtype: float64
+0       -65.082983
+1       -15.452249
+2       -31.423907
+3        93.523380
+4       -70.651343
+           ...    
+2125     60.626433
+2126     57.604789
+2127     24.255698
+2128     54.925922
+2129   -201.151917
+Name: obs-prior, Length: 2130, dtype: float64
+0       -65.082983
+1       -15.452249
+2       -31.423907
+3        93.523380
+4       -70.651343
+           ...    
+2125     60.626433
+2126     57.604789
+2127     24.255698
+2128     54.925922
+2129   -201.151917
+Name: obs-prior, Length: 2130, dtype: float64
+0       -65.082983
+1       -15.452249
+2       -31.423907
+3        93.523380
+4       -70.651343
+           ...    
+2125     60.626433
+2126     57.604789
+2127     24.255698
+2128     54.925922
+2129   -201.151917
+Name: obs-prior, Length: 2130, dtype: float64
+0       -65.082983
+1       -15.452249
+2       -31.423907
+3        93.523380
+4       -70.651343
+           ...    
+2125     60.626433
+2126     57.604789
+2127     24.255698
+2128     54.925922
+2129   -201.151917
+Name: obs-prior, Length: 2130, dtype: float64
+0       -65.082983
+1       -15.452249
+2       -31.423907
+3        93.523380
+4       -70.651343
+           ...    
+2125     60.626433
+2126     57.604789
+2127     24.255698
+2128     54.925922
+2129   -201.151917
+Name: obs-prior, Length: 2130, dtype: float64
+0       -65.082983
+1       -15.452249
+2       -31.423907
+3        93.523380
+4       -70.651343
+           ...    
+2125     60.626433
+2126     57.604789
+2127     24.255698
+2128     54.925922
+2129   -201.151917
+Name: obs-prior, Length: 2130, dtype: float64
+0       -65.082983
+1       -15.452249
+2       -31.423907
+3        93.523380
+4       -70.651343
+           ...    
+2125     60.626433
+2126     57.604789
+2127     24.255698
+2128     54.925922
+2129   -201.151917
+Name: obs-prior, Length: 2130, dtype: float64
+0       -65.082983
+1       -15.452249
+2       -31.423907
+3        93.523380
+4       -70.651343
+           ...    
+2125     60.626433
+2126     57.604789
+2127     24.255698
+2128     54.925922
+2129   -201.151917
+Name: obs-prior, Length: 2130, dtype: float64
+0       -65.082983
+1       -15.452249
+2       -31.423907
+3        93.523380
+4       -70.651343
+           ...    
+2125     60.626433
+2126     57.604789
+2127     24.255698
+2128     54.925922
+2129   -201.151917
+Name: obs-prior, Length: 2130, dtype: float64
+0       -65.082983
+1       -15.452249
+2       -31.423907
+3        93.523380
+4       -70.651343
+           ...    
+2125     60.626433
+2126     57.604789
+2127     24.255698
+2128     54.925922
+2129   -201.151917
+Name: obs-prior, Length: 2130, dtype: float64
+0       -65.082983
+1       -15.452249
+2       -31.423907
+3        93.523380
+4       -70.651343
+           ...    
+2125     60.626433
+2126     57.604789
+2127     24.255698
+2128     54.925922
+2129   -201.151917
+Name: obs-prior, Length: 2130, dtype: float64
+0       -65.082983
+1       -15.452249
+2       -31.423907
+3        93.523380
+4       -70.651343
+           ...    
+2125     60.626433
+2126     57.604789
+2127     24.255698
+2128     54.925922
+2129   -201.151917
+Name: obs-prior, Length: 2130, dtype: float64
+ region:  SH
+0       50.333395
+1      -64.756709
+2      -42.128720
+3       65.594138
+4      -51.809369
+          ...    
+334   -108.610372
+335    -20.977697
+336    -48.489953
+337    -42.239637
+338    -37.865073
+Name: obs-prior, Length: 339, dtype: float64
+0       50.333395
+1      -64.756709
+2      -42.128720
+3       65.594138
+4      -51.809369
+          ...    
+334   -108.610372
+335    -20.977697
+336    -48.489953
+337    -42.239637
+338    -37.865073
+Name: obs-prior, Length: 339, dtype: float64
+0       50.333395
+1      -64.756709
+2      -42.128720
+3       65.594138
+4      -51.809369
+          ...    
+334   -108.610372
+335    -20.977697
+336    -48.489953
+337    -42.239637
+338    -37.865073
+Name: obs-prior, Length: 339, dtype: float64
+0       50.333395
+1      -64.756709
+2      -42.128720
+3       65.594138
+4      -51.809369
+          ...    
+334   -108.610372
+335    -20.977697
+336    -48.489953
+337    -42.239637
+338    -37.865073
+Name: obs-prior, Length: 339, dtype: float64
+0       50.333395
+1      -64.756709
+2      -42.128720
+3       65.594138
+4      -51.809369
+          ...    
+334   -108.610372
+335    -20.977697
+336    -48.489953
+337    -42.239637
+338    -37.865073
+Name: obs-prior, Length: 339, dtype: float64
+0       50.333395
+1      -64.756709
+2      -42.128720
+3       65.594138
+4      -51.809369
+          ...    
+334   -108.610372
+335    -20.977697
+336    -48.489953
+337    -42.239637
+338    -37.865073
+Name: obs-prior, Length: 339, dtype: float64
+0       50.333395
+1      -64.756709
+2      -42.128720
+3       65.594138
+4      -51.809369
+          ...    
+334   -108.610372
+335    -20.977697
+336    -48.489953
+337    -42.239637
+338    -37.865073
+Name: obs-prior, Length: 339, dtype: float64
+0       50.333395
+1      -64.756709
+2      -42.128720
+3       65.594138
+4      -51.809369
+          ...    
+334   -108.610372
+335    -20.977697
+336    -48.489953
+337    -42.239637
+338    -37.865073
+Name: obs-prior, Length: 339, dtype: float64
+0       50.333395
+1      -64.756709
+2      -42.128720
+3       65.594138
+4      -51.809369
+          ...    
+334   -108.610372
+335    -20.977697
+336    -48.489953
+337    -42.239637
+338    -37.865073
+Name: obs-prior, Length: 339, dtype: float64
+0       50.333395
+1      -64.756709
+2      -42.128720
+3       65.594138
+4      -51.809369
+          ...    
+334   -108.610372
+335    -20.977697
+336    -48.489953
+337    -42.239637
+338    -37.865073
+Name: obs-prior, Length: 339, dtype: float64
+0       50.333395
+1      -64.756709
+2      -42.128720
+3       65.594138
+4      -51.809369
+          ...    
+334   -108.610372
+335    -20.977697
+336    -48.489953
+337    -42.239637
+338    -37.865073
+Name: obs-prior, Length: 339, dtype: float64
+ region:  TR
+0     -56.016212
+1     -18.155521
+2      57.690918
+3       7.223237
+4     -18.031495
+         ...    
+958    21.483328
+959   -32.454365
+960    34.423636
+961   -50.057567
+962    13.611502
+Name: obs-prior, Length: 963, dtype: float64
+0     -56.016212
+1     -18.155521
+2      57.690918
+3       7.223237
+4     -18.031495
+         ...    
+958    21.483328
+959   -32.454365
+960    34.423636
+961   -50.057567
+962    13.611502
+Name: obs-prior, Length: 963, dtype: float64
+0     -56.016212
+1     -18.155521
+2      57.690918
+3       7.223237
+4     -18.031495
+         ...    
+958    21.483328
+959   -32.454365
+960    34.423636
+961   -50.057567
+962    13.611502
+Name: obs-prior, Length: 963, dtype: float64
+0     -56.016212
+1     -18.155521
+2      57.690918
+3       7.223237
+4     -18.031495
+         ...    
+958    21.483328
+959   -32.454365
+960    34.423636
+961   -50.057567
+962    13.611502
+Name: obs-prior, Length: 963, dtype: float64
+0     -56.016212
+1     -18.155521
+2      57.690918
+3       7.223237
+4     -18.031495
+         ...    
+958    21.483328
+959   -32.454365
+960    34.423636
+961   -50.057567
+962    13.611502
+Name: obs-prior, Length: 963, dtype: float64
+0     -56.016212
+1     -18.155521
+2      57.690918
+3       7.223237
+4     -18.031495
+         ...    
+958    21.483328
+959   -32.454365
+960    34.423636
+961   -50.057567
+962    13.611502
+Name: obs-prior, Length: 963, dtype: float64
+0     -56.016212
+1     -18.155521
+2      57.690918
+3       7.223237
+4     -18.031495
+         ...    
+958    21.483328
+959   -32.454365
+960    34.423636
+961   -50.057567
+962    13.611502
+Name: obs-prior, Length: 963, dtype: float64
+0     -56.016212
+1     -18.155521
+2      57.690918
+3       7.223237
+4     -18.031495
+         ...    
+958    21.483328
+959   -32.454365
+960    34.423636
+961   -50.057567
+962    13.611502
+Name: obs-prior, Length: 963, dtype: float64
+0     -56.016212
+1     -18.155521
+2      57.690918
+3       7.223237
+4     -18.031495
+         ...    
+958    21.483328
+959   -32.454365
+960    34.423636
+961   -50.057567
+962    13.611502
+Name: obs-prior, Length: 963, dtype: float64
+0     -56.016212
+1     -18.155521
+2      57.690918
+3       7.223237
+4     -18.031495
+         ...    
+958    21.483328
+959   -32.454365
+960    34.423636
+961   -50.057567
+962    13.611502
+Name: obs-prior, Length: 963, dtype: float64
+0     -56.016212
+1     -18.155521
+2      57.690918
+3       7.223237
+4     -18.031495
+         ...    
+958    21.483328
+959   -32.454365
+960    34.423636
+961   -50.057567
+962    13.611502
+Name: obs-prior, Length: 963, dtype: float64
+0     -56.016212
+1     -18.155521
+2      57.690918
+3       7.223237
+4     -18.031495
+         ...    
+958    21.483328
+959   -32.454365
+960    34.423636
+961   -50.057567
+962    13.611502
+Name: obs-prior, Length: 963, dtype: float64
+0     -56.016212
+1     -18.155521
+2      57.690918
+3       7.223237
+4     -18.031495
+         ...    
+958    21.483328
+959   -32.454365
+960    34.423636
+961   -50.057567
+962    13.611502
+Name: obs-prior, Length: 963, dtype: float64
+0     -56.016212
+1     -18.155521
+2      57.690918
+3       7.223237
+4     -18.031495
+         ...    
+958    21.483328
+959   -32.454365
+960    34.423636
+961   -50.057567
+962    13.611502
+Name: obs-prior, Length: 963, dtype: float64
+0     -56.016212
+1     -18.155521
+2      57.690918
+3       7.223237
+4     -18.031495
+         ...    
+958    21.483328
+959   -32.454365
+960    34.423636
+961   -50.057567
+962    13.611502
+Name: obs-prior, Length: 963, dtype: float64
+
+ processing obs:  MARINE_SFC_PRESSURE
+ region:  Global
+0     -13.541838
+1      31.689754
+2      74.323597
+3     -77.794749
+4     -53.039438
+         ...    
+579   -17.723509
+580    52.072892
+581    -6.368982
+582   -64.225423
+583    64.162429
+Name: obs-prior, Length: 584, dtype: float64
+ region:  NH
+0     -13.541838
+1      31.689754
+2     -53.039438
+3      -3.114984
+4     -34.997124
+         ...    
+338    46.439276
+339   -39.390706
+340   -10.563407
+341   -17.723509
+342    -6.368982
+Name: obs-prior, Length: 343, dtype: float64
+ region:  SH
+0    51.827651
+1    51.827651
+2    52.047398
+3    52.047398
+4   -13.761400
+5   -99.145729
+6    52.047398
+7    52.047398
+8   -13.761400
+9   -99.145729
+Name: obs-prior, dtype: float64
+ region:  TR
+0      74.323597
+1     -77.794749
+2     -60.500275
+3      39.246159
+4     -70.879353
+         ...    
+226    46.308423
+227   -18.177090
+228    52.072892
+229   -64.225423
+230    64.162429
+Name: obs-prior, Length: 231, dtype: float64
+Save assimilated: Global
+Save assimilated: SH
+Save assimilated: NH
+Save assimilated: TR
+
+ 2024-03-25 13:47:05.647420
+Execution Time:  0:00:06.838607
+
+ -------------------- END ------------------- 
+
+	Command being timed: "/work/cmcc/mg20022/.conda/envs/guatura/bin/python ./quick_spreads_diag.py"
+	User time (seconds): 5.46
+	System time (seconds): 2.95
+	Percent of CPU this job got: 65%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:12.92
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 395984
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 55930
+	Voluntary context switches: 12348
+	Involuntary context switches: 1717864
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

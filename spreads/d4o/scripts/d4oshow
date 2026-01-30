@@ -1,0 +1,57 @@
+#!/bin/bash
+#
+# Usage: d4oshow dbfile(s)
+# 
+
+cmdfile=$(readlink -f $0)
+cmddir=$(dirname $cmdfile)
+
+function Usage()
+{
+    egrep -A1 '^# Usage:' $cmdfile | perl -pe 's/^# //'
+}
+
+shopt -s extglob # enables extglob i.e. @(x|y|z) regular expressions in bash
+
+fmt=-box
+
+files=""
+for ff in "$@"
+do
+    if [[ "$ff" = @(-csv|-table|-box) ]] ; then
+	fmt=$ff
+    else
+	for f in $(eval echo "$ff")
+	do
+	    if [[ -r $f ]] ; then
+		files+=":$f"
+	    fi
+	done
+    fi
+done
+
+files=$(echo "$files" | perl -pe 's/^://; s/:/\n/g;' | sort -u | perl -pe 's/\n/ /g;' | perl -pe 's/\s+$//;');
+
+callcli="sqlite3 -batch -init /dev/null -nullvalue NULL -readonly $fmt"
+
+sql="SELECT _DBFILE_,_DBSIZE_,reportype,(SELECT DISTINCT ecmwf_obs_description FROM toc WHERE reportype = hdr.reportype AND obstype = hdr.obstype) AS obs_description"
+sql+=",bufrtype,subtype,obstype,codetype,sat_id,sensor_id,sat_instr"
+sql+=",varno,(SELECT DISTINCT ecmwf_varno_description FROM toc WHERE reportype = hdr.reportype AND varno = body.varno) AS varno_description"
+sql+=",kind,(SELECT DISTINCT description FROM toc WHERE ABS(kind) = ABS(body.kind) AND reportype = hdr.reportype AND varno = body.varno) AS kind_description"
+sql+=",COUNT(*) AS num_obs"
+sql+=" FROM hdr"
+sql+=" LEFT OUTER JOIN sat ON id=sat.hdr_id"
+sql+=" JOIN body ON id=body.hdr_id"
+sql+=" GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13"
+
+header=""
+[[ "$fmt" = "-csv" ]] && header="-header"
+for f in $files
+do
+    if [[ -r $f ]] ; then
+	fsize=$(stat -c %s $(readlink -f $f) 2>/dev/null || echo 0)
+	sqlgo=$(echo "$sql" | perl -pe 's%_DBFILE_%"'$f'" AS dbfile%; s%_DBSIZE_%'$fsize' AS dbsize%;')
+	$callcli $header $f "$sqlgo"
+	[[ "$fmt" = "-csv" ]] && header="-noheader"
+    fi
+done

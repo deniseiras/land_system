@@ -1,0 +1,23 @@
+source /opt/intel/oneapi/setvars.sh --force || :
+export PATH=.:/usr/bin:/home/mps/.CMCC/install/INTEL/d4o/bin:/home/mps/.CMCC/install/ecbuild/bin:/home/mps/.CMCC/install/INTEL/netcdf/bin:/home/mps/.CMCC/install/INTEL/hdf5/bin:/home/mps/.CMCC/install/INTEL/hdf4/bin:/home/mps/.CMCC/install/INTEL/eckit/bin:/home/mps/.CMCC/install/INTEL/eccodes/bin:/home/mps/.CMCC/install/INTEL/odc/bin:/home/mps/.CMCC/install/INTEL/b2o/bin:/home/mps/.CMCC/install/INTEL/rttov123/bin:$PATH
+export LD_LIBRARY_PATH=/home/mps/.CMCC/install/INTEL/d4o/lib:/home/mps/.CMCC/install/INTEL/netcdf/lib:/home/mps/.CMCC/install/INTEL/hdf5/lib:/home/mps/.CMCC/install/INTEL/hdf4/lib:/home/mps/.CMCC/install/INTEL/hdf-eos2/lib:/home/mps/.CMCC/install/INTEL/eckit/lib:/home/mps/.CMCC/install/INTEL/eccodes/lib:/home/mps/.CMCC/install/INTEL/odc/lib:/home/mps/.CMCC/install/INTEL/b2o/lib:/home/mps/.CMCC/install/INTEL/rttov123/lib:${LD_LIBRARY_PATH:-}
+export LD_LIBRARY_PATH=$(trim_path LD_LIBRARY_PATH)
+export PATH=$(trim_path PATH)
+export ODB_SCHEMA_DIR=/home/mps/.CMCC/install/INTEL/b2o/share/b2o
+export ODB_SCHEMA_FILE=/home/mps/.CMCC/install/INTEL/b2o/share/b2o/cma.ddl
+export d4odir=/home/mps/.CMCC/install/INTEL/d4o
+export D4ODIR=/home/mps/.CMCC/install/INTEL/d4o
+export NETCDF=/home/mps/.CMCC/install/INTEL/netcdf
+export NETCDF_DIR=$NETCDF
+export HDF5=/home/mps/.CMCC/install/INTEL/hdf5
+export HDF5_DIR=$HDF5
+export HDFDIR=$HDF5
+export HDF5DIR=$HDF5
+export HDF4=/home/mps/.CMCC/install/INTEL/hdf4
+export HDF4_DIR=$HDF4
+export HDF4DIR=$HDF4
+export HDFEOSDIR=/home/mps/.CMCC/install/INTEL/hdf-eos2
+export FINCL=-I/opt/intel/oneapi/mpi/2021.11/include/mpi
+export SQLITE_DIR=/usr
+export COMPILER=INTEL
+export RTTOV=/home/mps/.CMCC/install/INTEL/rttov123

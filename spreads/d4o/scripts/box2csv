@@ -1,0 +1,19 @@
+#!/usr/bin/env perl
+#
+# sqlite3 -box output to -csv conversion
+#
+
+use strict;
+use warnings;
+
+for (<>) {
+    s/^\s*┌.*┐\s*$/\n/;
+    s/^\s*└.*┘\s*$/\n/;
+    s/^\s*├.*┤\s*$//;
+    s/^\s*│\s*//;
+    s/\s*│\s*$/\n/;
+    s/\s*│/,/g;
+    s/,\s+(\S)/,$1/g;
+    printf(STDOUT "%s",$_);
+}
+

@@ -1,0 +1,1463 @@
+# FSOI_Jo diagnostic computation for ensemble systems.
+# Skeleton for single cycle! Need to be extended.
+# @author: Giovanni Conti 
+# @date: 30 March 2023
+
+# Remarks:
+# The procedure is based on a subsampling of the entire model space.
+# Localization distances are computed in an approximate way.
+
+
+
+# Import session.
+#------------------------------------------
+#------------------------------------------
+from mpi4py import MPI
+
+import os
+import sqlite3
+import pandas as pd
+import numpy as np
+import math
+from netCDF4 import Dataset
+import bisect
+import datetime
+from fsoijo_plot import *
+
+
+
+comm = MPI.COMM_WORLD
+rank = comm.Get_rank()
+size = comm.Get_size()
+
+manager = 0
+
+# Functions definition.
+#------------------------------------------
+#------------------------------------------
+# Find the closest index.
+def find_closest_index(x, y):
+    i = bisect.bisect_left(x, y)
+    if i == 0:
+        return 0
+    elif i == len(x):
+        return len(x) - 1
+    else:
+        before = x[i-1]
+        after = x[i]
+        if after - y < y - before:
+            return i
+        else:
+            return i-1
+
+
+
+# Gaspari and Cohn localization function.
+def gaspari_cohn(r):
+    """Gaspari-Cohn function. r=z/cutoff"""
+    if type(r) is float:
+        ra = np.array([r])
+    else:
+        ra = r
+    ra = np.abs(ra)
+    gp = np.zeros_like(ra)
+    i=np.where(ra<=1.)[0]
+    gp[i]=-0.25*ra[i]**5+0.5*ra[i]**4+0.625*ra[i]**3-5./3.*ra[i]**2+1.
+    i=np.where((ra>1.)*(ra<=2.))[0]
+    gp[i]=1./12.*ra[i]**5-0.5*ra[i]**4+0.625*ra[i]**3+5./3.*ra[i]**2-5.*ra[i]+4.-2./3./ra[i]
+    if type(r) is float:
+        gp = gp[0]
+    return gp
+
+
+# Utility function for subdomain division.
+def find_close_factors(size, fgues):
+    factors = []
+    for i in range(1, int(size/2) + 1):
+        if size % i == 0:
+            factors.append(i)
+    
+    min_difference = float('inf')  # Initialize with a large value
+    fac1 = None
+    fac2 = None
+    
+    for factor in factors:
+        difference = abs(fgues - factor)
+        if difference < min_difference:
+            min_difference = difference
+            fac1 = factor
+            fac2 = size // factor
+    
+    return fac1, fac2
+
+
+
+# Define the subdomains.
+def init_task_id(nr, nc, size, comm):
+
+    if  size > (nr*nc):
+        print(' Number of points in the domain smaller than the number of task!\nChose another decomposition, reduce the number of tasks.\nThe program can process no less than one grid point per task.\n', flush=True)
+        comm.Abort()
+   
+    # How many tasks along lat and lon?
+    fgues = np.sqrt(size)
+    fac1, fac2 = find_close_factors(size, fgues)
+    if fac1 > fac2:
+        tmp_sub_cols = fac1
+        tmp_sub_rows = fac2
+    else:
+        tmp_sub_cols = fac2
+        tmp_sub_rows = fac1
+
+    # Need to find the side of the subdomains.    
+    tmp_sub_nc_side = nc//tmp_sub_cols
+    tmp_sub_cols_off = nc % tmp_sub_cols
+
+    tmp_sub_nr_side = nr//tmp_sub_rows
+    tmp_sub_rows_off = nr % tmp_sub_rows
+
+    #print('tmp_sub_nc_side',tmp_sub_nc_side)
+    #print('tmp_sub_cols_off',tmp_sub_cols_off)
+
+    if tmp_sub_cols > tmp_sub_cols_off:
+        sub_cols_num = tmp_sub_cols
+        sub_cols_sides = np.zeros(sub_cols_num)
+        for j in range(sub_cols_num):
+            if j<(sub_cols_num-tmp_sub_cols_off):
+                sub_cols_sides[j] = tmp_sub_nc_side
+            else:
+                sub_cols_sides[j] = tmp_sub_nc_side + 1   
+    elif tmp_sub_cols > 1 and tmp_sub_cols < tmp_sub_cols_off:
+         sub_cols_num = tmp_sub_cols
+         sub_cols_sides = np.zeros(sub_cols_num)
+         for j in range(0,sub_cols_num):
+             sub_cols_sides[:-1] = tmp_sub_nc_side 
+             sub_cols_sides[-1] = tmp_sub_nc_side + tmp_sub_cols_off
+    elif tmp_sub_cols == 1 and size > 1:
+         sub_cols_num = tmp_sub_cols + 1
+         sub_cols_sides = np.zeros(sub_cols_num)
+         sub_cols_sides[0] = tmp_sub_nc_side 
+         sub_cols_sides[1] = tmp_sub_cols_off
+    elif tmp_sub_cols == 1 and size == 1:
+         sub_cols_num = 1
+         sub_cols_sides = np.zeros(sub_cols_num)
+         sub_cols_sides[0] = nc
+    else:
+         print(' Subdivision cols case not considered', flush=True)
+         comm.Abort()    
+                  
+    print(' sub_cols_num=', sub_cols_num, flush=True)            
+    print(' sub_cols_sides=', sub_cols_sides, flush=True) 
+
+    if tmp_sub_rows > tmp_sub_rows_off:
+        sub_rows_num = tmp_sub_rows
+        sub_rows_sides = np.zeros(sub_rows_num)
+        for i in range(sub_rows_num):
+            if i<(sub_rows_num-tmp_sub_rows_off):
+                sub_rows_sides[i] = tmp_sub_nr_side
+            else:
+                sub_rows_sides[i] = tmp_sub_nr_side + 1   
+    elif tmp_sub_rows > 1 and tmp_sub_rows < tmp_sub_rows_off:
+         sub_rows_num = tmp_sub_rows
+         sub_rows_sides = np.zeros(sub_rows_num)
+         for j in range(0,sub_rows_num):
+             sub_rows_sides[:-1] = tmp_sub_nr_side 
+             sub_rows_sides[-1] = tmp_sub_nr_side + tmp_sub_rows_off
+    elif tmp_sub_rows == 1 and size == sub_cols_num:
+         sub_rows_num = 1
+         sub_rows_sides = np.zeros(sub_rows_num)
+         sub_rows_sides = nr
+    elif tmp_sub_rows == 1 and size > sub_cols_num:
+         sub_rows_num = tmp_sub_rows + 1
+         sub_rows_sides = np.zeros(sub_rows_num)
+         sub_rows_sides[0] = tmp_sub_nr_side 
+         sub_rows_sides[1] = tmp_sub_rows_off
+    elif tmp_sub_rows == 1 and size == 1:
+         sub_rows_num = 1
+         sub_rows_sides = np.zeros(sub_rows_num)
+         sub_rows_sides[0] = nr
+    else:
+         print(' Subdivision row case not considered', flush=True)
+         comm.Abort() 
+   
+    print(' sub_rows_num=', sub_rows_num, flush=True)            
+    print(' sub_rows_sides=', sub_rows_sides, flush=True)
+   
+    # Define subdomain ids
+    task_id = [{} for _ in range(size)]
+    for it in range(size):
+        sub_row=it//sub_cols_num
+        sub_col=it%sub_cols_num
+        
+        #print('it ',it)
+        #print('sub_row ',sub_row)
+        #print('sub_col ',sub_col)
+
+        if sub_col == 0:
+            sub_col_start = int(0)
+            sub_col_end = int( sub_cols_sides[0] - 1 )
+        else:
+            sub_col_start = int( np.sum( sub_cols_sides[0:sub_col] ) )
+            sub_col_end = int( np.sum( sub_cols_sides[0:sub_col+1] ) - 1 )
+           
+           
+        if sub_row == 0:
+            sub_row_start = int(0)
+            sub_row_end = int( sub_rows_sides[0] - 1 )
+        else:
+            sub_row_start = int( np.sum( sub_rows_sides[0:sub_row] ) )
+            sub_row_end = int( np.sum( sub_rows_sides[0:sub_row+1] ) - 1 )    
+       
+ 
+       
+        task_id[it]={'id' : it, \
+                     'sub_nc': int(sub_cols_sides[sub_col]), \
+                     'sub_nr': int(sub_rows_sides[sub_row]),\
+                     'sub_col_start': int(sub_col_start), \
+                     'sub_col_end': int(sub_col_end), \
+                     'sub_row_start': int(sub_row_start), \
+                     'sub_row_end': int(sub_row_end)}
+
+
+    return task_id
+
+
+
+# Parameters definition. 
+#------------------------------------------
+#------------------------------------------
+#******************************************
+#    MODIFY THE PARAMETERS HERE!
+#******************************************
+
+# Exp name.
+ename = "junov4"
+
+# Analysis date ("YYYY-MM-DD-SSSSS").
+adate = "2017-10-02-43200"
+
+# Forecast date ("YYYY-MM-DD-SSSSS").
+fdate = "2017-10-03-43200"
+
+# Path to the exp archive
+patharc   = '/work/cmcc/gc02720/CESM2/archive'
+
+path2an   = patharc + '/' + ename + '-forecast/' + ename + '_forecast-' + adate 
+path2db   = path2an + '/fsoi_jo-db'
+
+# Number of grid points. We will have a map of NGLAT*NGLON cells.
+NGLAT =  10 #384
+NGLON =  10 #576
+
+obs2proc  = ['RADIOSONDE_U_WIND_COMPONENT', \
+             'RADIOSONDE_V_WIND_COMPONENT',  \
+             'RADIOSONDE_TEMPERATURE', \
+             'AIRCRAFT_U_WIND_COMPONENT', \
+             'AIRCRAFT_V_WIND_COMPONENT', \
+             'AIRCRAFT_TEMPERATURE', \
+             'ACARS_U_WIND_COMPONENT', \
+             'ACARS_V_WIND_COMPONENT', \
+             'ACARS_TEMPERATURE', \
+             'SAT_U_WIND_COMPONENT', \
+             'SAT_V_WIND_COMPONENT', \
+             'GPSRO_REFRACTIVITY', \
+             'EOS_2_AMSUA_TB', \
+             'NOAA_15_AMSUA_TB', \
+             'NOAA_16_AMSUA_TB', \
+             'NOAA_17_AMSUA_TB', \
+             'NOAA_18_AMSUA_TB', \
+             'NOAA_19_AMSUA_TB', \
+             'METOP_1_AMSUA_TB', \
+             'METOP_2_AMSUA_TB' \
+#             'VADWND_U_WIND_COMPONENT',\
+#             'VADWND_V_WIND_COMPONENT'\
+            ]
+
+
+
+
+# Number of ensemble members.
+nens = 3
+
+# Type of localization: 'GC' for Gaspari-Cohn, 'Box' for Box.
+loc_type = 'GC'
+
+# The computation for the localization distances is approximate! It must be improved.
+# Horizontal localization, half width Gaspari-Cohn (Km).
+cutoff = 0.15 # radian
+vert_normalization_scale_height = 1.5 # scale_height/radian
+REarth = 6371 # Km
+
+loch  = REarth*cutoff
+vloch = vert_normalization_scale_height * cutoff # scale_height units. Used in the barometric equation to get the vertical localization.
+
+# Vertical threshold in hPa.
+vthreshold = 1
+# Reference pressure in hPa.
+P0 = 1013.25
+
+# Where to save the output, plot and data.
+path2sv = path2db + '/diag-' + fdate
+
+# Python save file name.
+npz_full_name = path2sv+'/utest.npz' 
+
+# FSOI-Jo with OI approximation?
+use_oi = 'FALSE'
+
+# Plot samples img?
+plot_img = 'TRUE'
+
+# Chose level of output. 
+# DEBUG = 1 only cells indication, DEBUG = 2 add vertical information, DEBUG = 3 also obs retrieve info
+# DEBUG = 4 print also the pandas query dataframe
+DEBUG = 1 
+
+
+# The computation is really hard and we need to speed it up choosing only same particular layer of interest
+# level 83 is too much. Use the notation reflevs=(150,) if only one level is needed, or reflevs=() if you want all! 
+reflevs=(950,900,850,800,750,700,650,600,550,500,450,400,350,300,250,200,150,90,50,25,10,5,2.5)
+#reflevs=(150,)
+#reflevs=(500,150)
+#reflevs=()
+
+
+#******************************************
+#    DO NOT MODIFY BELOW 
+#******************************************
+ 
+# Get the current date and time
+start_t = MPI.Wtime()
+
+if rank == manager:
+   start_t0 = datetime.datetime.now()
+   print('\n',start_t0)
+
+   #------------------------------------------
+   # Print the parameters used.
+   print('\n Computation parameters:')
+   print(' Experiment name: ', ename)
+   print(' Analysis date: ', adate)
+   print(' Forecast date: ', fdate)
+   print(' Path archive: ', patharc)
+   print(' Path analysis: ', path2an)
+   print(' Path forecast: ', path2db)
+   print(' Path save: ', path2sv)
+   print(' Comp. grid NGLAT: ', NGLAT)
+   print(' Comp. grid NGLON: ', NGLON)
+   print(' Observation to process: ', obs2proc)
+   print(' Reference levels: ', reflevs)
+
+   #---------------------------------------------
+   # Create the save dir if needed
+   if not os.path.exists(path2sv):
+       try:
+           os.mkdir(path2sv)
+       except OSError:
+           print ("\n Creation of the directory %s failed" % path2sv, flush=True)
+       else:
+           print ("\n Successfully created the directory %s " % path2sv, flush=True)
+
+      
+   # Computation.
+   #------------------------------------------
+   #------------------------------------------
+
+   print('\n Start the computation...', flush=True)
+
+   # Determine how many db are present in the current dir.
+   listdb=[]
+   rescatalog=False
+   catalog_file=''
+   for file in os.listdir(path2db):
+       if file.endswith(".db"):
+          if 'catalog' in file:
+             rescatalog=True
+             catalog_file=file
+             print('\n catalog: ' + catalog_file, flush=True)
+          else:
+             listdb.append(os.path.join(path2db, file))
+   listdb.sort()
+   print("\n databases: ", listdb, flush=True)
+
+
+   # From catalog determine all the different kind of observation.
+   # We always have a catalog.db (the last element of the list), 
+   # so create a connection.
+   #rescatalog=any(item in path2db+'/'+'catalog.db' for item in listdb)
+   if rescatalog!=True:
+      print('\n ERROR: catalog not present!\n', flush=True)
+      #exit()
+      comm.Abort()
+
+   con=sqlite3.connect(path2db + '/'+ catalog_file)
+   df = pd.read_sql("select * from catalog", con)
+   con.close()
+   dartotype=df['description'].unique()
+   # Remove 'none' and '' from the list if present.
+   dartotype=dartotype[dartotype != np.array(None)]
+   dartotype=dartotype[dartotype != np.array('')]
+   print("\n List of different SPREADS obs type:\n", dartotype, "\n", flush=True)
+
+
+   # Check that some of the obs in the list obs2proc is present in 
+   # the dbs, otherwise exit.
+   cnt=0
+   for o2p in obs2proc:
+       if np.where(dartotype==o2p) != []:
+          cnt=cnt+1
+   if cnt==0:
+      print(' ERROR, no observations to study in the dbs', flush=True)
+      #exit()
+      comm.Abort()
+
+
+   # Mask the dbs that must be excluded in the computation.
+   maskdb = []
+
+   for db in listdb:
+      if any('AMSUA' in obs for obs in obs2proc) and 'AMSU' in db:
+         maskdb.append(1)
+      elif any('SAT' in obs for obs in obs2proc) and 'AMV' in db:
+         maskdb.append(1)
+      elif any('AIRCRAFT' in obs or 'ACARS' in obs for obs in obs2proc) and 'ARC' in db:
+         maskdb.append(1)
+      elif any('RADIOSONDE' in obs for obs in obs2proc) and 'SND' in db:
+         maskdb.append(1)
+      elif any('GPSRO' in obs for obs in obs2proc) and 'GPSRO'in db:
+         maskdb.append(1)
+      elif any('VADWND' in obs for obs in obs2proc) and 'WDP' in db:
+         maskdb.append(1)
+      else:
+         maskdb.append(0)
+
+
+   print(' maskdb= ', maskdb, flush=True)
+   print(' maskdb len= ', len(maskdb), flush=True)
+   print(' listdb len= ', len(listdb), flush=True)
+
+
+
+   # Create the empty FSOI and OI maps for the obs 2 process,
+   # define the grid of the map.
+   # The following define a support reference grid that allow to
+   # create a coarse grid by considering the closest gridpoint of 
+   # the model grid to the center of the cells of the support grid.
+   elat = np.linspace(90,-90,NGLAT+1,endpoint=True)   
+   elon = np.linspace(0,360,NGLON+1,endpoint=True)   
+   # Centers of the cells.
+   clon = elon[:-1] + 0.5*(elon[1]-elon[0]) 
+   clat = elat[:-1] + 0.5*(elat[1]-elat[0]) 
+
+   print('\n Tmp coarse grid ', flush=True) 
+   print(' clat: ', clat, flush=True) 
+   print(' clon: ', clon, flush=True) 
+   
+   aname = path2an + '/' + ename + '_f_0001-' + adate + '.cam.h0.' + adate + '.nc'
+   dset  = Dataset(aname, mode='r')
+   lon   = dset.variables['lon'][:]
+   lat   = dset.variables['lat'][:]
+   lev   = dset.variables['lev'][:]
+   dset.close()
+   
+   print('\n Original full res  grid ', flush=True) 
+   print(' lat: ', lat, flush=True) 
+   print(' lon: ', lon, flush=True) 
+
+   if len(reflevs) == 0:
+       print('\n All the original levels will be used in the computation... go on vacation in the meanwhile', flush=True)
+       closest_indices = np.arange(len(lev))
+   else:
+       print("\n Only the closest levels to the reference levels will be involved in the computation", flush=True)
+       # Compute the absolute differece between lev and reflevs
+       diff = np.abs(lev[:, np.newaxis] - np.array(reflevs))
+    
+       # Find the closes index
+       closest_indices = np.argmin(diff, axis=0)
+    
+       # Seleziona solo i valori di lev più vicini ai valori di riferimento
+       lev = lev[closest_indices]
+
+   print(' lev: ', lev, flush=True) 
+   print(' closest_indices: ', closest_indices, flush=True)  # Array
+
+
+   # FSOI 
+   fsoi               = np.zeros([len(obs2proc), len(lev), NGLAT, NGLON]) 
+   ocount_improving   = np.zeros([len(obs2proc), len(lev), NGLAT, NGLON]) # FSOI_Jo variation is negative 
+   ocount_degrading   = np.zeros([len(obs2proc), len(lev), NGLAT, NGLON]) # FSOI_Jo variation is positive
+   fsoi_improving     = np.zeros([len(obs2proc), len(lev), NGLAT, NGLON]) 
+   fsoi_degrading     = np.zeros([len(obs2proc), len(lev), NGLAT, NGLON]) 
+
+
+
+   if use_oi=="TRUE":
+      fsoi_oi = np.zeros([len(obs2proc), len(lev), NGLAT, NGLON]) 
+
+   # FSOI mask to see where we really have corrections. If nan we did not corrected that location and it must be discarded by the mean
+   fsoi_mask = np.full_like(fsoi, np.nan)
+
+
+   # Index mapping.
+   idlat = np.zeros([NGLAT,NGLON], dtype=int)
+   idlon = np.zeros([NGLAT,NGLON], dtype=int)
+   # Coarse grid points.
+   co_lat = np.zeros(NGLAT)
+   co_lon = np.zeros(NGLON)
+
+
+   if use_oi=="TRUE":
+      # Load OI data.
+      print(' BE SURE OI CONTAINS THE SAME LIST OF OBS YOU WANT TO USE FOR FSOI_Jo!') 
+      oiname  = path2sv + '/data_oi.nc'
+      print(' path to oi data: ', oiname)
+      dset    = Dataset(oiname, mode='r')
+      oi      = dset.variables['oi'][:]
+      oi_sigma_o      = dset.variables['oi_sigma_o'][:]
+      oi_lat  = dset.variables['c_lat'][:]
+      oi_lon  = dset.variables['c_lon'][:]
+      dset.close()
+      if oi.shape[0]!=len(obs2proc):
+         print(' ERROR the number of obs type in oi are different than the one you want to use here!')
+         comm.Abort()
+
+
+   task_id = init_task_id(NGLAT, NGLON, size, comm)
+
+else:
+   listdb = None
+   maskdb = None
+   lon    = None
+   clon   = None
+   lat    = None
+   clat   = None
+   lev    = None
+   closest_indices = None
+   task_id = [{}]
+
+
+# Need to broadcast maskdb and listdb!
+listdb = comm.bcast(listdb, root=manager)
+maskdb = comm.bcast(maskdb, root=manager)
+lon    = comm.bcast(lon, root=manager)
+clon   = comm.bcast(clon, root=manager)
+lat    = comm.bcast(lat, root=manager)
+clat   = comm.bcast(clat, root=manager)
+lev    = comm.bcast(lev, root=manager)
+closest_indices    = comm.bcast(closest_indices, root=manager)
+
+# Distribute informations of the subdomain to handle.
+task_id = comm.scatter(task_id, root=manager)
+
+print("Task", rank, "task_id:\n", task_id, flush=True)
+
+# Syncronize the task before starting the computation and sending slices of the domain.
+comm.Barrier()
+
+# Define sub_index map to send back to rank zero at the end
+local_NGLAT = task_id['sub_nr']
+local_NGLON = task_id['sub_nc']
+sub_idlon = np.zeros([local_NGLAT, local_NGLON], dtype=int)
+sub_idlat = np.zeros([local_NGLAT, local_NGLON], dtype=int)
+
+if use_oi=="TRUE":
+    sub_fsoi_oi    = np.zeros([len(obs2proc), len(lev), local_NGLAT, local_NGLON], dtype=float)
+    sub_oi         = np.zeros([len(obs2proc), len(lev), local_NGLAT, local_NGLON], dtype=float)
+    sub_oi_sigma_o = np.zeros([len(obs2proc), len(lev), local_NGLAT, local_NGLON], dtype=float)
+    
+    dset           = Dataset(oiname, mode='r')
+    sub_oi         = dset.variables['oi'][:,:,task_id['sub_row_start']:task_id['sub_row_end']+1,task_id['sub_col_start']:task_id['sub_col_end']+1]
+    sub_oi_sigma_o = dset.variables['oi_sigma_o'][:,:,task_id['sub_row_start']:task_id['sub_row_end']+1,task_id['sub_col_start']:task_id['sub_col_end']+1]
+    dset.close()
+
+
+
+
+sub_fsoi      = np.zeros([len(obs2proc), len(lev), local_NGLAT, local_NGLON], dtype=float)
+sub_fsoi_mask = np.zeros([len(obs2proc), len(lev), local_NGLAT, local_NGLON], dtype=int)
+sub_ocount    = np.zeros(len(obs2proc))
+
+sub_ocount_improving   = np.zeros([len(obs2proc), len(lev), local_NGLAT, local_NGLON], dtype=float) # FSOI_Jo variation is negative.
+sub_ocount_degrading   = np.zeros([len(obs2proc), len(lev), local_NGLAT, local_NGLON], dtype=float) # FSOI_Jo variation is positive.
+sub_fsoi_improving     = np.zeros([len(obs2proc), len(lev), local_NGLAT, local_NGLON], dtype=float) 
+sub_fsoi_degrading     = np.zeros([len(obs2proc), len(lev), local_NGLAT, local_NGLON], dtype=float) 
+
+# global obs used counter, per type
+ocount = np.zeros(len(obs2proc))
+
+# Distribute longitude slises among tasks
+# Main computation.
+#------------------------------------------
+# Load all the possible obs will be used in one task in order to open dbs only once.
+# We can refine later in a parcisular sub-cell.
+lat_deg2km = 110.574 # Km/degree
+dlato = 2 * loch/lat_deg2km 
+global_u_ii = task_id['sub_row_start'] 
+ilat_u = find_closest_index(lat, clat[global_u_ii])
+global_d_ii = task_id['sub_row_end'] 
+ilat_d = find_closest_index(lat, clat[global_d_ii])
+latu = lat[ilat_u] + dlato
+latd = lat[ilat_d] - dlato
+if latu > 90:
+    latu = 90
+if latd < -90:
+    latd = -90
+ 
+deg2rad = math.pi/180
+lon_deg2km = np.min( [111.320*np.cos(deg2rad*lat[ilat_u]), 111.320*np.cos(deg2rad*lat[ilat_d])] ) # Km/degree
+dlono = 2 * loch/lon_deg2km
+global_l_jj = task_id['sub_col_start'] 
+ilon_l = find_closest_index(lon, clon[global_l_jj])
+global_r_jj = task_id['sub_col_end'] 
+ilon_r = find_closest_index(lon, clon[global_r_jj])
+lonl = lon[ilon_l] - dlono
+lonr = lon[ilon_r] + dlono
+if lonl < 0:
+    lonl1 = 0
+    lonl2 = 360 + lonl
+if lonr > 360:
+    lonr1 = 360
+    lonr2 = lonr - 360 
+
+if DEBUG >= 1:
+    if lonl<0:
+         print("\n Task: ", rank, " obs.  sub-domain: lat in [",latu,"    ",latd,"] lon in [",lonl1,"    ",lonr,"] U [",lonl2,"    360]", flush=True)
+    elif lonr>360:
+         print("\n Task: ", rank, " obs.  sub-domain: lat in [",latu,"    ",latd,"] lon in [",lonl,"    ",lonr1,"] U [0     ",lonr2,"]", flush=True)
+    else:
+         print("\n Task: ", rank, " obs.  sub-domain: lat in [",latu,"    ",latd,"] lon in [",lonl,"    ",lonr,"]", flush=True)
+
+
+
+
+# Check all the possible dbs containing the observations needed.
+dfos = pd.DataFrame() 
+for db, maskcc in zip(listdb, maskdb):
+    # print('db:', db)
+    # print('maskdb:', mask)
+    if maskcc == 0:
+        continue
+
+    if DEBUG >= 2:
+        print("\n Task: ", rank, "working with db: ", db, flush=True)
+
+    # Retrieve the vertical column of observations for the subdomain considered. 
+    con=sqlite3.connect(db)
+    if lonl<0:
+         df_temp = pd.read_sql("select entryno,id,obsvalue, obs_error, prior_mean, prior_spread, kind, prior, dart_qc, member, deglat, deglon,\
+                                levelht, (select distinct description from toc where kind=body.kind) \
+                                as description from hdr join body on id=body.hdr_id join ens on id=ens.hdr_id and \
+                                entryno=body_entryno where deglat>"+ str(latd) + " and deglat<" + str(latu) + " and deglon>="\
+                                + str(lonl1) + " and deglon<" + str(lonr) +" and deglon>" + str(lonl2)+ " and deglon<=360 and dart_qc=0", con)
+    elif lonr>360:
+         df_temp = pd.read_sql("select entryno,id,obsvalue, obs_error, prior_mean, prior_spread, kind, prior, dart_qc, member, deglat, deglon,\
+                                levelht, (select distinct description from toc where kind=body.kind) \
+                                as description from hdr join body on id=body.hdr_id join ens on id=ens.hdr_id and \
+                                entryno=body_entryno where deglat>"+ str(latd) + " and deglat<" + str(latu) + " and deglon>"\
+                                + str(lonl) + " and deglon<=" + str(lonr1) +" and deglon>=0  and deglon<" + str(lonr2)  +" and dart_qc=0", con)
+    else:
+         df_temp = pd.read_sql("select entryno,id,obsvalue, obs_error, prior_mean, prior_spread, kind, prior, dart_qc, member, deglat, deglon,\
+                                levelht, (select distinct description from toc where kind=body.kind) \
+                                as description from hdr join body on id=body.hdr_id join ens on id=ens.hdr_id and \
+                                entryno=body_entryno where deglat>"+ str(latd) + " and deglat<" + str(latu) + " and deglon>"\
+                                + str(lonl) + " and deglon<" + str(lonr) +" and dart_qc=0", con)
+    con.close()
+
+    # If there are not observation skip.
+    if len(df_temp['obsvalue'].tolist())<=0:
+       print("\n Task: ", rank, " No obs in this task from this db", flush=True)
+       continue
+            
+    # Inside d4o we have Pa not hPa. 
+    if DEBUG >= 1:
+        print("\n Task: ", rank, "Convert levelht in hPa. ", flush=True)
+    
+    # For GPSRO we need to convert levelht from meters to hPa in order to use keep the same code below for all the types.
+    # The other levelht must insead be converted in hPa.
+    if 'GPSRO'in db:
+        df_temp['levelht'] = P0*(1-df_temp['levelht']/44307.69396)**(1/0.190284)
+    else:
+        df_temp['levelht'] = df_temp['levelht'] / 100
+
+    #df_temp['levelht'] = df_temp['levelht']/100
+    dfos = pd.concat([dfos, df_temp], ignore_index=True) 
+    
+    if DEBUG >= 4:
+        print("\n Task: ", rank, "Pandas Obs: \n", dfos, flush=True)
+            
+    #dbg
+    #if rank == manager:
+    #    print(' Manager dfos: ', dfos)
+
+
+
+
+# Loop through the cells.
+ncel=1
+for jj in range( local_NGLON ):
+       
+    # Define the closest lon index of the model grid to the center of the cell.
+    global_jj = task_id['sub_col_start'] + jj 
+    ilon = find_closest_index(lon, clon[global_jj]) 
+    sub_idlon[:,jj] = int(ilon)
+    #print("sub_col_start: ", task_id['sub_col_start'], " global_jj: ",global_jj, " ilon: ", ilon, flush=True)
+                          
+    if use_oi=="TRUE":
+       i_oi_lon = find_closest_index(oi_lon, clon[global_jj]) 
+ 
+   
+   
+    
+    for ii in range( local_NGLAT ):
+      
+        if DEBUG>=0: 
+            print("\n Task: ", rank, " Process cell ",ncel," out of ", local_NGLAT*local_NGLON, flush=True)
+        
+        ncel=ncel+1
+          
+        # Define the closest lat index of the model grid to the center of the cell.
+        global_ii = task_id['sub_row_start'] + ii 
+        ilat = find_closest_index(lat, clat[global_ii])
+        sub_idlat[ii,:] = int(ilat)       
+        #print("sub_row_start: ", task_id['sub_row_start'], " global_ii: ",global_ii, " ilat: ", ilon, flush=True)
+    
+        if use_oi=="TRUE":
+           i_oi_lat = find_closest_index(oi_lat, clat[global_ii]) 
+
+        # If there are not observation skip.
+        if dfos.empty:
+             if DEBUG >= 2:
+                    print("\n Task: ", rank, " cell: ", ncel-1, "No obs in this db. Skip cell.", flush=True)
+             continue
+ 
+        # Retrieve the central cell analysis columns for the whole ensemble.
+        ens_T_an  = np.zeros([len(lev),nens]);
+        ens_Q_an  = np.zeros([len(lev),nens]);
+        ens_U_an  = np.zeros([len(lev),nens]);
+        ens_V_an  = np.zeros([len(lev),nens]);
+        ens_PS_an = np.zeros([nens]);
+        for ee in range( nens ):
+              if DEBUG>=1:
+                 print("\n Task: ", rank, " cell: ", ncel-1, " load column for member: ", ee+1, flush=True)
+              # Define the correct name of the member.
+              width = 4                  
+              instr = str(ee+1).zfill(width)
+              # Load the state vector variables from all the members.
+              aname = path2an + '/' + ename + '_f_' + instr  +'-' + adate + '.cam.h0.' + adate + '.nc'
+              dset  = Dataset(aname, mode='r')
+              ens_T_an[:,ee]  = dset.variables['T'][0,closest_indices,sub_idlat[ii,jj],sub_idlon[ii,jj]]
+              ens_Q_an[:,ee]  = dset.variables['Q'][0,closest_indices,sub_idlat[ii,jj],sub_idlon[ii,jj]]
+              ens_U_an[:,ee]  = dset.variables['U'][0,closest_indices,sub_idlat[ii,jj],sub_idlon[ii,jj]]
+              ens_V_an[:,ee]  = dset.variables['V'][0,closest_indices,sub_idlat[ii,jj],sub_idlon[ii,jj]]
+              ens_PS_an[ee] = dset.variables['PS'][0,sub_idlat[ii,jj],sub_idlon[ii,jj]]
+              dset.close() # END ee cycle (ensemble member analysis cycle).
+
+
+        # Compute the horizontal localization interval for the obs retrieval.
+        # Given a location in degree (clat, clon), we need to consider approximately all the observations
+        # in a rectangle of sides [clat+dlato, clat-dlato] and [clon-dlono, clon+dlono]. 
+        lat_deg2km = 110.574 # Km/degree
+        dlato = 2 * loch/lat_deg2km  
+        latu = lat[sub_idlat[ii,jj]] + dlato
+        latd = lat[sub_idlat[ii,jj]] - dlato
+        if latu > 90:
+           latu = 90
+        if latd < -90:
+           latd = -90
+ 
+        deg2rad = math.pi/180
+        lon_deg2km = 111.320*np.cos(deg2rad*lat[sub_idlat[ii,jj]]) # Km/degree
+        dlono = 2 * loch/lon_deg2km
+        lonl = lon[sub_idlon[ii,jj]] - dlono
+        lonr = lon[sub_idlon[ii,jj]] + dlono
+        if lonl < 0:
+           lonl1 = 0
+           lonl2 = 360 + lonl
+        if lonr > 360:
+           lonr1 = 360
+           lonr2 = lonr - 360
+         
+        # Retrieve observation in this cell.
+        if DEBUG>=1: 
+            # Retrieve observation in these intervals.
+            if lonl<0:
+               print("\n Task: ", rank, " cell: ", ncel-1, " retrieve (deg): lat in [",latu,"    ",latd,"] lon in [",lonl1,"    ",lonr,"] U [",lonl2,"    360]", flush=True)
+            elif lonr>360:
+               print("\n Task: ", rank, " cell: ", ncel-1, " retrieve (deg): lat in [",latu,"    ",latd,"] lon in [",lonl,"    ",lonr1,"] U [0     ",lonr2,"]", flush=True)
+            else:
+               print("\n Task: ", rank, " cell: ", ncel-1, " retrieve (deg): lat in [",latu,"    ",latd,"] lon in [",lonl,"    ",lonr,"]", flush=True)
+
+        # Before we query the whole column and then here the layer.
+        if lonl<0:
+               dfo = dfos.query("deglat > @latd and deglat < @latu and deglon >= @lonl1 and deglon < @lonr and deglon > @lonl2 and deglon <= 360" )
+        elif lonr>360:
+               dfo = dfos.query("deglat > @latd and deglat < @latu and deglon > @lonl and deglon <= @lonr1 and deglon >= 0 and  deglon < @lonr2")
+        else:
+               dfo = dfos.query("deglat > @latd and deglat < @latu and deglon > @lonl and deglon < @lonr ")
+              
+              
+        if DEBUG >= 4:
+             print("\n Task: ", rank, " cell: ", ncel-1, " pandas obs: \n", dfo, flush=True)
+        
+        # If there are not observation skip.
+        if len(dfo['obsvalue'].tolist())<=0:
+             if DEBUG >= 2:
+                    print("\n Task: ", rank, " cell: ", ncel-1, "No obs in this region.", flush=True)
+             continue
+
+
+
+        PSan_ens = ens_PS_an[:]
+        # Loop through the column but skip above a certain threshold.
+        for kk in range( len(lev) ):
+              # If level is above 0.1 hPa skip the computation. 
+              clev = lev[kk]
+              if clev < vthreshold: 
+                 continue
+              # Conversion in Km for the computation of the vertical localization.
+              #dclev = (1-(clev/P0)**0.190284)*44307.69396/1000 
+
+              if DEBUG>=2:
+                  print("\n Task: ", rank, " cell: ", ncel-1, " retrieve (deg): lat in [",latu,"    ",latd,"] lon in [",lonl,"    ",lonr,"] lev: ",clev," level ",kk+1,"out of ", len(lev), flush=True)
+                
+              # Compute vertical localization box for the obs retrieval
+              ulev = clev * np.exp(-vloch)
+              dlev = clev * np.exp(vloch)
+              if ulev < vthreshold:
+                 ulev = vthreshold
+              if dlev > P0:
+                 dlev = P0 
+
+
+              # If the mpi sub-division is small enough it is worth to do only one query...really?
+              # Before we query the whole column and then here the layer.
+              do_ens_total = dfo.query("levelht > @ulev and levelht < @dlev")
+         
+              if DEBUG >= 4:
+                  print("\n Task: ", rank, " cell: ", ncel-1, " lev: ", clev, " pandas obs: \n", do_ens_total, flush=True)
+              
+              # If there are not observation skip.
+              if len(do_ens_total['obsvalue'].tolist())<=0:
+                  if DEBUG >= 2:
+                      print("\n Task: ", rank, " cell: ", ncel-1, "No obs in this cell level.", flush=True)
+                  continue
+          
+ 
+              # If there are obs then retrieve all the analysis ensemble members component at this level.
+              Tan_ens = ens_T_an[kk,:]
+              Qan_ens = ens_Q_an[kk,:]
+              Uan_ens = ens_U_an[kk,:]
+              Van_ens = ens_V_an[kk,:]
+                     
+              # Loop beetween the different obs type
+              idx_o2p=0
+              for o2p in obs2proc:
+                  # Find different obs of this type.
+                  qstr = "description=="+"'"+o2p +"'"
+                  if DEBUG>=3: 
+                     print("\n Task: ", rank, " processing observation: ", o2p)
+                     print(" Task: ", rank, " query: ",qstr)
+                  do_ens_type = do_ens_total.query(qstr)
+                  
+                  if DEBUG>=5:
+                      print("\n Task: ", rank, " cell: ", ncel-1, " lev: ", clev," type: ", o2p, " pandas obs: \n", do_ens_total, flush=True)
+                  
+                  if len(do_ens_type['obsvalue'].tolist())<=0:
+                       if DEBUG>=3:
+                           print(' Task: ', rank, ' No obs of this type '+ o2p +' in this interval.', flush=True) 
+                       # before jumping the loop we need to increase the obs type counter!
+                       idx_o2p = idx_o2p + 1
+                       continue
+                       
+                      
+                  # Retrieve prior by entryno, id and member!!!!!!!!
+                  m1           = do_ens_type.query('member==1')
+                  prior        = np.zeros([len(m1),nens])
+                  prior_mean   = np.zeros([len(m1)])
+                  prior_spread = np.zeros([len(m1)])
+                  sigma_o      = np.zeros([len(m1)])
+                  obs          = np.zeros([len(m1)])
+                  levelht      = np.zeros([len(m1)])
+                  deglat       = np.zeros([len(m1)])
+                  deglon       = np.zeros([len(m1)])
+                  prior[:,0]   = m1['prior']
+                  for iee in range(nens-1):
+                      mm=iee+2
+                      prior[:,iee+1] = do_ens_type.query("entryno=="+str(m1['entryno'].tolist()) + " and id=="+str(m1['id'].tolist())+" and member=="+str(mm) )['prior']
+
+                  # Retrieve the other related quantity needed for the final computation.
+                  prior_mean[:]     = do_ens_type.query("entryno=="+str(m1['entryno'].tolist()) + " and id=="+str(m1['id'].tolist())+" and member==1" )['prior_mean']
+                  prior_spread[:]   = do_ens_type.query("entryno=="+str(m1['entryno'].tolist()) + " and id=="+str(m1['id'].tolist())+" and member==1" )['prior_spread']
+                  sigma_o[:]        = do_ens_type.query("entryno=="+str(m1['entryno'].tolist()) + " and id=="+str(m1['id'].tolist())+" and member==1" )['obs_error']
+                  obs[:]            = do_ens_type.query("entryno=="+str(m1['entryno'].tolist()) + " and id=="+str(m1['id'].tolist())+" and member==1" )['obsvalue']
+                  levelht[:]        = do_ens_type.query("entryno=="+str(m1['entryno'].tolist()) + " and id=="+str(m1['id'].tolist())+" and member==1" )['levelht']
+                  deglat[:]         = do_ens_type.query("entryno=="+str(m1['entryno'].tolist()) + " and id=="+str(m1['id'].tolist())+" and member==1" )['deglat']
+                  deglon[:]         = do_ens_type.query("entryno=="+str(m1['entryno'].tolist()) + " and id=="+str(m1['id'].tolist())+" and member==1" )['deglon']
+
+                  # USE SUBMATRICES OF OI!!!!!!!!!!!!!!!!
+                  if use_oi=="TRUE":
+                     oi_val         = sub_oi[idx_o2p, kk, i_oi_lat, i_oi_lon]
+                     oi_sigma_o_val = sub_oi_sigma_o[idx_o2p, kk, i_oi_lat, i_oi_lon]
+                     if oi_val==0:
+                        omega_fac=0
+                     else:
+                        omega_fac      = np.sqrt( oi_val**2/(oi_val**2 + oi_sigma_o_val**2) )
+
+         
+                  if loc_type=='GC':
+                      # Vertical distance in Km. Remember that levelht has been already converted in hPa.
+                      #do  = (1-(levelht[iss]/P0)**0.190284)*44307.69396/1000 
+                      #dv  = dclev-do
+                      dv  = np.log(clev) - np.log(levelht)
+                      gcv = gaspari_cohn(dv/vloch)
+                      # Horizontal distance in Km by exploiting the Haversine Formul by exploiting the Haversine formula.
+                      # https://en.wikipedia.org/wiki/Great-circle_distance  CHECK
+                      phi1    =  lat[sub_idlat[ii,jj]]*np.pi/180
+                      phi2    =  deglat[:]*np.pi/180
+                      lambda1 =  lon[sub_idlon[ii,jj]]*np.pi/180
+                      lambda2 =  deglon[:]*np.pi/180
+                      dsigma  = 2 * np. arcsin( np.sqrt( np.sin( 0.5*(phi1-phi2) )**2 + (1 - np.sin( 0.5*(phi1-phi2) )**2 - np.sin( 0.5*(phi1+phi2) )**2 )*np.sin( 0.5*(lambda1-lambda2) )**2 )  )
+                      dh      = REarth*dsigma
+                      gch     = gaspari_cohn(dh/loch) 
+                      gcloc = gch * gcv
+                      #print(' Task: ', rank, ' vloch: ', vloch, 'loch: ', loch, flush=True) 
+                  
+
+                  loc=1 
+                  for iss in range( len(m1) ):
+                       # Compute the correlation.
+                       #if rank==37 or rank==384 or rank==77:
+                       #    print(' Task: ', rank, ' Befor corr ', flush=True) 
+                       crT=np.corrcoef(Tan_ens,prior[iss,:])[0,1]
+                       crQ=np.corrcoef(Qan_ens,prior[iss,:])[0,1]
+                       crU=np.corrcoef(Uan_ens,prior[iss,:])[0,1]
+                       crV=np.corrcoef(Van_ens,prior[iss,:])[0,1]
+                       crPS=np.corrcoef(PSan_ens,prior[iss,:])[0,1]
+                       #if rank==37 or rank==384 or rank==77:
+                       #   print(' Task: ', rank, 'After corr ', flush=True) 
+                       #   print(' Task: ', rank, ' iss=',iss, ' Qan:', Qan_ens, 'prior[iss,:] ', prior[iss,:],' cr=',crT,crQ,crU,crV, flush=True) 
+                      
+                       # TEST TO QUANTIFY THE IMPORTANCE OF THE CORRELATION COEFFICIENT. Then we can can count the number of observations
+                       # for which hold the linear relation to see if we have enough information
+                       # if not nan do the test 
+                             # if not passed flag as discarded
+                       # else set the crX to zero (it does not count to the fsoi computation) and flag it as discarded
+
+                       if np.isnan(crT): 
+                           crT=0.0
+                       if np.isnan(crQ): 
+                           crQ=0.0
+                       if np.isnan(crU): 
+                           crU=0.0
+                       if np.isnan(crV): 
+                           crV=0.0
+                       if np.isnan(crPS): 
+                           crPS=0.0
+
+
+                       # Compute the 3D distance to apply the Gaspary and Cohn correction.
+                       if loc_type=='GC':   
+                          loc = gcloc[iss]
+
+
+                       # compute the fsoi
+                       if use_oi=="TRUE":  # USE SUBMATRICES OF OI!!!!!!!!!
+                          tmp_fsoi =  - (obs[iss]-prior_mean[iss]) * (crT + crQ + crU + crV + crPS) * loc * omega_fac/sigma_o[iss]
+                          sub_fsoi_oi[idx_o2p, kk, ii, jj] += tmp_fsoi 
+                       else: 
+                          tmp_fsoi =  - (obs[iss]-prior_mean[iss])*(crT + crQ + crU + crV + crPS) * loc * prior_spread[iss]/(sigma_o[iss]**2)
+                          sub_fsoi[idx_o2p, kk, ii, jj] += tmp_fsoi
+
+                          
+
+                       sub_fsoi_mask[idx_o2p, kk, ii, jj] = 1 
+
+                       sub_ocount[idx_o2p] = sub_ocount[idx_o2p]+1
+                       # SERVE MASCHERA PER VEDERE SE CI SONO OBS IN UNA DETERMINATA POSIZIONE
+                       #print('idx_o2p= ',idx_o2p)
+
+
+                       # Check the number of obs used or discarded for inproving or degrading the forecast. 
+                       if tmp_fsoi >=0: # degrading the forecast
+                          sub_ocount_degrading[idx_o2p, kk, ii, jj] += 1
+                          sub_fsoi_degrading[idx_o2p, kk, ii, jj] += tmp_fsoi 
+                       else:
+                          sub_ocount_improving[idx_o2p, kk, ii, jj] += 1
+                          sub_fsoi_improving[idx_o2p, kk, ii, jj] += tmp_fsoi
+
+
+                  idx_o2p=idx_o2p+1 # END o2p cycle
+
+
+
+
+comm.Barrier()
+
+    
+# Build the global fsoi.
+comm.Reduce(sub_ocount, ocount, op=MPI.SUM, root=manager)
+task_id_list = comm.gather(task_id, root=manager)
+if rank==manager:
+   #print('\n Task: ', rank, " task_id_list:", task_id_list, flush=True)
+   print('\n Task: ', rank, " building the global fsoi matrix", flush=True)
+   # Set the first part of the matrix for rank 0
+   fsoi[:,:,task_id['sub_row_start']:task_id['sub_row_end']+1,task_id['sub_col_start']:task_id['sub_col_end']+1] = sub_fsoi
+   fsoi_mask[:,:,task_id['sub_row_start']:task_id['sub_row_end']+1,task_id['sub_col_start']:task_id['sub_col_end']+1] = sub_fsoi_mask
+  
+   idlat[task_id['sub_row_start']:task_id['sub_row_end']+1,task_id['sub_col_start']:task_id['sub_col_end']+1] = sub_idlat
+   idlon[task_id['sub_row_start']:task_id['sub_row_end']+1,task_id['sub_col_start']:task_id['sub_col_end']+1] = sub_idlon
+   
+   ocount_degrading[:,:,task_id['sub_row_start']:task_id['sub_row_end']+1,task_id['sub_col_start']:task_id['sub_col_end']+1] = sub_ocount_degrading
+   ocount_improving[:,:,task_id['sub_row_start']:task_id['sub_row_end']+1,task_id['sub_col_start']:task_id['sub_col_end']+1] = sub_ocount_improving
+   fsoi_degrading[:,:,task_id['sub_row_start']:task_id['sub_row_end']+1,task_id['sub_col_start']:task_id['sub_col_end']+1] = sub_fsoi_degrading
+   fsoi_improving[:,:,task_id['sub_row_start']:task_id['sub_row_end']+1,task_id['sub_col_start']:task_id['sub_col_end']+1] = sub_fsoi_improving
+   
+   requests = []
+   recvbufs = []
+
+   requests_mask = []
+   recvbufs_mask = []
+   
+   requests_idlat = []
+   recvbufs_idlat = []
+   requests_idlon = []
+   recvbufs_idlon = []
+   
+   requests_oc_imp = []
+   recvbufs_oc_imp = []
+   recvbufs_oc_deg = []
+   requests_oc_deg = []
+   
+   requests_fsoi_imp = []
+   recvbufs_fsoi_imp = []
+   recvbufs_fsoi_deg = []
+   requests_fsoi_deg = []
+
+
+   for task in range(1, size):
+       # Set the buffer.
+       sub_nr = task_id_list[task]['sub_nr']
+       sub_nc = task_id_list[task]['sub_nc']
+       recvbuf = np.empty([len(obs2proc),len(lev),sub_nr, sub_nc], dtype=float)
+       print("\n Task: ", rank, " receive from task: ", task, " sub domain with shape: [",len(obs2proc),", ",len(lev),", ",sub_nr,", ",sub_nc,"]", flush=True)
+       # Reveive in non blocking way. 
+       request = comm.Irecv(recvbuf, source=task, tag=task)
+       #comm.Recv(recvbuf, source=task, tag=task) # this is for blocking communication
+       recvbufs.append(recvbuf)
+       requests.append(request)
+       
+       recvbuf_mask = np.empty([len(obs2proc),len(lev),sub_nr, sub_nc], dtype=float)
+       request_mask = comm.Irecv(recvbuf_mask, source=task, tag=10000+task)
+       recvbufs_mask.append(recvbuf_mask)
+       requests_mask.append(request_mask)
+
+       recvbuf_idlat = np.empty([sub_nr, sub_nc], dtype=int)
+       request_idlat = comm.Irecv(recvbuf_idlat, source=task, tag=20000+task)
+       recvbufs_idlat.append(recvbuf_idlat)
+       requests_idlat.append(request_idlat)
+
+       recvbuf_idlon = np.empty([sub_nr, sub_nc], dtype=int)
+       request_idlon = comm.Irecv(recvbuf_idlon, source=task, tag=30000+task)
+       recvbufs_idlon.append(recvbuf_idlon)
+       requests_idlon.append(request_idlon)
+       
+       recvbuf_oc_imp = np.empty([len(obs2proc),len(lev),sub_nr, sub_nc], dtype=float)
+       request_oc_imp = comm.Irecv(recvbuf_oc_imp, source=task, tag=40000+task)
+       recvbufs_oc_imp.append(recvbuf_oc_imp)
+       requests_oc_imp.append(request_oc_imp)
+       
+       recvbuf_oc_deg = np.empty([len(obs2proc),len(lev),sub_nr, sub_nc], dtype=float)
+       request_oc_deg = comm.Irecv(recvbuf_oc_deg, source=task, tag=50000+task)
+       recvbufs_oc_deg.append(recvbuf_oc_deg)
+       requests_oc_deg.append(request_oc_deg)
+       
+       recvbuf_fsoi_imp = np.empty([len(obs2proc),len(lev),sub_nr, sub_nc], dtype=float)
+       request_fsoi_imp = comm.Irecv(recvbuf_fsoi_imp, source=task, tag=60000+task)
+       recvbufs_fsoi_imp.append(recvbuf_fsoi_imp)
+       requests_fsoi_imp.append(request_fsoi_imp)
+       
+       recvbuf_fsoi_deg = np.empty([len(obs2proc),len(lev),sub_nr, sub_nc], dtype=float)
+       request_fsoi_deg = comm.Irecv(recvbuf_fsoi_deg, source=task, tag=70000+task)
+       recvbufs_fsoi_deg.append(recvbuf_fsoi_deg)
+       requests_fsoi_deg.append(request_fsoi_deg)
+       
+       # dbg
+       #print(" Task: ", rank, " is receiving sub_idlat: ", recvbuf_idlat, flush=True)
+       #print(" Task: ", rank, " is receiving sub_idlon: ", recvbuf_idlon, flush=True)
+
+
+   MPI.Request.Waitall(requests)
+   MPI.Request.Waitall(requests_mask)
+   MPI.Request.Waitall(requests_idlat)
+   MPI.Request.Waitall(requests_idlon)
+   MPI.Request.Waitall(requests_oc_imp)
+   MPI.Request.Waitall(requests_oc_deg)
+   MPI.Request.Waitall(requests_fsoi_imp)
+   MPI.Request.Waitall(requests_fsoi_deg)
+
+   #comm.Barrier() # if blocking communications
+   # Storing the received sub_matrices in the global one.
+   task = 1
+   for recvbuf, recvbuf_mask in zip(recvbufs, recvbufs_mask):
+       rs = task_id_list[task]['sub_row_start']
+       re = task_id_list[task]['sub_row_end'] + 1
+       cs = task_id_list[task]['sub_col_start']
+       ce = task_id_list[task]['sub_col_end'] + 1
+       fsoi[:,:,rs:re,cs:ce] = recvbuf
+       fsoi_mask[:,:,rs:re,cs:ce] = recvbuf_mask
+       task = task + 1
+
+   task = 1
+   for recvbuf_idlat, recvbuf_idlon in zip(recvbufs_idlat, recvbufs_idlon):
+       rs = task_id_list[task]['sub_row_start']
+       re = task_id_list[task]['sub_row_end'] + 1
+       cs = task_id_list[task]['sub_col_start']
+       ce = task_id_list[task]['sub_col_end'] + 1
+       idlat[rs:re,cs:ce] = recvbuf_idlat
+       idlon[rs:re,cs:ce] = recvbuf_idlon
+       task = task + 1
+
+   task = 1
+   for recvbuf_oc_imp, recvbuf_oc_deg in zip(recvbufs_oc_imp, recvbufs_oc_deg):
+       rs = task_id_list[task]['sub_row_start']
+       re = task_id_list[task]['sub_row_end'] + 1
+       cs = task_id_list[task]['sub_col_start']
+       ce = task_id_list[task]['sub_col_end'] + 1
+       ocount_improving[:,:,rs:re,cs:ce] = recvbuf_oc_imp
+       ocount_degrading[:,:,rs:re,cs:ce] = recvbuf_oc_deg
+       task = task + 1
+   
+   task = 1
+   for recvbuf_fsoi_imp, recvbuf_fsoi_deg in zip(recvbufs_fsoi_imp, recvbufs_fsoi_deg):
+       rs = task_id_list[task]['sub_row_start']
+       re = task_id_list[task]['sub_row_end'] + 1
+       cs = task_id_list[task]['sub_col_start']
+       ce = task_id_list[task]['sub_col_end'] + 1
+       fsoi_improving[:,:,rs:re,cs:ce] = recvbuf_fsoi_imp
+       fsoi_degrading[:,:,rs:re,cs:ce] = recvbuf_fsoi_deg
+       task = task + 1
+
+else:
+   # Send in non blocking way. 
+   comm.Isend(sub_fsoi, dest=manager, tag=rank)   
+   #comm.Send(sub_fsoi, dest=manager, tag=rank)   # This is for blocking communication
+   print("\n Task: ", rank, " sending sub domain with shape: [",sub_fsoi.shape[0],", ",sub_fsoi.shape[1],", ",sub_fsoi.shape[2],", ",sub_fsoi.shape[3],"]", flush=True)
+   comm.Isend(sub_fsoi_mask, dest=manager, tag=10000+rank)   
+   comm.Isend(sub_idlat, dest=manager, tag=20000+rank)   
+   comm.Isend(sub_idlon, dest=manager, tag=30000+rank)   
+   print(" Task: ", rank, " is sending sub_idlat: ", sub_idlat, flush=True)
+   print(" Task: ", rank, " is sending sub_idlon: ", sub_idlon, flush=True)
+   comm.Isend(sub_ocount_improving, dest=manager, tag=40000+rank)   
+   comm.Isend(sub_ocount_degrading, dest=manager, tag=50000+rank)   
+   comm.Isend(sub_fsoi_improving, dest=manager, tag=60000+rank)   
+   comm.Isend(sub_fsoi_degrading, dest=manager, tag=70000+rank)   
+
+
+comm.Barrier()
+
+# dbg
+#print('Task: ', rank, " sub_idlat: ", sub_idlat, flush=True)
+#print('Task: ', rank, " sub_idlon: ", sub_idlon, flush=True)
+
+if rank==manager:
+   print('\n Finale coarse grid ', flush=True) 
+   print(' co_lat: ', lat[idlat[:,0]], flush=True) 
+   print(' co_lon: ', lon[idlon[0,:]], flush=True) 
+   #print(' idlat: ',idlat[:,0])
+   #print(' idlon: ',idlon[0,:])
+   #print(' idlat: ',idlat)
+   #print(' idlon: ',idlon)
+   #print(' fsoi: ',fsoi)
+
+comm.Barrier()
+
+# Coordinate of the new coarser grid.
+if rank==manager:
+   tmp=idlat[:,0];
+   co_lat = lat[tmp] 
+   tmp=idlon[0,:]
+   co_lon = lon[tmp]  
+   #print(idlat)
+   #print(idlon)
+   print("\n Task: ", rank, "  count obs used: ", ocount)
+
+   mask = np.isnan(fsoi_mask)
+   masked_fsoi = np.ma.masked_array(fsoi, mask)
+   fsoim= np.zeros(len(obs2proc))
+   fsoisd= np.zeros(len(obs2proc))
+   for io in range(len(obs2proc)):
+       flattened  = masked_fsoi[io,:,:,:].flatten()
+       mean = np.ma.mean(flattened)
+       sd = np.ma.std(flattened)
+       #print('flattened ', flattened )
+       #print('mean ', mean )
+       #print('sd ', sd )
+       #print(type(mean))
+       if isinstance(mean, np.ma.core.MaskedConstant):
+          mean = mean.filled(0.0)
+       if isinstance(sd, np.ma.core.MaskedConstant):
+          sd = sd.filled(0.0)
+       fsoim[io]  = mean
+       fsoisd[io] = sd
+
+   print("\nmean per type:")
+   print(fsoim)
+   print("\nsd per type:")
+   print(fsoisd)
+
+
+
+# Plotting
+#------------------------------------------
+#------------------------------------------
+if rank==manager:
+   if plot_img=='TRUE':
+      # Consider four different regions: Global
+      # NH, SH, TR for the bar plot. 
+      print("\n Plotting ...") 
+      print("Task: ", rank, " bar plot") 
+   
+      NH_fsoim= np.zeros(len(obs2proc))
+      NH_fsoisd= np.zeros(len(obs2proc))
+      SH_fsoim= np.zeros(len(obs2proc))
+      SH_fsoisd= np.zeros(len(obs2proc))
+      TR_fsoim= np.zeros(len(obs2proc))
+      TR_fsoisd= np.zeros(len(obs2proc))
+   
+      tmp_idlat = np.where(clat>30)
+      #NH_fsoi = fsoi[:,:,tmp_idlat, :] 
+      NH_fsoi = masked_fsoi[:,:,tmp_idlat, :] 
+      for io in range(len(obs2proc)):
+          mean = np.ma.mean(NH_fsoi[io,:,:,:].flatten())
+          sd = np.ma.std(NH_fsoi[io,:,:,:].flatten())
+          if isinstance(mean, np.ma.core.MaskedConstant):
+             mean = mean.filled(0.0)
+          if isinstance(sd, np.ma.core.MaskedConstant):
+             sd = sd.filled(0.0)
+          NH_fsoim[io]  = mean
+          NH_fsoisd[io] = sd
+      tmp_idlat = np.where(clat<-30) 
+      #SH_fsoi = fsoi[:,:,tmp_idlat, :] 
+      SH_fsoi = masked_fsoi[:,:,tmp_idlat, :] 
+      for io in range(len(obs2proc)):
+          mean = np.ma.mean(SH_fsoi[io,:,:,:].flatten())
+          sd = np.ma.std(SH_fsoi[io,:,:,:].flatten())
+          if isinstance(mean, np.ma.core.MaskedConstant):
+             mean = mean.filled(0.0)
+          if isinstance(sd, np.ma.core.MaskedConstant):
+             sd = sd.filled(0.0)
+          SH_fsoim[io]  = mean
+          SH_fsoisd[io] = sd
+      tmp_idlat = np.where( (clat>=-30) & (clat<=30) ) 
+      #TR_fsoi = fsoi[:,:,tmp_idlat,:]
+      TR_fsoi = masked_fsoi[:,:,tmp_idlat,:]
+      for io in range(len(obs2proc)):
+          mean = np.ma.mean(TR_fsoi[io,:,:,:].flatten())
+          sd = np.ma.std(TR_fsoi[io,:,:,:].flatten())
+          if isinstance(mean, np.ma.core.MaskedConstant):
+             mean = mean.filled(0.0)
+          if isinstance(sd, np.ma.core.MaskedConstant):
+             sd = sd.filled(0.0)
+          TR_fsoim[io]  = mean
+          TR_fsoisd[io] = sd
+   
+      fsoi_plot_bar(fsoim,fsoisd, obs2proc, ocount, title='Global (single obs types)'+'\n Date: '+fdate , xlabel='$FSOI-J_o$ %', ylabel='', save_path=path2sv+'/bar_global.png', fs=16, dpi=100)
+      fsoi_plot_bar(NH_fsoim, NH_fsoisd, obs2proc, ocount, title='Northern Hemisphere'+'\n Date: '+fdate, xlabel='$FSOI-J_o$ %', ylabel='', save_path=path2sv+'/bar_nh.png', fs=16, dpi=100)
+      fsoi_plot_bar(SH_fsoim, SH_fsoisd, obs2proc, ocount, title='Southern Hemisphere'+'\n Date: '+fdate, xlabel='$FSOI-J_o$ %', ylabel='', save_path=path2sv+'/bar_sh.png', fs=16, dpi=100)
+      fsoi_plot_bar(TR_fsoim, TR_fsoisd, obs2proc, ocount,title='Tropics'+'\n Date: '+fdate, xlabel='', ylabel='$FSOI-J_o$ %', save_path=path2sv+'/bar_tr.png', fs=16, dpi=100)
+   
+      fsoi_plot_bar_gr(fsoim, fsoisd, obs2proc, ocount, title='Global'+'\n Date: '+fdate , xlabel='$FSOI-J_o$ %', ylabel='', save_path=path2sv+'/bar_global_gr.png', fs=16, dpi=100)   
+   
+      # Pie summary
+      # Generates groups set from obs type in obs2proc
+      print("Task: ", rank, " pie plot") 
+      groups = set([obs.split('_')[0] for obs in obs2proc])
+      labels = []
+      if 'AIRCRAFT' in groups or 'ACARS' in groups:
+        labels.append('$Aircraft$')
+      if 'RADIOSONDE' in groups:
+        labels.append('$Radiosondes$')
+      if 'SAT' in groups:
+        labels.append('$AMV$')
+      if 'GPSRO' in groups:
+        labels.append('$GPS-RO$')
+      if 'EOS' in groups or 'NOAA' in groups or 'METOP' in groups :
+        labels.append('$AMSU-A$')
+    
+      sizes = [0] * len(labels)
+      fsoigr = [0] * len(labels)
+   
+      for obs in obs2proc:
+          index = obs2proc.index(obs)
+          if 'AIRCRAFT' in obs or 'ACARS' in obs:
+              il=labels.index('$Aircraft$')
+          elif 'RADIOSONDE' in obs:
+              il=labels.index('$Radiosondes$')
+          elif 'SAT' in obs:
+              il=labels.index('$AMV$')
+          elif 'GPSRO' in obs:
+              il=labels.index('$GPS-RO$')
+          elif 'EOS' in obs or 'NOAA' in obs or 'METOP' in obs:
+              il=labels.index('$AMSU-A$')
+              
+          #print('il=',il)
+          sizes[il]=sizes[il]+ocount[index]
+          fsoigr[il]=fsoigr[il]+np.abs(fsoim[index])
+   
+   
+      #print('sizes=',sizes)
+      total = sum(sizes)
+      sizes = [size * 100 / total if size != 0 else 0 for size in sizes] 
+      totalf = sum(fsoigr)
+      fsoigr = [fgr * 100 / totalf if fgr != 0 else 0 for fgr in fsoigr] 
+       
+      
+      print('labels=',labels)
+      print('sizes=',sizes)
+      print('fsoigr=',fsoigr)
+      #create_pie_chart(labels, sizes,  title='SPREADS: Obs used for the FSOI-Jo'+'\n Date: '+fdate,colormap='jet', dpi=100, save_path=path2sv+'/pie_global_nobs.png')
+      #create_pie_chart(labels, fsoigr,  title='SPREADS: Global FSOI-Jo Summary'+'\n Date: '+fdate, colormap='jet', dpi=100, save_path=path2sv+'/pie_global_fsoi.png')
+      create_pie_chart(labels, sizes,  title='SPREADS: Obs used for the FSOI-Jo'+'\n Date: '+fdate,colormap='tab20', dpi=100, save_path=path2sv+'/pie_global_nobs.png')
+      create_pie_chart(labels, fsoigr,  title='SPREADS: Global FSOI-Jo Summary'+'\n Date: '+fdate, colormap='tab20', dpi=100, save_path=path2sv+'/pie_global_fsoi.png')
+   
+   
+   
+   
+      print("Task: ", rank, " maps") 
+      # For the maps consider three reference levels
+      # 850 hPa, 500h Pa, 200 hPa and the vertical average. 
+   
+      #fsoi_map = fsoi.mean(axis=(0,1))
+      #fsoi_plot_map(fsoi_map, co_lon, co_lat, title='FSOI-Jo, All Obs., Vertical Integration.'+'\n Date: '+fdate, clabel='$FSOI-J_{o}$', xlabel='', ylabel='', fs=16, dpi=100, save_path=path2sv+'/all_obs_vint_map.png')
+      idlev = find_closest_index(lev, 150)
+      fsoi_map = fsoi[:,idlev,:,:].mean(axis=0)
+      
+      fsoi_plot_map(fsoi_map, co_lon, co_lat, title='FSOI-Jo, All Obs., Model Level: '+ str( round(lev[idlev],2) )  +'\n Date: '+fdate, clabel='$FSOI-J_{o}$', xlabel='', ylabel='', fs=16, dpi=100, save_path=path2sv+'/all_obs_150_map.png') 
+   
+   
+   
+
+
+
+# Data saving session.
+#------------------------------------------
+#------------------------------------------
+if rank == manager:
+   print('\n Save data . . .')
+
+   #DBG
+   np.savez( npz_full_name, fsoi=fsoi, mask=mask, fsoi_map=fsoi_map, lat=co_lat, lon=co_lon, lev=lev, labels=labels, fsoigr=fsoigr, sizes=sizes, fsoim=fsoim, fsoisd=fsoisd, obs2proc=obs2proc, \
+             ocount=ocount, ocount_improving=ocount_improving, ocount_degrading=ocount_degrading, fsoi_improving=fsoi_improving, fsoi_degrading=fsoi_degrading)
+      
+   with Dataset(path2sv+'/mpi_data.nc', 'w', format='NETCDF4_CLASSIC') as ds:
+ 
+       # Add 1D variables  
+       #------------------------------------------
+       ds.createDimension('model_lon',len(lon))
+       model_lon_var = ds.createVariable('model_lon', 'f8', ('model_lon',))
+       model_lon_var.units='degree' 
+       model_lon_var.long_name='longitude coordinate of the original model' 
+       #ds.variables['model_lon'][:] = lon   
+       model_lon_var[:] = lon
+
+       ds.createDimension('model_lat',len(lat))
+       model_lat_var = ds.createVariable('model_lat', 'f8', ('model_lat',))
+       model_lat_var.units = 'degree' 
+       model_lat_var.long_name = 'latitude coordinate of the original model' 
+       model_lat_var[:] = lat   
+ 
+       ds.createDimension('model_lev',len(lev))
+       model_lev_var = ds.createVariable('model_lev', 'f8', ('model_lev',))
+       model_lev_var.units = 'hPa' 
+       model_lev_var.long_name = 'vertical coordinate of the original model' 
+       model_lev_var[:] = lev   
+    
+       ds.createDimension('c_lat',len(co_lat))
+       co_lat_var = ds.createVariable('c_lat', 'f8', ('c_lat',))
+       co_lat_var.units = 'degree' 
+       co_lat_var.long_name = 'latitude coordinate of the coarser diag grid' 
+       co_lat_var[:] = co_lat   
+
+       ds.createDimension('c_lon',len(co_lon))
+       co_lon_var = ds.createVariable('c_lon', 'f8', ('c_lon',))
+       co_lon_var.units = 'degree' 
+       co_lon_var.long_name = 'longitude coordinate of the coarser diag grid' 
+       co_lon_var[:] = co_lon   
+    
+
+
+       # Add 2D variables  
+       #------------------------------------------
+       idlat_var = ds.createVariable('idlat', 'f8', ('c_lat', 'c_lon'))
+       idlat_var.units = ''
+       idlat_var.long_name = 'Matrix indices for the mapping between the model and the coarse grid. It contains the lat indices correspondednt to positions in model grid.'
+       idlat_var[:] = idlat
+
+       idlon_var = ds.createVariable('idlon', 'f8', ('c_lat', 'c_lon'))
+       idlon_var.units = ''
+       idlon_var.long_name = 'Matrix indices for the mapping between the model and the coarse grid. It contains the lat indices correspondednt to positions in model grid.'
+       idlon_var[:] = idlon
+
+       # Add 4D variables  
+       #------------------------------------------
+       ds.createDimension('num_obs_types', len(obs2proc))
+       fsoi_var = ds.createVariable('fsoi', 'f8', ('num_obs_types', 'model_lev', 'c_lat', 'c_lon'))
+       fsoi_var.units = ''
+       fsoi_var.long_name = 'FSOI-Jo. First dimension is the list of obs type: ' + str(obs2proc)
+       fsoi_var[:] = fsoi
+
+       oc_imp_var = ds.createVariable('ocount_improving', 'f8', ('num_obs_types', 'model_lev', 'c_lat', 'c_lon'))
+       oc_imp_var.units = ''
+       oc_imp_var.long_name = 'FSOI-Jo count #  obs improving forecast. First dimension is the list of obs type: ' + str(obs2proc)
+       oc_imp_var[:] = ocount_improving
+       
+       oc_deg_var = ds.createVariable('ocount_degrading', 'f8', ('num_obs_types', 'model_lev', 'c_lat', 'c_lon'))
+       oc_deg_var.units = ''
+       oc_deg_var.long_name = 'FSOI-Jo count # obs degrading forecast. First dimension is the list of obs type: ' + str(obs2proc)
+       oc_deg_var[:] = ocount_degrading
+
+       fsoi_imp_var = ds.createVariable('fsoi_improving', 'f8', ('num_obs_types', 'model_lev', 'c_lat', 'c_lon'))
+       fsoi_imp_var.units = ''
+       fsoi_imp_var.long_name = 'FSOI-Jo: forecast improvements. First dimension is the list of obs type: ' + str(obs2proc)
+       fsoi_imp_var[:] = fsoi_improving
+       
+       fsoi_deg_var = ds.createVariable('fsoi_degrading', 'f8', ('num_obs_types', 'model_lev', 'c_lat', 'c_lon'))
+       fsoi_deg_var.units = ''
+       fsoi_deg_var.long_name = 'FSOI-Jo: forecast degradation. First dimension is the list of obs type: ' + str(obs2proc)
+       fsoi_deg_var[:] = fsoi_degrading
+
+       if use_oi=='TRUE':
+          oi_var = ds.createVariable('fsoi_oi', 'f8', ('num_obs_types', 'model_lev', 'c_lat', 'c_lon'))
+          oi_var.units = ''
+          oi_var.long_name = 'FSOI-Jo_OI approximation. First dimension is the list of obs type: ' + str(obs2proc)
+          oi_var[:] = fsoi_oi
+    
+          oi_var = ds.createVariable('oi', 'f8', ('num_obs_types', 'model_lev', 'c_lat', 'c_lon'))
+          oi_var.units = ''
+          oi_var.long_name = 'OI First dimension is the list of obs type: ' + str(obs2proc)
+          oi_var[:] = oi
+    
+       ds.setncattr('title', 'Simplified FSOI for ensemble filtering: forecast date: ' + fdate)
+       ds.setncattr('author', 'G. C.')
+
+
+# END
+#------------------------------------------
+#------------------------------------------
+# Get the current date and time
+final_t = MPI.Wtime()
+elapsed_time = final_t-start_t
+comm.Barrier()
+max_elapsed_time = comm.allreduce(elapsed_time, op=MPI.MAX)
+if rank == manager:
+   #final_t = datetime.datetime.now()
+   #print('\n',final_t)
+   #print(' Execution Time: ',final_t-start_t)
+   print(' Max Elapsed Time: ',max_elapsed_time)
+
+   print('\n -------------------- END ------------------- \n')
+
+
+
+
+MPI.Finalize()

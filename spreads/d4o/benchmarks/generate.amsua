@@ -1,0 +1,13 @@
+#!/bin/bash
+
+NUMENS=${1:-100}
+
+if [[ -r obs_seq.amsua.out ]] ; then
+    set -xe
+    time obseqd4o obs_seq.amsua.out --pathdb=amsua-ens/1x --stochastic=$NUMENS
+    time obseqd4o obs_seq.amsua.out --pathdb=amsua-ens/10x --copies=10 --stochastic=$NUMENS
+    time obseqd4o obs_seq.amsua.out --pathdb=amsua-ens/100x --copies=100 --stochastic=$NUMENS
+    time obseqd4o obs_seq.amsua.out --pathdb=amsua-det/1x --deterministic
+    time obseqd4o obs_seq.amsua.out --pathdb=amsua-det/10x --copies=10 --deterministic
+    time obseqd4o obs_seq.amsua.out --pathdb=amsua-det/100x --copies=100 --deterministic
+fi

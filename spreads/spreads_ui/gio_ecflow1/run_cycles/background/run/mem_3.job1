@@ -1,0 +1,200 @@
+#!/bin/bash  
+set -e          # stop the shell on first error
+set -u          # fail when using an undefined variable
+set -x          # echo script lines as they are executed
+set -o pipefail # fail if last(rightmost) command exits with a non-zero status
+ 
+# Defines the variables that are needed for any communication with ECF
+export ECF_PORT=3155    # The server port number
+export ECF_HOST=login1.juno.cmcc.scc    # The host name where the server is running
+export ECF_NAME=/gio_ecflow1/run_cycles/background/run/mem_3    # The name of this current task
+export ECF_PASS=vGSFdHPi    # A unique password, used for job validation & zombie detection
+export ECF_TRYNO=1  # Current try number of the task
+export ECF_TRIES=0            # Number of tries before abort
+export ECF_RID=$$             # record the process id. Also used for zombie detection
+# export NO_ECF=1             # uncomment to run as a standalone task on the command line
+ 
+# Define the path where to find ecflow_client
+# make sure client and server use the *same* version.
+# Important when there are multiple versions of ecFlow
+export PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:$PATH
+ 
+# Tell ecFlow we have started
+ecflow_client --init=$$
+ 
+ 
+# Define a error handler
+ERROR() {
+   set +e                      # Clear -e flag, so we don't fail
+   wait                        # wait for background process to stop
+   ecflow_client --abort=trap  # Notify ecFlow that something went wrong, using 'trap' as the reason
+   trap 0                      # Remove the trap
+   exit 0                      # End the script cleanly, server monitors child, an exit 1, will cause another abort and zombie
+}
+ 
+ 
+# Trap any calls to exit and errors caught by the -e flag
+trap ERROR 0
+ 
+ 
+# Trap any signal that may cause the script to fail
+trap '{ echo "Killed by a signal"; ERROR ; }' 1 2 3 4 5 6 7 8 10 12 13 15
+
+its=$(echo mem_3 | sed 's/mem_//g')
+its=$(printf "%04d" ${its})
+# @ nodes_per_instance = 8
+# @ nodes_per_instance = 12
+
+export CESMEXP='cesm-exp'
+export CLONESROOT="/work/cmcc/${USER}/${CESMEXP}/gio_ecflow1/gio_ecflow1_${its}"
+export CESMDATAROOT='/data/inputs/CESM'
+
+export CESMDIR=cesm2.3_beta11_cm3_v7z
+export case_name=gio_ecflow1
+
+# Number of clones
+export nens=5
+
+# DART directory
+# export dartroot="/work/cmcc/${USER}/CMCC-DART-RSYNC/CMCC-DART/"
+export dartroot=/users_home/cmcc/gc02720/spreads/spreads_ui/../
+export CIME_MODEL='cesm'
+
+export DIVISION=csp
+
+export case_name=gio_ecflow1
+
+export NCYCLES=20
+
+# After the first cylce CONT_RUN must be TRUE. (Use FALSE only if it is the start.)
+export CONT_RUN=TRUE
+
+# Max number of time you try to launch assimilation after failure
+export MAXTRY=5
+
+# Number of forecast members
+export FENS=5
+
+# For CMCC-CESM
+export CIME_MODEL='cesm'
+
+# Activate assimilation or do just a forecast
+ACTIVATE_ASSI=$(ecflow_client --query event /gio_ecflow1/run_cycles:ACTIVATE_ASSI)
+if [ $ACTIVATE_ASSI == 'set' ];then
+    export ACTIVATE_ASSI='TRUE'
+else
+    export ACTIVATE_ASSI='FALSE'
+fi
+
+# DA working dir
+tmpdir="/work/cmcc/${USER}/CMCC-CM/TMP"$(echo "${case_name}" | tr [:lower:] [:upper:])
+
+# Archive (to remove previous files)
+archdir="/work/cmcc/${USER}/CMCC-CM/archive"
+
+# Set the obs dir
+baseobsdir=/work/cmcc/mg20022/databases/b2d4o_d4o_db
+
+# Time slots used for the FGAT implementation (note: for every time timeslot you need to have an output from the model!)
+nts=13
+
+# Choose your exp template
+script_name_original=case.template-juno.original-SP
+
+# Chose the input namelist for DART
+dartnamelist=input.nml.original.rad
+
+#source /etc/profile.d/modules.sh
+
+if [ juno == 'zeus' ];then
+   # BASHRC
+   export LANGUAGE=en_US.UTF-8
+   export LC_ALL=en_US.UTF-8
+   export LANG=en_US.UTF-8
+   export LC_TYPE=en_US.UTF-8
+
+   module load impi20.1/19.7.217 impi20.1/netcdf/C_4.7.4-F_4.5.3_CXX_4.3.1 impi20.1/hdf5/1.12.0 intel20.1/20.1.217 intel20.1/cdo/1.9.8 intel20.1/eccodes/2.17.0 intel20.1/h4cflib/1.3 intel20.1/hdf4/4.2.13 intel20.1/hdf5/1.12.0 intel20.1/magics/3.3.1 intel20.1/nco/4.9.3 intel20.1/ncview/2.1.8 intel20.1/netcdf/C_4.7.4-F_4.5.3_CXX_4.3.1
+   module load ncl/6.6.2
+   source /zeus/opt/anaconda/3.9/etc/profile.d/conda.sh
+   module load anaconda/3.9
+   # conda activate /work/cmcc/mg20022/.conda/envs/ecflow
+
+elif [ juno == 'juno' ]; then
+
+   echo "d4o modules for juno"
+#   source /users_home/cmcc/gc02720/spreads/spreads_ui/../d4o/load-modules-d4o.juno
+fi
+
+cd ${CLONESROOT}
+
+# two nodes 18, one node 6
+#./xmlchange PIO_STRIDE=6
+#./xmlchange PIO_NUMTASKS=-99
+
+# sleep ${its}
+date
+./case.submit > ${CLONESROOT}/submit_message
+
+jobid=$(cat ${CLONESROOT}/submit_message | grep 'Submitted job id is' | awk '{print $5}')
+ecflow_client --alter=add variable JOB_ID "${jobid}" /${case_name}/run_cycles/background/run/mem_$(echo mem_3 | sed 's/mem_//g')
+ecflow_client --label=info "Waiting..."
+
+bwait -w "started(${jobid})"
+
+start=$(date "+%Y-%m-%d %H:%M")
+ecflow_client --label=info "START: $start"
+
+bwait -r 1 -w "ended(${jobid})"
+
+end=$(date "+%Y-%m-%d %H:%M")
+
+sleep 30
+echo " Enter in: `pwd`"
+
+#grep "MODEL EXECUTION HAS FINISHED" cesm.stdout* 
+#grep "resubmit_num 0" cesm.stderr* is valid also for cesm2_3 
+grep "resubmit_num 0" cesm.stderr.${jobid} 
+
+# store exit status of grep
+# if found grep will return 0 exit stauts
+# if not found, grep will return a nonzero exit stauts
+status=$?
+if [ $status -eq 0 ];
+then
+    echo " job finished! "
+else
+    echo " ERROR: -------> job unfinished"
+    exit 1
+fi 
+
+
+
+
+if [ ${ACTIVATE_ASSI}  == "FALSE" ];then
+
+   #  inst_string=`printf _%04d $inst`
+    echo "Linking the new cam_initial_${its} for possible DA run."
+
+    cd ${CLONESROOT}
+    rdir=$(./xmlquery RUNDIR | awk '{print $NF}')
+    cd ${rdir}
+    rfile=$(head -n 1 rpointer.atm)
+    rm -f cam_initial_${its}.nc
+    ln -s  ${rfile} cam_initial_${its}.nc  
+fi
+
+
+
+
+
+ecflow_client --label=info "START: ${start} / FINISH: ${end}"
+
+
+echo ""
+echo "----- END TASK ---"
+echo ""
+ecflow_client --label=Info "OK... 20230903  20:42"
+wait                      # wait for background process to stop
+ecflow_client --complete  # Notify ecFlow of a normal end
+trap 0                    # Remove all traps
+exit 0  

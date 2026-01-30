@@ -1,0 +1,11 @@
+project/
+│
+├── run_assimilation.sh            # Main script
+├── load_case_create_variables.sh   # Load variables from cases_create.sh
+├── run_member_process.sh           # Process each ensemble member
+├── initialize_dates.sh             # Initialize dates
+├── run_fgat_process.sh             # FGAT process logic
+├── run_one_shot_assimilation.sh    # One-shot assimilation logic
+├── database_merge.sh               # Merge databases for assimilation
+├── take_id.sh                      # Extract job ID from job submission
+└── script.log                      # Log file

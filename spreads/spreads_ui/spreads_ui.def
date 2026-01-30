@@ -1,0 +1,53 @@
+
+suite spreads_ui
+
+   defstatus suspended #queued
+
+   edit ECF_HOME "/users_home/cmcc/gc02720/spreads/spreads_ui" 
+   edit ECF_HOSTNAME "juno" 
+   edit ECF_INCLUDE "/users_home/cmcc/gc02720/spreads/spreads_ui/includes"
+   edit ECF_CLONE "/users_home/cmcc/gc02720/spreads/spreads_ui"
+   edit CASE_NAME d4o_test
+   edit REFCASE ic_phase1
+   edit REFDATE 2017100200000
+   edit STARTDATE 2017100200000
+   edit STAGEDIR /work/cmcc/gc02720/ic/ic_phase1_83L
+   edit NENS 80
+   edit DEP 13
+   edit MAXTRY 5
+   edit BASEOBSDIR /work/cmcc/gc02720/b2d4o_ufinal
+   edit CASE_TEMPLATE case.template-juno.original
+   edit DART_NML_TEMPLATE input.nml.original.rad
+   edit MODELDIR cesm2.3_beta11_cm3_v7z
+   edit MODEL_PATH /users_home/cmcc/${USER}/model
+
+   family cases_create
+      label info ""
+      task run
+   endfamily
+
+   family assimilation_experiment
+
+      task create_template
+         label info ""
+         trigger ../cases_create/run==complete
+      endfamily
+   
+   family convert_d4o
+      defstatus suspended
+      event STOP clear
+      edit CASE_NAME d4o_db
+      edit YYYYMM "201710"
+      edit DSTART "2"
+      edit DEND "31"
+      edit NENS "80"
+      edit INPUTDIR "/data/cmcc/sm09722/OBS_ECMAR"
+      edit WORKDIR "/work/cmcc/${USER}/databases"
+      edit TMPSLASH "/work/cmcc/${USER}/tmp"
+      edit BUFR_LIST "ARC AMV SND AMSU GPSRO"
+
+      task bufr_to_d4o
+            label info ""
+         endfamily
+endsuite
+

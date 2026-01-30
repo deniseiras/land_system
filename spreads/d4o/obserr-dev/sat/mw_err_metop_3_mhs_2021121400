@@ -1,0 +1,19 @@
+ --- METOP-C MHS ---
+ Ch  Class Clear  nModels  Comment
+  1      0     F        2      ;89
+  2      0     F        2     ;157
+  3      1     F        2  ;183pm1
+  4      1     F        2  ;183pm3
+  5      0     F        2     ;190
+--- Error model details -- see yommwave.F90 for what the proxy codes refer to --
+ Ch Where  Proxy  Err_min  Err_max  Min_prx  Max_prx  FG_err  A  B  Cldy_prx  Cldy_diag
+  1   Sea      3      5.0     14.0      0.0     14.0     0.0  1  1         8       10.0
+  1  Land      3      4.0     38.0      1.0     25.0     0.0  1  1         3        5.0
+  2   Sea      3      2.5     34.0      0.0     29.0     0.0  1  1         8       10.0
+  2  Land      3      5.0     67.0      1.0     25.0     0.0  1  1         3        5.0
+  3   Sea      3      2.5     10.0      0.0     37.0     0.0  1  1         8       10.0
+  3  Land      3      2.5      7.0      0.0     20.0     0.0  1  1         3        5.0
+  4   Sea      3      2.5     20.0      0.0     34.0     0.0  1  1         8       10.0
+  4  Land      3      2.5     20.0      0.0     21.5     0.0  1  1         3        5.0
+  5   Sea      3      2.2     32.0      0.0     30.0     0.0  1  1         8       10.0
+  5  Land      3      2.0     35.0      1.0     19.5     0.0  1  1         3        5.0

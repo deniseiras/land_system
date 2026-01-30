@@ -1,0 +1,88 @@
+SUBROUTINE Z2PICAO(PHT,PRES)
+
+USE PARKIND1  ,ONLY : JPRB
+USE YOMHOOK   ,ONLY : LHOOK,   DR_HOOK
+
+IMPLICIT NONE
+
+REAL(KIND=JPRB)   ,INTENT(IN)    :: PHT 
+REAL(KIND=JPRB)   ,INTENT(OUT)   :: PRES 
+REAL(KIND=JPRB) :: ZA, ZB, ZC, ZP0, ZP11, ZZ11
+REAL(KIND=JPRB) :: ZHOOK_HANDLE
+
+!**** SUBROUTINE Z2PICAO - CONVERT ICAO HEIGHT TO PRESSURE
+
+!        JAN HASELER     ECMWF     28/7/89
+
+!     PURPOSE
+!     -------
+
+!        CONVERT ICAO HEIGHT TO PRESSURE
+
+!**   INTERFACE
+!     ---------
+
+!        CALL Z2PICAO(PHT,PRES)
+
+!     WHERE PHT  = INPUT HEIGHT IN METRES
+!           PRES = OUTPUT PRESSURE IN MB
+
+!     METHOD
+!     ------
+
+!        THE STANDARD ICAO ATMOSPHERE HAS A CONSTANT LAPSE RATE OF
+!     6.5K/KM UP TO 11KM, WITH A REFERENCE TEMPERATURE OF 288K AT
+!     1013.25MB, AND AN ISOTHERMAL ATMOSPHERE, T=216.5K, ABOVE 11KM.
+
+!        UP TO 11KM:
+
+!             P = P0 * (1 - (LA/T0) * Z)**(G/(R*LA))
+
+!     WHERE P   = PRESSURE
+!           P0  = REFERENCE PRESSURE (1013.25MB)
+!           LA  = LAPSE RATE (.0065K/M)
+!           T0  = REFERENCE TEMPERATURE (288K)
+!           Z   = HEIGHT
+!           G   = ACCELERATION DUE TO GRAVITY
+!           R   = GAS CONSTANT FOR DRY AIR
+
+!        ABOVE 11KM:
+
+!             P = P11 * EXP( -G/(R*T11) * (Z-Z11) )
+
+!     WHERE P   = PRESSURE (MB)
+!           P11 = PRESSURE AT 11KM (226.547MB)
+!           T11 = TEMPERATURE AT 11KM (216.5K)
+!           Z11 = HEIGHT AT 11KM (11000M)
+
+!     THE EXACT FORMULATION AND CONSTANT VALUES USED PREVIOUSLY BY THE
+!     OPERATIONAL DATA EXTRACTION PROGRAMS ARE REPRODUCED HERE.
+
+!---------------------------------------------------------------------
+
+IF (LHOOK) CALL DR_HOOK('Z2PICAO',0,ZHOOK_HANDLE)
+ZA   =     5.252368255329_JPRB
+ZB   = 44330.769230769_JPRB
+ZC   =      .000157583169442_JPRB
+
+ZP0  =  1013.25_JPRB
+ZP11 =   226.547172_JPRB
+ZZ11 = 11000._JPRB
+
+!---------------------------------------------------------------------
+
+!*       1.             CALCULATE PRESSURE FROM ICAO HEIGHT
+!                       -----------------------------------
+
+!*          1.1         BELOW 11KM
+IF (PHT <= ZZ11) THEN
+  PRES = ZP0 * (1.0_JPRB-PHT/ZB)**ZA
+
+!*          1.2         ABOVE 11KM
+ELSE
+  PRES = ZP11 * EXP(-ZC*(PHT-ZZ11))
+ENDIF
+
+IF (LHOOK) CALL DR_HOOK('Z2PICAO',1,ZHOOK_HANDLE)
+END SUBROUTINE Z2PICAO
+

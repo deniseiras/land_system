@@ -1,0 +1,64 @@
+%include <includes/head.h>
+
+cp  %ECF_HOME%/experiments/template_%NENS%.def %ECF_HOME%/%CASE_NAME%.def
+
+# new_path=%ECF_HOME%
+# sed -i "s@$old_path@$new_path@g" %ECF_HOME%/%CASE_NAME%.def
+# sed -i "s@template@%CASE_NAME%@g"  %ECF_HOME%/%CASE_NAME%.def
+sed -i "s@suite template@suite %CASE_NAME%@g" %ECF_HOME%/%CASE_NAME%.def
+sed -i "s@edit ECF_HOME@edit ECF_HOME %ECF_HOME%@g" %ECF_HOME%/%CASE_NAME%.def
+sed -i "s@edit ECF_HOSTNAME@edit ECF_HOSTNAME %ECF_HOSTNAME%@g" %ECF_HOME%/%CASE_NAME%.def
+sed -i "s@edit ECF_INCLUDE@edit ECF_INCLUDE %ECF_INCLUDE%@g" %ECF_HOME%/%CASE_NAME%.def
+sed -i "s@edit ECF_CLONE@edit ECF_CLONE %ECF_CLONE%@g" %ECF_HOME%/%CASE_NAME%.def
+
+sed -i "s@edit MAXTRY@edit MAXTRY %MAXTRY%@g" %ECF_HOME%/%CASE_NAME%.def
+sed -i "s@edit CASE_NAME@edit CASE_NAME %CASE_NAME%@g" %ECF_HOME%/%CASE_NAME%.def
+sed -i "s@edit NENS@edit NENS %NENS%@g" %ECF_HOME%/%CASE_NAME%.def
+sed -i "s@edit BASEOBSDIR@edit BASEOBSDIR %BASEOBSDIR%@g" %ECF_HOME%/%CASE_NAME%.def
+sed -i "s@edit REFCASE@edit REFCASE %REFCASE%@g" %ECF_HOME%/%CASE_NAME%.def
+sed -i "s@edit REFDATE@edit REFDATE %REFDATE%@g" %ECF_HOME%/%CASE_NAME%.def
+sed -i "s@edit DEP@edit DEP %DEP%@g" %ECF_HOME%/%CASE_NAME%.def
+sed -i "s@edit CASE_TEMPLATE@edit CASE_TEMPLATE %CASE_TEMPLATE%@g" %ECF_HOME%/%CASE_NAME%.def
+sed -i "s@edit DART_NML_TEMPLATE@edit DART_NML_TEMPLATE %DART_NML_TEMPLATE%@g" %ECF_HOME%/%CASE_NAME%.def
+sed -i "s@edit MODELDIR@edit MODELDIR %MODELDIR%@g" %ECF_HOME%/%CASE_NAME%.def
+
+# sed -i "s@edit FGAT@edit FGAT FGAT@g" %ECF_HOME%/%CASE_NAME%.def
+
+sed -i "s@edit STARTDATE@edit STARTDATE %STARTDATE%@g" %ECF_HOME%/%CASE_NAME%.def
+
+mkdir -p %ECF_HOME%/%CASE_NAME%
+rsync -azh --info=progress2 --exclude '*.job*' --human-readable %ECF_HOME%/experiments/template/ %ECF_HOME%/%CASE_NAME%/
+
+cd %ECF_HOME%/%CASE_NAME%/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure
+
+rm -rf dep_*.ecf
+
+for n in {1..%DEP%};do
+    ln -s departure.ecf dep_${n}.ecf
+done
+
+cd %ECF_HOME%/%CASE_NAME%/run_cycles/background/run
+rm -rf mem_*.ecf
+
+for n in {1..%NENS%};do
+    ln -s member.ecf mem_${n}.ecf
+done
+
+
+cd %ECF_HOME%
+
+set +e
+ecflow_client --check /%CASE_NAME%
+
+if [ $? -eq 1 ]; then
+    ecflow_client --load=%CASE_NAME%.def force
+    ecflow_client --begin=%CASE_NAME%
+else
+    ecflow_client --delete yes /%CASE_NAME%
+    ecflow_client --load=%CASE_NAME%.def force
+    ecflow_client --begin=%CASE_NAME%
+fi
+
+set -e
+
+%include <includes/tail.h>

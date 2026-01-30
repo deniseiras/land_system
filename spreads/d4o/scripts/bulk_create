@@ -1,0 +1,58 @@
+#!/bin/bash
+
+set -eu
+
+kmd=$(basename $0)
+
+lo=0
+hi=500M
+#hi=30M
+hi=$(echo $hi | perl -pe 's/(\d+)M/$1 * 1000000/e')
+
+#chunksize=1M
+chunksize=5M
+chunksize=$(echo $chunksize | perl -pe 's/(\d+)M/$1 * 1000000/e')
+
+#parallel=1 # may run out of memory and/or too many tasks at present
+parallel=0 # sluggish, but should not run out of memory on a small system
+
+#maxpools=20
+maxpools=32
+#maxpools=64
+
+maxens=30
+
+extra="--pathodc=ODC --ens=$maxens"
+
+for d in ${@:-}
+do
+    if [[ -d $d ]] ; then
+	for f in $(ls -lL $d/*.count-* | egrep ^-rw | sort -n --key=5,5 | awk '{print $NF}' | xargs -r -n1 basename)
+	do
+	    cd $d >/dev/null 2>&1
+	    rl=$(readlink -f $f)
+	    fsize=$(stat -c %s $rl)
+	    catalog=$(echo d4o/catalog-$(basename $f).db | perl -pe 's/\.count-\d+//')
+	    echo "####################################################################"
+	    echo "${kmd} -- $(pwd): Processing $f [size=$fsize] : $rl ..."
+	    if [[ -s $catalog ]] ; then
+		echo "${kmd} -- $(pwd): Catalog database [$catalog] already exists for file $f -- skipped"
+	    elif [[ $fsize -gt $lo ]] && [[ $fsize -lt $hi ]] ; then
+		#npools=$(((fsize + chunksize - 1)/chunksize))
+		#[[ $npools -le $maxpools ]] || npools=$maxpools
+		npools=$maxpools
+		cmd="bufr2d4o $f $npools $parallel d4o"
+		rc=0
+		echo $cmd "$extra"
+		$cmd "$extra" || {
+		    echo "${kmd} -- $(pwd): Error(s) while processing file $f : $cmd $extra"
+		}
+	    else
+		echo "${kmd} -- $(pwd): File $f skipped -- the size is not within permitted exclusive range of ($lo,$hi)"
+	    fi
+	    cd - >/dev/null 2>&1
+	done
+    fi
+done
+
+

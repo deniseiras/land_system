@@ -1,0 +1,298 @@
+%comment - ecf user variables
+BASEOBSDIR = /work/cmcc/gc02720/b2d4o_ufinal
+CASE_NAME = b2d4o_ufinal
+CASE_TEMPLATE = case.template-juno.original
+DART_NML_TEMPLATE = input.nml.original.rad
+DEP = 13
+ECF_CLONE = /users_home/cmcc/gc02720/spreads/spreads_ui
+ECF_DATE = 20230602
+ECF_HOME = /users_home/cmcc/gc02720/spreads/spreads_ui
+ECF_TIME = 13:17
+MODELDIR = cesm2.3_beta11_cm3_v7z
+MODEL_PATH = /users_home/cmcc/mg20022/model
+NENS = 80
+REFCASE = ic_phase1
+REFDATE = 2017100200000
+SHELL:/bin/bash = /bin/bash
+STAGEDIR = /work/cmcc/gc02720/ic/ic_phase1_83L
+STARTDATE = 2017100200000
+%end - ecf user variables
+#!/bin/bash  
+set -e          # stop the shell on first error
+set -u          # fail when using an undefined variable
+set -x          # echo script lines as they are executed
+set -o pipefail # fail if last(rightmost) command exits with a non-zero status
+ 
+# Defines the variables that are needed for any communication with ECF
+export ECF_PORT=3142    # The server port number
+export ECF_HOST=login1.juno.cmcc.scc    # The host name where the server is running
+export ECF_NAME=/spreads_ui/cases_create/run    # The name of this current task
+export ECF_PASS=ep0Scqso    # A unique password, used for job validation & zombie detection
+export ECF_TRYNO=4  # Current try number of the task
+export ECF_TRIES=0            # Number of tries before abort
+export ECF_RID=$$             # record the process id. Also used for zombie detection
+# export NO_ECF=1             # uncomment to run as a standalone task on the command line
+ 
+# Define the path where to find ecflow_client
+# make sure client and server use the *same* version.
+# Important when there are multiple versions of ecFlow
+export PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:$PATH
+ 
+# Tell ecFlow we have started
+ecflow_client --init=$$
+ 
+ 
+# Define a error handler
+ERROR() {
+   set +e                      # Clear -e flag, so we don't fail
+   wait                        # wait for background process to stop
+   ecflow_client --abort=trap  # Notify ecFlow that something went wrong, using 'trap' as the reason
+   trap 0                      # Remove the trap
+   exit 0                      # End the script cleanly, server monitors child, an exit 1, will cause another abort and zombie
+}
+ 
+ 
+# Trap any calls to exit and errors caught by the -e flag
+trap ERROR 0
+ 
+ 
+# Trap any signal that may cause the script to fail
+trap '{ echo "Killed by a signal"; ERROR ; }' 1 2 3 4 5 6 7 8 10 12 13 15
+
+#    DIRHOME=${ECF_HOME}/operation/model1/assimilation ; mkdir -p ${DIRHOME}
+
+
+echo "${ECF_HOME}/spreads_ui"
+date
+# %include <includes/tail.h>
+
+###!/bin/bash
+#BSUB -n 6
+#BSUB -R "span[ptile=6]"
+#BSUB -q s_medium
+#BSUB -W 4:00
+#BSUB -P R000
+#BSUB -x 
+#BSUB -J create 
+#BSUB -I
+
+
+#===========================================================
+# Generate an ensemble of clones of a particular template.
+# This is useful if you plan to run an ensemble of CAM si-
+# mulation on a small cluster.
+#
+# Here I'm considering a template that is an hybrid case!
+#
+#===========================================================
+# Experiment name
+export case_name=b2d4o_ufinal
+export CESMEXP="cesm-exp"
+
+# Where to copy the clones (Use a clear name for the experiment. The dir name must 
+# not appears in the case.template.original)
+export clonesroot="/work/cmcc/${USER}/${CESMEXP}/${case_name}"
+
+# CESM2 Directory
+# mkdir -p ${ECF_HOME}/source/CESM2/case_template
+# cd ${ECF_HOME}/source/CESM2/case_template
+# set +e
+# rsync -azh /work/cmcc/mg20022/ecflow/source/CESM2/case_template/ .
+# set -e
+
+cd ${ECF_HOME}
+
+# Number of clones
+export nens=80
+
+# DART directory
+# export dartroot="/work/cmcc/${USER}/CMCC-DART-RSYNC/CMCC-DART/"
+export dartroot=/users_home/cmcc/gc02720/spreads/spreads_ui/../
+export MODEL_PATH=/users_home/cmcc/mg20022/model
+# DA working dir
+# tmpdir="/users_home/cmcc/gc02720/spreads/spreads_ui/source/CESM2/TMP"$(echo "${case_name}" | tr [:lower:] [:upper:])
+tmpdir="/work/cmcc/${USER}/CESM2/TMP"$(echo "${case_name}" | tr [:lower:] [:upper:])
+
+# Archive (to remove previous files)
+archdir="/work/cmcc/${USER}/CESM2/archive"
+
+# Set the obs dir
+#baseobsdir="/work/cmcc/${USER}/observations"
+baseobsdir=/work/cmcc/gc02720/b2d4o_ufinal
+
+# Time slots used for the FGAT implementation (note: for every time timeslot you need to have an output from the model!)
+nts=13
+
+# Choose your exp template
+script_name_original=case.template-juno.original
+
+# Chose the input namelist for DART
+dartnamelist=input.nml.original.rad
+
+# Ref date (YYYY-MM-DD-SSSSS)
+rd=2017100200000
+RDATE="${rd:0:4}-${rd:4:2}-${rd:6:2}-${rd:8:5}"
+
+# Start date
+rd=2017100200000
+SDATE="${rd:0:4}-${rd:4:2}-${rd:6:2}-${rd:8:5}"
+
+# IC dir
+ICDIR="/work/cmcc/gc02720/ic/ic_spread_ugento"
+
+# IC refcase
+ICREFCASE="ic_phase1"
+# SST dataset period
+SST_YEAR_START=2017
+SST_YEAR_END=2017
+
+export CIME_MACH=juno
+export CESMDATAROOT='/data/inputs/inputs/CESM'
+
+#perl
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_TYPE=en_US.UTF-8
+
+# ==============================================================================
+# Prepare the environment
+# ==============================================================================
+
+# ==============================================================================
+# standard commands:
+#
+# Make sure that this script is using standard system commands
+# instead of aliases defined by the user.
+# If the standard commands are not in the location listed below,
+# change the 'set' commands to use them.
+# The verbose (-v) argument has been separated from these command definitions
+# because these commands may not accept it on some systems.  On those systems
+# set VERBOSE = ''
+# ==============================================================================
+
+
+# Load the environmental variable (CESMEXP)
+#. /users_home/cmcc/gc02720/.bashrc
+source /etc/profile.d/modules.sh
+# export PATH="/zeus/opt/anaconda/3.8/bin:$PATH
+# export PATH="/zeus/opt/anaconda/3.8/bin:$PATH"
+if [ juno == 'zeus' ];then
+   # BASHRC
+   module load impi20.1/19.7.217 impi20.1/netcdf/C_4.7.4-F_4.5.3_CXX_4.3.1 impi20.1/hdf5/1.12.0 intel20.1/20.1.217 intel20.1/cdo/1.9.8 intel20.1/eccodes/2.17.0 intel20.1/h4cflib/1.3 intel20.1/hdf4/4.2.13 intel20.1/hdf5/1.12.0 intel20.1/magics/3.3.1 intel20.1/nco/4.9.3 intel20.1/ncview/2.1.8 intel20.1/netcdf/C_4.7.4-F_4.5.3_CXX_4.3.1
+   module load ncl/6.6.2
+   # source /users_home/cmcc/mg20022/.bashrc
+
+   # Daniele env
+  source /zeus/opt/anaconda/3.9/etc/profile.d/conda.sh
+
+  module load anaconda/3.9
+#   conda activate /users_home/cmcc/dp16116/.conda/envs/py38CS2
+# whereis python
+# python --version
+#    conda activate ecflow
+#   conda activate /work/cmcc/mg20022/.conda/envs/ecflow
+
+elif [ juno == 'juno' ]; then
+
+   echo "d4o modules for juno"
+   source /users_home/cmcc/gc02720/spreads/spreads_ui/../d4o/load-modules-d4o.juno
+
+fi
+
+#perl
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_TYPE=en_US.UTF-8
+
+
+# For DART
+
+export CESMDIR=cesm2.3_beta11_cm3_v7z
+export DIVISION=csp
+
+echo " "
+module list
+echo " "
+
+
+# ==============================================================================
+# standard commands:
+#
+# Make sure that this script is using standard system commands
+# instead of aliases defined by the user.
+# If the standard commands are not in the location listed below,
+# change the 'set' commands to use them.
+# The verbose (-v) argument has been separated from these command definitions
+# because these commands may not accept it on some systems.  On those systems
+# set VERBOSE = ''
+# ==============================================================================
+
+VERBOSE='-v'
+MOVE='/usr/bin/mv -f'
+COPY='/usr/bin/cp --preserve=timestamps -f'
+LINK='/usr/bin/ln -s'
+LIST='/usr/bin/ls'
+REMOVE='/usr/bin/rm -f'
+
+#maindir=`pwd`
+maindir="/users_home/cmcc/gc02720/spreads/spreads_ui/source/b2d4o_ufinal/main_scripts"
+
+echo -e "\n START EXPERIMENT CREATION \n"
+
+# Parameters check
+if [ ${nts} -eq 13 ];then
+     tcentral=7
+else
+     echo " Time slots division not supported yet "
+     exit 222
+fi
+
+
+
+echo " Copy RTTOV db file"
+# ${COPY} $dartroot/observations/forward_operators/rttov_sensor_db.csv $tmpdir/.
+# ${COPY} ${rttovdir}/rtcoef_rttov12/rttov7pred54L/rtcoef_eos_2_amsua.dat  $tmpdir/.
+${COPY} $dartroot/d4o/flattened/utility/rttov_sensor_db.csv $tmpdir/.
+${COPY} $dartroot/d4o/ECMWF/rttov123/rtcoef_rttov12/rttov7pred54L/*  $tmpdir/.
+
+
+
+# Inside the TMP dir we need to create time-slots dir that will contain copy of the filter and links to the other needed files
+ts=1
+while [ $ts -le $nts ];do
+
+   echo -e "time slot creation: TS= $ts"
+   tsname="TS$ts"
+   mkdir $tmpdir/$tsname
+
+   # Copy and link all the necessary files
+   ${COPY} $tmpdir/input.nml $tmpdir/${tsname}/input.nml 
+
+   # Copy filter and fill_inflation_restart
+   ${COPY} $dartroot/d4o/flattened/cam-fv/filter.dir/filter $tmpdir/$tsname/.
+   # ${COPY} $dartroot/d4o/flattened/cam-fv/fill_inflation_restart.dir/fill_inflation_restart $tmpdir/$tsname/.
+   
+   # Link support files and tables for filter
+   ${COPY}  $dartroot/d4o/flattened/utility/sampling_error_correction_table.nc    $tmpdir/$tsname/.    
+   ${COPY}  $dartroot/d4o/flattened/utility/rttov_sensor_db.csv    $tmpdir/$tsname/.    
+   # ${COPY}  $dartroot/d4o/ECMWF/rttov123/rtcoef_rttov12/rttov7pred54L/rtcoef_eos_2_amsua.dat    $tmpdir/$tsname/.    
+   ${COPY}  $dartroot/d4o/ECMWF/rttov123/rtcoef_rttov12/rttov7pred54L/*    $tmpdir/$tsname/.    
+
+   ts=$(echo "${ts}+1" | bc)
+done
+
+
+# echo -e "\n Modify case_assimilate.sh using the right number of nodes! TO DO!!!!\n"
+echo -e "\n END EXPERIMENT CREATION \n"
+ecflow_client --label=info "END EXPERIMENT CREATION: $(date)"
+
+echo ""
+echo "----- END TASK ---"
+echo ""
+ecflow_client --label=Info "OK... 20230602  13:17"
+wait                      # wait for background process to stop
+ecflow_client --complete  # Notify ecFlow of a normal end
+trap 0                    # Remove all traps
+exit 0  

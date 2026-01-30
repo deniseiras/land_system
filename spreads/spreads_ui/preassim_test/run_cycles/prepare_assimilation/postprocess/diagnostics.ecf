@@ -1,0 +1,42 @@
+%include <includes/head.h>
+
+export SCRIPTDIR="%ECF_HOME%/source/%CASE_NAME%/main_scripts"
+
+FORECAST=$(ecflow_client --query event /%CASE_NAME%/run_cycles:FORECAST)
+if [ $FORECAST == 'set' ];then
+    export FORECAST="TRUE"
+else
+    export FORECAST="FALSE"
+
+fi
+
+if [ ! -d ${SCRIPTDIR}/diagnostics ];
+then
+
+    cp -rf /work/cmcc/mg20022/official/spreads/spreads_scripts/cam-fv/main_scripts/diagnostics ${SCRIPTDIR}/
+
+fi
+
+cd ${SCRIPTDIR}/diagnostics/quick_spreads
+
+if [ $FORECAST == "TRUE" ];then
+    set +e
+    ls -d /work/cmcc/${USER}/CMCC-CM/archive/%CASE_NAME%/%CASE_NAME%-*
+    
+    if [ $? -eq 0 ];then
+        ./run.ksh %CASE_NAME%
+    fi
+    set -e
+fi
+# sleep 30
+
+cd ${SCRIPTDIR}/diagnostics/viewer
+cp viewer_preprocess_quick_spreads.py run_viewer_preprocess_quick_spreads.py
+
+sed -i "s@mg20022/CMCC-CM@${USER}/CMCC-CM@g" run_viewer_preprocess_quick_spreads.py
+sed -i "s@spreads_official@%CASE_NAME%@g" run_viewer_preprocess_quick_spreads.py
+
+./run_viewer_preprocess_quick_spreads.py
+
+
+%include <includes/tail.h>

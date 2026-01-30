@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -e
+set -o pipefail
+
+odc="$<TARGET_FILE:odc>"
+b2o="$<TARGET_FILE:b2o_tool>"
+
+while true; do
+  case "$1" in
+   -*) OPTIONS+=("$1"); shift ;;
+    *) break ;;
+  esac
+done
+
+INPUT=$1
+OUTPUT=$2
+
+[[ ! -z "$GDB" ]] && LAUNCH_COMMAND="xterm -e gdb --args"
+[[ ! -z "$VALGRIND" ]] && LAUNCH_COMMAND="valgrind --quiet --error-exitcode=1"
+
+set -x
+
+export PGI_TERM=trace
+
+eval $LAUNCH_COMMAND $b2o --log-level=0 ${OPTIONS[@]} $INPUT.input -o $OUTPUT.actual
+
+eval $odc compare -dontCheckMissing $OUTPUT.expected $OUTPUT.actual.0

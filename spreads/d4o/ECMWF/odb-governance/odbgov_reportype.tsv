@@ -1,0 +1,617 @@
+code	description	group	status	date	cycle
+1	TIROS-N HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+2	NOAA 6 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+3	NOAA 7 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+4	NOAA 8 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+5	NOAA 9 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+6	NOAA 10 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+7	NOAA 11 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+8	NOAA 12 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+9	NOAA 14 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+10	NOAA 15 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+11	NOAA 16 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+12	NOAA 17 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+13	NOAA 18 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+14	NOAA 19 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+15	METOP-A HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+16	NOAA 8 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+17	NOAA 9 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+18	NOAA 10 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+19	NOAA 11 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+20	NOAA 6 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+21	NOAA 7 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+22	TIROS-N HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+23	NOAA 12 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+24	NOAA 14 HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+25	METOP-B HIRS Radiances	HIRS	Operational	2013-11-19	40r1
+1001	NOAA 15 AMSUA Radiances	AMSUA	Operational	2013-11-19	40r1
+1002	NOAA 16 AMSUA Radiances	AMSUA	Operational	2013-11-19	40r1
+1003	NOAA 17 AMSUA Radiances	AMSUA	Operational	2013-11-19	40r1
+1004	NOAA 18 AMSUA Radiances	AMSUA	Operational	2013-11-19	40r1
+1005	NOAA 19 AMSUA Radiances	AMSUA	Operational	2013-11-19	40r1
+1007	METOP-A AMSUA Radiances	AMSUA	Operational	2013-11-19	40r1
+1008	AQUA AMSUA Radiances	AMSUA	Operational	2013-11-19	40r1
+1009	METOP-B AMSUA Radiances	AMSUA	Operational	2013-11-19	40r1
+1010	METOP-C AMSUA Radiances	AMSUA	Operational	2018-11-08	46r1
+2001	NOAA 15 AMSUB Radiances	AMSUB	Operational	2013-11-19	40r1
+2002	NOAA 16 AMSUB Radiances	AMSUB	Operational	2013-11-19	40r1
+2003	NOAA 17 AMSUB Radiances	AMSUB	Operational	2013-11-19	40r1
+2004	NOAA 18 AMSUB Radiances	AMSUB	Operational	2013-11-19	40r1
+3001	NOAA 19 MHS Radiances	MHS	Operational	2013-11-19	40r1
+3002	METOP-A MHS Radiances	MHS	Operational	2013-11-19	40r1
+3003	NOAA 18 MHS Radiances	MHS	Operational	2013-11-19	40r1
+3004	METOP-B MHS Radiances	MHS	Operational	2013-11-19	40r1
+3005	METOP-C MHS Radiances	MHS	Operational	2018-11-08	46r1
+4002	GOES 8 GEOS Radiances	GEOS	Operational	2013-11-19	40r1
+4003	GOES 9 GEOS Radiances	GEOS	Operational	2013-11-19	40r1
+4004	GOES 10 GEOS Radiances	GEOS	Operational	2013-11-19	40r1
+4005	GOES 11 GEOS Radiances	GEOS	Operational	2013-11-19	40r1
+4006	GOES 12 GEOS Radiances	GEOS	Operational	2013-11-19	40r1
+4007	METEOSAT 7 GEOS Radiances	GEOS	Operational	2013-11-19	40r1
+4008	METEOSAT 8 GEOS Radiances	GEOS	Operational	2013-11-19	40r1
+4009	METEOSAT 9 GEOS Radiances	GEOS	Operational	2013-11-19	40r1
+4010	MTSAT-1R GEOS Radiances	GEOS	Operational	2013-11-19	40r1
+4011	GOES 13 GEOS Radiances	GEOS	Operational	2013-11-19	40r1
+4012	MTSAT-2 GEOS Radiances	GEOS	Operational	2013-11-19	40r1
+4013	METEOSAT 9 GEOS Allsky Radiances	GEOS	Operational	2013-11-19	40r1
+4014	GOES 14 GEOS Radiances 	GEOS	Operational	2013-11-19	40r1
+4015	GOES 15 GEOS Radiances 	GEOS	Operational	2013-11-19	40r1
+4016	METEOSAT 10 GEOS Allsky Radiances	GEOS	Operational	2013-11-19	40r1
+4017	METEOSAT 5 GEOS Radiances	GEOS	Operational	2013-11-19	40r1
+4018	METEOSAT 8 GEOS Allsky Radiances	GEOS	Operational	2013-11-19	40r1
+4019	COMS-1 GEOS Radiances 	GEOS	Operational	2014-05-02	40r3
+4020	METEOSAT 4 GEOS Radiances	GEOS	Operational	2014-09-03	40r3
+4021	METEOSAT 6 GEOS Radiances	GEOS	Operational	2014-09-03	40r3
+4022	Himawari 8 GEOS radiances	GEOS	Operational	2015-08-06	40r1
+4023	METEOSAT 11 GEOS Allsky Radiances	GEOS	Operational	2015-10-16	40r3
+4024	Himawari 9 GEOS radiances	GEOS	Operational	2017-07-06	45r1
+4025	GOES 16 GEOS Radiances	GEOS	Operational	2018-04-17	45r1
+4026	GOES 17 GEOS Radiances	GEOS	Operational	2019-11-28	46r1
+5001	ERS 2 GOME O3	RESAT	Operational	2013-11-19	40r1
+5002	METEOSAT 8 SEVIRI O3	RESAT	Operational	2013-11-19	40r1
+5003	METEOSAT 9 SEVIRI O3	RESAT	Operational	2013-11-19	40r1
+5004	AURA MLS O3	RESAT	Operational	2013-11-19	40r1
+5005	AURA OMI O3	RESAT	Operational	2013-11-19	40r1
+5006	NOAA 9 SBUV-2 O3	RESAT	Operational	2013-11-19	40r1
+5007	NOAA 11 SBUV-2 O3	RESAT	Operational	2013-11-19	40r1
+5008	NOAA 14 SBUV-2 O3	RESAT	Operational	2013-11-19	40r1
+5009	NOAA 16 SBUV-2 O3	RESAT	Operational	2013-11-19	40r1
+5010	NOAA 17 SBUV-2 O3	RESAT	Operational	2013-11-19	40r1
+5011	NOAA 18 SBUV-2 O3	RESAT	Operational	2013-11-19	40r1
+5012	NOAA 19 SBUV-2 O3	RESAT	Operational	2013-11-19	40r1
+5013	METOP-A GOME-2 O3	RESAT	Operational	2013-11-19	40r1
+5014	ENVISAT SCIAMACHY O3	RESAT	Operational	2013-11-19	40r1
+5015	ENVISAT GOMOS O3	RESAT	Operational	2013-11-19	40r1
+5016	ENVISAT MIPAS O3	RESAT	Operational	2013-11-19	40r1
+5017	METEOR 3-5 TOMS O3	RESAT	Operational	2013-11-19	40r1
+5018	NIMBUS 7 SBUV-2  O3	RESAT	Operational	2013-11-19	40r1
+5019	AQUA MODIS Aerosol	RESAT	Operational	2013-11-19	40r1
+5020	TERRA MODIS Aerosol	RESAT	Operational	2013-11-19	40r1
+5021	GOSAT TANSO-FTS Layer volumetric mixing ratio	RESAT	Operational	2013-11-19	40r1
+5022	NIMBUS 7 TOMS  O3	RESAT	Operational	2013-11-19	40r1
+5023	EARTH PROBE TOMS O3	RESAT	Operational	2013-11-19	40r1
+5024	METOP-A IASI Layer integrated mass density	RESAT	Operational	2013-11-19	40r1
+5025	ERS 2 GOME MACC O3	RESAT	Operational	2013-11-19	40r1
+5026	METEOSAT 8 SEVIRI MACC O3	RESAT	Operational	2013-11-19	40r1
+5027	METEOSAT 9 SEVIRI MACC O3	RESAT	Operational	2013-11-19	40r1
+5028	AURA MLS MACC O3	RESAT	Operational	2013-11-19	40r1
+5029	AURA OMI MACC O3	RESAT	Operational	2013-11-19	40r1
+5030	NOAA 9 SBUV-2 MACC O3	RESAT	Operational	2013-11-19	40r1
+5031	NOAA 11 SBUV-2 MACC O3	RESAT	Operational	2013-11-19	40r1
+5032	NOAA 14 SBUV-2 MACC O3	RESAT	Operational	2013-11-19	40r1
+5033	NOAA 16 SBUV-2 MACC O3	RESAT	Operational	2013-11-19	40r1
+5034	NOAA 17 SBUV-2 MACC O3	RESAT	Operational	2013-11-19	40r1
+5035	NOAA 18 SBUV-2 MACC O3	RESAT	Operational	2013-11-19	40r1
+5036	NOAA 19 SBUV-2 MACC O3	RESAT	Operational	2013-11-19	40r1
+5037	METOP-A GOME-2 MACC O3	RESAT	Operational	2013-11-19	40r1
+5038	ENVISAT SCIAMACHY MACC O3	RESAT	Operational	2013-11-19	40r1
+5039	ENVISAT GOMOS MACC O3	RESAT	Operational	2013-11-19	40r1
+5040	ENVISAT MIPAS MACC O3	RESAT	Operational	2013-11-19	40r1
+5041	METEOR 3-5 TOMS MACC O3	RESAT	Operational	2013-11-19	40r1
+5042	NIMBUS 7 SBUV-2  MACC O3	RESAT	Operational	2013-11-19	40r1
+5043	NIMBUS 7 TOMS  MACC O3	RESAT	Operational	2013-11-19	40r1
+5044	EARTH PROBE TOMS MACC O3	RESAT	Operational	2013-11-19	40r1
+5045	ENVISAT SCIAMACHY Layer volumetric mixing ratio	RESAT	Operational	2013-11-19	40r1
+5046	ENVISAT SCIAMACHY Layer integrated mass density	RESAT	Operational	2013-11-19	40r1
+5047	METOP-A GOME-2 Layer integrated mass density	RESAT	Operational	2013-11-19	40r1
+5048	AURA OMI Layer integrated mass density	RESAT	Operational	2013-11-19	40r1
+5049	TERRA MOPITT Layer integrated mass density	RESAT	Operational	2013-11-19	40r1
+5050	ERS-2 GOME Layer integrated mass density	RESAT	Operational	2013-11-19	40r1
+5051	NOAA 15 ATOVS	RESAT	Operational	2013-11-19	40r1
+5052	NOAA 16 ATOVS	RESAT	Operational	2013-11-19	40r1
+5053	NOAA 17 ATOVS	RESAT	Operational	2013-11-19	40r1
+5054	NOAA 18 ATOVS	RESAT	Operational	2013-11-19	40r1
+5055	NOAA 19 ATOVS	RESAT	Operational	2013-11-19	40r1
+5056	METOP-A ATOVS 	RESAT	Operational	2013-11-19	40r1
+5057	METOP-B GOME-2 O3	RESAT	Operational	2013-11-19	40r1
+5058	METEOSAT 10 SEVIRI O3	RESAT	Operational	2013-11-19	40r1
+5059	NPP OMPS TCO	RESAT	Deprecated	2014-04-30	40r3
+5060	NPP OMPS Nadir Profile	RESAT	Deprecated	2014-04-30	40r3
+5061	METOP-B GOME-2 Layer integrated mass density	RESAT	Operational	2013-11-19	40r1
+5062	METOP-B GOME-2 MACC O3	RESAT	Operational	2013-11-19	40r1
+5063	METEOSAT-9 SEVIRI aerosol optical depth	RESAT	Operational	2013-11-19	40r1
+5064	METEOSAT-10 SEVIRI aerosol optical depth	RESAT	Operational	2013-11-19	40r1
+5065	NPP VIIRS aerosol optical thickness	RESAT	Operational	2013-11-19	40r1
+5066	CALIPSO attenuated aerosol lidar backscatter	RESAT	Operational	2013-11-19	40r1
+5067	ENVISAT AATSR Aerosol	RESAT	Operational	2013-11-19	40r1
+5068	NPP OMPS O3	RESAT	Operational	2014-04-30	40r3
+5069	TOMS ADEOS-I	RESAT	Operational	2014-06-06	40r3
+5070	NIMBUS 4 BUV	RESAT	Operational	2014-06-06	40r3
+5071	METOP-A GOME-2 PMAP	RESAT	Operational	2015-11-02	41r2
+5072	METOP-B GOME-2 PMAP	RESAT	Operational	2015-11-02	41r2
+5073	SCISAT-1 ACE-FTS MACC O3	RESAT	Operational	2015-06-27	43r1
+5074	ODIN OSIRIS MACC O3	RESAT	Operational	2015-06-27	43r1
+5075	ODIN SMR MACC O3	RESAT	Operational	2015-06-27	43r1
+5076	SCISAT-1 ACE-FTS O3	RESAT	Operational	2015-06-27	43r1
+5077	ODIN OSIRIS O3	RESAT	Operational	2015-06-27	43r1
+5078	ODIN SMR O3	RESAT	Operational	2015-06-27	43r1
+5079	Sentinel 5P TROPOMI O3	RESAT	Operational	2017-06-20	45r1
+5080	METEOSAT 11 SEVIRI aerosol optical depth	RESAT	Operational	2018-06-26	
+5081	Sentinel 5P TROPOMI Layer integrated mass density	RESAT	Operational	2018-07-02	45r1
+5082	Sentinel 3A SLSTR Aerosol	RESAT	Operational	2018-07-02	45r1
+5083	Sentinel 3B SLSTR Aerosol	RESAT	Operational	2018-07-02	45r1
+5084	NOAA 20 OMPS O3	RESAT	Operational	2018-10-15	46r1
+5085	METOP-C GOME-2 O3	RESAT	Operational	2018-10-15	46r1
+5086	METOP-C GOME-2 PMAP	RESAT	Operational	2018-10-15	46r1
+5087	METOP-B IASI Layer integrated mass density	RESAT	Operational	2018-10-15	46r1
+5088	METOP-C GOME-2 Layer integrated mass density	RESAT	Operational	2018-10-29	46r1
+5089	METOP-C IASI Layer integrated mass density	RESAT	Operational	2018-10-29	46r1
+5090	NOAA 20 VIIRS aerosol optical depth	RESAT	Operational	2020-07-14	46r1
+5091	NPP VIIRS aerosol optical depth	RESAT	Operational	2020-08-03	46r1
+5092	NPP OMPS-LP O3	RESAT	Operational	2022-03-03	47r3
+6001	ENVISAT MERIS TCWV	MERIS	Operational	2013-11-19	40r1
+6002	Sentinel 3A OLCI TCWV	MERIS	Operational	2018-07-02	
+6003	Sentinel 3B OLCI TCWV	MERIS	Operational	2020-06-05	
+7001	METOP-A GPSRO	GPSRO	Operational	2013-11-19	40r1
+7002	CHAMP GPSRO	GPSRO	Operational	2013-11-19	40r1
+7003	GRACE A GPSRO	GPSRO	Operational	2013-11-19	40r1
+7004	COSMIC-1 GPSRO	GPSRO	Operational	2013-11-19	40r1
+7005	COSMIC-2 GPSRO	GPSRO	Operational	2013-11-19	40r1
+7006	COSMIC-3 GPSRO	GPSRO	Operational	2013-11-19	40r1
+7007	COSMIC-4 GPSRO	GPSRO	Operational	2013-11-19	40r1
+7008	COSMIC-5 GPSRO	GPSRO	Operational	2013-11-19	40r1
+7009	COSMIC-6 GPSRO	GPSRO	Operational	2013-11-19	40r1
+7010	TerraSAR-X GPSRO	GPSRO	Operational	2013-11-19	40r1
+7011	CNOFS GPSRO	GPSRO	Operational	2013-11-19	40r1
+7012	SAC-C GPSRO	GPSRO	Operational	2013-11-19	40r1
+7013	METOP-B GPSRO	GPSRO	Operational	2013-11-19	40r1
+7014	GRACE B GPSRO	GPSRO	Operational	2014-09-04	40r3
+7015	TanDEM-X GPSRO	GPSRO	Operational	2015-03-12	40r3
+7016	FY-3C GPSRO	GPSRO	Operational	2015-06-27	43r1
+7017	Megha-Tropiques GPSRO	GPSRO	Operational	2017-06-20	45r1
+7018	KOMPSAT-5 GPSRO	GPSRO	Operational	2017-11-27	45r2
+7019	METOP-C GPSRO	GPSRO	Operational	2018-11-08	46r1
+7020	GRACE C GPSRO	GPSRO	Operational	2019-04-09	46r1
+7021	GRACE D GPSRO	GPSRO	Operational	2019-04-09	46r1
+7022	FY-3D GPSRO	GPSRO	Operational	2019-01-15	46r1
+7023	PAZ GPSRO	GPSRO	Operational	2019-09-03	47r1
+7024	COSMIC2 E1 GPSRO	GPSRO	Operational	2019-10-16	46r1
+7025	COSMIC2 E2 GPSRO	GPSRO	Operational	2019-10-16	46r1
+7026	COSMIC2 E3 GPSRO	GPSRO	Operational	2019-10-16	46r1
+7027	COSMIC2 E4 GPSRO	GPSRO	Operational	2019-10-16	46r1
+7028	COSMIC2 E5 GPSRO	GPSRO	Operational	2019-10-16	46r1
+7029	COSMIC2 E6 GPSRO	GPSRO	Operational	2019-10-16	46r1
+7030	SPIRE Lemur 3U GPSRO	GPSRO	Operational	2020-04-06	46r1
+7031	Sentinel 6A GPSRO	GPSRO	Proposed	2020-10-27	
+8001	METEOSAT 2 AMV	SATOB	Operational	2013-11-19	40r1
+8002	METEOSAT 3 AMV	SATOB	Operational	2013-11-19	40r1
+8003	METEOSAT 4 AMV	SATOB	Operational	2013-11-19	40r1
+8004	METEOSAT 5 AMV	SATOB	Operational	2013-11-19	40r1
+8005	METEOSAT 6 AMV	SATOB	Operational	2013-11-19	40r1
+8006	METEOSAT 7 AMV	SATOB	Operational	2013-11-19	40r1
+8007	METEOSAT 8 AMV	SATOB	Operational	2013-11-19	40r1
+8008	METEOSAT 9 AMV	SATOB	Operational	2013-11-19	40r1
+8009	GMS 5 AMV	SATOB	Operational	2013-11-19	40r1
+8010	MTSAT-1R AMV	SATOB	Operational	2013-11-19	40r1
+8011	GOES 9 WV AMV	SATOB	Operational	2013-11-19	40r1
+8012	GOES 10 AMV	SATOB	Operational	2013-11-19	40r1
+8013	GOES 11 AMV	SATOB	Operational	2013-11-19	40r1
+8014	GOES 12 AMV	SATOB	Operational	2013-11-19	40r1
+8015	NOAA 15 AVHRR IR AMV	SATOB	Operational	2013-11-19	40r1
+8016	NOAA 16 AVHRR IR AMV	SATOB	Operational	2013-11-19	40r1
+8017	NOAA 17 AVHRR IR AMV	SATOB	Operational	2013-11-19	40r1
+8018	NOAA 18 AVHRR IR AMV	SATOB	Operational	2013-11-19	40r1
+8019	NOAA 19 AVHRR IR AMV	SATOB	Operational	2013-11-19	40r1
+8020	TERRA MODIS AMV	SATOB	Operational	2013-11-19	40r1
+8021	AQUA MODIS AMV	SATOB	Operational	2013-11-19	40r1
+8022	FY-2C IR AMV	SATOB	Operational	2013-11-19	40r1
+8023	FY-2D IR AMV	SATOB	Operational	2013-11-19	40r1
+8024	FY-2E IR AMV	SATOB	Operational	2013-11-19	40r1
+8025	GOES 13 AMV	SATOB	Operational	2013-11-19	40r1
+8026	MTSAT-2 AMV	SATOB	Operational	2013-11-19	40r1
+8027	METOP-A AMV	SATOB	Operational	2013-11-19	40r1
+8028	GOES 14 AMV	SATOB	Operational	2013-11-19	40r1
+8029	GOES 15 AMV	SATOB	Operational	2013-11-19	40r1
+8030	METOP-B AMV	SATOB	Operational	2013-11-19	40r1
+8031	METEOSAT 10 AMV	SATOB	Operational	2013-11-19	40r1
+8032	GMS-3 AMV	SATOB	Operational	2013-11-19	40r1
+8033	GMS-4 AMV	SATOB	Operational	2013-11-19	40r1
+8034	Meteosat-1 AMV	SATOB	Operational	2013-11-19	40r1
+8035	NOAA 7 AVHRR AMV	SATOB	Operational	2013-11-19	40r1
+8036	NOAA 9 AVHRR AMV	SATOB	Operational	2013-11-19	40r1
+8037	NOAA 10 AVHRR AMV	SATOB	Operational	2013-11-19	40r1
+8038	NOAA 11 AVHRR AMV	SATOB	Operational	2013-11-19	40r1
+8039	NOAA 12 AVHRR AMV	SATOB	Operational	2013-11-19	40r1
+8040	NOAA 14 AVHRR AMV	SATOB	Operational	2013-11-19	40r1
+8041	GMS-2 SATOB-AMV	SATOB	Operational	2013-11-19	40r1
+8042	GOES 8 AMV	SATOB	Operational	2013-11-19	40r1
+8043	GMS-3 SATOB-AMV	SATOB	Operational	2013-11-19	40r1
+8044	GMS-1 AMV	SATOB	Operational	2013-11-19	40r1
+8045	COMS-1 AMV 	SATOB	Operational	2014-05-02	40r3
+8046	KALPANA-1 AMV	SATOB	Operational	2014-05-02	40r3
+8047	Leo-Geo AMV	SATOB	Operational	2014-05-06	40r3
+8048	Dual-Metop AMVs	SATOB	Operational	2014-08-07	40r3
+8049	INSAT-3D AMVs	SATOB	Operational	2014-11-21	40r3
+8050	NPP AMV	SATOB	Operational	2014-06-06	40r3
+8051	GOES 6 AMV subtype 82	SATOB	Operational	2015-05-08	40r3
+8052	GOES 6 AMV subtype 83	SATOB	Operational	2015-05-08	40r3
+8053	Himawari 8 AMV	SATOB	Operational	2015-05-11	40r1
+8054	FY-2G AMVs	SATOB	Operational	2015-06-19	40r3
+8055	MISR AMV	SATOB	Operational	2015-09-09	41r2
+8056	METEOSAT 11 AMV	SATOB	Operational	2015-10-09	40r1
+8057	GOES 16 AMV	SATOB	Operational	2017-07-06	45r1
+8058	Himawari 9 AMV	SATOB	Operational	2018-06-26	
+8059	METOP-C AMV	SATOB	Operational	2019-01-23	46r1
+8060	NOAA 20 AMV	SATOB	Operational	2019-02-25	46r1
+8061	GOES 17 AMV	SATOB	Operational	2019-04-23	46r1
+8062	Sentinel 3A AMV	SATOB	Operational	2020-05-04	46r1
+8063	Sentinel 3B AMV	SATOB	Operational	2020-05-04	46r1
+8064	Mixed Sentinel AMV	SATOB	Operational	2021-11-02	48r1
+9001	Old ERS 1 Scatterometer	SCATT	Operational	2013-11-19	40r1
+9002	New ERS 1 Scatterometer	SCATT	Operational	2013-11-19	40r1
+9003	ERS 2 Scatterometer	SCATT	Operational	2013-11-19	40r1
+9004	QuickSCAT SeaWind	SCATT	Operational	2013-11-19	40r1
+9005	METOP-A ASCAT	SCATT	Operational	2013-11-19	40r1
+9006	OceanSat-2 Scatterometer	SCATT	Operational	2013-11-19	40r1
+9007	METOP-B ASCAT	SCATT	Operational	2013-11-19	40r1
+9008	ISS RapidScat	SCATT	Operational	2014-06-06	40r3
+9009	HY-2A HSCAT	SCATT	Operational	2013-11-19	40r1
+9010	ScatSat-1 SCAT	SCATT	Operational	2017-10-23	45r1
+9011	Metop-C ASCAT	SCATT	Operational	2018-05-15	45r1
+9012	OceanSat-3 Scatterometer	SCATT	Proposed	2018-05-21	45r1
+9013	HY-2B HSCAT	SCATT	Proposed	2018-05-21	45r1
+9014	CFOSAT Scatterometer	SCATT	Proposed	2018-06-25	46r1
+9015	HY-2C HSCAT	SCATT	Operational	2021-01-13	47r1
+10001	DMSP 7 SSMI All-sky	SSMI All-sky	Operational	2013-11-19	40r1
+10002	DMSP 8 SSMI All-sky	SSMI All-sky	Operational	2013-11-19	40r1
+10003	DMSP 9 SSMI All-sky	SSMI All-sky	Operational	2013-11-19	40r1
+10004	DMSP 10 SSMI All-sky	SSMI All-sky	Operational	2013-11-19	40r1
+10005	DMSP 11 SSMI All-sky	SSMI All-sky	Operational	2013-11-19	40r1
+10006	DMSP 13 SSMI All-sky	SSMI All-sky	Operational	2013-11-19	40r1
+10007	DMSP 14 SSMI All-sky	SSMI All-sky	Operational	2013-11-19	40r1
+10008	DMSP 15 SSMI All-sky	SSMI All-sky	Operational	2013-11-19	40r1
+10009	DMSP 8 SSMI CMSAF All-sky	SSMI All-sky	Operational	2015-06-19	40r2
+10010	DMSP 10 SSMI CMSAF All-sky	SSMI All-sky	Operational	2015-06-19	40r2
+10011	DMSP 11 SSMI CMSAF All-sky	SSMI All-sky	Operational	2015-06-19	40r2
+10012	DMSP 13 SSMI CMSAF All-sky	SSMI All-sky	Operational	2015-06-19	40r2
+10013	DMSP 14 SSMI CMSAF All-sky	SSMI All-sky	Operational	2015-06-19	40r2
+10014	DMSP 15 SSMI CMSAF All-sky	SSMI All-sky	Operational	2015-06-19	40r2
+11001	METOP-A IASI Radiances	IASI	Operational	2013-11-19	40r1
+11002	METOP-B IASI Radiances	IASI	Operational	2013-11-19	40r1
+11003	METOP-C IASI Radiances	IASI	Operational	2018-11-08	46r1
+12001	AQUA AIRS Radiances	AIRS	Operational	2013-11-19	40r1
+13001	DMSP 16 SSMIS Radiances All-sky	SSMIS All-sky	Operational	2013-11-19	40r1
+13002	DMSP 17 SSMIS Radiances All-sky	SSMIS All-sky	Operational	2013-11-19	40r1
+13003	DMSP 18 SSMIS Radiances All-sky	SSMIS All-sky	Operational	2013-11-19	40r1
+13004	DMSP 19 SSMIS Radiances All-sky	SSMIS All-sky	Operational	2015-08-28	41r1
+14001	TRMM TMI Radiances All-sky	TMI All-sky	Operational	2013-11-19	40r1
+15001	AQUA AMSRE Radiances All-sky	AMSRE All-sky	Operational	2013-11-19	40r1
+16001	Automatic Land SYNOP	CONV	Operational	2013-11-19	40r1
+16002	Manual Land SYNOP	CONV	Operational	2013-11-19	40r1
+16003	Abbreviated SYNOP	CONV	Operational	2013-11-19	40r1
+16004	METAR	CONV	Operational	2013-11-19	40r1
+16005	DRIBU	CONV	Operational	2013-11-19	40r1
+16006	Automatic SHIP	CONV	Operational	2013-11-19	40r1
+16007	Reduced SHIP	CONV	Operational	2013-11-19	40r1
+16008	SHIP	CONV	Operational	2013-11-19	40r1
+16009	Abbreviated SHIP	CONV	Operational	2013-11-19	40r1
+16010	DRIBU-BATHY	CONV	Operational	2013-11-19	40r1
+16011	DRIBU-TESAC	CONV	Operational	2013-11-19	40r1
+16012	Ground-Based GPS	CONV	Operational	2013-11-19	40r1
+16013	Land PILOT	CONV	Operational	2013-11-19	40r1
+16014	PILOT SHIP	CONV	Operational	2013-11-19	40r1
+16015	American Wind Profiler 1	CONV	Operational	2013-11-19	40r1
+16016	American Wind Profiler 2	CONV	Operational	2013-11-19	40r1
+16017	European Wind Profiler	CONV	Operational	2013-11-19	40r1
+16018	Japanese Wind Profiler	CONV	Operational	2013-11-19	40r1
+16019	TEMP SHIP	CONV	Operational	2013-11-19	40r1
+16020	DROP Sonde	CONV	Operational	2013-11-19	40r1
+16021	Mobile TEMP	CONV	Operational	2013-11-19	40r1
+16022	Land TEMP	CONV	Operational	2013-11-19	40r1
+16023	ROCOB TEMP	CONV	Operational	2013-11-19	40r1
+16024	SHIP ROCOB TEMP	CONV	Operational	2013-11-19	40r1
+16025	Additional Land Surface Data	CONV	Operational	2013-11-19	40r1
+16026	AIREP	CONV	Operational	2013-11-19	40r1
+16027	CODAR	CONV	Operational	2013-11-19	40r1
+16028	COLBA	CONV	Operational	2013-11-19	40r1
+16029	AMDAR	CONV	Operational	2013-11-19	40r1
+16030	ACARS	CONV	Operational	2013-11-19	40r1
+16031	PAOB	CONV	Operational	2013-11-19	40r1
+16032	PAOB via Sat code	CONV	Operational	2013-11-19	40r1
+16037	SATEM 500km Low Level Temperature	CONV	Operational	2013-11-19	40r1
+16038	SATEM 500km PWC	CONV	Operational	2013-11-19	40r1
+16039	SATEM 500km High Level Temperature	CONV	Operational	2013-11-19	40r1
+16040	SATEM 500km Merged	CONV	Operational	2013-11-19	40r1
+16041	SATEM 250km Low Level Temperature	CONV	Operational	2013-11-19	40r1
+16042	SATEM 250km PWC	CONV	Operational	2013-11-19	40r1
+16043	SATEM 250km High Level Temperature	CONV	Operational	2013-11-19	40r1
+16044	SATEM 250km Merged	CONV	Operational	2013-11-19	40r1
+16045	BUFR LAND TEMP	CONV	Operational	2014-04-30	40r3
+16046	BUFR SHIP TEMP	CONV	Operational	2014-04-30	40r3
+16047	Land High Resolution TEMP	CONV	Deprecated	2014-04-30	40r3
+16048	SHIP High Resolution TEMP	CONV	Deprecated	2014-04-30	40r3
+16049	Ocean Station Vessel On Station	CONV	Operational	2013-11-19	40r1
+16050	Ocean Station Vessel Off Station	CONV	Operational	2013-11-19	40r1
+16051	Station Or Ship On Ice	CONV	Operational	2013-11-19	40r1
+16052	Ocean Bottle And Low Resolution Conductivity Temperature Depth CTD And XCTD	CONV	Operational	2013-11-19	40r1
+16053	Mechanical Or Digital Or Micro Bathythermograph MBT	CONV	Operational	2013-11-19	40r1
+16054	Expandable Bathythermograph XBT	CONV	Operational	2013-11-19	40r1
+16055	Coastal-Marine Automated Network CMAN	CONV	Operational	2013-11-19	40r1
+16056	Coastal Or Island Station	CONV	Operational	2013-11-19	40r1
+16057	Fixed Ocean Platform Or Rig	CONV	Operational	2013-11-19	40r1
+16058	Mobile land SYNOP	CONV	Operational	2013-11-19	40r1
+16059	Forecaster bogus	CONV	Operational	2013-11-19	40r1
+16060	Tropical cyclone bogus	CONV	Operational	2013-11-19	40r1
+16061	High Resolution Conductivity Temperature Depth CTD And XCTD	CONV	Operational	2013-11-19	40r1
+16062	Undulating Oceanographic Recorder UOR	CONV	Operational	2013-11-19	40r1
+16063	Autonomous Pinniped Bathythermograph APBT	CONV	Operational	2013-11-19	40r1
+16064	Underwater Ocean Glider	CONV	Operational	2013-11-19	40r1
+16065	Automatic METAR	CONV	Operational	2013-11-19	40r1
+16066	TAMDAR	CONV	Operational	2013-11-19	40r1
+16067	ACARs with mixing ratio	CONV	Operational	2013-11-19	40r1
+16068	BUFR LAND PILOT	CONV	Operational	2013-11-19	40r1
+16069	BUFR SHIP PILOT	CONV	Operational	2013-11-19	40r1
+16070	BUFR LAND SYNOP	CONV	Deprecated	2013-11-19	40r1
+16071	BUFR LAND SYNOP 2	CONV	Deprecated	2013-11-19	40r1
+16072	BUFR LAND SYNOP WMO Region 6	CONV	Deprecated	2013-11-19	40r1
+16073	BUFR LAND SYNOP 1 HOURLY	CONV	Deprecated	2013-11-19	40r1
+16074	BUFR SHIP SYNOP	CONV	Operational	2013-11-19	40r1
+16075	Mobile PILOT	CONV	Operational	2013-11-19	40r1
+16076	BUFR LAND SYNOP	CONV	Operational	2014-05-30	40r3
+16077	Roadside observations	CONV	Operational	2014-05-30	40r3
+16078	Surface WOW observations	CONV	Operational	2014-06-06	40r3
+16079	SFERICS lightning observations	CONV	Operational	2014-06-06	40r3
+16080	ATDNET lightning observations	CONV	Operational	2014-06-06	40r3
+16081	Upper air WISDOM	CONV	Operational	2014-06-06	40r3
+16082	WIGOS AMDAR	CONV	Operational	2014-10-23	40r3
+16083	BUFR MOORED BUOYS	CONV	Operational	2015-07-31	41r2
+16084	BUFR DRIFTING BUOYS	CONV	Operational	2015-07-31	41r2
+16085	Ceilometer ground lidar	CONV	Operational	2015-10-30	41r2
+16086	BUFR TEMP DROP	CONV	Operational	2018-04-12	45r1
+16087	BUFR TEMP DESCENT	CONV	Operational	2018-11-27	46r1
+16088	Mode-S	CONV	Operational	2020-04-06	46r1
+16089	ADS-C	CONV	Operational	2020-04-06	46r1
+16090	Crowd AWS	CONV	Operational	2022-01-18	
+16091	Uncrewed surface vessel	CONV	Operational	2022-01-28	47r3
+18001	SMOS	SMOS	Operational	2013-11-19	40r1
+19001	CORIOLIS  WINDSAT All-sky	WINDSAT All-sky	Operational	2013-11-19	40r1
+20001	DMSP 8 SSMI	SSMI	Operational	2013-11-19	40r1
+20002	DMSP 9 SSMI	SSMI	Operational	2013-11-19	40r1
+20003	DMSP 10 SSMI	SSMI	Operational	2013-11-19	40r1
+20004	DMSP 11 SSMI	SSMI	Operational	2013-11-19	40r1
+20005	DMSP 13 SSMI	SSMI	Operational	2013-11-19	40r1
+20006	DMSP 14 SSMI	SSMI	Operational	2013-11-19	40r1
+20007	DMSP 15 SSMI	SSMI	Operational	2013-11-19	40r1
+21001	NOAA 15 AMSUA Radiances All-sky	AMSUA All-sky	Operational	2013-11-19	40r1
+21002	NOAA 16 AMSUA Radiances All-sky	AMSUA All-sky	Operational	2013-11-19	40r1
+21003	NOAA 17 AMSUA Radiances All-sky	AMSUA All-sky	Operational	2013-11-19	40r1
+21004	NOAA 18 AMSUA Radiances All-sky	AMSUA All-sky	Operational	2013-11-19	40r1
+21005	NOAA 19 AMSUA Radiances All-sky	AMSUA All-sky	Operational	2013-11-19	40r1
+21007	METOP-A AMSUA Radiances All-sky	AMSUA All-sky	Operational	2013-11-19	40r1
+21008	AQUA AMSUA Radiances All-sky	AMSUA All-sky	Operational	2013-11-19	40r1
+21009	METOP-B AMSUA Radiances All-sky	AMSUA All-sky	Operational	2013-11-19	40r1
+21010	METOP-C AMSUA Radiances All-Sky	AMSUA All-sky	Operational	2018-11-08	46r1
+22001	AQUA AMSRE Radiances	AMSRE	Operational	2013-11-19	40r1
+23001	TRMM TMI Radiances	TMI	Operational	2013-11-19	40r1
+24001	DMSP 16 SSMIS Radiances	SSMIS	Operational	2013-11-19	40r1
+24002	DMSP 17 SSMIS Radiances	SSMIS	Operational	2013-11-19	40r1
+24003	DMSP 18 SSMIS Radiances	SSMIS	Operational	2013-11-19	40r1
+24004	DMSP 19 SSMIS Radiances	SSMIS	Operational	2015-08-28	41r1
+25001	Ground-Based Radar	GBRAD	Operational	2013-11-19	40r1
+26001	FY-3A MWHS Radiances	MWHS	Operational	2013-11-19	40r1
+26002	FY-3B MWHS Radiances	MWHS	Operational	2013-11-19	40r1
+27001	FY-3A MWTS Radiances	MWTS	Operational	2013-11-19	40r1
+27002	FY-3B MWTS Radiances	MWTS	Operational	2013-11-19	40r1
+28001	FY-3A MWRI  Radiances All-sky	MWRI All-sky	Operational	2013-11-19	40r1
+28002	FY-3B MWRI  Radiances All-sky	MWRI All-sky	Operational	2013-11-19	40r1
+28003	FY-3C MWRI Radiances All-sky	MWRI All-sky	Operational	2014-09-04	40r3
+28004	FY-3D MWRI Radiances All-sky	MWRI All-sky	Operational	2018-08-13	46r1
+29001	FY-3A IRAS Radiances	IRAS	Operational	2013-11-19	40r1
+29002	FY-3B IRAS Radiances	IRAS	Operational	2013-11-19	40r1
+29003	FY-3C IRAS Radiances	IRAS	Operational	2014-09-04	40r3
+30001	TIROS-N MSU Radiances	MSU	Operational	2013-11-19	40r1
+30002	NOAA 6 MSU Radiances	MSU	Operational	2013-11-19	40r1
+30003	NOAA 7 MSU Radiances	MSU	Operational	2013-11-19	40r1
+30004	NOAA 8 MSU Radiances	MSU	Operational	2013-11-19	40r1
+30005	NOAA 9 MSU Radiances	MSU	Operational	2013-11-19	40r1
+30006	NOAA 10 MSU Radiances	MSU	Operational	2013-11-19	40r1
+30007	NOAA 11 MSU Radiances	MSU	Operational	2013-11-19	40r1
+30008	NOAA 12 MSU Radiances	MSU	Operational	2013-11-19	40r1
+30009	NOAA 14 MSU Radiances	MSU	Operational	2013-11-19	40r1
+30010	NOAA 8 MSU TOVS1B Radiances	MSU	Operational	2013-11-19	40r1
+30011	NOAA 10 MSU TOVS1B Radiances	MSU	Operational	2013-11-19	40r1
+30012	NOAA 11 MSU TOVS1B Radiances	MSU	Operational	2013-11-19	40r1
+30013	NOAA 6 MSU TOVS1B Radiances	MSU	Operational	2013-11-19	40r1
+30014	NOAA 7 MSU TOVS1B Radiances	MSU	Operational	2013-11-19	40r1
+30015	TIROS-N MSU TOVS1B Radiances	MSU	Operational	2013-11-19	40r1
+30016	NOAA 14 MSU TOVS1B Radiances	MSU	Operational	2013-11-19	40r1
+30017	NOAA 9 MSU TOVS1B Radiances	MSU	Operational	2014-06-06	40r3
+30018	NOAA 12 MSU TOVS1B Radiances	MSU	Operational	2014-06-06	40r3
+31001	TIROS-N SSU Radiances	SSU	Operational	2013-11-19	40r1
+31002	NOAA 6 SSU Radiances	SSU	Operational	2013-11-19	40r1
+31003	NOAA 7 SSU Radiances	SSU	Operational	2013-11-19	40r1
+31004	NOAA 8 SSU Radiances	SSU	Operational	2013-11-19	40r1
+31005	NOAA 9 SSU Radiances	SSU	Operational	2013-11-19	40r1
+31006	NOAA 11 SSU Radiances	SSU	Operational	2013-11-19	40r1
+31007	NOAA 12 SSU Radiances	SSU	Operational	2013-11-19	40r1
+31008	NOAA 14 SSU Radiances	SSU	Operational	2013-11-19	40r1
+31009	NOAA 8 SSU TOVS1B Radiances	SSU	Operational	2013-11-19	40r1
+31010	NOAA 9 SSU TOVS1B Radiances	SSU	Operational	2013-11-19	40r1
+31011	NOAA 11 SSU TOVS1B Radiances	SSU	Operational	2013-11-19	40r1
+31012	NOAA 6 SSU TOVS1B Radiances	SSU	Operational	2013-11-19	40r1
+31013	NOAA 7 SSU TOVS1B Radiances	SSU	Operational	2013-11-19	40r1
+31014	TIROS-N SSU TOVS1B Radiances	SSU	Operational	2013-11-19	40r1
+31015	NOAA 14 SSU TOVS1B Radiances	SSU	Operational	2013-11-19	40r1
+31016	NOAA 12 SSU TOVS1B Radiances	SSU	Operational	2014-06-06	40r3
+32001	NOAA 2 VTPR1 Radiances	VTPR1	Operational	2013-11-19	40r1
+32002	NOAA 3 VTPR1 Radiances	VTPR1	Operational	2013-11-19	40r1
+32003	NOAA 4 VTPR1 Radiances	VTPR1	Operational	2013-11-19	40r1
+32004	NOAA 5 VTPR1 Radiances	VTPR1	Operational	2013-11-19	40r1
+33001	NOAA 2 VTPR2 Radiances	VTPR2	Operational	2013-11-19	40r1
+33002	NOAA 3 VTPR2 Radiances	VTPR2	Operational	2013-11-19	40r1
+33003	NOAA 4 VTPR2 Radiances	VTPR2	Operational	2013-11-19	40r1
+33004	NOAA 5 VTPR2 Radiances	VTPR2	Operational	2013-11-19	40r1
+34001	NPP ATMS Radiances	ATMS	Operational	2013-11-19	40r1
+34002	NOAA 20 ATMS Radiances	ATMS	Operational	2018-01-10	45r1
+35001	TERRA MOPITT layer integrated mass density with averaging kernels and a priori profile	RESAT Averaging Kernels	Operational	2013-11-19	40r1
+35002	ERS-2 GOME layer integrated mass density with averaging kernels	RESAT Averaging Kernels	Operational	2013-11-19	40r1
+35003	ENVISAT SCIAMACHY layer integrated mass density with averaging kernels	RESAT Averaging Kernels	Operational	2013-11-19	40r1
+35004	METOP-A GOME-2 layer integrated mass density with averaging kernels	RESAT Averaging Kernels	Operational	2013-11-19	40r1
+35005	METOP-A IASI layer volumetric mixing ratio with averaging kernels and a priori profile	RESAT Averaging Kernels	Operational	2013-11-19	40r1
+35006	ENVISAT SCIAMACHY layer volumetric mixing ratio with averaging kernels and a priori profile	RESAT Averaging Kernels	Operational	2013-11-19	40r1
+35007	METOP-A IASI layer integrated mass density with averaging kernels and a priori profile	RESAT Averaging Kernels	Operational	2013-11-19	40r1
+35008	AURA OMI layer integrated mass density with averaging kernels	RESAT Averaging Kernels	Operational	2013-11-19	40r1
+35009	GOSAT TANSO-FTS layer volumetric mixing ratio with averaging kernels and a priori profile	RESAT Averaging Kernels	Operational	2013-11-19	40r1
+35010	METOP-A GOME-2 layer integrated mass density with averaging kernels and a priori profile	RESAT Averaging Kernels	Operational	2013-11-19	40r1
+35011	METOP-B IASI layer integrated mass density with averaging kernels and a priori profile	RESAT Averaging Kernels	Operational	2013-11-19	40r1
+35012	METOP-B GOME-2 layer integrated mass density with averaging kernels	RESAT Averaging Kernels	Operational	2013-11-19	40r1
+35013	METOP-B GOME-2 layer integrated mass density with averaging kernels and a priori profile	RESAT Averaging Kernels	Operational	2013-11-19	40r1
+35014	Sentinel 5P TROPOMI layer volumetric mixing ratio with averaging kernels and a priori profile	RESAT Averaging Kernels	Operational	2017-06-20	45r1
+35015	Sentinel 5P TROPOMI layer integrated mass density with averaging kernels and a priori profile	RESAT Averaging Kernels	Operational	2017-06-20	45r1
+35016	Sentinel 5P TROPOMI layer integrated mass density with averaging kernels	RESAT Averaging Kernels	Operational	2017-06-20	45r1
+35017	METOP-B IASI layer volumetric mixing ratio with averaging kernels and a priori profile	RESAT Averaging Kernels	Operational	2017-06-20	45r1
+35018	METOP-C IASI layer integrated mass density with averaging kernels and a priori profile	RESAT Averaging Kernels	Operational	2020-03-02	46r1
+35019	METOP-C GOME-2 layer integrated mass density with averaging kernels	RESAT Averaging Kernels	Operational	2020-03-02	46r1
+35020	METOP-C GOME-2 layer integrated mass density with averaging kernels and a priori profile	RESAT Averaging Kernels	Operational	2020-03-02	46r1
+35021	METOP-C IASI layer volumetric mixing ratio with averaging kernels and a priori profile	RESAT Averaging Kernels	Operational	2020-03-02	46r1
+36001	NPP CRIS Radiances	CRIS	Operational	2013-11-19	40r1
+36002	NOAA 20 CRIS Radiances	CRIS	Operational	2018-01-23	45r1
+37001	ENVISAT RALT WAVE	WAVE integrated Parameters	Operational	2013-11-19	40r1
+37002	JASON 1 RALT WAVE	WAVE integrated Parameters	Operational	2013-11-19	40r1
+37003	JASON 2 RALT WAVE	WAVE integrated Parameters	Operational	2013-11-19	40r1
+37004	ERS 1 RALT WAVE	WAVE integrated Parameters	Operational	2013-11-19	40r1
+37005	ERS 2 RALT WAVE	WAVE integrated Parameters	Operational	2013-11-19	40r1
+37006	CRYOSAT 2 RALT WAVE	WAVE integrated Parameters	Operational	2013-11-19	40r1
+37007	SARAL RALT WAVE	WAVE integrated Parameters	Operational	2015-08-28	41r1
+37008	JASON 3 RALT WAVE	WAVE integrated Parameters	Operational	2017-06-15	45r1
+37009	Sentinel 3A RALT WAVE	WAVE integrated Parameters	Operational	2017-06-20	45r1
+37010	Sentinel 3B RALT WAVE	WAVE integrated Parameters	Operational	2019-04-08	46r1
+37012	Sentinel 6A RALT WAVE	WAVE integrated Parameters	Operational	2021-05-06	48r1
+37013	Sentinel 6B RALT WAVE	WAVE integrated Parameters	Proposed	2021-05-06	48r1
+38001	Sentinel 1A SAR-C	WAVE spectra	Operational	2020-10-13	
+38002	Sentinel 1B SAR-C	WAVE spectra	Operational	2020-10-13	
+39001	1h rain gauge accumulation	RAINGG	Operational	2013-11-19	40r1
+39002	3h rain gauge accumulation	RAINGG	Operational	2013-11-19	40r1
+39003	6h rain gauge accumulation	RAINGG	Operational	2013-11-19	40r1
+39004	12h rain gauge accumulation	RAINGG	Operational	2013-11-19	40r1
+39005	24h rain gauge accumulation	RAINGG	Operational	2013-11-19	40r1
+40001	NESDIS IMS	SURFACE MULTISENSOR	Operational	2013-11-19	40r1
+40002	NESDIS SST	SURFACE MULTISENSOR	Operational	2014-06-20	40r3
+40003	MeteoFrance SST	SURFACE MULTISENSOR	Operational	2014-06-20	40r3
+40004	OSTIA	SURFACE MULTISENSOR	Operational	2022-01-28	47r3
+40005	OSISAF SEA ICE	SURFACE MULTISENSOR	Operational	2022-01-28	47r3
+41001	GCOM-W1 AMSR-2 Radiances All-sky	AMSR-2 All-sky	Operational	2013-11-19	40r1
+42001	SAPHIR All-sky	SAPHIR All-sky	Operational	2013-11-19	40r1
+43001	AMSUB NOAA 15 AMSUB Radiances All-sky	AMSUB All-sky	Operational	2013-11-19	40r1
+43002	AMSUB NOAA 16 AMSUB Radiances All-sky	AMSUB All-sky	Operational	2013-11-19	40r1
+43003	AMSUB NOAA 17 AMSUB Radiances All-sky	AMSUB All-sky	Operational	2013-11-19	40r1
+43004	AMSUB NOAA 18 AMSUB Radiances All-sky	AMSUB All-sky	Operational	2013-11-19	40r1
+44001	MHS NOAA 19 MHS Radiances All-sky	MHS All-sky	Operational	2013-11-19	40r1
+44002	MHS METOP-A MHS Radiances All-sky	MHS All-sky	Operational	2013-11-19	40r1
+44003	MHS NOAA 18 MHS Radiances All-sky	MHS All-sky	Operational	2013-11-19	40r1
+44004	MHS METOP-B MHS Radiances All-sky	MHS All-sky	Operational	2013-11-19	40r1
+44005	MHS METOP-C MHS Radiances All-sky	MHS All-sky	Operational	2018-11-14	46r1
+45001	AEOLUS HLOS Wind Level 2B	Doppler Wind Lidar	Operational	2013-11-19	40r1
+46001	IRIS Nimbus-3 Radiances	IRIS	Operational	2013-11-19	40r1
+46002	IRIS Nimbus-4 Radiances	IRIS	Operational	2013-11-19	40r1
+48001	ENVISAT AATSR brightness teperatures	AATSR	Operational	2014-06-10	40r3
+49001	NPP ATMS Radiances All-sky	ATMS All-sky	Operational	2014-06-05	40r3
+49002	NOAA 20 ATMS Radiances All-sky	ATMS All-sky	Operational	2018-01-10	45r1
+50001	GPM GMI Radiances All-sky	GMI All-sky	Operational	2014-06-06	40r3
+51001	METOP-B GODAE sea surface temperature	GODAE Sea Surface Temperatures	Operational	2014-06-06	40r3
+51002	Meteosat 9 GODAE sea surface temperature	GODAE Sea Surface Temperatures	Operational	2014-06-06	40r3
+51003	NOAA 18 GODAE sea surface temperature	GODAE Sea Surface Temperatures	Operational	2014-06-06	40r3
+51004	NOAA 19 GODAE sea surface temperature 	GODAE Sea Surface Temperatures	Operational	2014-06-06	40r3
+51005	GOES 13 GODAE sea surface temperature	GODAE Sea Surface Temperatures	Operational	2014-06-06	40r3
+51006	TRMM GODAE sea surface temperature	GODAE Sea Surface Temperatures	Operational	2014-06-06	40r3
+51007	ENVISAT GODAE sea surface temperature	GODAE Sea Surface Temperatures	Operational	2014-06-06	40r3
+51008	MSG3 GODAE sea surface temperature	GODAE Sea Surface Temperatures	Operational	2014-06-06	40r3
+51009	DMSP 11 GODAE sea surface temperature	GODAE Sea Surface Temperatures	Operational	2018-07-03	
+52001	UKMO ATOVS	ATOVS MULTISENSOR	Operational	2014-06-10	40r3
+53001	European surface air quality BUFR data	Atmospheric composition	Operational	2014-06-12	40r3
+54001	UKPP derived cloud data	NON-SURFACE MULTISENSOR	Operational	2014-06-20	40r3
+55001	FY-3C MWTS2 Radiances	MWTS2	Operational	2014-06-26	40r3
+55002	FY-3D MWTS2 Radiances	MWTS2	Operational	2018-08-13	46r1
+56001	DMSP 8 SSMI 1DVAR TCWV Cloudy-Sky	SSMI 1DVAR TCWV Cloudy-Sky	Operational	2014-08-07	40r3
+56002	DMSP 10 SSMI 1DVAR TCWV Cloudy-Sky	SSMI 1DVAR TCWV Cloudy-Sky	Operational	2014-08-07	40r3
+56003	DMSP 11 SSMI 1DVAR TCWV Cloudy-Sky	SSMI 1DVAR TCWV Cloudy-Sky	Operational	2014-08-07	40r3
+56004	DMSP 13 SSMI 1DVAR TCWV Cloudy-Sky	SSMI 1DVAR TCWV Cloudy-Sky	Operational	2014-08-07	40r3
+56005	DMSP 14 SSMI 1DVAR TCWV Cloudy-Sky	SSMI 1DVAR TCWV Cloudy-Sky	Operational	2014-08-07	40r3
+56006	DMSP 15 SSMI 1DVAR TCWV Cloudy-Sky	SSMI 1DVAR TCWV Cloudy-Sky	Operational	2014-08-07	40r3
+57001	FY-3C MWHS2 Radiances All-sky	MWHS2 All-sky	Operational	2014-09-04	40r3
+57002	FY-3D MWHS2 Radiances All-sky	MWHS2 All-sky	Operational	2018-08-13	46r1
+58001	DMSP 11 SSMT2 Radiances	SSMT2	Operational	2014-09-30	40r3
+58002	DMSP 12 SSMT2 Radiances	SSMT2	Operational	2014-09-30	40r3
+58003	DMSP 14 SSMT2 Radiances	SSMT2	Operational	2014-09-30	40r3
+58004	DMSP 15 SSMT2 Radiances	SSMT2	Operational	2014-09-30	40r3
+59001	SMAP	SMAP	Operational	2015-05-14	41r1
+60001	UKMO TOVS	TOVS MULTISENSOR	Operational	2015-10-27	41r2
+61001	CloudSat CPR reflectivity	Cloud reflectivity	Operational	2018-04-11	43r1
+62001	Calipso CALIOP backscatter	Cloud Lidar	Operational	2018-04-12	43r1
+65001	ARGO float	OCONV	Operational	2022-01-28	47r3
+65002	Animal borne sensor	OCONV	Operational	2022-01-28	47r3
+65049	Ocean Station Vessel On Station	OCONV	Operational	2022-01-28	47r3
+65050	Ocean Station Vessel Off Station	OCONV	Operational	2022-01-28	47r3
+65051	Station Or Ship On Ice	OCONV	Operational	2022-01-28	47r3
+65052	Ocean Bottle And Low Resolution Conductivity Temperature Depth CTD And XCTD	OCONV	Operational	2022-01-28	47r3
+65053	Mechanical Or Digital Or Micro Bathythermograph MBT	OCONV	Operational	2022-01-28	47r3
+65054	Expandable Bathythermograph XBT	OCONV	Operational	2022-01-28	47r3
+65056	Coastal Or Island Station	OCONV	Operational	2022-01-28	47r3
+65057	Fixed Ocean Platform Or Rig	OCONV	Operational	2022-01-28	47r3
+65061	High Resolution Conductivity Temperature Depth CTD And XCTD	OCONV	Operational	2022-01-28	47r3
+65062	Undulating Oceanographic Recorder UOR	OCONV	Operational	2022-01-28	47r3
+65063	Autonomous Pinniped Bathythermograph APBT	OCONV	Operational	2022-01-28	47r3
+65064	Underwater Ocean Glider	OCONV	Operational	2022-01-28	47r3
+65083	BUFR moored buoy subsurface	OCONV	Operational	2022-01-28	47r3
+65084	BUFR drifting buoy subsurface	OCONV	Operational	2022-01-28	47r3
+65090	Uncrewed surface vessel subsurface	OCONV	Operational	2022-01-28	47r3
+98001	TEST REPORTYPE 1	TEST	Operational	2013-11-19	40r1
+98002	TEST REPORTYPE 2	TEST	Operational	2013-11-19	40r1
+98003	TEST REPORTYPE 3	TEST	Operational	2013-11-19	40r1
+98004	TEST REPORTYPE 4	TEST	Operational	2013-11-19	40r1
+98005	TEST REPORTYPE 5	TEST	Operational	2013-11-19	40r1
+98006	TEST REPORTYPE 6	TEST	Operational	2013-11-19	40r1
+98007	TEST REPORTYPE 7	TEST	Operational	2013-11-19	40r1
+98008	TEST REPORTYPE 8	TEST	Operational	2013-11-19	40r1
+98009	TEST REPORTYPE 9	TEST	Operational	2013-11-19	40r1
+98010	TEST REPORTYPE 10	TEST	Operational	2013-11-19	40r1
+98011	TEST REPORTYPE 11	TEST	Operational	2021-11-29	
+98012	TEST REPORTYPE 12	TEST	Operational	2021-11-29	None
+98013	TEST REPORTYPE 13	TEST	Operational	2021-11-29	None
+98014	TEST REPORTYPE 14	TEST	Operational	2021-11-29	None
+98015	TEST REPORTYPE 15	TEST	Operational	2021-11-29	None
+98016	TEST REPORTYPE 16	TEST	Operational	2021-11-29	None
+98017	TEST REPORTYPE 17	TEST	Operational	2021-11-29	None
+98018	TEST REPORTYPE 18	TEST	Operational	2021-11-29	None
+98019	TEST REPORTYPE 19	TEST	Operational	2021-11-29	None
+98020	TEST REPORTYPE 20	TEST	Operational	2021-11-29	None
+98021	TEST REPORTYPE 21	TEST	Operational	2021-11-29	None
+98022	TEST REPORTYPE 22	TEST	Operational	2021-11-29	None
+98023	TEST REPORTYPE 23	TEST	Operational	2021-11-29	None
+98024	TEST REPORTYPE 24	TEST	Operational	2021-11-29	None
+98025	TEST REPORTYPE 25	TEST	Operational	2021-11-29	None
+98026	TEST REPORTYPE 26	TEST	Operational	2021-11-29	None
+98027	TEST REPORTYPE 27	TEST	Operational	2021-11-29	None
+98028	TEST REPORTYPE 28	TEST	Operational	2021-11-29	None
+98029	TEST REPORTYPE 29	TEST	Operational	2021-11-29	None
+98030	TEST REPORTYPE 30	TEST	Operational	2021-11-29	None
+98031	TEST REPORTYPE 31	TEST	Operational	2021-11-29	None
+98032	TEST REPORTYPE 32	TEST	Operational	2021-11-29	None
+98033	TEST REPORTYPE 33	TEST	Operational	2021-11-29	None
+98034	TEST REPORTYPE 34	TEST	Operational	2021-11-29	None
+98035	TEST REPORTYPE 35	TEST	Operational	2021-11-29	None
+98036	TEST REPORTYPE 36	TEST	Operational	2021-11-29	None
+98037	TEST REPORTYPE 37	TEST	Operational	2021-11-29	None
+98038	TEST REPORTYPE 38	TEST	Operational	2021-11-29	None
+98039	TEST REPORTYPE 39	TEST	Operational	2021-11-29	None
+98040	TEST REPORTYPE 40	TEST	Operational	2021-11-29	None

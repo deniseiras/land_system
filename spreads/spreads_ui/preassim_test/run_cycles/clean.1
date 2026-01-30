@@ -1,0 +1,595 @@
++ set -o pipefail
++ export ECF_PORT=3155
++ ECF_PORT=3155
++ export ECF_HOST=login1.juno.cmcc.scc
++ ECF_HOST=login1.juno.cmcc.scc
++ export ECF_NAME=/preassim_test/run_cycles/clean
++ ECF_NAME=/preassim_test/run_cycles/clean
++ export ECF_PASS=2ax3XdIp
++ ECF_PASS=2ax3XdIp
++ export ECF_TRYNO=1
++ ECF_TRYNO=1
++ export ECF_TRIES=0
++ ECF_TRIES=0
++ export ECF_RID=1223590
++ ECF_RID=1223590
++ export PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/imagemagick/7.0.8-7-2475g3fynku56e7rbgq65zz2xbmy6k26/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/ncview/2.1.8-sds5t7td2iyndfz25r537rsyxvx63wn6/bin:/work/cmcc/gc02720/.conda/envs/spreads/bin:/juno/opt/anaconda/3-2022.10/condabin:/users_home/cmcc/gc02720/.local/bin:/users_home/cmcc/gc02720/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/imagemagick/7.0.8-7-2475g3fynku56e7rbgq65zz2xbmy6k26/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/ncview/2.1.8-sds5t7td2iyndfz25r537rsyxvx63wn6/bin:/work/cmcc/gc02720/.conda/envs/spreads/bin:/juno/opt/anaconda/3-2022.10/condabin:/users_home/cmcc/gc02720/.local/bin:/users_home/cmcc/gc02720/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ ecflow_client --init=1223590
++ trap ERROR 0
++ trap '{ echo "Killed by a signal"; ERROR ; }' 1 2 3 4 5 6 7 8 10 12 13 15
++ export SCRIPTDIR=/users_home/cmcc/gc02720/spreads/spreads_ui/source/preassim_test/main_scripts
++ SCRIPTDIR=/users_home/cmcc/gc02720/spreads/spreads_ui/source/preassim_test/main_scripts
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/preassim_test/main_scripts
++ export nens=5
++ nens=5
+++ echo /preassim_test/run_cycles/clean
+++ sed s/clean//g
++ donepath=/preassim_test/run_cycles/
++ FENS=80
++ export CESMEXP=cesm-exp
++ CESMEXP=cesm-exp
++ export case_name=preassim_test
++ case_name=preassim_test
++ export CLONESROOT=/work/cmcc/gc02720/cesm-exp/preassim_test
++ CLONESROOT=/work/cmcc/gc02720/cesm-exp/preassim_test
++ export NTSLOTS=13
++ NTSLOTS=13
++ export CASEROOT0001=/work/cmcc/gc02720/cesm-exp/preassim_test/preassim_test_0001
++ CASEROOT0001=/work/cmcc/gc02720/cesm-exp/preassim_test/preassim_test_0001
+++ echo preassim_test
+++ tr '[:lower:]' '[:upper:]'
++ export TMPROOT=/work/cmcc/gc02720/CMCC-CM/TMPPREASSIM_TEST
++ TMPROOT=/work/cmcc/gc02720/CMCC-CM/TMPPREASSIM_TEST
+++ ecflow_client --query event /preassim_test/run_cycles:FORECAST
++ FORECAST=clear
++ '[' clear == set ']'
++ export FORECAST=FALSE
++ FORECAST=FALSE
++ ./cases_clean_archive.sh preassim_test 5 FALSE 80
+
+ START CLEANING ARCHIVING PROCEDURE 
+
+ Forecast cases container dir = /work/cmcc/gc02720/cesm-exp
+ Container dir = /work/cmcc/gc02720/CMCC-CM
+ Archive dir = /work/cmcc/gc02720/CMCC-CM/archive
+ Experiment name = preassim_test
+ Numeber of instances = 5
+ Forecast = FALSE
+ Forecast N = 80
+ 
+Removing intermediate output needed for the model interpolator:
+CDIR= /users_home/cmcc/gc02720/spreads/spreads_ui/source/preassim_test/main_scripts
+ processing: preassim_test_0001.cam.h0.2017-10-02-00000.nc
+ ds=00000
+skip: 00000
+ processing: preassim_test_0001.cam.h0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0001.cam.h6.2017-10-02-00000.nc
+ ds=00000
+skip: 00000
+ processing: preassim_test_0001.cam.i.2017-10-02-01800.nc
+ ds=01800
+ removing: preassim_test_0001.cam.i.2017-10-02-01800.nc
+ processing: preassim_test_0001.cam.i.2017-10-02-03600.nc
+ ds=03600
+ removing: preassim_test_0001.cam.i.2017-10-02-03600.nc
+ processing: preassim_test_0001.cam.i.2017-10-02-05400.nc
+ ds=05400
+ removing: preassim_test_0001.cam.i.2017-10-02-05400.nc
+ processing: preassim_test_0001.cam.i.2017-10-02-07200.nc
+ ds=07200
+ removing: preassim_test_0001.cam.i.2017-10-02-07200.nc
+ processing: preassim_test_0001.cam.i.2017-10-02-09000.nc
+ ds=09000
+ removing: preassim_test_0001.cam.i.2017-10-02-09000.nc
+ processing: preassim_test_0001.cam.i.2017-10-02-10800.nc
+ ds=10800
+ removing: preassim_test_0001.cam.i.2017-10-02-10800.nc
+ processing: preassim_test_0001.cam.i.2017-10-02-12600.nc
+ ds=12600
+ removing: preassim_test_0001.cam.i.2017-10-02-12600.nc
+ processing: preassim_test_0001.cam.i.2017-10-02-14400.nc
+ ds=14400
+ removing: preassim_test_0001.cam.i.2017-10-02-14400.nc
+ processing: preassim_test_0001.cam.i.2017-10-02-16200.nc
+ ds=16200
+ removing: preassim_test_0001.cam.i.2017-10-02-16200.nc
+ processing: preassim_test_0001.cam.i.2017-10-02-18000.nc
+ ds=18000
+ removing: preassim_test_0001.cam.i.2017-10-02-18000.nc
+ processing: preassim_test_0001.cam.i.2017-10-02-19800.nc
+ ds=19800
+ removing: preassim_test_0001.cam.i.2017-10-02-19800.nc
+ processing: preassim_test_0001.cam.i.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0001.cam.i.2017-10-02-23400.nc
+ ds=23400
+ removing: preassim_test_0001.cam.i.2017-10-02-23400.nc
+ processing: preassim_test_0001.cam.i.2017-10-02-25200.nc
+ ds=25200
+ removing: preassim_test_0001.cam.i.2017-10-02-25200.nc
+ processing: preassim_test_0001.cam.i.2017-10-02-27000.nc
+ ds=27000
+ removing: preassim_test_0001.cam.i.2017-10-02-27000.nc
+ processing: preassim_test_0001.cam.i.2017-10-02-28800.nc
+ ds=28800
+ removing: preassim_test_0001.cam.i.2017-10-02-28800.nc
+ processing: preassim_test_0001.cam.i.2017-10-02-30600.nc
+ ds=30600
+ removing: preassim_test_0001.cam.i.2017-10-02-30600.nc
+ processing: preassim_test_0001.cam.i.2017-10-02-32400.nc
+ ds=32400
+ removing: preassim_test_0001.cam.i.2017-10-02-32400.nc
+ processing: preassim_test_0001.cam.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0001.cam.rh6.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0001.cam.rs.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0001.cice.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0001.clm2.h0.2017-10-02-00000.nc
+ ds=00000
+skip: 00000
+ processing: preassim_test_0001.clm2.h0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0001.clm2.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0001.clm2.rh0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0001.cpl.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0001.docn.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0001.hydros.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0001.hydros.rh0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0002.cam.h0.2017-10-02-00000.nc
+ ds=00000
+skip: 00000
+ processing: preassim_test_0002.cam.h0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0002.cam.h6.2017-10-02-00000.nc
+ ds=00000
+skip: 00000
+ processing: preassim_test_0002.cam.i.2017-10-02-01800.nc
+ ds=01800
+ removing: preassim_test_0002.cam.i.2017-10-02-01800.nc
+ processing: preassim_test_0002.cam.i.2017-10-02-03600.nc
+ ds=03600
+ removing: preassim_test_0002.cam.i.2017-10-02-03600.nc
+ processing: preassim_test_0002.cam.i.2017-10-02-05400.nc
+ ds=05400
+ removing: preassim_test_0002.cam.i.2017-10-02-05400.nc
+ processing: preassim_test_0002.cam.i.2017-10-02-07200.nc
+ ds=07200
+ removing: preassim_test_0002.cam.i.2017-10-02-07200.nc
+ processing: preassim_test_0002.cam.i.2017-10-02-09000.nc
+ ds=09000
+ removing: preassim_test_0002.cam.i.2017-10-02-09000.nc
+ processing: preassim_test_0002.cam.i.2017-10-02-10800.nc
+ ds=10800
+ removing: preassim_test_0002.cam.i.2017-10-02-10800.nc
+ processing: preassim_test_0002.cam.i.2017-10-02-12600.nc
+ ds=12600
+ removing: preassim_test_0002.cam.i.2017-10-02-12600.nc
+ processing: preassim_test_0002.cam.i.2017-10-02-14400.nc
+ ds=14400
+ removing: preassim_test_0002.cam.i.2017-10-02-14400.nc
+ processing: preassim_test_0002.cam.i.2017-10-02-16200.nc
+ ds=16200
+ removing: preassim_test_0002.cam.i.2017-10-02-16200.nc
+ processing: preassim_test_0002.cam.i.2017-10-02-18000.nc
+ ds=18000
+ removing: preassim_test_0002.cam.i.2017-10-02-18000.nc
+ processing: preassim_test_0002.cam.i.2017-10-02-19800.nc
+ ds=19800
+ removing: preassim_test_0002.cam.i.2017-10-02-19800.nc
+ processing: preassim_test_0002.cam.i.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0002.cam.i.2017-10-02-23400.nc
+ ds=23400
+ removing: preassim_test_0002.cam.i.2017-10-02-23400.nc
+ processing: preassim_test_0002.cam.i.2017-10-02-25200.nc
+ ds=25200
+ removing: preassim_test_0002.cam.i.2017-10-02-25200.nc
+ processing: preassim_test_0002.cam.i.2017-10-02-27000.nc
+ ds=27000
+ removing: preassim_test_0002.cam.i.2017-10-02-27000.nc
+ processing: preassim_test_0002.cam.i.2017-10-02-28800.nc
+ ds=28800
+ removing: preassim_test_0002.cam.i.2017-10-02-28800.nc
+ processing: preassim_test_0002.cam.i.2017-10-02-30600.nc
+ ds=30600
+ removing: preassim_test_0002.cam.i.2017-10-02-30600.nc
+ processing: preassim_test_0002.cam.i.2017-10-02-32400.nc
+ ds=32400
+ removing: preassim_test_0002.cam.i.2017-10-02-32400.nc
+ processing: preassim_test_0002.cam.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0002.cam.rh6.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0002.cam.rs.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0002.cice.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0002.clm2.h0.2017-10-02-00000.nc
+ ds=00000
+skip: 00000
+ processing: preassim_test_0002.clm2.h0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0002.clm2.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0002.clm2.rh0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0002.cpl.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0002.docn.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0002.hydros.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0002.hydros.rh0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0003.cam.h0.2017-10-02-00000.nc
+ ds=00000
+skip: 00000
+ processing: preassim_test_0003.cam.h0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0003.cam.h6.2017-10-02-00000.nc
+ ds=00000
+skip: 00000
+ processing: preassim_test_0003.cam.i.2017-10-02-01800.nc
+ ds=01800
+ removing: preassim_test_0003.cam.i.2017-10-02-01800.nc
+ processing: preassim_test_0003.cam.i.2017-10-02-03600.nc
+ ds=03600
+ removing: preassim_test_0003.cam.i.2017-10-02-03600.nc
+ processing: preassim_test_0003.cam.i.2017-10-02-05400.nc
+ ds=05400
+ removing: preassim_test_0003.cam.i.2017-10-02-05400.nc
+ processing: preassim_test_0003.cam.i.2017-10-02-07200.nc
+ ds=07200
+ removing: preassim_test_0003.cam.i.2017-10-02-07200.nc
+ processing: preassim_test_0003.cam.i.2017-10-02-09000.nc
+ ds=09000
+ removing: preassim_test_0003.cam.i.2017-10-02-09000.nc
+ processing: preassim_test_0003.cam.i.2017-10-02-10800.nc
+ ds=10800
+ removing: preassim_test_0003.cam.i.2017-10-02-10800.nc
+ processing: preassim_test_0003.cam.i.2017-10-02-12600.nc
+ ds=12600
+ removing: preassim_test_0003.cam.i.2017-10-02-12600.nc
+ processing: preassim_test_0003.cam.i.2017-10-02-14400.nc
+ ds=14400
+ removing: preassim_test_0003.cam.i.2017-10-02-14400.nc
+ processing: preassim_test_0003.cam.i.2017-10-02-16200.nc
+ ds=16200
+ removing: preassim_test_0003.cam.i.2017-10-02-16200.nc
+ processing: preassim_test_0003.cam.i.2017-10-02-18000.nc
+ ds=18000
+ removing: preassim_test_0003.cam.i.2017-10-02-18000.nc
+ processing: preassim_test_0003.cam.i.2017-10-02-19800.nc
+ ds=19800
+ removing: preassim_test_0003.cam.i.2017-10-02-19800.nc
+ processing: preassim_test_0003.cam.i.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0003.cam.i.2017-10-02-23400.nc
+ ds=23400
+ removing: preassim_test_0003.cam.i.2017-10-02-23400.nc
+ processing: preassim_test_0003.cam.i.2017-10-02-25200.nc
+ ds=25200
+ removing: preassim_test_0003.cam.i.2017-10-02-25200.nc
+ processing: preassim_test_0003.cam.i.2017-10-02-27000.nc
+ ds=27000
+ removing: preassim_test_0003.cam.i.2017-10-02-27000.nc
+ processing: preassim_test_0003.cam.i.2017-10-02-28800.nc
+ ds=28800
+ removing: preassim_test_0003.cam.i.2017-10-02-28800.nc
+ processing: preassim_test_0003.cam.i.2017-10-02-30600.nc
+ ds=30600
+ removing: preassim_test_0003.cam.i.2017-10-02-30600.nc
+ processing: preassim_test_0003.cam.i.2017-10-02-32400.nc
+ ds=32400
+ removing: preassim_test_0003.cam.i.2017-10-02-32400.nc
+ processing: preassim_test_0003.cam.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0003.cam.rh6.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0003.cam.rs.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0003.cice.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0003.clm2.h0.2017-10-02-00000.nc
+ ds=00000
+skip: 00000
+ processing: preassim_test_0003.clm2.h0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0003.clm2.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0003.clm2.rh0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0003.cpl.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0003.docn.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0003.hydros.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0003.hydros.rh0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0004.cam.h0.2017-10-02-00000.nc
+ ds=00000
+skip: 00000
+ processing: preassim_test_0004.cam.h0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0004.cam.h6.2017-10-02-00000.nc
+ ds=00000
+skip: 00000
+ processing: preassim_test_0004.cam.i.2017-10-02-01800.nc
+ ds=01800
+ removing: preassim_test_0004.cam.i.2017-10-02-01800.nc
+ processing: preassim_test_0004.cam.i.2017-10-02-03600.nc
+ ds=03600
+ removing: preassim_test_0004.cam.i.2017-10-02-03600.nc
+ processing: preassim_test_0004.cam.i.2017-10-02-05400.nc
+ ds=05400
+ removing: preassim_test_0004.cam.i.2017-10-02-05400.nc
+ processing: preassim_test_0004.cam.i.2017-10-02-07200.nc
+ ds=07200
+ removing: preassim_test_0004.cam.i.2017-10-02-07200.nc
+ processing: preassim_test_0004.cam.i.2017-10-02-09000.nc
+ ds=09000
+ removing: preassim_test_0004.cam.i.2017-10-02-09000.nc
+ processing: preassim_test_0004.cam.i.2017-10-02-10800.nc
+ ds=10800
+ removing: preassim_test_0004.cam.i.2017-10-02-10800.nc
+ processing: preassim_test_0004.cam.i.2017-10-02-12600.nc
+ ds=12600
+ removing: preassim_test_0004.cam.i.2017-10-02-12600.nc
+ processing: preassim_test_0004.cam.i.2017-10-02-14400.nc
+ ds=14400
+ removing: preassim_test_0004.cam.i.2017-10-02-14400.nc
+ processing: preassim_test_0004.cam.i.2017-10-02-16200.nc
+ ds=16200
+ removing: preassim_test_0004.cam.i.2017-10-02-16200.nc
+ processing: preassim_test_0004.cam.i.2017-10-02-18000.nc
+ ds=18000
+ removing: preassim_test_0004.cam.i.2017-10-02-18000.nc
+ processing: preassim_test_0004.cam.i.2017-10-02-19800.nc
+ ds=19800
+ removing: preassim_test_0004.cam.i.2017-10-02-19800.nc
+ processing: preassim_test_0004.cam.i.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0004.cam.i.2017-10-02-23400.nc
+ ds=23400
+ removing: preassim_test_0004.cam.i.2017-10-02-23400.nc
+ processing: preassim_test_0004.cam.i.2017-10-02-25200.nc
+ ds=25200
+ removing: preassim_test_0004.cam.i.2017-10-02-25200.nc
+ processing: preassim_test_0004.cam.i.2017-10-02-27000.nc
+ ds=27000
+ removing: preassim_test_0004.cam.i.2017-10-02-27000.nc
+ processing: preassim_test_0004.cam.i.2017-10-02-28800.nc
+ ds=28800
+ removing: preassim_test_0004.cam.i.2017-10-02-28800.nc
+ processing: preassim_test_0004.cam.i.2017-10-02-30600.nc
+ ds=30600
+ removing: preassim_test_0004.cam.i.2017-10-02-30600.nc
+ processing: preassim_test_0004.cam.i.2017-10-02-32400.nc
+ ds=32400
+ removing: preassim_test_0004.cam.i.2017-10-02-32400.nc
+ processing: preassim_test_0004.cam.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0004.cam.rh6.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0004.cam.rs.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0004.cice.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0004.clm2.h0.2017-10-02-00000.nc
+ ds=00000
+skip: 00000
+ processing: preassim_test_0004.clm2.h0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0004.clm2.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0004.clm2.rh0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0004.cpl.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0004.docn.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0004.hydros.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0004.hydros.rh0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0005.cam.h0.2017-10-02-00000.nc
+ ds=00000
+skip: 00000
+ processing: preassim_test_0005.cam.h0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0005.cam.h6.2017-10-02-00000.nc
+ ds=00000
+skip: 00000
+ processing: preassim_test_0005.cam.i.2017-10-02-01800.nc
+ ds=01800
+ removing: preassim_test_0005.cam.i.2017-10-02-01800.nc
+ processing: preassim_test_0005.cam.i.2017-10-02-03600.nc
+ ds=03600
+ removing: preassim_test_0005.cam.i.2017-10-02-03600.nc
+ processing: preassim_test_0005.cam.i.2017-10-02-05400.nc
+ ds=05400
+ removing: preassim_test_0005.cam.i.2017-10-02-05400.nc
+ processing: preassim_test_0005.cam.i.2017-10-02-07200.nc
+ ds=07200
+ removing: preassim_test_0005.cam.i.2017-10-02-07200.nc
+ processing: preassim_test_0005.cam.i.2017-10-02-09000.nc
+ ds=09000
+ removing: preassim_test_0005.cam.i.2017-10-02-09000.nc
+ processing: preassim_test_0005.cam.i.2017-10-02-10800.nc
+ ds=10800
+ removing: preassim_test_0005.cam.i.2017-10-02-10800.nc
+ processing: preassim_test_0005.cam.i.2017-10-02-12600.nc
+ ds=12600
+ removing: preassim_test_0005.cam.i.2017-10-02-12600.nc
+ processing: preassim_test_0005.cam.i.2017-10-02-14400.nc
+ ds=14400
+ removing: preassim_test_0005.cam.i.2017-10-02-14400.nc
+ processing: preassim_test_0005.cam.i.2017-10-02-16200.nc
+ ds=16200
+ removing: preassim_test_0005.cam.i.2017-10-02-16200.nc
+ processing: preassim_test_0005.cam.i.2017-10-02-18000.nc
+ ds=18000
+ removing: preassim_test_0005.cam.i.2017-10-02-18000.nc
+ processing: preassim_test_0005.cam.i.2017-10-02-19800.nc
+ ds=19800
+ removing: preassim_test_0005.cam.i.2017-10-02-19800.nc
+ processing: preassim_test_0005.cam.i.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0005.cam.i.2017-10-02-23400.nc
+ ds=23400
+ removing: preassim_test_0005.cam.i.2017-10-02-23400.nc
+ processing: preassim_test_0005.cam.i.2017-10-02-25200.nc
+ ds=25200
+ removing: preassim_test_0005.cam.i.2017-10-02-25200.nc
+ processing: preassim_test_0005.cam.i.2017-10-02-27000.nc
+ ds=27000
+ removing: preassim_test_0005.cam.i.2017-10-02-27000.nc
+ processing: preassim_test_0005.cam.i.2017-10-02-28800.nc
+ ds=28800
+ removing: preassim_test_0005.cam.i.2017-10-02-28800.nc
+ processing: preassim_test_0005.cam.i.2017-10-02-30600.nc
+ ds=30600
+ removing: preassim_test_0005.cam.i.2017-10-02-30600.nc
+ processing: preassim_test_0005.cam.i.2017-10-02-32400.nc
+ ds=32400
+ removing: preassim_test_0005.cam.i.2017-10-02-32400.nc
+ processing: preassim_test_0005.cam.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0005.cam.rh6.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0005.cam.rs.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0005.cice.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0005.clm2.h0.2017-10-02-00000.nc
+ ds=00000
+skip: 00000
+ processing: preassim_test_0005.clm2.h0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0005.clm2.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0005.clm2.rh0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0005.cpl.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0005.docn.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0005.hydros.r.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ processing: preassim_test_0005.hydros.rh0.2017-10-02-21600.nc
+ ds=21600
+skip: 21600
+ number of saved initial files in DA exp: 1
+ number of saved initial files mod 8: 1
+ 
+ no need to clean
+
+ END CLEANING ARCHIVING PROCEDURE 
+
++ sleep 5
++ ./cases_forecast_archive.sh preassim_test
+
+ START FORECAST ARCHIVING PROCEDURE 
+
+ Forecast cases container dir = /work/cmcc/gc02720/cesm-exp
+ Run dir container = /work/cmcc/gc02720/CMCC-CM
+ Archive dir = /work/cmcc/gc02720/CMCC-CM/archive
+ Experiment name = preassim_test
+ Numeber of instances = 
+ Forecast N = 
+ 
+Check: /work/cmcc/gc02720/cesm-exp/preassim_test-forecast/*
+ check if the forecast has finished
+grep: /work/cmcc/gc02720/cesm-exp/preassim_test-forecast/*/cesm.stderr*: No such file or directory
+ forecast not finished!
++ echo -e '\n END CLEANING ARCHIVING PROCEDURE \n'
+
+ END CLEANING ARCHIVING PROCEDURE 
+
++ echo ''
+
++ echo '----- END TASK ---'
+----- END TASK ---
++ echo ''
+
++ ecflow_client --label=Info 'OK... 20230908  16:22'
++ wait
++ ecflow_client --complete
++ trap 0
++ exit 0

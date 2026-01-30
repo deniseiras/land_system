@@ -1,0 +1,436 @@
+#5.10.0
+defs_state MIGRATE state>:aborted flag:message state_change:11846 modify_change:16 cal_count:445
+edit ECF_MICRO '%' # server
+edit ECF_HOME '/users_home/cmcc/gc02720/spreads/spreads_ui' # server
+edit ECF_JOB_CMD '%ECF_JOB% 1> %ECF_JOBOUT% 2>&1' # server
+edit ECF_KILL_CMD 'kill -15 %ECF_RID%' # server
+edit ECF_STATUS_CMD 'ps --pid %ECF_RID% -f > %ECF_JOB%.stat 2>&1' # server
+edit ECF_URL_CMD '${BROWSER:=firefox} -new-tab %ECF_URL_BASE%/%ECF_URL%' # server
+edit ECF_URL_BASE 'https://confluence.ecmwf.int' # server
+edit ECF_URL 'display/ECFLOW/ecflow+home' # server
+edit ECF_LOG '/users_home/cmcc/gc02720/spreads/spreads_ui/login1.juno.cmcc.scc.3155.ecf.log' # server
+edit ECF_INTERVAL '60' # server
+edit ECF_LISTS 'login1.juno.cmcc.scc.3155.ecf.lists' # server
+edit ECF_PASSWD 'login1.juno.cmcc.scc.3155.ecf.passwd' # server
+edit ECF_CUSTOM_PASSWD 'login1.juno.cmcc.scc.3155.ecf.custom_passwd' # server
+edit ECF_CHECK '/users_home/cmcc/gc02720/spreads/spreads_ui/login1.juno.cmcc.scc.3155.ecf.check' # server
+edit ECF_CHECKOLD '/users_home/cmcc/gc02720/spreads/spreads_ui/login1.juno.cmcc.scc.3155.ecf.check.b' # server
+edit ECF_CHECKINTERVAL '120' # server
+edit ECF_CHECKMODE 'CHECK_ON_TIME' # server
+edit ECF_TRIES '2' # server
+edit ECF_VERSION '5.10.0' # server
+edit ECF_PORT '3155' # server
+edit ECF_HOST 'login1.juno.cmcc.scc' # server
+edit ECF_CHECK_CMD 'ps --pid %ECF_RID% -f' # server
+edit ECF_PID '318684' # server
+history /preassim_test/run_cycles/prepare_assimilation MSG:[18:22:16 8.9.2023] --requeue force /preassim_test/run_cycles/prepare_assimilation :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_13 MSG:[19:31:32 2.9.2023] --alter add variable JOB_ID 174716 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_13 :gc02720@login1.juno.cmcc.sccMSG:[22:59:38 2.9.2023] --alter add variable JOB_ID 174982 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_13 :gc02720@login1.juno.cmcc.sccMSG:[01:17:17 3.9.2023] --alter add variable JOB_ID 175165 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_13 :gc02720@login1.juno.cmcc.sccMSG:[04:58:33 3.9.2023] --alter add variable JOB_ID 175488 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_13 :gc02720@login1.juno.cmcc.sccMSG:[07:04:40 3.9.2023] --alter add variable JOB_ID 175614 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_13 :gc02720@login1.juno.cmcc.sccMSG:[12:35:16 3.9.2023] --alter add variable JOB_ID 176045 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_13 :gc02720@login1.juno.cmcc.sccMSG:[14:33:08 3.9.2023] --alter add variable JOB_ID 176155 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_13 :gc02720@login1.juno.cmcc.sccMSG:[17:30:30 3.9.2023] --alter add variable JOB_ID 176345 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_13 :gc02720@login1.juno.cmcc.sccMSG:[21:14:45 3.9.2023] --alter add variable JOB_ID 176563 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_13 :gc02720@login1.juno.cmcc.sccMSG:[23:40:31 3.9.2023] --alter add variable JOB_ID 176692 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_13 :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_10 MSG:[19:31:26 2.9.2023] --alter add variable JOB_ID 174712 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_10 :gc02720@login1.juno.cmcc.sccMSG:[22:59:36 2.9.2023] --alter add variable JOB_ID 174980 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_10 :gc02720@login1.juno.cmcc.sccMSG:[01:17:17 3.9.2023] --alter add variable JOB_ID 175164 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_10 :gc02720@login1.juno.cmcc.sccMSG:[04:58:31 3.9.2023] --alter add variable JOB_ID 175484 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_10 :gc02720@login1.juno.cmcc.sccMSG:[07:04:37 3.9.2023] --alter add variable JOB_ID 175611 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_10 :gc02720@login1.juno.cmcc.sccMSG:[12:35:13 3.9.2023] --alter add variable JOB_ID 176040 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_10 :gc02720@login1.juno.cmcc.sccMSG:[14:33:05 3.9.2023] --alter add variable JOB_ID 176152 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_10 :gc02720@login1.juno.cmcc.sccMSG:[17:30:27 3.9.2023] --alter add variable JOB_ID 176340 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_10 :gc02720@login1.juno.cmcc.sccMSG:[21:14:43 3.9.2023] --alter add variable JOB_ID 176562 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_10 :gc02720@login1.juno.cmcc.sccMSG:[23:40:30 3.9.2023] --alter add variable JOB_ID 176690 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_10 :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_6 MSG:[14:52:44 8.9.2023] --alter add variable JOB_ID 188930 /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_6 :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_9 MSG:[19:31:26 2.9.2023] --alter add variable JOB_ID 174711 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_9 :gc02720@login1.juno.cmcc.sccMSG:[22:59:35 2.9.2023] --alter add variable JOB_ID 174978 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_9 :gc02720@login1.juno.cmcc.sccMSG:[01:17:14 3.9.2023] --alter add variable JOB_ID 175161 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_9 :gc02720@login1.juno.cmcc.sccMSG:[04:58:28 3.9.2023] --alter add variable JOB_ID 175482 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_9 :gc02720@login1.juno.cmcc.sccMSG:[07:04:36 3.9.2023] --alter add variable JOB_ID 175610 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_9 :gc02720@login1.juno.cmcc.sccMSG:[12:35:14 3.9.2023] --alter add variable JOB_ID 176041 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_9 :gc02720@login1.juno.cmcc.sccMSG:[14:33:06 3.9.2023] --alter add variable JOB_ID 176153 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_9 :gc02720@login1.juno.cmcc.sccMSG:[17:30:28 3.9.2023] --alter add variable JOB_ID 176343 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_9 :gc02720@login1.juno.cmcc.sccMSG:[21:14:41 3.9.2023] --alter add variable JOB_ID 176560 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_9 :gc02720@login1.juno.cmcc.sccMSG:[23:40:28 3.9.2023] --alter add variable JOB_ID 176689 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_9 :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_8 MSG:[19:31:30 2.9.2023] --alter add variable JOB_ID 174714 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_8 :gc02720@login1.juno.cmcc.sccMSG:[22:59:33 2.9.2023] --alter add variable JOB_ID 174977 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_8 :gc02720@login1.juno.cmcc.sccMSG:[01:17:16 3.9.2023] --alter add variable JOB_ID 175162 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_8 :gc02720@login1.juno.cmcc.sccMSG:[04:58:28 3.9.2023] --alter add variable JOB_ID 175481 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_8 :gc02720@login1.juno.cmcc.sccMSG:[07:04:35 3.9.2023] --alter add variable JOB_ID 175609 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_8 :gc02720@login1.juno.cmcc.sccMSG:[12:35:15 3.9.2023] --alter add variable JOB_ID 176043 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_8 :gc02720@login1.juno.cmcc.sccMSG:[14:33:04 3.9.2023] --alter add variable JOB_ID 176151 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_8 :gc02720@login1.juno.cmcc.sccMSG:[17:30:29 3.9.2023] --alter add variable JOB_ID 176344 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_8 :gc02720@login1.juno.cmcc.sccMSG:[21:14:41 3.9.2023] --alter add variable JOB_ID 176559 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_8 :gc02720@login1.juno.cmcc.sccMSG:[23:40:27 3.9.2023] --alter add variable JOB_ID 176688 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_8 :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_2 MSG:[19:31:20 2.9.2023] --alter add variable JOB_ID 174707 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_2 :gc02720@login1.juno.cmcc.sccMSG:[22:59:27 2.9.2023] --alter add variable JOB_ID 174972 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_2 :gc02720@login1.juno.cmcc.sccMSG:[01:17:08 3.9.2023] --alter add variable JOB_ID 175156 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_2 :gc02720@login1.juno.cmcc.sccMSG:[04:58:20 3.9.2023] --alter add variable JOB_ID 175475 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_2 :gc02720@login1.juno.cmcc.sccMSG:[07:04:28 3.9.2023] --alter add variable JOB_ID 175604 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_2 :gc02720@login1.juno.cmcc.sccMSG:[12:35:05 3.9.2023] --alter add variable JOB_ID 176034 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_2 :gc02720@login1.juno.cmcc.sccMSG:[14:32:59 3.9.2023] --alter add variable JOB_ID 176147 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_2 :gc02720@login1.juno.cmcc.sccMSG:[17:30:21 3.9.2023] --alter add variable JOB_ID 176335 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_2 :gc02720@login1.juno.cmcc.sccMSG:[21:14:33 3.9.2023] --alter add variable JOB_ID 176553 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_2 :gc02720@login1.juno.cmcc.sccMSG:[23:40:20 3.9.2023] --alter add variable JOB_ID 176683 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_2 :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_1 MSG:[19:31:16 2.9.2023] --alter add variable JOB_ID 174705 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_1 :gc02720@login1.juno.cmcc.sccMSG:[22:59:25 2.9.2023] --alter add variable JOB_ID 174971 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_1 :gc02720@login1.juno.cmcc.sccMSG:[01:17:06 3.9.2023] --alter add variable JOB_ID 175155 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_1 :gc02720@login1.juno.cmcc.sccMSG:[04:58:21 3.9.2023] --alter add variable JOB_ID 175476 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_1 :gc02720@login1.juno.cmcc.sccMSG:[07:04:28 3.9.2023] --alter add variable JOB_ID 175603 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_1 :gc02720@login1.juno.cmcc.sccMSG:[12:35:07 3.9.2023] --alter add variable JOB_ID 176036 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_1 :gc02720@login1.juno.cmcc.sccMSG:[14:32:57 3.9.2023] --alter add variable JOB_ID 176144 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_1 :gc02720@login1.juno.cmcc.sccMSG:[17:30:20 3.9.2023] --alter add variable JOB_ID 176334 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_1 :gc02720@login1.juno.cmcc.sccMSG:[21:14:34 3.9.2023] --alter add variable JOB_ID 176554 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_1 :gc02720@login1.juno.cmcc.sccMSG:[23:40:20 3.9.2023] --alter add variable JOB_ID 176682 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_1 :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/background MSG:[11:44:02 3.9.2023] --resume /gio_ecflow1/run_cycles/background :gc02720@login1.juno.cmcc.sccMSG:[13:57:00 3.9.2023] --requeue force /gio_ecflow1/run_cycles/background :gc02720@login1.juno.cmcc.sccMSG:[13:57:00 3.9.2023] --resume /gio_ecflow1/run_cycles/background :gc02720@login1.juno.cmcc.sccMSG:[16:46:03 3.9.2023] --requeue force /gio_ecflow1/run_cycles/background :gc02720@login1.juno.cmcc.sccMSG:[16:46:03 3.9.2023] --resume /gio_ecflow1/run_cycles/background :gc02720@login1.juno.cmcc.sccMSG:[20:34:44 3.9.2023] --requeue force /gio_ecflow1/run_cycles/background :gc02720@login1.juno.cmcc.sccMSG:[20:34:44 3.9.2023] --resume /gio_ecflow1/run_cycles/background :gc02720@login1.juno.cmcc.sccMSG:[22:42:05 3.9.2023] --requeue force /gio_ecflow1/run_cycles/background :gc02720@login1.juno.cmcc.sccMSG:[22:42:05 3.9.2023] --resume /gio_ecflow1/run_cycles/background :gc02720@login1.juno.cmcc.sccMSG:[02:06:31 4.9.2023] --requeue force /gio_ecflow1/run_cycles/background :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_7 MSG:[19:21:12 2.9.2023] --alter add variable JOB_ID 174692 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_7 :gc02720@login1.juno.cmcc.sccMSG:[22:56:55 2.9.2023] --alter add variable JOB_ID 174963 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_7 :gc02720@login1.juno.cmcc.sccMSG:[01:02:03 3.9.2023] --alter add variable JOB_ID 175138 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_7 :gc02720@login1.juno.cmcc.sccMSG:[04:28:22 3.9.2023] --alter add variable JOB_ID 175440 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_7 :gc02720@login1.juno.cmcc.sccMSG:[07:01:50 3.9.2023] --alter add variable JOB_ID 175601 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_7 :gc02720@login1.juno.cmcc.sccMSG:[12:25:30 3.9.2023] --alter add variable JOB_ID 176028 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_7 :gc02720@login1.juno.cmcc.sccMSG:[14:31:27 3.9.2023] --alter add variable JOB_ID 176143 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_7 :gc02720@login1.juno.cmcc.sccMSG:[17:26:26 3.9.2023] --alter add variable JOB_ID 176331 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_7 :gc02720@login1.juno.cmcc.sccMSG:[21:12:02 3.9.2023] --alter add variable JOB_ID 176548 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_7 :gc02720@login1.juno.cmcc.sccMSG:[23:15:26 3.9.2023] --alter add variable JOB_ID 176671 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_7 :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_11 MSG:[19:31:32 2.9.2023] --alter add variable JOB_ID 174715 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_11 :gc02720@login1.juno.cmcc.sccMSG:[22:59:36 2.9.2023] --alter add variable JOB_ID 174979 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_11 :gc02720@login1.juno.cmcc.sccMSG:[01:17:19 3.9.2023] --alter add variable JOB_ID 175166 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_11 :gc02720@login1.juno.cmcc.sccMSG:[04:58:32 3.9.2023] --alter add variable JOB_ID 175487 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_11 :gc02720@login1.juno.cmcc.sccMSG:[07:04:39 3.9.2023] --alter add variable JOB_ID 175612 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_11 :gc02720@login1.juno.cmcc.sccMSG:[12:35:14 3.9.2023] --alter add variable JOB_ID 176042 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_11 :gc02720@login1.juno.cmcc.sccMSG:[14:33:07 3.9.2023] --alter add variable JOB_ID 176154 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_11 :gc02720@login1.juno.cmcc.sccMSG:[17:30:31 3.9.2023] --alter add variable JOB_ID 176346 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_11 :gc02720@login1.juno.cmcc.sccMSG:[21:14:43 3.9.2023] --alter add variable JOB_ID 176561 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_11 :gc02720@login1.juno.cmcc.sccMSG:[23:40:31 3.9.2023] --alter add variable JOB_ID 176691 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_11 :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/prepare_assimilation MSG:[22:16:31 2.9.2023] --requeue force /gio_ecflow1/run_cycles/prepare_assimilation :gc02720@login1.juno.cmcc.sccMSG:[00:21:05 3.9.2023] --requeue force /gio_ecflow1/run_cycles/prepare_assimilation :gc02720@login1.juno.cmcc.sccMSG:[03:46:42 3.9.2023] --requeue force /gio_ecflow1/run_cycles/prepare_assimilation :gc02720@login1.juno.cmcc.sccMSG:[06:28:10 3.9.2023] --requeue force /gio_ecflow1/run_cycles/prepare_assimilation :gc02720@login1.juno.cmcc.sccMSG:[11:44:02 3.9.2023] --requeue force /gio_ecflow1/run_cycles/prepare_assimilation :gc02720@login1.juno.cmcc.sccMSG:[13:57:00 3.9.2023] --requeue force /gio_ecflow1/run_cycles/prepare_assimilation :gc02720@login1.juno.cmcc.sccMSG:[16:46:03 3.9.2023] --requeue force /gio_ecflow1/run_cycles/prepare_assimilation :gc02720@login1.juno.cmcc.sccMSG:[20:34:44 3.9.2023] --requeue force /gio_ecflow1/run_cycles/prepare_assimilation :gc02720@login1.juno.cmcc.sccMSG:[22:42:05 3.9.2023] --requeue force /gio_ecflow1/run_cycles/prepare_assimilation :gc02720@login1.juno.cmcc.sccMSG:[02:06:31 4.9.2023] --requeue force /gio_ecflow1/run_cycles/prepare_assimilation :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/forecast/daily_forecast MSG:[00:12:12 3.9.2023] --requeue force /gio_ecflow1/run_cycles/forecast/daily_forecast :gc02720@login1.juno.cmcc.sccMSG:[03:37:29 3.9.2023] --requeue force /gio_ecflow1/run_cycles/forecast/daily_forecast :gc02720@login1.juno.cmcc.sccMSG:[06:18:18 3.9.2023] --requeue force /gio_ecflow1/run_cycles/forecast/daily_forecast :gc02720@login1.juno.cmcc.sccMSG:[11:32:45 3.9.2023] --requeue force /gio_ecflow1/run_cycles/forecast/daily_forecast :gc02720@login1.juno.cmcc.sccMSG:[13:45:00 3.9.2023] --requeue force /gio_ecflow1/run_cycles/forecast/daily_forecast :gc02720@login1.juno.cmcc.sccMSG:[16:33:02 3.9.2023] --requeue force /gio_ecflow1/run_cycles/forecast/daily_forecast :gc02720@login1.juno.cmcc.sccMSG:[20:21:31 3.9.2023] --requeue force /gio_ecflow1/run_cycles/forecast/daily_forecast :gc02720@login1.juno.cmcc.sccMSG:[22:27:35 3.9.2023] --requeue force /gio_ecflow1/run_cycles/forecast/daily_forecast :gc02720@login1.juno.cmcc.sccMSG:[01:49:03 4.9.2023] --requeue force /gio_ecflow1/run_cycles/forecast/daily_forecast :gc02720@login1.juno.cmcc.sccMSG:[02:06:31 4.9.2023] --requeue force /gio_ecflow1/run_cycles/forecast/daily_forecast :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/prepare_assimilation/pre_departure MSG:[14:10:03 8.9.2023] --run /preassim_test/run_cycles/prepare_assimilation/pre_departure :giovanniconti@iMac-4.localMSG:[14:11:22 8.9.2023] --run /preassim_test/run_cycles/prepare_assimilation/pre_departure :giovanniconti@iMac-4.localMSG:[14:21:05 8.9.2023] --edit_script=/preassim_test/run_cycles/prepare_assimilation/pre_departure submit_file :giovanniconti@iMac-4.local
+history /preassim_test/run_cycles/forecast/daily_forecast MSG:[18:22:05 8.9.2023] --requeue force /preassim_test/run_cycles/forecast/daily_forecast :gc02720@login1.juno.cmcc.scc
+history /spreads_ui/cases_create/run MSG:[11:00:25 1.9.2023] --run /spreads_ui/cases_create/run :giovanniconti@iMac-4.local
+history /gio_ecflow1/run_cycles/prepare_assimilation/postprocess/diagnostics MSG:[15:32:34 1.9.2023] --run /gio_ecflow1/run_cycles/prepare_assimilation/postprocess/diagnostics :giovanniconti@iMac-4.localMSG:[15:33:15 1.9.2023] --run /gio_ecflow1/run_cycles/prepare_assimilation/postprocess/diagnostics :giovanniconti@iMac-4.localMSG:[15:34:11 1.9.2023] --run /gio_ecflow1/run_cycles/prepare_assimilation/postprocess/diagnostics :giovanniconti@iMac-4.localMSG:[16:00:28 1.9.2023] --edit_script=/gio_ecflow1/run_cycles/prepare_assimilation/postprocess/diagnostics submit_file :giovanniconti@iMac-4.localMSG:[16:10:24 1.9.2023] --requeue force /gio_ecflow1/run_cycles/prepare_assimilation/postprocess/diagnostics :guatura@nitro5
+history /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_4 MSG:[19:31:23 2.9.2023] --alter add variable JOB_ID 174709 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_4 :gc02720@login1.juno.cmcc.sccMSG:[22:59:31 2.9.2023] --alter add variable JOB_ID 174975 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_4 :gc02720@login1.juno.cmcc.sccMSG:[01:17:13 3.9.2023] --alter add variable JOB_ID 175160 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_4 :gc02720@login1.juno.cmcc.sccMSG:[04:58:23 3.9.2023] --alter add variable JOB_ID 175478 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_4 :gc02720@login1.juno.cmcc.sccMSG:[07:04:32 3.9.2023] --alter add variable JOB_ID 175606 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_4 :gc02720@login1.juno.cmcc.sccMSG:[12:35:09 3.9.2023] --alter add variable JOB_ID 176037 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_4 :gc02720@login1.juno.cmcc.sccMSG:[14:32:58 3.9.2023] --alter add variable JOB_ID 176146 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_4 :gc02720@login1.juno.cmcc.sccMSG:[17:30:26 3.9.2023] --alter add variable JOB_ID 176337 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_4 :gc02720@login1.juno.cmcc.sccMSG:[21:14:36 3.9.2023] --alter add variable JOB_ID 176556 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_4 :gc02720@login1.juno.cmcc.sccMSG:[23:40:23 3.9.2023] --alter add variable JOB_ID 176684 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_4 :gc02720@login1.juno.cmcc.scc
+history /spreads_ui MSG:[10:17:55 1.9.2023] --alter change variable STAGEDIR /work/cmcc/gc02720/ic/ic_spread_ugento /spreads_ui :giovanniconti@iMac-4.localMSG:[10:18:26 1.9.2023] --alter change variable CASE_NAME gio_ecflow1 /spreads_ui :giovanniconti@iMac-4.localMSG:[10:18:46 1.9.2023] --alter change variable NENS 5 /spreads_ui :giovanniconti@iMac-4.localMSG:[10:47:59 1.9.2023] --resume /spreads_ui :giovanniconti@iMac-4.localMSG:[10:51:50 1.9.2023] --alter change variable CASE_TEMPLATE case.template-juno.original-SP /spreads_ui :giovanniconti@iMac-4.localMSG:[12:43:29 1.9.2023] --alter change variable BASEOBSDIR /work/cmcc/mg20022/databases/b2d4o_d4o_db /spreads_ui :giovanniconti@iMac-4.localMSG:[11:25:04 8.9.2023] --alter change variable DART_NML_TEMPLATE input.nml.original.rad.preassim /spreads_ui :giovanniconti@iMac-4.localMSG:[11:26:10 8.9.2023] --alter change variable CASE_NAME preassim_test /spreads_ui :giovanniconti@iMac-4.localMSG:[11:27:15 8.9.2023] --requeue force /spreads_ui :giovanniconti@iMac-4.localMSG:[11:27:22 8.9.2023] --resume /spreads_ui :giovanniconti@iMac-4.local
+history /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_assim MSG:[11:43:13 8.9.2023] --alter change variable NODES 10 /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_assim :giovanniconti@iMac-4.local
+history /spreads_ui/cases_create MSG:[10:53:10 1.9.2023] --requeue force /spreads_ui/cases_create :giovanniconti@iMac-4.local
+history /preassim_test/run_cycles MSG:[11:41:52 8.9.2023] --alter change variable MAXCICLY 10 /preassim_test/run_cycles :giovanniconti@iMac-4.localMSG:[18:22:16 8.9.2023] --alter add variable CONT_RUN TRUE /preassim_test/run_cycles :gc02720@login1.juno.cmcc.sccMSG:[18:22:16 8.9.2023] --alter add variable NCYCLES 2 /preassim_test/run_cycles :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_8 MSG:[14:52:46 8.9.2023] --alter add variable JOB_ID 188932 /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_8 :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_5 MSG:[19:31:21 2.9.2023] --alter add variable JOB_ID 174708 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_5 :gc02720@login1.juno.cmcc.sccMSG:[22:59:30 2.9.2023] --alter add variable JOB_ID 174974 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_5 :gc02720@login1.juno.cmcc.sccMSG:[01:17:10 3.9.2023] --alter add variable JOB_ID 175158 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_5 :gc02720@login1.juno.cmcc.sccMSG:[04:58:24 3.9.2023] --alter add variable JOB_ID 175480 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_5 :gc02720@login1.juno.cmcc.sccMSG:[07:04:33 3.9.2023] --alter add variable JOB_ID 175607 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_5 :gc02720@login1.juno.cmcc.sccMSG:[12:35:09 3.9.2023] --alter add variable JOB_ID 176038 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_5 :gc02720@login1.juno.cmcc.sccMSG:[14:32:59 3.9.2023] --alter add variable JOB_ID 176148 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_5 :gc02720@login1.juno.cmcc.sccMSG:[17:30:26 3.9.2023] --alter add variable JOB_ID 176339 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_5 :gc02720@login1.juno.cmcc.sccMSG:[21:14:37 3.9.2023] --alter add variable JOB_ID 176557 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_5 :gc02720@login1.juno.cmcc.sccMSG:[23:40:26 3.9.2023] --alter add variable JOB_ID 176686 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_5 :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_12 MSG:[19:31:29 2.9.2023] --alter add variable JOB_ID 174713 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_12 :gc02720@login1.juno.cmcc.sccMSG:[22:59:36 2.9.2023] --alter add variable JOB_ID 174981 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_12 :gc02720@login1.juno.cmcc.sccMSG:[01:17:16 3.9.2023] --alter add variable JOB_ID 175163 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_12 :gc02720@login1.juno.cmcc.sccMSG:[04:58:31 3.9.2023] --alter add variable JOB_ID 175486 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_12 :gc02720@login1.juno.cmcc.sccMSG:[07:04:40 3.9.2023] --alter add variable JOB_ID 175613 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_12 :gc02720@login1.juno.cmcc.sccMSG:[12:35:16 3.9.2023] --alter add variable JOB_ID 176044 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_12 :gc02720@login1.juno.cmcc.sccMSG:[14:33:08 3.9.2023] --alter add variable JOB_ID 176156 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_12 :gc02720@login1.juno.cmcc.sccMSG:[17:30:32 3.9.2023] --alter add variable JOB_ID 176347 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_12 :gc02720@login1.juno.cmcc.sccMSG:[21:14:45 3.9.2023] --alter add variable JOB_ID 176564 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_12 :gc02720@login1.juno.cmcc.sccMSG:[23:40:32 3.9.2023] --alter add variable JOB_ID 176693 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_12 :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles MSG:[18:40:36 2.9.2023] --alter add variable NCYCLES 11 /gio_ecflow1/run_cycles :gc02720@login1.juno.cmcc.sccMSG:[22:16:31 2.9.2023] --alter add variable NCYCLES 12 /gio_ecflow1/run_cycles :gc02720@login1.juno.cmcc.sccMSG:[00:21:05 3.9.2023] --alter add variable NCYCLES 13 /gio_ecflow1/run_cycles :gc02720@login1.juno.cmcc.sccMSG:[03:46:42 3.9.2023] --alter add variable NCYCLES 14 /gio_ecflow1/run_cycles :gc02720@login1.juno.cmcc.sccMSG:[06:28:10 3.9.2023] --alter add variable NCYCLES 15 /gio_ecflow1/run_cycles :gc02720@login1.juno.cmcc.sccMSG:[11:44:02 3.9.2023] --alter add variable NCYCLES 16 /gio_ecflow1/run_cycles :gc02720@login1.juno.cmcc.sccMSG:[13:57:00 3.9.2023] --alter add variable NCYCLES 17 /gio_ecflow1/run_cycles :gc02720@login1.juno.cmcc.sccMSG:[16:46:03 3.9.2023] --alter add variable NCYCLES 18 /gio_ecflow1/run_cycles :gc02720@login1.juno.cmcc.sccMSG:[20:34:44 3.9.2023] --alter add variable NCYCLES 19 /gio_ecflow1/run_cycles :gc02720@login1.juno.cmcc.sccMSG:[22:42:05 3.9.2023] --alter add variable NCYCLES 20 /gio_ecflow1/run_cycles :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim MSG:[11:42:05 1.9.2023] --alter change variable NODES 10 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim :giovanniconti@iMac-4.local
+history / MSG:[11:39:57 8.9.2023] --load=preassim_test.def force :gc02720@login1.juno.cmcc.sccMSG:[11:39:57 8.9.2023] --begin=preassim_test :gc02720@login1.juno.cmcc.sccMSG:[11:41:52 8.9.2023] --sync=0 11846 16 :giovanniconti@iMac-4.localMSG:[11:42:42 8.9.2023] --sync=0 11848 16 :giovanniconti@iMac-4.localMSG:[11:43:13 8.9.2023] --sync=0 11850 16 :giovanniconti@iMac-4.localMSG:[11:43:23 8.9.2023] --sync=0 11851 16 :giovanniconti@iMac-4.localMSG:[14:10:03 8.9.2023] --sync=0 11996 16 :giovanniconti@iMac-4.localMSG:[14:11:22 8.9.2023] --sync=0 12017 16 :giovanniconti@iMac-4.localMSG:[14:21:05 8.9.2023] --sync=0 12037 16 :giovanniconti@iMac-4.localMSG:[15:57:11 8.9.2023] --sync=0 12310 16 :giovanniconti@iMac-4.local
+history /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening MSG:[11:41:38 1.9.2023] --alter change variable NODES 8 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening :giovanniconti@iMac-4.localMSG:[11:41:52 1.9.2023] --alter change variable walltime 00:10 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening :giovanniconti@iMac-4.local
+history /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_3 MSG:[19:31:19 2.9.2023] --alter add variable JOB_ID 174706 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_3 :gc02720@login1.juno.cmcc.sccMSG:[22:59:28 2.9.2023] --alter add variable JOB_ID 174973 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_3 :gc02720@login1.juno.cmcc.sccMSG:[01:17:09 3.9.2023] --alter add variable JOB_ID 175157 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_3 :gc02720@login1.juno.cmcc.sccMSG:[04:58:21 3.9.2023] --alter add variable JOB_ID 175477 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_3 :gc02720@login1.juno.cmcc.sccMSG:[07:04:30 3.9.2023] --alter add variable JOB_ID 175605 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_3 :gc02720@login1.juno.cmcc.sccMSG:[12:35:06 3.9.2023] --alter add variable JOB_ID 176035 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_3 :gc02720@login1.juno.cmcc.sccMSG:[14:32:58 3.9.2023] --alter add variable JOB_ID 176145 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_3 :gc02720@login1.juno.cmcc.sccMSG:[17:30:22 3.9.2023] --alter add variable JOB_ID 176336 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_3 :gc02720@login1.juno.cmcc.sccMSG:[21:14:36 3.9.2023] --alter add variable JOB_ID 176555 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_3 :gc02720@login1.juno.cmcc.sccMSG:[23:40:24 3.9.2023] --alter add variable JOB_ID 176685 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_3 :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/background/run/mem_2 MSG:[18:41:07 2.9.2023] --alter add variable JOB_ID 174642 /gio_ecflow1/run_cycles/background/run/mem_2 :gc02720@login1.juno.cmcc.sccMSG:[22:17:03 2.9.2023] --alter add variable JOB_ID 174925 /gio_ecflow1/run_cycles/background/run/mem_2 :gc02720@login1.juno.cmcc.sccMSG:[00:21:36 3.9.2023] --alter add variable JOB_ID 175093 /gio_ecflow1/run_cycles/background/run/mem_2 :gc02720@login1.juno.cmcc.sccMSG:[03:47:10 3.9.2023] --alter add variable JOB_ID 175419 /gio_ecflow1/run_cycles/background/run/mem_2 :gc02720@login1.juno.cmcc.sccMSG:[06:28:40 3.9.2023] --alter add variable JOB_ID 175571 /gio_ecflow1/run_cycles/background/run/mem_2 :gc02720@login1.juno.cmcc.sccMSG:[11:44:34 3.9.2023] --alter add variable JOB_ID 176003 /gio_ecflow1/run_cycles/background/run/mem_2 :gc02720@login1.juno.cmcc.sccMSG:[13:57:30 3.9.2023] --alter add variable JOB_ID 176115 /gio_ecflow1/run_cycles/background/run/mem_2 :gc02720@login1.juno.cmcc.sccMSG:[16:46:35 3.9.2023] --alter add variable JOB_ID 176297 /gio_ecflow1/run_cycles/background/run/mem_2 :gc02720@login1.juno.cmcc.sccMSG:[20:35:17 3.9.2023] --alter add variable JOB_ID 176515 /gio_ecflow1/run_cycles/background/run/mem_2 :gc02720@login1.juno.cmcc.sccMSG:[22:42:38 3.9.2023] --alter add variable JOB_ID 176649 /gio_ecflow1/run_cycles/background/run/mem_2 :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update MSG:[15:57:11 8.9.2023] --run /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update :giovanniconti@iMac-4.localMSG:[15:58:56 8.9.2023] --alter add variable JOB_ID 189062 /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_6 MSG:[19:31:25 2.9.2023] --alter add variable JOB_ID 174710 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_6 :gc02720@login1.juno.cmcc.sccMSG:[22:59:31 2.9.2023] --alter add variable JOB_ID 174976 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_6 :gc02720@login1.juno.cmcc.sccMSG:[01:17:11 3.9.2023] --alter add variable JOB_ID 175159 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_6 :gc02720@login1.juno.cmcc.sccMSG:[04:58:24 3.9.2023] --alter add variable JOB_ID 175479 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_6 :gc02720@login1.juno.cmcc.sccMSG:[07:04:34 3.9.2023] --alter add variable JOB_ID 175608 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_6 :gc02720@login1.juno.cmcc.sccMSG:[12:35:09 3.9.2023] --alter add variable JOB_ID 176039 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_6 :gc02720@login1.juno.cmcc.sccMSG:[14:33:01 3.9.2023] --alter add variable JOB_ID 176149 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_6 :gc02720@login1.juno.cmcc.sccMSG:[17:30:26 3.9.2023] --alter add variable JOB_ID 176338 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_6 :gc02720@login1.juno.cmcc.sccMSG:[21:14:39 3.9.2023] --alter add variable JOB_ID 176558 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_6 :gc02720@login1.juno.cmcc.sccMSG:[23:40:27 3.9.2023] --alter add variable JOB_ID 176687 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_6 :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/background/run/mem_3 MSG:[18:41:07 2.9.2023] --alter add variable JOB_ID 174640 /gio_ecflow1/run_cycles/background/run/mem_3 :gc02720@login1.juno.cmcc.sccMSG:[22:17:03 2.9.2023] --alter add variable JOB_ID 174928 /gio_ecflow1/run_cycles/background/run/mem_3 :gc02720@login1.juno.cmcc.sccMSG:[00:21:36 3.9.2023] --alter add variable JOB_ID 175095 /gio_ecflow1/run_cycles/background/run/mem_3 :gc02720@login1.juno.cmcc.sccMSG:[03:47:10 3.9.2023] --alter add variable JOB_ID 175421 /gio_ecflow1/run_cycles/background/run/mem_3 :gc02720@login1.juno.cmcc.sccMSG:[06:28:39 3.9.2023] --alter add variable JOB_ID 175568 /gio_ecflow1/run_cycles/background/run/mem_3 :gc02720@login1.juno.cmcc.sccMSG:[11:44:34 3.9.2023] --alter add variable JOB_ID 176001 /gio_ecflow1/run_cycles/background/run/mem_3 :gc02720@login1.juno.cmcc.sccMSG:[13:57:29 3.9.2023] --alter add variable JOB_ID 176112 /gio_ecflow1/run_cycles/background/run/mem_3 :gc02720@login1.juno.cmcc.sccMSG:[16:46:35 3.9.2023] --alter add variable JOB_ID 176298 /gio_ecflow1/run_cycles/background/run/mem_3 :gc02720@login1.juno.cmcc.sccMSG:[20:35:17 3.9.2023] --alter add variable JOB_ID 176514 /gio_ecflow1/run_cycles/background/run/mem_3 :gc02720@login1.juno.cmcc.sccMSG:[22:42:38 3.9.2023] --alter add variable JOB_ID 176651 /gio_ecflow1/run_cycles/background/run/mem_3 :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/background/run/mem_4 MSG:[18:41:07 2.9.2023] --alter add variable JOB_ID 174639 /gio_ecflow1/run_cycles/background/run/mem_4 :gc02720@login1.juno.cmcc.sccMSG:[22:17:03 2.9.2023] --alter add variable JOB_ID 174926 /gio_ecflow1/run_cycles/background/run/mem_4 :gc02720@login1.juno.cmcc.sccMSG:[00:21:36 3.9.2023] --alter add variable JOB_ID 175094 /gio_ecflow1/run_cycles/background/run/mem_4 :gc02720@login1.juno.cmcc.sccMSG:[03:47:10 3.9.2023] --alter add variable JOB_ID 175422 /gio_ecflow1/run_cycles/background/run/mem_4 :gc02720@login1.juno.cmcc.sccMSG:[06:28:39 3.9.2023] --alter add variable JOB_ID 175567 /gio_ecflow1/run_cycles/background/run/mem_4 :gc02720@login1.juno.cmcc.sccMSG:[11:44:34 3.9.2023] --alter add variable JOB_ID 176002 /gio_ecflow1/run_cycles/background/run/mem_4 :gc02720@login1.juno.cmcc.sccMSG:[13:57:29 3.9.2023] --alter add variable JOB_ID 176113 /gio_ecflow1/run_cycles/background/run/mem_4 :gc02720@login1.juno.cmcc.sccMSG:[16:46:36 3.9.2023] --alter add variable JOB_ID 176301 /gio_ecflow1/run_cycles/background/run/mem_4 :gc02720@login1.juno.cmcc.sccMSG:[20:35:17 3.9.2023] --alter add variable JOB_ID 176516 /gio_ecflow1/run_cycles/background/run/mem_4 :gc02720@login1.juno.cmcc.sccMSG:[22:42:38 3.9.2023] --alter add variable JOB_ID 176652 /gio_ecflow1/run_cycles/background/run/mem_4 :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/ctrl MSG:[22:08:50 2.9.2023] --requeue force /gio_ecflow1/run_cycles/ctrl :gc02720@login1.juno.cmcc.sccMSG:[00:12:12 3.9.2023] --requeue force /gio_ecflow1/run_cycles/ctrl :gc02720@login1.juno.cmcc.sccMSG:[03:37:29 3.9.2023] --requeue force /gio_ecflow1/run_cycles/ctrl :gc02720@login1.juno.cmcc.sccMSG:[06:18:18 3.9.2023] --requeue force /gio_ecflow1/run_cycles/ctrl :gc02720@login1.juno.cmcc.sccMSG:[11:32:44 3.9.2023] --requeue force /gio_ecflow1/run_cycles/ctrl :gc02720@login1.juno.cmcc.sccMSG:[13:45:00 3.9.2023] --requeue force /gio_ecflow1/run_cycles/ctrl :gc02720@login1.juno.cmcc.sccMSG:[16:33:02 3.9.2023] --requeue force /gio_ecflow1/run_cycles/ctrl :gc02720@login1.juno.cmcc.sccMSG:[20:21:31 3.9.2023] --requeue force /gio_ecflow1/run_cycles/ctrl :gc02720@login1.juno.cmcc.sccMSG:[22:27:35 3.9.2023] --requeue force /gio_ecflow1/run_cycles/ctrl :gc02720@login1.juno.cmcc.sccMSG:[01:49:02 4.9.2023] --requeue force /gio_ecflow1/run_cycles/ctrl :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/forecast MSG:[11:17:24 1.9.2023] --alter change event ALL set /gio_ecflow1/run_cycles/forecast :giovanniconti@iMac-4.local
+history /gio_ecflow1/run_cycles/clean MSG:[00:12:12 3.9.2023] --requeue force /gio_ecflow1/run_cycles/clean :gc02720@login1.juno.cmcc.sccMSG:[03:37:29 3.9.2023] --requeue force /gio_ecflow1/run_cycles/clean :gc02720@login1.juno.cmcc.sccMSG:[06:18:18 3.9.2023] --requeue force /gio_ecflow1/run_cycles/clean :gc02720@login1.juno.cmcc.sccMSG:[11:32:44 3.9.2023] --requeue force /gio_ecflow1/run_cycles/clean :gc02720@login1.juno.cmcc.sccMSG:[13:45:00 3.9.2023] --requeue force /gio_ecflow1/run_cycles/clean :gc02720@login1.juno.cmcc.sccMSG:[16:33:02 3.9.2023] --requeue force /gio_ecflow1/run_cycles/clean :gc02720@login1.juno.cmcc.sccMSG:[20:21:31 3.9.2023] --requeue force /gio_ecflow1/run_cycles/clean :gc02720@login1.juno.cmcc.sccMSG:[22:27:35 3.9.2023] --requeue force /gio_ecflow1/run_cycles/clean :gc02720@login1.juno.cmcc.sccMSG:[01:49:02 4.9.2023] --requeue force /gio_ecflow1/run_cycles/clean :gc02720@login1.juno.cmcc.sccMSG:[02:06:31 4.9.2023] --requeue force /gio_ecflow1/run_cycles/clean :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening MSG:[11:42:42 8.9.2023] --alter change variable NODES 8 /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening :giovanniconti@iMac-4.local
+history /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_5 MSG:[14:52:42 8.9.2023] --alter add variable JOB_ID 188929 /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_5 :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/background/run/mem_5 MSG:[18:41:07 2.9.2023] --alter add variable JOB_ID 174641 /gio_ecflow1/run_cycles/background/run/mem_5 :gc02720@login1.juno.cmcc.sccMSG:[22:17:03 2.9.2023] --alter add variable JOB_ID 174927 /gio_ecflow1/run_cycles/background/run/mem_5 :gc02720@login1.juno.cmcc.sccMSG:[00:21:36 3.9.2023] --alter add variable JOB_ID 175092 /gio_ecflow1/run_cycles/background/run/mem_5 :gc02720@login1.juno.cmcc.sccMSG:[03:47:10 3.9.2023] --alter add variable JOB_ID 175418 /gio_ecflow1/run_cycles/background/run/mem_5 :gc02720@login1.juno.cmcc.sccMSG:[06:28:40 3.9.2023] --alter add variable JOB_ID 175569 /gio_ecflow1/run_cycles/background/run/mem_5 :gc02720@login1.juno.cmcc.sccMSG:[11:44:34 3.9.2023] --alter add variable JOB_ID 175999 /gio_ecflow1/run_cycles/background/run/mem_5 :gc02720@login1.juno.cmcc.sccMSG:[13:57:30 3.9.2023] --alter add variable JOB_ID 176114 /gio_ecflow1/run_cycles/background/run/mem_5 :gc02720@login1.juno.cmcc.sccMSG:[16:46:36 3.9.2023] --alter add variable JOB_ID 176299 /gio_ecflow1/run_cycles/background/run/mem_5 :gc02720@login1.juno.cmcc.sccMSG:[20:35:18 3.9.2023] --alter add variable JOB_ID 176518 /gio_ecflow1/run_cycles/background/run/mem_5 :gc02720@login1.juno.cmcc.sccMSG:[22:42:38 3.9.2023] --alter add variable JOB_ID 176653 /gio_ecflow1/run_cycles/background/run/mem_5 :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/background MSG:[11:43:23 8.9.2023] --resume /preassim_test/run_cycles/background :giovanniconti@iMac-4.localMSG:[18:22:16 8.9.2023] --requeue force /preassim_test/run_cycles/background :gc02720@login1.juno.cmcc.sccMSG:[18:22:16 8.9.2023] --resume /preassim_test/run_cycles/background :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/clean MSG:[18:22:05 8.9.2023] --requeue force /preassim_test/run_cycles/clean :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/background/run/mem_2 MSG:[11:43:51 8.9.2023] --alter add variable JOB_ID 188625 /preassim_test/run_cycles/background/run/mem_2 :gc02720@login1.juno.cmcc.sccMSG:[18:22:53 8.9.2023] --alter add variable JOB_ID 189464 /preassim_test/run_cycles/background/run/mem_2 :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/background/run/mem_4 MSG:[11:43:51 8.9.2023] --alter add variable JOB_ID 188626 /preassim_test/run_cycles/background/run/mem_4 :gc02720@login1.juno.cmcc.sccMSG:[18:22:53 8.9.2023] --alter add variable JOB_ID 189466 /preassim_test/run_cycles/background/run/mem_4 :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/background/run/mem_5 MSG:[11:43:51 8.9.2023] --alter add variable JOB_ID 188624 /preassim_test/run_cycles/background/run/mem_5 :gc02720@login1.juno.cmcc.sccMSG:[18:22:53 8.9.2023] --alter add variable JOB_ID 189468 /preassim_test/run_cycles/background/run/mem_5 :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/background/run/mem_1 MSG:[11:43:51 8.9.2023] --alter add variable JOB_ID 188623 /preassim_test/run_cycles/background/run/mem_1 :gc02720@login1.juno.cmcc.sccMSG:[18:22:53 8.9.2023] --alter add variable JOB_ID 189467 /preassim_test/run_cycles/background/run/mem_1 :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_3 MSG:[14:52:41 8.9.2023] --alter add variable JOB_ID 188927 /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_3 :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/background/run/mem_3 MSG:[11:43:51 8.9.2023] --alter add variable JOB_ID 188627 /preassim_test/run_cycles/background/run/mem_3 :gc02720@login1.juno.cmcc.sccMSG:[18:22:53 8.9.2023] --alter add variable JOB_ID 189465 /preassim_test/run_cycles/background/run/mem_3 :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_7 MSG:[14:23:13 8.9.2023] --alter add variable JOB_ID 188878 /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_7 :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/background/run/mem_1 MSG:[18:41:07 2.9.2023] --alter add variable JOB_ID 174638 /gio_ecflow1/run_cycles/background/run/mem_1 :gc02720@login1.juno.cmcc.sccMSG:[22:17:03 2.9.2023] --alter add variable JOB_ID 174924 /gio_ecflow1/run_cycles/background/run/mem_1 :gc02720@login1.juno.cmcc.sccMSG:[00:21:36 3.9.2023] --alter add variable JOB_ID 175091 /gio_ecflow1/run_cycles/background/run/mem_1 :gc02720@login1.juno.cmcc.sccMSG:[03:47:10 3.9.2023] --alter add variable JOB_ID 175420 /gio_ecflow1/run_cycles/background/run/mem_1 :gc02720@login1.juno.cmcc.sccMSG:[06:28:40 3.9.2023] --alter add variable JOB_ID 175570 /gio_ecflow1/run_cycles/background/run/mem_1 :gc02720@login1.juno.cmcc.sccMSG:[11:44:34 3.9.2023] --alter add variable JOB_ID 176000 /gio_ecflow1/run_cycles/background/run/mem_1 :gc02720@login1.juno.cmcc.sccMSG:[13:57:30 3.9.2023] --alter add variable JOB_ID 176116 /gio_ecflow1/run_cycles/background/run/mem_1 :gc02720@login1.juno.cmcc.sccMSG:[16:46:36 3.9.2023] --alter add variable JOB_ID 176300 /gio_ecflow1/run_cycles/background/run/mem_1 :gc02720@login1.juno.cmcc.sccMSG:[20:35:18 3.9.2023] --alter add variable JOB_ID 176517 /gio_ecflow1/run_cycles/background/run/mem_1 :gc02720@login1.juno.cmcc.sccMSG:[22:42:38 3.9.2023] --alter add variable JOB_ID 176650 /gio_ecflow1/run_cycles/background/run/mem_1 :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_1 MSG:[14:52:38 8.9.2023] --alter add variable JOB_ID 188925 /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_1 :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_2 MSG:[14:52:39 8.9.2023] --alter add variable JOB_ID 188926 /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_2 :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_9 MSG:[14:52:46 8.9.2023] --alter add variable JOB_ID 188931 /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_9 :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_4 MSG:[14:52:41 8.9.2023] --alter add variable JOB_ID 188928 /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_4 :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_11 MSG:[14:52:48 8.9.2023] --alter add variable JOB_ID 188933 /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_11 :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_12 MSG:[14:52:48 8.9.2023] --alter add variable JOB_ID 188934 /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_12 :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_10 MSG:[14:52:48 8.9.2023] --alter add variable JOB_ID 188935 /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_10 :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_13 MSG:[14:52:51 8.9.2023] --alter add variable JOB_ID 188936 /preassim_test/run_cycles/prepare_assimilation/spreads_assim/filter_departure_cleaver_screening/departure/dep_13 :gc02720@login1.juno.cmcc.scc
+history /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update MSG:[19:44:57 2.9.2023] --alter add variable JOB_ID 174731 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update :gc02720@login1.juno.cmcc.sccMSG:[23:09:58 2.9.2023] --alter add variable JOB_ID 175014 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update :gc02720@login1.juno.cmcc.sccMSG:[01:29:20 3.9.2023] --alter add variable JOB_ID 175180 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update :gc02720@login1.juno.cmcc.sccMSG:[05:16:32 3.9.2023] --alter add variable JOB_ID 175506 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update :gc02720@login1.juno.cmcc.sccMSG:[07:39:58 3.9.2023] --alter add variable JOB_ID 175642 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update :gc02720@login1.juno.cmcc.sccMSG:[12:51:58 3.9.2023] --alter add variable JOB_ID 176062 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update :gc02720@login1.juno.cmcc.sccMSG:[14:47:13 3.9.2023] --alter add variable JOB_ID 176166 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update :gc02720@login1.juno.cmcc.sccMSG:[17:44:18 3.9.2023] --alter add variable JOB_ID 176358 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update :gc02720@login1.juno.cmcc.sccMSG:[21:26:57 3.9.2023] --alter add variable JOB_ID 176588 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update :gc02720@login1.juno.cmcc.sccMSG:[23:54:45 3.9.2023] --alter add variable JOB_ID 176700 /gio_ecflow1/run_cycles/prepare_assimilation/spreads_assim/filter_assim/update :gc02720@login1.juno.cmcc.scc
+history /preassim_test/run_cycles/ctrl MSG:[18:22:05 8.9.2023] --requeue force /preassim_test/run_cycles/ctrl :gc02720@login1.juno.cmcc.scc
+suite spreads_ui # begun:1 state:queued dur:00:12:42 flag:message
+defstatus suspended
+edit ECF_HOME '/users_home/cmcc/gc02720/spreads/spreads_ui'
+edit ECF_HOSTNAME 'juno'
+edit ECF_INCLUDE '/users_home/cmcc/gc02720/spreads/spreads_ui/includes'
+edit ECF_CLONE '/users_home/cmcc/gc02720/spreads/spreads_ui'
+edit CASE_NAME 'preassim_test'
+edit REFCASE 'ic_phase1'
+edit REFDATE '2017100200000'
+edit STARTDATE '2017100200000'
+edit STAGEDIR '/work/cmcc/gc02720/ic/ic_spread_ugento'
+edit NENS '5'
+edit DEP '13'
+edit MAXTRY '5'
+edit BASEOBSDIR '/work/cmcc/mg20022/databases/b2d4o_d4o_db'
+edit CASE_TEMPLATE 'case.template-juno.original-SP'
+edit DART_NML_TEMPLATE 'input.nml.original.rad.preassim'
+edit MODELDIR 'cesm2.3_beta11_cm3_v7z'
+edit MODEL_PATH '/users_home/cmcc/${USER}/model'
+calendar initTime:2023-Sep-08 09:27:15 suiteTime:2023-Sep-08 17:04:00 duration:07:36:45 initLocalTime:2023-Sep-08 09:27:15 lastTime:2023-Sep-08 17:04:00 calendarIncrement:00:01:00
+family cases_create # state:complete dur:00:11:45 flag:message rt:00:11:38
+label info ""
+task run # try:1 state:complete dur:00:11:45 flag:message rt:00:11:38
+endfamily
+family assimilation_experiment # state:complete dur:00:12:42 rt:00:00:01
+task create_template # try:1 state:complete dur:00:12:42 rt:00:00:01
+trigger ../cases_create/run==complete
+label info ""
+endfamily
+family convert_d4o # state:queued suspended:1
+defstatus suspended
+edit CASE_NAME 'd4o_db'
+edit YYYYMM '201710'
+edit DSTART '2'
+edit DEND '31'
+edit NENS '80'
+edit INPUTDIR '/data/cmcc/sm09722/OBS_ECMAR'
+edit WORKDIR '/work/cmcc/${USER}/databases'
+edit TMPSLASH '/work/cmcc/${USER}/tmp'
+edit BUFR_LIST 'ARC AMV SND AMSU GPSRO'
+event STOP
+task bufr_to_d4o # state:queued
+label info ""
+endfamily
+endsuite
+suite gio_ecflow1 # begun:1 state:queued dur:62:53:41
+edit ECF_HOME '/users_home/cmcc/gc02720/spreads/spreads_ui'
+edit ECF_HOSTNAME 'juno'
+edit ECF_INCLUDE '/users_home/cmcc/gc02720/spreads/spreads_ui/includes'
+edit ECF_CLONE '/users_home/cmcc/gc02720/spreads/spreads_ui'
+calendar initTime:2023-Sep-01 09:12:50 suiteTime:2023-Sep-08 17:04:00 duration:175:51:10 initLocalTime:2023-Sep-01 09:12:50 lastTime:2023-Sep-08 17:04:00 calendarIncrement:00:01:00
+family run_cycles # state:queued dur:62:53:41 flag:message
+edit CASE_NAME 'gio_ecflow1'
+edit NENS '5'
+edit NCYCLES '20'
+edit CONT_RUN 'TRUE'
+edit FENS '5'
+edit FDAYS '1'
+edit MAXTRY '5'
+edit TRY '0'
+edit MODELDIR 'cesm2.3_beta11_cm3_v7z'
+edit BASEOBSDIR '/work/cmcc/mg20022/databases/b2d4o_d4o_db'
+edit DEP '13'
+edit CASE_TEMPLATE 'case.template-juno.original-SP'
+edit DART_NML_TEMPLATE 'input.nml.original.rad'
+edit MAXCICLY '20'
+event ACTIVATE_ASSI set
+event FORECAST # set
+event CLEANA set
+event FSOI_Jo # set
+event oneshot
+family background # state:queued dur:62:53:10 flag:message suspended:1
+defstatus suspended
+limit l1 5
+task pre # state:queued dur:62:53:10
+family run # state:queued dur:62:53:10
+trigger pre==complete
+inlimit l1
+task mem_1 # state:queued dur:62:53:10 flag:message
+edit JOB_ID '176650'
+label info "" # "START: 2023-09-03 22:42 / FINISH: 2023-09-03 23:12"
+task mem_2 # state:queued dur:62:53:10 flag:message
+edit JOB_ID '176649'
+label info "" # "START: 2023-09-03 22:42 / FINISH: 2023-09-03 23:12"
+task mem_3 # state:queued dur:62:53:10 flag:message
+edit JOB_ID '176651'
+label info "" # "START: 2023-09-03 22:42 / FINISH: 2023-09-03 23:12"
+task mem_4 # state:queued dur:62:53:10 flag:message
+edit JOB_ID '176652'
+label info "" # "START: 2023-09-03 22:42 / FINISH: 2023-09-03 23:12"
+task mem_5 # state:queued dur:62:53:10 flag:message
+edit JOB_ID '176653'
+label info "" # "START: 2023-09-03 22:42 / FINISH: 2023-09-03 23:12"
+endfamily
+endfamily
+family prepare_assimilation # state:queued dur:62:53:41 flag:message
+trigger background==complete and ../run_cycles:ACTIVATE_ASSI==set
+task pre_departure # state:queued dur:62:53:41
+family one_shot # state:queued dur:62:53:41
+trigger ../../run_cycles:oneshot==set and pre_departure==complete
+task one_shot # state:queued dur:62:53:41
+edit JOB_ID 'None'
+label info ""
+endfamily
+family spreads_assim # state:queued dur:62:53:41
+trigger ../../run_cycles:oneshot==clear and pre_departure==complete
+family filter_departure_cleaver_screening # state:queued dur:62:53:41 flag:message
+edit NODES '8'
+edit queue 'p_short'
+edit walltime '00:10'
+family departure # state:queued dur:62:53:41
+task dep_1 # state:queued dur:62:53:41 flag:message
+trigger dep_7==complete
+edit JOB_ID '176682'
+label info "" # "Phase 1 ended succesfully, in TS1: START 2023-09-03 23:40 / FINISH: 2023-09-03 23:41"
+task dep_2 # state:queued dur:62:53:41 flag:message
+trigger dep_7==complete
+edit JOB_ID '176683'
+label info "" # "Phase 1 ended succesfully, in TS2: START 2023-09-03 23:41 / FINISH: 2023-09-03 23:42"
+task dep_3 # state:queued dur:62:53:41 flag:message
+trigger dep_7==complete
+edit JOB_ID '176685'
+label info "" # "Phase 1 ended succesfully, in TS3: START 2023-09-03 23:43 / FINISH: 2023-09-03 23:44"
+task dep_4 # state:queued dur:62:53:41 flag:message
+trigger dep_7==complete
+edit JOB_ID '176684'
+label info "" # "Phase 1 ended succesfully, in TS4: START 2023-09-03 23:42 / FINISH: 2023-09-03 23:43"
+task dep_5 # state:queued dur:62:53:41 flag:message
+trigger dep_7==complete
+edit JOB_ID '176686'
+label info "" # "Phase 1 ended succesfully, in TS5: START 2023-09-03 23:44 / FINISH: 2023-09-03 23:45"
+task dep_6 # state:queued dur:62:53:41 flag:message
+trigger dep_7==complete
+edit JOB_ID '176687'
+label info "" # "Phase 1 ended succesfully, in TS6: START 2023-09-03 23:45 / FINISH: 2023-09-03 23:46"
+task dep_7 # state:queued dur:62:53:41 flag:message
+edit JOB_ID '176671'
+label info "" # "Phase 1 ended succesfully, in TS7: START 2023-09-03 23:38 / FINISH: 2023-09-03 23:39"
+task dep_8 # state:queued dur:62:53:41 flag:message
+trigger dep_7==complete
+edit JOB_ID '176688'
+label info "" # "Phase 1 ended succesfully, in TS8: START 2023-09-03 23:46 / FINISH: 2023-09-03 23:47"
+task dep_9 # state:queued dur:62:53:41 flag:message
+trigger dep_7==complete
+edit JOB_ID '176689'
+label info "" # "Phase 1 ended succesfully, in TS9: START 2023-09-03 23:47 / FINISH: 2023-09-03 23:48"
+task dep_10 # state:queued dur:62:53:41 flag:message
+trigger dep_7==complete
+edit JOB_ID '176690'
+label info "" # "Phase 1 ended succesfully, in TS10: START 2023-09-03 23:48 / FINISH: 2023-09-03 23:49"
+task dep_11 # state:queued dur:62:53:41 flag:message
+trigger dep_7==complete
+edit JOB_ID '176691'
+label info "" # "Phase 1 ended succesfully, in TS11: START 2023-09-03 23:49 / FINISH: 2023-09-03 23:51"
+task dep_12 # state:queued dur:62:53:41 flag:message
+trigger dep_7==complete
+edit JOB_ID '176693'
+label info "" # "Phase 1 ended succesfully, in TS12: START 2023-09-03 23:51 / FINISH: 2023-09-03 23:53"
+task dep_13 # state:queued dur:62:53:41 flag:message
+trigger dep_7==complete
+edit JOB_ID '176692'
+label info "" # "Phase 1 ended succesfully, in TS13: START 2023-09-03 23:51 / FINISH: 2023-09-03 23:51"
+endfamily
+endfamily
+family filter_assim # state:queued dur:62:53:41 flag:message
+trigger filter_departure_cleaver_screening==complete
+edit NODES '10'
+edit queue 'p_short'
+edit walltime '02:00'
+task update # state:queued dur:62:53:41 flag:message
+edit JOB_ID '176700'
+label info "" # "Phase 2 ended succesfully, in allTS: START 2023-09-04 01:03 / FINISH: 2023-09-04 01:48"
+endfamily
+endfamily
+family postprocess # state:queued dur:62:53:41
+trigger one_shot==complete or spreads_assim==complete
+task rename # state:queued dur:62:53:41
+task archive # state:queued dur:62:53:41
+trigger rename==complete
+task diagnostics # state:queued dur:62:53:41 flag:message
+trigger rename==complete
+endfamily
+endfamily
+family forecast # state:queued dur:62:53:41 flag:message
+trigger (prepare_assimilation/postprocess==complete and ../run_cycles:FORECAST==set) or (prepare_assimilation/pre_departure==complete and ../run_cycles:FORECAST==set and ../run_cycles:ACTIVATE_ASSI==clear)
+event 00Z
+event 12Z
+event ALL # set
+task daily_forecast # state:queued dur:62:53:41 flag:message
+label info "" # "LAST FORECAST: Mon Sep  4 02:04:31 CEST 2023"
+endfamily
+task clean # state:queued dur:62:53:41 flag:message
+trigger (forecast==complete and ../run_cycles:CLEANA==set) or (../run_cycles:FORECAST==clear and ../run_cycles:CLEANA==set and prepare_assimilation/postprocess==complete)
+task ctrl # try:1 state:complete dur:62:53:41 flag:message rt:00:02:00
+trigger prepare_assimilation/postprocess==complete
+endfamily
+endsuite
+suite preassim_test # begun:1 state:aborted dur:07:22:25 rt:00:00:01
+edit ECF_HOME '/users_home/cmcc/gc02720/spreads/spreads_ui'
+edit ECF_HOSTNAME 'juno'
+edit ECF_INCLUDE '/users_home/cmcc/gc02720/spreads/spreads_ui/includes'
+edit ECF_CLONE '/users_home/cmcc/gc02720/spreads/spreads_ui'
+calendar initTime:2023-Sep-08 09:39:57 suiteTime:2023-Sep-08 17:04:00 duration:07:24:03 initLocalTime:2023-Sep-08 09:39:57 lastTime:2023-Sep-08 17:04:00 calendarIncrement:00:01:00
+family run_cycles # state:aborted dur:07:22:25 flag:message rt:00:00:01
+edit CASE_NAME 'preassim_test'
+edit NENS '5'
+edit NCYCLES '2'
+edit CONT_RUN 'TRUE'
+edit FENS '80'
+edit FDAYS '1'
+edit MAXTRY '5'
+edit TRY '0'
+edit MODELDIR 'cesm2.3_beta11_cm3_v7z'
+edit BASEOBSDIR '/work/cmcc/mg20022/databases/b2d4o_d4o_db'
+edit DEP '13'
+edit CASE_TEMPLATE 'case.template-juno.original-SP'
+edit DART_NML_TEMPLATE 'input.nml.original.rad.preassim'
+edit MAXCICLY '10'
+event ACTIVATE_ASSI set
+event FORECAST
+event CLEANA set
+event FSOI_Jo
+event oneshot
+family background # state:complete dur:07:22:03 flag:message rt:00:39:27
+defstatus suspended
+limit l1 5
+task pre # try:1 state:complete dur:06:42:29 rt:00:00:10
+family run # state:complete dur:07:22:03 rt:00:39:27
+trigger pre==complete
+inlimit l1
+task mem_1 # try:1 state:complete dur:07:19:03 flag:message rt:00:36:27
+edit JOB_ID '189467'
+label info "" # "START: 2023-09-08 18:22 / FINISH: 2023-09-08 18:58"
+task mem_2 # try:1 state:complete dur:07:21:27 flag:message rt:00:38:51
+edit JOB_ID '189464'
+label info "" # "START: 2023-09-08 18:22 / FINISH: 2023-09-08 19:01"
+task mem_3 # try:1 state:complete dur:07:22:03 flag:message rt:00:39:27
+edit JOB_ID '189465'
+label info "" # "START: 2023-09-08 18:22 / FINISH: 2023-09-08 19:01"
+task mem_4 # try:1 state:complete dur:07:21:03 flag:message rt:00:38:27
+edit JOB_ID '189466'
+label info "" # "START: 2023-09-08 18:22 / FINISH: 2023-09-08 19:00"
+task mem_5 # try:1 state:complete dur:07:19:33 flag:message rt:00:36:57
+edit JOB_ID '189468'
+label info "" # "START: 2023-09-08 18:22 / FINISH: 2023-09-08 18:59"
+endfamily
+endfamily
+family prepare_assimilation # state:aborted dur:07:22:25 flag:message rt:00:00:01
+trigger background==complete and ../run_cycles:ACTIVATE_ASSI==set
+task pre_departure # passwd:8BvC.xDj rid:1471012 abort<:trap>abort try:2 state:aborted dur:07:22:25 flag:task_aborted,message rt:00:00:01
+family one_shot # state:queued dur:06:42:19
+trigger ../../run_cycles:oneshot==set and pre_departure==complete
+task one_shot # state:queued dur:06:42:19
+edit JOB_ID 'None'
+label info ""
+endfamily
+family spreads_assim # state:queued dur:06:42:19
+trigger ../../run_cycles:oneshot==clear and pre_departure==complete
+family filter_departure_cleaver_screening # state:queued dur:06:42:19 flag:message
+edit NODES '8'
+edit queue 'p_short'
+edit walltime '00:30'
+family departure # state:queued dur:06:42:19
+task dep_1 # state:queued dur:06:42:19 flag:message
+trigger dep_7==complete
+edit JOB_ID '188925'
+label info "" # "Phase 1 ended succesfully, in TS1: START 2023-09-08 15:10 / FINISH: 2023-09-08 15:11"
+task dep_2 # state:queued dur:06:42:19 flag:message
+trigger dep_7==complete
+edit JOB_ID '188926'
+label info "" # "Phase 1 ended succesfully, in TS2: START 2023-09-08 15:11 / FINISH: 2023-09-08 15:12"
+task dep_3 # state:queued dur:06:42:19 flag:message
+trigger dep_7==complete
+edit JOB_ID '188927'
+label info "" # "Phase 1 ended succesfully, in TS3: START 2023-09-08 15:12 / FINISH: 2023-09-08 15:13"
+task dep_4 # state:queued dur:06:42:19 flag:message
+trigger dep_7==complete
+edit JOB_ID '188928'
+label info "" # "Phase 1 ended succesfully, in TS4: START 2023-09-08 15:14 / FINISH: 2023-09-08 15:16"
+task dep_5 # state:queued dur:06:42:19 flag:message
+trigger dep_7==complete
+edit JOB_ID '188929'
+label info "" # "Phase 1 ended succesfully, in TS5: START 2023-09-08 15:22 / FINISH: 2023-09-08 15:23"
+task dep_6 # state:queued dur:06:42:19 flag:message
+trigger dep_7==complete
+edit JOB_ID '188930'
+label info "" # "Phase 1 ended succesfully, in TS6: START 2023-09-08 15:22 / FINISH: 2023-09-08 15:22"
+task dep_7 # state:queued dur:06:42:19 flag:message
+edit JOB_ID '188878'
+label info "" # "Phase 1 ended succesfully, in TS7: START 2023-09-08 14:51 / FINISH: 2023-09-08 14:52"
+task dep_8 # state:queued dur:06:42:19 flag:message
+trigger dep_7==complete
+edit JOB_ID '188932'
+label info "" # "Phase 1 ended succesfully, in TS8: START 2023-09-08 15:23 / FINISH: 2023-09-08 15:24"
+task dep_9 # state:queued dur:06:42:19 flag:message
+trigger dep_7==complete
+edit JOB_ID '188931'
+label info "" # "Phase 1 ended succesfully, in TS9: START 2023-09-08 15:22 / FINISH: 2023-09-08 15:25"
+task dep_10 # state:queued dur:06:42:19 flag:message
+trigger dep_7==complete
+edit JOB_ID '188935'
+label info "" # "Phase 1 ended succesfully, in TS10: START 2023-09-08 15:26 / FINISH: 2023-09-08 15:27"
+task dep_11 # state:queued dur:06:42:19 flag:message
+trigger dep_7==complete
+edit JOB_ID '188933'
+label info "" # "Phase 1 ended succesfully, in TS11: START 2023-09-08 15:24 / FINISH: 2023-09-08 15:26"
+task dep_12 # state:queued dur:06:42:19 flag:message
+trigger dep_7==complete
+edit JOB_ID '188934'
+label info "" # "Phase 1 ended succesfully, in TS12: START 2023-09-08 15:25 / FINISH: 2023-09-08 15:27"
+task dep_13 # state:queued dur:06:42:19 flag:message
+trigger dep_7==complete
+edit JOB_ID '188936'
+label info "" # "Phase 1 ended succesfully, in TS13: START 2023-09-08 15:27 / FINISH: 2023-09-08 15:28"
+endfamily
+endfamily
+family filter_assim # state:queued dur:06:42:19 flag:message
+trigger filter_departure_cleaver_screening==complete
+edit NODES '10'
+edit queue 'p_short'
+edit walltime '02:00'
+task update # state:queued dur:06:42:19 flag:message
+edit JOB_ID '189062'
+label info "" # "Phase 2 ended succesfully, in allTS: START 2023-09-08 17:37 / FINISH: 2023-09-08 18:21"
+endfamily
+endfamily
+family postprocess # state:queued dur:06:42:19
+trigger one_shot==complete or spreads_assim==complete
+task rename # state:queued dur:06:42:19
+task archive # state:queued dur:06:42:19
+trigger rename==complete
+task diagnostics # state:queued dur:06:42:19
+trigger rename==complete
+endfamily
+endfamily
+family forecast # state:queued
+trigger (prepare_assimilation/postprocess==complete and ../run_cycles:FORECAST==set) or (prepare_assimilation/pre_departure==complete and ../run_cycles:FORECAST==set and ../run_cycles:ACTIVATE_ASSI==clear)
+event 00Z
+event 12Z
+event ALL
+task daily_forecast # state:queued dur:06:42:08 flag:message
+label info ""
+endfamily
+task clean # try:1 state:complete dur:06:42:20 flag:message rt:00:00:01
+trigger (forecast==complete and ../run_cycles:CLEANA==set) or (../run_cycles:FORECAST==clear and ../run_cycles:CLEANA==set and prepare_assimilation/postprocess==complete)
+task ctrl # try:1 state:complete dur:06:42:19 flag:message
+trigger prepare_assimilation/postprocess==complete
+endfamily
+endsuite
+# enddef

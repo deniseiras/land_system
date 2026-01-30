@@ -1,0 +1,1024 @@
+nohup: ignoring input
+
+ START CYCLES 
+
+
+ Consistent values for CONTINUE_RUN and CYCLES number 
+
+ SCRIPTDIR= /users_home/cmcc/gc02720/spreads/spreads_scripts/cam-fv/main_scripts
+ CLONESROOT=  /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0
+ case_name= synp2_fpe0
+ nens= 5
+
+ cycle number 1
+ Assimilation required!
+1
+ check_assi is positive! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0/synp2_fpe0_0001
+ Activate assimilation for member 1
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0/synp2_fpe0_0001/env_batch.xml, check files /users_home/cmcc/gc02720/model/cesm2.3_beta11_cm3_v7z/cime/../ccs_config/machines/config_batch.xml
+ Started with 102650
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0/synp2_fpe0_0002
+ Activate assimilation for member 2
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0/synp2_fpe0_0002/env_batch.xml, check files /users_home/cmcc/gc02720/model/cesm2.3_beta11_cm3_v7z/cime/../ccs_config/machines/config_batch.xml
+ Started with 102652
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0/synp2_fpe0_0003
+ Activate assimilation for member 3
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0/synp2_fpe0_0003/env_batch.xml, check files /users_home/cmcc/gc02720/model/cesm2.3_beta11_cm3_v7z/cime/../ccs_config/machines/config_batch.xml
+ Started with 102654
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0/synp2_fpe0_0004
+ Activate assimilation for member 4
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0/synp2_fpe0_0004/env_batch.xml, check files /users_home/cmcc/gc02720/model/cesm2.3_beta11_cm3_v7z/cime/../ccs_config/machines/config_batch.xml
+ Started with 102655
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0/synp2_fpe0_0005
+ Activate assimilation for member 5
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0/synp2_fpe0_0005/env_batch.xml, check files /users_home/cmcc/gc02720/model/cesm2.3_beta11_cm3_v7z/cime/../ccs_config/machines/config_batch.xml
+ Started with 102656
+ string_id =  done(102650) && done(102652) && done(102654) && done(102655) && done(102656)
+Job has been assigned to project 'R000'.
+Job <102657> is submitted to queue <p_short>.
+<<Waiting for dispatch ...>>
+<<Starting on n074-ibj>>
+start -- BOGUS ASSIM
+Mon Jul 24 13:26:22 CEST 2023 -- END BOGUS ASSIM
+Mon Jul 24 13:26:23 CEST 2023 -- BEGIN CAM_ASSIMILATE
+FGAT is TRUE
+SCRIPTDIR= /users_home/cmcc/gc02720/spreads/spreads_scripts/cam-fv/main_scripts
+ DARTROOT=  /users_home/cmcc/gc02720/spreads
+d4o modules for juno
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+export: Command not found.
+export: Command not found.
+TBBMALLOC_DIR: Undefined variable.
+ CLONESROOT=  /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0
+ case_name= synp2_fpe0
+NTSLOTS = 13
+ CASEROOT0001= /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0/synp2_fpe0_0001
+ xmlquery start
+ xmlquery end
+ TOTALPES= 180
+ TMPROOT= /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0
+ CASESRUNROOT= /work/cmcc/gc02720/CMCC-CM
+
+ START CHECK JOBS
+
+ SCRIPTDIR= /users_home/cmcc/gc02720/spreads/spreads_scripts/cam-fv/main_scripts
+ CLONESROOT=  /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0
+ case_name= synp2_fpe0
+ nens= 5
+
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0/synp2_fpe0_0001
+resubmit_num 0
+ job finished! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0/synp2_fpe0_0002
+resubmit_num 0
+ job finished! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0/synp2_fpe0_0003
+resubmit_num 0
+ job finished! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0/synp2_fpe0_0004
+resubmit_num 0
+ job finished! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/synp2_fpe0/synp2_fpe0_0005
+resubmit_num 0
+ job finished! 
+ All jobs finished correctly!
+
+ END CHECK JOBS
+
+rundir
+/work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run
+valid time of model is 2017 10 2 21600 (seconds)
+valid time of model is 2017 10 2 6 (hours)
+INFVAL = 5
+ Inflation used. Restage  previous inflation files if any exist.
+ No HIDE dir found.
+Mon Jul 24 13:26:39 CEST 2023 -- BEGIN COPY BLOCK
+Mon Jul 24 13:26:39 CEST 2023 -- END COPY BLOCK
+stages_except_output = {forecast}
+stages_all = {forecast,output}
+ls: cannot access '*.db': No such file or directory
+Copy the new databases in TS1
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS1/catalog.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS1/SYNP.1.db
+ls: cannot access '*.db': No such file or directory
+Copy the new databases in TS2
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS2/catalog.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS2/SYNP.1.db
+ls: cannot access '*.db': No such file or directory
+Copy the new databases in TS3
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS3/catalog.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS3/SYNP.1.db
+ls: cannot access '*.db': No such file or directory
+Copy the new databases in TS4
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS4/catalog.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS4/SYNP.1.db
+ls: cannot access '*.db': No such file or directory
+Copy the new databases in TS5
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS5/catalog.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS5/SYNP.1.db
+ls: cannot access '*.db': No such file or directory
+Copy the new databases in TS6
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS6/catalog.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS6/SYNP.1.db
+ls: cannot access '*.db': No such file or directory
+Copy the new databases in TS7
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS7/catalog.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS7/SYNP.1.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS7/SYNP.4.db
+ls: cannot access '*.db': No such file or directory
+Copy the new databases in TS8
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS8/catalog.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS8/SYNP.1.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS8/SYNP.4.db
+ls: cannot access '*.db': No such file or directory
+Copy the new databases in TS9
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS9/catalog.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS9/SYNP.1.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS9/SYNP.4.db
+ls: cannot access '*.db': No such file or directory
+Copy the new databases in TS10
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS10/catalog.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS10/SYNP.1.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS10/SYNP.4.db
+ls: cannot access '*.db': No such file or directory
+Copy the new databases in TS11
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS11/catalog.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS11/SYNP.1.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS11/SYNP.4.db
+ls: cannot access '*.db': No such file or directory
+Copy the new databases in TS12
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS12/catalog.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS12/SYNP.1.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS12/SYNP.4.db
+ls: cannot access '*.db': No such file or directory
+Copy the new databases in TS13
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS13/catalog.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS13/SYNP.1.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS13/SYNP.2.db
+Copy /work/cmcc/gc02720/b2d4o_synp2/2017/10/2017100206/TS13/SYNP.4.db
+Mon Jul 24 13:26:41 CEST 2023 -- BEGIN PREPROCESSING
+Mon Jul 24 13:26:41 CEST 2023
+BEGIN PYTHON PROCESS 
+Member: 1, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-10800.nc
+Member: 1, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-12600.nc
+Member: 1, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-14400.nc
+Member: 1, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-16200.nc
+Member: 1, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-18000.nc
+Member: 1, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-19800.nc
+Member: 1, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-21600.nc
+Member: 1, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-23400.nc
+Member: 1, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-25200.nc
+Member: 1, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-27000.nc
+Member: 1, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-28800.nc
+Member: 1, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-30600.nc
+Member: 1, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-32400.nc
+Member: 2, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-10800.nc
+Member: 2, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-12600.nc
+Member: 2, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-14400.nc
+Member: 2, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-16200.nc
+Member: 2, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-18000.nc
+Member: 2, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-19800.nc
+Member: 2, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-21600.nc
+Member: 2, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-23400.nc
+Member: 2, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-25200.nc
+Member: 2, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-27000.nc
+Member: 2, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-28800.nc
+Member: 2, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-30600.nc
+Member: 2, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-32400.nc
+Member: 3, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-10800.nc
+Member: 3, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-12600.nc
+Member: 3, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-14400.nc
+Member: 3, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-16200.nc
+Member: 3, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-18000.nc
+Member: 3, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-19800.nc
+Member: 3, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-21600.nc
+Member: 3, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-23400.nc
+Member: 3, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-25200.nc
+Member: 3, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-27000.nc
+Member: 3, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-28800.nc
+Member: 3, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-30600.nc
+Member: 3, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-32400.nc
+Member: 4, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-10800.nc
+Member: 4, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-12600.nc
+Member: 4, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-14400.nc
+Member: 4, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-16200.nc
+Member: 4, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-18000.nc
+Member: 4, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-19800.nc
+Member: 4, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-21600.nc
+Member: 4, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-23400.nc
+Member: 4, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-25200.nc
+Member: 4, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-27000.nc
+Member: 4, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-28800.nc
+Member: 4, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-30600.nc
+Member: 4, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-32400.nc
+Member: 5, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-10800.nc
+Member: 5, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-12600.nc
+Member: 5, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-14400.nc
+Member: 5, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-16200.nc
+Member: 5, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-18000.nc
+Member: 5, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-19800.nc
+Member: 5, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-21600.nc
+Member: 5, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-23400.nc
+Member: 5, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-25200.nc
+Member: 5, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-27000.nc
+Member: 5, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-28800.nc
+Member: 5, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-30600.nc
+Member: 5, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-32400.nc
+Mon Jul 24 13:29:11 CEST 2023
+END PYTHON PROCESS 
+ Extract information phis from /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.h0.2017-10-02-00000.nc
+ PRIOR_INF= 5
+ POSTE_INF= 0
+nfiles = 0 
+ CALLING  FILL INFLATION RESTART
+Mon Jul 24 13:29:12 CEST 2023
+BEGIN FILTER PROCESSES /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0 inflation  
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+[0] 2023-07-24 13:29:15: Starting D4O_init() : SQLite 3.40.0 (3040000) -- 2022-11-16 12:10:08 89c459e766ea7e9165d0beeb124708b955a4950d0f4792f457465d71b158d318 : # of MPI-ranks = 1 : busy_timeout_ms = 0
+[0] 2023-07-24 13:29:24: Ending D4O_fini()
+ END  FILL INFLATION RESTART
+add TS TREFHT LANDFRAC QVMR to the inflation files
+dict_keys(['lon', 'slon', 'lat', 'slat', 'lev', 'ilev', 'hyam', 'hybm', 'hyai', 'hybi', 'gw', 'P0', 'T', 'US', 'VS', 'Q', 'CLDLIQ', 'CLDICE', 'TREFHT', 'LANDFRAC', 'TS', 'QVMR', 'PS', 'date', 'datesec'])
+variable  TS  already exists
+variable  TS  already exists
+variable  TREFHT  already exists
+variable  TREFHT  already exists
+variable  LANDFRAC  already exists
+variable  LANDFRAC  already exists
+variable  QVMR  already exists
+variable  QVMR  already exists
+Posterior Inflation not requested for this assimilation.
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS1/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS1/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS2/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS2/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS3/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS3/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS4/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS4/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS5/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS5/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS6/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS6/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS7/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS7/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS8/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS8/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS9/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS9/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS10/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS10/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS11/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS11/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS12/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS12/input_priorinf_sd.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_mean.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS13/input_priorinf_mean.nc'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/input_priorinf_sd.nc' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS13/input_priorinf_sd.nc'
+Mon Jul 24 13:29:36 CEST 2023 -- END PREPROCESSING
+Mon Jul 24 13:29:36 CEST 2023 -- BEGIN FILTER
+input/output_file_lis_name = cam_init_files
+FGAT ON, TWO STEP ASSIMILATION, d4o_departure=yes/no
+ENTER PHASE 1, PRIOR DEPARTURES COMPUTATION
+TS1: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-10800.nc in cam_init_files
+TS2: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-12600.nc in cam_init_files
+TS3: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-14400.nc in cam_init_files
+TS4: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-16200.nc in cam_init_files
+TS5: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-18000.nc in cam_init_files
+TS6: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-19800.nc in cam_init_files
+TS7: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-21600.nc in cam_init_files
+TS8: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-23400.nc in cam_init_files
+TS9: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-25200.nc in cam_init_files
+TS10: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-27000.nc in cam_init_files
+TS11: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-28800.nc in cam_init_files
+TS12: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-30600.nc in cam_init_files
+TS13: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001.cam.i.2017-10-02-32400.nc in cam_init_files
+TS1: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-10800.nc in cam_init_files
+TS2: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-12600.nc in cam_init_files
+TS3: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-14400.nc in cam_init_files
+TS4: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-16200.nc in cam_init_files
+TS5: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-18000.nc in cam_init_files
+TS6: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-19800.nc in cam_init_files
+TS7: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-21600.nc in cam_init_files
+TS8: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-23400.nc in cam_init_files
+TS9: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-25200.nc in cam_init_files
+TS10: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-27000.nc in cam_init_files
+TS11: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-28800.nc in cam_init_files
+TS12: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-30600.nc in cam_init_files
+TS13: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run/synp2_fpe0_0002.cam.i.2017-10-02-32400.nc in cam_init_files
+TS1: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-10800.nc in cam_init_files
+TS2: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-12600.nc in cam_init_files
+TS3: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-14400.nc in cam_init_files
+TS4: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-16200.nc in cam_init_files
+TS5: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-18000.nc in cam_init_files
+TS6: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-19800.nc in cam_init_files
+TS7: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-21600.nc in cam_init_files
+TS8: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-23400.nc in cam_init_files
+TS9: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-25200.nc in cam_init_files
+TS10: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-27000.nc in cam_init_files
+TS11: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-28800.nc in cam_init_files
+TS12: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-30600.nc in cam_init_files
+TS13: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run/synp2_fpe0_0003.cam.i.2017-10-02-32400.nc in cam_init_files
+TS1: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-10800.nc in cam_init_files
+TS2: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-12600.nc in cam_init_files
+TS3: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-14400.nc in cam_init_files
+TS4: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-16200.nc in cam_init_files
+TS5: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-18000.nc in cam_init_files
+TS6: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-19800.nc in cam_init_files
+TS7: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-21600.nc in cam_init_files
+TS8: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-23400.nc in cam_init_files
+TS9: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-25200.nc in cam_init_files
+TS10: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-27000.nc in cam_init_files
+TS11: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-28800.nc in cam_init_files
+TS12: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-30600.nc in cam_init_files
+TS13: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run/synp2_fpe0_0004.cam.i.2017-10-02-32400.nc in cam_init_files
+TS1: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-10800.nc in cam_init_files
+TS2: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-12600.nc in cam_init_files
+TS3: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-14400.nc in cam_init_files
+TS4: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-16200.nc in cam_init_files
+TS5: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-18000.nc in cam_init_files
+TS6: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-19800.nc in cam_init_files
+TS7: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-21600.nc in cam_init_files
+TS8: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-23400.nc in cam_init_files
+TS9: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-25200.nc in cam_init_files
+TS10: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-27000.nc in cam_init_files
+TS11: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-28800.nc in cam_init_files
+TS12: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-30600.nc in cam_init_files
+TS13: insert /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run/synp2_fpe0_0005.cam.i.2017-10-02-32400.nc in cam_init_files
+change the stages to write (no forecast) in TS1
+change the stages to write (no forecast) in TS2
+change the stages to write (no forecast) in TS3
+change the stages to write (no forecast) in TS4
+change the stages to write (no forecast) in TS5
+change the stages to write (no forecast) in TS6
+change the stages to write (no forecast) in TS7
+change the stages to write (no forecast) in TS8
+change the stages to write (no forecast) in TS9
+change the stages to write (no forecast) in TS10
+change the stages to write (no forecast) in TS11
+change the stages to write (no forecast) in TS12
+change the stages to write (no forecast) in TS13
+CALLING take_f.sh
+Mon Jul 24 13:29:40 CEST 2023
+BEGIN FILTER PROCESSES /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0 filter 13 yes
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+TS1: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS2: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS3: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS4: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS5: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS6: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS7: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS8: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS9: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS10: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS11: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS12: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+TS13: change the name of the process in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+wait for  done(102684) && done(102685) && done(102686) && done(102687) && done(102688) && done(102689) && done(102690) && done(102691) && done(102692) && done(102693) && done(102694) && done(102695) && done(102696)
+Job has been assigned to project 'R000'.
+Job <102697> is submitted to queue <p_short>.
+<<Waiting for dispatch ...>>
+<<Starting on n102-ibj>>
+start -- BOGUS DEP
+Mon Jul 24 13:31:51 CEST 2023 -- END BOGUS DEP
+END take_f.sh
+ phase 1 ended succesfully, in TS1
+ phase 1 ended succesfully, in TS2
+ phase 1 ended succesfully, in TS3
+ phase 1 ended succesfully, in TS4
+ phase 1 ended succesfully, in TS5
+ phase 1 ended succesfully, in TS6
+ phase 1 ended succesfully, in TS7
+ phase 1 ended succesfully, in TS8
+ phase 1 ended succesfully, in TS9
+ phase 1 ended succesfully, in TS10
+ phase 1 ended succesfully, in TS11
+ phase 1 ended succesfully, in TS12
+ phase 1 ended succesfully, in TS13
+PHASE 1 ended succesfully
+DB MERGING, PREPARATION FOR PHASE 2
+mkdir: created directory 'logs'
+[1690198312.576448279] Mon Jul 24 13:31:52 CEST 2023: Temporary dumps written to /tmp/gc02720/d4ojoin.3847478 on host login1.juno.cmcc.scc
+mkdir: created directory '/tmp/gc02720/d4ojoin.3847478'
+[1690198312.810706089] Mon Jul 24 13:31:52 CEST 2023: Temporary dumps written to /tmp/gc02720/d4ojoin.3847476 on host login1.juno.cmcc.scc
+mkdir: created directory '/tmp/gc02720/d4ojoin.3847476'
+[1690198312.696723221] Mon Jul 24 13:31:52 CEST 2023: Temporary dumps written to /tmp/gc02720/d4ojoin.3847479 on host login1.juno.cmcc.scc
+[1690198312.944658652] Mon Jul 24 13:31:52 CEST 2023: Will join input database#1 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS10/SYNP.1.db' (294912 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.1.db' (0 bytes) ...
+[1690198312.959168500] Mon Jul 24 13:31:52 CEST 2023: Will join input database#1 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS13/SYNP.2.db' (9056256 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.2.db' (0 bytes) ...
+mkdir: created directory '/tmp/gc02720/d4ojoin.3847479'
+[1690198313.070818009] Mon Jul 24 13:31:53 CEST 2023: Will join input database#1 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS10/SYNP.4.db' (294912 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.4.db' (0 bytes) ...
+[1690198314.474662463] Mon Jul 24 13:31:54 CEST 2023: Joining 1 databases into '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.2.db' ...
+[1690198314.494637733] Mon Jul 24 13:31:54 CEST 2023: Will join input database#2 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS11/SYNP.4.db' (7888896 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.4.db' (0 bytes) ...
+[1690198314.520018017] Mon Jul 24 13:31:54 CEST 2023: Will join input database#2 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS11/SYNP.1.db' (8130560 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.1.db' (0 bytes) ...
+[1690198314.589108762] Mon Jul 24 13:31:54 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS13/SYNP.2.db (9056256 bytes)
+... INSERT INTO toc : 36 columns x 10 rows
+... INSERT INTO hdr : 18 columns x 6487 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 17367 rows
+... INSERT INTO ens : 7 columns x 86835 rows
+Memory Used:                         9488568 (max 11656768) bytes
+Number of Outstanding Allocations:   2789 (max 3731)
+Number of Pcache Overflow Bytes:     9273200 (max 11291624) bytes
+Largest Allocation:                  87200 bytes
+Largest Pcache Allocation:           4360 bytes
+Lookaside Slots Used:                36 (max 123)
+Successful lookaside attempts:       119208
+Lookaside failures due to size:      33
+Lookaside failures due to OOM:       637
+Pager Heap Usage:                    9322920 bytes
+Page cache hits:                     201765
+Page cache misses:                   0
+Page cache writes:                   2200
+Page cache spills:                   0
+Schema Heap Usage:                   35776 bytes
+Statement Heap/Lookaside Usage:      0 bytes
+Bytes received by read():            6887169
+Bytes sent to write():               9011636
+Read() system calls:                 1041
+Write() system calls:                2210
+Bytes read from storage:             0
+Bytes written to storage:            0
+Cancelled write bytes:               0
+#table,nrows,ncols
+toc,10,36
+hdr,6487,18
+sat,0,11
+body,17367,21
+ens,86835,7
+[1690198314.911516815] Mon Jul 24 13:31:54 CEST 2023: Done with '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.2.db' (8785920 bytes)
+-rw-r--r-- 1 gc02720 ada 8785920 Jul 24 13:31 /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.2.db
++ [d4ojoin:252]: ls -ltra /tmp/gc02720/d4ojoin.3847478
+total 20
+drwxr-xr-x 17 gc02720 ada  4096 Jul 24 13:31 ..
+-rw-r--r--  1 gc02720 ada 10042 Jul 24 13:31 .schema
+drwxr-xr-x  2 gc02720 ada    36 Jul 24 13:31 .
+-rw-r--r--  1 gc02720 ada  3803 Jul 24 13:31 .create
++ [d4ojoin:253]: [[ 0 -eq 0 ]]
++ [d4ojoin:253]: rm -rfv /tmp/gc02720/d4ojoin.3847478
+removed '/tmp/gc02720/d4ojoin.3847478/.schema'
+removed '/tmp/gc02720/d4ojoin.3847478/.create'
+removed directory '/tmp/gc02720/d4ojoin.3847478'
++ [d4ojoin:255]: exit 0
+[1690198315.298088562] Mon Jul 24 13:31:55 CEST 2023: Will join input database#3 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS12/SYNP.4.db' (307200 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.4.db' (0 bytes) ...
+[1690198315.309733732] Mon Jul 24 13:31:55 CEST 2023: Will join input database#3 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS12/SYNP.1.db' (319488 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.1.db' (0 bytes) ...
+[1690198316.117192703] Mon Jul 24 13:31:56 CEST 2023: Will join input database#4 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS13/SYNP.4.db' (18444288 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.4.db' (0 bytes) ...
+[1690198316.149063550] Mon Jul 24 13:31:56 CEST 2023: Will join input database#4 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS13/SYNP.1.db' (9261056 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.1.db' (0 bytes) ...
+[1690198316.954000591] Mon Jul 24 13:31:56 CEST 2023: Will join input database#5 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS1/SYNP.1.db' (110592 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.1.db' (0 bytes) ...
+[1690198316.992757963] Mon Jul 24 13:31:57 CEST 2023: Will join input database#5 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS7/SYNP.4.db' (19488768 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.4.db' (0 bytes) ...
+[1690198317.790729855] Mon Jul 24 13:31:57 CEST 2023: Will join input database#6 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS2/SYNP.1.db' (221184 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.1.db' (0 bytes) ...
+[1690198317.914214269] Mon Jul 24 13:31:57 CEST 2023: Will join input database#6 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS8/SYNP.4.db' (217088 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.4.db' (0 bytes) ...
+[1690198318.634241076] Mon Jul 24 13:31:58 CEST 2023: Will join input database#7 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS3/SYNP.1.db' (7610368 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.1.db' (0 bytes) ...
+[1690198318.730262148] Mon Jul 24 13:31:58 CEST 2023: Will join input database#7 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS9/SYNP.4.db' (7823360 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.4.db' (0 bytes) ...
+[1690198319.461922696] Mon Jul 24 13:31:59 CEST 2023: Will join input database#8 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS4/SYNP.1.db' (294912 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.1.db' (0 bytes) ...
+[1690198319.509100189] Mon Jul 24 13:31:59 CEST 2023: Joining 7 databases into '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.4.db' ...
+[1690198319.609651157] Mon Jul 24 13:31:59 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS10/SYNP.4.db (294912 bytes)
+... INSERT INTO toc : 36 columns x 9 rows
+... INSERT INTO hdr : 18 columns x 146 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 373 rows
+... INSERT INTO ens : 7 columns x 1865 rows
+[1690198319.693072280] Mon Jul 24 13:31:59 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS11/SYNP.4.db (7888896 bytes)
+... INSERT INTO toc : 36 columns x 32 rows
+... INSERT INTO hdr : 18 columns x 6071 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 14851 rows
+... INSERT INTO ens : 7 columns x 74255 rows
+[1690198320.016415862] Mon Jul 24 13:32:00 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS12/SYNP.4.db (307200 bytes)
+... INSERT INTO toc : 36 columns x 5 rows
+... INSERT INTO hdr : 18 columns x 160 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 417 rows
+... INSERT INTO ens : 7 columns x 2085 rows
+[1690198320.102387431] Mon Jul 24 13:32:00 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS13/SYNP.4.db (18444288 bytes)
+... INSERT INTO toc : 36 columns x 32 rows
+... INSERT INTO hdr : 18 columns x 13265 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 34267 rows
+[1690198320.279916354] Mon Jul 24 13:32:00 CEST 2023: Will join input database#9 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS5/SYNP.1.db' (7720960 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.1.db' (0 bytes) ...
+... INSERT INTO ens : 7 columns x 171335 rows
+[1690198320.747773660] Mon Jul 24 13:32:00 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS7/SYNP.4.db (19488768 bytes)
+... INSERT INTO toc : 36 columns x 36 rows
+... INSERT INTO hdr : 18 columns x 14318 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 36769 rows
+[1690198321.060835011] Mon Jul 24 13:32:01 CEST 2023: Will join input database#10 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS6/SYNP.1.db' (327680 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.1.db' (0 bytes) ...
+... INSERT INTO ens : 7 columns x 183845 rows
+[1690198321.555192939] Mon Jul 24 13:32:01 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS8/SYNP.4.db (217088 bytes)
+... INSERT INTO toc : 36 columns x 9 rows
+... INSERT INTO hdr : 18 columns x 92 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 219 rows
+... INSERT INTO ens : 7 columns x 1095 rows
+[1690198321.642654631] Mon Jul 24 13:32:01 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS9/SYNP.4.db (7823360 bytes)
+... INSERT INTO toc : 36 columns x 32 rows
+... INSERT INTO hdr : 18 columns x 6042 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 14734 rows
+... INSERT INTO ens : 7 columns x 73670 rows
+[1690198321.847491541] Mon Jul 24 13:32:01 CEST 2023: Will join input database#11 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS7/SYNP.1.db' (20283392 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.1.db' (0 bytes) ...
+Memory Used:                         57075992 (max 59248344) bytes
+Number of Outstanding Allocations:   13681 (max 14624)
+Number of Pcache Overflow Bytes:     56762320 (max 58784840) bytes
+Largest Allocation:                  131072 bytes
+Largest Pcache Allocation:           4360 bytes
+Lookaside Slots Used:                36 (max 123)
+Successful lookaside attempts:       730913
+Lookaside failures due to size:      87
+Lookaside failures due to OOM:       4459
+Pager Heap Usage:                    56637768 bytes
+Page cache hits:                     2623760
+Page cache misses:                   0
+Page cache writes:                   15109
+Page cache spills:                   0
+Schema Heap Usage:                   35776 bytes
+Statement Heap/Lookaside Usage:      0 bytes
+Bytes received by read():            35572032
+Bytes sent to write():               61889416
+Read() system calls:                 6168
+Write() system calls:                15167
+Bytes read from storage:             0
+Bytes written to storage:            0
+Cancelled write bytes:               0
+#table,nrows,ncols
+toc,155,36
+hdr,40094,18
+sat,0,11
+body,101630,21
+ens,508150,7
+[1690198322.023103799] Mon Jul 24 13:32:02 CEST 2023: Done with '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.4.db' (53399552 bytes)
+-rw-r--r-- 1 gc02720 ada 53399552 Jul 24 13:32 /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.4.db
++ [d4ojoin:252]: ls -ltra /tmp/gc02720/d4ojoin.3847479
+total 36
+-rw-r--r--  1 gc02720 ada 10042 Jul 24 13:31 .schema
+drwxr-xr-x  2 gc02720 ada    36 Jul 24 13:31 .
+drwxr-xr-x 16 gc02720 ada   319 Jul 24 13:31 ..
+-rw-r--r--  1 gc02720 ada 21658 Jul 24 13:31 .create
++ [d4ojoin:253]: [[ 0 -eq 0 ]]
++ [d4ojoin:253]: rm -rfv /tmp/gc02720/d4ojoin.3847479
+removed '/tmp/gc02720/d4ojoin.3847479/.schema'
+removed '/tmp/gc02720/d4ojoin.3847479/.create'
+removed directory '/tmp/gc02720/d4ojoin.3847479'
++ [d4ojoin:255]: exit 0
+[1690198322.611871489] Mon Jul 24 13:32:02 CEST 2023: Will join input database#12 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS8/SYNP.1.db' (221184 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.1.db' (0 bytes) ...
+[1690198323.353145298] Mon Jul 24 13:32:03 CEST 2023: Will join input database#13 '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS9/SYNP.1.db' (8048640 bytes) to '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.1.db' (0 bytes) ...
+[1690198324.111444622] Mon Jul 24 13:32:04 CEST 2023: Joining 13 databases into '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.1.db' ...
+[1690198324.205385290] Mon Jul 24 13:32:04 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS10/SYNP.1.db (294912 bytes)
+... INSERT INTO toc : 36 columns x 9 rows
+... INSERT INTO hdr : 18 columns x 146 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 373 rows
+... INSERT INTO ens : 7 columns x 1865 rows
+[1690198324.279138337] Mon Jul 24 13:32:04 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS11/SYNP.1.db (8130560 bytes)
+... INSERT INTO toc : 36 columns x 32 rows
+... INSERT INTO hdr : 18 columns x 6071 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 14851 rows
+... INSERT INTO ens : 7 columns x 74255 rows
+[1690198324.595142332] Mon Jul 24 13:32:04 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS12/SYNP.1.db (319488 bytes)
+... INSERT INTO toc : 36 columns x 5 rows
+... INSERT INTO hdr : 18 columns x 160 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 417 rows
+... INSERT INTO ens : 7 columns x 2085 rows
+[1690198324.684657073] Mon Jul 24 13:32:04 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS13/SYNP.1.db (9261056 bytes)
+... INSERT INTO toc : 36 columns x 32 rows
+... INSERT INTO hdr : 18 columns x 6778 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 16900 rows
+... INSERT INTO ens : 7 columns x 84500 rows
+[1690198325.039239681] Mon Jul 24 13:32:05 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS1/SYNP.1.db (110592 bytes)
+... INSERT INTO toc : 36 columns x 5 rows
+... INSERT INTO hdr : 18 columns x 20 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 41 rows
+... INSERT INTO ens : 7 columns x 205 rows
+[1690198325.116897684] Mon Jul 24 13:32:05 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS2/SYNP.1.db (221184 bytes)
+... INSERT INTO toc : 36 columns x 9 rows
+... INSERT INTO hdr : 18 columns x 101 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 234 rows
+... INSERT INTO ens : 7 columns x 1170 rows
+[1690198325.197222284] Mon Jul 24 13:32:05 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS3/SYNP.1.db (7610368 bytes)
+... INSERT INTO toc : 36 columns x 32 rows
+... INSERT INTO hdr : 18 columns x 5963 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 14379 rows
+... INSERT INTO ens : 7 columns x 71895 rows
+[1690198325.545952588] Mon Jul 24 13:32:05 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS4/SYNP.1.db (294912 bytes)
+... INSERT INTO toc : 36 columns x 9 rows
+... INSERT INTO hdr : 18 columns x 151 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 387 rows
+... INSERT INTO ens : 7 columns x 1935 rows
+[1690198325.634894882] Mon Jul 24 13:32:05 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS5/SYNP.1.db (7720960 bytes)
+... INSERT INTO toc : 36 columns x 32 rows
+... INSERT INTO hdr : 18 columns x 5948 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 14555 rows
+... INSERT INTO ens : 7 columns x 72775 rows
+[1690198325.990259045] Mon Jul 24 13:32:06 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS6/SYNP.1.db (327680 bytes)
+... INSERT INTO toc : 36 columns x 9 rows
+... INSERT INTO hdr : 18 columns x 169 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 429 rows
+... INSERT INTO ens : 7 columns x 2145 rows
+[1690198326.077595060] Mon Jul 24 13:32:06 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS7/SYNP.1.db (20283392 bytes)
+... INSERT INTO toc : 36 columns x 36 rows
+... INSERT INTO hdr : 18 columns x 14594 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 37576 rows
+... INSERT INTO ens : 7 columns x 187880 rows
+[1690198326.859129139] Mon Jul 24 13:32:06 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS8/SYNP.1.db (221184 bytes)
+... INSERT INTO toc : 36 columns x 9 rows
+... INSERT INTO hdr : 18 columns x 92 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 219 rows
+... INSERT INTO ens : 7 columns x 1095 rows
+[1690198326.939995788] Mon Jul 24 13:32:06 CEST 2023: SELECTing from database /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/TS9/SYNP.1.db (8048640 bytes)
+... INSERT INTO toc : 36 columns x 32 rows
+... INSERT INTO hdr : 18 columns x 6042 rows
+... INSERT INTO sat : 11 columns x 0 rows
+... INSERT INTO body : 21 columns x 14734 rows
+... INSERT INTO ens : 7 columns x 73670 rows
+Memory Used:                         65852672 (max 68023824) bytes
+Number of Outstanding Allocations:   15694 (max 16637)
+Number of Pcache Overflow Bytes:     65539000 (max 67561520) bytes
+Largest Allocation:                  131072 bytes
+Largest Pcache Allocation:           4360 bytes
+Lookaside Slots Used:                36 (max 123)
+Successful lookaside attempts:       847397
+Lookaside failures due to size:      141
+Lookaside failures due to OOM:       8281
+Pager Heap Usage:                    65382240 bytes
+Page cache hits:                     3144802
+Page cache misses:                   0
+Page cache writes:                   18597
+Page cache spills:                   0
+Schema Heap Usage:                   35776 bytes
+Statement Heap/Lookaside Usage:      0 bytes
+Bytes received by read():            48343912
+Bytes sent to write():               76178760
+Read() system calls:                 7409
+Write() system calls:                18703
+Bytes read from storage:             0
+Bytes written to storage:            0
+Cancelled write bytes:               0
+#table,nrows,ncols
+toc,251,36
+hdr,46235,18
+sat,0,11
+body,115095,21
+ens,575475,7
+[1690198327.309599814] Mon Jul 24 13:32:07 CEST 2023: Done with '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.1.db' (61644800 bytes)
+-rw-r--r-- 1 gc02720 ada 61644800 Jul 24 13:32 /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/SYNP.1.db
++ [d4ojoin:252]: ls -ltra /tmp/gc02720/d4ojoin.3847476
+total 52
+-rw-r--r--  1 gc02720 ada 10042 Jul 24 13:31 .schema
+drwxr-xr-x  2 gc02720 ada    36 Jul 24 13:31 .
+drwxr-xr-x 15 gc02720 ada   296 Jul 24 13:32 ..
+-rw-r--r--  1 gc02720 ada 39490 Jul 24 13:32 .create
++ [d4ojoin:253]: [[ 0 -eq 0 ]]
++ [d4ojoin:253]: rm -rfv /tmp/gc02720/d4ojoin.3847476
+removed '/tmp/gc02720/d4ojoin.3847476/.schema'
+removed '/tmp/gc02720/d4ojoin.3847476/.create'
+removed directory '/tmp/gc02720/d4ojoin.3847476'
++ [d4ojoin:255]: exit 0
+3.40.0 2022-11-16 12:10:08 89c459e766ea7e9165d0beeb124708b955a4950d0f4792f457465d71b158d318
+*** A sample catalog outputs follow ...
+SELECT reportype,SUM(nbody) AS num_obs,description,kind,bufrtype,subtype,varno,obstype,codetype,IIF(platform_id IS NOT NULL,platform_id,NULL) AS platform_id,IIF(rttov_sat_id IS NOT NULL,rttov_sat_id,NULL) AS rttov_sat_id,IIF(rttov_sensor_id IS NOT NULL,rttov_sensor_id,NULL) AS rttov_sensor_id,IIF(sat_instr IS NOT NULL,sat_instr,NULL) AS sat_instr,IIF(sat_id IS NOT NULL,sat_id,NULL) AS sat_id,IIF(sensor_id IS NOT NULL,sensor_id,NULL) AS sensor_id,printf('%s|%s|%s',ecmwf_varno_description,ecmwf_obs_description,ecmwf_sat_description) AS ecmwf_composite_description FROM catalog WHERE label IS NOT NULL GROUP BY reportype,description,kind,bufrtype,subtype,varno,obstype,codetype,platform_id,rttov_sat_id,rttov_sensor_id,sat_instr,sat_id,sensor_id ORDER BY reportype,kind,varno
+┌───────────┬─────────┬──────────────────────────────┬──────┬──────────┬─────────┬───────┬─────────┬──────────┬─────────────┬──────────────┬─────────────────┬───────────┬────────┬───────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ reportype │ num_obs │         description          │ kind │ bufrtype │ subtype │ varno │ obstype │ codetype │ platform_id │ rttov_sat_id │ rttov_sensor_id │ sat_instr │ sat_id │ sensor_id │                                              ecmwf_composite_description                                              │
+├───────────┼─────────┼──────────────────────────────┼──────┼──────────┼─────────┼───────┼─────────┼──────────┼─────────────┼──────────────┼─────────────────┼───────────┼────────┼───────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ 16001     │ 24098   │ TEMPERATURE                  │ 1    │ 0        │ 3       │ 39    │ 1       │ 14       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ t2m -- 2m temperature (K)|CONV:Automatic Land SYNOP:Land Surface:Automatic Land SYNOP:SYNOP:Automatic Land SYNOP|     │
+│ 16001     │ 24098   │ LAND_SFC_U_WIND_COMPONENT    │ 29   │ 0        │ 3       │ 41    │ 1       │ 14       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ u10m -- 10m u component (m/s)|CONV:Automatic Land SYNOP:Land Surface:Automatic Land SYNOP:SYNOP:Automatic Land SYNOP| │
+│ 16001     │ 24098   │ LAND_SFC_V_WIND_COMPONENT    │ 30   │ 0        │ 3       │ 42    │ 1       │ 14       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ v10m -- 10m v component (m/s)|CONV:Automatic Land SYNOP:Land Surface:Automatic Land SYNOP:SYNOP:Automatic Land SYNOP| │
+│ 16001     │ 24098   │ LAND_SFC_SPECIFIC_HUMIDITY   │ 32   │ 0        │ 3       │ 281   │ 1       │ 14       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ q2m -- 2m specific humidity|CONV:Automatic Land SYNOP:Land Surface:Automatic Land SYNOP:SYNOP:Automatic Land SYNOP|   │
+│ 16001     │ 48196   │ LAND_SFC_PRESSURE            │ 33   │ 0        │ 3       │ 110   │ 1       │ 14       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ ps -- surface pressure|CONV:Automatic Land SYNOP:Land Surface:Automatic Land SYNOP:SYNOP:Automatic Land SYNOP|        │
+│ 16002     │ 22081   │ TEMPERATURE                  │ 1    │ 0        │ 1       │ 39    │ 1       │ 11       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ t2m -- 2m temperature (K)|CONV:Manual Land SYNOP:Land Surface:Manual Land SYNOP:SYNOP:Manual Land SYNOP|              │
+│ 16002     │ 22081   │ LAND_SFC_U_WIND_COMPONENT    │ 29   │ 0        │ 1       │ 41    │ 1       │ 11       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ u10m -- 10m u component (m/s)|CONV:Manual Land SYNOP:Land Surface:Manual Land SYNOP:SYNOP:Manual Land SYNOP|          │
+│ 16002     │ 22081   │ LAND_SFC_V_WIND_COMPONENT    │ 30   │ 0        │ 1       │ 42    │ 1       │ 11       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ v10m -- 10m v component (m/s)|CONV:Manual Land SYNOP:Land Surface:Manual Land SYNOP:SYNOP:Manual Land SYNOP|          │
+│ 16002     │ 22081   │ LAND_SFC_SPECIFIC_HUMIDITY   │ 32   │ 0        │ 1       │ 281   │ 1       │ 11       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ q2m -- 2m specific humidity|CONV:Manual Land SYNOP:Land Surface:Manual Land SYNOP:SYNOP:Manual Land SYNOP|            │
+│ 16002     │ 44162   │ LAND_SFC_PRESSURE            │ 33   │ 0        │ 1       │ 110   │ 1       │ 11       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ ps -- surface pressure|CONV:Manual Land SYNOP:Land Surface:Manual Land SYNOP:SYNOP:Manual Land SYNOP|                 │
+│ 16006     │ 5762    │ MARINE_SFC_U_WIND_COMPONENT  │ 24   │ 1        │ 13      │ 41    │ 1       │ 24       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ u10m -- 10m u component (m/s)|CONV:Automatic SHIP:Sea Surface:Automatic SHIP:SYNOP:Automatic SHIP|                    │
+│ 16006     │ 5762    │ MARINE_SFC_V_WIND_COMPONENT  │ 25   │ 1        │ 13      │ 42    │ 1       │ 24       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ v10m -- 10m v component (m/s)|CONV:Automatic SHIP:Sea Surface:Automatic SHIP:SYNOP:Automatic SHIP|                    │
+│ 16006     │ 5762    │ MARINE_SFC_SPECIFIC_HUMIDITY │ 27   │ 1        │ 13      │ 281   │ 1       │ 24       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ q2m -- 2m specific humidity|CONV:Automatic SHIP:Sea Surface:Automatic SHIP:SYNOP:Automatic SHIP|                      │
+│ 16006     │ 11524   │ MARINE_SFC_PRESSURE          │ 28   │ 1        │ 13      │ 110   │ 1       │ 24       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ ps -- surface pressure|CONV:Automatic SHIP:Sea Surface:Automatic SHIP:SYNOP:Automatic SHIP|                           │
+│ 16007     │ 2       │ MARINE_SFC_U_WIND_COMPONENT  │ 24   │ 1        │ 19      │ 41    │ 1       │ 23       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ u10m -- 10m u component (m/s)|CONV:Reduced SHIP:Sea Surface:Reduced SHIP:SYNOP:Reduced SHIP|                          │
+│ 16007     │ 2       │ MARINE_SFC_V_WIND_COMPONENT  │ 25   │ 1        │ 19      │ 42    │ 1       │ 23       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ v10m -- 10m v component (m/s)|CONV:Reduced SHIP:Sea Surface:Reduced SHIP:SYNOP:Reduced SHIP|                          │
+│ 16007     │ 2       │ MARINE_SFC_SPECIFIC_HUMIDITY │ 27   │ 1        │ 19      │ 281   │ 1       │ 23       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ q2m -- 2m specific humidity|CONV:Reduced SHIP:Sea Surface:Reduced SHIP:SYNOP:Reduced SHIP|                            │
+│ 16007     │ 4       │ MARINE_SFC_PRESSURE          │ 28   │ 1        │ 19      │ 110   │ 1       │ 23       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ ps -- surface pressure|CONV:Reduced SHIP:Sea Surface:Reduced SHIP:SYNOP:Reduced SHIP|                                 │
+│ 16008     │ 1141    │ MARINE_SFC_U_WIND_COMPONENT  │ 24   │ 1        │ 11      │ 41    │ 1       │ 21       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ u10m -- 10m u component (m/s)|CONV:SHIP:Sea Surface:SHIP:SYNOP:SHIP|                                                  │
+│ 16008     │ 1141    │ MARINE_SFC_V_WIND_COMPONENT  │ 25   │ 1        │ 11      │ 42    │ 1       │ 21       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ v10m -- 10m v component (m/s)|CONV:SHIP:Sea Surface:SHIP:SYNOP:SHIP|                                                  │
+│ 16008     │ 1141    │ MARINE_SFC_SPECIFIC_HUMIDITY │ 27   │ 1        │ 11      │ 281   │ 1       │ 21       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ q2m -- 2m specific humidity|CONV:SHIP:Sea Surface:SHIP:SYNOP:SHIP|                                                    │
+│ 16008     │ 2282    │ MARINE_SFC_PRESSURE          │ 28   │ 1        │ 11      │ 110   │ 1       │ 21       │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ ps -- surface pressure|CONV:SHIP:Sea Surface:SHIP:SYNOP:SHIP|                                                         │
+│ 16074     │ 3801    │ MARINE_SFC_U_WIND_COMPONENT  │ 24   │ 1        │ 180     │ 41    │ 1       │ 182      │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ u10m -- 10m u component (m/s)|CONV:BUFR SHIP SYNOP:Sea Surface:BUFR SHIP SYNOP:SYNOP:BUFR SHIP SYNOP|                 │
+│ 16074     │ 3801    │ MARINE_SFC_V_WIND_COMPONENT  │ 25   │ 1        │ 180     │ 42    │ 1       │ 182      │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ v10m -- 10m v component (m/s)|CONV:BUFR SHIP SYNOP:Sea Surface:BUFR SHIP SYNOP:SYNOP:BUFR SHIP SYNOP|                 │
+│ 16074     │ 3801    │ MARINE_SFC_SPECIFIC_HUMIDITY │ 27   │ 1        │ 180     │ 281   │ 1       │ 182      │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ q2m -- 2m specific humidity|CONV:BUFR SHIP SYNOP:Sea Surface:BUFR SHIP SYNOP:SYNOP:BUFR SHIP SYNOP|                   │
+│ 16074     │ 7602    │ MARINE_SFC_PRESSURE          │ 28   │ 1        │ 180     │ 110   │ 1       │ 182      │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ ps -- surface pressure|CONV:BUFR SHIP SYNOP:Sea Surface:BUFR SHIP SYNOP:SYNOP:BUFR SHIP SYNOP|                        │
+│ 16076     │ 36821   │ TEMPERATURE                  │ 1    │ 0        │ 170     │ 39    │ 1       │ 170      │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ t2m -- 2m temperature (K)|CONV:BUFR LAND SYNOP:Land Surface:BUFR LAND SYNOP:SYNOP:BUFR LAND SYNOP|                    │
+│ 16076     │ 2069    │ TEMPERATURE                  │ 1    │ 0        │ 172     │ 39    │ 1       │ 170      │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ t2m -- 2m temperature (K)|CONV:BUFR LAND SYNOP:Land Surface:BUFR LAND SYNOP 2:SYNOP:BUFR LAND SYNOP|                  │
+│ 16076     │ 36821   │ LAND_SFC_U_WIND_COMPONENT    │ 29   │ 0        │ 170     │ 41    │ 1       │ 170      │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ u10m -- 10m u component (m/s)|CONV:BUFR LAND SYNOP:Land Surface:BUFR LAND SYNOP:SYNOP:BUFR LAND SYNOP|                │
+│ 16076     │ 2069    │ LAND_SFC_U_WIND_COMPONENT    │ 29   │ 0        │ 172     │ 41    │ 1       │ 170      │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ u10m -- 10m u component (m/s)|CONV:BUFR LAND SYNOP:Land Surface:BUFR LAND SYNOP 2:SYNOP:BUFR LAND SYNOP|              │
+│ 16076     │ 36821   │ LAND_SFC_V_WIND_COMPONENT    │ 30   │ 0        │ 170     │ 42    │ 1       │ 170      │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ v10m -- 10m v component (m/s)|CONV:BUFR LAND SYNOP:Land Surface:BUFR LAND SYNOP:SYNOP:BUFR LAND SYNOP|                │
+│ 16076     │ 2069    │ LAND_SFC_V_WIND_COMPONENT    │ 30   │ 0        │ 172     │ 42    │ 1       │ 170      │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ v10m -- 10m v component (m/s)|CONV:BUFR LAND SYNOP:Land Surface:BUFR LAND SYNOP 2:SYNOP:BUFR LAND SYNOP|              │
+│ 16076     │ 36821   │ LAND_SFC_SPECIFIC_HUMIDITY   │ 32   │ 0        │ 170     │ 281   │ 1       │ 170      │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ q2m -- 2m specific humidity|CONV:BUFR LAND SYNOP:Land Surface:BUFR LAND SYNOP:SYNOP:BUFR LAND SYNOP|                  │
+│ 16076     │ 2069    │ LAND_SFC_SPECIFIC_HUMIDITY   │ 32   │ 0        │ 172     │ 281   │ 1       │ 170      │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ q2m -- 2m specific humidity|CONV:BUFR LAND SYNOP:Land Surface:BUFR LAND SYNOP 2:SYNOP:BUFR LAND SYNOP|                │
+│ 16076     │ 73642   │ LAND_SFC_PRESSURE            │ 33   │ 0        │ 170     │ 110   │ 1       │ 170      │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ ps -- surface pressure|CONV:BUFR LAND SYNOP:Land Surface:BUFR LAND SYNOP:SYNOP:BUFR LAND SYNOP|                       │
+│ 16076     │ 4138    │ LAND_SFC_PRESSURE            │ 33   │ 0        │ 172     │ 110   │ 1       │ 170      │ NULL        │ NULL         │ NULL            │ NULL      │ NULL   │ NULL      │ ps -- surface pressure|CONV:BUFR LAND SYNOP:Land Surface:BUFR LAND SYNOP 2:SYNOP:BUFR LAND SYNOP|                     │
+└───────────┴─────────┴──────────────────────────────┴──────┴──────────┴─────────┴───────┴─────────┴──────────┴─────────────┴──────────────┴─────────────────┴───────────┴────────┴───────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+SELECT dbfile,max(thinning) AS thinning, max(numens) AS num_ensembles, max(numtsl) AS num_timeslots, count(distinct timeslot) AS num_timeslots_with_data, SUM(nbody) AS num_obs, GROUP_CONCAT(DISTINCT timeslot) AS timeslot_coverage, GROUP_CONCAT(DISTINCT reportype) AS reportype_coverage FROM catalog WHERE label IS NOT NULL GROUP BY dbfile ORDER BY length(dbfile),dbfile
+┌───────────┬──────────┬───────────────┬───────────────┬─────────────────────────┬─────────┬───────────────────────────────┬───────────────────────────────────────────┐
+│  dbfile   │ thinning │ num_ensembles │ num_timeslots │ num_timeslots_with_data │ num_obs │       timeslot_coverage       │            reportype_coverage             │
+├───────────┼──────────┼───────────────┼───────────────┼─────────────────────────┼─────────┼───────────────────────────────┼───────────────────────────────────────────┤
+│ SYNP.1.db │ 1        │ 5             │ 13            │ 13                      │ 281421  │ 1,2,3,4,5,6,7,8,9,10,11,12,13 │ 16076,16074,16001,16002,16006,16008,16007 │
+│ SYNP.2.db │ 1        │ 5             │ 13            │ 1                       │ 39234   │ 13                            │ 16001,16002                               │
+│ SYNP.4.db │ 1        │ 5             │ 13            │ 7                       │ 243289  │ 7,8,9,10,11,12,13             │ 16007,16076,16008,16001,16002,16074,16006 │
+└───────────┴──────────┴───────────────┴───────────────┴─────────────────────────┴─────────┴───────────────────────────────┴───────────────────────────────────────────┘
+SELECT timeslot,MAX(basetimestamp) AS basetimestamp,timeslot_start,timeslot_end,SUM(nbody) as num_obs FROM catalog WHERE label IS NOT NULL AND timeslot is NOT NULL GROUP BY 1,3,4 ORDER BY 1
+┌──────────┬────────────────┬────────────────┬────────────────┬─────────┐
+│ timeslot │ basetimestamp  │ timeslot_start │  timeslot_end  │ num_obs │
+├──────────┼────────────────┼────────────────┼────────────────┼─────────┤
+│ 1        │ 20171002060000 │ 20171002030001 │ 20171002031500 │ 126     │
+│ 2        │ 20171002060000 │ 20171002031501 │ 20171002034500 │ 689     │
+│ 3        │ 20171002060000 │ 20171002034501 │ 20171002041500 │ 36426   │
+│ 4        │ 20171002060000 │ 20171002041501 │ 20171002044500 │ 1043    │
+│ 5        │ 20171002060000 │ 20171002044501 │ 20171002051500 │ 36356   │
+│ 6        │ 20171002060000 │ 20171002051501 │ 20171002054500 │ 1073    │
+│ 7        │ 20171002060000 │ 20171002054501 │ 20171002061500 │ 174345  │
+│ 8        │ 20171002060000 │ 20171002061501 │ 20171002064500 │ 1354    │
+│ 9        │ 20171002060000 │ 20171002064501 │ 20171002071500 │ 73870   │
+│ 10       │ 20171002060000 │ 20171002071501 │ 20171002074500 │ 2026    │
+│ 11       │ 20171002060000 │ 20171002074501 │ 20171002081500 │ 74100   │
+│ 12       │ 20171002060000 │ 20171002081501 │ 20171002084500 │ 2160    │
+│ 13       │ 20171002060000 │ 20171002084501 │ 20171002090000 │ 160376  │
+└──────────┴────────────────┴────────────────┴────────────────┴─────────┘
+-rw-r--r-- 1 gc02720 ada 577536 Jul 24 13:32 /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/catalog.db
+mkdir: created directory '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/backups'
+'/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/catalog.db' -> '/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0/allTS/backups/catalog.db'
+/work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0
+-rw-r--r-- 1 gc02720 ada 61644800 Jul 24 13:32 allTS/SYNP.1.db
+-rw-r--r-- 1 gc02720 ada  8785920 Jul 24 13:31 allTS/SYNP.2.db
+-rw-r--r-- 1 gc02720 ada 53399552 Jul 24 13:32 allTS/SYNP.4.db
+Creating backup databases into allTS/backups/ ...
+'allTS/catalog.db' -> 'allTS/backups/catalog.db'
+'allTS/SYNP.2.db' -> 'allTS/backups/SYNP.2.db'
+'allTS/SYNP.4.db' -> 'allTS/backups/SYNP.4.db'
+'allTS/SYNP.1.db' -> 'allTS/backups/SYNP.1.db'
+total 0
+-rw-r--r-- 1 gc02720 ada   577536 Jul 24 13:32 catalog.db
+-rw-r--r-- 1 gc02720 ada 61644800 Jul 24 13:32 SYNP.1.db
+-rw-r--r-- 1 gc02720 ada  8785920 Jul 24 13:31 SYNP.2.db
+-rw-r--r-- 1 gc02720 ada 53399552 Jul 24 13:32 SYNP.4.db
+3.40.0 2022-11-16 12:10:08 89c459e766ea7e9165d0beeb124708b955a4950d0f4792f457465d71b158d318
+*** Catalog database (catalog.db) empty -- maybe input databases did not contain any data in their TOC-tables ?
+removed 'catalog.db'
+ENTER PHASE 2, REGRESSION
+COPY WHAT WE NEED FOR ASSIMILATION FROM CENTRAL TS=7, IMPLEMENTATION FOR 13 TIME SLOTS
+change the stages_to_write in order to produce also the forecast for archiving purposes
+CALLING take_f.sh
+Mon Jul 24 13:32:16 CEST 2023
+BEGIN FILTER PROCESSES /work/cmcc/gc02720/CMCC-CM/TMPSYNP2_FPE0 filter  no
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+change the name of the process, for filter, in order to better follow what is happening with bjobs
+Job has been assigned to project 'R000'.
+END take_f.sh
+phase 2 ended succesfully, move files into archive, set check_assi.flag to 1
+Mon Jul 24 13:32:19 CEST 2023 -- END FILTER
+Mon Jul 24 13:32:19 CEST 2023 -- BEGIN FILE RENAMING
+/usr/bin/ls: cannot access 'forecast_member_*.nc': No such file or directory
+/usr/bin/ls: cannot access 'output_member_*.nc': No such file or directory
+/usr/bin/ls: cannot access 'forecast_mean*.nc': No such file or directory
+/usr/bin/ls: cannot access 'forecast_sd*.nc': No such file or directory
+output_mean.nc renaming
+output_mean.nc
+renamed 'output_mean.nc' -> 'synp2_fpe0.dart.i.cam_output_mean.2017-10-02-21600.nc'
+output_sd.nc renaming
+output_sd.nc
+renamed 'output_sd.nc' -> 'synp2_fpe0.dart.i.cam_output_sd.2017-10-02-21600.nc'
+move catalog.db
+renamed 'catalog.db' -> 'synp2_fpe0.spreads.catalog.db.2017-10-02-21600.db'
+move SYNP.1
+renamed 'SYNP.1.db' -> 'synp2_fpe0.spreads.SYNP.1.2017-10-02-21600.db'
+move SYNP.2
+renamed 'SYNP.2.db' -> 'synp2_fpe0.spreads.SYNP.2.2017-10-02-21600.db'
+move SYNP.4
+renamed 'SYNP.4.db' -> 'synp2_fpe0.spreads.SYNP.4.2017-10-02-21600.db'
+/usr/bin/ls: cannot access 'forecast_priorinf_*': No such file or directory
+/usr/bin/ls: cannot access 'forecast_postinf_*': No such file or directory
+/usr/bin/ls: cannot access 'output_postinf_*': No such file or directory
+renamed 'output_priorinf_mean.nc' -> 'synp2_fpe0.dart.rh.cam_output_priorinf_mean.2017-10-02-21600.nc'
+renamed 'output_priorinf_sd.nc' -> 'synp2_fpe0.dart.rh.cam_output_priorinf_sd.2017-10-02-21600.nc'
+
+line= /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run/synp2_fpe0_0001 cam i 2017-10-02-21600 nc
+file_type= i
+ In /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0001/run for i.c. renaming
+ Link synp2_fpe0_0001.cam.i.2017-10-02-21600.nc in cam_initial_0001.nc 
+ In /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0002/run for i.c. renaming
+ Link synp2_fpe0_0002.cam.i.2017-10-02-21600.nc in cam_initial_0002.nc 
+ In /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0003/run for i.c. renaming
+ Link synp2_fpe0_0003.cam.i.2017-10-02-21600.nc in cam_initial_0003.nc 
+ In /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0004/run for i.c. renaming
+ Link synp2_fpe0_0004.cam.i.2017-10-02-21600.nc in cam_initial_0004.nc 
+ In /work/cmcc/gc02720/CMCC-CM/synp2_fpe0_0005/run for i.c. renaming
+ Link synp2_fpe0_0005.cam.i.2017-10-02-21600.nc in cam_initial_0005.nc 
+Mon Jul 24 13:32:20 CEST 2023 -- END   FILE RENAMING
+
+Mon Jul 24 13:32:20 CEST 2023 -- START   ANALYSIS ARCHIVING
+/usr/bin/mv: cannot stat './allTS/*.e*2017-10-02-21600*': No such file or directory
+renamed './allTS/synp2_fpe0.dart.i.cam_output_mean.2017-10-02-21600.nc' -> '/work/cmcc/gc02720/CMCC-CM/archive/synp2_fpe0/synp2_fpe0-2017-10-02-21600/synp2_fpe0.dart.i.cam_output_mean.2017-10-02-21600.nc'
+renamed './allTS/synp2_fpe0.dart.i.cam_output_sd.2017-10-02-21600.nc' -> '/work/cmcc/gc02720/CMCC-CM/archive/synp2_fpe0/synp2_fpe0-2017-10-02-21600/synp2_fpe0.dart.i.cam_output_sd.2017-10-02-21600.nc'
+renamed './allTS/synp2_fpe0.spreads.catalog.db.2017-10-02-21600.db' -> '/work/cmcc/gc02720/CMCC-CM/archive/synp2_fpe0/synp2_fpe0-2017-10-02-21600/synp2_fpe0.spreads.catalog.db.2017-10-02-21600.db'
+renamed './allTS/synp2_fpe0.spreads.SYNP.1.2017-10-02-21600.db' -> '/work/cmcc/gc02720/CMCC-CM/archive/synp2_fpe0/synp2_fpe0-2017-10-02-21600/synp2_fpe0.spreads.SYNP.1.2017-10-02-21600.db'
+renamed './allTS/synp2_fpe0.spreads.SYNP.2.2017-10-02-21600.db' -> '/work/cmcc/gc02720/CMCC-CM/archive/synp2_fpe0/synp2_fpe0-2017-10-02-21600/synp2_fpe0.spreads.SYNP.2.2017-10-02-21600.db'
+renamed './allTS/synp2_fpe0.spreads.SYNP.4.2017-10-02-21600.db' -> '/work/cmcc/gc02720/CMCC-CM/archive/synp2_fpe0/synp2_fpe0-2017-10-02-21600/synp2_fpe0.spreads.SYNP.4.2017-10-02-21600.db'
+/usr/bin/mv: cannot stat './allTS/dart_log.*': No such file or directory
+
+ Inflation used. Hide inflation files and delete the old ones.
+
+'./allTS/synp2_fpe0.dart.rh.cam_output_priorinf_mean.2017-10-02-21600.nc' -> '/work/cmcc/gc02720/CMCC-CM/archive/synp2_fpe0/synp2_fpe0-2017-10-02-21600/synp2_fpe0.dart.rh.cam_output_priorinf_mean.2017-10-02-21600.nc'
+'./allTS/synp2_fpe0.dart.rh.cam_output_priorinf_sd.2017-10-02-21600.nc' -> '/work/cmcc/gc02720/CMCC-CM/archive/synp2_fpe0/synp2_fpe0-2017-10-02-21600/synp2_fpe0.dart.rh.cam_output_priorinf_sd.2017-10-02-21600.nc'
+renamed './allTS/synp2_fpe0.dart.rh.cam_output_priorinf_mean.2017-10-02-21600.nc' -> '.HIDE_synp2_fpe0/synp2_fpe0.dart.rh.cam_output_priorinf_mean.2017-10-02-21600.nc'
+renamed './allTS/synp2_fpe0.dart.rh.cam_output_priorinf_sd.2017-10-02-21600.nc' -> '.HIDE_synp2_fpe0/synp2_fpe0.dart.rh.cam_output_priorinf_sd.2017-10-02-21600.nc'
+ls: cannot access './allTS/*.rh.cam_*inf*.nc': No such file or directory
+Nothing to remove
+
+ Restart processes date 10-02-21600 
+
+
+ Restart processes date 10-02-21600 
+
+
+ Restart processes date 10-02-21600 
+
+
+ Restart processes date 10-02-21600 
+
+
+ Restart processes date 10-02-21600 
+
+Mon Jul 24 13:32:21 CEST 2023 -- END   ANALYSIS ARCHIVING
+0
+ wrote 1 in check_assi.flag
+1
+Mon Jul 24 13:32:21 CEST 2023 -- END CAM_ASSIMILATE
+1
+
+ END CYCLES 
+

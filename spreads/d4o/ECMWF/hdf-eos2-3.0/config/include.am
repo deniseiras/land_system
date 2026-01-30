@@ -1,0 +1,10 @@
+## config/include.am
+##
+## This file is included in the beginning of each Makefile.am. It
+## contains shared definitions.
+
+ACLOCAL_AMFLAGS="-Im4"
+
+LIBHDFEOS2=$(top_builddir)/src/libhdfeos.la
+LIBGCTP=$(top_builddir)/gctp/src/libGctp.la
+

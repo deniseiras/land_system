@@ -1,0 +1,20 @@
+#!/bin/bash
+cmddir=$(readlink -f $(dirname $0))
+perl=$(which perl 2>/dev/null || echo "perl")
+cmd=$(basename $0 | $perl -pe 's/^prof_//')
+nytprofhtml=$(which nytprofhtml 2>/dev/null || echo "")
+profout=$TMPDIR/nytprof.out.$$
+export NYTPROF=optimize=0:trace=0:start=init:file=$profout
+/bin/rm -f $profout
+
+set -x
+$perl -d:NYTProf $cmddir/$cmd $@ || exit $?
+
+if [[ -f $profout ]] ; then
+    profdir=$TMPDIR/nytprof.$$
+    $nytprofhtml -o $profdir -f $profout -d --no-flame
+    export D4O_BROWSER=${D4O_BROWSER:-"firefox"}
+    nohup $D4O_BROWSER $profdir/index.html >/dev/null 2>&1 < /dev/null &
+fi
+
+

@@ -1,0 +1,38 @@
+%include <includes/head.h>
+
+
+#===================================================
+#
+#
+#
+#===================================================
+
+# ecflow_client --event=CLEANA set
+
+if [ %CONT_RUN% == "FALSE" ];then
+    ecflow_client --alter=add variable CONT_RUN "TRUE" /%CASE_NAME%/run_cycles
+fi
+
+if [ %NCYCLES% -lt %MAXCICLY% ];then
+    ecflow_client --alter=add variable NCYCLES "$(echo %NCYCLES%+1 | bc)" /%CASE_NAME%/run_cycles
+    ecflow_client --requeue=force /%CASE_NAME%/run_cycles/background
+    ecflow_client --requeue=force /%CASE_NAME%/run_cycles/prepare_assimilation
+    # ecflow_client --requeue=force /%CASE_NAME%/run_cycles/spreads_assim
+    # ecflow_client --requeue=force /%CASE_NAME%/run_cycles/forecast
+
+    ecflow_client --resume=/%CASE_NAME%/run_cycles/background
+    # ecflow_client --requeue=force /%CASE_NAME%/run_cycles/forecast
+    # ecflow_client --requeue=force /%CASE_NAME%/run_cycles/clean
+    # ecflow_client --run=force /%CASE_NAME%/run_cycles/clean
+    
+else
+
+    sleep 2m
+
+    ecflow_client --requeue=force /%CASE_NAME%/run_cycles/background
+    ecflow_client --requeue=force /%CASE_NAME%/run_cycles/prepare_assimilation   
+    ecflow_client --requeue=force /%CASE_NAME%/run_cycles/forecast/daily_forecast
+    ecflow_client --requeue=force /%CASE_NAME%/run_cycles/clean
+fi
+
+%include <includes/tail.h>

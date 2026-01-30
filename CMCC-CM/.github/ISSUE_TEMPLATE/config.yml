@@ -1,0 +1,35 @@
+blank_issues_enabled: true
+contact_links:
+  - name: ccs_config_cmcc issue
+    url: https://github.com/CMCC-Foundation/ccs_config_cmcc/issues/new
+    about: Open new issue with configuration of CMCC supported grids, servers, and compilers.
+  - name: CIME issue
+    url: https://github.com/CMCC-Foundation/cime/issues/new/choose
+    about: Open new issue with CIME (scripting infrastructure) in CMCC-CM
+  - name: CMEPS issue
+    url: https://github.com/CMCC-Foundation/CMEPS/issues/new/choose
+    about: Open new issue with CMEPS (NUOPC Community Mediator for Earth Prediction Systems) in CMCC-CM
+  - name: CDEPS issue
+    url: https://github.com/CMCC-Foundation/CDEPS/issues/new/choose
+    about: Open new issue with CDEPS (Community Data Models for Earth Prediction Systems) in CMCC-CM
+  - name: CAM issue
+    url: https://github.com/CMCC-Foundation/CAM/issues/new/choose
+    about: Open new issue with CAM (Community Atmosphere Model) in CMCC-CM
+  - name: CICE6 issue
+    url: https://github.com/CMCC-Foundation/CICE-CESM2/issues/new/choose
+    about: Open new issue with CICE6 in CMCC-CM
+  - name: CTSM issue
+    url: https://github.com/CMCC-Foundation/CTSM/issues/new/choose
+    about: Open new issue with CTSM (Community Terrestrial Systems Model) in CMCC-CM
+  - name: MOSART issue
+    url: https://github.com/CMCC-Foundation/MOSART/issues/new/choose
+    about: Open new issue with MOSART (Model for Scale Adaptive River Transport) in CMCC-CM
+  - name: NEMO issue
+    url: https://github.com/CMCC-Foundation/NEMO-CESM/issues/new
+    about: Open new issue with NEMO in CMCC-CM
+  - name: RTM issue
+    url: https://github.com/CMCC-Foundation/RTM/issues/new/choose
+    about: Open new issue with RTM (River Transport Model) in CMCC-CM
+  - name: share code issue
+    url: https://github.com/CMCC-Foundation/CMCC_share/issues/new/choose
+    about: Open new issue with code shared across components in CMCC-CM

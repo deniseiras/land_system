@@ -1,0 +1,100 @@
+#!/bin/bash
+#BSUB -L /bin/bash
+#BSUB -n 36
+#BSUB -R "span[ptile=36]"
+#BSUB -q p_short
+#BSUB -W 1:00
+#BSUB -P R000
+#BSUB -x
+#BSUB -J tiny-seq
+#BSUB -o tiny-seq.%J.out
+#BSUB -e tiny-seq.%J.out
+
+set -eu
+
+source /usr/share/Modules/init/bash
+source /users_home/cmcc/ss35621/load-modules-d4o.zeus
+source /data/cmcc/ss35621/d4o/install/INTEL/source.me
+
+module -t list
+
+set -x
+
+hostname
+pwd
+
+# check if 0
+export I_MPI_EXTRA_FILESYSTEM=1
+# check for comment
+export I_MPI_EXTRA_FILESYSTEM_FORCE=gpfs
+export MPI_COMM_MAX=16383
+export I_MPI_DEBUG=60
+#export GPFSMPIO_TUNEBLOCKING=0
+# check for comment
+export I_MPI_PLATFORM=skx
+# check for comment
+export I_MPI_SHM=skx_avx512
+export I_MPI_HYDRA_BOOTSTRAP=lsf
+#export I_MPI_LSF_USE_COLLECTIVE_LAUNCH=0
+export I_MPI_HYDRA_COLLECTIVE_LAUNCH=1
+export I_MPI_HYDRA_BRANCH_COUNT=$(echo $LSB_HOSTS | perl -pe 's/\s+/\n/g' | sort -u | wc -l) # it must be equal to the number of nodes!!!!!!!!! 
+
+#npes=$(echo "$I_MPI_HYDRA_BRANCH_COUNT * 36" | bc)
+npes=$LSB_MAX_NUM_PROCESSORS
+
+echo "Number of processed to be used: $npes"
+
+#export LAUNCHCMD="mpirun -np $npes -bind-to none -prepend-rank" # *never* use bind none !
+export LAUNCHCMD="mpirun -np $npes -bind-to core -prepend-rank"
+
+export OMP_NUM_THREADS=1
+export KMP_AFFINITY="verbose,granularity=core,respect,scatter"
+export I_MPI_PIN=1
+
+printenv | egrep '^(I_MPI|KMP|OMP|LS|MPI)' | sort
+
+bjobs -l $LSB_JOBID | perl -pe 's/^\s+//; s/\n//'
+
+rundir=rundir/$LSB_JOBNAME.$LSB_JOBID
+mkdir -pv $rundir
+cd $rundir
+pwd
+
+ls -ltr /data/cmcc/ss35621/verify/inputs/
+date
+
+for f in $(ls -C1 /data/cmcc/ss35621/verify/inputs | fgrep -v big)
+do 
+    cp -pfv /data/cmcc/ss35621/verify/inputs/$f .
+done
+date
+
+chmod u+w *
+
+pwd
+ls -ltr
+
+ldd ./filter
+
+echo "$(date) -- BEGIN FILTER"
+
+export d4o_debug=1:0
+#export d4o_catalog=tiny-catalog.db # since this env is NOT activated we will NOT use d4o, but obs_seq
+
+mv tiny.input.nml input.nml
+
+rc=0
+time ${LAUNCHCMD} ./filter > output.log 2>&1 || rc=$?
+
+echo "$(date) -- END FILTER : rc=$rc"
+
+pwd
+ls -ltr
+
+rm -fv caminput.nc # very big input file
+
+exit $rc
+
+
+
+

@@ -1,0 +1,557 @@
+#!/bin/bash
+#
+# Build & install all d4o-related tools
+#
+
+cmd=$(readlink -f $0)
+cmdname=$(basename $cmd)
+cmddir=$(readlink -f $(dirname $cmd))
+export COMPILER=${1:-${COMPILER:-unknown}} # compiler
+logfile=$(pwd)/.build-log.$COMPILER.$(date +%s).txt
+
+echo ">>> Build log goes to the $logfile ..."
+sleep 2
+
+set -o pipefail
+
+{
+
+# Command line args
+    
+export branch=d4o_cassandra
+
+#export NPES=${2:-${NPES:-$(nproc --all)}} # NPES for make -j$NPES
+export NPES=${2:-${NPES:-32}} # NPES for make -j$NPES (be more considerate to other users on Juno)
+export THE_INSTALL_DIR=${3:-${THE_INSTALL_DIR:-/data/cmcc/$USER/$branch/install}} # install root dir
+export run_tests=${4:-${run_tests:-0}} # when not 0, run (possibly) expensive b2o tests, too (always done first time round, however)
+export rebuild=${5:-${rebuild:-0}} # indicates need for rebuilding dependencies
+
+echo "===> Running: $cmdname $COMPILER $NPES $THE_INSTALL_DIR $run_tests $rebuild"
+
+# Want git repo as if you had done "git clone" ? Use command : git clean -dfx
+
+#--- Setup
+
+source $cmddir/load-modules-d4o.cassandra
+
+sqlitedir=$(dirname $(dirname $(readlink -f $(which sqlite3))))
+export LDLIBS="-L$sqlitedir/lib"
+addpaths="."
+addlibpaths=""
+
+export CINCL="-I$sqlitedir/include"
+stdc90=""
+stdC11=""
+
+
+if [[ $COMPILER = "INTEL" ]] ; then
+
+    cc=icx
+    cxx=icpx
+    fc=ifx
+    cxx_flags="-g -O2 -fp-model precise -march=sapphirerapids -fPIC -diag-disable=10441"
+    c_flags="$cxx_flags -traceback"
+    fc_flags="$c_flags -diag-disable=10448"
+    mpicc=mpiicx
+    mpifc=mpiifx
+    export I_MPI_CC=icx
+    export I_MPI_F90=ifx
+    rttov="$cmddir/ECMWF/rttov123/build/arch/ifx-cmcc"
+    stdc90="-std=gnu90"
+    stdC11="-std=gnu++11"
+elif [[ $COMPILER = "INTELPROF" ]] ; then
+
+    # TODO - test
+
+    cc=icx
+    cxx=icpx
+    fc=ifx
+    cxx_flags="-g -O2 -fp-model precise -march=sapphirerapids -fPIC -diag-disable=10441"
+    c_flags="$cxx_flags -traceback"
+    fc_flags="$c_flags -diag-disable=10448"
+    mpicc=mpiicx
+    mpifc=mpiifort
+    export I_MPI_CC=icx
+    export I_MPI_F90=ifort
+    rttov="$cmddir/ECMWF/rttov123/build/arch/ifx-cmcc"
+    stdc90="-std=gnu90"
+    stdC11="-std=gnu++11"
+
+elif [[ $COMPILER = "GNU" ]] ; then
+    #eval_this="module load --auto gcc-12.2.0/12.2.0"
+    #eval $eval_this
+
+    # TODO - test
+    cc=gcc
+    cxx=g++
+    fc=gfortran
+    cxx_flags="-g -O2 -fPIC"
+    c_flags=$cxx_flags
+    fc_flags="$c_flags -fbacktrace"
+    mpicc=mpicc
+    mpifc=mpif90
+    export OMPI_CC=gcc
+    export OMPI_FC=gfortran 
+    rttov="$cmddir/ECMWF/rttov123/build/arch/gfortran-cmcc"
+else
+    echo "Error: Unsupported COMPILER=$COMPILER" >&2
+    echo "Usage: $cmdname COMPILER NPES THE_INSTALL_DIR run_tests rebuild" >&2
+    echo "Defaults: $COMPILER $NPES $THE_INSTALL_DIR $run_tests $rebuild" >&2
+    exit 1
+fi
+
+if [[ X"${rttov:-}" != X ]] && [[ -r "${rttov:-}" ]] ; then
+    has_rttov=1
+    export RTTOV=$THE_INSTALL_DIR/$COMPILER/rttov123
+else
+    has_rttov=0
+fi
+
+schema_dir="$THE_INSTALL_DIR/$COMPILER/b2o/share/b2o"
+schema_file="$schema_dir/cma.ddl"
+
+addpaths+=":$sqlitedir/bin"
+addpaths+=":$THE_INSTALL_DIR/$COMPILER/d4o/bin"     # d4o
+addpaths+=":$THE_INSTALL_DIR/ecbuild/bin"           # ecbuild
+addpaths+=":$THE_INSTALL_DIR/$COMPILER/netcdf/bin"  # netcdf
+addpaths+=":$THE_INSTALL_DIR/$COMPILER/hdf5/bin"    # hdf5
+addpaths+=":$THE_INSTALL_DIR/$COMPILER/hdf4/bin"    # hdf4
+addpaths+=":$THE_INSTALL_DIR/$COMPILER/eckit/bin"   # eckit
+addpaths+=":$THE_INSTALL_DIR/$COMPILER/eccodes/bin" # eccodes
+addpaths+=":$THE_INSTALL_DIR/$COMPILER/odc/bin"     # odc
+addpaths+=":$THE_INSTALL_DIR/$COMPILER/b2o/bin"     # b2o
+
+[[ $has_rttov -eq 0 ]] || addpaths+=":$RTTOV/bin" # rttov
+
+export PATH=${addpaths}:$PATH
+
+export FINCL=$(${mpifc%% *} -show|cut -f2 -d" "|perl -pe 's/"//g')
+
+addlibpaths+=":$THE_INSTALL_DIR/$COMPILER/d4o/lib"
+addlibpaths+=":$THE_INSTALL_DIR/$COMPILER/netcdf/lib"
+addlibpaths+=":$THE_INSTALL_DIR/$COMPILER/hdf5/lib"
+addlibpaths+=":$THE_INSTALL_DIR/$COMPILER/hdf4/lib"
+addlibpaths+=":$THE_INSTALL_DIR/$COMPILER/hdf-eos2/lib"
+addlibpaths+=":$THE_INSTALL_DIR/$COMPILER/eckit/lib"
+addlibpaths+=":$THE_INSTALL_DIR/$COMPILER/eccodes/lib"
+addlibpaths+=":$THE_INSTALL_DIR/$COMPILER/odc/lib"
+addlibpaths+=":$THE_INSTALL_DIR/$COMPILER/b2o/lib"
+
+[[ $has_rttov -eq 0 ]] || addlibpaths+=":$RTTOV/lib" # rttov
+
+set -eu
+
+buildir=build.$COMPILER
+
+echo "===> Using SQLite 3 : version $(sqlite3 -version -batch)"
+
+#-- Set TMPDIR
+
+export TMPDIR=/tmp/$USER/$branch
+mkdir -p $TMPDIR
+
+#--- Make sure no clutter left behind from previous builds if rebuild > 0
+
+if [[ $rebuild -gt 0 ]] ; then
+    rm -rfv $TMPDIR/*/build.$COMPILER
+    rm -rfv $THE_INSTALL_DIR/ecbuild
+    rm -rfv $THE_INSTALL_DIR/$COMPILER
+fi
+
+#--- Build d4o first ---
+
+buildroot=$cmddir/src
+cd $buildroot
+
+mkdir -p $TMPDIR/d4o/$buildir
+cd $TMPDIR/d4o/$buildir
+
+ln -sv $buildroot/Makefile $buildroot/*.{c,h,F90} . 2>/dev/null || :
+ln -sv $buildroot/../scripts/* . 2>/dev/null || :
+ln -sv $buildroot/../blacklist . 2>/dev/null || :
+
+make COMPILER=$COMPILER -j$NPES PREFIX=$THE_INSTALL_DIR/$COMPILER/d4o CC="$cc" FC="$fc" install
+
+export addlibpaths
+addlibpaths=$(trim_path addlibpaths)
+
+#--- Build Dependencies ---
+
+buildroot=$cmddir/ECMWF
+cd $buildroot
+
+# Has ecbuild ?
+
+ecbuild=$(which ecbuild 2>/dev/null || echo "")
+
+if [[ $rebuild -gt 0 ]] || [[ "$ecbuild" = "" ]] ; then
+    # Compiler independent i.e. uses GNU if anything
+    set -x
+    cd $buildroot
+    ecbv=3.7.2
+    cd ecbuild-${ecbv}-Source
+    mkdir -p $TMPDIR/ecbuild-${ecbv}-Source/$buildir
+    cd $TMPDIR/ecbuild-${ecbv}-Source/$buildir
+    $buildroot/ecbuild-${ecbv}-Source/bin/ecbuild --prefix=$THE_INSTALL_DIR/ecbuild \
+						-DCMAKE_C_COMPILER=gcc \
+						-DCMAKE_C_FLAGS="-g -O2 -fPIC" \
+						-DCMAKE_INSTALL_LIBDIR=lib \
+						$buildroot/ecbuild-${ecbv}-Source
+    # DENIS - removing test for compiling tests faster
+    #ctest -j $NPES
+    make install
+    cd $buildroot
+    set +x
+    ((++rebuild))
+fi
+
+echo "===> Using ecbuild from $(which ecbuild)"
+ecbuild --version
+
+# Build mpi.mod ?
+
+if [[ X"${build_mpimod:-}" = X1 ]] ; then
+    set -x
+    cd $buildroot
+    cd mpimod
+    mkdir -p $TMPDIR/mpimod/$buildir
+    cd $TMPDIR/mpimod/$buildir
+    cmp -s $buildroot/mpimod/mpi.f90 mpi.f90 || cp -fv $buildroot/mpimod/mpi.f90 mpi.f90
+    $mpifc -c mpi.f90
+    cmp -s mpi.mod $THE_INSTALL_DIR/$COMPILER/d4o/include/mpi.mod || cp -fv mpi.mod $THE_INSTALL_DIR/$COMPILER/d4o/include/mpi.mod
+    mpifc+=" -I$THE_INSTALL_DIR/$COMPILER/d4o/include"
+    cd $buildroot
+    set +x
+fi
+
+# Has HDF4 ? (COMPILER dependent)
+
+rebuild_hdf4=${rebuild_hdf4:-$rebuild}
+if [[ $rebuild -gt 0 ]] || [[ $rebuild_hdf4 -gt 0 ]] || [[ ! -r $THE_INSTALL_DIR/$COMPILER/hdf4/lib/libmfhdf.so ]] ; then
+    set -x
+    cd $buildroot
+    cd hdf-4.2.15
+    mkdir -p $TMPDIR/hdf-4.2.15/$buildir
+    cd $TMPDIR/hdf-4.2.15/$buildir
+    $buildroot/hdf-4.2.15/configure --disable-sharedlib-rpath \
+				    --prefix=$THE_INSTALL_DIR/$COMPILER/hdf4 \
+				    CC="$mpicc" FC="$mpifc" F77="$mpifc" \
+				    CFLAGS="$c_flags $stdc90" \
+				    FCLAGS="$fc_flags" \
+				    FFLAGS="$fc_flags" \
+				    --enable-shared \
+				    --disable-fortran \
+				    --enable-hl \
+				    --enable-parallel \
+				    --disable-netcdf4 \
+				    --disable-hdf4-xdr \
+				    --srcdir=$buildroot/hdf-4.2.15
+    make -j$NPES
+    make install
+    cd $buildroot
+    set +x
+    ((++rebuild))
+    rebuild_hdfeos2=$rebuild
+fi
+
+# Has HDF-EOS2 ? (COMPILER dependent)
+
+rebuild_hdfeos2=${rebuild_hdfeos2:-$rebuild}
+if [[ $rebuild_hdfeos2 -gt 0 ]] || [[ $rebuild_hdfeos2 -gt 0 ]] || [[ ! -r $THE_INSTALL_DIR/$COMPILER/hdf-eos2/lib/libhdfeos.so ]] ; then
+    set -x
+    cd $buildroot
+    cd hdf-eos2-3.0
+    mkdir -p $TMPDIR/hdf-eos2-3.0/$buildir
+    cd $TMPDIR/hdf-eos2-3.0/$buildir
+
+
+    $buildroot/hdf-eos2-3.0/configure --prefix=$THE_INSTALL_DIR/$COMPILER/hdf-eos2 \
+                                      CC="$mpicc" F77="$mpifc" \
+                                      CFLAGS="$c_flags $stdc90" \
+                                      FFLAGS="$fc_flags" \
+                                      LDFLAGS="-L$THE_INSTALL_DIR/$COMPILER/hdf4/lib -Wl,-rpath=$THE_INSTALL_DIR/$COMPILER/hdf4/lib" \
+                                      --enable-shared \
+                                      --disable-static \
+                                      --enable-fortran \
+                                      --enable-gctp-include \
+                                      --with-hdf4=$THE_INSTALL_DIR/$COMPILER/hdf4 \
+                                      --srcdir=$buildroot/hdf-eos2-3.0
+    make -j$NPES
+    make install
+    cd $buildroot
+    set +x
+fi
+
+# Has HDF5 ? (COMPILER dependent)
+
+rebuild_hdf5=${rebuild_hdf5:-$rebuild}
+if [[ $rebuild -gt 0 ]] || [[ $rebuild_hdf5 -gt 0 ]] || [[ ! -r $THE_INSTALL_DIR/$COMPILER/hdf5/lib/libhdf5.so ]] ; then
+    set -x
+    cd $buildroot
+    cd hdf5-1.12.1
+    mkdir -p $TMPDIR/hdf5-1.12.1/$buildir
+    cd $TMPDIR/hdf5-1.12.1/$buildir
+    $buildroot/hdf5-1.12.1/configure --disable-sharedlib-rpath \
+				     --prefix=$THE_INSTALL_DIR/$COMPILER/hdf5 \
+				     CC="$mpicc" FC="$mpifc" \
+				     CFLAGS="$c_flags" \
+				     FCLAGS="$fc_flags" \
+				     FFLAGS="$fc_flags" \
+				     --enable-shared \
+				     --enable-fortran \
+				     --enable-hl \
+				     --enable-parallel \
+				     --srcdir=$buildroot/hdf5-1.12.1
+    make -j$NPES
+    make install
+    cd $buildroot
+    set +x
+    ((++rebuild))
+fi
+
+# Has NetCDF ? (COMPILER dependent)
+
+rebuild_netcdf=${rebuild_netcdf:-$rebuild}
+if [[ $rebuild -gt 0 ]] || [[ $rebuild_netcdf -gt 0 ]] || [[ ! -r $THE_INSTALL_DIR/$COMPILER/netcdf/lib/libnetcdf.so ]] ; then
+    installroot=$THE_INSTALL_DIR/$COMPILER
+    set -x
+    for d in netcdf-c-4.8.1 netcdf-fortran-4.5.4
+    do
+	cd $buildroot
+	cd $d
+	mkdir -p $TMPDIR/$d/$buildir
+	cd $TMPDIR/$d/$buildir
+
+	rc=0
+        echo $d | grep -q netcdf-fortran || rc=$?
+        if [[ $rc -eq 0 ]] ; then
+            libs="-lnetcdf -lhdf5_hl -lhdf5 -lz" # .. since --disable-dap in NetCDF C-lib below
+            opts="--disable-f03"
+        else
+            libs=""
+            opts="--enable-netcdf-4 --disable-dap"
+        fi
+
+        $buildroot/$d/configure --prefix=$installroot/netcdf \
+				CPPFLAGS="-I$installroot/netcdf/include -I$installroot/hdf5/include" \
+				CC="$mpicc" FC="$mpifc" F77="$mpifc" \
+				CFLAGS="$c_flags" \
+				FCFLAGS="$fc_flags" \
+				F77FLAGS="$fc_flags" \
+				--enable-largefile \
+				--enable-shared \
+				$opts \
+				LDFLAGS="-L$installroot/netcdf/lib -L$installroot/hdf5/lib -Wl,-rpath=$installroot/netcdf/lib -Wl,-rpath=$installroot/hdf5/lib" \
+				LIBS="$libs" \
+				--srcdir=$buildroot/$d
+	
+	make -j$NPES
+	make install
+    done
+    cd $buildroot
+    set +x
+    ((++rebuild))
+    unset installroot
+fi
+
+# Has eckit ? (COMPILER dependent)
+
+rebuild_eckit=${rebuild_eckit:-$rebuild}
+if [[ $rebuild -gt 0 ]] || [[ $rebuild_eckit -gt 0 ]] || [[ ! -r $THE_INSTALL_DIR/$COMPILER/eckit/lib/libeckit.so ]] ; then
+    set -x
+    cd $buildroot
+    cd eckit-1.19.0-Source
+    mkdir -p $TMPDIR/eckit-1.19.0-Source/$buildir
+    cd $TMPDIR/eckit-1.19.0-Source/$buildir
+    ecbuild --prefix=$THE_INSTALL_DIR/$COMPILER/eckit \
+            -DCMAKE_Fortran_COMPILER=$fc \
+            -DCMAKE_C_COMPILER=$cc \
+            -DCMAKE_CXX_COMPILER=$cxx \
+            -DCMAKE_Fortran_FLAGS="$fc_flags" \
+            -DCMAKE_C_FLAGS="$c_flags" \
+            -DCMAKE_CXX_FLAGS="$cxx_flags $stdC11" \
+	    -DCMAKE_CXX_STANDARD_LIBRARIES="-lrt" \
+	    -DCMAKE_INSTALL_LIBDIR=lib \
+	    $buildroot/eckit-1.19.0-Source
+    make -j$NPES
+    make install
+    $THE_INSTALL_DIR/$COMPILER/eckit/bin/eckit-version
+    cd $buildroot
+    set +x
+    ((++rebuild))
+fi
+
+echo "===> Using ${COMPILER}-compiler's eckit from $(readlink -f $(dirname $(which eckit-version))/..) : version $(eckit-version)"
+
+# Has eccodes ? (COMPILER dependent)
+
+rebuild_eccodes=${rebuild_eccodes:-$rebuild}
+if [[ $rebuild -gt 0 ]] || [[ $rebuild_eccodes -gt 0 ]] || [[ ! -r $THE_INSTALL_DIR/$COMPILER/eccodes/lib/libeccodes.so ]] ; then
+    set -x
+    cd $buildroot
+    cd eccodes-2.25.0-Source
+    mkdir -p $TMPDIR/eccodes-2.25.0-Source/$buildir
+    cd $TMPDIR/eccodes-2.25.0-Source/$buildir
+    ecbuild --prefix=$THE_INSTALL_DIR/$COMPILER/eccodes \
+            -DCMAKE_Fortran_COMPILER=$fc \
+            -DCMAKE_C_COMPILER=$cc \
+            -DCMAKE_CXX_COMPILER=$cxx \
+            -DCMAKE_Fortran_FLAGS="$fc_flags" \
+            -DCMAKE_C_FLAGS="$c_flags" \
+            -DCMAKE_CXX_FLAGS="$cxx_flags" \
+	    -DENABLE_ECCODES_THREADS=ON \
+	    -DCMAKE_INSTALL_LIBDIR=lib \
+        -DENABLE_AEC=OFF \
+	    $buildroot/eccodes-2.25.0-Source
+    make -j$NPES
+    ctest -j$NPES
+    make install
+    cd $buildroot
+    set +x
+    ((++rebuild))
+fi
+
+echo "===> Using ${COMPILER}-compiler's eccodes from $(readlink -f $(dirname $THE_INSTALL_DIR/$COMPILER/eccodes/lib/libeccodes.so)/..) : version 2.25.0"
+
+# Has odc ? (COMPILER dependent)
+
+odc=$(which odc 2>/dev/null || echo "")
+
+rebuild_odc=${rebuild_odc:-$rebuild}
+if [[ $rebuild -gt 0 ]] || [[ $rebuild_odc -gt 0 ]] || [[ "$odc" = "" ]] ; then
+    set -x
+    cd $buildroot
+    cd odc-1.4.4-Source
+    mkdir -p $TMPDIR/odc-1.4.4-Source/$buildir
+    cd $TMPDIR/odc-1.4.4-Source/$buildir
+    ecbuild --prefix=$THE_INSTALL_DIR/$COMPILER/odc \
+            -Deccodes_ROOT=$THE_INSTALL_DIR/$COMPILER/eccodes \
+            -Deckit_ROOT=$THE_INSTALL_DIR/$COMPILER/eckit \
+            -DCMAKE_Fortran_COMPILER=$fc \
+            -DCMAKE_C_COMPILER=$cc \
+            -DCMAKE_CXX_COMPILER=$cxx \
+            -DCMAKE_Fortran_FLAGS="$fc_flags" \
+            -DCMAKE_C_FLAGS="$c_flags" \
+            -DCMAKE_CXX_FLAGS="$cxx_flags" \
+	    -DCMAKE_INSTALL_LIBDIR=lib \
+	    $buildroot/odc-1.4.4-Source
+    make -j$NPES
+    make -j$NPES test || :
+    make install
+    cd $buildroot
+    set +x
+    ((++rebuild))
+fi
+
+echo "===> Using ${COMPILER}-compiler's odc from $(which odc)"
+odc --version
+
+# Finally, (re-)build b2o, if needed
+
+set -x
+cd $buildroot
+cd b2o-0.10.0-Source
+[[ $rebuild -eq 0 ]] || rm -rf $TMPDIR/b2o-0.10.0-Source/$buildir
+if [[ -d $TMPDIR/b2o-0.10.0-Source/$buildir ]] ; then
+    cd $TMPDIR/b2o-0.10.0-Source/$buildir
+else
+    run_tests=1
+    mkdir -p $TMPDIR/b2o-0.10.0-Source/$buildir
+    cd $TMPDIR/b2o-0.10.0-Source/$buildir
+    ecbuild --prefix=$THE_INSTALL_DIR/$COMPILER/b2o \
+            -Deccodes_ROOT=$THE_INSTALL_DIR/$COMPILER/eccodes \
+            -Deckit_ROOT=$THE_INSTALL_DIR/$COMPILER/eckit \
+            -Dodc_ROOT=$THE_INSTALL_DIR/$COMPILER/odc \
+            -DCMAKE_Fortran_COMPILER=$fc \
+            -DCMAKE_C_COMPILER=$cc \
+            -DCMAKE_CXX_COMPILER=$cxx \
+            -DCMAKE_Fortran_FLAGS="$fc_flags" \
+            -DCMAKE_C_FLAGS="$c_flags" \
+            -DCMAKE_CXX_FLAGS="$cxx_flags" \
+	    -DCMAKE_INSTALL_LIBDIR=lib \
+	    $buildroot/b2o-0.10.0-Source
+fi
+make -j$NPES
+make install
+[[ "$run_tests" = "0" ]] || env B2O_IASI_CHANNELS=$schema_dir/iasichannels.ecmwf make -j$NPES test || :
+cd $buildroot
+set +x
+
+echo "===> Using ${COMPILER}-compiler's b2o from $(which b2o) : version 0.10.0"
+b2o --help
+
+source_me=$(readlink -f $cmddir/$cmdname.$COMPILER.source.me)
+cat /dev/null > $source_me
+[[ X"${eval_this:-}" = X ]] || echo "$eval_this" | tee -a $source_me
+cat $cmddir/load-modules-d4o.cassandra | tee -a $source_me
+echo "export PATH=${addpaths}:\$PATH" | tee -a $source_me
+echo "export LD_LIBRARY_PATH=${addlibpaths}:\${LD_LIBRARY_PATH:-}" | tee -a $source_me
+echo 'export LD_LIBRARY_PATH=$(trim_path LD_LIBRARY_PATH)' | tee -a $source_me
+echo 'export LIBRARY_PATH=$(trim_path LIBRARY_PATH)' | tee -a $source_me
+echo 'export PATH=$(trim_path PATH)' | tee -a $source_me
+echo "export ODB_SCHEMA_DIR=$schema_dir" | tee -a $source_me
+echo "export ODB_SCHEMA_FILE=$schema_file" | tee -a $source_me
+echo "export d4odir=$THE_INSTALL_DIR/$COMPILER/d4o" | tee -a $source_me
+echo "export D4ODIR=$THE_INSTALL_DIR/$COMPILER/d4o" | tee -a $source_me
+echo "export NETCDF=$THE_INSTALL_DIR/$COMPILER/netcdf" | tee -a $source_me
+echo "export NETCDF_DIR=\$NETCDF" | tee -a $source_me
+echo "export HDF5=$THE_INSTALL_DIR/$COMPILER/hdf5" | tee -a $source_me
+echo "export HDF5_DIR=\$HDF5" | tee -a $source_me
+echo "export HDFDIR=\$HDF5" | tee -a $source_me
+echo "export HDF5DIR=\$HDF5" | tee -a $source_me
+echo "export HDF4=$THE_INSTALL_DIR/$COMPILER/hdf4" | tee -a $source_me
+echo "export HDF4_DIR=\$HDF4" | tee -a $source_me
+echo "export HDF4DIR=\$HDF4" | tee -a $source_me
+echo "export HDFEOSDIR=$THE_INSTALL_DIR/$COMPILER/hdf-eos2" | tee -a $source_me
+echo "export FINCL=$FINCL" | tee -a $source_me
+echo "export SQLITE_DIR=$sqlitedir" | tee -a $source_me
+echo "export COMPILER=$COMPILER" | tee -a $source_me
+
+# Want RTTOV ? Must be built *after* HDF5 etc. have been built
+
+if [[ $has_rttov -eq 1 ]] ; then
+    set -x
+    cd $buildroot
+    cd rttov123
+    mkdir -p $TMPDIR/rttov123/$buildir
+    export HDF5=$THE_INSTALL_DIR/$COMPILER/hdf5
+    export NETCDF=$THE_INSTALL_DIR/$COMPILER/netcdf
+    cd src
+    make -j$NPES ARCH=$(basename $rttov) INSTALLDIR=$TMPDIR/rttov123/$buildir
+    cd $TMPDIR/rttov123/$buildir
+    for d in lib bin include mod
+    do
+	  mkdir -p $RTTOV/$d
+	  cd $TMPDIR/rttov123/$buildir/$d
+	  set +x
+	  # Copy files
+	  for f in $(find . -type f | xargs -r -n1 basename)
+	  do
+	    cmp -s $f $RTTOV/$d/$f || cp -fv $f $RTTOV/$d/$f
+	  done
+	  # Copy & preserve symlinks
+	  for f in $(find . -type l | xargs -r -n1 basename)
+	  do
+	    cmp -s $f $RTTOV/$d/$f || cp -fPv $f $RTTOV/$d/$f
+	  done
+	  set -x
+    done
+    cd $buildroot
+    set +x
+    echo "export RTTOV=$RTTOV" | tee -a $source_me
+fi
+
+perl -pe 's%/'$USER'/%/\$USER/%g' -i $source_me # replace /$USER/ with a literal /dollar-USER/
+
+cmp -s $source_me $THE_INSTALL_DIR/$COMPILER/source.me || cp -fv $source_me $THE_INSTALL_DIR/$COMPILER/source.me
+
+echo "===> To initialize your d4o-environment under $COMPILER : source $THE_INSTALL_DIR/$COMPILER/source.me"
+
+set -x
+exit 0
+
+} 2>&1 | tee $logfile
+
+retcode=$?
+echo ">>> Build log now in the $logfile"
+exit $retcode

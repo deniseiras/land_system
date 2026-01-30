@@ -1,0 +1,40 @@
+#!/usr/bin/env perl
+#
+# ICAO_ht2ps: by Sami Saarinen, HPCK, Jul 2023
+#
+
+use strict;
+use warnings;
+
+my $cmd = $0;
+$cmd =~ s%.*/%%;
+
+for (@ARGV) {
+    chomp;
+    my $ht = $_;
+    my $ps = &ICAO_ht2ps($ht);
+    printf("%s: ht = %sm => ps = %sPa\n",$cmd,$ht,$ps);
+}
+
+exit 0;
+
+sub ICAO_ht2ps {
+    # ICAO height (m) to pressure (Pascal) conversion
+    my ($ht) = @_; # geopotential height in metres
+    return undef unless (defined($ht));
+    my $g = 9.80665; # WMO "g" (not used here)
+    my $ZA = 5.252368255329;
+    my $ZB = 44330.769230769;
+    my $ZC = 0.000157583169442;
+    my $ZP0 = 101325.00; # Pascals
+    my $ZP11 = 22654.7172; # Pascals
+    my $ZZ11 = 11000.0;
+    my $p = undef;
+    if ($ht <= $ZZ11) {
+        $p = $ZP0 * (1.0-$ht/$ZB)**$ZA;
+    }
+    else {
+        $p = $ZP11 * exp(-$ZC*($ht-$ZZ11));
+    }
+    return $p; # pressure in Pascals
+}

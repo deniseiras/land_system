@@ -1,0 +1,18 @@
+code	description
+1	SYNOP
+2	AIREP
+3	SATOB
+4	BUOY
+5	TEMP
+6	PILOT
+7	SATEM
+8	PAOB
+9	Scatterometer
+10	Limb
+14	Ground-based weather radar
+15	LIDAR
+12	WAVE
+16	ALLSKY
+17	Rain Gauge
+19	Satellite cloud-aerosol lidar-radar
+20	Lightning

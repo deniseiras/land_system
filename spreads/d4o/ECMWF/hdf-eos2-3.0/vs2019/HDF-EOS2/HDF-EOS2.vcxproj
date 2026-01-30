@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\gctp\src\alberfor.c" />
+    <ClCompile Include="..\..\gctp\src\alberinv.c" />
+    <ClCompile Include="..\..\gctp\src\alconfor.c" />
+    <ClCompile Include="..\..\gctp\src\alconinv.c" />
+    <ClCompile Include="..\..\gctp\src\azimfor.c" />
+    <ClCompile Include="..\..\gctp\src\aziminv.c" />
+    <ClCompile Include="..\..\gctp\src\bceafor.c" />
+    <ClCompile Include="..\..\gctp\src\bceainv.c" />
+    <ClCompile Include="..\..\gctp\src\br_gctp.c" />
+    <ClCompile Include="..\..\gctp\src\ceafor.c" />
+    <ClCompile Include="..\..\gctp\src\ceainv.c" />
+    <ClCompile Include="..\..\gctp\src\cproj.c" />
+    <ClCompile Include="..\..\gctp\src\eqconfor.c" />
+    <ClCompile Include="..\..\gctp\src\eqconinv.c" />
+    <ClCompile Include="..\..\gctp\src\equifor.c" />
+    <ClCompile Include="..\..\gctp\src\equiinv.c" />
+    <ClCompile Include="..\..\gctp\src\for_init.c" />
+    <ClCompile Include="..\..\gctp\src\gctp.c" />
+    <ClCompile Include="..\..\gctp\src\gnomfor.c" />
+    <ClCompile Include="..\..\gctp\src\gnominv.c" />
+    <ClCompile Include="..\..\gctp\src\goodfor.c" />
+    <ClCompile Include="..\..\gctp\src\goodinv.c" />
+    <ClCompile Include="..\..\gctp\src\gvnspfor.c" />
+    <ClCompile Include="..\..\gctp\src\gvnspinv.c" />
+    <ClCompile Include="..\..\gctp\src\hamfor.c" />
+    <ClCompile Include="..\..\gctp\src\haminv.c" />
+    <ClCompile Include="..\..\gctp\src\imolwfor.c" />
+    <ClCompile Include="..\..\gctp\src\imolwinv.c" />
+    <ClCompile Include="..\..\gctp\src\inv_init.c" />
+    <ClCompile Include="..\..\gctp\src\isinusfor.c" />
+    <ClCompile Include="..\..\gctp\src\isinusinv.c" />
+    <ClCompile Include="..\..\gctp\src\lamazfor.c" />
+    <ClCompile Include="..\..\gctp\src\lamazinv.c" />
+    <ClCompile Include="..\..\gctp\src\lamccfor.c" />
+    <ClCompile Include="..\..\gctp\src\lamccinv.c" />
+    <ClCompile Include="..\..\gctp\src\merfor.c" />
+    <ClCompile Include="..\..\gctp\src\merinv.c" />
+    <ClCompile Include="..\..\gctp\src\millfor.c" />
+    <ClCompile Include="..\..\gctp\src\millinv.c" />
+    <ClCompile Include="..\..\gctp\src\molwfor.c" />
+    <ClCompile Include="..\..\gctp\src\molwinv.c" />
+    <ClCompile Include="..\..\gctp\src\obleqfor.c" />
+    <ClCompile Include="..\..\gctp\src\obleqinv.c" />
+    <ClCompile Include="..\..\gctp\src\omerfor.c" />
+    <ClCompile Include="..\..\gctp\src\omerinv.c" />
+    <ClCompile Include="..\..\gctp\src\orthfor.c" />
+    <ClCompile Include="..\..\gctp\src\orthinv.c" />
+    <ClCompile Include="..\..\gctp\src\paksz.c" />
+    <ClCompile Include="..\..\gctp\src\polyfor.c" />
+    <ClCompile Include="..\..\gctp\src\polyinv.c" />
+    <ClCompile Include="..\..\gctp\src\psfor.c" />
+    <ClCompile Include="..\..\gctp\src\psinv.c" />
+    <ClCompile Include="..\..\gctp\src\report.c" />
+    <ClCompile Include="..\..\gctp\src\robfor.c" />
+    <ClCompile Include="..\..\gctp\src\robinv.c" />
+    <ClCompile Include="..\..\gctp\src\sinfor.c" />
+    <ClCompile Include="..\..\gctp\src\sininv.c" />
+    <ClCompile Include="..\..\gctp\src\somfor.c" />
+    <ClCompile Include="..\..\gctp\src\sominv.c" />
+    <ClCompile Include="..\..\gctp\src\sphdz.c" />
+    <ClCompile Include="..\..\gctp\src\sterfor.c" />
+    <ClCompile Include="..\..\gctp\src\sterinv.c" />
+    <ClCompile Include="..\..\gctp\src\stplnfor.c" />
+    <ClCompile Include="..\..\gctp\src\stplninv.c" />
+    <ClCompile Include="..\..\gctp\src\tmfor.c" />
+    <ClCompile Include="..\..\gctp\src\tminv.c" />
+    <ClCompile Include="..\..\gctp\src\untfz.c" />
+    <ClCompile Include="..\..\gctp\src\utmfor.c" />
+    <ClCompile Include="..\..\gctp\src\utminv.c" />
+    <ClCompile Include="..\..\gctp\src\vandgfor.c" />
+    <ClCompile Include="..\..\gctp\src\vandginv.c" />
+    <ClCompile Include="..\..\gctp\src\wivfor.c" />
+    <ClCompile Include="..\..\gctp\src\wivinv.c" />
+    <ClCompile Include="..\..\gctp\src\wviifor.c" />
+    <ClCompile Include="..\..\gctp\src\wviiinv.c" />
+    <ClCompile Include="..\..\src\EHapi.c" />
+    <ClCompile Include="..\..\src\GDapi.c" />
+    <ClCompile Include="..\..\src\PTapi.c" />
+    <ClCompile Include="..\..\src\SWapi.c" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{4e7d01af-8211-4c8e-afa9-149683c8be74}</ProjectGuid>
+    <RootNamespace>HDFEOS2</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_WINDOWS;FORTRAN_API;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\..\include;..\..\gctp\include;C:\Program Files\HDF_Group\HDF\4.2.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_WINDOWS;FORTRAN_API;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\..\include;..\..\gctp\include;C:\Program Files\HDF_Group\HDF\4.2.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_WINDOWS;FORTRAN_API;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\..\include;..\..\gctp\include;C:\Program Files\HDF_Group\HDF\4.2.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_WINDOWS;FORTRAN_API;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\..\include;..\..\gctp\include;C:\Program Files\HDF_Group\HDF\4.2.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

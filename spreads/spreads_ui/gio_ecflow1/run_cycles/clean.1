@@ -1,0 +1,4340 @@
++ set -o pipefail
++ export ECF_PORT=3155
++ ECF_PORT=3155
++ export ECF_HOST=login1.juno.cmcc.scc
++ ECF_HOST=login1.juno.cmcc.scc
++ export ECF_NAME=/gio_ecflow1/run_cycles/clean
++ ECF_NAME=/gio_ecflow1/run_cycles/clean
++ export ECF_PASS=ZWUMSki8
++ ECF_PASS=ZWUMSki8
++ export ECF_TRYNO=1
++ ECF_TRYNO=1
++ export ECF_TRIES=0
++ ECF_TRIES=0
++ export ECF_RID=2441346
++ ECF_RID=2441346
++ export PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/imagemagick/7.0.8-7-2475g3fynku56e7rbgq65zz2xbmy6k26/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/ncview/2.1.8-sds5t7td2iyndfz25r537rsyxvx63wn6/bin:/work/cmcc/gc02720/.conda/envs/spreads/bin:/juno/opt/anaconda/3-2022.10/condabin:/users_home/cmcc/gc02720/.local/bin:/users_home/cmcc/gc02720/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/imagemagick/7.0.8-7-2475g3fynku56e7rbgq65zz2xbmy6k26/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/ncview/2.1.8-sds5t7td2iyndfz25r537rsyxvx63wn6/bin:/work/cmcc/gc02720/.conda/envs/spreads/bin:/juno/opt/anaconda/3-2022.10/condabin:/users_home/cmcc/gc02720/.local/bin:/users_home/cmcc/gc02720/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ ecflow_client --init=2441346
++ trap ERROR 0
++ trap '{ echo "Killed by a signal"; ERROR ; }' 1 2 3 4 5 6 7 8 10 12 13 15
++ export SCRIPTDIR=/users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts
++ SCRIPTDIR=/users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts
++ export nens=5
++ nens=5
+++ echo /gio_ecflow1/run_cycles/clean
+++ sed s/clean//g
++ donepath=/gio_ecflow1/run_cycles/
++ FENS=5
++ export CESMEXP=cesm-exp
++ CESMEXP=cesm-exp
++ export case_name=gio_ecflow1
++ case_name=gio_ecflow1
++ export CLONESROOT=/work/cmcc/gc02720/cesm-exp/gio_ecflow1
++ CLONESROOT=/work/cmcc/gc02720/cesm-exp/gio_ecflow1
++ export NTSLOTS=13
++ NTSLOTS=13
++ export CASEROOT0001=/work/cmcc/gc02720/cesm-exp/gio_ecflow1/gio_ecflow1_0001
++ CASEROOT0001=/work/cmcc/gc02720/cesm-exp/gio_ecflow1/gio_ecflow1_0001
+++ echo gio_ecflow1
+++ tr '[:lower:]' '[:upper:]'
++ export TMPROOT=/work/cmcc/gc02720/CMCC-CM/TMPGIO_ECFLOW1
++ TMPROOT=/work/cmcc/gc02720/CMCC-CM/TMPGIO_ECFLOW1
+++ ecflow_client --query event /gio_ecflow1/run_cycles:FORECAST
++ FORECAST=set
++ '[' set == set ']'
++ export FORECAST=TRUE
++ FORECAST=TRUE
++ ./cases_clean_archive.sh gio_ecflow1 5 TRUE 5
+
+ START CLEANING ARCHIVING PROCEDURE 
+
+ Forecast cases container dir = /work/cmcc/gc02720/cesm-exp
+ Container dir = /work/cmcc/gc02720/CMCC-CM
+ Archive dir = /work/cmcc/gc02720/CMCC-CM/archive
+ Experiment name = gio_ecflow1
+ Numeber of instances = 5
+ Forecast = TRUE
+ Forecast N = 5
+ 
+Removing intermediate output needed for the model interpolator:
+CDIR= /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts
+ processing: gio_ecflow1_0001.cam.h0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cam.h0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.cam.h0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.cam.h0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.cam.h0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cam.h0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.cam.h0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.cam.h0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.cam.h0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cam.h6.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cam.h6.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.cam.h6.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.cam.h6.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.cam.h6.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cam.h6.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.cam.h6.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.cam.h6.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.cam.i.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cam.i.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.cam.i.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.cam.i.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.cam.i.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cam.i.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.cam.i.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.cam.i.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.cam.i.2017-10-06-66600.nc
+ ds=66600
+ removing: gio_ecflow1_0001.cam.i.2017-10-06-66600.nc
+ processing: gio_ecflow1_0001.cam.i.2017-10-06-68400.nc
+ ds=68400
+ removing: gio_ecflow1_0001.cam.i.2017-10-06-68400.nc
+ processing: gio_ecflow1_0001.cam.i.2017-10-06-70200.nc
+ ds=70200
+ removing: gio_ecflow1_0001.cam.i.2017-10-06-70200.nc
+ processing: gio_ecflow1_0001.cam.i.2017-10-06-72000.nc
+ ds=72000
+ removing: gio_ecflow1_0001.cam.i.2017-10-06-72000.nc
+ processing: gio_ecflow1_0001.cam.i.2017-10-06-73800.nc
+ ds=73800
+ removing: gio_ecflow1_0001.cam.i.2017-10-06-73800.nc
+ processing: gio_ecflow1_0001.cam.i.2017-10-06-75600.nc
+ ds=75600
+ removing: gio_ecflow1_0001.cam.i.2017-10-06-75600.nc
+ processing: gio_ecflow1_0001.cam.i.2017-10-06-77400.nc
+ ds=77400
+ removing: gio_ecflow1_0001.cam.i.2017-10-06-77400.nc
+ processing: gio_ecflow1_0001.cam.i.2017-10-06-79200.nc
+ ds=79200
+ removing: gio_ecflow1_0001.cam.i.2017-10-06-79200.nc
+ processing: gio_ecflow1_0001.cam.i.2017-10-06-81000.nc
+ ds=81000
+ removing: gio_ecflow1_0001.cam.i.2017-10-06-81000.nc
+ processing: gio_ecflow1_0001.cam.i.2017-10-06-82800.nc
+ ds=82800
+ removing: gio_ecflow1_0001.cam.i.2017-10-06-82800.nc
+ processing: gio_ecflow1_0001.cam.i.2017-10-06-84600.nc
+ ds=84600
+ removing: gio_ecflow1_0001.cam.i.2017-10-06-84600.nc
+ processing: gio_ecflow1_0001.cam.i.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cam.i.2017-10-07-01800.nc
+ ds=01800
+ removing: gio_ecflow1_0001.cam.i.2017-10-07-01800.nc
+ processing: gio_ecflow1_0001.cam.i.2017-10-07-03600.nc
+ ds=03600
+ removing: gio_ecflow1_0001.cam.i.2017-10-07-03600.nc
+ processing: gio_ecflow1_0001.cam.i.2017-10-07-05400.nc
+ ds=05400
+ removing: gio_ecflow1_0001.cam.i.2017-10-07-05400.nc
+ processing: gio_ecflow1_0001.cam.i.2017-10-07-07200.nc
+ ds=07200
+ removing: gio_ecflow1_0001.cam.i.2017-10-07-07200.nc
+ processing: gio_ecflow1_0001.cam.i.2017-10-07-09000.nc
+ ds=09000
+ removing: gio_ecflow1_0001.cam.i.2017-10-07-09000.nc
+ processing: gio_ecflow1_0001.cam.i.2017-10-07-10800.nc
+ ds=10800
+ removing: gio_ecflow1_0001.cam.i.2017-10-07-10800.nc
+ processing: gio_ecflow1_0001.cam.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cam.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.cam.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.cam.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.cam.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cam.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.cam.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.cam.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.cam.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cam.rh6.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cam.rh6.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.cam.rh6.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.cam.rh6.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.cam.rh6.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cam.rh6.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.cam.rh6.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.cam.rh6.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.cam.rh6.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cam.rs.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cam.rs.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.cam.rs.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.cam.rs.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.cam.rs.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cam.rs.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.cam.rs.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.cam.rs.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.cam.rs.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cice.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cice.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.cice.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.cice.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.cice.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cice.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.cice.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.cice.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.cice.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.clm2.h0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.clm2.h0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.clm2.h0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.clm2.h0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.clm2.h0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.clm2.h0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.clm2.h0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.clm2.h0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.clm2.h0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.clm2.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.clm2.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.clm2.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.clm2.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.clm2.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.clm2.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.clm2.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.clm2.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.clm2.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.clm2.rh0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.clm2.rh0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.clm2.rh0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.clm2.rh0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.clm2.rh0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.clm2.rh0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.clm2.rh0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.clm2.rh0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.clm2.rh0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cpl.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cpl.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.cpl.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.cpl.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.cpl.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.cpl.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.cpl.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.cpl.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.cpl.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.docn.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.docn.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.docn.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.docn.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.docn.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.docn.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.docn.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.docn.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.docn.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.hydros.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.hydros.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.hydros.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.hydros.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.hydros.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.hydros.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.hydros.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.hydros.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.hydros.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.hydros.rh0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.hydros.rh0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.hydros.rh0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.hydros.rh0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.hydros.rh0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0001.hydros.rh0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0001.hydros.rh0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0001.hydros.rh0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0001.hydros.rh0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cam.h0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cam.h0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.cam.h0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.cam.h0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.cam.h0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cam.h0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.cam.h0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.cam.h0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.cam.h0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cam.h6.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cam.h6.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.cam.h6.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.cam.h6.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.cam.h6.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cam.h6.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.cam.h6.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.cam.h6.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.cam.i.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cam.i.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.cam.i.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.cam.i.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.cam.i.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cam.i.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.cam.i.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.cam.i.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.cam.i.2017-10-06-66600.nc
+ ds=66600
+ removing: gio_ecflow1_0002.cam.i.2017-10-06-66600.nc
+ processing: gio_ecflow1_0002.cam.i.2017-10-06-68400.nc
+ ds=68400
+ removing: gio_ecflow1_0002.cam.i.2017-10-06-68400.nc
+ processing: gio_ecflow1_0002.cam.i.2017-10-06-70200.nc
+ ds=70200
+ removing: gio_ecflow1_0002.cam.i.2017-10-06-70200.nc
+ processing: gio_ecflow1_0002.cam.i.2017-10-06-72000.nc
+ ds=72000
+ removing: gio_ecflow1_0002.cam.i.2017-10-06-72000.nc
+ processing: gio_ecflow1_0002.cam.i.2017-10-06-73800.nc
+ ds=73800
+ removing: gio_ecflow1_0002.cam.i.2017-10-06-73800.nc
+ processing: gio_ecflow1_0002.cam.i.2017-10-06-75600.nc
+ ds=75600
+ removing: gio_ecflow1_0002.cam.i.2017-10-06-75600.nc
+ processing: gio_ecflow1_0002.cam.i.2017-10-06-77400.nc
+ ds=77400
+ removing: gio_ecflow1_0002.cam.i.2017-10-06-77400.nc
+ processing: gio_ecflow1_0002.cam.i.2017-10-06-79200.nc
+ ds=79200
+ removing: gio_ecflow1_0002.cam.i.2017-10-06-79200.nc
+ processing: gio_ecflow1_0002.cam.i.2017-10-06-81000.nc
+ ds=81000
+ removing: gio_ecflow1_0002.cam.i.2017-10-06-81000.nc
+ processing: gio_ecflow1_0002.cam.i.2017-10-06-82800.nc
+ ds=82800
+ removing: gio_ecflow1_0002.cam.i.2017-10-06-82800.nc
+ processing: gio_ecflow1_0002.cam.i.2017-10-06-84600.nc
+ ds=84600
+ removing: gio_ecflow1_0002.cam.i.2017-10-06-84600.nc
+ processing: gio_ecflow1_0002.cam.i.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cam.i.2017-10-07-01800.nc
+ ds=01800
+ removing: gio_ecflow1_0002.cam.i.2017-10-07-01800.nc
+ processing: gio_ecflow1_0002.cam.i.2017-10-07-03600.nc
+ ds=03600
+ removing: gio_ecflow1_0002.cam.i.2017-10-07-03600.nc
+ processing: gio_ecflow1_0002.cam.i.2017-10-07-05400.nc
+ ds=05400
+ removing: gio_ecflow1_0002.cam.i.2017-10-07-05400.nc
+ processing: gio_ecflow1_0002.cam.i.2017-10-07-07200.nc
+ ds=07200
+ removing: gio_ecflow1_0002.cam.i.2017-10-07-07200.nc
+ processing: gio_ecflow1_0002.cam.i.2017-10-07-09000.nc
+ ds=09000
+ removing: gio_ecflow1_0002.cam.i.2017-10-07-09000.nc
+ processing: gio_ecflow1_0002.cam.i.2017-10-07-10800.nc
+ ds=10800
+ removing: gio_ecflow1_0002.cam.i.2017-10-07-10800.nc
+ processing: gio_ecflow1_0002.cam.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cam.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.cam.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.cam.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.cam.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cam.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.cam.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.cam.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.cam.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cam.rh6.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cam.rh6.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.cam.rh6.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.cam.rh6.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.cam.rh6.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cam.rh6.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.cam.rh6.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.cam.rh6.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.cam.rh6.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cam.rs.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cam.rs.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.cam.rs.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.cam.rs.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.cam.rs.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cam.rs.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.cam.rs.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.cam.rs.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.cam.rs.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cice.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cice.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.cice.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.cice.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.cice.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cice.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.cice.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.cice.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.cice.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.clm2.h0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.clm2.h0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.clm2.h0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.clm2.h0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.clm2.h0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.clm2.h0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.clm2.h0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.clm2.h0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.clm2.h0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.clm2.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.clm2.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.clm2.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.clm2.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.clm2.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.clm2.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.clm2.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.clm2.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.clm2.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.clm2.rh0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.clm2.rh0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.clm2.rh0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.clm2.rh0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.clm2.rh0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.clm2.rh0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.clm2.rh0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.clm2.rh0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.clm2.rh0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cpl.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cpl.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.cpl.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.cpl.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.cpl.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.cpl.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.cpl.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.cpl.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.cpl.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.docn.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.docn.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.docn.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.docn.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.docn.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.docn.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.docn.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.docn.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.docn.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.hydros.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.hydros.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.hydros.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.hydros.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.hydros.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.hydros.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.hydros.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.hydros.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.hydros.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.hydros.rh0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.hydros.rh0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.hydros.rh0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.hydros.rh0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.hydros.rh0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0002.hydros.rh0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0002.hydros.rh0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0002.hydros.rh0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0002.hydros.rh0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cam.h0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cam.h0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.cam.h0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.cam.h0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.cam.h0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cam.h0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.cam.h0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.cam.h0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.cam.h0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cam.h6.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cam.h6.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.cam.h6.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.cam.h6.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.cam.h6.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cam.h6.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.cam.h6.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.cam.h6.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.cam.i.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cam.i.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.cam.i.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.cam.i.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.cam.i.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cam.i.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.cam.i.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.cam.i.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.cam.i.2017-10-06-66600.nc
+ ds=66600
+ removing: gio_ecflow1_0003.cam.i.2017-10-06-66600.nc
+ processing: gio_ecflow1_0003.cam.i.2017-10-06-68400.nc
+ ds=68400
+ removing: gio_ecflow1_0003.cam.i.2017-10-06-68400.nc
+ processing: gio_ecflow1_0003.cam.i.2017-10-06-70200.nc
+ ds=70200
+ removing: gio_ecflow1_0003.cam.i.2017-10-06-70200.nc
+ processing: gio_ecflow1_0003.cam.i.2017-10-06-72000.nc
+ ds=72000
+ removing: gio_ecflow1_0003.cam.i.2017-10-06-72000.nc
+ processing: gio_ecflow1_0003.cam.i.2017-10-06-73800.nc
+ ds=73800
+ removing: gio_ecflow1_0003.cam.i.2017-10-06-73800.nc
+ processing: gio_ecflow1_0003.cam.i.2017-10-06-75600.nc
+ ds=75600
+ removing: gio_ecflow1_0003.cam.i.2017-10-06-75600.nc
+ processing: gio_ecflow1_0003.cam.i.2017-10-06-77400.nc
+ ds=77400
+ removing: gio_ecflow1_0003.cam.i.2017-10-06-77400.nc
+ processing: gio_ecflow1_0003.cam.i.2017-10-06-79200.nc
+ ds=79200
+ removing: gio_ecflow1_0003.cam.i.2017-10-06-79200.nc
+ processing: gio_ecflow1_0003.cam.i.2017-10-06-81000.nc
+ ds=81000
+ removing: gio_ecflow1_0003.cam.i.2017-10-06-81000.nc
+ processing: gio_ecflow1_0003.cam.i.2017-10-06-82800.nc
+ ds=82800
+ removing: gio_ecflow1_0003.cam.i.2017-10-06-82800.nc
+ processing: gio_ecflow1_0003.cam.i.2017-10-06-84600.nc
+ ds=84600
+ removing: gio_ecflow1_0003.cam.i.2017-10-06-84600.nc
+ processing: gio_ecflow1_0003.cam.i.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cam.i.2017-10-07-01800.nc
+ ds=01800
+ removing: gio_ecflow1_0003.cam.i.2017-10-07-01800.nc
+ processing: gio_ecflow1_0003.cam.i.2017-10-07-03600.nc
+ ds=03600
+ removing: gio_ecflow1_0003.cam.i.2017-10-07-03600.nc
+ processing: gio_ecflow1_0003.cam.i.2017-10-07-05400.nc
+ ds=05400
+ removing: gio_ecflow1_0003.cam.i.2017-10-07-05400.nc
+ processing: gio_ecflow1_0003.cam.i.2017-10-07-07200.nc
+ ds=07200
+ removing: gio_ecflow1_0003.cam.i.2017-10-07-07200.nc
+ processing: gio_ecflow1_0003.cam.i.2017-10-07-09000.nc
+ ds=09000
+ removing: gio_ecflow1_0003.cam.i.2017-10-07-09000.nc
+ processing: gio_ecflow1_0003.cam.i.2017-10-07-10800.nc
+ ds=10800
+ removing: gio_ecflow1_0003.cam.i.2017-10-07-10800.nc
+ processing: gio_ecflow1_0003.cam.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cam.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.cam.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.cam.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.cam.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cam.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.cam.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.cam.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.cam.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cam.rh6.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cam.rh6.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.cam.rh6.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.cam.rh6.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.cam.rh6.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cam.rh6.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.cam.rh6.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.cam.rh6.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.cam.rh6.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cam.rs.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cam.rs.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.cam.rs.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.cam.rs.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.cam.rs.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cam.rs.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.cam.rs.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.cam.rs.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.cam.rs.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cice.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cice.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.cice.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.cice.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.cice.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cice.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.cice.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.cice.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.cice.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.clm2.h0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.clm2.h0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.clm2.h0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.clm2.h0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.clm2.h0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.clm2.h0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.clm2.h0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.clm2.h0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.clm2.h0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.clm2.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.clm2.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.clm2.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.clm2.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.clm2.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.clm2.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.clm2.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.clm2.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.clm2.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.clm2.rh0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.clm2.rh0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.clm2.rh0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.clm2.rh0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.clm2.rh0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.clm2.rh0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.clm2.rh0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.clm2.rh0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.clm2.rh0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cpl.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cpl.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.cpl.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.cpl.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.cpl.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.cpl.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.cpl.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.cpl.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.cpl.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.docn.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.docn.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.docn.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.docn.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.docn.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.docn.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.docn.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.docn.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.docn.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.hydros.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.hydros.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.hydros.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.hydros.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.hydros.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.hydros.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.hydros.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.hydros.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.hydros.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.hydros.rh0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.hydros.rh0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.hydros.rh0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.hydros.rh0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.hydros.rh0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0003.hydros.rh0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0003.hydros.rh0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0003.hydros.rh0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0003.hydros.rh0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cam.h0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cam.h0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.cam.h0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.cam.h0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.cam.h0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cam.h0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.cam.h0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.cam.h0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.cam.h0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cam.h6.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cam.h6.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.cam.h6.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.cam.h6.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.cam.h6.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cam.h6.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.cam.h6.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.cam.h6.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.cam.i.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cam.i.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.cam.i.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.cam.i.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.cam.i.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cam.i.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.cam.i.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.cam.i.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.cam.i.2017-10-06-66600.nc
+ ds=66600
+ removing: gio_ecflow1_0004.cam.i.2017-10-06-66600.nc
+ processing: gio_ecflow1_0004.cam.i.2017-10-06-68400.nc
+ ds=68400
+ removing: gio_ecflow1_0004.cam.i.2017-10-06-68400.nc
+ processing: gio_ecflow1_0004.cam.i.2017-10-06-70200.nc
+ ds=70200
+ removing: gio_ecflow1_0004.cam.i.2017-10-06-70200.nc
+ processing: gio_ecflow1_0004.cam.i.2017-10-06-72000.nc
+ ds=72000
+ removing: gio_ecflow1_0004.cam.i.2017-10-06-72000.nc
+ processing: gio_ecflow1_0004.cam.i.2017-10-06-73800.nc
+ ds=73800
+ removing: gio_ecflow1_0004.cam.i.2017-10-06-73800.nc
+ processing: gio_ecflow1_0004.cam.i.2017-10-06-75600.nc
+ ds=75600
+ removing: gio_ecflow1_0004.cam.i.2017-10-06-75600.nc
+ processing: gio_ecflow1_0004.cam.i.2017-10-06-77400.nc
+ ds=77400
+ removing: gio_ecflow1_0004.cam.i.2017-10-06-77400.nc
+ processing: gio_ecflow1_0004.cam.i.2017-10-06-79200.nc
+ ds=79200
+ removing: gio_ecflow1_0004.cam.i.2017-10-06-79200.nc
+ processing: gio_ecflow1_0004.cam.i.2017-10-06-81000.nc
+ ds=81000
+ removing: gio_ecflow1_0004.cam.i.2017-10-06-81000.nc
+ processing: gio_ecflow1_0004.cam.i.2017-10-06-82800.nc
+ ds=82800
+ removing: gio_ecflow1_0004.cam.i.2017-10-06-82800.nc
+ processing: gio_ecflow1_0004.cam.i.2017-10-06-84600.nc
+ ds=84600
+ removing: gio_ecflow1_0004.cam.i.2017-10-06-84600.nc
+ processing: gio_ecflow1_0004.cam.i.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cam.i.2017-10-07-01800.nc
+ ds=01800
+ removing: gio_ecflow1_0004.cam.i.2017-10-07-01800.nc
+ processing: gio_ecflow1_0004.cam.i.2017-10-07-03600.nc
+ ds=03600
+ removing: gio_ecflow1_0004.cam.i.2017-10-07-03600.nc
+ processing: gio_ecflow1_0004.cam.i.2017-10-07-05400.nc
+ ds=05400
+ removing: gio_ecflow1_0004.cam.i.2017-10-07-05400.nc
+ processing: gio_ecflow1_0004.cam.i.2017-10-07-07200.nc
+ ds=07200
+ removing: gio_ecflow1_0004.cam.i.2017-10-07-07200.nc
+ processing: gio_ecflow1_0004.cam.i.2017-10-07-09000.nc
+ ds=09000
+ removing: gio_ecflow1_0004.cam.i.2017-10-07-09000.nc
+ processing: gio_ecflow1_0004.cam.i.2017-10-07-10800.nc
+ ds=10800
+ removing: gio_ecflow1_0004.cam.i.2017-10-07-10800.nc
+ processing: gio_ecflow1_0004.cam.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cam.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.cam.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.cam.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.cam.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cam.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.cam.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.cam.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.cam.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cam.rh6.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cam.rh6.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.cam.rh6.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.cam.rh6.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.cam.rh6.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cam.rh6.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.cam.rh6.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.cam.rh6.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.cam.rh6.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cam.rs.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cam.rs.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.cam.rs.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.cam.rs.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.cam.rs.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cam.rs.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.cam.rs.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.cam.rs.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.cam.rs.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cice.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cice.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.cice.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.cice.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.cice.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cice.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.cice.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.cice.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.cice.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.clm2.h0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.clm2.h0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.clm2.h0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.clm2.h0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.clm2.h0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.clm2.h0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.clm2.h0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.clm2.h0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.clm2.h0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.clm2.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.clm2.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.clm2.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.clm2.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.clm2.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.clm2.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.clm2.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.clm2.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.clm2.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.clm2.rh0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.clm2.rh0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.clm2.rh0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.clm2.rh0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.clm2.rh0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.clm2.rh0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.clm2.rh0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.clm2.rh0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.clm2.rh0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cpl.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cpl.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.cpl.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.cpl.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.cpl.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.cpl.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.cpl.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.cpl.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.cpl.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.docn.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.docn.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.docn.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.docn.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.docn.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.docn.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.docn.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.docn.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.docn.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.hydros.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.hydros.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.hydros.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.hydros.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.hydros.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.hydros.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.hydros.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.hydros.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.hydros.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.hydros.rh0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.hydros.rh0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.hydros.rh0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.hydros.rh0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.hydros.rh0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0004.hydros.rh0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0004.hydros.rh0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0004.hydros.rh0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0004.hydros.rh0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cam.h0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cam.h0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.cam.h0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.cam.h0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.cam.h0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cam.h0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.cam.h0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.cam.h0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.cam.h0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cam.h6.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cam.h6.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.cam.h6.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.cam.h6.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.cam.h6.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cam.h6.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.cam.h6.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.cam.h6.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.cam.i.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cam.i.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.cam.i.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.cam.i.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.cam.i.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cam.i.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.cam.i.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.cam.i.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.cam.i.2017-10-06-66600.nc
+ ds=66600
+ removing: gio_ecflow1_0005.cam.i.2017-10-06-66600.nc
+ processing: gio_ecflow1_0005.cam.i.2017-10-06-68400.nc
+ ds=68400
+ removing: gio_ecflow1_0005.cam.i.2017-10-06-68400.nc
+ processing: gio_ecflow1_0005.cam.i.2017-10-06-70200.nc
+ ds=70200
+ removing: gio_ecflow1_0005.cam.i.2017-10-06-70200.nc
+ processing: gio_ecflow1_0005.cam.i.2017-10-06-72000.nc
+ ds=72000
+ removing: gio_ecflow1_0005.cam.i.2017-10-06-72000.nc
+ processing: gio_ecflow1_0005.cam.i.2017-10-06-73800.nc
+ ds=73800
+ removing: gio_ecflow1_0005.cam.i.2017-10-06-73800.nc
+ processing: gio_ecflow1_0005.cam.i.2017-10-06-75600.nc
+ ds=75600
+ removing: gio_ecflow1_0005.cam.i.2017-10-06-75600.nc
+ processing: gio_ecflow1_0005.cam.i.2017-10-06-77400.nc
+ ds=77400
+ removing: gio_ecflow1_0005.cam.i.2017-10-06-77400.nc
+ processing: gio_ecflow1_0005.cam.i.2017-10-06-79200.nc
+ ds=79200
+ removing: gio_ecflow1_0005.cam.i.2017-10-06-79200.nc
+ processing: gio_ecflow1_0005.cam.i.2017-10-06-81000.nc
+ ds=81000
+ removing: gio_ecflow1_0005.cam.i.2017-10-06-81000.nc
+ processing: gio_ecflow1_0005.cam.i.2017-10-06-82800.nc
+ ds=82800
+ removing: gio_ecflow1_0005.cam.i.2017-10-06-82800.nc
+ processing: gio_ecflow1_0005.cam.i.2017-10-06-84600.nc
+ ds=84600
+ removing: gio_ecflow1_0005.cam.i.2017-10-06-84600.nc
+ processing: gio_ecflow1_0005.cam.i.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cam.i.2017-10-07-01800.nc
+ ds=01800
+ removing: gio_ecflow1_0005.cam.i.2017-10-07-01800.nc
+ processing: gio_ecflow1_0005.cam.i.2017-10-07-03600.nc
+ ds=03600
+ removing: gio_ecflow1_0005.cam.i.2017-10-07-03600.nc
+ processing: gio_ecflow1_0005.cam.i.2017-10-07-05400.nc
+ ds=05400
+ removing: gio_ecflow1_0005.cam.i.2017-10-07-05400.nc
+ processing: gio_ecflow1_0005.cam.i.2017-10-07-07200.nc
+ ds=07200
+ removing: gio_ecflow1_0005.cam.i.2017-10-07-07200.nc
+ processing: gio_ecflow1_0005.cam.i.2017-10-07-09000.nc
+ ds=09000
+ removing: gio_ecflow1_0005.cam.i.2017-10-07-09000.nc
+ processing: gio_ecflow1_0005.cam.i.2017-10-07-10800.nc
+ ds=10800
+ removing: gio_ecflow1_0005.cam.i.2017-10-07-10800.nc
+ processing: gio_ecflow1_0005.cam.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cam.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.cam.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.cam.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.cam.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cam.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.cam.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.cam.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.cam.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cam.rh6.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cam.rh6.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.cam.rh6.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.cam.rh6.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.cam.rh6.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cam.rh6.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.cam.rh6.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.cam.rh6.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.cam.rh6.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cam.rs.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cam.rs.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.cam.rs.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.cam.rs.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.cam.rs.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cam.rs.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.cam.rs.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.cam.rs.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.cam.rs.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cice.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cice.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.cice.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.cice.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.cice.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cice.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.cice.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.cice.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.cice.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.clm2.h0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.clm2.h0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.clm2.h0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.clm2.h0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.clm2.h0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.clm2.h0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.clm2.h0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.clm2.h0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.clm2.h0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.clm2.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.clm2.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.clm2.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.clm2.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.clm2.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.clm2.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.clm2.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.clm2.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.clm2.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.clm2.rh0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.clm2.rh0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.clm2.rh0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.clm2.rh0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.clm2.rh0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.clm2.rh0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.clm2.rh0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.clm2.rh0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.clm2.rh0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cpl.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cpl.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.cpl.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.cpl.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.cpl.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.cpl.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.cpl.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.cpl.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.cpl.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.docn.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.docn.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.docn.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.docn.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.docn.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.docn.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.docn.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.docn.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.docn.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.hydros.r.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.hydros.r.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.hydros.r.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.hydros.r.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.hydros.r.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.hydros.r.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.hydros.r.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.hydros.r.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.hydros.r.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.hydros.rh0.2017-10-05-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.hydros.rh0.2017-10-05-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.hydros.rh0.2017-10-05-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.hydros.rh0.2017-10-05-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.hydros.rh0.2017-10-06-00000.nc
+ ds=00000
+skip: 00000
+ processing: gio_ecflow1_0005.hydros.rh0.2017-10-06-21600.nc
+ ds=21600
+skip: 21600
+ processing: gio_ecflow1_0005.hydros.rh0.2017-10-06-43200.nc
+ ds=43200
+skip: 43200
+ processing: gio_ecflow1_0005.hydros.rh0.2017-10-06-64800.nc
+ ds=64800
+skip: 64800
+ processing: gio_ecflow1_0005.hydros.rh0.2017-10-07-00000.nc
+ ds=00000
+skip: 00000
+ number of saved initial files in DA exp: 9
+ number of saved initial files mod 8: 1
+ 
+ need to clean
+  keeping:
+2017-10-05-21600
+2017-10-05-43200
+2017-10-05-64800
+2017-10-06-00000
+2017-10-06-21600
+2017-10-06-43200
+2017-10-06-64800
+2017-10-07-00000
+ 
+ cleaning member 1
+
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h6.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h6.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h6.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h6.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h6.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h6.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h6.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h6.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.h6.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.i.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.i.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.i.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.i.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.i.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.i.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.i.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.i.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.i.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.i.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rh6.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rh6.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rh6.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rh6.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rh6.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rh6.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rh6.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rh6.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rh6.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rh6.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rs.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rs.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rs.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rs.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rs.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rs.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rs.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rs.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rs.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cam.rs.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cice.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cice.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cice.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cice.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cice.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cice.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cice.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cice.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cice.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cice.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.h0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.h0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.h0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.h0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.h0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.h0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.h0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.h0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.h0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.h0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.rh0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.rh0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.rh0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.rh0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.rh0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.rh0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.rh0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.rh0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.rh0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.clm2.rh0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cpl.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cpl.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cpl.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cpl.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cpl.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cpl.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cpl.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cpl.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cpl.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.cpl.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.docn.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.docn.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.docn.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.docn.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.docn.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.docn.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.docn.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.docn.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.docn.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.docn.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.rh0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.rh0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.rh0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.rh0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.rh0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.rh0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.rh0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.rh0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.rh0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0001/run/gio_ecflow1_0001.hydros.rh0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ clean logs
+ cleaning member 2
+
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h6.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h6.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h6.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h6.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h6.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h6.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h6.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h6.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.h6.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.i.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.i.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.i.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.i.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.i.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.i.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.i.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.i.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.i.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.i.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rh6.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rh6.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rh6.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rh6.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rh6.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rh6.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rh6.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rh6.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rh6.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rh6.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rs.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rs.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rs.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rs.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rs.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rs.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rs.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rs.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rs.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cam.rs.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cice.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cice.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cice.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cice.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cice.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cice.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cice.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cice.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cice.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cice.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.h0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.h0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.h0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.h0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.h0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.h0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.h0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.h0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.h0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.h0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.rh0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.rh0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.rh0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.rh0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.rh0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.rh0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.rh0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.rh0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.rh0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.clm2.rh0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cpl.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cpl.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cpl.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cpl.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cpl.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cpl.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cpl.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cpl.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cpl.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.cpl.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.docn.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.docn.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.docn.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.docn.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.docn.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.docn.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.docn.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.docn.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.docn.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.docn.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.rh0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.rh0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.rh0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.rh0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.rh0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.rh0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.rh0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.rh0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.rh0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0002/run/gio_ecflow1_0002.hydros.rh0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ clean logs
+ cleaning member 3
+
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h6.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h6.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h6.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h6.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h6.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h6.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h6.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h6.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.h6.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.i.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.i.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.i.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.i.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.i.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.i.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.i.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.i.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.i.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.i.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rh6.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rh6.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rh6.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rh6.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rh6.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rh6.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rh6.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rh6.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rh6.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rh6.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rs.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rs.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rs.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rs.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rs.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rs.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rs.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rs.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rs.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cam.rs.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cice.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cice.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cice.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cice.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cice.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cice.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cice.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cice.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cice.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cice.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.h0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.h0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.h0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.h0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.h0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.h0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.h0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.h0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.h0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.h0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.rh0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.rh0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.rh0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.rh0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.rh0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.rh0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.rh0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.rh0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.rh0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.clm2.rh0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cpl.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cpl.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cpl.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cpl.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cpl.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cpl.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cpl.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cpl.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cpl.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.cpl.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.docn.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.docn.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.docn.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.docn.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.docn.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.docn.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.docn.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.docn.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.docn.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.docn.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.rh0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.rh0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.rh0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.rh0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.rh0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.rh0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.rh0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.rh0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.rh0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0003/run/gio_ecflow1_0003.hydros.rh0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ clean logs
+ cleaning member 4
+
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h6.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h6.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h6.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h6.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h6.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h6.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h6.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h6.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.h6.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.i.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.i.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.i.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.i.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.i.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.i.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.i.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.i.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.i.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.i.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rh6.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rh6.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rh6.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rh6.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rh6.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rh6.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rh6.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rh6.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rh6.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rh6.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rs.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rs.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rs.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rs.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rs.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rs.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rs.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rs.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rs.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cam.rs.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cice.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cice.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cice.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cice.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cice.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cice.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cice.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cice.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cice.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cice.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.h0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.h0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.h0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.h0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.h0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.h0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.h0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.h0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.h0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.h0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.rh0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.rh0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.rh0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.rh0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.rh0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.rh0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.rh0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.rh0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.rh0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.clm2.rh0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cpl.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cpl.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cpl.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cpl.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cpl.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cpl.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cpl.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cpl.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cpl.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.cpl.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.docn.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.docn.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.docn.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.docn.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.docn.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.docn.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.docn.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.docn.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.docn.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.docn.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.rh0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.rh0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.rh0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.rh0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.rh0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.rh0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.rh0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.rh0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.rh0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0004/run/gio_ecflow1_0004.hydros.rh0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ clean logs
+ cleaning member 5
+
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h6.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h6.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h6.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h6.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h6.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h6.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h6.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h6.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.h6.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.i.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.i.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.i.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.i.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.i.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.i.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.i.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.i.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.i.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.i.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rh6.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rh6.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rh6.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rh6.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rh6.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rh6.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rh6.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rh6.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rh6.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rh6.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rs.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rs.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rs.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rs.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rs.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rs.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rs.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rs.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rs.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cam.rs.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cice.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cice.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cice.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cice.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cice.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cice.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cice.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cice.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cice.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cice.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.h0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.h0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.h0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.h0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.h0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.h0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.h0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.h0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.h0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.h0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.rh0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.rh0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.rh0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.rh0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.rh0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.rh0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.rh0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.rh0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.rh0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.clm2.rh0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cpl.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cpl.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cpl.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cpl.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cpl.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cpl.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cpl.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cpl.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cpl.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.cpl.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.docn.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.docn.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.docn.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.docn.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.docn.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.docn.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.docn.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.docn.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.docn.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.docn.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.r.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.r.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.r.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.r.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.r.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.r.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.r.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.r.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.r.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.r.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.rh0.2017-10-05-00000.nc
+ dt=2017-10-05-00000
+ ds=00000
+ check if the forecast dir still exist and if it exist if the forecast has finished
+ forecast dir does not exist
+ Deleting: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.rh0.2017-10-05-00000.nc
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.rh0.2017-10-05-21600.nc
+ dt=2017-10-05-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.rh0.2017-10-05-43200.nc
+ dt=2017-10-05-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.rh0.2017-10-05-64800.nc
+ dt=2017-10-05-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.rh0.2017-10-06-00000.nc
+ dt=2017-10-06-00000
+ ds=00000
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.rh0.2017-10-06-21600.nc
+ dt=2017-10-06-21600
+ ds=21600
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.rh0.2017-10-06-43200.nc
+ dt=2017-10-06-43200
+ ds=43200
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.rh0.2017-10-06-64800.nc
+ dt=2017-10-06-64800
+ ds=64800
+ processing: /work/cmcc/gc02720/CMCC-CM/gio_ecflow1_0005/run/gio_ecflow1_0005.hydros.rh0.2017-10-07-00000.nc
+ dt=2017-10-07-00000
+ ds=00000
+ clean logs
+
+ END CLEANING ARCHIVING PROCEDURE 
+
++ sleep 5
++ ./cases_forecast_archive.sh gio_ecflow1
+
+ START FORECAST ARCHIVING PROCEDURE 
+
+ Forecast cases container dir = /work/cmcc/gc02720/cesm-exp
+ Run dir container = /work/cmcc/gc02720/CMCC-CM
+ Archive dir = /work/cmcc/gc02720/CMCC-CM/archive
+ Experiment name = gio_ecflow1
+ Numeber of instances = 
+ Forecast N = 
+ 
+Check: /work/cmcc/gc02720/cesm-exp/gio_ecflow1-forecast/*
+ check if the forecast has finished
+grep: /work/cmcc/gc02720/cesm-exp/gio_ecflow1-forecast/*/cesm.stderr*: No such file or directory
+ forecast not finished!
++ echo -e '\n END CLEANING ARCHIVING PROCEDURE \n'
+
+ END CLEANING ARCHIVING PROCEDURE 
+
++ echo ''
+
++ echo '----- END TASK ---'
+----- END TASK ---
++ echo ''
+
++ ecflow_client --label=Info 'OK... 20230903  23:49'
++ wait
++ ecflow_client --complete
++ trap 0
++ exit 0

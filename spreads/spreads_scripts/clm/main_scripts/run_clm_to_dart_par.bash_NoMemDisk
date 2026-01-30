@@ -1,0 +1,139 @@
+#!/bin/bash
+#
+# This script processes climate model data for DART using LND_DATE_EXT.
+# It runs jobs for each ensemble member and processes the outputs accordingly.
+
+# ==============================================
+# Input Arguments
+# ==============================================
+if [ $# -lt 5 ]; then
+  echo "Usage: $0 <CASEL> <case_name> <LND_DATE_EXT> <CASESRUNROOT> <nens>"
+  exit 1
+fi
+
+export MOVE='/usr/bin/mv -v'
+export COPY='/usr/bin/cp -v --preserve=timestamps'
+
+CASEL=$1
+case_name=$2
+LND_DATE_EXT=$3
+CASESRUNROOT=$4
+nens=$5
+
+echo "inside ./run_clm_to_dart.bash ${CASEL} ${case_name} ${LND_DATE_EXT} ${CASESRUNROOT} ${nens}"
+string_id=""
+
+# ==============================================
+# Function Definitions
+# ==============================================
+
+# Function to take the id of the case.submit processes
+take_id() {
+  output=$("$@")
+  echo 'OUTPUT: ' $output
+  echo $output
+}
+
+# Function to process data for a specific ensemble member
+process_data() {
+   jobid=$(take_id ../../clm_to_dart)
+   echo 'JOB_ID: ' $jobid
+}
+
+export -f process_data
+export -f take_id
+
+# ==============================================
+# Main Execution Loop: Iterate over ensemble members
+# ==============================================
+
+enscount=1
+for ii in $(seq 1 ${nens}); do
+  ni=$(printf "%04d" ${ii})  # Zero-padded ensemble index
+  FILE="${CASESRUNROOT}/${case_name}_${ni}/run/${CASEL}_${ni}.clm2.r.${LND_DATE_EXT}.nc"
+
+  # Check if the input file exists
+  if [ ! -f "$FILE" ]; then
+    echo "Error: File $FILE not found!"
+    exit 1
+  fi
+
+  # Prepare the working directory for this ensemble member
+  NDIR="cc_${enscount}"
+  WORK_DIR="tmp/${NDIR}"
+  
+  # Ensure the directory exists by recreating it
+  rm -rf "$WORK_DIR"
+  mkdir -p "$WORK_DIR"
+
+  # Copy necessary input file
+  cp input.nml "$WORK_DIR/"
+  cd "$WORK_DIR"
+
+  # Copy the ensemble restart file
+  cp -f "$FILE" clm.nc
+
+  # Submit the processing job using bsub
+  kk=$(bsub -J "process_${NDIR}" -oo "process_${NDIR}.log" << EOF
+#!/bin/bash
+#BSUB -P R000
+#BSUB -W 00:20
+#BSUB -n 2
+#BSUB -q p_short
+#BSUB -R "rusage[mem=2000]"
+#BSUB -R "span[ptile=8]"
+#BSUB -app spreads_filter
+
+# Load necessary modules
+source /users_home/cmcc/lg07622/modules_juno.me
+
+# Process the data
+process_data
+EOF
+)
+
+  # Extract the job ID from the bsub output
+  jobid=$(echo "${kk}" | awk '{print $2}')
+
+  # Build the dependency string for bwait
+  if [ $enscount -eq 1 ]; then 
+    string_id="post_done(${jobid})"
+  else
+    string_id="${string_id} && post_done(${jobid})"
+  fi
+
+  # Return to the original directory
+  cd ../../
+
+  ((enscount++))
+done
+
+# Wait for all jobs to finish
+echo "Waiting for jobs: $string_id"
+bw=0
+bwait -w "$string_id" || bw=$?
+bjobs
+
+# ==============================================
+# Post-processing: Move and log output files
+# ==============================================
+
+enscount=1
+for ii in $(seq 1 ${nens}); do
+  ni=$(printf "%04d" ${ii})  # Zero-padded ensemble index
+  OUTPUT="clm2_${ni}.r.${LND_DATE_EXT}.nc"
+  NDIR="cc_${enscount}"
+
+  # Move processed file to the current directory
+  ${MOVE} "tmp/${NDIR}/clm.nc" "$OUTPUT"
+
+  # Log the restart, history, and vector files
+  ls "${OUTPUT}" >> restart_files.txt
+  ls "${CASESRUNROOT}/${case_name}_${ni}/run/${CASEL}_${ni}.clm2.h0.${LND_DATE_EXT}.nc" >> history_files.txt
+  ls "${CASESRUNROOT}/${case_name}_${ni}/run/${CASEL}_${ni}.clm2.h2.${LND_DATE_EXT}.nc" >> vector_files.txt
+
+  ((enscount++))
+done
+
+echo "ALL CLM_TO_DART JOBS FINISHED"
+exit 0

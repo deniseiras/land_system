@@ -1,0 +1,144 @@
+#!/bin/bash
+#
+# ecperf-stat by Sami Saarinen, HPCK, 2021
+#
+
+set +eux
+
+shopt -s extglob # enables extglob i.e. @(x|y|z) regular expressions in bash
+
+if [[ "${1:-}" = "--" ]] ; then
+    shift
+fi
+
+if [[ $# -ge 1 ]] ; then
+    if [[ "${ALPS_APP_PE:-}" != "" ]] ; then
+	rank="$ALPS_APP_PE"
+    elif [[ "${OMPI_COMM_WORLD_RANK:-}" != "" ]] ; then
+	rank="$OMPI_COMM_WORLD_RANK"
+    elif [[ "${PMI_RANK:-}" != "" ]] ; then
+	rank="$PMI_RANK"
+    elif [[ "${PMIX_RANK:-}" != "" ]] ; then
+	rank="$PMIX_RANK"
+    else
+	rank="0"
+    fi
+
+    if [[ "$rank" != "" ]] ; then
+	# "ecperf" executable, if available, could be more-modern/newer/faster than the version provided by the O/S
+	if [[ -x "${PERF_EXE:-}" ]] ; then
+	    perf=${PERF_EXE}
+	else
+	    perf=ecperf
+	fi
+	perf=$(which $perf 2>/dev/null || which perf 2>/dev/null || echo "perf")
+	export PERF_EXE=$perf
+
+	# PERF_RANKS values for example:
+	# -1                    : Any rank will be monitored
+	# all                   : Any rank will be monitored (string "all" is case insensitive)
+	# 3                     : yields to {3}
+	# 3-5                   : yields to {3,4,5}
+	# 3,4,5                 : yields to {3,4,5}
+	# 3:2:7                 : yields to {3,5,7}
+	# ; 0 1-6,8,5:7/20:2:26 : yields to {0,1,2,3,4,5,6,7,8,20,22,24,26}
+
+	pr="${PERF_RANKS:-all}" # Unlike ecperf-record, ecperf-stat for ALL MPI-tasks does not create huge files
+	[[ "${pr,,}" = "all" ]] && pr="-1" # ${pr,,} := use lowercase of $pr before comparison
+	rc=0
+	if [[ "$pr" != "-1" ]] ; then
+	    echo "/$pr" |\
+		perl -pe 's%[,;/]% %g; s/^\s+//; s/\s+/\n/g;' |\
+		perl -ne 'if (m/^(\d+)$/) {printf("%d\n",$1)} 
+                          elsif (m/^(\d+)[-:](\d+)$/) {for ($1 .. $2) {printf("%d\n",$_)}}
+                          elsif (m/^(\d+):(\d+):(\d+)$/) {for (my $i = $1; $i <= $3; $i += $2) {printf("%d\n",$i)}}
+                         ' | sort -nu | egrep -q '^'"$rank"'$' || rc=$?
+	fi
+	
+	delay=${PERF_DELAY:-0} # delay in ms after starting the program before events gets enabled -- useful to filter out the initial startup phase
+	delay=$(echo "$delay" | perl -pe 's/ms//; s/(\d+)\s*s/1000*$1/e') # Valid formats 1000ms, 1000 ms, 1s, 1 s lead to delay=1000
+	export PERF_DELAY=$delay
+	
+	if [[ $rc -eq 0 ]] ; then
+	    perfstat=$(pwd)/perf-stat.dir/$(hostname -s)/exe-$(basename $1).mpi-${rank}
+	    [[ -n "${OMP_NUM_THREADS:-}" ]] && perfstat+=".omp-${OMP_NUM_THREADS}"
+            perfstat+=".txt"
+            mkdir -p $(dirname $perfstat) || :
+            /bin/rm -f $perfstat
+	    go=1
+	else
+	    perfstat=/dev/null
+	    go=0
+	fi
+
+	export PERF_THRU_ENV=${PERF_THRU_ENV:-no}
+        if [[ "${PERF_THRU_ENV,,}" =~ ^(yes|1)$ ]] ; then
+            export PERF_PREFIX_CMD="env LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
+        else
+            unset PERF_PREFIX_CMD
+        fi
+
+        export PERF_BE_PARANOID=${PERF_BE_PARANOID:-yes}
+        if [[ "${PERF_BE_PARANOID,,}" =~ ^(yes|1)$ ]] ; then
+            rc=0
+            # Is this Bologna compute node {aa|ab|ac|ad}<digit>-<4-digits> ?                                                                                                                                                                  
+            # If yes, then try to reset paranoid & kptr to -1 and 0                                                                                                                                                                           
+            hostname -s | grep -Pq '^a([a-d])\d+-\d{4}$' || rc=$?
+            if [[ $rc -eq 0 ]] ; then
+                /usr/bin/sudo /usr/local/root/SUDO/ec_enable_perf -p -1 -k 0 || :
+            fi
+        fi
+	
+	if [[ "$rank" = "0" ]] ; then
+	    echo "PERF_EXE=$perf"
+	    echo "PERF_DELAY=${PERF_DELAY}"
+	    echo "PERF_RANKS=$pr"
+	    echo "PERF_THRU_ENV=${PERF_THRU_ENV}"
+	    echo "PERF_PREFIX_CMD=${PERF_PREFIX_CMD:-}"
+	    more /proc/sys/kernel/perf_event_paranoid /proc/sys/kernel/kptr_restrict /proc/sys/kernel/nmi_watchdog < /dev/null | cat
+	    set -x
+	    env COLUMNS=132 lscpu || :
+	    hostname
+	    uname -a
+	    uptime
+            cat /etc/os-release || :
+            cat /proc/cmdline || :
+ 	    pwd
+	fi
+
+	if [[ $go -eq 1 ]] ; then
+	    export PERF_OPTS=${PERF_OPTS:-} # Additional options for perf-stat
+
+	    # Events : this is the usual stuff you'd get with 'perf stat -ddd -- command'
+	    
+	    e="task-clock,context-switches,cpu-migrations"
+	    e+=",page-faults,cycles,stalled-cycles-frontend,stalled-cycles-backend"
+	    e+=",instructions,branches,branch-misses,L1-dcache-loads,L1-dcache-load-misses,cache-references"
+	    e+=",LLC-loads,LLC-load-misses"
+	    e+=",L1-icache-loads,L1-icache-load-misses"
+	    e+=",dTLB-loads,dTLB-load-misses,iTLB-loads,iTLB-load-misses"
+	    e+=",L1-dcache-prefetches,L1-dcache-prefetch-misses"
+
+	    #e+=",fp_ret_sse_avx_ops.all"
+	    
+	    export PERF_EVENTS=${PERF_EVENTS:-$e}
+	    PERF_EVENTS=$(echo "$PERF_EVENTS" | perl -pe 's/\s+//g; s/;/,/g; s/[,]+/,/g; s/,$//;') # semicolons to commas 
+	    
+	    exec $perf stat \
+		 -e ${PERF_EVENTS} \
+		 --delay $PERF_DELAY \
+		 ${PERF_OPTS} \
+		 -o $perfstat \
+		 -- ${PERF_PREFIX_CMD:-} $@
+	    
+	    # Should never end up here
+	    exit $?
+	fi
+    fi
+    # Running w/o perf
+    exec $@
+else
+    echo "Usage: $0 executable_to_run [args]" >&2
+fi
+
+exit 1

@@ -1,0 +1,735 @@
+# calltree.pl . --fio=open,close,inquire
+
+# fd4o.F90:934 (SUBROUTINE fd4o_mod::FD4O_DBINFO)
+    1 {   0}  SUBROUTINE FD4O_DBINFO <SUBROUTINE fd4o_mod::FD4O_DBINFO at fd4o.F90:934>
+    2 {   1}  + fd4o_mod::FD4O_LONG_COLUMN_NAMES() [fd4o.F90:947] <FUNCTION fd4o_mod::FD4O_LONG_COLUMN_NAMES at fd4o.F90:384>
+    3 {   1}  + fd4o_mod::FD4O_PREPARE() [fd4o.F90:967] <FUNCTION fd4o_mod::FD4O_PREPARE at fd4o.F90:678>
+    4 {   1}  + fd4o_mod::FD4O_ERRMSG() [fd4o.F90:970] <FUNCTION fd4o_mod::FD4O_ERRMSG at fd4o.F90:465>
+    5 {   2}  | + Call C_D4O_PTR2STR [fd4o.F90:478] <void c_d4o_ptr2str_(const long long int *ptr,char *s,const long s_len) at d4o.c:2026>
+    6 {   2}  | \ Call C_D4O_DEALLOC [fd4o.F90:479] <void c_d4o_dealloc_(long long int *ptr) at d4o.c:2036>
+    7 {   1}  + fd4o_mod::FD4O_PREPARE() [fd4o.F90:970] <FUNCTION fd4o_mod::FD4O_PREPARE at fd4o.F90:678>
+    8 {   1}  + fd4o_mod::FD4O_NCOLS() [fd4o.F90:974] <FUNCTION fd4o_mod::FD4O_NCOLS at fd4o.F90:1275>
+    9 {   1}  + fd4o_mod::FD4O_ERRMSG() [fd4o.F90:992] <FUNCTION fd4o_mod::FD4O_ERRMSG at fd4o.F90:465> [see 4]
+   10 {   1}  + fd4o_mod::FD4O_DELETE() [fd4o.F90:998] <FUNCTION fd4o_mod::FD4O_DELETE at fd4o.F90:664>
+   11 {   1}  + CALL fd4o_mod::FD4O_PRINT [fd4o.F90:1002] <INTERFACE fd4o_mod::FD4O_PRINT at fd4o.F90:45>
+   12 {   1}  + CALL fd4o_mod::FD4O_PRINT [fd4o.F90:1006] <INTERFACE fd4o_mod::FD4O_PRINT at fd4o.F90:45>
+   13 {   1}  + fd4o_mod::FD4O_ERRMSG() [fd4o.F90:1011] <FUNCTION fd4o_mod::FD4O_ERRMSG at fd4o.F90:465> [see 4]
+   14 {   1}  + CALL fd4o_mod::FD4O_PRINT [fd4o.F90:1022] <INTERFACE fd4o_mod::FD4O_PRINT at fd4o.F90:45>
+   15 {   1}  + fd4o_mod::FD4O_DELETE() [fd4o.F90:1025] <FUNCTION fd4o_mod::FD4O_DELETE at fd4o.F90:664>
+   16 {   1}  + fd4o_mod::FD4O_DELETE() [fd4o.F90:1027] <FUNCTION fd4o_mod::FD4O_DELETE at fd4o.F90:664>
+   17 {   1}  + fd4o_mod::FD4O_ERRMSG() [fd4o.F90:1029] <FUNCTION fd4o_mod::FD4O_ERRMSG at fd4o.F90:465> [see 4]
+   18 {   1}  \ fd4o_mod::FD4O_LONG_COLUMN_NAMES() [fd4o.F90:1031] <FUNCTION fd4o_mod::FD4O_LONG_COLUMN_NAMES at fd4o.F90:384>
+   19 {   0}  END SUBROUTINE FD4O_DBINFO
+
+# fd4o.F90:1035 (SUBROUTINE fd4o_mod::FD4O_INFO)
+    1 {   0}  SUBROUTINE FD4O_INFO <SUBROUTINE fd4o_mod::FD4O_INFO at fd4o.F90:1035>
+    2 {   1}  + fd4o_mod::FD4O_DBH() [fd4o.F90:1054] <FUNCTION fd4o_mod::FD4O_DBH at fd4o.F90:442>
+    3 {   1}  + fd4o_mod::FD4O_DBNAME() [fd4o.F90:1055] <FUNCTION fd4o_mod::FD4O_DBNAME at fd4o.F90:414>
+    4 {   2}  | + Call C_D4O_PTR2STR [fd4o.F90:421] <void c_d4o_ptr2str_(const long long int *ptr,char *s,const long s_len) at d4o.c:2026>
+    5 {   2}  | \ Call C_D4O_DEALLOC [fd4o.F90:422] <void c_d4o_dealloc_(long long int *ptr) at d4o.c:2036>
+    6 {   1}  \ fd4o_mod::FD4O_TYPENAME() [fd4o.F90:1082] <FUNCTION fd4o_mod::FD4O_TYPENAME at fd4o.F90:448>
+    7 {   2}  | + Call C_D4O_PTR2STR [fd4o.F90:455] <void c_d4o_ptr2str_(const long long int *ptr,char *s,const long s_len) at d4o.c:2026>
+    8 {   2}  | \ Call C_D4O_DEALLOC [fd4o.F90:456] <void c_d4o_dealloc_(long long int *ptr) at d4o.c:2036>
+    9 {   0}  END SUBROUTINE FD4O_INFO
+
+# fd4o.F90:1095 (SUBROUTINE fd4o_mod::FD4O_PRINT_THRU_QUERY)
+    1 {   0}  SUBROUTINE FD4O_PRINT_THRU_QUERY <SUBROUTINE fd4o_mod::FD4O_PRINT_THRU_QUERY at fd4o.F90:1095>
+    2 {   1}  + CALL fd4o_mod::FD4O_PRINT [fd4o.F90:1107] <INTERFACE fd4o_mod::FD4O_PRINT at fd4o.F90:45>
+    3 {   1}  + fd4o_mod::FD4O_ERRMSG() [fd4o.F90:1110] <FUNCTION fd4o_mod::FD4O_ERRMSG at fd4o.F90:465>
+    4 {   2}  | + Call C_D4O_PTR2STR [fd4o.F90:478] <void c_d4o_ptr2str_(const long long int *ptr,char *s,const long s_len) at d4o.c:2026>
+    5 {   2}  | \ Call C_D4O_DEALLOC [fd4o.F90:479] <void c_d4o_dealloc_(long long int *ptr) at d4o.c:2036>
+    6 {   1}  \ fd4o_mod::FD4O_DELETE() [fd4o.F90:1112] <FUNCTION fd4o_mod::FD4O_DELETE at fd4o.F90:664>
+    7 {   0}  END SUBROUTINE FD4O_PRINT_THRU_QUERY
+
+# fd4o.F90:1116 (SUBROUTINE fd4o_mod::FD4O_PRINT_THRU_OBJECT)
+    1 {   0}  SUBROUTINE FD4O_PRINT_THRU_OBJECT <SUBROUTINE fd4o_mod::FD4O_PRINT_THRU_OBJECT at fd4o.F90:1116>
+    2 {   1}  + CALL fd4o_mod::FD4O_INFO [fd4o.F90:1159] <SUBROUTINE fd4o_mod::FD4O_INFO at fd4o.F90:1035>
+    3 {   2}  | + fd4o_mod::FD4O_DBH() [fd4o.F90:1054] <FUNCTION fd4o_mod::FD4O_DBH at fd4o.F90:442>
+    4 {   2}  | + fd4o_mod::FD4O_DBNAME() [fd4o.F90:1055] <FUNCTION fd4o_mod::FD4O_DBNAME at fd4o.F90:414>
+    5 {   3}  | | + Call C_D4O_PTR2STR [fd4o.F90:421] <void c_d4o_ptr2str_(const long long int *ptr,char *s,const long s_len) at d4o.c:2026>
+    6 {   3}  | | \ Call C_D4O_DEALLOC [fd4o.F90:422] <void c_d4o_dealloc_(long long int *ptr) at d4o.c:2036>
+    7 {   2}  | \ fd4o_mod::FD4O_TYPENAME() [fd4o.F90:1082] <FUNCTION fd4o_mod::FD4O_TYPENAME at fd4o.F90:448>
+    8 {   3}  | | + Call C_D4O_PTR2STR [fd4o.F90:455] <void c_d4o_ptr2str_(const long long int *ptr,char *s,const long s_len) at d4o.c:2026>
+    9 {   3}  | | \ Call C_D4O_DEALLOC [fd4o.F90:456] <void c_d4o_dealloc_(long long int *ptr) at d4o.c:2036>
+   10 {   1}  + fd4o_mod::FD4O_TEXTLEN() [fd4o.F90:1176] <FUNCTION fd4o_mod::FD4O_TEXTLEN at fd4o.F90:494>
+   11 {   1}  + fd4o_mod::FD4O_TEXTLEN() [fd4o.F90:1178] <FUNCTION fd4o_mod::FD4O_TEXTLEN at fd4o.F90:494>
+   12 {   1}  + fd4o_mod::FD4O_TYPENAME() [fd4o.F90:1188] <FUNCTION fd4o_mod::FD4O_TYPENAME at fd4o.F90:448> [see 7]
+   13 {   1}  + Call C_D4O_TSC [fd4o.F90:1231] <void c_d4o_tsc_(const int *Csv,const int *Ncols,const int width[],const int types[],const double d[],char *cout,int *Len_cout,const long cout_len) at d4o.c:2148>
+   14 {   1}  \ Call C_D4O_TSC [fd4o.F90:1236] <void c_d4o_tsc_(const int *Csv,const int *Ncols,const int width[],const int types[],const double d[],char *cout,int *Len_cout,const long cout_len) at d4o.c:2148>
+   15 {   0}  END SUBROUTINE FD4O_PRINT_THRU_OBJECT
+
+# fd4o.F90:326 (FUNCTION fd4o_mod::FD4O_BIND_DOUBLE)
+    1 {   0}  FUNCTION FD4O_BIND_DOUBLE <FUNCTION fd4o_mod::FD4O_BIND_DOUBLE at fd4o.F90:326>
+    2 {   0}  END FUNCTION FD4O_BIND_DOUBLE
+
+# fd4o.F90:334 (FUNCTION fd4o_mod::FD4O_BIND_INT)
+    1 {   0}  FUNCTION FD4O_BIND_INT <FUNCTION fd4o_mod::FD4O_BIND_INT at fd4o.F90:334>
+    2 {   0}  END FUNCTION FD4O_BIND_INT
+
+# fd4o.F90:342 (FUNCTION fd4o_mod::FD4O_BIND_TEXT)
+    1 {   0}  FUNCTION FD4O_BIND_TEXT <FUNCTION fd4o_mod::FD4O_BIND_TEXT at fd4o.F90:342>
+    2 {   0}  END FUNCTION FD4O_BIND_TEXT
+
+# fd4o.F90:350 (FUNCTION fd4o_mod::FD4O_BIND_NULL)
+    1 {   0}  FUNCTION FD4O_BIND_NULL <FUNCTION fd4o_mod::FD4O_BIND_NULL at fd4o.F90:350>
+    2 {   0}  END FUNCTION FD4O_BIND_NULL
+
+# fd4o.F90:357 (FUNCTION fd4o_mod::FD4O_COLIDX)
+    1 {   0}  FUNCTION FD4O_COLIDX <FUNCTION fd4o_mod::FD4O_COLIDX at fd4o.F90:357>
+    2 {   0}  END FUNCTION FD4O_COLIDX
+
+# fd4o.F90:365 (FUNCTION fd4o_mod::INIT_INTVEC)
+    1 {   0}  FUNCTION INIT_INTVEC <FUNCTION fd4o_mod::INIT_INTVEC at fd4o.F90:365>
+    2 {   0}  END FUNCTION INIT_INTVEC
+
+# fd4o.F90:384 (FUNCTION fd4o_mod::FD4O_LONG_COLUMN_NAMES)
+    1 {   0}  FUNCTION FD4O_LONG_COLUMN_NAMES <FUNCTION fd4o_mod::FD4O_LONG_COLUMN_NAMES at fd4o.F90:384>
+    2 {   0}  END FUNCTION FD4O_LONG_COLUMN_NAMES
+
+# fd4o.F90:397 (FUNCTION fd4o_mod::FD4O_GET_NULL)
+    1 {   0}  FUNCTION FD4O_GET_NULL <FUNCTION fd4o_mod::FD4O_GET_NULL at fd4o.F90:397>
+    2 {   0}  END FUNCTION FD4O_GET_NULL
+
+# fd4o.F90:402 (FUNCTION fd4o_mod::FD4O_SET_NULL)
+    1 {   0}  FUNCTION FD4O_SET_NULL <FUNCTION fd4o_mod::FD4O_SET_NULL at fd4o.F90:402>
+    2 {   0}  END FUNCTION FD4O_SET_NULL
+
+# fd4o.F90:408 (FUNCTION fd4o_mod::FD4O_IS_NULL)
+    1 {   0}  FUNCTION FD4O_IS_NULL <FUNCTION fd4o_mod::FD4O_IS_NULL at fd4o.F90:408>
+    2 {   0}  END FUNCTION FD4O_IS_NULL
+
+# fd4o.F90:414 (FUNCTION fd4o_mod::FD4O_DBNAME)
+    1 {   0}  FUNCTION FD4O_DBNAME <FUNCTION fd4o_mod::FD4O_DBNAME at fd4o.F90:414>
+    2 {   1}  + Call C_D4O_PTR2STR [fd4o.F90:421] <void c_d4o_ptr2str_(const long long int *ptr,char *s,const long s_len) at d4o.c:2026>
+    3 {   1}  \ Call C_D4O_DEALLOC [fd4o.F90:422] <void c_d4o_dealloc_(long long int *ptr) at d4o.c:2036>
+    4 {   0}  END FUNCTION FD4O_DBNAME
+
+# fd4o.F90:425 (FUNCTION fd4o_mod::FD4O_QUERY)
+    1 {   0}  FUNCTION FD4O_QUERY <FUNCTION fd4o_mod::FD4O_QUERY at fd4o.F90:425>
+    2 {   1}  + Call C_D4O_PTR2STR [fd4o.F90:438] <void c_d4o_ptr2str_(const long long int *ptr,char *s,const long s_len) at d4o.c:2026>
+    3 {   1}  \ Call C_D4O_DEALLOC [fd4o.F90:439] <void c_d4o_dealloc_(long long int *ptr) at d4o.c:2036>
+    4 {   0}  END FUNCTION FD4O_QUERY
+
+# fd4o.F90:442 (FUNCTION fd4o_mod::FD4O_DBH)
+    1 {   0}  FUNCTION FD4O_DBH <FUNCTION fd4o_mod::FD4O_DBH at fd4o.F90:442>
+    2 {   0}  END FUNCTION FD4O_DBH
+
+# fd4o.F90:448 (FUNCTION fd4o_mod::FD4O_TYPENAME)
+    1 {   0}  FUNCTION FD4O_TYPENAME <FUNCTION fd4o_mod::FD4O_TYPENAME at fd4o.F90:448>
+    2 {   1}  + Call C_D4O_PTR2STR [fd4o.F90:455] <void c_d4o_ptr2str_(const long long int *ptr,char *s,const long s_len) at d4o.c:2026>
+    3 {   1}  \ Call C_D4O_DEALLOC [fd4o.F90:456] <void c_d4o_dealloc_(long long int *ptr) at d4o.c:2036>
+    4 {   0}  END FUNCTION FD4O_TYPENAME
+
+# fd4o.F90:459 (FUNCTION fd4o_mod::FD4O_COLTYPE)
+    1 {   0}  FUNCTION FD4O_COLTYPE <FUNCTION fd4o_mod::FD4O_COLTYPE at fd4o.F90:459>
+    2 {   0}  END FUNCTION FD4O_COLTYPE
+
+# fd4o.F90:465 (FUNCTION fd4o_mod::FD4O_ERRMSG)
+    1 {   0}  FUNCTION FD4O_ERRMSG <FUNCTION fd4o_mod::FD4O_ERRMSG at fd4o.F90:465>
+    2 {   1}  + Call C_D4O_PTR2STR [fd4o.F90:478] <void c_d4o_ptr2str_(const long long int *ptr,char *s,const long s_len) at d4o.c:2026>
+    3 {   1}  \ Call C_D4O_DEALLOC [fd4o.F90:479] <void c_d4o_dealloc_(long long int *ptr) at d4o.c:2036>
+    4 {   0}  END FUNCTION FD4O_ERRMSG
+
+# fd4o.F90:483 (FUNCTION fd4o_mod::FD4O_GET_TEXT)
+    1 {   0}  FUNCTION FD4O_GET_TEXT <FUNCTION fd4o_mod::FD4O_GET_TEXT at fd4o.F90:483>
+    2 {   1}  + Call C_D4O_PTR2STR [fd4o.F90:490] <void c_d4o_ptr2str_(const long long int *ptr,char *s,const long s_len) at d4o.c:2026>
+    3 {   1}  \ Call C_D4O_DEALLOC [fd4o.F90:491] <void c_d4o_dealloc_(long long int *ptr) at d4o.c:2036>
+    4 {   0}  END FUNCTION FD4O_GET_TEXT
+
+# fd4o.F90:494 (FUNCTION fd4o_mod::FD4O_TEXTLEN)
+    1 {   0}  FUNCTION FD4O_TEXTLEN <FUNCTION fd4o_mod::FD4O_TEXTLEN at fd4o.F90:494>
+    2 {   0}  END FUNCTION FD4O_TEXTLEN
+
+# fd4o.F90:500 (FUNCTION fd4o_mod::FD4O_SET_TEXT)
+    1 {   0}  FUNCTION FD4O_SET_TEXT <FUNCTION fd4o_mod::FD4O_SET_TEXT at fd4o.F90:500>
+    2 {   0}  END FUNCTION FD4O_SET_TEXT
+
+# fd4o.F90:506 (FUNCTION fd4o_mod::FD4O_OPEN)
+    1 {   0}  FUNCTION FD4O_OPEN <FUNCTION fd4o_mod::FD4O_OPEN at fd4o.F90:506>
+    2 {   1}  + fd4o_mod::FD4O_COLTYPE() [fd4o.F90:514] <FUNCTION fd4o_mod::FD4O_COLTYPE at fd4o.F90:459>
+    3 {   1}  + fd4o_mod::FD4O_COLTYPE() [fd4o.F90:515] <FUNCTION fd4o_mod::FD4O_COLTYPE at fd4o.F90:459>
+    4 {   1}  + fd4o_mod::FD4O_COLTYPE() [fd4o.F90:516] <FUNCTION fd4o_mod::FD4O_COLTYPE at fd4o.F90:459>
+    5 {   1}  + fd4o_mod::FD4O_OPEN() [fd4o.F90:527] <FUNCTION fd4o_mod::FD4O_OPEN at fd4o.F90:506> [see 1]
+    6 {   1}  \ CALL fd4o_mod::FD4O_DBINFO [fd4o.F90:528] <SUBROUTINE fd4o_mod::FD4O_DBINFO at fd4o.F90:934>
+    7 {   2}  | + fd4o_mod::FD4O_LONG_COLUMN_NAMES() [fd4o.F90:947] <FUNCTION fd4o_mod::FD4O_LONG_COLUMN_NAMES at fd4o.F90:384>
+    8 {   2}  | + fd4o_mod::FD4O_PREPARE() [fd4o.F90:967] <FUNCTION fd4o_mod::FD4O_PREPARE at fd4o.F90:678>
+    9 {   2}  | + fd4o_mod::FD4O_ERRMSG() [fd4o.F90:970] <FUNCTION fd4o_mod::FD4O_ERRMSG at fd4o.F90:465>
+   10 {   3}  | | + Call C_D4O_PTR2STR [fd4o.F90:478] <void c_d4o_ptr2str_(const long long int *ptr,char *s,const long s_len) at d4o.c:2026>
+   11 {   3}  | | \ Call C_D4O_DEALLOC [fd4o.F90:479] <void c_d4o_dealloc_(long long int *ptr) at d4o.c:2036>
+   12 {   2}  | + fd4o_mod::FD4O_PREPARE() [fd4o.F90:970] <FUNCTION fd4o_mod::FD4O_PREPARE at fd4o.F90:678>
+   13 {   2}  | + fd4o_mod::FD4O_NCOLS() [fd4o.F90:974] <FUNCTION fd4o_mod::FD4O_NCOLS at fd4o.F90:1275>
+   14 {   2}  | + fd4o_mod::FD4O_ERRMSG() [fd4o.F90:992] <FUNCTION fd4o_mod::FD4O_ERRMSG at fd4o.F90:465> [see 9]
+   15 {   2}  | + fd4o_mod::FD4O_DELETE() [fd4o.F90:998] <FUNCTION fd4o_mod::FD4O_DELETE at fd4o.F90:664>
+   16 {   2}  | + CALL fd4o_mod::FD4O_PRINT [fd4o.F90:1002] <INTERFACE fd4o_mod::FD4O_PRINT at fd4o.F90:45>
+   17 {   2}  | + CALL fd4o_mod::FD4O_PRINT [fd4o.F90:1006] <INTERFACE fd4o_mod::FD4O_PRINT at fd4o.F90:45>
+   18 {   2}  | + fd4o_mod::FD4O_ERRMSG() [fd4o.F90:1011] <FUNCTION fd4o_mod::FD4O_ERRMSG at fd4o.F90:465> [see 9]
+   19 {   2}  | + CALL fd4o_mod::FD4O_PRINT [fd4o.F90:1022] <INTERFACE fd4o_mod::FD4O_PRINT at fd4o.F90:45>
+   20 {   2}  | + fd4o_mod::FD4O_DELETE() [fd4o.F90:1025] <FUNCTION fd4o_mod::FD4O_DELETE at fd4o.F90:664>
+   21 {   2}  | + fd4o_mod::FD4O_DELETE() [fd4o.F90:1027] <FUNCTION fd4o_mod::FD4O_DELETE at fd4o.F90:664>
+   22 {   2}  | + fd4o_mod::FD4O_ERRMSG() [fd4o.F90:1029] <FUNCTION fd4o_mod::FD4O_ERRMSG at fd4o.F90:465> [see 9]
+   23 {   2}  | \ fd4o_mod::FD4O_LONG_COLUMN_NAMES() [fd4o.F90:1031] <FUNCTION fd4o_mod::FD4O_LONG_COLUMN_NAMES at fd4o.F90:384>
+   24 {   0}  END FUNCTION FD4O_OPEN
+
+# fd4o.F90:535 (FUNCTION fd4o_mod::FD4O_CLOSE)
+    1 {   0}  FUNCTION FD4O_CLOSE <FUNCTION fd4o_mod::FD4O_CLOSE at fd4o.F90:535>
+    2 {   0}  END FUNCTION FD4O_CLOSE
+
+# fd4o.F90:541 (FUNCTION fd4o_mod::FD4O_EXEC)
+    1 {   0}  FUNCTION FD4O_EXEC <FUNCTION fd4o_mod::FD4O_EXEC at fd4o.F90:541>
+    2 {   0}  END FUNCTION FD4O_EXEC
+
+# fd4o.F90:548 (FUNCTION fd4o_mod::FD4O_EXECFILE)
+    1 {   0}  FUNCTION FD4O_EXECFILE <FUNCTION fd4o_mod::FD4O_EXECFILE at fd4o.F90:548>
+    2 {   0}  END FUNCTION FD4O_EXECFILE
+
+# fd4o.F90:555 (FUNCTION fd4o_mod::FD4O_RESET)
+    1 {   0}  FUNCTION FD4O_RESET <FUNCTION fd4o_mod::FD4O_RESET at fd4o.F90:555>
+    2 {   0}  END FUNCTION FD4O_RESET
+
+# fd4o.F90:583 (FUNCTION fd4o_mod::FD4O_NEW_THRU_ARRAY)
+    1 {   0}  FUNCTION FD4O_NEW_THRU_ARRAY <FUNCTION fd4o_mod::FD4O_NEW_THRU_ARRAY at fd4o.F90:583>
+    2 {   1}  + fd4o_mod::FD4O_RESET() [fd4o.F90:595] <FUNCTION fd4o_mod::FD4O_RESET at fd4o.F90:555>
+    3 {   1}  \ fd4o_mod::INIT_INTVEC() [fd4o.F90:606] <FUNCTION fd4o_mod::INIT_INTVEC at fd4o.F90:365>
+    4 {   0}  END FUNCTION FD4O_NEW_THRU_ARRAY
+
+# fd4o.F90:628 (FUNCTION fd4o_mod::FD4O_NEW_THRU_OPT_OBJECT)
+    1 {   0}  FUNCTION FD4O_NEW_THRU_OPT_OBJECT <FUNCTION fd4o_mod::FD4O_NEW_THRU_OPT_OBJECT at fd4o.F90:628>
+    2 {   1}  \ fd4o_mod::FD4O_RESET() [fd4o.F90:636] <FUNCTION fd4o_mod::FD4O_RESET at fd4o.F90:555>
+    3 {   0}  END FUNCTION FD4O_NEW_THRU_OPT_OBJECT
+
+# fd4o.F90:664 (FUNCTION fd4o_mod::FD4O_DELETE)
+    1 {   0}  FUNCTION FD4O_DELETE <FUNCTION fd4o_mod::FD4O_DELETE at fd4o.F90:664>
+    2 {   0}  END FUNCTION FD4O_DELETE
+
+# fd4o.F90:678 (FUNCTION fd4o_mod::FD4O_PREPARE)
+    1 {   0}  FUNCTION FD4O_PREPARE <FUNCTION fd4o_mod::FD4O_PREPARE at fd4o.F90:678>
+    2 {   0}  END FUNCTION FD4O_PREPARE
+
+# fd4o.F90:706 (FUNCTION fd4o_mod::FD4O_DESTROY_THRU_QH)
+    1 {   0}  FUNCTION FD4O_DESTROY_THRU_QH <FUNCTION fd4o_mod::FD4O_DESTROY_THRU_QH at fd4o.F90:706>
+    2 {   0}  END FUNCTION FD4O_DESTROY_THRU_QH
+
+# fd4o.F90:723 (FUNCTION fd4o_mod::FD4O_DESTROY_THRU_OBJECT)
+    1 {   0}  FUNCTION FD4O_DESTROY_THRU_OBJECT <FUNCTION fd4o_mod::FD4O_DESTROY_THRU_OBJECT at fd4o.F90:723>
+    2 {   1}  \ fd4o_mod::FD4O_RESET() [fd4o.F90:728] <FUNCTION fd4o_mod::FD4O_RESET at fd4o.F90:555>
+    3 {   0}  END FUNCTION FD4O_DESTROY_THRU_OBJECT
+
+# fd4o.F90:733 (FUNCTION fd4o_mod::FD4O_GETDB_THRU_OPT_QUERY)
+    1 {   0}  FUNCTION FD4O_GETDB_THRU_OPT_QUERY <FUNCTION fd4o_mod::FD4O_GETDB_THRU_OPT_QUERY at fd4o.F90:733>
+    2 {   1}  \ fd4o_mod::FD4O_PREPARE() [fd4o.F90:743] <FUNCTION fd4o_mod::FD4O_PREPARE at fd4o.F90:678>
+    3 {   0}  END FUNCTION FD4O_GETDB_THRU_OPT_QUERY
+
+# fd4o.F90:756 (FUNCTION fd4o_mod::FD4O_GETDB_THRU_OBJECT)
+    1 {   0}  FUNCTION FD4O_GETDB_THRU_OBJECT <FUNCTION fd4o_mod::FD4O_GETDB_THRU_OBJECT at fd4o.F90:756>
+    2 {   1}  + Call C_D4O_PTR2STR [fd4o.F90:780] <void c_d4o_ptr2str_(const long long int *ptr,char *s,const long s_len) at d4o.c:2026>
+    3 {   1}  + Call C_D4O_PTR2ARRAY [fd4o.F90:795] <void c_d4o_ptr2array_(const long long int *ptr,const int *ncols,const int *nrows,const int *elemsize,void *d) at d4o.c:2014>
+    4 {   1}  + Call C_D4O_PTR2STR [fd4o.F90:810] <void c_d4o_ptr2str_(const long long int *ptr,char *s,const long s_len) at d4o.c:2026>
+    5 {   1}  + Call C_D4O_DEALLOC [fd4o.F90:815] <void c_d4o_dealloc_(long long int *ptr) at d4o.c:2036>
+    6 {   1}  + Call C_D4O_DEALLOC [fd4o.F90:816] <void c_d4o_dealloc_(long long int *ptr) at d4o.c:2036>
+    7 {   1}  \ Call C_D4O_DEALLOC [fd4o.F90:817] <void c_d4o_dealloc_(long long int *ptr) at d4o.c:2036>
+    8 {   0}  END FUNCTION FD4O_GETDB_THRU_OBJECT
+
+# fd4o.F90:828 (FUNCTION fd4o_mod::FD4O_PUTDB_THRU_OBJECT_PLUS_OPT_QUERY)
+    1 {   0}  FUNCTION FD4O_PUTDB_THRU_OBJECT_PLUS_OPT_QUERY <FUNCTION fd4o_mod::FD4O_PUTDB_THRU_OBJECT_PLUS_OPT_QUERY at fd4o.F90:828>
+    2 {   1}  + fd4o_mod::FD4O_PREPARE() [fd4o.F90:841] <FUNCTION fd4o_mod::FD4O_PREPARE at fd4o.F90:678>
+    3 {   1}  + fd4o_mod::FD4O_NPARCNT() [fd4o.F90:846] <FUNCTION fd4o_mod::FD4O_NPARCNT at fd4o.F90:1281>
+    4 {   1}  \ fd4o_mod::INIT_INTVEC() [fd4o.F90:848] <FUNCTION fd4o_mod::INIT_INTVEC at fd4o.F90:365>
+    5 {   0}  END FUNCTION FD4O_PUTDB_THRU_OBJECT_PLUS_OPT_QUERY
+
+# fd4o.F90:920 (FUNCTION fd4o_mod::FD4O_PUTDB_THRU_ARRAY_PLUS_OPT_QUERY)
+    1 {   0}  FUNCTION FD4O_PUTDB_THRU_ARRAY_PLUS_OPT_QUERY <FUNCTION fd4o_mod::FD4O_PUTDB_THRU_ARRAY_PLUS_OPT_QUERY at fd4o.F90:920>
+    2 {   1}  \ fd4o_mod::FD4O_DELETE() [fd4o.F90:931] <FUNCTION fd4o_mod::FD4O_DELETE at fd4o.F90:664>
+    3 {   0}  END FUNCTION FD4O_PUTDB_THRU_ARRAY_PLUS_OPT_QUERY
+
+# fd4o.F90:1275 (FUNCTION fd4o_mod::FD4O_NCOLS)
+    1 {   0}  FUNCTION FD4O_NCOLS <FUNCTION fd4o_mod::FD4O_NCOLS at fd4o.F90:1275>
+    2 {   0}  END FUNCTION FD4O_NCOLS
+
+# fd4o.F90:1281 (FUNCTION fd4o_mod::FD4O_NPARCNT)
+    1 {   0}  FUNCTION FD4O_NPARCNT <FUNCTION fd4o_mod::FD4O_NPARCNT at fd4o.F90:1281>
+    2 {   0}  END FUNCTION FD4O_NPARCNT
+
+# cas.h
+# /usr/bin/cflow -I. -I/usr/include --number --brief --tree --all --all --cpp --print-level cas.h 2>/dev/null
+    1 {   0}  cas_init() <__inline__ void cas_init(volatile sig_atomic_t *lock) at cas.h:32>
+    2 {   0}  cas_lock() <__inline__ void cas_lock(volatile sig_atomic_t *lock) at cas.h:37>
+    3 {   1}  \ sched_yield()
+    4 {   0}  cas_unlock() <__inline__ void cas_unlock(volatile sig_atomic_t *lock) at cas.h:48>
+    5 {   0}  sched_rr_get_interval() <int sched_rr_get_interval(__pid_t __pid,struct timespec *__t) at cas.h:78>
+
+# d4o.c
+# /usr/bin/cflow -I. -I/usr/include --number --brief --tree --all --all --cpp --print-level d4o.c 2>/dev/null
+    1 {   0}  Compare() <int Compare(const void *lhs,const void *rhs,size_t len,int kind) at d4o.c:1775>
+    2 {   1}  + strncmp()
+    3 {   1}  \ strcmp()
+    4 {   0}  D4O_fini() <void D4O_fini() at d4o.c:567>
+    5 {   1}  + d4o_timestamp() <double d4o_timestamp() at d4o.c:668>
+    6 {   2}  | + clock_gettime() <int clock_gettime(clockid_t __clock_id,struct timespec *__tp) at /usr/include/time.h:279>
+    7 {   2}  | + getenv()
+    8 {   2}  | \ sscanf() <int sscanf(const char *__restrict __s,const char *__restrict __format,...) at /usr/include/stdio.h:439>
+    9 {   1}  + d4o_datetime() <char *d4o_datetime(double epoch) at d4o.c:702>
+   10 {   2}  | + localtime_r() <struct tm *localtime_r(const time_t *__restrict __timer,struct tm *__restrict __tp) at /usr/include/time.h:159>
+   11 {   2}  | \ strftime() <size_t strftime(char *__restrict __s,size_t __maxsize,const char *__restrict __format,const struct tm *__restrict __tp) at /usr/include/time.h:100>
+   12 {   1}  + fprintf()
+   13 {   1}  + d4o_profile() <void d4o_profile(const char *func,double delta,int nrows,int ncols,int nparcnt,int rc,int dbh,const char *dbname,int qh,const char *query,const char *fmt,...) at d4o.c:639>
+   14 {   2}  | + d4o_wtime() <double d4o_wtime() at d4o.c:696>
+   15 {   3}  | | \ d4o_timestamp() <double d4o_timestamp() at d4o.c:668> [see 5]
+   16 {   2}  | + d4o_timestamp() <double d4o_timestamp() at d4o.c:668> [see 5]
+   17 {   2}  | + cas_lock() <__inline__ void cas_lock(volatile sig_atomic_t *lock) at cas.h:37>
+   18 {   3}  | | \ sched_yield()
+   19 {   2}  | + d4o_datetime() <char *d4o_datetime(double epoch) at d4o.c:702> [see 9]
+   20 {   2}  | + vsnprintf() <int vsnprintf(char *__restrict __s,size_t __maxlen,const char *__restrict __format,__gnuc_va_list __arg) at /usr/include/stdio.h:382>
+   21 {   2}  | + fprintf()
+   22 {   2}  | + GETtid() <long GETtid() at d4o.c:42>
+   23 {   3}  | | \ syscall() <long int syscall(long int __sysno,...) at /usr/include/unistd.h:1091>
+   24 {   2}  | \ cas_unlock() <__inline__ void cas_unlock(volatile sig_atomic_t *lock) at cas.h:48>
+   25 {   1}  + d4o_wtime() <double d4o_wtime() at d4o.c:696> [see 14]
+   26 {   1}  + fclose()
+   27 {   1}  + d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831>
+   28 {   2}  | \ strdup()
+   29 {   1}  + strrchr()
+   30 {   1}  + strcat()
+   31 {   1}  + d4o_open() <int d4o_open(const char *dbname,const char *mode) at d4o.c:908>
+   32 {   2}  | + d4o_wtime() <double d4o_wtime() at d4o.c:696> [see 14]
+   33 {   2}  | + strcasecmp()
+   34 {   2}  | + access() <int access(const char *__name,int __type) at /usr/include/unistd.h:287>
+   35 {   2}  | + unlink()
+   36 {   2}  | + new_DB() <DB_t *new_DB(const char *dbname,const char *mode,int flags,int *retcode) at d4o.c:374>
+   37 {   3}  | | + d4o_alloc() <void *d4o_alloc(size_t nmemb,size_t size,int initzero) at d4o.c:836>
+   38 {   4}  | | | + memalign() <void *memalign(size_t __alignment,size_t __size) at /usr/include/malloc.h:67>
+   39 {   4}  | | | \ memset() <void *memset(void *__s,int __c,size_t __n) at /usr/include/string.h:61>
+   40 {   3}  | | + sqlite3_open_v2()
+   41 {   3}  | | + sqlite3_db_filename()
+   42 {   3}  | | + d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+   43 {   3}  | | \ GETtid() <long GETtid() at d4o.c:42> [see 22]
+   44 {   2}  | + d4o_check_error() <int d4o_check_error(int do_abort,FILE *fp,int rc,int expected,int dbh,const char *DBname,int qh,const char *Sql,const char *func,const char *filename,int lineno,const char *fmt,...) at d4o.c:858>
+   45 {   3}  | | + d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+   46 {   3}  | | + d4o_get_dbname() <char *d4o_get_dbname(int dbh) at d4o.c:851>
+   47 {   4}  | | | + this_DB() <DB_t *this_DB(int qh_or_dbh) at d4o.c:123>
+   48 {   4}  | | | \ d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+   49 {   3}  | | + d4o_get_query() <char *d4o_get_query(int qh,int expanded) at d4o.c:1072>
+   50 {   4}  | | | + this_Q() <Query_t *this_Q(int qh) at d4o.c:131>
+   51 {   5}  | | | | \ this_DB() <DB_t *this_DB(int qh_or_dbh) at d4o.c:123> [see 47]
+   52 {   4}  | | | + sqlite3_expanded_sql()
+   53 {   4}  | | | + d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+   54 {   4}  | | | + sqlite3_free()
+   55 {   4}  | | | \ filter_these() <char *filter_these(const char *in) at d4o.c:143>
+   56 {   5}  | | |   \ d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+   57 {   3}  | | + fprintf()
+   58 {   3}  | | + sqlite3_errstr()
+   59 {   3}  | | + d4o_free() <void *d4o_free(void *x) at d4o.c:825>
+   60 {   4}  | | | \ free()
+   61 {   3}  | | + vfprintf()
+   62 {   3}  | | + TraceBack() <void TraceBack(FILE *fp,const char *at) at d4o.c:1741>
+   63 {   4}  | | | + backtrace() <int backtrace(void **__array,int __size) at /usr/include/execinfo.h:27>
+   64 {   4}  | | | + fprintf()
+   65 {   4}  | | | + fflush()
+   66 {   4}  | | | + backtrace_symbols_fd() <void backtrace_symbols_fd(void *const *__array,int __size,int __fd) at /usr/include/execinfo.h:38>
+   67 {   4}  | | | \ fileno()
+   68 {   3}  | | \ abort()
+   69 {   2}  | + cas_lock() <__inline__ void cas_lock(volatile sig_atomic_t *lock) at cas.h:37> [see 17]
+   70 {   2}  | + d4o_long_column_names() <int d4o_long_column_names(int dbh,int onoff) at d4o.c:1000>
+   71 {   3}  | | + snprintf() <int snprintf(char *__restrict __s,size_t __maxlen,const char *__restrict __format,...) at /usr/include/stdio.h:378>
+   72 {   3}  | | \ d4o_exec() <int d4o_exec(int dbh,const char *query) at d4o.c:1043>
+   73 {   4}  | |   + d4o_wtime() <double d4o_wtime() at d4o.c:696> [see 14]
+   74 {   4}  | |   + this_DB() <DB_t *this_DB(int qh_or_dbh) at d4o.c:123> [see 47]
+   75 {   4}  | |   + sqlite3_exec()
+   76 {   4}  | |   + filter_these() <char *filter_these(const char *in) at d4o.c:143> [see 55]
+   77 {   4}  | |   + d4o_profile() <void d4o_profile(const char *func,double delta,int nrows,int ncols,int nparcnt,int rc,int dbh,const char *dbname,int qh,const char *query,const char *fmt,...) at d4o.c:639> [see 13]
+   78 {   4}  | |   \ d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+   79 {   2}  | + cas_unlock() <__inline__ void cas_unlock(volatile sig_atomic_t *lock) at cas.h:48> [see 24]
+   80 {   2}  | \ d4o_profile() <void d4o_profile(const char *func,double delta,int nrows,int ncols,int nparcnt,int rc,int dbh,const char *dbname,int qh,const char *query,const char *fmt,...) at d4o.c:639> [see 13]
+   81 {   1}  + d4o_exec() <int d4o_exec(int dbh,const char *query) at d4o.c:1043> [see 72]
+   82 {   1}  + d4o_long_column_names() <int d4o_long_column_names(int dbh,int onoff) at d4o.c:1000> [see 70]
+   83 {   1}  + strlen()
+   84 {   1}  + snprintf() <int snprintf(char *__restrict __s,size_t __maxlen,const char *__restrict __format,...) at /usr/include/stdio.h:378>
+   85 {   1}  + system()
+   86 {   1}  + d4o_query_fprintf() <int d4o_query_fprintf(FILE *fp,int dbh,const char *query,int separator) at d4o.c:1561>
+   87 {   2}  | + this_DB() <DB_t *this_DB(int qh_or_dbh) at d4o.c:123> [see 47]
+   88 {   2}  | + d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+   89 {   2}  | + d4o_prepare() <int d4o_prepare(int dbh,const char *query,int *Ncols,int *Nparcnt,char **Tail,int *Errcode) at d4o.c:1090>
+   90 {   3}  | | + d4o_wtime() <double d4o_wtime() at d4o.c:696> [see 14]
+   91 {   3}  | | + new_Q() <int new_Q(int dbh,const char *query,const char **tail,int *retcode) at d4o.c:156>
+   92 {   4}  | | | + this_DB() <DB_t *this_DB(int qh_or_dbh) at d4o.c:123> [see 47]
+   93 {   4}  | | | + GETtid() <long GETtid() at d4o.c:42> [see 22]
+   94 {   4}  | | | + cas_lock() <__inline__ void cas_lock(volatile sig_atomic_t *lock) at cas.h:37> [see 17]
+   95 {   4}  | | | + d4o_alloc() <void *d4o_alloc(size_t nmemb,size_t size,int initzero) at d4o.c:836> [see 37]
+   96 {   4}  | | | + cas_unlock() <__inline__ void cas_unlock(volatile sig_atomic_t *lock) at cas.h:48> [see 24]
+   97 {   4}  | | | + filter_these() <char *filter_these(const char *in) at d4o.c:143> [see 55]
+   98 {   4}  | | | + sqlite3_prepare_v2()
+   99 {   4}  | | | + sqlite3_column_count()
+  100 {   4}  | | | + sqlite3_bind_parameter_count()
+  101 {   4}  | | | + sqlite3_column_name()
+  102 {   4}  | | | + sqlite3_column_decltype()
+  103 {   4}  | | | + d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+  104 {   4}  | | | + d4o_get_coltype() <int d4o_get_coltype(const char *typename,const char *opt_colname) at d4o.c:1247>
+  105 {   5}  | | | | + strcasecmp()
+  106 {   5}  | | | | \ strcasestr()
+  107 {   4}  | | | \ fprintf()
+  108 {   3}  | | + d4o_get_ncols() <int d4o_get_ncols(int qh) at d4o.c:1060>
+  109 {   4}  | | | \ this_Q() <Query_t *this_Q(int qh) at d4o.c:131> [see 50]
+  110 {   3}  | | + d4o_get_nparcnt() <int d4o_get_nparcnt(int qh) at d4o.c:1066>
+  111 {   4}  | | | \ this_Q() <Query_t *this_Q(int qh) at d4o.c:131> [see 50]
+  112 {   3}  | | + strlen()
+  113 {   3}  | | + d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+  114 {   3}  | | + filter_these() <char *filter_these(const char *in) at d4o.c:143> [see 55]
+  115 {   3}  | | + d4o_profile() <void d4o_profile(const char *func,double delta,int nrows,int ncols,int nparcnt,int rc,int dbh,const char *dbname,int qh,const char *query,const char *fmt,...) at d4o.c:639> [see 13]
+  116 {   3}  | | \ d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  117 {   2}  | + d4o_fprintf() <int d4o_fprintf(FILE *fp,int qh,int separator) at d4o.c:1581>
+  118 {   3}  | | + this_Q() <Query_t *this_Q(int qh) at d4o.c:131> [see 50]
+  119 {   3}  | | + d4o_getdb() <int d4o_getdb(int qh,double **Dout,int ncols,int *Nrows,char *colnames[ncols],int types[ncols],char **sql) at d4o.c:1264>
+  120 {   4}  | | | + d4o_wtime() <double d4o_wtime() at d4o.c:696> [see 14]
+  121 {   4}  | | | + this_Q() <Query_t *this_Q(int qh) at d4o.c:131> [see 50]
+  122 {   4}  | | | + this_DB() <DB_t *this_DB(int qh_or_dbh) at d4o.c:123> [see 47]
+  123 {   4}  | | | + d4o_get_dbh() <int d4o_get_dbh(int qh) at d4o.c:846>
+  124 {   4}  | | | + d4o_alloc() <void *d4o_alloc(size_t nmemb,size_t size,int initzero) at d4o.c:836> [see 37]
+  125 {   4}  | | | + d4o_get_query() <char *d4o_get_query(int qh,int expanded) at d4o.c:1072> [see 49]
+  126 {   4}  | | | + d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+  127 {   4}  | | | + sqlite3_step()
+  128 {   4}  | | | + realloc() <void *realloc(void *__ptr,size_t __size) at /usr/include/malloc.h:51>
+  129 {   4}  | | | + sqlite3_column_type()
+  130 {   4}  | | | + sqlite3_column_int()
+  131 {   4}  | | | + sqlite3_column_double()
+  132 {   4}  | | | + sqlite3_column_text()
+  133 {   4}  | | | + d4o_set_text() <double d4o_set_text(const char *s) at d4o.c:730>
+  134 {   5}  | | | | + cas_lock() <__inline__ void cas_lock(volatile sig_atomic_t *lock) at cas.h:37> [see 17]
+  135 {   5}  | | | | + InsertBinTree() <Node_t *InsertBinTree(Node_t **tree,const void *val,int kind) at d4o.c:1790>(R)
+  136 {   6}  | | | | | + d4o_alloc() <void *d4o_alloc(size_t nmemb,size_t size,int initzero) at d4o.c:836> [see 37]
+  137 {   6}  | | | | | + d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+  138 {   6}  | | | | | + strlen()
+  139 {   6}  | | | | | + Compare() <int Compare(const void *lhs,const void *rhs,size_t len,int kind) at d4o.c:1775> [see 1]
+  140 {   6}  | | | | | \ InsertBinTree() <Node_t *InsertBinTree(Node_t **tree,const void *val,int kind) at d4o.c:1790>(recursive: see 135) [see 135]
+  141 {   5}  | | | | + SearchBinTree() <Node_t *SearchBinTree(Node_t **tree,const void *val,int kind) at d4o.c:1822>(R)
+  142 {   6}  | | | | | + strlen()
+  143 {   6}  | | | | | + Compare() <int Compare(const void *lhs,const void *rhs,size_t len,int kind) at d4o.c:1775> [see 1]
+  144 {   6}  | | | | | \ SearchBinTree() <Node_t *SearchBinTree(Node_t **tree,const void *val,int kind) at d4o.c:1822>(recursive: see 141) [see 141]
+  145 {   5}  | | | | \ cas_unlock() <__inline__ void cas_unlock(volatile sig_atomic_t *lock) at cas.h:48> [see 24]
+  146 {   4}  | | | + d4o_get_null() <double d4o_get_null() at d4o.c:807>
+  147 {   4}  | | | + d4o_check_error() <int d4o_check_error(int do_abort,FILE *fp,int rc,int expected,int dbh,const char *DBname,int qh,const char *Sql,const char *func,const char *filename,int lineno,const char *fmt,...) at d4o.c:858> [see 44]
+  148 {   4}  | | | + sqlite3_reset()
+  149 {   4}  | | | \ d4o_profile() <void d4o_profile(const char *func,double delta,int nrows,int ncols,int nparcnt,int rc,int dbh,const char *dbname,int qh,const char *query,const char *fmt,...) at d4o.c:639> [see 13]
+  150 {   3}  | | + d4o_array_fprintf() <int d4o_array_fprintf(FILE *fp,const double *d,int ncols,int nrows,char *colnames[ncols],const int types[ncols],const char *sql,int separator) at d4o.c:1630>
+  151 {   4}  | | | + strlen()
+  152 {   4}  | | | + d4o_get_typename() <const char *d4o_get_typename(int coltype) at d4o.c:1230>
+  153 {   4}  | | | + d4o_get_textlen() <int d4o_get_textlen(double d) at d4o.c:780>
+  154 {   5}  | | | | + cas_lock() <__inline__ void cas_lock(volatile sig_atomic_t *lock) at cas.h:37> [see 17]
+  155 {   5}  | | | | + SearchBinTree() <Node_t *SearchBinTree(Node_t **tree,const void *val,int kind) at d4o.c:1822>(R) [see 141]
+  156 {   5}  | | | | + d4o_is_null() <int d4o_is_null(double value) at d4o.c:819>
+  157 {   5}  | | | | + snprintf() <int snprintf(char *__restrict __s,size_t __maxlen,const char *__restrict __format,...) at /usr/include/stdio.h:378>
+  158 {   5}  | | | | + strlen()
+  159 {   5}  | | | | \ cas_unlock() <__inline__ void cas_unlock(volatile sig_atomic_t *lock) at cas.h:48> [see 24]
+  160 {   4}  | | | + fprintf()
+  161 {   4}  | | | + d4o_is_null() <int d4o_is_null(double value) at d4o.c:819> [see 156]
+  162 {   4}  | | | \ d4o_get_text() <const void *d4o_get_text(const double *d,int *detected_coltype) at d4o.c:746>
+  163 {   5}  | | |   + cas_lock() <__inline__ void cas_lock(volatile sig_atomic_t *lock) at cas.h:37> [see 17]
+  164 {   5}  | | |   + SearchBinTree() <Node_t *SearchBinTree(Node_t **tree,const void *val,int kind) at d4o.c:1822>(R) [see 141]
+  165 {   5}  | | |   + d4o_is_null() <int d4o_is_null(double value) at d4o.c:819> [see 156]
+  166 {   5}  | | |   \ cas_unlock() <__inline__ void cas_unlock(volatile sig_atomic_t *lock) at cas.h:48> [see 24]
+  167 {   3}  | | \ d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  168 {   2}  | + d4o_destroy() <int d4o_destroy(int qh,int enforce) at d4o.c:1132>
+  169 {   3}  | | + this_Q() <Query_t *this_Q(int qh) at d4o.c:131> [see 50]
+  170 {   3}  | | + d4o_get_dbh() <int d4o_get_dbh(int qh) at d4o.c:846> [see 123]
+  171 {   3}  | | + d4o_wtime() <double d4o_wtime() at d4o.c:696> [see 14]
+  172 {   3}  | | + sqlite3_finalize()
+  173 {   3}  | | \ d4o_profile() <void d4o_profile(const char *func,double delta,int nrows,int ncols,int nparcnt,int rc,int dbh,const char *dbname,int qh,const char *query,const char *fmt,...) at d4o.c:639> [see 13]
+  174 {   2}  | \ d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  175 {   1}  + d4o_close() <int d4o_close(int dbh) at d4o.c:1012>
+  176 {   2}  | + d4o_wtime() <double d4o_wtime() at d4o.c:696> [see 14]
+  177 {   2}  | + this_DB() <DB_t *this_DB(int qh_or_dbh) at d4o.c:123> [see 47]
+  178 {   2}  | + d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+  179 {   2}  | + delete_DB() <int delete_DB(int dbh) at d4o.c:341>
+  180 {   3}  | | + this_DB() <DB_t *this_DB(int qh_or_dbh) at d4o.c:123> [see 47]
+  181 {   3}  | | + cas_lock() <__inline__ void cas_lock(volatile sig_atomic_t *lock) at cas.h:37> [see 17]
+  182 {   3}  | | + fprintf()
+  183 {   3}  | | + sqlite3_close_v2()
+  184 {   3}  | | + d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  185 {   3}  | | + delete_Queries() <Query_t *delete_Queries(Query_t *pQ,int nQ,int do_free) at d4o.c:305>
+  186 {   4}  | | | + PackColnames() <char *PackColnames(int ncols,char **colname) at d4o.c:265>
+  187 {   5}  | | | | + strlen()
+  188 {   5}  | | | | + d4o_alloc() <void *d4o_alloc(size_t nmemb,size_t size,int initzero) at d4o.c:836> [see 37]
+  189 {   5}  | | | | + strcat()
+  190 {   5}  | | | | \ d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+  191 {   4}  | | | + PackColtypes() <char *PackColtypes(int ncols,const int coltype[ncols],int incl_typenames) at d4o.c:284>
+  192 {   5}  | | | | + snprintf() <int snprintf(char *__restrict __s,size_t __maxlen,const char *__restrict __format,...) at /usr/include/stdio.h:378>
+  193 {   5}  | | | | + strcat()
+  194 {   5}  | | | | + d4o_get_typename() <const char *d4o_get_typename(int coltype) at d4o.c:1230> [see 152]
+  195 {   5}  | | | | \ d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+  196 {   4}  | | | + fprintf()
+  197 {   4}  | | | + d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  198 {   4}  | | | \ sqlite3_finalize()
+  199 {   3}  | | \ cas_unlock() <__inline__ void cas_unlock(volatile sig_atomic_t *lock) at cas.h:48> [see 24]
+  200 {   2}  | + d4o_check_error() <int d4o_check_error(int do_abort,FILE *fp,int rc,int expected,int dbh,const char *DBname,int qh,const char *Sql,const char *func,const char *filename,int lineno,const char *fmt,...) at d4o.c:858> [see 44]
+  201 {   2}  | + d4o_profile() <void d4o_profile(const char *func,double delta,int nrows,int ncols,int nparcnt,int rc,int dbh,const char *dbname,int qh,const char *query,const char *fmt,...) at d4o.c:639> [see 13]
+  202 {   2}  | \ d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  203 {   1}  + sqlite3_shutdown()
+  204 {   1}  + TraceBack() <void TraceBack(FILE *fp,const char *at) at d4o.c:1741> [see 62]
+  205 {   1}  \ abort()
+  206 {   0}  D4O_init() <void D4O_init() at d4o.c:433>
+  207 {   1}  + sqlite3_initialize()
+  208 {   1}  + fprintf()
+  209 {   1}  + TraceBack() <void TraceBack(FILE *fp,const char *at) at d4o.c:1741> [see 62]
+  210 {   1}  + abort()
+  211 {   1}  + getenv()
+  212 {   1}  + atoi()
+  213 {   1}  + d4o_timestamp() <double d4o_timestamp() at d4o.c:668> [see 5]
+  214 {   1}  + d4o_datetime() <char *d4o_datetime(double epoch) at d4o.c:702> [see 9]
+  215 {   1}  + sqlite3_libversion_number()
+  216 {   1}  + sqlite3_sourceid()
+  217 {   1}  + sqlite3_libversion()
+  218 {   1}  + d4o_set_text() <double d4o_set_text(const char *s) at d4o.c:730> [see 133]
+  219 {   1}  + log10()
+  220 {   1}  + pow() <double pow(double __x,double __y) at /usr/include/x86_64-linux-gnu/bits/mathcalls.h:140>
+  221 {   1}  + d4o_alloc() <void *d4o_alloc(size_t nmemb,size_t size,int initzero) at d4o.c:836> [see 37]
+  222 {   1}  + strlen()
+  223 {   1}  + strrchr()
+  224 {   1}  + snprintf() <int snprintf(char *__restrict __s,size_t __maxlen,const char *__restrict __format,...) at /usr/include/stdio.h:378>
+  225 {   1}  + fopen()
+  226 {   1}  + d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+  227 {   1}  + PackColtypes() <char *PackColtypes(int ncols,const int coltype[ncols],int incl_typenames) at d4o.c:284> [see 191]
+  228 {   1}  + d4o_get_coltype() <int d4o_get_coltype(const char *typename,const char *opt_colname) at d4o.c:1247> [see 104]
+  229 {   1}  + d4o_get_typename() <const char *d4o_get_typename(int coltype) at d4o.c:1230> [see 152]
+  230 {   1}  + sqlite3_threadsafe()
+  231 {   1}  + d4o_profile() <void d4o_profile(const char *func,double delta,int nrows,int ncols,int nparcnt,int rc,int dbh,const char *dbname,int qh,const char *query,const char *fmt,...) at d4o.c:639> [see 13]
+  232 {   1}  + d4o_wtime() <double d4o_wtime() at d4o.c:696> [see 14]
+  233 {   1}  \ d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  234 {   0}  DeleteBinTree() <Node_t *DeleteBinTree(Node_t *tree) at d4o.c:1857>(R)
+  235 {   1}  + DeleteBinTree() <Node_t *DeleteBinTree(Node_t *tree) at d4o.c:1857>(recursive: see 234) [see 234]
+  236 {   1}  + PrintThis() <void PrintThis(FILE *fp,const char *where,const Node_t *tree) at d4o.c:1841>
+  237 {   2}  | \ fprintf()
+  238 {   1}  \ d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  239 {   0}  GETtid() <long GETtid() at d4o.c:42> [see 22]
+  240 {   0}  InsertBinTree() <Node_t *InsertBinTree(Node_t **tree,const void *val,int kind) at d4o.c:1790>(R) [see 135]
+  241 {   0}  PackColnames() <char *PackColnames(int ncols,char **colname) at d4o.c:265> [see 186]
+  242 {   0}  PackColtypes() <char *PackColtypes(int ncols,const int coltype[ncols],int incl_typenames) at d4o.c:284> [see 191]
+  243 {   0}  PrintBinTree() <void PrintBinTree(FILE *fp,const Node_t *tree) at d4o.c:1871>(R)
+  244 {   1}  + PrintThis() <void PrintThis(FILE *fp,const char *where,const Node_t *tree) at d4o.c:1841> [see 236]
+  245 {   1}  \ PrintBinTree() <void PrintBinTree(FILE *fp,const Node_t *tree) at d4o.c:1871>(recursive: see 243) [see 243]
+  246 {   0}  PrintThis() <void PrintThis(FILE *fp,const char *where,const Node_t *tree) at d4o.c:1841> [see 236]
+  247 {   0}  SearchBinTree() <Node_t *SearchBinTree(Node_t **tree,const void *val,int kind) at d4o.c:1822>(R) [see 141]
+  248 {   0}  TraceBack() <void TraceBack(FILE *fp,const char *at) at d4o.c:1741> [see 62]
+  249 {   0}  Valid_Handle() <int Valid_Handle(const int *qh_or_dbh) at d4o.c:117>
+  250 {   0}  c_d4o_bind_double_() <int c_d4o_bind_double_(int *qh,const int *parnum,const double *value) at d4o.c:2247>
+  251 {   1}  \ d4o_bind_double() <int d4o_bind_double(int qh,int parnum,double value) at d4o.c:1159>
+  252 {   2}    + this_Q() <Query_t *this_Q(int qh) at d4o.c:131> [see 50]
+  253 {   2}    + d4o_is_null() <int d4o_is_null(double value) at d4o.c:819> [see 156]
+  254 {   2}    + sqlite3_bind_null()
+  255 {   2}    + fmod() <double fmod(double __x,double __y) at /usr/include/x86_64-linux-gnu/bits/mathcalls.h:168>
+  256 {   2}    + sqlite3_bind_int()
+  257 {   2}    \ sqlite3_bind_double()
+  258 {   0}  c_d4o_bind_int_() <int c_d4o_bind_int_(int *qh,const int *parnum,const int *value) at d4o.c:2252>
+  259 {   1}  \ d4o_bind_int() <int d4o_bind_int(int qh,int parnum,int value) at d4o.c:1181>
+  260 {   2}    + this_Q() <Query_t *this_Q(int qh) at d4o.c:131> [see 50]
+  261 {   2}    + d4o_is_null() <int d4o_is_null(double value) at d4o.c:819> [see 156]
+  262 {   2}    + sqlite3_bind_null()
+  263 {   2}    \ sqlite3_bind_int()
+  264 {   0}  c_d4o_bind_null_() <int c_d4o_bind_null_(int *qh,const int *parnum) at d4o.c:2272>
+  265 {   1}  \ d4o_bind_null() <int d4o_bind_null(int qh,int parnum) at d4o.c:1217>
+  266 {   2}    + this_Q() <Query_t *this_Q(int qh) at d4o.c:131> [see 50]
+  267 {   2}    \ sqlite3_bind_null()
+  268 {   0}  c_d4o_bind_text_() <int c_d4o_bind_text_(int *qh,const int *parnum,const char *value,const long value_len) at d4o.c:2257>
+  269 {   1}  + d4o_alloc() <void *d4o_alloc(size_t nmemb,size_t size,int initzero) at d4o.c:836> [see 37]
+  270 {   1}  + memcpy() <void *memcpy(void *__restrict __dest,const void *__restrict __src,size_t __n) at /usr/include/string.h:43>
+  271 {   1}  + d4o_bind_text() <int d4o_bind_text(int qh,int parnum,const char *s) at d4o.c:1199>
+  272 {   2}  | + this_Q() <Query_t *this_Q(int qh) at d4o.c:131> [see 50]
+  273 {   2}  | + sqlite3_bind_text()
+  274 {   2}  | + strlen()
+  275 {   2}  | \ sqlite3_bind_null()
+  276 {   1}  \ d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  277 {   0}  c_d4o_close_() <int c_d4o_close_(int *dbh) at d4o.c:1909>
+  278 {   1}  + d4o_close() <int d4o_close(int dbh) at d4o.c:1012> [see 175]
+  279 {   1}  \ Valid_Handle() <int Valid_Handle(const int *qh_or_dbh) at d4o.c:117>
+  280 {   0}  c_d4o_colidx_() <int c_d4o_colidx_(const int *qh,const char *key,const long key_len) at d4o.c:2277>
+  281 {   1}  + d4o_alloc() <void *d4o_alloc(size_t nmemb,size_t size,int initzero) at d4o.c:836> [see 37]
+  282 {   1}  + memcpy() <void *memcpy(void *__restrict __dest,const void *__restrict __src,size_t __n) at /usr/include/string.h:43>
+  283 {   1}  + d4o_colidx() <int d4o_colidx(int qh,const char *key) at d4o.c:1604>
+  284 {   2}  | + this_Q() <Query_t *this_Q(int qh) at d4o.c:131> [see 50]
+  285 {   2}  | + strchr()
+  286 {   2}  | + strcasecmp()
+  287 {   2}  | \ strcasestr()
+  288 {   1}  \ d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  289 {   0}  c_d4o_dealloc_() <void c_d4o_dealloc_(long long int *ptr) at d4o.c:2036>
+  290 {   1}  \ d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  291 {   0}  c_d4o_destroy_() <int c_d4o_destroy_(int *qh,const int *Enforce) at d4o.c:1961>
+  292 {   1}  + d4o_destroy() <int d4o_destroy(int qh,int enforce) at d4o.c:1132> [see 168]
+  293 {   1}  \ Valid_Handle() <int Valid_Handle(const int *qh_or_dbh) at d4o.c:117>
+  294 {   0}  c_d4o_exec_() <int c_d4o_exec_(int *dbh,const char *query,long query_len) at d4o.c:1930>
+  295 {   1}  + d4o_alloc() <void *d4o_alloc(size_t nmemb,size_t size,int initzero) at d4o.c:836> [see 37]
+  296 {   1}  + memcpy() <void *memcpy(void *__restrict __dest,const void *__restrict __src,size_t __n) at /usr/include/string.h:43>
+  297 {   1}  + d4o_exec() <int d4o_exec(int dbh,const char *query) at d4o.c:1043> [see 72]
+  298 {   1}  + Valid_Handle() <int Valid_Handle(const int *qh_or_dbh) at d4o.c:117>
+  299 {   1}  \ d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  300 {   0}  c_d4o_execfile_() <int c_d4o_execfile_(int *dbh,const char *filename,long filename_len) at d4o.c:1915>
+  301 {   1}  + d4o_alloc() <void *d4o_alloc(size_t nmemb,size_t size,int initzero) at d4o.c:836> [see 37]
+  302 {   1}  + memcpy() <void *memcpy(void *__restrict __dest,const void *__restrict __src,size_t __n) at /usr/include/string.h:43>
+  303 {   1}  + d4o_execfile() <int d4o_execfile(int dbh,const char *sqlfile) at d4o.c:1035>
+  304 {   2}  | + file2str() <char *file2str(const char *filename,size_t *len) at d4o.c:245>
+  305 {   3}  | | + fopen()
+  306 {   3}  | | + fileno()
+  307 {   3}  | | + fstat() <int fstat(int __fd,struct stat *__buf) at /usr/include/x86_64-linux-gnu/sys/stat.h:210>
+  308 {   3}  | | + d4o_alloc() <void *d4o_alloc(size_t nmemb,size_t size,int initzero) at d4o.c:836> [see 37]
+  309 {   3}  | | + fread()
+  310 {   3}  | | \ fclose()
+  311 {   2}  | + d4o_exec() <int d4o_exec(int dbh,const char *query) at d4o.c:1043> [see 72]
+  312 {   2}  | \ d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  313 {   1}  + Valid_Handle() <int Valid_Handle(const int *qh_or_dbh) at d4o.c:117>
+  314 {   1}  \ d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  315 {   0}  c_d4o_get_coltype_() <int c_d4o_get_coltype_(const char *typename,const long typename_len) at d4o.c:2201>
+  316 {   1}  + d4o_alloc() <void *d4o_alloc(size_t nmemb,size_t size,int initzero) at d4o.c:836> [see 37]
+  317 {   1}  + memcpy() <void *memcpy(void *__restrict __dest,const void *__restrict __src,size_t __n) at /usr/include/string.h:43>
+  318 {   1}  + d4o_get_coltype() <int d4o_get_coltype(const char *typename,const char *opt_colname) at d4o.c:1247> [see 104]
+  319 {   1}  \ d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  320 {   0}  c_d4o_get_dbh_() <int c_d4o_get_dbh_(int *qh) at d4o.c:2073>
+  321 {   1}  + d4o_get_dbh() <int d4o_get_dbh(int qh) at d4o.c:846> [see 123]
+  322 {   1}  \ Valid_Handle() <int Valid_Handle(const int *qh_or_dbh) at d4o.c:117>
+  323 {   0}  c_d4o_get_dbname_() <long long int c_d4o_get_dbname_(int *dbh,int *len) at d4o.c:2056>
+  324 {   1}  + d4o_get_dbname() <char *d4o_get_dbname(int dbh) at d4o.c:851> [see 46]
+  325 {   1}  + Valid_Handle() <int Valid_Handle(const int *qh_or_dbh) at d4o.c:117>
+  326 {   1}  \ strlen()
+  327 {   0}  c_d4o_get_errmsg_() <long long int c_d4o_get_errmsg_(const int *retcode,int *len) at d4o.c:2087>
+  328 {   1}  + d4o_get_errmsg() <char *d4o_get_errmsg(int rc) at d4o.c:716>
+  329 {   2}  | + sqlite3_errstr()
+  330 {   2}  | + strlen()
+  331 {   2}  | + snprintf() <int snprintf(char *__restrict __s,size_t __maxlen,const char *__restrict __format,...) at /usr/include/stdio.h:378>
+  332 {   2}  | \ d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+  333 {   1}  + d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+  334 {   1}  + strlen()
+  335 {   1}  \ d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  336 {   0}  c_d4o_get_ncols_() <int c_d4o_get_ncols_(int *qh) at d4o.c:2242>
+  337 {   1}  + d4o_get_ncols() <int d4o_get_ncols(int qh) at d4o.c:1060> [see 108]
+  338 {   1}  \ Valid_Handle() <int Valid_Handle(const int *qh_or_dbh) at d4o.c:117>
+  339 {   0}  c_d4o_get_nparcnt_() <int c_d4o_get_nparcnt_(int *qh) at d4o.c:2237>
+  340 {   1}  + d4o_get_nparcnt() <int d4o_get_nparcnt(int qh) at d4o.c:1066> [see 110]
+  341 {   1}  \ Valid_Handle() <int Valid_Handle(const int *qh_or_dbh) at d4o.c:117>
+  342 {   0}  c_d4o_get_null_() <double c_d4o_get_null_() at d4o.c:2216>
+  343 {   1}  \ d4o_get_null() <double d4o_get_null() at d4o.c:807> [see 146]
+  344 {   0}  c_d4o_get_query_() <long long int c_d4o_get_query_(int *qh,const int *Expanded,int *len) at d4o.c:2064>
+  345 {   1}  + d4o_get_query() <char *d4o_get_query(int qh,int expanded) at d4o.c:1072> [see 49]
+  346 {   1}  + Valid_Handle() <int Valid_Handle(const int *qh_or_dbh) at d4o.c:117>
+  347 {   1}  \ strlen()
+  348 {   0}  c_d4o_get_text_() <long long int c_d4o_get_text_(const double *d,int *len) at d4o.c:2098>
+  349 {   1}  + d4o_get_text() <const void *d4o_get_text(const double *d,int *detected_coltype) at d4o.c:746> [see 162]
+  350 {   1}  + d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+  351 {   1}  + d4o_is_null() <int d4o_is_null(double value) at d4o.c:819> [see 156]
+  352 {   1}  + strcpy()
+  353 {   1}  + snprintf() <int snprintf(char *__restrict __s,size_t __maxlen,const char *__restrict __format,...) at /usr/include/stdio.h:378>
+  354 {   1}  \ strlen()
+  355 {   0}  c_d4o_get_textlen_() <int c_d4o_get_textlen_(const double *d) at d4o.c:2127>
+  356 {   1}  \ d4o_get_textlen() <int d4o_get_textlen(double d) at d4o.c:780> [see 153]
+  357 {   0}  c_d4o_get_typename_() <long long int c_d4o_get_typename_(const int *coltype,int *len) at d4o.c:2078>
+  358 {   1}  + d4o_get_typename() <const char *d4o_get_typename(int coltype) at d4o.c:1230> [see 152]
+  359 {   1}  + d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+  360 {   1}  \ strlen()
+  361 {   0}  c_d4o_getdb_() <long long int c_d4o_getdb_(int *qh,const int *ncols,int *nrows,long long int *colnames_ptr,int clen[],int types[],long long int *sql_ptr,int *sql_len) at d4o.c:1969>
+  362 {   1}  + d4o_getdb() <int d4o_getdb(int qh,double **Dout,int ncols,int *Nrows,char *colnames[ncols],int types[ncols],char **sql) at d4o.c:1264> [see 119]
+  363 {   1}  + Valid_Handle() <int Valid_Handle(const int *qh_or_dbh) at d4o.c:117>
+  364 {   1}  + strlen()
+  365 {   1}  + d4o_alloc() <void *d4o_alloc(size_t nmemb,size_t size,int initzero) at d4o.c:836> [see 37]
+  366 {   1}  + strcat()
+  367 {   1}  + d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+  368 {   1}  \ d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  369 {   0}  c_d4o_is_null_() <int c_d4o_is_null_(const double *value) at d4o.c:2225>
+  370 {   1}  \ d4o_is_null() <int d4o_is_null(double value) at d4o.c:819> [see 156]
+  371 {   0}  c_d4o_long_column_names_() <int c_d4o_long_column_names_(int *dbh,const int *onoff) at d4o.c:2230>
+  372 {   1}  + d4o_long_column_names() <int d4o_long_column_names(int dbh,int onoff) at d4o.c:1000> [see 70]
+  373 {   1}  \ Valid_Handle() <int Valid_Handle(const int *qh_or_dbh) at d4o.c:117>
+  374 {   0}  c_d4o_open_() <int c_d4o_open_(const char *dbname,const char *mode,long dbname_len,long mode_len) at d4o.c:1886>
+  375 {   1}  + d4o_alloc() <void *d4o_alloc(size_t nmemb,size_t size,int initzero) at d4o.c:836> [see 37]
+  376 {   1}  + memcpy() <void *memcpy(void *__restrict __dest,const void *__restrict __src,size_t __n) at /usr/include/string.h:43>
+  377 {   1}  + d4o_open() <int d4o_open(const char *dbname,const char *mode) at d4o.c:908> [see 31]
+  378 {   1}  \ d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  379 {   0}  c_d4o_prepare_() <int c_d4o_prepare_(int *dbh,const char *query,int *ncols,int *nparcnt,long query_len) at d4o.c:1945>
+  380 {   1}  + d4o_alloc() <void *d4o_alloc(size_t nmemb,size_t size,int initzero) at d4o.c:836> [see 37]
+  381 {   1}  + memcpy() <void *memcpy(void *__restrict __dest,const void *__restrict __src,size_t __n) at /usr/include/string.h:43>
+  382 {   1}  + d4o_prepare() <int d4o_prepare(int dbh,const char *query,int *Ncols,int *Nparcnt,char **Tail,int *Errcode) at d4o.c:1090> [see 89]
+  383 {   1}  + Valid_Handle() <int Valid_Handle(const int *qh_or_dbh) at d4o.c:117>
+  384 {   1}  \ d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  385 {   0}  c_d4o_ptr2array_() <void c_d4o_ptr2array_(const long long int *ptr,const int *ncols,const int *nrows,const int *elemsize,void *d) at d4o.c:2014>
+  386 {   1}  \ memcpy() <void *memcpy(void *__restrict __dest,const void *__restrict __src,size_t __n) at /usr/include/string.h:43>
+  387 {   0}  c_d4o_ptr2str_() <void c_d4o_ptr2str_(const long long int *ptr,char *s,const long s_len) at d4o.c:2026>
+  388 {   1}  \ memcpy() <void *memcpy(void *__restrict __dest,const void *__restrict __src,size_t __n) at /usr/include/string.h:43>
+  389 {   0}  c_d4o_putdb_() <int c_d4o_putdb_(int *qh,const double *d,const int *ncols,const int *nrows,const int types[],const int *nparcnt,const int parnum[]) at d4o.c:2043>
+  390 {   1}  + d4o_putdb() <int d4o_putdb(int qh,const double *d,int ncols,int nrows,const int types[ncols],int nparcnt,const int Parnum[nparcnt]) at d4o.c:1354>
+  391 {   2}  | + d4o_wtime() <double d4o_wtime() at d4o.c:696> [see 14]
+  392 {   2}  | + this_Q() <Query_t *this_Q(int qh) at d4o.c:131> [see 50]
+  393 {   2}  | + this_DB() <DB_t *this_DB(int qh_or_dbh) at d4o.c:123> [see 47]
+  394 {   2}  | + d4o_get_dbh() <int d4o_get_dbh(int qh) at d4o.c:846> [see 123]
+  395 {   2}  | + d4o_get_query() <char *d4o_get_query(int qh,int expanded) at d4o.c:1072> [see 49]
+  396 {   2}  | + sqlite3_total_changes()
+  397 {   2}  | + d4o_get_nparcnt() <int d4o_get_nparcnt(int qh) at d4o.c:1066> [see 110]
+  398 {   2}  | + fprintf()
+  399 {   2}  | + d4o_exec() <int d4o_exec(int dbh,const char *query) at d4o.c:1043> [see 72]
+  400 {   2}  | + d4o_check_error() <int d4o_check_error(int do_abort,FILE *fp,int rc,int expected,int dbh,const char *DBname,int qh,const char *Sql,const char *func,const char *filename,int lineno,const char *fmt,...) at d4o.c:858> [see 44]
+  401 {   2}  | + d4o_alloc() <void *d4o_alloc(size_t nmemb,size_t size,int initzero) at d4o.c:836> [see 37]
+  402 {   2}  | + d4o_bind_int() <int d4o_bind_int(int qh,int parnum,int value) at d4o.c:1181> [see 259]
+  403 {   2}  | + d4o_bind_double() <int d4o_bind_double(int qh,int parnum,double value) at d4o.c:1159> [see 251]
+  404 {   2}  | + d4o_get_text() <const void *d4o_get_text(const double *d,int *detected_coltype) at d4o.c:746> [see 162]
+  405 {   2}  | + d4o_bind_text() <int d4o_bind_text(int qh,int parnum,const char *s) at d4o.c:1199> [see 271]
+  406 {   2}  | + d4o_bind_null() <int d4o_bind_null(int qh,int parnum) at d4o.c:1217> [see 265]
+  407 {   2}  | + d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  408 {   2}  | + sqlite3_step()
+  409 {   2}  | + sqlite3_reset()
+  410 {   2}  | \ d4o_profile() <void d4o_profile(const char *func,double delta,int nrows,int ncols,int nparcnt,int rc,int dbh,const char *dbname,int qh,const char *query,const char *fmt,...) at d4o.c:639> [see 13]
+  411 {   1}  \ Valid_Handle() <int Valid_Handle(const int *qh_or_dbh) at d4o.c:117>
+  412 {   0}  c_d4o_set_null_() <double c_d4o_set_null_(const double *newvalue) at d4o.c:2218>
+  413 {   1}  \ d4o_set_null() <double d4o_set_null(double newvalue) at d4o.c:812>
+  414 {   0}  c_d4o_set_text_() <double c_d4o_set_text_(const char *s,long s_len) at d4o.c:2132>
+  415 {   1}  + memcpy() <void *memcpy(void *__restrict __dest,const void *__restrict __src,size_t __n) at /usr/include/string.h:43>
+  416 {   1}  \ d4o_set_text() <double d4o_set_text(const char *s) at d4o.c:730> [see 133]
+  417 {   0}  c_d4o_tsc_() <void c_d4o_tsc_(const int *Csv,const int *Ncols,const int width[],const int types[],const double d[],char *cout,int *Len_cout,const long cout_len) at d4o.c:2148>
+  418 {   1}  + strcat()
+  419 {   1}  + d4o_is_null() <int d4o_is_null(double value) at d4o.c:819> [see 156]
+  420 {   1}  + snprintf() <int snprintf(char *__restrict __s,size_t __maxlen,const char *__restrict __format,...) at /usr/include/stdio.h:378>
+  421 {   1}  + d4o_get_text() <const void *d4o_get_text(const double *d,int *detected_coltype) at d4o.c:746> [see 162]
+  422 {   1}  + strncat()
+  423 {   1}  \ strlen()
+  424 {   0}  d4o_alloc() <void *d4o_alloc(size_t nmemb,size_t size,int initzero) at d4o.c:836> [see 37]
+  425 {   0}  d4o_array_fprintf() <int d4o_array_fprintf(FILE *fp,const double *d,int ncols,int nrows,char *colnames[ncols],const int types[ncols],const char *sql,int separator) at d4o.c:1630> [see 150]
+  426 {   0}  d4o_bind_double() <int d4o_bind_double(int qh,int parnum,double value) at d4o.c:1159> [see 251]
+  427 {   0}  d4o_bind_int() <int d4o_bind_int(int qh,int parnum,int value) at d4o.c:1181> [see 259]
+  428 {   0}  d4o_bind_null() <int d4o_bind_null(int qh,int parnum) at d4o.c:1217> [see 265]
+  429 {   0}  d4o_bind_text() <int d4o_bind_text(int qh,int parnum,const char *s) at d4o.c:1199> [see 271]
+  430 {   0}  d4o_check_error() <int d4o_check_error(int do_abort,FILE *fp,int rc,int expected,int dbh,const char *DBname,int qh,const char *Sql,const char *func,const char *filename,int lineno,const char *fmt,...) at d4o.c:858> [see 44]
+  431 {   0}  d4o_close() <int d4o_close(int dbh) at d4o.c:1012> [see 175]
+  432 {   0}  d4o_colidx() <int d4o_colidx(int qh,const char *key) at d4o.c:1604> [see 283]
+  433 {   0}  d4o_datetime() <char *d4o_datetime(double epoch) at d4o.c:702> [see 9]
+  434 {   0}  d4o_destroy() <int d4o_destroy(int qh,int enforce) at d4o.c:1132> [see 168]
+  435 {   0}  d4o_exec() <int d4o_exec(int dbh,const char *query) at d4o.c:1043> [see 72]
+  436 {   0}  d4o_execfile() <int d4o_execfile(int dbh,const char *sqlfile) at d4o.c:1035> [see 303]
+  437 {   0}  d4o_fprintf() <int d4o_fprintf(FILE *fp,int qh,int separator) at d4o.c:1581> [see 117]
+  438 {   0}  d4o_free() <void *d4o_free(void *x) at d4o.c:825> [see 59]
+  439 {   0}  d4o_get_coltype() <int d4o_get_coltype(const char *typename,const char *opt_colname) at d4o.c:1247> [see 104]
+  440 {   0}  d4o_get_dbh() <int d4o_get_dbh(int qh) at d4o.c:846> [see 123]
+  441 {   0}  d4o_get_dbname() <char *d4o_get_dbname(int dbh) at d4o.c:851> [see 46]
+  442 {   0}  d4o_get_errmsg() <char *d4o_get_errmsg(int rc) at d4o.c:716> [see 328]
+  443 {   0}  d4o_get_ncols() <int d4o_get_ncols(int qh) at d4o.c:1060> [see 108]
+  444 {   0}  d4o_get_nparcnt() <int d4o_get_nparcnt(int qh) at d4o.c:1066> [see 110]
+  445 {   0}  d4o_get_null() <double d4o_get_null() at d4o.c:807> [see 146]
+  446 {   0}  d4o_get_query() <char *d4o_get_query(int qh,int expanded) at d4o.c:1072> [see 49]
+  447 {   0}  d4o_get_text() <const void *d4o_get_text(const double *d,int *detected_coltype) at d4o.c:746> [see 162]
+  448 {   0}  d4o_get_textlen() <int d4o_get_textlen(double d) at d4o.c:780> [see 153]
+  449 {   0}  d4o_get_typename() <const char *d4o_get_typename(int coltype) at d4o.c:1230> [see 152]
+  450 {   0}  d4o_getdb() <int d4o_getdb(int qh,double **Dout,int ncols,int *Nrows,char *colnames[ncols],int types[ncols],char **sql) at d4o.c:1264> [see 119]
+  451 {   0}  d4o_is_null() <int d4o_is_null(double value) at d4o.c:819> [see 156]
+  452 {   0}  d4o_long_column_names() <int d4o_long_column_names(int dbh,int onoff) at d4o.c:1000> [see 70]
+  453 {   0}  d4o_open() <int d4o_open(const char *dbname,const char *mode) at d4o.c:908> [see 31]
+  454 {   0}  d4o_prepare() <int d4o_prepare(int dbh,const char *query,int *Ncols,int *Nparcnt,char **Tail,int *Errcode) at d4o.c:1090> [see 89]
+  455 {   0}  d4o_profile() <void d4o_profile(const char *func,double delta,int nrows,int ncols,int nparcnt,int rc,int dbh,const char *dbname,int qh,const char *query,const char *fmt,...) at d4o.c:639> [see 13]
+  456 {   0}  d4o_putdb() <int d4o_putdb(int qh,const double *d,int ncols,int nrows,const int types[ncols],int nparcnt,const int Parnum[nparcnt]) at d4o.c:1354> [see 390]
+  457 {   0}  d4o_query_fprintf() <int d4o_query_fprintf(FILE *fp,int dbh,const char *query,int separator) at d4o.c:1561> [see 86]
+  458 {   0}  d4o_set_null() <double d4o_set_null(double newvalue) at d4o.c:812> [see 413]
+  459 {   0}  d4o_set_text() <double d4o_set_text(const char *s) at d4o.c:730> [see 133]
+  460 {   0}  d4o_strdup() <char *d4o_strdup(const char *s) at d4o.c:831> [see 27]
+  461 {   0}  d4o_timestamp() <double d4o_timestamp() at d4o.c:668> [see 5]
+  462 {   0}  d4o_wtime() <double d4o_wtime() at d4o.c:696> [see 14]
+  463 {   0}  delete_DB() <int delete_DB(int dbh) at d4o.c:341> [see 179]
+  464 {   0}  delete_Queries() <Query_t *delete_Queries(Query_t *pQ,int nQ,int do_free) at d4o.c:305> [see 185]
+  465 {   0}  file2str() <char *file2str(const char *filename,size_t *len) at d4o.c:245> [see 304]
+  466 {   0}  filter_these() <char *filter_these(const char *in) at d4o.c:143> [see 55]
+  467 {   0}  new_DB() <DB_t *new_DB(const char *dbname,const char *mode,int flags,int *retcode) at d4o.c:374> [see 36]
+  468 {   0}  new_Q() <int new_Q(int dbh,const char *query,const char **tail,int *retcode) at d4o.c:156> [see 91]
+  469 {   0}  this_DB() <DB_t *this_DB(int qh_or_dbh) at d4o.c:123> [see 47]
+  470 {   0}  this_Q() <Query_t *this_Q(int qh) at d4o.c:131> [see 50]
+
+# d4o.h
+# /usr/bin/cflow -I. -I/usr/include --number --brief --tree --all --all --cpp --print-level d4o.h 2>/dev/null
+

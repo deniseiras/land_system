@@ -1,0 +1,38 @@
+
+-------------------------------------------------------------------------
+Time to check the case.
+
+1) cd /work/cmcc/lg07622/land/work/clm5_23/lnd_multi/run
+   and check the compatibility between the namelists/pointer files
+   and the files that were staged.
+
+2) cd /work/cmcc/lg07622/land/work/clm5_23/lnd_multi/mem0005
+
+3) check things
+
+4) run a single job (and send mail), verify that it works without assimilation
+   ./case.submit -M all
+
+5) IF NEEDED, compile all the DART executables by
+   cd  /work/cmcc/lg07622/land/DART/models/clm/work
+   ./quickbuild.sh
+
+6) Modify the case to enable data assimilation and
+   run DART by executing
+   cd /work/cmcc/lg07622/land/work/clm5_23/lnd_multi/mem0005
+   ./CESM_DART_config
+   and follow the directions.
+
+7) Make sure the DART-related parts are appropriate.
+   Check the input.nml
+   Check the assimilate.csh or perfect_model.csh - as appropriate
+   ./case.submit -M all
+
+8) If that works
+   ./xmlchange CONTINUE_RUN=TRUE
+   ./xmlchange RESUBMIT=<number_of_cycles_to_run>
+   and
+   ./case.submit -M all
+
+-------------------------------------------------------------------------
+

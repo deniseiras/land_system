@@ -1,0 +1,18 @@
+sensor_id:int,satellite:text
+  0,hirs      
+  1,msu       
+  2,ssu       
+  3,amsua     
+  4,amsub     
+  9,tmi       
+ 10,ssmis     
+ 16,iasi      
+ 17,amsre     
+ 63,amsr2     
+ 18,mwri      
+ 19,atms      
+ 20,meteosat  
+ 26,iras      
+ 27,mwts      
+ 28,mwhs      
+ 71,gmi       

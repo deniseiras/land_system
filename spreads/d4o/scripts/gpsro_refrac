@@ -1,0 +1,350 @@
+#!/usr/bin/env perl
+#
+# Usage: gpsro_refrac [options] instruction_file(s)
+#    or  gpsro_refrac [options] < instruction_file
+#    or  cat instruction_file(s) | gpsro_refrac [options]
+#
+
+use strict;
+use warnings;
+
+my $sqlite="sqlite3 -readonly -batch -init /dev/null -nullvalue NULL -csv -noheader";
+
+our $csvheader = undef;
+
+#id,group_id,bufrtype,subtype,obstype,codetype,sensor_id,sat_instr,sat_id,accumulation_length
+#7013,8,3,250,10,250,202,202,3,-1
+#7001,8,3,250,10,250,202,202,4,-1
+
+our %obsmap = (); # key = "sat_id:sat_instr" => value = "reportype,group_id,bufrtype,subtype,obstype,codetype,sensor_id"
+
+
+our $debug = 0;
+our $thinning = 1;
+our $remove = 0;
+our $file_id = 0;
+our $seqno_offset = 0;
+our $varno = 301;
+
+my @files = ();
+push(@files,"STDIN") unless (-t STDIN); # Some input comes thru the pipe or via stdin-redirection
+for my $f (@ARGV) {
+    my $warn = undef;
+    if ($f =~ m{^-(\S+)=(\d+)$}) {
+	my ($label,$value) = ($1,$2);
+	$label =~ s/^-//;
+	if ($label eq "debug") {
+	    $debug = $value;
+	}
+	elsif ($label eq "remove") {
+	    $remove = $value;
+	}
+	elsif ($label =~ m{^thin}) {
+	    $thinning = $value;
+	}
+	elsif ($label =~ m{^varno}) {
+	    $varno = $value;
+	}
+	elsif ($label =~ m{^(fid|file_id)$}) {
+	    $file_id = $value - 1;
+	}
+	elsif ($label =~ m{^(id|id_offset|seqno_offset)$}) {
+	    $seqno_offset = $value;
+	}
+	else {
+	    $warn = sprintf("Unrecognized option '%s' -- ignored",$f);
+	}
+    }
+    elsif ($f =~ m{^-(\S+)$}) {
+	my $label = $1;
+	$label =~ s/^-//;
+	if ($label eq "debug") {
+	    ++$debug;
+	}
+	elsif ($label eq "remove") {
+	    ++$remove;
+	}
+	elsif ($label eq "keep") {
+	    $remove = 0;
+	}
+	else {
+	    $warn = sprintf("Unrecognized option '%s' -- ignored",$f);
+	}
+    }
+    elsif (-r $f) {
+	push(@files,$f);
+    }
+    else {
+	$warn = sprintf("File '%s' not found or unreadable -- skipped",$f);
+    }
+}
+
+my $cmd = qx(readlink -f $0);
+chomp($cmd);
+my $cmddir = qx(dirname $cmd);
+chomp($cmddir);
+printf(STDERR "%s %s\n",$cmd,join(" ",@ARGV)) if ($debug > 0);
+
+my @orlist = ();
+push(@orlist,qw(subsetnumber satelliteidentifier satelliteinstruments radiooccultationdataqualityflags));
+push(@orlist,qw(latitude longitude year month day hour minute second timeincrement));
+push(@orlist,qw(extendeddelayeddescriptorreplicationfactor height atmosphericrefractivity));
+push(@orlist,qw(bufrheadercentre bufrheadersubcentre));
+my $orlist = join("|",@orlist);
+
+our $id = $seqno_offset;
+our $newsubset = 0;
+our $hasradio = 0;
+our $entryno = 0;
+our $satid = undef;
+our $satins = undef;
+our @lat = ();
+our @lon = ();
+our @ht = ();
+our @refrac = ();
+#our @epoch = ();
+our ($year,$month,$day,$hour,$minute,$second,$timeinc) = (undef) x 7;
+our $yyyymmdd = undef;
+our $hhmmss = undef;
+our $baselat = undef;
+our $baselon = undef;
+our $wmo_centre = 0;
+our $wmo_subcentre = 0;
+our $vertco_type = 2;
+our $replfac = 0;
+
+if (@files) {
+    my $cmd;
+    for my $f (@files) {
+	unless ($f eq "STDIN") {
+	    # detect if BUFR file
+	    my @keys = (1112884818,1380341058);
+            my @ftypes = ("bufr","bufr");
+            my %magic;
+            @magic{@keys} = @ftypes;
+            my $number = qx(od -tu4 $f | head -n1 | cut -f2 -d" ");
+            chomp($number);
+            if (exists($magic{$number})) { # BUFR
+		$cmd = sprintf("%s/bufr_dump2db%s %s |",$cmddir,($debug > 0) ? " -debug" : "",$f);
+            }
+            else {
+		$cmd = sprintf("< %s",$f);
+            }
+	}
+	else { # STDIN
+	    $cmd = sprintf("cat |");
+	}
+	printf(STDERR "For '%s' running command '%s' ...\n",$f,$cmd) if ($debug > 0);
+	if (open(IN,"$cmd")) {
+	    my @in = <IN>;
+	    close(IN);
+	    for (@in) {
+		chomp;
+		#dwdbufr;7811;dwdbufr-jf.db;471040;dwdbufr-jf.csv;455021;dwdbufr;13324;1
+		my ($tbl,$nrows,$db,$dbdize,$csv,$csvsize,$bufr,$bufrsize,$msgcount) = split(/\;/);
+		$cmd = sprintf("%s %s \"SELECT lower(key),value FROM %s WHERE nvals = 1 AND lower(key) REGEXP '^(%s)'\" |",
+			       $sqlite,$db,$tbl,$orlist);
+		printf(STDERR "#%s\n",$cmd) if ($debug > 0);
+		if (open(IN,"$cmd")) {
+		    my $cnt = 0;
+		    ++$file_id;
+		    &Reset(0);
+		    for (<IN>) {
+			chomp;
+			my ($key,$value) = split(/,/);
+			if ($key eq "subsetnumber") {
+			    &Dump(1);
+			    ++$cnt;
+			    printf(STDERR "%d/%d: %s %s id=%d\n",$cnt,$msgcount,$key,$value,$id) if ($debug > 1);
+			}
+			else {
+			    &Insert($key,$value);
+			}
+		    }
+		    close(IN);
+		    &Dump(0);
+		    if ($remove) { # remove essentially tmp-files
+			printf(STDERR "Removing tmp-files %s and %s ...\n",$db,$csv) if ($debug > 0);
+			unlink $db;
+			unlink $csv;
+		    }
+		}
+	    }
+	}
+    }
+}
+
+exit 0;
+
+sub Reset {
+    my ($opt) = @_;
+    $newsubset = defined($opt) ? $opt : 0;
+    if ($newsubset == 0) {
+	$id = $seqno_offset;
+	$wmo_centre = 0;
+	$wmo_subcentre = 0;
+    }
+    $hasradio = 0;
+    $entryno = 0;
+    $satid = undef;
+    $satins = undef;
+    @lat = ();
+    @lon = ();
+    @ht = ();
+    @refrac = ();
+    #@epoch = ();
+    ($year,$month,$day,$hour,$minute,$second,$timeinc) = (undef) x 7;
+    $yyyymmdd = undef;
+    $hhmmss = undef;
+    $baselat = undef;
+    $baselon = undef;
+    $vertco_type = 2;
+    $replfac = 0;
+}
+
+sub Dump {
+    my ($opt) = @_;
+    if ($newsubset && $hasradio && $entryno > 0) {
+	# STDOUT is fed back to obseqd4o
+	my $included = 0;
+	my $thinned = 0;
+	my $failed = 0;
+	my @dbg = ();
+	my @csv = ();
+	unless (defined($csvheader)) { # this STDOUT is fed back to obseqd4o
+	    $csvheader = sprintf("#hdr.id,hdr.file_id,hdr.yyyymmdd,hdr.hhmmss,hdr.deglat,hdr.deglon,hdr.nbody,hdr.nsat,hdr.statid,".
+				 "hdr.obstype,hdr.codetype,hdr.bufrtype,hdr.subtype,hdr.group_id,hdr.reportype,".
+				 "body.hdr_id,body.entryno,body.varno,body.obsvalue,body.levelht,body.vertco_type,".
+				 "sat.hdr_id,sat.sat_id,sat.sat_instr,sat.sensor_id");
+				 #"sat.hdr_id,sat.sat_id,sat.sat_instr,sat.wmo_centre,sat.wmo_subcentre,sat.sensor_id");
+	    printf("%s\n",$csvheader);
+	    my $auxtbl = "odb_code_mappings";
+	    my $cmd = sprintf("%s %s/%s.db \"SELECT sat_id||':'||sat_instr AS key,id AS reportype,group_id,bufrtype,subtype,obstype,codetype,sensor_id FROM %s WHERE obstype = 10 AND codetype = 250\" |",
+			      $sqlite,$ENV{'ODB_SCHEMA_DIR'},$auxtbl,$auxtbl);
+	    if (open(AUX,$cmd)) {
+		my @aux = <AUX>;
+		close(AUX);
+		for (@aux) {
+		    chomp;
+		    s/,/ /; # first comma to space
+		    #my ($key,$reportype,$group_id,$bufrtype,$subtype,$obstype,$codetype,$sensor_id) = split(/,/);
+		    my ($key,$value) = split(/\s+/);
+		    $obsmap{$key} = $value;
+		}
+	    }
+	}
+	for my $e (1..$entryno) {
+	    my $i = $e - 1;
+	    my $s = sprintf("%s %s %s %s %s %s",
+			    $yyyymmdd,$hhmmss,
+			    $lat[$i],
+			    $lon[$i],
+			    $refrac[$i],$ht[$i]);
+	    my $to_be_thinned = 0;
+	    my $to_be_ignored = ($s =~ m{\bNULL\b}) ? 1 : 0;
+	    $failed++ if ($to_be_ignored);
+	    unless ($to_be_ignored) {
+		++$id; # always increment [hdr.]id only for non-failed obs
+		if ($id % $thinning == 0) { # we keep this "id"
+		    ++$included;
+		}
+		else {
+		    $to_be_thinned = 1;
+		    ++$thinned;
+		}
+	    }
+	    my $idx = ($to_be_ignored || $to_be_thinned) ? "#" : $id;
+	    push(@dbg,sprintf("  %3s %s %d/%d: %s",$to_be_ignored ? "[F]" : $to_be_thinned ? "{t}" : "   ",$idx,$e,$replfac,$s)) if ($debug > 2);
+	    unless ($idx eq "#") { # accumulate csv
+		my $key = sprintf("%d:%d",$satid,$satins);
+		my $value = exists($obsmap{$key}) ? $obsmap{$key} : undef;
+		my ($reportype,$group_id,$bufrtype,$subtype,$obstype,$codetype,$sensor_id) = split(/,/,$value);
+		$s = sprintf("%d,%d,%s,%s,%s,%s,%d,%d,%d,". # hdr
+			     "%d,%d,%d,%d,%d,%d,". # hdr
+			     "%d,%d,%d,%s,%s,%d,". # body
+			     "%d,%d,%d,%d", # sat
+			     $id,$file_id,$yyyymmdd,$hhmmss,$lat[$i],$lon[$i],1,1,$satid, # hdr
+			     $obstype,$codetype,$bufrtype,$subtype,$group_id,$reportype, # hdr
+			     $id,$e,$varno,$refrac[$i],$ht[$i],$vertco_type, # body
+			     $id,$satid,$satins,$sensor_id); # sat
+		             #$id,$satid,$satins,$wmo_centre,$wmo_subcentre,$sensor_id); # sat
+		push(@csv,$s);
+	    }
+	}
+	if ($debug > 2) {
+	    printf(STDERR "Dump(%d) : replfac=%d/entries=%d/included=%d/failed=%d/thinned=%d -- timeIncrement = %s at basetimestamp=%s%s [baselat=%s,baselon=%s]\n",
+		   $opt,$replfac,$entryno,$included,$failed,$thinned,
+		   $timeinc,$yyyymmdd,$hhmmss,$baselat,$baselon);
+	    map { printf(STDERR "%s\n",$_); } @dbg; # this STDOUT is fed back to obseqd4o
+	}
+	map { printf("%s\n",$_); } @csv;
+    }
+    &Reset($opt);
+}
+
+sub RoundSecTxt {
+    my ($sec) = @_;
+    if (defined($sec)) {
+	my ($int,$dec) = split(/\./,$sec);
+	$dec = "" unless (defined($dec));
+	while (length($dec) < 3) { $dec .= "0" };
+	$sec = sprintf("%2.2d.%s",$int,$dec);
+    }
+    return $sec;
+}
+
+sub RoundSec {
+    my ($sec) = @_;
+    if (defined($sec)) {
+	$sec = int($sec + 0.5); # nint
+	$sec = 59 if ($sec > 59);
+    }
+    return $sec;
+}
+
+sub Insert {
+    my ($key,$value) = @_;
+    if ($newsubset) {
+	$hasradio = 1 if ($key eq "radiooccultationdataqualityflags");
+	if ($replfac == 0 && $key eq "extendeddelayeddescriptorreplicationfactor") {
+	    $replfac = $value;
+	    $yyyymmdd = sprintf("%4.4d%2.2d%2.2d",$year,$month,$day);
+	    #$second = &RoundSecTxt($second); # note: input second with decimal pnt
+	    #$hhmmss = sprintf("%2.2d%2.2d%s",$hour,$minute,$second);
+	    $second = &RoundSec($second); # note: input second with decimal pnt
+	    $hhmmss = sprintf("%2.2d%2.2d%2.2d",$hour,$minute,$second);
+	}
+	elsif ($replfac == 0) {
+	    $satid = $value if ($key eq "satelliteidentifier");
+	    $satins = $value if ($key eq "satelliteinstruments");
+	    $year = $value if ($key eq "year");
+	    $month = $value if ($key eq "month");
+	    $day = $value if ($key eq "day");
+	    $hour = $value if ($key eq "hour");
+	    $minute = $value if ($key eq "minute");
+	    $second = $value if ($key eq "second");
+	    $timeinc = $value if ($key eq "timeincrement");
+	    $baselat = $value if ($key eq "latitude");
+	    $baselon = $value if ($key eq "longitude");
+	}
+	elsif ($replfac > 0) {
+	    push(@lat,$value) if ($key eq "latitude");
+	    push(@lon,$value) if ($key eq "longitude");
+	    if ($key eq "height") {
+		push(@ht,$value);
+		++$entryno;
+		#my $inc = ($entryno * $timeinc)/$replfac;
+		#push(@epoch,sprintf("%s_%s+%.3f",$yyyymmdd,$hhmmss,$inc));
+		#push(@epoch,sprintf("+ %.3f",$inc));
+	    }
+	    push(@refrac,$value) if ($key eq "atmosphericrefractivity" && @refrac < $entryno); # take the first one
+	}
+    }
+    else {
+	printf(STDERR "%s = %s\n",$key,$value) if ($debug > 1);
+	$wmo_centre = $value if ($key eq "bufrheadercentre");
+	$wmo_subcentre = $value if ($key eq "bufrheadersubcentre");
+    }
+}
+
+    

@@ -1,0 +1,1384 @@
+151956
+151955
+totaltimes = 8
+t=1
+next output file 2017011506
+starting time 2017011503 plus 1 sec
+ending   time 2017011509
+gregorian range = 151955 10801 thru 151955 32400
+ 
+ --------------------------------------
+ Starting ... at YYYY MM DD HH MM SS = 
+                 2021  6  9 11  1 39
+ Program obs_sequence_tool
+ --------------------------------------
+ 
+  set_nml_output Echo NML values to log file only
+Excluding observations before: day=151955, sec=10801
+       which is Gregorian day: 2017 Jan 15 03:00:01
+Excluding observations  after: day=151955, sec=32400
+       which is Gregorian day: 2017 Jan 15 09:00:00
+ 
+ Assimilate_these_obs_types:
+    RADIOSONDE_TEMPERATURE
+    RADIOSONDE_U_WIND_COMPONENT
+    RADIOSONDE_V_WIND_COMPONENT
+    AIRCRAFT_U_WIND_COMPONENT
+    AIRCRAFT_V_WIND_COMPONENT
+    AIRCRAFT_TEMPERATURE
+    ACARS_U_WIND_COMPONENT
+    ACARS_V_WIND_COMPONENT
+    ACARS_TEMPERATURE
+    SAT_U_WIND_COMPONENT
+    SAT_V_WIND_COMPONENT
+    GPSRO_REFRACTIVITY
+    AIRS_TEMPERATURE
+    EOS_2_AMSUA_TB
+ Evaluate_these_obs_types:
+    RADIOSONDE_SPECIFIC_HUMIDITY
+    AIRS_SPECIFIC_HUMIDITY
+    RADIOSONDE_SURFACE_ALTIMETER
+    MARINE_SFC_ALTIMETER
+    LAND_SFC_ALTIMETER
+ Use the precomputed Prior Forward Operators for these obs types:
+    none
+ 
+  location_mod: using code with optimized cutoffs
+  location_mod: Including vertical separation when computing distances:
+  location_mod:        # pascals ~ 1 horiz radian:       20000.00000
+  location_mod:         # meters ~ 1 horiz radian:       10000.00000
+  location_mod:   # model levels ~ 1 horiz radian:          20.00000
+  location_mod:  # scale heights ~ 1 horiz radian:           1.50000
+  location_mod: Using table-lookup approximation for distance computations
+  set_mw_metadata  Warning: subkey (      100001 ) exceeds mw_obs_metadata lengt
+ h (      100000 )
+  set_mw_metadata ...  Increasing mw_obs_metadata to length       200000
+  set_mw_metadata  Warning: key (      100001 ) exceeds obs_metadata length (   
+    100000 )
+  set_mw_metadata ...  Increasing obs_metadata to length       200000
+ 
+  obs_sequence_tool  Starting to process input sequence file /work/cmcc/gc02720/o
+ bservations/MW/201701_6H/obs_seq.amsua.2017.01.15.21600
+  set_mw_metadata  Warning: subkey (      200001 ) exceeds mw_obs_metadata lengt
+ h (      200000 )
+  set_mw_metadata ...  Increasing mw_obs_metadata to length       400000
+  set_mw_metadata  Warning: key (      200001 ) exceeds obs_metadata length (   
+    200000 )
+  set_mw_metadata ...  Increasing obs_metadata to length       400000
+ inserted number        20000  of       162000
+ inserted number        40000  of       162000
+ inserted number        60000  of       162000
+ inserted number        80000  of       162000
+ inserted number       100000  of       162000
+ inserted number       120000  of       162000
+ inserted number       140000  of       162000
+ inserted number       160000  of       162000
+ --------------  Obs seq file # :                     1
+ Number of obs in previous seq  :                     0
+ Number of obs to be  inserted  :                162000
+ Number of obs really inserted  :                162000
+ ---------------------------------------------------------
+  obs_sequence_tool  Starting to process input sequence file /work/cmcc/gc02720/o
+ bservations/CONV_201701_6H_CESM/obs_seq.2017-01-15-21600
+  obs_sequence_tool  metadata observation in both.
+  obs_sequence_tool  metadata QC in both.
+ inserted number        20000  of       564086
+ inserted number        40000  of       564086
+ inserted number        60000  of       564086
+ inserted number        80000  of       564086
+ inserted number       100000  of       564086
+ inserted number       120000  of       564086
+ inserted number       140000  of       564086
+ inserted number       160000  of       564086
+ inserted number       180000  of       564086
+ inserted number       200000  of       564086
+ inserted number       220000  of       564086
+ inserted number       240000  of       564086
+ inserted number       260000  of       564086
+ inserted number       280000  of       564086
+ inserted number       300000  of       564086
+ inserted number       320000  of       564086
+ inserted number       340000  of       564086
+ inserted number       360000  of       564086
+ inserted number       380000  of       564086
+ inserted number       400000  of       564086
+ inserted number       420000  of       564086
+ inserted number       440000  of       564086
+ inserted number       460000  of       564086
+ inserted number       480000  of       564086
+ inserted number       500000  of       564086
+ inserted number       520000  of       564086
+ inserted number       540000  of       564086
+ inserted number       560000  of       564086
+ --------------  Obs seq file # :                     2
+ Number of obs in previous seq  :                162000
+ Number of obs to be  inserted  :                564086
+ Number of obs really inserted  :                564086
+ ---------------------------------------------------------
+  obs_sequence_tool  Starting to process output sequence file /work/cmcc/gc02720/
+ observations/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.15.06
+ Total number of obs  inserted  :                726086
+ Actual number of obs in the new seq file :      726086
+ 
+   Processing sequence file /work/cmcc/gc02720/observations/MW_CH08-09_CONV_20170
+ 1_6H_CESM/obs_seq.amsua.2017.01.15.06
+   Data Metadata: observation
+     QC Metadata: QC
+  First obs time: day=151955, sec=10802
+   Gregorian day: 2017 Jan 15 03:00:02
+   Last obs time: day=151955, sec=32400
+   Gregorian day: 2017 Jan 15 09:00:00
+   Number of obs processed  :                726086
+   ---------------------------------------------------------
+                GPSRO_REFRACTIVITY   69531 obs
+       RADIOSONDE_U_WIND_COMPONENT    2464 obs
+       RADIOSONDE_V_WIND_COMPONENT    2464 obs
+            RADIOSONDE_TEMPERATURE    1009 obs
+      RADIOSONDE_SPECIFIC_HUMIDITY     496 obs
+         AIRCRAFT_U_WIND_COMPONENT   23310 obs
+         AIRCRAFT_V_WIND_COMPONENT   23310 obs
+              AIRCRAFT_TEMPERATURE   23828 obs
+            ACARS_U_WIND_COMPONENT   35317 obs
+            ACARS_V_WIND_COMPONENT   35317 obs
+                 ACARS_TEMPERATURE   34856 obs
+       MARINE_SFC_U_WIND_COMPONENT    6798 obs
+       MARINE_SFC_V_WIND_COMPONENT    6798 obs
+            MARINE_SFC_TEMPERATURE    7531 obs
+      MARINE_SFC_SPECIFIC_HUMIDITY    2966 obs
+              SAT_U_WIND_COMPONENT  116458 obs
+              SAT_V_WIND_COMPONENT  116458 obs
+                  AIRS_TEMPERATURE   19412 obs
+            AIRS_SPECIFIC_HUMIDITY    6541 obs
+      RADIOSONDE_SURFACE_ALTIMETER      17 obs
+              MARINE_SFC_ALTIMETER   10541 obs
+                LAND_SFC_ALTIMETER   18664 obs
+                    EOS_2_AMSUA_TB  162000 obs
+ 
+  write_obs_seq  opening formatted observation sequence file "/work/cmcc/gc02720/
+ observations/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.15.06"
+  write_obs_seq  closed observation sequence file "/work/cmcc/gc02720/observation
+ s/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.15.06"
+  obs_sequence_tool Finished successfully.
+ 
+ --------------------------------------
+ Finished ... at YYYY MM DD HH MM SS = 
+                 2021  6  9 11  2  5
+ --------------------------------------
+ 
+t=2
+next output file 2017011512
+starting time 2017011509 plus 1 sec
+ending   time 2017011515
+gregorian range = 151955 32401 thru 151955 54000
+ 
+ --------------------------------------
+ Starting ... at YYYY MM DD HH MM SS = 
+                 2021  6  9 11  2  5
+ Program obs_sequence_tool
+ --------------------------------------
+ 
+  set_nml_output Echo NML values to log file only
+Excluding observations before: day=151955, sec=32401
+       which is Gregorian day: 2017 Jan 15 09:00:01
+Excluding observations  after: day=151955, sec=54000
+       which is Gregorian day: 2017 Jan 15 15:00:00
+ 
+ Assimilate_these_obs_types:
+    RADIOSONDE_TEMPERATURE
+    RADIOSONDE_U_WIND_COMPONENT
+    RADIOSONDE_V_WIND_COMPONENT
+    AIRCRAFT_U_WIND_COMPONENT
+    AIRCRAFT_V_WIND_COMPONENT
+    AIRCRAFT_TEMPERATURE
+    ACARS_U_WIND_COMPONENT
+    ACARS_V_WIND_COMPONENT
+    ACARS_TEMPERATURE
+    SAT_U_WIND_COMPONENT
+    SAT_V_WIND_COMPONENT
+    GPSRO_REFRACTIVITY
+    AIRS_TEMPERATURE
+    EOS_2_AMSUA_TB
+ Evaluate_these_obs_types:
+    RADIOSONDE_SPECIFIC_HUMIDITY
+    AIRS_SPECIFIC_HUMIDITY
+    RADIOSONDE_SURFACE_ALTIMETER
+    MARINE_SFC_ALTIMETER
+    LAND_SFC_ALTIMETER
+ Use the precomputed Prior Forward Operators for these obs types:
+    none
+ 
+  location_mod: using code with optimized cutoffs
+  location_mod: Including vertical separation when computing distances:
+  location_mod:        # pascals ~ 1 horiz radian:       20000.00000
+  location_mod:         # meters ~ 1 horiz radian:       10000.00000
+  location_mod:   # model levels ~ 1 horiz radian:          20.00000
+  location_mod:  # scale heights ~ 1 horiz radian:           1.50000
+  location_mod: Using table-lookup approximation for distance computations
+  set_mw_metadata  Warning: subkey (      100001 ) exceeds mw_obs_metadata lengt
+ h (      100000 )
+  set_mw_metadata ...  Increasing mw_obs_metadata to length       200000
+  set_mw_metadata  Warning: key (      100001 ) exceeds obs_metadata length (   
+    100000 )
+  set_mw_metadata ...  Increasing obs_metadata to length       200000
+ 
+  obs_sequence_tool  Starting to process input sequence file /work/cmcc/gc02720/o
+ bservations/MW/201701_6H/obs_seq.amsua.2017.01.15.43200
+  set_mw_metadata  Warning: subkey (      200001 ) exceeds mw_obs_metadata lengt
+ h (      200000 )
+  set_mw_metadata ...  Increasing mw_obs_metadata to length       400000
+  set_mw_metadata  Warning: key (      200001 ) exceeds obs_metadata length (   
+    200000 )
+  set_mw_metadata ...  Increasing obs_metadata to length       400000
+ inserted number        20000  of       162000
+ inserted number        40000  of       162000
+ inserted number        60000  of       162000
+ inserted number        80000  of       162000
+ inserted number       100000  of       162000
+ inserted number       120000  of       162000
+ inserted number       140000  of       162000
+ inserted number       160000  of       162000
+ --------------  Obs seq file # :                     1
+ Number of obs in previous seq  :                     0
+ Number of obs to be  inserted  :                162000
+ Number of obs really inserted  :                162000
+ ---------------------------------------------------------
+  obs_sequence_tool  Starting to process input sequence file /work/cmcc/gc02720/o
+ bservations/CONV_201701_6H_CESM/obs_seq.2017-01-15-43200
+  obs_sequence_tool  metadata observation in both.
+  obs_sequence_tool  metadata QC in both.
+ inserted number        20000  of       682448
+ inserted number        40000  of       682448
+ inserted number        60000  of       682448
+ inserted number        80000  of       682448
+ inserted number       100000  of       682448
+ inserted number       120000  of       682448
+ inserted number       140000  of       682448
+ inserted number       160000  of       682448
+ inserted number       180000  of       682448
+ inserted number       200000  of       682448
+ inserted number       220000  of       682448
+ inserted number       240000  of       682448
+ inserted number       260000  of       682448
+ inserted number       280000  of       682448
+ inserted number       300000  of       682448
+ inserted number       320000  of       682448
+ inserted number       340000  of       682448
+ inserted number       360000  of       682448
+ inserted number       380000  of       682448
+ inserted number       400000  of       682448
+ inserted number       420000  of       682448
+ inserted number       440000  of       682448
+ inserted number       460000  of       682448
+ inserted number       480000  of       682448
+ inserted number       500000  of       682448
+ inserted number       520000  of       682448
+ inserted number       540000  of       682448
+ inserted number       560000  of       682448
+ inserted number       580000  of       682448
+ inserted number       600000  of       682448
+ inserted number       620000  of       682448
+ inserted number       640000  of       682448
+ inserted number       660000  of       682448
+ inserted number       680000  of       682448
+ --------------  Obs seq file # :                     2
+ Number of obs in previous seq  :                162000
+ Number of obs to be  inserted  :                682448
+ Number of obs really inserted  :                682448
+ ---------------------------------------------------------
+  obs_sequence_tool  Starting to process output sequence file /work/cmcc/gc02720/
+ observations/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.15.12
+ Total number of obs  inserted  :                844448
+ Actual number of obs in the new seq file :      844448
+ 
+   Processing sequence file /work/cmcc/gc02720/observations/MW_CH08-09_CONV_20170
+ 1_6H_CESM/obs_seq.amsua.2017.01.15.12
+   Data Metadata: observation
+     QC Metadata: QC
+  First obs time: day=151955, sec=32402
+   Gregorian day: 2017 Jan 15 09:00:02
+   Last obs time: day=151955, sec=54000
+   Gregorian day: 2017 Jan 15 15:00:00
+   Number of obs processed  :                844448
+   ---------------------------------------------------------
+                GPSRO_REFRACTIVITY   68100 obs
+       RADIOSONDE_U_WIND_COMPONENT   35502 obs
+       RADIOSONDE_V_WIND_COMPONENT   35502 obs
+            RADIOSONDE_TEMPERATURE   29266 obs
+      RADIOSONDE_SPECIFIC_HUMIDITY   13944 obs
+         AIRCRAFT_U_WIND_COMPONENT   26473 obs
+         AIRCRAFT_V_WIND_COMPONENT   26473 obs
+              AIRCRAFT_TEMPERATURE   27583 obs
+            ACARS_U_WIND_COMPONENT   43780 obs
+            ACARS_V_WIND_COMPONENT   43780 obs
+                 ACARS_TEMPERATURE   43197 obs
+       MARINE_SFC_U_WIND_COMPONENT    6837 obs
+       MARINE_SFC_V_WIND_COMPONENT    6837 obs
+            MARINE_SFC_TEMPERATURE    7678 obs
+      MARINE_SFC_SPECIFIC_HUMIDITY    2978 obs
+              SAT_U_WIND_COMPONENT  104305 obs
+              SAT_V_WIND_COMPONENT  104305 obs
+                  AIRS_TEMPERATURE   19137 obs
+            AIRS_SPECIFIC_HUMIDITY    6254 obs
+      RADIOSONDE_SURFACE_ALTIMETER     584 obs
+              MARINE_SFC_ALTIMETER   11044 obs
+                LAND_SFC_ALTIMETER   18889 obs
+                    EOS_2_AMSUA_TB  162000 obs
+ 
+  write_obs_seq  opening formatted observation sequence file "/work/cmcc/gc02720/
+ observations/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.15.12"
+  write_obs_seq  closed observation sequence file "/work/cmcc/gc02720/observation
+ s/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.15.12"
+  obs_sequence_tool Finished successfully.
+ 
+ --------------------------------------
+ Finished ... at YYYY MM DD HH MM SS = 
+                 2021  6  9 11  2 35
+ --------------------------------------
+ 
+t=3
+next output file 2017011518
+starting time 2017011515 plus 1 sec
+ending   time 2017011521
+gregorian range = 151955 54001 thru 151955 75600
+ 
+ --------------------------------------
+ Starting ... at YYYY MM DD HH MM SS = 
+                 2021  6  9 11  2 35
+ Program obs_sequence_tool
+ --------------------------------------
+ 
+  set_nml_output Echo NML values to log file only
+Excluding observations before: day=151955, sec=54001
+       which is Gregorian day: 2017 Jan 15 15:00:01
+Excluding observations  after: day=151955, sec=75600
+       which is Gregorian day: 2017 Jan 15 21:00:00
+ 
+ Assimilate_these_obs_types:
+    RADIOSONDE_TEMPERATURE
+    RADIOSONDE_U_WIND_COMPONENT
+    RADIOSONDE_V_WIND_COMPONENT
+    AIRCRAFT_U_WIND_COMPONENT
+    AIRCRAFT_V_WIND_COMPONENT
+    AIRCRAFT_TEMPERATURE
+    ACARS_U_WIND_COMPONENT
+    ACARS_V_WIND_COMPONENT
+    ACARS_TEMPERATURE
+    SAT_U_WIND_COMPONENT
+    SAT_V_WIND_COMPONENT
+    GPSRO_REFRACTIVITY
+    AIRS_TEMPERATURE
+    EOS_2_AMSUA_TB
+ Evaluate_these_obs_types:
+    RADIOSONDE_SPECIFIC_HUMIDITY
+    AIRS_SPECIFIC_HUMIDITY
+    RADIOSONDE_SURFACE_ALTIMETER
+    MARINE_SFC_ALTIMETER
+    LAND_SFC_ALTIMETER
+ Use the precomputed Prior Forward Operators for these obs types:
+    none
+ 
+  location_mod: using code with optimized cutoffs
+  location_mod: Including vertical separation when computing distances:
+  location_mod:        # pascals ~ 1 horiz radian:       20000.00000
+  location_mod:         # meters ~ 1 horiz radian:       10000.00000
+  location_mod:   # model levels ~ 1 horiz radian:          20.00000
+  location_mod:  # scale heights ~ 1 horiz radian:           1.50000
+  location_mod: Using table-lookup approximation for distance computations
+  set_mw_metadata  Warning: subkey (      100001 ) exceeds mw_obs_metadata lengt
+ h (      100000 )
+  set_mw_metadata ...  Increasing mw_obs_metadata to length       200000
+  set_mw_metadata  Warning: key (      100001 ) exceeds obs_metadata length (   
+    100000 )
+  set_mw_metadata ...  Increasing obs_metadata to length       200000
+ 
+  obs_sequence_tool  Starting to process input sequence file /work/cmcc/gc02720/o
+ bservations/MW/201701_6H/obs_seq.amsua.2017.01.15.64800
+  set_mw_metadata  Warning: subkey (      200001 ) exceeds mw_obs_metadata lengt
+ h (      200000 )
+  set_mw_metadata ...  Increasing mw_obs_metadata to length       400000
+  set_mw_metadata  Warning: key (      200001 ) exceeds obs_metadata length (   
+    200000 )
+  set_mw_metadata ...  Increasing obs_metadata to length       400000
+ inserted number        20000  of       162000
+ inserted number        40000  of       162000
+ inserted number        60000  of       162000
+ inserted number        80000  of       162000
+ inserted number       100000  of       162000
+ inserted number       120000  of       162000
+ inserted number       140000  of       162000
+ inserted number       160000  of       162000
+ --------------  Obs seq file # :                     1
+ Number of obs in previous seq  :                     0
+ Number of obs to be  inserted  :                162000
+ Number of obs really inserted  :                162000
+ ---------------------------------------------------------
+  obs_sequence_tool  Starting to process input sequence file /work/cmcc/gc02720/o
+ bservations/CONV_201701_6H_CESM/obs_seq.2017-01-15-64800
+  obs_sequence_tool  metadata observation in both.
+  obs_sequence_tool  metadata QC in both.
+ inserted number        20000  of       803918
+ inserted number        40000  of       803918
+ inserted number        60000  of       803918
+ inserted number        80000  of       803918
+ inserted number       100000  of       803918
+ inserted number       120000  of       803918
+ inserted number       140000  of       803918
+ inserted number       160000  of       803918
+ inserted number       180000  of       803918
+ inserted number       200000  of       803918
+ inserted number       220000  of       803918
+ inserted number       240000  of       803918
+ inserted number       260000  of       803918
+ inserted number       280000  of       803918
+ inserted number       300000  of       803918
+ inserted number       320000  of       803918
+ inserted number       340000  of       803918
+ inserted number       360000  of       803918
+ inserted number       380000  of       803918
+ inserted number       400000  of       803918
+ inserted number       420000  of       803918
+ inserted number       440000  of       803918
+ inserted number       460000  of       803918
+ inserted number       480000  of       803918
+ inserted number       500000  of       803918
+ inserted number       520000  of       803918
+ inserted number       540000  of       803918
+ inserted number       560000  of       803918
+ inserted number       580000  of       803918
+ inserted number       600000  of       803918
+ inserted number       620000  of       803918
+ inserted number       640000  of       803918
+ inserted number       660000  of       803918
+ inserted number       680000  of       803918
+ inserted number       700000  of       803918
+ inserted number       720000  of       803918
+ inserted number       740000  of       803918
+ inserted number       760000  of       803918
+ inserted number       780000  of       803918
+ inserted number       800000  of       803918
+ --------------  Obs seq file # :                     2
+ Number of obs in previous seq  :                162000
+ Number of obs to be  inserted  :                803918
+ Number of obs really inserted  :                803918
+ ---------------------------------------------------------
+  obs_sequence_tool  Starting to process output sequence file /work/cmcc/gc02720/
+ observations/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.15.18
+ Total number of obs  inserted  :                965918
+ Actual number of obs in the new seq file :      965918
+ 
+   Processing sequence file /work/cmcc/gc02720/observations/MW_CH08-09_CONV_20170
+ 1_6H_CESM/obs_seq.amsua.2017.01.15.18
+   Data Metadata: observation
+     QC Metadata: QC
+  First obs time: day=151955, sec=54002
+   Gregorian day: 2017 Jan 15 15:00:02
+   Last obs time: day=151955, sec=75600
+   Gregorian day: 2017 Jan 15 21:00:00
+   Number of obs processed  :                965918
+   ---------------------------------------------------------
+                GPSRO_REFRACTIVITY   67903 obs
+       RADIOSONDE_U_WIND_COMPONENT    1584 obs
+       RADIOSONDE_V_WIND_COMPONENT    1584 obs
+            RADIOSONDE_TEMPERATURE     643 obs
+      RADIOSONDE_SPECIFIC_HUMIDITY     312 obs
+         AIRCRAFT_U_WIND_COMPONENT   19118 obs
+         AIRCRAFT_V_WIND_COMPONENT   19118 obs
+              AIRCRAFT_TEMPERATURE   19956 obs
+            ACARS_U_WIND_COMPONENT  132937 obs
+            ACARS_V_WIND_COMPONENT  132937 obs
+                 ACARS_TEMPERATURE  131234 obs
+       MARINE_SFC_U_WIND_COMPONENT    6865 obs
+       MARINE_SFC_V_WIND_COMPONENT    6865 obs
+            MARINE_SFC_TEMPERATURE    7697 obs
+      MARINE_SFC_SPECIFIC_HUMIDITY    2984 obs
+              SAT_U_WIND_COMPONENT   98293 obs
+              SAT_V_WIND_COMPONENT   98293 obs
+                  AIRS_TEMPERATURE   19234 obs
+            AIRS_SPECIFIC_HUMIDITY    6353 obs
+      RADIOSONDE_SURFACE_ALTIMETER      12 obs
+              MARINE_SFC_ALTIMETER   11217 obs
+                LAND_SFC_ALTIMETER   18779 obs
+                    EOS_2_AMSUA_TB  162000 obs
+ 
+  write_obs_seq  opening formatted observation sequence file "/work/cmcc/gc02720/
+ observations/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.15.18"
+  write_obs_seq  closed observation sequence file "/work/cmcc/gc02720/observation
+ s/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.15.18"
+  obs_sequence_tool Finished successfully.
+ 
+ --------------------------------------
+ Finished ... at YYYY MM DD HH MM SS = 
+                 2021  6  9 11  3  8
+ --------------------------------------
+ 
+t=4
+next output file 2017011600
+starting time 2017011521 plus 1 sec
+ending   time 2017011603
+gregorian range = 151955 75601 thru 151956 10800
+ 
+ --------------------------------------
+ Starting ... at YYYY MM DD HH MM SS = 
+                 2021  6  9 11  3  8
+ Program obs_sequence_tool
+ --------------------------------------
+ 
+  set_nml_output Echo NML values to log file only
+Excluding observations before: day=151955, sec=75601
+       which is Gregorian day: 2017 Jan 15 21:00:01
+Excluding observations  after: day=151956, sec=10800
+       which is Gregorian day: 2017 Jan 16 03:00:00
+ 
+ Assimilate_these_obs_types:
+    RADIOSONDE_TEMPERATURE
+    RADIOSONDE_U_WIND_COMPONENT
+    RADIOSONDE_V_WIND_COMPONENT
+    AIRCRAFT_U_WIND_COMPONENT
+    AIRCRAFT_V_WIND_COMPONENT
+    AIRCRAFT_TEMPERATURE
+    ACARS_U_WIND_COMPONENT
+    ACARS_V_WIND_COMPONENT
+    ACARS_TEMPERATURE
+    SAT_U_WIND_COMPONENT
+    SAT_V_WIND_COMPONENT
+    GPSRO_REFRACTIVITY
+    AIRS_TEMPERATURE
+    EOS_2_AMSUA_TB
+ Evaluate_these_obs_types:
+    RADIOSONDE_SPECIFIC_HUMIDITY
+    AIRS_SPECIFIC_HUMIDITY
+    RADIOSONDE_SURFACE_ALTIMETER
+    MARINE_SFC_ALTIMETER
+    LAND_SFC_ALTIMETER
+ Use the precomputed Prior Forward Operators for these obs types:
+    none
+ 
+  location_mod: using code with optimized cutoffs
+  location_mod: Including vertical separation when computing distances:
+  location_mod:        # pascals ~ 1 horiz radian:       20000.00000
+  location_mod:         # meters ~ 1 horiz radian:       10000.00000
+  location_mod:   # model levels ~ 1 horiz radian:          20.00000
+  location_mod:  # scale heights ~ 1 horiz radian:           1.50000
+  location_mod: Using table-lookup approximation for distance computations
+  set_mw_metadata  Warning: subkey (      100001 ) exceeds mw_obs_metadata lengt
+ h (      100000 )
+  set_mw_metadata ...  Increasing mw_obs_metadata to length       200000
+  set_mw_metadata  Warning: key (      100001 ) exceeds obs_metadata length (   
+    100000 )
+  set_mw_metadata ...  Increasing obs_metadata to length       200000
+ 
+  obs_sequence_tool  Starting to process input sequence file /work/cmcc/gc02720/o
+ bservations/MW/201701_6H/obs_seq.amsua.2017.01.16.00000
+  set_mw_metadata  Warning: subkey (      200001 ) exceeds mw_obs_metadata lengt
+ h (      200000 )
+  set_mw_metadata ...  Increasing mw_obs_metadata to length       400000
+  set_mw_metadata  Warning: key (      200001 ) exceeds obs_metadata length (   
+    200000 )
+  set_mw_metadata ...  Increasing obs_metadata to length       400000
+ inserted number        20000  of       162000
+ inserted number        40000  of       162000
+ inserted number        60000  of       162000
+ inserted number        80000  of       162000
+ inserted number       100000  of       162000
+ inserted number       120000  of       162000
+ inserted number       140000  of       162000
+ inserted number       160000  of       162000
+ --------------  Obs seq file # :                     1
+ Number of obs in previous seq  :                     0
+ Number of obs to be  inserted  :                162000
+ Number of obs really inserted  :                162000
+ ---------------------------------------------------------
+  obs_sequence_tool  Starting to process input sequence file /work/cmcc/gc02720/o
+ bservations/CONV_201701_6H_CESM/obs_seq.2017-01-16-00000
+  obs_sequence_tool  metadata observation in both.
+  obs_sequence_tool  metadata QC in both.
+ inserted number        20000  of       932941
+ inserted number        40000  of       932941
+ inserted number        60000  of       932941
+ inserted number        80000  of       932941
+ inserted number       100000  of       932941
+ inserted number       120000  of       932941
+ inserted number       140000  of       932941
+ inserted number       160000  of       932941
+ inserted number       180000  of       932941
+ inserted number       200000  of       932941
+ inserted number       220000  of       932941
+ inserted number       240000  of       932941
+ inserted number       260000  of       932941
+ inserted number       280000  of       932941
+ inserted number       300000  of       932941
+ inserted number       320000  of       932941
+ inserted number       340000  of       932941
+ inserted number       360000  of       932941
+ inserted number       380000  of       932941
+ inserted number       400000  of       932941
+ inserted number       420000  of       932941
+ inserted number       440000  of       932941
+ inserted number       460000  of       932941
+ inserted number       480000  of       932941
+ inserted number       500000  of       932941
+ inserted number       520000  of       932941
+ inserted number       540000  of       932941
+ inserted number       560000  of       932941
+ inserted number       580000  of       932941
+ inserted number       600000  of       932941
+ inserted number       620000  of       932941
+ inserted number       640000  of       932941
+ inserted number       660000  of       932941
+ inserted number       680000  of       932941
+ inserted number       700000  of       932941
+ inserted number       720000  of       932941
+ inserted number       740000  of       932941
+ inserted number       760000  of       932941
+ inserted number       780000  of       932941
+ inserted number       800000  of       932941
+ inserted number       820000  of       932941
+ inserted number       840000  of       932941
+ inserted number       860000  of       932941
+ inserted number       880000  of       932941
+ inserted number       900000  of       932941
+ inserted number       920000  of       932941
+ --------------  Obs seq file # :                     2
+ Number of obs in previous seq  :                162000
+ Number of obs to be  inserted  :                932941
+ Number of obs really inserted  :                932941
+ ---------------------------------------------------------
+  obs_sequence_tool  Starting to process output sequence file /work/cmcc/gc02720/
+ observations/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.16.00
+ Total number of obs  inserted  :               1094941
+ Actual number of obs in the new seq file :     1094941
+ 
+   Processing sequence file /work/cmcc/gc02720/observations/MW_CH08-09_CONV_20170
+ 1_6H_CESM/obs_seq.amsua.2017.01.16.00
+   Data Metadata: observation
+     QC Metadata: QC
+  First obs time: day=151955, sec=75602
+   Gregorian day: 2017 Jan 15 21:00:02
+   Last obs time: day=151956, sec=10800
+   Gregorian day: 2017 Jan 16 03:00:00
+   Number of obs processed  :               1094941
+   ---------------------------------------------------------
+                GPSRO_REFRACTIVITY   72991 obs
+       RADIOSONDE_U_WIND_COMPONENT   39025 obs
+       RADIOSONDE_V_WIND_COMPONENT   39025 obs
+            RADIOSONDE_TEMPERATURE   31235 obs
+      RADIOSONDE_SPECIFIC_HUMIDITY   14733 obs
+         AIRCRAFT_U_WIND_COMPONENT   17859 obs
+         AIRCRAFT_V_WIND_COMPONENT   17859 obs
+              AIRCRAFT_TEMPERATURE   17968 obs
+            ACARS_U_WIND_COMPONENT  133643 obs
+            ACARS_V_WIND_COMPONENT  133643 obs
+                 ACARS_TEMPERATURE  132333 obs
+       MARINE_SFC_U_WIND_COMPONENT    6895 obs
+       MARINE_SFC_V_WIND_COMPONENT    6895 obs
+            MARINE_SFC_TEMPERATURE    7712 obs
+      MARINE_SFC_SPECIFIC_HUMIDITY    3058 obs
+              SAT_U_WIND_COMPONENT  100413 obs
+              SAT_V_WIND_COMPONENT  100413 obs
+                  AIRS_TEMPERATURE   19751 obs
+            AIRS_SPECIFIC_HUMIDITY    6908 obs
+      RADIOSONDE_SURFACE_ALTIMETER     631 obs
+              MARINE_SFC_ALTIMETER   11027 obs
+                LAND_SFC_ALTIMETER   18924 obs
+                    EOS_2_AMSUA_TB  162000 obs
+ 
+  write_obs_seq  opening formatted observation sequence file "/work/cmcc/gc02720/
+ observations/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.16.00"
+  write_obs_seq  closed observation sequence file "/work/cmcc/gc02720/observation
+ s/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.16.00"
+  obs_sequence_tool Finished successfully.
+ 
+ --------------------------------------
+ Finished ... at YYYY MM DD HH MM SS = 
+                 2021  6  9 11  3 45
+ --------------------------------------
+ 
+t=5
+next output file 2017011606
+starting time 2017011603 plus 1 sec
+ending   time 2017011609
+gregorian range = 151956 10801 thru 151956 32400
+ 
+ --------------------------------------
+ Starting ... at YYYY MM DD HH MM SS = 
+                 2021  6  9 11  3 46
+ Program obs_sequence_tool
+ --------------------------------------
+ 
+  set_nml_output Echo NML values to log file only
+Excluding observations before: day=151956, sec=10801
+       which is Gregorian day: 2017 Jan 16 03:00:01
+Excluding observations  after: day=151956, sec=32400
+       which is Gregorian day: 2017 Jan 16 09:00:00
+ 
+ Assimilate_these_obs_types:
+    RADIOSONDE_TEMPERATURE
+    RADIOSONDE_U_WIND_COMPONENT
+    RADIOSONDE_V_WIND_COMPONENT
+    AIRCRAFT_U_WIND_COMPONENT
+    AIRCRAFT_V_WIND_COMPONENT
+    AIRCRAFT_TEMPERATURE
+    ACARS_U_WIND_COMPONENT
+    ACARS_V_WIND_COMPONENT
+    ACARS_TEMPERATURE
+    SAT_U_WIND_COMPONENT
+    SAT_V_WIND_COMPONENT
+    GPSRO_REFRACTIVITY
+    AIRS_TEMPERATURE
+    EOS_2_AMSUA_TB
+ Evaluate_these_obs_types:
+    RADIOSONDE_SPECIFIC_HUMIDITY
+    AIRS_SPECIFIC_HUMIDITY
+    RADIOSONDE_SURFACE_ALTIMETER
+    MARINE_SFC_ALTIMETER
+    LAND_SFC_ALTIMETER
+ Use the precomputed Prior Forward Operators for these obs types:
+    none
+ 
+  location_mod: using code with optimized cutoffs
+  location_mod: Including vertical separation when computing distances:
+  location_mod:        # pascals ~ 1 horiz radian:       20000.00000
+  location_mod:         # meters ~ 1 horiz radian:       10000.00000
+  location_mod:   # model levels ~ 1 horiz radian:          20.00000
+  location_mod:  # scale heights ~ 1 horiz radian:           1.50000
+  location_mod: Using table-lookup approximation for distance computations
+  set_mw_metadata  Warning: subkey (      100001 ) exceeds mw_obs_metadata lengt
+ h (      100000 )
+  set_mw_metadata ...  Increasing mw_obs_metadata to length       200000
+  set_mw_metadata  Warning: key (      100001 ) exceeds obs_metadata length (   
+    100000 )
+  set_mw_metadata ...  Increasing obs_metadata to length       200000
+ 
+  obs_sequence_tool  Starting to process input sequence file /work/cmcc/gc02720/o
+ bservations/MW/201701_6H/obs_seq.amsua.2017.01.16.21600
+  set_mw_metadata  Warning: subkey (      200001 ) exceeds mw_obs_metadata lengt
+ h (      200000 )
+  set_mw_metadata ...  Increasing mw_obs_metadata to length       400000
+  set_mw_metadata  Warning: key (      200001 ) exceeds obs_metadata length (   
+    200000 )
+  set_mw_metadata ...  Increasing obs_metadata to length       400000
+ inserted number        20000  of       162000
+ inserted number        40000  of       162000
+ inserted number        60000  of       162000
+ inserted number        80000  of       162000
+ inserted number       100000  of       162000
+ inserted number       120000  of       162000
+ inserted number       140000  of       162000
+ inserted number       160000  of       162000
+ --------------  Obs seq file # :                     1
+ Number of obs in previous seq  :                     0
+ Number of obs to be  inserted  :                162000
+ Number of obs really inserted  :                162000
+ ---------------------------------------------------------
+  obs_sequence_tool  Starting to process input sequence file /work/cmcc/gc02720/o
+ bservations/CONV_201701_6H_CESM/obs_seq.2017-01-16-21600
+  obs_sequence_tool  metadata observation in both.
+  obs_sequence_tool  metadata QC in both.
+ inserted number        20000  of       627692
+ inserted number        40000  of       627692
+ inserted number        60000  of       627692
+ inserted number        80000  of       627692
+ inserted number       100000  of       627692
+ inserted number       120000  of       627692
+ inserted number       140000  of       627692
+ inserted number       160000  of       627692
+ inserted number       180000  of       627692
+ inserted number       200000  of       627692
+ inserted number       220000  of       627692
+ inserted number       240000  of       627692
+ inserted number       260000  of       627692
+ inserted number       280000  of       627692
+ inserted number       300000  of       627692
+ inserted number       320000  of       627692
+ inserted number       340000  of       627692
+ inserted number       360000  of       627692
+ inserted number       380000  of       627692
+ inserted number       400000  of       627692
+ inserted number       420000  of       627692
+ inserted number       440000  of       627692
+ inserted number       460000  of       627692
+ inserted number       480000  of       627692
+ inserted number       500000  of       627692
+ inserted number       520000  of       627692
+ inserted number       540000  of       627692
+ inserted number       560000  of       627692
+ inserted number       580000  of       627692
+ inserted number       600000  of       627692
+ inserted number       620000  of       627692
+ --------------  Obs seq file # :                     2
+ Number of obs in previous seq  :                162000
+ Number of obs to be  inserted  :                627692
+ Number of obs really inserted  :                627692
+ ---------------------------------------------------------
+  obs_sequence_tool  Starting to process output sequence file /work/cmcc/gc02720/
+ observations/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.16.06
+ Total number of obs  inserted  :                789692
+ Actual number of obs in the new seq file :      789692
+ 
+   Processing sequence file /work/cmcc/gc02720/observations/MW_CH08-09_CONV_20170
+ 1_6H_CESM/obs_seq.amsua.2017.01.16.06
+   Data Metadata: observation
+     QC Metadata: QC
+  First obs time: day=151956, sec=10802
+   Gregorian day: 2017 Jan 16 03:00:02
+   Last obs time: day=151956, sec=32400
+   Gregorian day: 2017 Jan 16 09:00:00
+   Number of obs processed  :                789692
+   ---------------------------------------------------------
+                GPSRO_REFRACTIVITY   77504 obs
+       RADIOSONDE_U_WIND_COMPONENT    2664 obs
+       RADIOSONDE_V_WIND_COMPONENT    2664 obs
+            RADIOSONDE_TEMPERATURE    1127 obs
+      RADIOSONDE_SPECIFIC_HUMIDITY     601 obs
+         AIRCRAFT_U_WIND_COMPONENT   24410 obs
+         AIRCRAFT_V_WIND_COMPONENT   24410 obs
+              AIRCRAFT_TEMPERATURE   24977 obs
+            ACARS_U_WIND_COMPONENT   52211 obs
+            ACARS_V_WIND_COMPONENT   52211 obs
+                 ACARS_TEMPERATURE   52164 obs
+       MARINE_SFC_U_WIND_COMPONENT    6850 obs
+       MARINE_SFC_V_WIND_COMPONENT    6850 obs
+            MARINE_SFC_TEMPERATURE    7656 obs
+      MARINE_SFC_SPECIFIC_HUMIDITY    3032 obs
+              SAT_U_WIND_COMPONENT  116549 obs
+              SAT_V_WIND_COMPONENT  116549 obs
+                  AIRS_TEMPERATURE   19339 obs
+            AIRS_SPECIFIC_HUMIDITY    6405 obs
+      RADIOSONDE_SURFACE_ALTIMETER      23 obs
+              MARINE_SFC_ALTIMETER   10833 obs
+                LAND_SFC_ALTIMETER   18663 obs
+                    EOS_2_AMSUA_TB  162000 obs
+ 
+  write_obs_seq  opening formatted observation sequence file "/work/cmcc/gc02720/
+ observations/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.16.06"
+  write_obs_seq  closed observation sequence file "/work/cmcc/gc02720/observation
+ s/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.16.06"
+  obs_sequence_tool Finished successfully.
+ 
+ --------------------------------------
+ Finished ... at YYYY MM DD HH MM SS = 
+                 2021  6  9 11  4 14
+ --------------------------------------
+ 
+t=6
+next output file 2017011612
+starting time 2017011609 plus 1 sec
+ending   time 2017011615
+gregorian range = 151956 32401 thru 151956 54000
+ 
+ --------------------------------------
+ Starting ... at YYYY MM DD HH MM SS = 
+                 2021  6  9 11  4 14
+ Program obs_sequence_tool
+ --------------------------------------
+ 
+  set_nml_output Echo NML values to log file only
+Excluding observations before: day=151956, sec=32401
+       which is Gregorian day: 2017 Jan 16 09:00:01
+Excluding observations  after: day=151956, sec=54000
+       which is Gregorian day: 2017 Jan 16 15:00:00
+ 
+ Assimilate_these_obs_types:
+    RADIOSONDE_TEMPERATURE
+    RADIOSONDE_U_WIND_COMPONENT
+    RADIOSONDE_V_WIND_COMPONENT
+    AIRCRAFT_U_WIND_COMPONENT
+    AIRCRAFT_V_WIND_COMPONENT
+    AIRCRAFT_TEMPERATURE
+    ACARS_U_WIND_COMPONENT
+    ACARS_V_WIND_COMPONENT
+    ACARS_TEMPERATURE
+    SAT_U_WIND_COMPONENT
+    SAT_V_WIND_COMPONENT
+    GPSRO_REFRACTIVITY
+    AIRS_TEMPERATURE
+    EOS_2_AMSUA_TB
+ Evaluate_these_obs_types:
+    RADIOSONDE_SPECIFIC_HUMIDITY
+    AIRS_SPECIFIC_HUMIDITY
+    RADIOSONDE_SURFACE_ALTIMETER
+    MARINE_SFC_ALTIMETER
+    LAND_SFC_ALTIMETER
+ Use the precomputed Prior Forward Operators for these obs types:
+    none
+ 
+  location_mod: using code with optimized cutoffs
+  location_mod: Including vertical separation when computing distances:
+  location_mod:        # pascals ~ 1 horiz radian:       20000.00000
+  location_mod:         # meters ~ 1 horiz radian:       10000.00000
+  location_mod:   # model levels ~ 1 horiz radian:          20.00000
+  location_mod:  # scale heights ~ 1 horiz radian:           1.50000
+  location_mod: Using table-lookup approximation for distance computations
+  set_mw_metadata  Warning: subkey (      100001 ) exceeds mw_obs_metadata lengt
+ h (      100000 )
+  set_mw_metadata ...  Increasing mw_obs_metadata to length       200000
+  set_mw_metadata  Warning: key (      100001 ) exceeds obs_metadata length (   
+    100000 )
+  set_mw_metadata ...  Increasing obs_metadata to length       200000
+ 
+  obs_sequence_tool  Starting to process input sequence file /work/cmcc/gc02720/o
+ bservations/MW/201701_6H/obs_seq.amsua.2017.01.16.43200
+  set_mw_metadata  Warning: subkey (      200001 ) exceeds mw_obs_metadata lengt
+ h (      200000 )
+  set_mw_metadata ...  Increasing mw_obs_metadata to length       400000
+  set_mw_metadata  Warning: key (      200001 ) exceeds obs_metadata length (   
+    200000 )
+  set_mw_metadata ...  Increasing obs_metadata to length       400000
+ inserted number        20000  of       162000
+ inserted number        40000  of       162000
+ inserted number        60000  of       162000
+ inserted number        80000  of       162000
+ inserted number       100000  of       162000
+ inserted number       120000  of       162000
+ inserted number       140000  of       162000
+ inserted number       160000  of       162000
+ --------------  Obs seq file # :                     1
+ Number of obs in previous seq  :                     0
+ Number of obs to be  inserted  :                162000
+ Number of obs really inserted  :                162000
+ ---------------------------------------------------------
+  obs_sequence_tool  Starting to process input sequence file /work/cmcc/gc02720/o
+ bservations/CONV_201701_6H_CESM/obs_seq.2017-01-16-43200
+  obs_sequence_tool  metadata observation in both.
+  obs_sequence_tool  metadata QC in both.
+ inserted number        20000  of       721950
+ inserted number        40000  of       721950
+ inserted number        60000  of       721950
+ inserted number        80000  of       721950
+ inserted number       100000  of       721950
+ inserted number       120000  of       721950
+ inserted number       140000  of       721950
+ inserted number       160000  of       721950
+ inserted number       180000  of       721950
+ inserted number       200000  of       721950
+ inserted number       220000  of       721950
+ inserted number       240000  of       721950
+ inserted number       260000  of       721950
+ inserted number       280000  of       721950
+ inserted number       300000  of       721950
+ inserted number       320000  of       721950
+ inserted number       340000  of       721950
+ inserted number       360000  of       721950
+ inserted number       380000  of       721950
+ inserted number       400000  of       721950
+ inserted number       420000  of       721950
+ inserted number       440000  of       721950
+ inserted number       460000  of       721950
+ inserted number       480000  of       721950
+ inserted number       500000  of       721950
+ inserted number       520000  of       721950
+ inserted number       540000  of       721950
+ inserted number       560000  of       721950
+ inserted number       580000  of       721950
+ inserted number       600000  of       721950
+ inserted number       620000  of       721950
+ inserted number       640000  of       721950
+ inserted number       660000  of       721950
+ inserted number       680000  of       721950
+ inserted number       700000  of       721950
+ inserted number       720000  of       721950
+ --------------  Obs seq file # :                     2
+ Number of obs in previous seq  :                162000
+ Number of obs to be  inserted  :                721950
+ Number of obs really inserted  :                721950
+ ---------------------------------------------------------
+  obs_sequence_tool  Starting to process output sequence file /work/cmcc/gc02720/
+ observations/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.16.12
+ Total number of obs  inserted  :                883950
+ Actual number of obs in the new seq file :      883950
+ 
+   Processing sequence file /work/cmcc/gc02720/observations/MW_CH08-09_CONV_20170
+ 1_6H_CESM/obs_seq.amsua.2017.01.16.12
+   Data Metadata: observation
+     QC Metadata: QC
+  First obs time: day=151956, sec=32402
+   Gregorian day: 2017 Jan 16 09:00:02
+   Last obs time: day=151956, sec=54000
+   Gregorian day: 2017 Jan 16 15:00:00
+   Number of obs processed  :                883950
+   ---------------------------------------------------------
+                GPSRO_REFRACTIVITY   80556 obs
+       RADIOSONDE_U_WIND_COMPONENT   36131 obs
+       RADIOSONDE_V_WIND_COMPONENT   36131 obs
+            RADIOSONDE_TEMPERATURE   29185 obs
+      RADIOSONDE_SPECIFIC_HUMIDITY   14001 obs
+         AIRCRAFT_U_WIND_COMPONENT   23067 obs
+         AIRCRAFT_V_WIND_COMPONENT   23067 obs
+              AIRCRAFT_TEMPERATURE   23870 obs
+            ACARS_U_WIND_COMPONENT   57898 obs
+            ACARS_V_WIND_COMPONENT   57898 obs
+                 ACARS_TEMPERATURE   57409 obs
+       MARINE_SFC_U_WIND_COMPONENT    6854 obs
+       MARINE_SFC_V_WIND_COMPONENT    6854 obs
+            MARINE_SFC_TEMPERATURE    7723 obs
+      MARINE_SFC_SPECIFIC_HUMIDITY    3051 obs
+              SAT_U_WIND_COMPONENT  101129 obs
+              SAT_V_WIND_COMPONENT  101129 obs
+                  AIRS_TEMPERATURE   19081 obs
+            AIRS_SPECIFIC_HUMIDITY    6221 obs
+      RADIOSONDE_SURFACE_ALTIMETER     581 obs
+              MARINE_SFC_ALTIMETER   11142 obs
+                LAND_SFC_ALTIMETER   18972 obs
+                    EOS_2_AMSUA_TB  162000 obs
+ 
+  write_obs_seq  opening formatted observation sequence file "/work/cmcc/gc02720/
+ observations/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.16.12"
+  write_obs_seq  closed observation sequence file "/work/cmcc/gc02720/observation
+ s/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.16.12"
+  obs_sequence_tool Finished successfully.
+ 
+ --------------------------------------
+ Finished ... at YYYY MM DD HH MM SS = 
+                 2021  6  9 11  4 45
+ --------------------------------------
+ 
+t=7
+next output file 2017011618
+starting time 2017011615 plus 1 sec
+ending   time 2017011621
+gregorian range = 151956 54001 thru 151956 75600
+ 
+ --------------------------------------
+ Starting ... at YYYY MM DD HH MM SS = 
+                 2021  6  9 11  4 45
+ Program obs_sequence_tool
+ --------------------------------------
+ 
+  set_nml_output Echo NML values to log file only
+Excluding observations before: day=151956, sec=54001
+       which is Gregorian day: 2017 Jan 16 15:00:01
+Excluding observations  after: day=151956, sec=75600
+       which is Gregorian day: 2017 Jan 16 21:00:00
+ 
+ Assimilate_these_obs_types:
+    RADIOSONDE_TEMPERATURE
+    RADIOSONDE_U_WIND_COMPONENT
+    RADIOSONDE_V_WIND_COMPONENT
+    AIRCRAFT_U_WIND_COMPONENT
+    AIRCRAFT_V_WIND_COMPONENT
+    AIRCRAFT_TEMPERATURE
+    ACARS_U_WIND_COMPONENT
+    ACARS_V_WIND_COMPONENT
+    ACARS_TEMPERATURE
+    SAT_U_WIND_COMPONENT
+    SAT_V_WIND_COMPONENT
+    GPSRO_REFRACTIVITY
+    AIRS_TEMPERATURE
+    EOS_2_AMSUA_TB
+ Evaluate_these_obs_types:
+    RADIOSONDE_SPECIFIC_HUMIDITY
+    AIRS_SPECIFIC_HUMIDITY
+    RADIOSONDE_SURFACE_ALTIMETER
+    MARINE_SFC_ALTIMETER
+    LAND_SFC_ALTIMETER
+ Use the precomputed Prior Forward Operators for these obs types:
+    none
+ 
+  location_mod: using code with optimized cutoffs
+  location_mod: Including vertical separation when computing distances:
+  location_mod:        # pascals ~ 1 horiz radian:       20000.00000
+  location_mod:         # meters ~ 1 horiz radian:       10000.00000
+  location_mod:   # model levels ~ 1 horiz radian:          20.00000
+  location_mod:  # scale heights ~ 1 horiz radian:           1.50000
+  location_mod: Using table-lookup approximation for distance computations
+  set_mw_metadata  Warning: subkey (      100001 ) exceeds mw_obs_metadata lengt
+ h (      100000 )
+  set_mw_metadata ...  Increasing mw_obs_metadata to length       200000
+  set_mw_metadata  Warning: key (      100001 ) exceeds obs_metadata length (   
+    100000 )
+  set_mw_metadata ...  Increasing obs_metadata to length       200000
+ 
+  obs_sequence_tool  Starting to process input sequence file /work/cmcc/gc02720/o
+ bservations/MW/201701_6H/obs_seq.amsua.2017.01.16.64800
+  set_mw_metadata  Warning: subkey (      200001 ) exceeds mw_obs_metadata lengt
+ h (      200000 )
+  set_mw_metadata ...  Increasing mw_obs_metadata to length       400000
+  set_mw_metadata  Warning: key (      200001 ) exceeds obs_metadata length (   
+    200000 )
+  set_mw_metadata ...  Increasing obs_metadata to length       400000
+ inserted number        20000  of       162000
+ inserted number        40000  of       162000
+ inserted number        60000  of       162000
+ inserted number        80000  of       162000
+ inserted number       100000  of       162000
+ inserted number       120000  of       162000
+ inserted number       140000  of       162000
+ inserted number       160000  of       162000
+ --------------  Obs seq file # :                     1
+ Number of obs in previous seq  :                     0
+ Number of obs to be  inserted  :                162000
+ Number of obs really inserted  :                162000
+ ---------------------------------------------------------
+  obs_sequence_tool  Starting to process input sequence file /work/cmcc/gc02720/o
+ bservations/CONV_201701_6H_CESM/obs_seq.2017-01-16-64800
+  obs_sequence_tool  metadata observation in both.
+  obs_sequence_tool  metadata QC in both.
+ inserted number        20000  of       813230
+ inserted number        40000  of       813230
+ inserted number        60000  of       813230
+ inserted number        80000  of       813230
+ inserted number       100000  of       813230
+ inserted number       120000  of       813230
+ inserted number       140000  of       813230
+ inserted number       160000  of       813230
+ inserted number       180000  of       813230
+ inserted number       200000  of       813230
+ inserted number       220000  of       813230
+ inserted number       240000  of       813230
+ inserted number       260000  of       813230
+ inserted number       280000  of       813230
+ inserted number       300000  of       813230
+ inserted number       320000  of       813230
+ inserted number       340000  of       813230
+ inserted number       360000  of       813230
+ inserted number       380000  of       813230
+ inserted number       400000  of       813230
+ inserted number       420000  of       813230
+ inserted number       440000  of       813230
+ inserted number       460000  of       813230
+ inserted number       480000  of       813230
+ inserted number       500000  of       813230
+ inserted number       520000  of       813230
+ inserted number       540000  of       813230
+ inserted number       560000  of       813230
+ inserted number       580000  of       813230
+ inserted number       600000  of       813230
+ inserted number       620000  of       813230
+ inserted number       640000  of       813230
+ inserted number       660000  of       813230
+ inserted number       680000  of       813230
+ inserted number       700000  of       813230
+ inserted number       720000  of       813230
+ inserted number       740000  of       813230
+ inserted number       760000  of       813230
+ inserted number       780000  of       813230
+ inserted number       800000  of       813230
+ --------------  Obs seq file # :                     2
+ Number of obs in previous seq  :                162000
+ Number of obs to be  inserted  :                813230
+ Number of obs really inserted  :                813230
+ ---------------------------------------------------------
+  obs_sequence_tool  Starting to process output sequence file /work/cmcc/gc02720/
+ observations/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.16.18
+ Total number of obs  inserted  :                975230
+ Actual number of obs in the new seq file :      975230
+ 
+   Processing sequence file /work/cmcc/gc02720/observations/MW_CH08-09_CONV_20170
+ 1_6H_CESM/obs_seq.amsua.2017.01.16.18
+   Data Metadata: observation
+     QC Metadata: QC
+  First obs time: day=151956, sec=54002
+   Gregorian day: 2017 Jan 16 15:00:02
+   Last obs time: day=151956, sec=75600
+   Gregorian day: 2017 Jan 16 21:00:00
+   Number of obs processed  :                975230
+   ---------------------------------------------------------
+                GPSRO_REFRACTIVITY   67804 obs
+       RADIOSONDE_U_WIND_COMPONENT    1703 obs
+       RADIOSONDE_V_WIND_COMPONENT    1703 obs
+            RADIOSONDE_TEMPERATURE     707 obs
+      RADIOSONDE_SPECIFIC_HUMIDITY     326 obs
+         AIRCRAFT_U_WIND_COMPONENT   17179 obs
+         AIRCRAFT_V_WIND_COMPONENT   17179 obs
+              AIRCRAFT_TEMPERATURE   17904 obs
+            ACARS_U_WIND_COMPONENT  139855 obs
+            ACARS_V_WIND_COMPONENT  139855 obs
+                 ACARS_TEMPERATURE  138227 obs
+       MARINE_SFC_U_WIND_COMPONENT    6885 obs
+       MARINE_SFC_V_WIND_COMPONENT    6885 obs
+            MARINE_SFC_TEMPERATURE    7724 obs
+      MARINE_SFC_SPECIFIC_HUMIDITY    3065 obs
+              SAT_U_WIND_COMPONENT   95126 obs
+              SAT_V_WIND_COMPONENT   95126 obs
+                  AIRS_TEMPERATURE   19391 obs
+            AIRS_SPECIFIC_HUMIDITY    6534 obs
+      RADIOSONDE_SURFACE_ALTIMETER      15 obs
+              MARINE_SFC_ALTIMETER   11202 obs
+                LAND_SFC_ALTIMETER   18835 obs
+                    EOS_2_AMSUA_TB  162000 obs
+ 
+  write_obs_seq  opening formatted observation sequence file "/work/cmcc/gc02720/
+ observations/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.16.18"
+  write_obs_seq  closed observation sequence file "/work/cmcc/gc02720/observation
+ s/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.16.18"
+  obs_sequence_tool Finished successfully.
+ 
+ --------------------------------------
+ Finished ... at YYYY MM DD HH MM SS = 
+                 2021  6  9 11  5 19
+ --------------------------------------
+ 
+t=8
+next output file 2017011700
+starting time 2017011621 plus 1 sec
+ending   time 2017011703
+gregorian range = 151956 75601 thru 151957 10800
+ 
+ --------------------------------------
+ Starting ... at YYYY MM DD HH MM SS = 
+                 2021  6  9 11  5 19
+ Program obs_sequence_tool
+ --------------------------------------
+ 
+  set_nml_output Echo NML values to log file only
+Excluding observations before: day=151956, sec=75601
+       which is Gregorian day: 2017 Jan 16 21:00:01
+Excluding observations  after: day=151957, sec=10800
+       which is Gregorian day: 2017 Jan 17 03:00:00
+ 
+ Assimilate_these_obs_types:
+    RADIOSONDE_TEMPERATURE
+    RADIOSONDE_U_WIND_COMPONENT
+    RADIOSONDE_V_WIND_COMPONENT
+    AIRCRAFT_U_WIND_COMPONENT
+    AIRCRAFT_V_WIND_COMPONENT
+    AIRCRAFT_TEMPERATURE
+    ACARS_U_WIND_COMPONENT
+    ACARS_V_WIND_COMPONENT
+    ACARS_TEMPERATURE
+    SAT_U_WIND_COMPONENT
+    SAT_V_WIND_COMPONENT
+    GPSRO_REFRACTIVITY
+    AIRS_TEMPERATURE
+    EOS_2_AMSUA_TB
+ Evaluate_these_obs_types:
+    RADIOSONDE_SPECIFIC_HUMIDITY
+    AIRS_SPECIFIC_HUMIDITY
+    RADIOSONDE_SURFACE_ALTIMETER
+    MARINE_SFC_ALTIMETER
+    LAND_SFC_ALTIMETER
+ Use the precomputed Prior Forward Operators for these obs types:
+    none
+ 
+  location_mod: using code with optimized cutoffs
+  location_mod: Including vertical separation when computing distances:
+  location_mod:        # pascals ~ 1 horiz radian:       20000.00000
+  location_mod:         # meters ~ 1 horiz radian:       10000.00000
+  location_mod:   # model levels ~ 1 horiz radian:          20.00000
+  location_mod:  # scale heights ~ 1 horiz radian:           1.50000
+  location_mod: Using table-lookup approximation for distance computations
+ 
+  obs_sequence_tool  Starting to process input sequence file /work/cmcc/gc02720/o
+ bservations/MW/201701_6H/obs_seq.amsua.2017.01.17.00000
+  set_mw_metadata  Warning: subkey (      100001 ) exceeds mw_obs_metadata lengt
+ h (      100000 )
+  set_mw_metadata ...  Increasing mw_obs_metadata to length       200000
+  set_mw_metadata  Warning: key (      100001 ) exceeds obs_metadata length (   
+    100000 )
+  set_mw_metadata ...  Increasing obs_metadata to length       200000
+ inserted number        20000  of        83400
+ inserted number        40000  of        83400
+ inserted number        60000  of        83400
+ inserted number        80000  of        83400
+ --------------  Obs seq file # :                     1
+ Number of obs in previous seq  :                     0
+ Number of obs to be  inserted  :                 83400
+ Number of obs really inserted  :                 83400
+ ---------------------------------------------------------
+  obs_sequence_tool  Starting to process input sequence file /work/cmcc/gc02720/o
+ bservations/CONV_201701_6H_CESM/obs_seq.2017-01-17-00000
+  obs_sequence_tool  metadata observation in both.
+  obs_sequence_tool  metadata QC in both.
+ inserted number        20000  of       960076
+ inserted number        40000  of       960076
+ inserted number        60000  of       960076
+ inserted number        80000  of       960076
+ inserted number       100000  of       960076
+ inserted number       120000  of       960076
+ inserted number       140000  of       960076
+ inserted number       160000  of       960076
+ inserted number       180000  of       960076
+ inserted number       200000  of       960076
+ inserted number       220000  of       960076
+ inserted number       240000  of       960076
+ inserted number       260000  of       960076
+ inserted number       280000  of       960076
+ inserted number       300000  of       960076
+ inserted number       320000  of       960076
+ inserted number       340000  of       960076
+ inserted number       360000  of       960076
+ inserted number       380000  of       960076
+ inserted number       400000  of       960076
+ inserted number       420000  of       960076
+ inserted number       440000  of       960076
+ inserted number       460000  of       960076
+ inserted number       480000  of       960076
+ inserted number       500000  of       960076
+ inserted number       520000  of       960076
+ inserted number       540000  of       960076
+ inserted number       560000  of       960076
+ inserted number       580000  of       960076
+ inserted number       600000  of       960076
+ inserted number       620000  of       960076
+ inserted number       640000  of       960076
+ inserted number       660000  of       960076
+ inserted number       680000  of       960076
+ inserted number       700000  of       960076
+ inserted number       720000  of       960076
+ inserted number       740000  of       960076
+ inserted number       760000  of       960076
+ inserted number       780000  of       960076
+ inserted number       800000  of       960076
+ inserted number       820000  of       960076
+ inserted number       840000  of       960076
+ inserted number       860000  of       960076
+ inserted number       880000  of       960076
+ inserted number       900000  of       960076
+ inserted number       920000  of       960076
+ inserted number       940000  of       960076
+ inserted number       960000  of       960076
+ --------------  Obs seq file # :                     2
+ Number of obs in previous seq  :                 83400
+ Number of obs to be  inserted  :                960076
+ Number of obs really inserted  :                960076
+ ---------------------------------------------------------
+  obs_sequence_tool  Starting to process output sequence file /work/cmcc/gc02720/
+ observations/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.17.00
+ Total number of obs  inserted  :               1043476
+ Actual number of obs in the new seq file :     1043476
+ 
+   Processing sequence file /work/cmcc/gc02720/observations/MW_CH08-09_CONV_20170
+ 1_6H_CESM/obs_seq.amsua.2017.01.17.00
+   Data Metadata: observation
+     QC Metadata: QC
+  First obs time: day=151956, sec=75602
+   Gregorian day: 2017 Jan 16 21:00:02
+   Last obs time: day=151957, sec=10800
+   Gregorian day: 2017 Jan 17 03:00:00
+   Number of obs processed  :               1043476
+   ---------------------------------------------------------
+                GPSRO_REFRACTIVITY   68723 obs
+       RADIOSONDE_U_WIND_COMPONENT   39260 obs
+       RADIOSONDE_V_WIND_COMPONENT   39260 obs
+            RADIOSONDE_TEMPERATURE   30928 obs
+      RADIOSONDE_SPECIFIC_HUMIDITY   14791 obs
+         AIRCRAFT_U_WIND_COMPONENT   16925 obs
+         AIRCRAFT_V_WIND_COMPONENT   16925 obs
+              AIRCRAFT_TEMPERATURE   16989 obs
+            ACARS_U_WIND_COMPONENT  138208 obs
+            ACARS_V_WIND_COMPONENT  138208 obs
+                 ACARS_TEMPERATURE  136307 obs
+       MARINE_SFC_U_WIND_COMPONENT    6891 obs
+       MARINE_SFC_V_WIND_COMPONENT    6891 obs
+            MARINE_SFC_TEMPERATURE    7714 obs
+      MARINE_SFC_SPECIFIC_HUMIDITY    3072 obs
+              SAT_U_WIND_COMPONENT  111188 obs
+              SAT_V_WIND_COMPONENT  111188 obs
+                  AIRS_TEMPERATURE   19422 obs
+            AIRS_SPECIFIC_HUMIDITY    6538 obs
+      RADIOSONDE_SURFACE_ALTIMETER     631 obs
+              MARINE_SFC_ALTIMETER   11122 obs
+                LAND_SFC_ALTIMETER   18895 obs
+                    EOS_2_AMSUA_TB   83400 obs
+ 
+  write_obs_seq  opening formatted observation sequence file "/work/cmcc/gc02720/
+ observations/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.17.00"
+  write_obs_seq  closed observation sequence file "/work/cmcc/gc02720/observation
+ s/MW_CH08-09_CONV_201701_6H_CESM/obs_seq.amsua.2017.01.17.00"
+  obs_sequence_tool Finished successfully.
+ 
+ --------------------------------------
+ Finished ... at YYYY MM DD HH MM SS = 
+                 2021  6  9 11  5 52
+ --------------------------------------
+ 

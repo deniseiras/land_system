@@ -1,0 +1,205 @@
+#!/bin/bash
+#
+# Usage: bufr2d4o bufrfile npools parallel {--camfv|--clm} {--ens=N} {--basetime=YYYYMMDDZZ} {--gpsro} [extra-options-to-obseqd4o]
+#
+
+set -euo pipefail
+
+kmd=$(basename $0)
+
+cmdfile=$(readlink -f $0)
+cmddir=$(readlink -f $(dirname $cmdfile))
+
+pid=$$
+export TMPSLASH=${TMPSLASH:-/tmp} # potentially /dev/shm
+export tmpdir=$TMPSLASH/$USER/bufr2d4o.$pid
+
+function DirStats()
+{
+    dir=$1
+    if [[ -d "$dir" ]] ; then
+	echo "$(date -u): Directory $dir ..."
+	df -h $dir
+	du -sh $dir
+	ls -ltrh $dir
+	#ls -ltr $dir
+	echo "$(date -u): $(hostname -f) $(uptime)" 
+	echo "$(date -u): Memory status:"
+	free -h -w -t -l || free -h || free || :
+    fi
+}
+
+function CheckErrors()
+{
+    errf=$1
+    if [[ -s "$errf" ]] ; then
+	pidlist=$(jobs -p)
+	if [[ "$pidlist" != "" ]] ; then
+	    set +eu
+	    jobs -l
+	    echo "$(date -u): Error(s) found -- see errors in file $(readlink -f $errf)"
+	    echo "$(date -u): Terminating any outstanding background job(s) now : $(hostname -f) $(uptime)"
+	    kill -TERM $pidlist || :
+	    DirStats $tmpdir
+	    ls -ltr $tmpdir
+	fi
+    fi
+}
+
+function Usage()
+{
+    egrep '^# Usage:' $cmdfile | perl -pe 's/^# //'
+}
+
+if [[ $# -lt 3 ]] ; then
+    Usage
+    exit 1
+fi
+ 
+bufrfile=${1:-"/dev/null"}
+npools=${2:-1}
+parallel=${3:-0}
+
+shift 3
+
+rc=0
+[[ -s $bufrfile ]] || {
+    echo "Error: BUFR-file $bufrfile does not exist or is empty"
+    ((++rc))
+}
+
+[[ $npools -gt 0 ]] || npools=1 # bailout
+
+if [[ $rc -eq 0 ]] ; then
+    # has --gpsro ?
+    gpsro=$(echo ":${*:-}" | grep -cP '\s*--gpsro' || :)
+    
+    if [[ $gpsro -eq 0 ]] ; then # check bufrfile itself
+	gpsro=$(basename "$bufrfile" | grep -cPi 'gpsro' || :)
+    fi
+    
+    if [[ $gpsro -gt 0 ]] ; then # has --gpsro (or bufrfile name contains gpsro) indeed => we create a single pool of it for simplicity -- no parallelism needed
+	npools=1
+	parallel=0
+	gpsro=" --gpsro"
+    else
+	gpsro=""
+    fi
+
+    # Max simultaneous background ("parallel") jobs allowed at a given moment
+    initnap=${d4o_nap:-10} # initial nap (override with export d4o_nap=<positive_value>)
+    if [[ $parallel -eq 1 ]] ; then
+	maxjobs=$npools
+    elif [[ $parallel -gt 1 ]] ; then
+	maxjobs=$parallel
+    else
+	maxjobs=1
+    fi
+    
+    export LOGS=$(readlink -f ${LOGS:-logs})
+    mkdir -pv $LOGS || :
+
+    msgcount=$(echo "$bufrfile" | perl -ne 'print $1 if (m/.*\.count-(\d+).*/)')
+    if [[ X"$msgcount" = X ]] ; then
+	msgcount=$(bufr_count $bufrfile 2>/dev/null || echo 0)
+    fi
+    if [[ $msgcount -gt 0 ]] ; then
+	echo "$(date -u): Temporary ODCs and temporary SQLite DBs written to the $tmpdir on host $(hostname -f)"
+	mkdir -pv $tmpdir
+	df -h $tmpdir
+
+	[[ $npools -le $msgcount ]] || npools=$msgcount # very rare !!
+	[[ $npools -gt 1 ]] || parallel=0
+	mergedb=$(basename $bufrfile .bufr | perl -pe 's/\.count-\d+//')
+	#mergedb+=".db"
+	msginc=$(((msgcount+npools-1)/npools))
+	echo "$(date -u): ${kmd} -- $(pwd): bufrfile=$bufrfile npools=$npools parallel=$parallel # mergedb=$mergedb msgcount=$msgcount msginc=$msginc"
+	first=1
+	last=0
+	progress=""
+	errfile=$LOGS/errors-in-bufr2d4o.$mergedb.txt
+	rm -f $errfile
+
+	time=time
+	if [[ -x /usr/bin/time ]] ; then
+	    time="/usr/bin/time -v"
+	else # check if "time"-command exists at all !!
+	    time=$(which time 2>/dev/null || echo "")
+	fi
+
+	secs=$initnap
+	maxsleep=$initnap
+	for ((poolno = 1; poolno <= npools; ++poolno))
+	do
+	    if [[ $parallel -gt 0 ]] ; then
+		savedsecs=$secs
+		CheckErrors $errfile
+		DirStats $tmpdir
+		jobs -l
+		jobs=$(jobs | wc -l)
+		while [[ $jobs -ge $maxjobs ]]
+		do
+		    echo "$(date -u): At poolno=$poolno -- $jobs jobs still running -- napping $secs seconds : $(hostname -f) $(uptime)"
+		    CheckErrors $errfile
+		    DirStats $tmpdir
+		    sleep $secs
+		    ((secs *= 2))
+		    [[ $secs -le 40 ]] || secs=40 # allow max 40 secs sleep
+		    jobs -l
+		    jobs=$(jobs | wc -l)
+		done
+		secs=$savedsecs
+	    fi
+	    ((last += msginc))
+	    [[ $last -le $msgcount ]] || last=$msgcount
+	    progress=" --progress" # Always progress report ... for now
+	    bailout=" --bailout" # Always bailout until we fix the b2o intermittent(?) issues
+	    #bailout="" # Fixed issues ? Not 100% sure
+	    delete=" --delete --pathodc=$tmpdir" # Do NOT retain generated ODC-files and write them to $tmpdir anyway ; use --nodelete --pathodc=. to override
+	    subcmd="$time $cmddir/obseqd4o --log_level=warning -i $bufrfile --poolno=$poolno"
+	    subcmd+=" --bufr_range=$first:$last --tmpdir=$tmpdir --mergedb=$mergedb$progress$bailout$delete ${*:-}$gpsro"
+	    output=$LOGS/bufr2d4o.$mergedb.$poolno.txt
+	    echo "$subcmd >$output 2>&1"
+	    if [[ $parallel -eq 0 ]] ; then
+		rc=0
+		$subcmd >$output 2>&1 || rc=$?
+		if [[ $rc -ne 0 ]] ; then
+		    echo "$(date -u): ${kmd} -- $(pwd): Error(s) in $subcmd > $output" | tee -a $errfile
+		    break # immediate exit
+		fi
+	    else # parallel > 0
+		if [[ $poolno -gt $maxsleep ]] ; then
+		    sleepsecs=$maxsleep
+		else
+		    sleepsecs=$poolno
+		fi
+		(sleep $sleepsecs; $subcmd >$output 2>&1 || echo "$(date -u): ${kmd} -- $(pwd): Error(s) in $subcmd > $output" | tee -a $errfile) &
+	    fi
+	    ((first = last+1))
+	done
+	
+	if [[ $parallel -gt 0 ]] ; then
+	    jobs -l
+	    jobs=$(jobs | wc -l)
+	    echo "$(date -u): Waiting for the remaining $jobs-jobs to finish : $(hostname -f) $(uptime)"
+	    CheckErrors $errfile
+	    DirStats $tmpdir
+	    wait
+	fi
+
+	rc=0
+	[[ ! -s $errfile ]] || rc=1
+
+	pwd
+	ls -ltra
+    
+	set +eu
+	set -x
+	DirStats $tmpdir
+	ls -ltr $tmpdir
+	#[[ $rc -eq 0 ]] && rm -rfv $tmpdir
+	rm -rfv $tmpdir
+    fi
+fi
+
+exit $rc

@@ -1,0 +1,82 @@
+#!/bin/bash
+
+source /home/mps/.CMCC/install/INTEL/source.me
+
+set -euo pipefail
+
+set -x
+
+hostname
+pwd
+
+rundir=rundir # /inventory.$$
+mkdir -pv $rundir
+cd $rundir
+pwd
+
+numens=3 # 80
+
+npools=5
+parallel=1  # 0
+
+#bigdata=/data/cmcc/ss35621/BIG-DATA
+bigdata=/media/mps/USBData/BIG-DATA
+
+bufrfiles=$(find $bigdata/20190405{00,06,12,18} -type f|fgrep -v .csv|xargs -r -n1 basename|sort -u|grep -v cris)
+
+echo "$bufrfiles"
+
+thisdir=$(pwd)
+for BASETIME in ${@:-2019040500 2019040506 2019040512 2019040518}
+do
+    cd $thisdir
+    mkdir -pv $BASETIME.inv
+    cd $BASETIME.inv
+    ls -ltSr $bigdata/$BASETIME
+
+    for bufr in $(set +eu; cd $bigdata/$BASETIME && ls -C1Sr $bufrfiles 2>/dev/null || :)
+    do
+	if [[ -s $bigdata/$BASETIME/${bufr} ]] ; then
+	    mkdir -pv ${bufr}.dir
+
+	    if [[ ! -f ${bufr}.dir/output.log ]] ; then # consider NOT done
+		cd ${bufr}.dir
+		
+		rm -rfv * || :
+		
+		ln -sfv $bigdata/$BASETIME/${bufr} .
+		
+		pwd
+		ls -ltrL
+		
+		rc=0
+		
+		set +x
+		echo "$(date) -- BEGIN bufr2d4o ${bufr} -- BASETIME = $BASETIME"
+		
+		(set -x ; time bufr2d4o ${bufr} $npools $parallel --anykind --basetime=$BASETIME --ens=$numens --deferens) > output.log 2>&1 || rc=$?
+		
+		echo "$(date) -- END   bufr2d4o ${bufr} -- BASETIME = $BASETIME : rc=$rc"
+		
+		# Creating catalog database for this BASETIME (usually created only after ALL BUFRs in the BASETIME were cracked)
+		#(set -x; time catalogd4o catalog.db "${bufr}.*.db") >> output.log 2>&1 || rc=$?
+		
+		if [[ $rc -eq 0 ]] ; then
+		    echo "$(date) -- BEGIN d4omerge ${bufr}.db -- BASETIME = $BASETIME"
+		    (set -x ; time d4omerge -${bufr}.db "${bufr}.*.db") >> output.log 2>&1 || rc=$?
+		    echo "$(date) -- END   d4omerge ${bufr}.db -- BASETIME = $BASETIME : rc=$rc"
+		    [[ $rc -eq 0 ]] && rm -fv ${bufr}.*.db
+		else
+		    rm -fv ${bufr}.*.db*
+		    touch FAILED
+		fi
+		set -x
+	    
+		pwd
+		ls -ltr
+		
+		cd -
+	    fi
+	fi
+    done
+done

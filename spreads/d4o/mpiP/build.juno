@@ -1,0 +1,34 @@
+#!/bin/bash
+#
+# Usage: build.juno COMPILER
+#
+
+if [[ $# -ne 1 ]] ; then
+    echo "Usage: $(basename $0) COMPILER" >&2
+    set -x
+    exit 1
+fi
+
+COMPILER=$1
+
+cmddir=$(dirname $(readlink -f $0))
+cd $cmddir
+
+srcme=/data/cmcc/$USER/d4o/install/$COMPILER/source.me
+if [[ ! -r $srcme ]] ; then
+    echo "Error: Unable to find source.me file $src" >&2
+    exit 2
+fi
+source $srcme
+
+set -xeu
+
+./configure --prefix=$HOME/mpiP/$COMPILER
+make
+make install
+make distclean
+
+exit 0
+
+
+

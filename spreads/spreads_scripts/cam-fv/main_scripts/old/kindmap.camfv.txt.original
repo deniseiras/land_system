@@ -1,0 +1,401 @@
+; We may need these, so lets create shorthand notations to avoid tendonitis in our fingers !
+;
+; Please note that the aliases and macros are case insensitive i.e. ABC == abc == aBc
+;
+
+; alias syntax is : nickname=formula_without_blanks   ; please do include the ODC table names, like @table
+
+#alias v=varno@body ; ECMWF obs variable number
+#alias bt=bufrtype@hdr bst=subtype@hdr ; BUFR type & subtype
+#alias rt=reportype@hdr ; whole (absolute) reportype@hdr
+#alias ch=int(vertco_reference_1@body) vt=vertco_type@body ; channel number & ECMWF vertical coordinate type
+#alias ot=obstype@hdr ; ECMWF obstype
+#alias ct=codetype@hdr ; ECMWF codetype
+#alias ec_satid=satellite_identifier@sat ; ECMWF satellite id, as in ODC
+#alias ec_satins=satellite_instrument@sat ; ECMWF satellite instrument, as in ODC
+
+; Macros to be used in WHERE-conditions e.g. v=<number> and macroX
+; Macros can be used in other macros assuming they have been defined earlier
+
+#define RADIOSONDE         bt=2 and bst=101
+#define AIRCRAFT           bt=4 and bst in (142,143,144)
+#define ACARS              bt=4 and bst in (145,146)
+#define DROPSONDE          bt=2 and bst in (103,230)
+
+; #define MARINE             bt=1 and bst in (11,13,19,92,102,113,180,183) ; 105,111
+; We need to introduce the DART/SPREADS kind 28 and 33. I would modify the kindmapping allowing for MOORED BUOYS and extracting the ps also from some of the LAND instruments:
+#define MARINE             bt=1 and bst in (11,13,19,92,102,113,180,183, 181)    ; also DRIBU for future:21,22,23? 
+
+#define LAND               bt=0 and bst in (1,3,9,101,112,170,172) ; 109,176,178, 181
+#define VADWND             bt=2 and bst in (95,96) ; doppler wind profiler (bt=2?)
+
+#define SATOB ot=3 ; please check -- looks too generic
+#define ATOVS ot=7 ; please check -- looks too generic
+
+; The next 2 lines are there since BUFR->ODC produces just (dd=111,ff=112), but we need (to derive) (u=3,v=4) from these
+#define v3 v in (3,111) ; v=111 is dd -- v=3 is u
+#define v4 v in (4,112) ; v=112 is ff -- v=4 is v
+
+#define ch_8_to_14         vt in (3,7) and ch between 8 and 14 ; ECMWF vertco_type tovs_cha=3 & cha_number=7 are applicable
+
+; AMV-data
+#define AMV_BFR            bt=5 and bst in (82,83,87) ; 
+#define AMV_rt rt between 8001 and 8066 ; aka rt >= 8001 and rt <= 8066
+#define SATWD  AMV_BFR and AMV_rt
+
+; MW-data (AMSU-A)
+#define NOAA_15_AMSUA rt=1001 and ch_8_to_14 ; NOAA 15 AMSUA Radiances
+#define NOAA_16_AMSUA rt=1002 and ch_8_to_14 ; NOAA 16 AMSUA Radiances
+#define NOAA_17_AMSUA rt=1003 and ch_8_to_14 ; NOAA 17 AMSUA Radiances
+#define NOAA_18_AMSUA rt=1004 and ch_8_to_14 ; NOAA 18 AMSUA Radiances
+#define NOAA_19_AMSUA rt=1005 and ch_8_to_14 ; NOAA 19 AMSUA Radiances
+#define METOP_A_AMSUA rt=1007 and ch_8_to_14 ; METOP-A AMSUA Radiances
+#define AQUA_AMSUA    rt=1008 and ch_8_to_14 ; AQUA AMSUA Radiances
+#define METOP_B_AMSUA rt=1009 and ch_8_to_14 ; METOP-B AMSUA Radiances
+#define METOP_C_AMSUA rt=1010 and ch_8_to_14 ; METOP-C AMSUA Radiances
+
+; MW-data (AMSU-B)
+#define NOAA_15_AMSUB rt=2001 and ch_8_to_14 ; NOAA 15 AMSUB Radiances
+#define NOAA_16_AMSUB rt=2002 and ch_8_to_14 ; NOAA 16 AMSUB Radiances
+#define NOAA_17_AMSUB rt=2003 and ch_8_to_14 ; NOAA 17 AMSUB Radiances
+
+; IR-data (IASI, AIRS)
+; fold continuation lines \
+; note that a continuation line mark \ after semi-colon comment ; does not fold !
+
+; IASI_channels not used -- use B2O_IASI_CHANNELS env instead
+;#define IASI_channels ch in (...)
+
+#define IASICH vt=7 ; --- now ignored: and IASI_channels
+
+#define METOP_A_IASI  rt=11001 and IASICH ; METOP-A IASI Radiances
+#define METOP_B_IASI  rt=11002 and IASICH ; METOP-B IASI Radiances
+#define METOP_C_IASI  rt=11003 and IASICH ; METOP-C IASI Radiances
+#define AQUA_AIRS     rt=12001 and ch_8_to_14 ; AQUA AIRS Radiances
+
+; GPSRO-refractivity : new "varno" = 301 introduced to SPREADS -- not available at ECMWF
+#define GPSRO ot=10 and ct=250
+#define v301 v = 301 ; now fixed
+
+; 2 metre temperature
+#define v39 v = 39
+
+;kind                     description  data selection & mapping criteria (WHERE-conditions) ; an optional comment
+    1                     TEMPERATURE  v39 and LAND
+    2               SPECIFIC_HUMIDITY
+    3                        PRESSURE
+    4              GPSRO_REFRACTIVITY  v301 and GPSRO
+    5     RADIOSONDE_U_WIND_COMPONENT  v3 and RADIOSONDE
+    6     RADIOSONDE_V_WIND_COMPONENT  v4 and RADIOSONDE
+    7     RADIOSONDE_GEOPOTENTIAL_HGT
+    8     RADIOSONDE_SURFACE_PRESSURE
+    9          RADIOSONDE_TEMPERATURE  v=2 and RADIOSONDE
+   10    RADIOSONDE_SPECIFIC_HUMIDITY  v=7 and RADIOSONDE
+   11      DROPSONDE_U_WIND_COMPONENT  v3 and DROPSONDE
+   12      DROPSONDE_V_WIND_COMPONENT  v4 and DROPSONDE
+   13      DROPSONDE_SURFACE_PRESSURE
+   14           DROPSONDE_TEMPERATURE  v=2 and DROPSONDE
+   15     DROPSONDE_SPECIFIC_HUMIDITY  v=7 and DROPSONDE
+   16       AIRCRAFT_U_WIND_COMPONENT  v3 and AIRCRAFT
+   17       AIRCRAFT_V_WIND_COMPONENT  v4 and AIRCRAFT
+   18            AIRCRAFT_TEMPERATURE  v=2 and AIRCRAFT
+   19      AIRCRAFT_SPECIFIC_HUMIDITY  v=7 and AIRCRAFT
+   20          ACARS_U_WIND_COMPONENT  v3 and ACARS
+   21          ACARS_V_WIND_COMPONENT  v4 and ACARS
+   22               ACARS_TEMPERATURE  v=2 and ACARS
+   23         ACARS_SPECIFIC_HUMIDITY  v=7 and ACARS
+   24     MARINE_SFC_U_WIND_COMPONENT  v=41 and MARINE
+   25     MARINE_SFC_V_WIND_COMPONENT  v=42 and MARINE
+   26          MARINE_SFC_TEMPERATURE  v=11 and MARINE
+   27    MARINE_SFC_SPECIFIC_HUMIDITY  v=281 and MARINE
+   28             MARINE_SFC_PRESSURE  ; wrong : v=110 and MARINE ; new as of 12-jul-2023 -- does not seem to pick ANY "ps=110" ??
+   29       LAND_SFC_U_WIND_COMPONENT  v=41 and LAND
+   30       LAND_SFC_V_WIND_COMPONENT  v=42 and LAND
+   31            LAND_SFC_TEMPERATURE  v=11 and LAND
+   32      LAND_SFC_SPECIFIC_HUMIDITY  v=281 and LAND
+   33               LAND_SFC_PRESSURE  ; wrong : v=110 and LAND ; new as of 12-jul-2023 -- does not seem to pick ANY "ps=110" ??
+   34            SAT_U_WIND_COMPONENT  v3 and SATWD ; please check
+   35            SAT_V_WIND_COMPONENT  v4 and SATWD ; please check
+   36                ATOV_TEMPERATURE  v=2 and ATOVS ; please check
+   37                AIRS_TEMPERATURE  v=2 and AQUA_AIRS ; please check
+   38          AIRS_SPECIFIC_HUMIDITY  v=7 and AQUA_AIRS ; please check
+   39          GPS_PRECIPITABLE_WATER
+   40         VADWND_U_WIND_COMPONENT v3 and VADWND
+   41         VADWND_V_WIND_COMPONENT v4 and VADWND
+   42      CIMMS_AMV_U_WIND_COMPONENT 
+   43      CIMMS_AMV_V_WIND_COMPONENT 
+   44    RADIOSONDE_SURFACE_ALTIMETER
+   45     DROPSONDE_SURFACE_ALTIMETER
+   46            MARINE_SFC_ALTIMETER  v=110 and MARINE ; new as of 14-jul-2023 -- correct ?
+   47              LAND_SFC_ALTIMETER  v=110 and LAND ; new as of 14-jul-2023 -- correct ?
+   48                 METAR_ALTIMETER
+   49       MESONET_SURFACE_ALTIMETER
+   50                 SAT_TEMPERATURE  v=2 and SATOB ; please check
+   51        SAT_TEMPERATURE_ELECTRON  
+   52             SAT_TEMPERATURE_ION  
+   53         SAT_DENSITY_NEUTRAL_O3P
+   54          SAT_DENSITY_NEUTRAL_O2
+   55          SAT_DENSITY_NEUTRAL_N2
+   56         SAT_DENSITY_NEUTRAL_N4S
+   57          SAT_DENSITY_NEUTRAL_NO
+   58         SAT_DENSITY_NEUTRAL_N2D
+   59         SAT_DENSITY_NEUTRAL_N2P
+   60           SAT_DENSITY_NEUTRAL_H
+   61          SAT_DENSITY_NEUTRAL_HE
+   62         SAT_DENSITY_NEUTRAL_CO2
+   63         SAT_DENSITY_NEUTRAL_O1D
+   64            SAT_DENSITY_ION_O4SP
+   65             SAT_DENSITY_ION_O2P
+   66             SAT_DENSITY_ION_N2P
+   67              SAT_DENSITY_ION_NP
+   68             SAT_DENSITY_ION_NOP
+   69            SAT_DENSITY_ION_O2DP
+   70            SAT_DENSITY_ION_O2PP
+   71              SAT_DENSITY_ION_HP
+   72             SAT_DENSITY_ION_HEP
+   73               SAT_DENSITY_ION_E
+   74                  SAT_VELOCITY_U
+   75                  SAT_VELOCITY_V
+   76                  SAT_VELOCITY_W
+   77              SAT_VELOCITY_U_ION
+   78              SAT_VELOCITY_V_ION
+   79              SAT_VELOCITY_W_ION
+   80       SAT_VELOCITY_VERTICAL_O3P
+   81        SAT_VELOCITY_VERTICAL_O2
+   82        SAT_VELOCITY_VERTICAL_N2
+   83       SAT_VELOCITY_VERTICAL_N4S
+   84        SAT_VELOCITY_VERTICAL_NO
+   85                        SAT_F107
+   86                         SAT_RHO
+   87                     GPS_PROFILE
+   88         COSMIC_ELECTRON_DENSITY
+   89                    GND_GPS_VTEC
+   90                   CHAMP_DENSITY
+   91                       MIDAS_TEC
+   92                SSUSI_O_N2_RATIO
+   93                 GPS_VTEC_EXTRAP
+   94               SABER_TEMPERATURE ; v=2 and SABER   ; NOTE !!! SABER must be defined before used
+   95             AURAMLS_TEMPERATURE ; v=2 and AURAMLS ; NOTE !!! AURAML must be defined before used
+   96           NOAA_1_VTPR1_RADIANCE
+   97           NOAA_2_VTPR1_RADIANCE
+   98           NOAA_3_VTPR1_RADIANCE
+   99           NOAA_4_VTPR1_RADIANCE
+  100            NOAA_5_HIRS_RADIANCE
+  101                   NOAA_5_MSU_TB
+  102           NOAA_5_AVHRR_RADIANCE
+  103            NOAA_6_HIRS_RADIANCE
+  104                   NOAA_6_MSU_TB
+  105           NOAA_6_AVHRR_RADIANCE
+  106            NOAA_7_HIRS_RADIANCE
+  107                   NOAA_7_MSU_TB
+  108           NOAA_7_AVHRR_RADIANCE
+  109            NOAA_8_HIRS_RADIANCE
+  110                   NOAA_8_MSU_TB
+  111           NOAA_8_AVHRR_RADIANCE
+  112            NOAA_9_HIRS_RADIANCE
+  113                   NOAA_9_MSU_TB
+  114           NOAA_9_AVHRR_RADIANCE
+  115           NOAA_10_HIRS_RADIANCE
+  116                  NOAA_10_MSU_TB
+  117          NOAA_10_AVHRR_RADIANCE
+  118           NOAA_11_HIRS_RADIANCE
+  119                  NOAA_11_MSU_TB
+  120          NOAA_11_AVHRR_RADIANCE
+  121           NOAA_12_HIRS_RADIANCE
+  122                  NOAA_12_MSU_TB
+  123          NOAA_12_AVHRR_RADIANCE
+  124          NOAA_13_AVHRR_RADIANCE
+  125           NOAA_14_HIRS_RADIANCE
+  126                  NOAA_14_MSU_TB
+  127          NOAA_14_AVHRR_RADIANCE
+  128           NOAA_15_HIRS_RADIANCE
+  129                NOAA_15_AMSUA_TB v=119 and NOAA_15_AMSUA  AND ec_satid=206 AND ec_satins=570
+  130                NOAA_15_AMSUB_TB v=119 and NOAA_15_AMSUB
+  131          NOAA_15_AVHRR_RADIANCE
+  132           NOAA_16_HIRS_RADIANCE
+  133                NOAA_16_AMSUA_TB v=119 and NOAA_16_AMSUA  AND ec_satid=207 AND ec_satins=570
+  134                NOAA_16_AMSUB_TB v=119 and NOAA_15_AMSUB
+  135          NOAA_16_AVHRR_RADIANCE 
+  136           NOAA_17_HIRS_RADIANCE
+  137                NOAA_17_AMSUA_TB v=119 and NOAA_17_AMSUA  AND ec_satid=208 AND ec_satins=570
+  138                NOAA_17_AMSUB_TB v=119 and NOAA_15_AMSUB
+  139          NOAA_17_AVHRR_RADIANCE
+  140           NOAA_18_HIRS_RADIANCE
+  141                NOAA_18_AMSUA_TB v=119 and NOAA_18_AMSUA  AND ec_satid=209 AND ec_satins=570
+  142          NOAA_18_AVHRR_RADIANCE
+  143                  NOAA_18_MHS_TB
+  144           NOAA_19_HIRS_RADIANCE
+  145                NOAA_19_AMSUA_TB v=119 and NOAA_19_AMSUA  AND ec_satid=223 AND ec_satins=570
+  146          NOAA_19_AVHRR_RADIANCE
+  147                  NOAA_19_MHS_TB
+  148                 NOAA_20_ATMS_TB
+  149          NOAA_20_VIIRS_RADIANCE
+  150                  DMSP_8_SSMI_TB
+  151                  DMSP_9_SSMI_TB
+  152                 DMSP_10_SSMI_TB
+  153                 DMSP_11_SSMI_TB
+  154                DMSP_11_SSMT2_TB
+  155                 DMSP_12_SSMI_TB
+  156                DMSP_12_SSMT2_TB
+  157                 DMSP_13_SSMI_TB
+  158                 DMSP_14_SSMI_TB
+  159                DMSP_14_SSMT2_TB
+  160                 DMSP_15_SSMI_TB
+  161                DMSP_15_SSMT2_TB
+  162                DMSP_16_SSMIS_TB
+  163                DMSP_17_SSMIS_TB
+  164                DMSP_18_SSMIS_TB
+  165                DMSP_19_SSMIS_TB
+  166       METEOSAT_1_MVIRI_RADIANCE
+  167       METEOSAT_2_MVIRI_RADIANCE
+  168       METEOSAT_3_MVIRI_RADIANCE
+  169       METEOSAT_4_MVIRI_RADIANCE
+  170       METEOSAT_5_MVIRI_RADIANCE
+  171       METEOSAT_6_MVIRI_RADIANCE
+  172       METEOSAT_7_MVIRI_RADIANCE
+  173         GOES_4_SOUNDER_RADIANCE
+  174         GOES_5_SOUNDER_RADIANCE
+  175         GOES_6_SOUNDER_RADIANCE
+  176         GOES_7_SOUNDER_RADIANCE
+  177          GOES_8_IMAGER_RADIANCE
+  178         GOES_8_SOUNDER_RADIANCE
+  179          GOES_9_IMAGER_RADIANCE
+  180         GOES_9_SOUNDER_RADIANCE
+  181         GOES_10_IMAGER_RADIANCE
+  182        GOES_10_SOUNDER_RADIANCE
+  183         GOES_11_IMAGER_RADIANCE
+  184        GOES_11_SOUNDER_RADIANCE
+  185         GOES_12_IMAGER_RADIANCE
+  186        GOES_12_SOUNDER_RADIANCE
+  187         GOES_13_IMAGER_RADIANCE
+  188        GOES_13_SOUNDER_RADIANCE
+  189         GOES_14_IMAGER_RADIANCE
+  190        GOES_14_SOUNDER_RADIANCE
+  191         GOES_15_IMAGER_RADIANCE
+  192        GOES_15_SOUNDER_RADIANCE
+  193            GOES_16_ABI_RADIANCE
+  194            GOES_17_ABI_RADIANCE
+  195            GOES_18_ABI_RADIANCE
+  196            GOES_19_ABI_RADIANCE
+  197           GMS_1_IMAGER_RADIANCE
+  198           GMS_2_IMAGER_RADIANCE
+  199           GMS_3_IMAGER_RADIANCE
+  200           GMS_4_IMAGER_RADIANCE
+  201           GMS_5_IMAGER_RADIANCE
+  202            FY2_2_VISSR_RADIANCE
+  203            FY2_3_VISSR_RADIANCE
+  204            FY2_4_VISSR_RADIANCE
+  205            FY2_5_VISSR_RADIANCE
+  206            FY2_7_VISSR_RADIANCE
+  207                   TRMM_1_TMI_TB
+  208             ERS_1_ATSR_RADIANCE
+  209                    ERS_1_MWR_TB
+  210             ERS_2_ATSR_RADIANCE
+  211                    ERS_2_MWR_TB
+  212            EOS_1_MODIS_RADIANCE
+  213            EOS_1_ASTER_RADIANCE
+  214                  EOS_2_AMSUA_TB v=119 AND AQUA_AMSUA AND ec_satid=784 AND ec_satins=570
+  215             EOS_2_AIRS_RADIANCE
+  216                    EOS_2_HSB_TB
+  217            EOS_2_MODIS_RADIANCE
+  218                  EOS_2_AMSRE_TB
+  219           METOP_1_HIRS_RADIANCE
+  220                METOP_1_AMSUA_TB v=119 and METOP_B_AMSUA  AND ec_satid=3 AND ec_satins=570
+  221          METOP_1_AVHRR_RADIANCE
+  222                  METOP_1_MHS_TB
+  223           METOP_2_HIRS_RADIANCE
+  224                METOP_2_AMSUA_TB v=119 and METOP_A_AMSUA  AND ec_satid=4 AND ec_satins=570
+  225          METOP_2_AVHRR_RADIANCE
+  226                  METOP_2_MHS_TB
+  227          METOP_3_AVHRR_RADIANCE
+  228         ENVISAT_1_ATSR_RADIANCE
+  229                ENVISAT_1_MWR_TB
+  230           MSG_1_SEVIRI_RADIANCE
+  231           MSG_2_SEVIRI_RADIANCE
+  232           MSG_3_SEVIRI_RADIANCE
+  233           MSG_4_SEVIRI_RADIANCE
+  234                 MSG_4_SEVIRI_TB
+  235               MSG_4_SEVIRI_BDRF
+  236            FY1_3_MVISR_RADIANCE
+  237            FY1_4_MVISR_RADIANCE
+  238         MTSAT_1_IMAGER_RADIANCE
+  239         MTSAT_2_IMAGER_RADIANCE
+  240           CORIOLIS_1_WINDSAT_TB
+  241                  JPSS_0_ATMS_TB
+  242           JPSS_0_VIIRS_RADIANCE
+  243      SENTINEL3_1_SLSTR_RADIANCE
+  244      SENTINEL3_2_SLSTR_RADIANCE
+  245             MEGHATR_1_SAPHIR_TB
+  246             MEGHATR_1_MADRAS_TB
+  247                   FY3_1_MWTS_TB
+  248                   FY3_1_MWHS_TB
+  249             FY3_1_IRAS_RADIANCE
+  250                   FY3_1_MWRI_TB
+  251                   FY3_2_MWTS_TB
+  252                   FY3_2_MWHS_TB
+  253                   FY3_2_MWRI_TB
+  254                   FY3_3_MWRI_TB
+  255                  FY3_3_MWTS2_TB
+  256                  FY3_3_MWHS2_TB
+  257           FY3_3_MERSI1_RADIANCE
+  258                   FY3_4_MWRI_TB
+  259                  FY3_4_MWTS2_TB
+  260                  FY3_4_MWHS2_TB
+  261           FY3_4_MERSI2_RADIANCE
+  262              COMS_1_MI_RADIANCE
+  263       METEOR_M_1_MSUMR_RADIANCE
+  264       METEOR_M_2_MSUMR_RADIANCE
+  265           METEOR_M_2_MTVZAGY_TB
+  266          CALIPSO_1_IIR_RADIANCE
+  267               GCOM_W_1_AMSR2_TB
+  268          NIMBUS_3_MRIR_RADIANCE
+  269          NIMBUS_4_THIR_RADIANCE
+  270          NIMBUS_5_THIR_RADIANCE
+  271          NIMBUS_6_HIRS_RADIANCE
+  272               NIMBUS_6_SCAMS_TB
+  273          NIMBUS_6_THIR_RADIANCE
+  274                NIMBUS_7_SMMR_TB
+  275          NIMBUS_7_THIR_RADIANCE
+  276         HIMAWARI_8_AHI_RADIANCE
+  277         HIMAWARI_9_AHI_RADIANCE
+  278              MTG_1_FCI_RADIANCE
+  279               SARAL_1_ALTIKA_TB
+  280                METOPSG_1_ICI_TB
+  281     METOPSG_1_METIMAGE_RADIANCE
+  282                METOPSG_1_MWS_TB
+  283                METOPSG_1_MWI_TB
+  284           LANDSAT_4_TM_RADIANCE
+  285           LANDSAT_5_TM_RADIANCE
+  286           LANDSAT_7_TM_RADIANCE
+  287         LANDSAT_8_TIRS_RADIANCE
+  288                  JASON_2_AMR_TB
+  289                    GPM_1_GMI_TB
+  290                    GPM_1_DPR_TB
+  291        INSAT3_4_IMAGER_RADIANCE
+  292       INSAT3_4_SOUNDER_RADIANCE
+  293        INSAT3_5_IMAGER_RADIANCE
+  294       INSAT3_5_SOUNDER_RADIANCE
+  295       TICFIRE_1_MBFIRI_RADIANCE
+  296         ISS_1_ECOSTRES_RADIANCE
+  297            HJ1_2_IRMSS_RADIANCE
+  298        GKOMPSAT2_1_AMI_RADIANCE
+  299          GCOM_C_1_SGLI_RADIANCE
+  300                 SMOS_1_MIRAS_TB
+  301                  ORS_6_COWVR_TB
+  302             FY4_1_AGRI_RADIANCE
+  303            TROPICS_0_TROPICS_TB
+  304             GF5_1_VIMS_RADIANCE
+  305                   HY2_1_MWRI_TB
+  306               CLOUDSAT_1_CPR_TB
+  
+; In DART IASI are not explicitly considered in the list of possible obs, however RTTOV works also for IASI and
+; AIRS l1 product can be used, so I do not see much difference. We need to insert accordingly the correct obs type.
+; We can add the new type at the end (not in alphabetic order but this is a second order issue...)
+
+  307                 METOP_2_IASI_TB     v=119 AND METOP_A_IASI AND ec_satid=4 AND ec_satins=221
+  308                 METOP_1_IASI_TB     v=119 AND METOP_B_IASI AND ec_satid=3 AND ec_satins=221
+  309                 METOP_3_IASI_TB     v=119 AND METOP_C_IASI AND ec_satid=5 AND ec_satins=221
+
+; More AMSUA
+
+  310                METOP_3_AMSUA_TB  v=119 and METOP_C_AMSUA  AND ec_satid=5 AND ec_satins=570

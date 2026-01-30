@@ -1,0 +1,9 @@
+#ifndef B2O_CONFIG_H
+#define B2O_CONFIG_H
+
+#cmakedefine01 B2O_HAVE_IFSAUX
+#if B2O_HAVE_IFSAUX == 0
+#undef B2O_HAVE_IFSAUX
+#endif
+
+#endif

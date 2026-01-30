@@ -1,0 +1,13 @@
+#!/bin/bash
+
+NUMENS=${1:-100}
+
+if [[ -r obs_seq.conv.out.gz ]] ; then
+    set -xe
+    time obseqd4o obs_seq.conv.out.gz --pathdb=conv-ens/1x --stochastic=$NUMENS
+    time obseqd4o obs_seq.conv.out.gz --pathdb=conv-ens/2x --copies=2 --stochastic=$NUMENS
+    time obseqd4o obs_seq.conv.out.gz --pathdb=conv-ens/3x --copies=3 --stochastic=$NUMENS
+    time obseqd4o obs_seq.conv.out.gz --pathdb=conv-det/1x --deterministic
+    time obseqd4o obs_seq.conv.out.gz --pathdb=conv-det/2x --copies=2 --deterministic
+    time obseqd4o obs_seq.conv.out.gz --pathdb=conv-det/3x --copies=3 --deterministic
+fi

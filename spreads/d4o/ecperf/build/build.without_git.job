@@ -1,0 +1,90 @@
+#!/bin/bash
+
+if [[ $# -lt 2 ]] ; then
+    echo "Usage: $0 BRANCH VERSION [KERNEL [NCPUS]]" >&2
+    exit 1
+fi
+
+#if [[ "$(id -u -n)" != "deploy" ]] ; then
+#    echo "Error: Must run $0 under the USER=deploy" >&2
+#    exit 2
+#fi
+
+BRANCH=$1
+VERSION=$2
+KERNEL=${3:-"5.17"}
+VERSION+="-$KERNEL"
+NCPUS=${4:-6}
+PREFIX=$TMPDIR/usr/local/apps
+PROJECT=ecperf
+FROM=$(pwd)
+#gitclone=$(test -d .git ; echo $?)
+gitclone=0
+pid=$$
+{
+    echo "Executing $0 ..."
+    echo "BRANCH=$BRANCH"
+    echo "VERSION=$VERSION"
+    echo "PREFIX=$PREFIX"
+    echo "PROJECT=$PROJECT"
+    echo "KERNEL=$KERNEL"
+    echo "NCPUS=$NCPUS"
+    echo "FROM=$FROM"
+    echo "gitclone=$gitclone"
+    echo "pid=$pid"
+    
+    #module load modulemgr
+
+    set -xv
+    set -eu
+    
+    date
+    
+    rundir=${rundir:-$TMPDIR}
+    rundir+="/$PROJECT.$pid"
+    mkdir -pv $rundir
+    cd $rundir
+    pwd
+
+    mkdir -pv $PREFIX/$PROJECT/$VERSION/bin
+
+    set -o pipefail
+
+    if [[ $gitclone -eq 0 ]] ; then
+       mkdir $PROJECT
+       cd $PROJECT
+       (\cd $FROM >/dev/null 2>&1 && find . | xargs -r tar --exclude=".git*" -cf - ) | tar -xvf -
+    else
+	git clone -b $BRANCH ssh://git.ecmwf.int/ecsdk/$PROJECT.git || \
+	    git clone -b $BRANCH https://git.ecmwf.int/scm/ecsdk/$PROJECT.git
+	cd $PROJECT
+    fi
+    
+    # See https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
+
+    #tar -zxf kernels/linux-${KERNEL}.tar.gz
+    cat kernels/linux-${KERNEL}.tar.gz.* | tar -zxf -
+    pushd linux-${KERNEL}/tools/perf
+    make JOBS=$NCPUS # parallel make ok, but not invoked via -j
+    ldd perf
+    cp -fv perf $PREFIX/$PROJECT/$VERSION/bin/ecperf
+    popd
+
+    cp -fv bin/* $PREFIX/$PROJECT/$VERSION/bin/
+    cp -fv README.txt $PREFIX/$PROJECT/$VERSION/
+
+    ls -ltr $PREFIX/$PROJECT/$VERSION
+    
+    set +eu
+
+    #modulemgr -f sync $PROJECT
+    #modulemgr -f tag $PROJECT rm test
+    #modulemgr -f tag $PROJECT $VERSION test
+
+    [[ $gitclone -eq 0 ]] || git clean -dfx
+    
+    echo "Installation under $PREFIX/$PROJECT/$VERSION/bin/"
+    ls -ltr $PREFIX/$PROJECT/$VERSION/bin/
+    
+    date
+} 2>&1 | tee $TMPDIR/$PROJECT.$pid.txt

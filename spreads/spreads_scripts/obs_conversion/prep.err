@@ -1,0 +1,1478 @@
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+anaconda/3-2022.10
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename SYNP
+/users_home/cmcc/gc02720/.lsbatch/1689319659.82148.shell: line 236: burfin: unbound variable
+++ basename SYNP
+/users_home/cmcc/gc02720/.lsbatch/1689319659.82148.shell: line 236: burfin: unbound variable
+++ basename SYNP
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+anaconda/3-2022.10
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+anaconda/3-2022.10
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+anaconda/3-2022.10
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+cat: /data/cmcc/sm09722/OBS_ECMAR/2017/11/00/ARC_2100.bufr: No such file or directory
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+anaconda/3-2022.10
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+anaconda/3-2022.10
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+cat: /data/cmcc/sm09722/OBS_ECMAR/2017/11/01/SYNP_0000.bufr: No such file or directory
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+anaconda/3-2022.10
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+anaconda/3-2022.10
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename SYNP
+++ basename ARC
+++ basename SYNP
+++ basename ARC
+++ basename SYNP
+++ basename ARC
+++ basename SYNP
+++ basename ARC
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename WDP
+++ basename SYNP
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename WDP
+++ basename SYNP
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename WDP
+++ basename SYNP
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename WDP
+++ basename SYNP
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename WDP
+++ basename SYNP
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename WDP
+++ basename SYNP
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename WDP
+++ basename SYNP
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename WDP
+++ basename SYNP
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename WDP
+++ basename SYNP
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename WDP
+++ basename SYNP
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename WDP
+++ basename SYNP
+/users_home/cmcc/gc02720/.lsbatch/1695367550.237740.shell: line 260: burfin: unbound variable
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename WDP
+++ basename SYNP
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+++ basename ARC
+++ basename AMV
+++ basename SND
+++ basename AMSU
+++ basename GPSRO
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename AMSU
+++ basename AMSU
+++ basename AMSU
+++ basename AMSU
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename AMSU
+++ basename AMSU
+++ basename AMSU
+++ basename AMSU
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename GPSRO
+++ basename GPSRO
+++ basename GPSRO
+++ basename GPSRO
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename WDP
+++ basename WDP
+++ basename WDP
+++ basename WDP
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename GPSRO
+++ basename WDP
+++ basename SND
+++ basename GPSRO
+++ basename WDP
+++ basename SND
+++ basename GPSRO
+++ basename WDP
+++ basename SND
+++ basename GPSRO
+++ basename WDP
+++ basename SND
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename GPSRO
+++ basename WDP
+++ basename SND
+++ basename GPSRO
+++ basename WDP
+++ basename SND
+++ basename GPSRO
+++ basename WDP
+++ basename SND
+++ basename GPSRO
+++ basename WDP
+++ basename SND
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename GPSRO
+++ basename WDP
+++ basename SND
+++ basename GPSRO
+++ basename WDP
+++ basename SND
+++ basename GPSRO
+++ basename WDP
+++ basename SND
+++ basename GPSRO
+++ basename WDP
+++ basename SND
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename WDP
+++ basename WDP
+++ basename WDP
+++ basename WDP
+++ basename WDP
+++ basename WDP
+++ basename WDP
+++ basename WDP
+++ basename WDP
+++ basename WDP
+++ basename WDP
+++ basename WDP
+++ basename WDP
+++ basename WDP
+++ basename WDP
+++ basename WDP
+++ basename WDP
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+++ basename SYNP
+cat: /data/cmcc/sm09722/OBS_ECMAR/2017/10/11/SYNP_0000.bufr: No such file or directory
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+++ basename ARC
+User defined signal 2
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+++ basename IASI
+++ basename IASI
+++ basename IASI
+++ basename IASI

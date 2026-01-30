@@ -1,0 +1,503 @@
+id	description	group	bufrtype	subtype	obstype	codetype	sensor	satellite_instrument	satellite_identifier	accumulation_length
+16001	Automatic Land SYNOP	CONV	Land Surface	Automatic Land SYNOP	SYNOP	Automatic Land SYNOP	-1	-1	-1	-1
+16002	Manual Land SYNOP	CONV	Land Surface	Manual Land SYNOP	SYNOP	Manual Land SYNOP	-1	-1	-1	-1
+16003	Abbreviated SYNOP	CONV	Land Surface	Abbreviated SYNOP	SYNOP	Manual Land SYNOP	-1	-1	-1	-1
+16004	METAR	CONV	Land Surface	METAR	SYNOP	METAR	-1	-1	-1	-1
+16005	DRIBU	CONV	Sea Surface	DRIBU	BUOY	DRIBU	-1	-1	-1	-1
+16006	Automatic SHIP	CONV	Sea Surface	Automatic SHIP	SYNOP	Automatic SHIP	-1	-1	-1	-1
+16007	Reduced SHIP	CONV	Sea Surface	Reduced SHIP	SYNOP	Reduced SHIP	-1	-1	-1	-1
+16008	SHIP	CONV	Sea Surface	SHIP	SYNOP	SHIP	-1	-1	-1	-1
+16009	Abbreviated SHIP	CONV	Sea Surface	Abbreviated SYNOP	SYNOP	SHIP	-1	-1	-1	-1
+16010	DRIBU-BATHY	CONV	Sea Surface	DRIBU-BATHY	BUOY	DRIBU-BATHY	-1	-1	-1	-1
+16011	DRIBU-TESAC	CONV	Sea Surface	DRIBU-TESAC	BUOY	DRIBU-TESAC	-1	-1	-1	-1
+16012	Ground-Based GPS	CONV	Sea Surface	Ground-based GPS	SYNOP	Ground-based GPS	-1	-1	-1	-1
+16013	Land PILOT	CONV	Upper Air Sounding	PILOT	PILOT	Land PILOT	-1	-1	-1	-1
+16014	PILOT SHIP	CONV	Upper Air Sounding	PILOT SHIP	PILOT	PILOT SHIP	-1	-1	-1	-1
+16015	American Wind Profiler 1	CONV	Upper Air Sounding	American Wind Profiler 1	PILOT	American Wind Profiler	-1	-1	-1	-1
+16016	American Wind Profiler 2	CONV	Upper Air Sounding	Wind Profiler	PILOT	American Wind Profiler	-1	-1	-1	-1
+16017	European Wind Profiler	CONV	Upper Air Sounding	Wind Profiler	PILOT	European Wind Profiler	-1	-1	-1	-1
+16018	Japanese Wind Profiler	CONV	Upper Air Sounding	Wind Profiler	PILOT	Japanese Wind Profiler	-1	-1	-1	-1
+16019	TEMP SHIP	CONV	Upper Air Sounding	TEMP SHIP	TEMP	TEMP SHIP	-1	-1	-1	-1
+16020	DROP Sonde	CONV	Upper Air Sounding	DROP Sonde	TEMP	DROP Sonde	-1	-1	-1	-1
+16021	Mobile TEMP	CONV	Upper Air Sounding	MOBILE TEMP	TEMP	MOBILE TEMP	-1	-1	-1	-1
+16022	Land TEMP	CONV	Upper Air Sounding	Land TEMP	TEMP	Land TEMP	-1	-1	-1	-1
+16023	ROCOB TEMP	CONV	Upper Air Sounding	ROCOB TEMP	TEMP	ROCOB TEMP	-1	-1	-1	-1
+16024	SHIP ROCOB TEMP	CONV	Upper Air Sounding	SHIP ROCOB TEMP	TEMP	SHIP ROCOB TEMP	-1	-1	-1	-1
+16026	AIREP	CONV	AIREP	AIREP	AIREP	AIREP	-1	-1	-1	-1
+16027	CODAR	CONV	AIREP	AIREP	AIREP	CODAR	-1	-1	-1	-1
+16028	COLBA	CONV	AIREP	COLBA	AIREP	COLBA	-1	-1	-1	-1
+16029	AMDAR	CONV	AIREP	AMDAR	AIREP	AMDAR	-1	-1	-1	-1
+16030	ACARS	CONV	AIREP	ACARS	AIREP	ACARS	-1	-1	-1	-1
+16031	PAOB	CONV	PAOB	PAOB	PAOB	PAOB	-1	-1	-1	-1
+16032	PAOB via Sat code	CONV	Satellite Sounding	PAOB	PAOB	PAOB	-1	-1	-1	-1
+16037	SATEM 500km Low Level Temperature	CONV	Satellite Sounding	500km Low Level Temperature	SATEM	SATEM	-1	-1	-1	-1
+16038	SATEM 500km PWC	CONV	Satellite Sounding	500km PWC	SATEM	SATEM	-1	-1	-1	-1
+16039	SATEM 500km High Level Temperature	CONV	Satellite Sounding	500km High Level Temperature	SATEM	SATEM	-1	-1	-1	-1
+16040	SATEM 500km Merged	CONV	Satellite Sounding	500km Merged	SATEM	SATEM	-1	-1	-1	-1
+16041	SATEM 250km Low Level Temperature	CONV	Satellite Sounding	250km Low Level Temperature	SATEM	SATEM	-1	-1	-1	-1
+16042	SATEM 250km PWC	CONV	Satellite Sounding	250km PWC	SATEM	SATEM	-1	-1	-1	-1
+16043	SATEM 250km High Level Temperature	CONV	Satellite Sounding	250km High Level Temperature	SATEM	SATEM	-1	-1	-1	-1
+16044	SATEM 250km Merged	CONV	Satellite Sounding	250km Merged	SATEM	SATEM	-1	-1	-1	-1
+16084	BUFR DRIFTING BUOYS	CONV	Sea Surface	BUFR DRIFTING BUOYS	BUOY	BUFR DRIFTING BUOYS	-1	-1	-1	-1
+16083	BUFR MOORED BUOYS	CONV	Sea Surface	BUFR MOORED BUOYS	BUOY	BUFR MOORED BUOYS	-1	-1	-1	-1
+16082	WIGOS AMDAR	CONV	AIREP	WIGOS AMDAR	AIREP	WIGOS AMDAR	-1	-1	-1	-1
+16074	BUFR SHIP SYNOP	CONV	Sea Surface	BUFR SHIP SYNOP	SYNOP	BUFR SHIP SYNOP	-1	-1	-1	-1
+16069	BUFR SHIP PILOT	CONV	Upper Air Sounding	BUFR SHIP PILOT	PILOT	BUFR SHIP PILOT	-1	-1	-1	-1
+16068	BUFR LAND PILOT	CONV	Upper Air Sounding	BUFR LAND PILOT	PILOT	BUFR LAND PILOT	-1	-1	-1	-1
+16065	Automatic METAR	CONV	Land Surface	AUTO METAR	SYNOP	METAR	-1	-1	-1	-1
+16045	BUFR LAND TEMP	CONV	Upper Air Sounding	Land High Resolution Temp	TEMP	Land High Resolution Temp	-1	-1	-1	-1
+16046	BUFR SHIP TEMP	CONV	Upper Air Sounding	SHIP High Resolution TEMP	TEMP	SHIP High Resolution TEMP	-1	-1	-1	-1
+16066	TAMDAR	CONV	AIREP	TAMDAR	AIREP	TAMDAR	-1	-1	-1	-1
+25001	Ground-Based Radar	GBRAD	Ground-based radar	Radar rain rate	Ground-based weather radar	Radar Rain Rates	-1	-1	-1	-1
+16067	ACARs with mixing ratio	CONV	AIREP	ACARs with mixing ratio	AIREP	ACARs with mixing ratio	-1	-1	-1	-1
+16025	Additional Land Surface Data	CONV	Land Surface	SNOW DEPTH	SYNOP	Additional Land Surface Data	-1	-1	-1	-1
+16076	BUFR LAND SYNOP	CONV	Land Surface	BUFR LAND SYNOP	SYNOP	BUFR LAND SYNOP	-1	-1	-1	-1
+16076	BUFR LAND SYNOP	CONV	Land Surface	BUFR LAND SYNOP 2	SYNOP	BUFR LAND SYNOP	-1	-1	-1	-1
+16076	BUFR LAND SYNOP	CONV	Land Surface	BUFR LAND SYNOP WMO Region 6	SYNOP	BUFR LAND SYNOP	-1	-1	-1	-1
+16076	BUFR LAND SYNOP	CONV	Land Surface	BUFR LAND SYNOP 1 HOURLY	SYNOP	BUFR LAND SYNOP 1 HOURLY	-1	-1	-1	-1
+16086	BUFR TEMP DROP	CONV	Upper Air Sounding	BUFR TEMP DROP	TEMP	BUFR TEMP DROP	-1	-1	-1	-1
+16087	BUFR TEMP DESCENT	CONV	Upper Air Sounding	BUFR TEMP DESCENT	TEMP	BUFR TEMP DESCENT	-1	-1	-1	-1
+16088	Mode-S	CONV	AIREP	Mode-S	AIREP	Mode-S	-1	-1	-1	-1
+16089	ADS-C	CONV	AIREP	ADS-C	AIREP	ADS-C	-1	-1	-1	-1
+16090	Crowd AWS	CONV	Land Surface	Crowd AWS	SYNOP	Crowd AWS	-1	-1	-1	-1
+9001	Old ERS 1 Scatterometer	SCATT	ERS-SSMI-SCAT	ERS-1	Scatterometer	Old ERS 1	Scatterometer	SCATTEROMETER	ERS 1	-1
+9002	New ERS 1 Scatterometer	SCATT	ERS-SSMI-SCAT	ERS	Scatterometer	ERS	Scatterometer	SCATTEROMETER	ERS 1	-1
+5001	ERS 2 GOME O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	GOME	GOME	ERS 2	-1
+9003	ERS 2 Scatterometer	SCATT	ERS-SSMI-SCAT	ERS	Scatterometer	ERS	Scatterometer	SCATTEROMETER	ERS 2	-1
+35002	ERS-2 GOME layer integrated mass density with averaging kernels	RESAT Averaging Kernels	Satellite Sounding	Layer integrated mass density with averaging kernels	SATEM	Retrieved Atmospheric Constituents	GOME	GOME	ERS 2	-1
+5025	ERS 2 GOME MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	GOME	GOME	ERS 2	-1
+5050	ERS-2 GOME Layer integrated mass density	RESAT	Satellite Sounding	Layer integrated mass density	SATEM	Retrieved Atmospheric Constituents	GOME	GOME	ERS 2	-1
+9007	METOP-B ASCAT	SCATT	ERS-SSMI-SCAT	ASCAT	Scatterometer	ASCAT	ASCAT	ASCAT	METOP-1 (Metop-B)	-1
+25	METOP-B HIRS Radiances	HIRS	Satellite Sounding	ATOVS	SATEM	Radiances	HIRS	HIRS/4	METOP-1 (Metop-B)	-1
+1009	METOP-B AMSUA Radiances	AMSUA	Satellite Sounding	ATOVS	SATEM	Radiances	AMSUA	AMSU-A	METOP-1 (Metop-B)	-1
+3004	METOP-B MHS Radiances	MHS	Satellite Sounding	ATOVS	SATEM	Radiances	MHS	MHS	METOP-1 (Metop-B)	-1
+7013	METOP-B GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	GRAS	GRAS	METOP-1 (Metop-B)	-1
+11002	METOP-B IASI Radiances	IASI	Satellite Sounding	IASI	SATEM	Radiances	IASI	IASI	METOP-1 (Metop-B)	-1
+21009	METOP-B AMSUA Radiances All-sky	AMSUA All-sky	Satellite Sounding	ATOVS	ALLSKY	SSMI/TRMM	AMSUA	AMSU-A	METOP-1 (Metop-B)	-1
+5057	METOP-B GOME-2 O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	GOME-2	GOME-2	METOP-1 (Metop-B)	-1
+35011	METOP-B IASI layer integrated mass density with averaging kernels and a priori profile	RESAT Averaging Kernels	Satellite Sounding	Layer integrated mass density with averaging kernels and a priori profile	SATEM	Retrieved Atmospheric Constituents	IASI	IASI	METOP-1 (Metop-B)	-1
+44004	MHS METOP-B MHS Radiances All-sky	MHS All-sky	Satellite Sounding	ATOVS	ALLSKY	SSMI/TRMM	MHS	MHS	METOP-1 (Metop-B)	-1
+5061	METOP-B GOME-2 Layer integrated mass density	RESAT	Satellite Sounding	Layer integrated mass density	SATEM	Retrieved Atmospheric Constituents	GOME-2	GOME-2	METOP-1 (Metop-B)	-1
+35012	METOP-B GOME-2 layer integrated mass density with averaging kernels	RESAT Averaging Kernels	Satellite Sounding	Layer integrated mass density with averaging kernels	SATEM	Retrieved Atmospheric Constituents	GOME-2	GOME-2	METOP-1 (Metop-B)	-1
+35013	METOP-B GOME-2 layer integrated mass density with averaging kernels and a priori profile	RESAT Averaging Kernels	Satellite Sounding	Layer integrated mass density with averaging kernels and a priori profile	SATEM	Retrieved Atmospheric Constituents	GOME-2	GOME-2	METOP-1 (Metop-B)	-1
+5062	METOP-B GOME-2 MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	GOME-2	GOME-2	METOP-1 (Metop-B)	-1
+5072	METOP-B GOME-2 PMAP	RESAT	Satellite Sounding	MODIS aerosol	SATEM	Retrieved Atmospheric Constituents	GOME-2	GOME-2	METOP-1 (Metop-B)	-1
+35017	METOP-B IASI layer volumetric mixing ratio with averaging kernels and a priori profile	RESAT Averaging Kernels	Satellite Sounding	Layer volumetric mixing ratio with averaging kernels and a priori profile	SATEM	Retrieved Atmospheric Constituents	IASI	IASI	METOP-1 (Metop-B)	-1
+5087	METOP-B IASI Layer integrated mass density	RESAT	Satellite Sounding	Layer integrated mass density	SATEM	Retrieved Atmospheric Constituents	IASI	IASI	METOP-1 (Metop-B)	-1
+15	METOP-A HIRS Radiances	HIRS	Satellite Sounding	ATOVS	SATEM	Radiances	HIRS	HIRS/4	METOP-2 (Metop-A)	-1
+1007	METOP-A AMSUA Radiances	AMSUA	Satellite Sounding	ATOVS	SATEM	Radiances	AMSUA	AMSU-A	METOP-2 (Metop-A)	-1
+3002	METOP-A MHS Radiances	MHS	Satellite Sounding	ATOVS	SATEM	Radiances	MHS	MHS	METOP-2 (Metop-A)	-1
+5013	METOP-A GOME-2 O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	GOME-2	GOME-2	METOP-2 (Metop-A)	-1
+7001	METOP-A GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	GRAS	GRAS	METOP-2 (Metop-A)	-1
+9005	METOP-A ASCAT	SCATT	ERS-SSMI-SCAT	ASCAT	Scatterometer	ASCAT	ASCAT	ASCAT	METOP-2 (Metop-A)	-1
+11001	METOP-A IASI Radiances	IASI	Satellite Sounding	IASI	SATEM	Radiances	IASI	IASI	METOP-2 (Metop-A)	-1
+21007	METOP-A AMSUA Radiances All-sky	AMSUA All-sky	Satellite Sounding	ATOVS	ALLSKY	SSMI/TRMM	AMSUA	AMSU-A	METOP-2 (Metop-A)	-1
+5024	METOP-A IASI Layer integrated mass density	RESAT	Satellite Sounding	Layer integrated mass density	SATEM	Retrieved Atmospheric Constituents	IASI	IASI	METOP-2 (Metop-A)	-1
+35004	METOP-A GOME-2 layer integrated mass density with averaging kernels	RESAT Averaging Kernels	Satellite Sounding	Layer integrated mass density with averaging kernels	SATEM	Retrieved Atmospheric Constituents	GOME-2	GOME-2	METOP-2 (Metop-A)	-1
+35005	METOP-A IASI layer volumetric mixing ratio with averaging kernels and a priori profile	RESAT Averaging Kernels	Satellite Sounding	Layer volumetric mixing ratio with averaging kernels and a priori profile	SATEM	Retrieved Atmospheric Constituents	IASI	IASI	METOP-2 (Metop-A)	-1
+35007	METOP-A IASI layer integrated mass density with averaging kernels and a priori profile	RESAT Averaging Kernels	Satellite Sounding	Layer integrated mass density with averaging kernels and a priori profile	SATEM	Retrieved Atmospheric Constituents	IASI	IASI	METOP-2 (Metop-A)	-1
+5037	METOP-A GOME-2 MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	GOME-2	GOME-2	METOP-2 (Metop-A)	-1
+5047	METOP-A GOME-2 Layer integrated mass density	RESAT	Satellite Sounding	Layer integrated mass density	SATEM	Retrieved Atmospheric Constituents	GOME-2	GOME-2	METOP-2 (Metop-A)	-1
+35010	METOP-A GOME-2 layer integrated mass density with averaging kernels and a priori profile	RESAT Averaging Kernels	Satellite Sounding	Layer integrated mass density with averaging kernels and a priori profile	SATEM	Retrieved Atmospheric Constituents	GOME-2	GOME-2	METOP-2 (Metop-A)	-1
+44002	MHS METOP-A MHS Radiances All-sky	MHS All-sky	Satellite Sounding	ATOVS	ALLSKY	SSMI/TRMM	MHS	MHS	METOP-2 (Metop-A)	-1
+5071	METOP-A GOME-2 PMAP	RESAT	Satellite Sounding	MODIS aerosol	SATEM	Retrieved Atmospheric Constituents	GOME-2	GOME-2	METOP-2 (Metop-A)	-1
+9011	Metop-C ASCAT	SCATT	ERS-SSMI-SCAT	ASCAT	Scatterometer	ASCAT	ASCAT	ASCAT	METOP-3 (Metop-C)	-1
+5085	METOP-C GOME-2 O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	GOME-2	GOME-2	METOP-3 (Metop-C)	-1
+5086	METOP-C GOME-2 PMAP	RESAT	Satellite Sounding	MODIS aerosol	SATEM	Retrieved Atmospheric Constituents	GOME-2	GOME-2	METOP-3 (Metop-C)	-1
+5088	METOP-C GOME-2 Layer integrated mass density	RESAT	Satellite Sounding	Layer integrated mass density	SATEM	Retrieved Atmospheric Constituents	GOME-2	GOME-2	METOP-3 (Metop-C)	-1
+35021	METOP-C IASI layer volumetric mixing ratio with averaging kernels and a priori profile	RESAT Averaging Kernels	Satellite Sounding	Layer volumetric mixing ratio with averaging kernels and a priori profile	SATEM	Retrieved Atmospheric Constituents	IASI	IASI	METOP-3 (Metop-C)	-1
+35020	METOP-C GOME-2 layer integrated mass density with averaging kernels and a priori profile	RESAT Averaging Kernels	Satellite Sounding	Layer integrated mass density with averaging kernels and a priori profile	SATEM	Retrieved Atmospheric Constituents	GOME-2	GOME-2	METOP-3 (Metop-C)	-1
+5089	METOP-C IASI Layer integrated mass density	RESAT	Satellite Sounding	Layer integrated mass density	SATEM	Retrieved Atmospheric Constituents	IASI	IASI	METOP-3 (Metop-C)	-1
+35019	METOP-C GOME-2 layer integrated mass density with averaging kernels	RESAT Averaging Kernels	Satellite Sounding	Layer integrated mass density with averaging kernels	SATEM	Retrieved Atmospheric Constituents	GOME-2	GOME-2	METOP-3 (Metop-C)	-1
+35018	METOP-C IASI layer integrated mass density with averaging kernels and a priori profile	RESAT Averaging Kernels	Satellite Sounding	Layer integrated mass density with averaging kernels and a priori profile	SATEM	Retrieved Atmospheric Constituents	IASI	IASI	METOP-3 (Metop-C)	-1
+11003	METOP-C IASI Radiances	IASI	Satellite Sounding	IASI	SATEM	Radiances	IASI	IASI	METOP-3 (Metop-C)	-1
+1010	METOP-C AMSUA Radiances	AMSUA	Satellite Sounding	ATOVS	SATEM	Radiances	AMSUA	AMSU-A	METOP-3 (Metop-C)	-1
+21010	METOP-C AMSUA Radiances All-Sky	AMSUA All-sky	Satellite Sounding	ATOVS	ALLSKY	SSMI/TRMM	AMSUA	AMSU-A	METOP-3 (Metop-C)	-1
+3005	METOP-C MHS Radiances	MHS	Satellite Sounding	ATOVS	SATEM	Radiances	MHS	MHS	METOP-3 (Metop-C)	-1
+7019	METOP-C GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	GRAS	GRAS	METOP-3 (Metop-C)	-1
+44005	MHS METOP-C MHS Radiances All-sky	MHS All-sky	Satellite Sounding	ATOVS	ALLSKY	SSMI/TRMM	MHS	MHS	METOP-3 (Metop-C)	-1
+7002	CHAMP GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	GPS	CHAMP GPS sounder	CHAMP	-1
+7010	TerraSAR-X GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	IGOR	IGOR	TerraSAR-X	-1
+7015	TanDEM-X GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	IGOR	IGOR	TanDEM-X	-1
+7023	PAZ GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	IGOR	IGOR	PAZ	-1
+18001	SMOS	SMOS	SMOS	SMOS	SATEM	SMOS	MIRAS	MIRAS	SMOS	-1
+45001	AEOLUS HLOS Wind Level 2B	Doppler Wind Lidar	Upper Air Sounding	Aeolus L2B wind lidar	LIDAR	Doppler Wind Lidar	MISSING	ALADIN	AEOLUS	-1
+4020	METEOSAT 4 GEOS Radiances	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	MVIRI	MVIRI	METEOSAT 4	-1
+4017	METEOSAT 5 GEOS Radiances	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	MVIRI	MVIRI	METEOSAT 5	-1
+4021	METEOSAT 6 GEOS Radiances	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	MVIRI	MVIRI	METEOSAT 6	-1
+4007	METEOSAT 7 GEOS Radiances	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	MVIRI	MVIRI	METEOSAT 7	-1
+4008	METEOSAT 8 GEOS Radiances	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	SEVIRI RADIANCES	SEVIRI	METEOSAT 8	-1
+5002	METEOSAT 8 SEVIRI O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	SEVIRI	SEVIRI	METEOSAT 8	-1
+5026	METEOSAT 8 SEVIRI MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	SEVIRI	SEVIRI	METEOSAT 8	-1
+4018	METEOSAT 8 GEOS Allsky Radiances	GEOS	SATOB	GEOS Allsky Radiances	SATEM	Radiances	SEVIRI RADIANCES	SEVIRI	METEOSAT 8	-1
+4009	METEOSAT 9 GEOS Radiances	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	SEVIRI RADIANCES	SEVIRI	METEOSAT 9	-1
+5003	METEOSAT 9 SEVIRI O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	SEVIRI	SEVIRI	METEOSAT 9	-1
+4013	METEOSAT 9 GEOS Allsky Radiances	GEOS	SATOB	GEOS Allsky Radiances	SATEM	Radiances	SEVIRI RADIANCES	SEVIRI	METEOSAT 9	-1
+5027	METEOSAT 9 SEVIRI MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	SEVIRI	SEVIRI	METEOSAT 9	-1
+5063	METEOSAT-9 SEVIRI aerosol optical depth	RESAT	Satellite Sounding	Satellite aerosol optical depth	SATEM	Retrieved Atmospheric Constituents	SEVIRI	SEVIRI	METEOSAT 9	-1
+4016	METEOSAT 10 GEOS Allsky Radiances	GEOS	SATOB	GEOS Allsky Radiances	SATEM	Radiances	SEVIRI RADIANCES	SEVIRI	METEOSAT 10	-1
+5058	METEOSAT 10 SEVIRI O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	SEVIRI	SEVIRI	METEOSAT 10	-1
+5064	METEOSAT-10 SEVIRI aerosol optical depth	RESAT	Satellite Sounding	Satellite aerosol optical depth	SATEM	Retrieved Atmospheric Constituents	SEVIRI	SEVIRI	METEOSAT 10	-1
+5014	ENVISAT SCIAMACHY O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	SCIAMACHY	SCIAMACHY	ENVISAT	-1
+5015	ENVISAT GOMOS O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	GOMOS	GOMOS	ENVISAT	-1
+5016	ENVISAT MIPAS O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	MIPAS	MIPAS	ENVISAT	-1
+6001	ENVISAT MERIS TCWV	MERIS	Satellite Sounding	MERIS	SATEM	TCWC	MERIS	MERIS	ENVISAT	-1
+35003	ENVISAT SCIAMACHY layer integrated mass density with averaging kernels	RESAT Averaging Kernels	Satellite Sounding	Layer integrated mass density with averaging kernels	SATEM	Retrieved Atmospheric Constituents	SCIAMACHY	SCIAMACHY	ENVISAT	-1
+35006	ENVISAT SCIAMACHY layer volumetric mixing ratio with averaging kernels and a priori profile	RESAT Averaging Kernels	Satellite Sounding	Layer volumetric mixing ratio with averaging kernels and a priori profile	SATEM	Retrieved Atmospheric Constituents	SCIAMACHY	SCIAMACHY	ENVISAT	-1
+5038	ENVISAT SCIAMACHY MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	SCIAMACHY	SCIAMACHY	ENVISAT	-1
+5039	ENVISAT GOMOS MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	GOMOS	GOMOS	ENVISAT	-1
+5040	ENVISAT MIPAS MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	MIPAS	MIPAS	ENVISAT	-1
+5045	ENVISAT SCIAMACHY Layer volumetric mixing ratio	RESAT	Satellite Sounding	Layer volumetric mixing ratio	SATEM	Retrieved Atmospheric Constituents	SCIAMACHY	SCIAMACHY	ENVISAT	-1
+5046	ENVISAT SCIAMACHY Layer integrated mass density	RESAT	Satellite Sounding	Layer integrated mass density	SATEM	Retrieved Atmospheric Constituents	SCIAMACHY	SCIAMACHY	ENVISAT	-1
+5049	TERRA MOPITT Layer integrated mass density	RESAT	Satellite Sounding	Layer integrated mass density	SATEM	Retrieved Atmospheric Constituents	MOPITT	MOPITT	ENVISAT	-1
+5067	ENVISAT AATSR Aerosol	RESAT	Satellite Sounding	MODIS aerosol	SATEM	Retrieved Atmospheric Constituents	SSMIS	AATSR	ENVISAT	-1
+4023	METEOSAT 11 GEOS Allsky Radiances	GEOS	SATOB	GEOS Allsky Radiances	SATEM	Radiances	SEVIRI RADIANCES	SEVIRI	METEOSAT 11	-1
+5080	METEOSAT 11 SEVIRI aerosol optical depth	RESAT	Satellite Sounding	Satellite aerosol optical depth	SATEM	Retrieved Atmospheric Constituents	SEVIRI	SEVIRI	METEOSAT 11	-1
+5069	TOMS ADEOS-I	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	TOMS	TOMS	ADEOS	-1
+41001	GCOM-W1 AMSR-2 Radiances All-sky	AMSR-2 All-sky	Satellite Sounding	AMSR-2	ALLSKY	SSMI/TRMM	AMSR-2	AMSR2	GCOM-W1	-1
+5021	GOSAT TANSO-FTS Layer volumetric mixing ratio	RESAT	Satellite Sounding	Layer volumetric mixing ratio	SATEM	Retrieved Atmospheric Constituents	TANSO-FTS	TANSO-FTS	GOSAT	-1
+35009	GOSAT TANSO-FTS layer volumetric mixing ratio with averaging kernels and a priori profile	RESAT Averaging Kernels	Satellite Sounding	Layer volumetric mixing ratio with averaging kernels and a priori profile	SATEM	Retrieved Atmospheric Constituents	TANSO-FTS	TANSO-FTS	GOSAT	-1
+4010	MTSAT-1R GEOS Radiances	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	MTSATIMG	JAMI	MTSAT-1R	-1
+4012	MTSAT-2 GEOS Radiances	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	MTSATIMG	JAMI	MTSAT-2	-1
+4022	Himawari 8 GEOS radiances	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	AHI	AHI	Himawari-8	-1
+4024	Himawari 9 GEOS radiances	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	AHI	AHI	Himawari-9	-1
+4	NOAA 8 HIRS Radiances	HIRS	Satellite Sounding	ATOVS	SATEM	Radiances	HIRS	HIRS/2	NOAA 8	-1
+30004	NOAA 8 MSU Radiances	MSU	Satellite Sounding	ATOVS	SATEM	Radiances	MSU	MSU	NOAA 8	-1
+31004	NOAA 8 SSU Radiances	SSU	Satellite Sounding	ATOVS	SATEM	Radiances	SSU	SSU	NOAA 8	-1
+16	NOAA 8 HIRS Radiances	HIRS	Satellite Sounding	TOVS1B	SATEM	Radiances	HIRS	HIRS/2	NOAA 8	-1
+30010	NOAA 8 MSU TOVS1B Radiances	MSU	Satellite Sounding	TOVS1B	SATEM	Radiances	MSU	MSU	NOAA 8	-1
+31009	NOAA 8 SSU TOVS1B Radiances	SSU	Satellite Sounding	TOVS1B	SATEM	Radiances	SSU	SSU	NOAA 8	-1
+5	NOAA 9 HIRS Radiances	HIRS	Satellite Sounding	ATOVS	SATEM	Radiances	HIRS	HIRS/2	NOAA 9	-1
+5006	NOAA 9 SBUV-2 O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	SBUV-2	SBUV/2	NOAA 9	-1
+30005	NOAA 9 MSU Radiances	MSU	Satellite Sounding	ATOVS	SATEM	Radiances	MSU	MSU	NOAA 9	-1
+31005	NOAA 9 SSU Radiances	SSU	Satellite Sounding	ATOVS	SATEM	Radiances	SSU	SSU	NOAA 9	-1
+17	NOAA 9 HIRS Radiances	HIRS	Satellite Sounding	TOVS1B	SATEM	Radiances	HIRS	HIRS/2	NOAA 9	-1
+31010	NOAA 9 SSU TOVS1B Radiances	SSU	Satellite Sounding	TOVS1B	SATEM	Radiances	SSU	SSU	NOAA 9	-1
+5030	NOAA 9 SBUV-2 MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	SBUV-2	SBUV/2	NOAA 9	-1
+30017	NOAA 9 MSU TOVS1B Radiances	MSU	Satellite Sounding	TOVS1B	SATEM	Radiances	MSU	MSU	NOAA 9	-1
+6	NOAA 10 HIRS Radiances	HIRS	Satellite Sounding	ATOVS	SATEM	Radiances	HIRS	HIRS/2	NOAA 10	-1
+30006	NOAA 10 MSU Radiances	MSU	Satellite Sounding	ATOVS	SATEM	Radiances	MSU	MSU	NOAA 10	-1
+18	NOAA 10 HIRS Radiances	HIRS	Satellite Sounding	TOVS1B	SATEM	Radiances	HIRS	HIRS/2	NOAA 10	-1
+30011	NOAA 10 MSU TOVS1B Radiances	MSU	Satellite Sounding	TOVS1B	SATEM	Radiances	MSU	MSU	NOAA 10	-1
+7	NOAA 11 HIRS Radiances	HIRS	Satellite Sounding	ATOVS	SATEM	Radiances	HIRS	HIRS/2	NOAA 11	-1
+5007	NOAA 11 SBUV-2 O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	SBUV-2	SBUV/2	NOAA 11	-1
+30007	NOAA 11 MSU Radiances	MSU	Satellite Sounding	ATOVS	SATEM	Radiances	MSU	MSU	NOAA 11	-1
+31006	NOAA 11 SSU Radiances	SSU	Satellite Sounding	ATOVS	SATEM	Radiances	SSU	SSU	NOAA 11	-1
+19	NOAA 11 HIRS Radiances	HIRS	Satellite Sounding	TOVS1B	SATEM	Radiances	HIRS	HIRS/2	NOAA 11	-1
+30012	NOAA 11 MSU TOVS1B Radiances	MSU	Satellite Sounding	TOVS1B	SATEM	Radiances	MSU	MSU	NOAA 11	-1
+31011	NOAA 11 SSU TOVS1B Radiances	SSU	Satellite Sounding	TOVS1B	SATEM	Radiances	SSU	SSU	NOAA 11	-1
+5031	NOAA 11 SBUV-2 MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	SBUV-2	SBUV/2	NOAA 11	-1
+8	NOAA 12 HIRS Radiances	HIRS	Satellite Sounding	ATOVS	SATEM	Radiances	HIRS	HIRS/2	NOAA 12	-1
+23	NOAA 12 HIRS Radiances	HIRS	Satellite Sounding	TOVS1B	SATEM	Radiances	HIRS	HIRS/2	NOAA 12	-1
+30008	NOAA 12 MSU Radiances	MSU	Satellite Sounding	ATOVS	SATEM	Radiances	MSU	MSU	NOAA 12	-1
+31007	NOAA 12 SSU Radiances	SSU	Satellite Sounding	ATOVS	SATEM	Radiances	SSU	SSU	NOAA 12	-1
+30018	NOAA 12 MSU TOVS1B Radiances	MSU	Satellite Sounding	TOVS1B	SATEM	Radiances	MSU	MSU	NOAA 12	-1
+31016	NOAA 12 SSU TOVS1B Radiances	SSU	Satellite Sounding	TOVS1B	SATEM	Radiances	SSU	SSU	NOAA 12	-1
+9	NOAA 14 HIRS Radiances	HIRS	Satellite Sounding	ATOVS	SATEM	Radiances	HIRS	HIRS/2	NOAA 14	-1
+5008	NOAA 14 SBUV-2 O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	SBUV-2	SBUV/2	NOAA 14	-1
+24	NOAA 14 HIRS Radiances	HIRS	Satellite Sounding	TOVS1B	SATEM	Radiances	HIRS	HIRS/2	NOAA 14	-1
+30009	NOAA 14 MSU Radiances	MSU	Satellite Sounding	ATOVS	SATEM	Radiances	MSU	MSU	NOAA 14	-1
+31008	NOAA 14 SSU Radiances	SSU	Satellite Sounding	ATOVS	SATEM	Radiances	SSU	SSU	NOAA 14	-1
+5032	NOAA 14 SBUV-2 MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	SBUV-2	SBUV/2	NOAA 14	-1
+31015	NOAA 14 SSU TOVS1B Radiances	SSU	Satellite Sounding	TOVS1B	SATEM	Radiances	SSU	SSU	NOAA 14	-1
+30016	NOAA 14 MSU TOVS1B Radiances	MSU	Satellite Sounding	TOVS1B	SATEM	Radiances	MSU	MSU	NOAA 14	-1
+10	NOAA 15 HIRS Radiances	HIRS	Satellite Sounding	ATOVS	SATEM	Radiances	HIRS	HIRS/3	NOAA 15	-1
+1001	NOAA 15 AMSUA Radiances	AMSUA	Satellite Sounding	ATOVS	SATEM	Radiances	AMSUA	AMSU-A	NOAA 15	-1
+2001	NOAA 15 AMSUB Radiances	AMSUB	Satellite Sounding	ATOVS	SATEM	Radiances	AMSUB	AMSU-B	NOAA 15	-1
+21001	NOAA 15 AMSUA Radiances All-sky	AMSUA All-sky	Satellite Sounding	ATOVS	ALLSKY	SSMI/TRMM	AMSUA	AMSU-A	NOAA 15	-1
+43001	AMSUB NOAA 15 AMSUB Radiances All-sky	AMSUB All-sky	Satellite Sounding	ATOVS	ALLSKY	SSMI/TRMM	AMSUB	AMSU-B	NOAA 15	-1
+11	NOAA 16 HIRS Radiances	HIRS	Satellite Sounding	ATOVS	SATEM	Radiances	HIRS	HIRS/3	NOAA 16	-1
+1002	NOAA 16 AMSUA Radiances	AMSUA	Satellite Sounding	ATOVS	SATEM	Radiances	AMSUA	AMSU-A	NOAA 16	-1
+2002	NOAA 16 AMSUB Radiances	AMSUB	Satellite Sounding	ATOVS	SATEM	Radiances	AMSUB	AMSU-B	NOAA 16	-1
+5009	NOAA 16 SBUV-2 O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	SBUV-2	SBUV/2	NOAA 16	-1
+21002	NOAA 16 AMSUA Radiances All-sky	AMSUA All-sky	Satellite Sounding	ATOVS	ALLSKY	SSMI/TRMM	AMSUA	AMSU-A	NOAA 16	-1
+5033	NOAA 16 SBUV-2 MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	SBUV-2	SBUV/2	NOAA 16	-1
+43002	AMSUB NOAA 16 AMSUB Radiances All-sky	AMSUB All-sky	Satellite Sounding	ATOVS	ALLSKY	SSMI/TRMM	AMSUB	AMSU-B	NOAA 16	-1
+12	NOAA 17 HIRS Radiances	HIRS	Satellite Sounding	ATOVS	SATEM	Radiances	HIRS	HIRS/3	NOAA 17	-1
+1003	NOAA 17 AMSUA Radiances	AMSUA	Satellite Sounding	ATOVS	SATEM	Radiances	AMSUA	AMSU-A	NOAA 17	-1
+2003	NOAA 17 AMSUB Radiances	AMSUB	Satellite Sounding	ATOVS	SATEM	Radiances	AMSUB	AMSU-B	NOAA 17	-1
+5010	NOAA 17 SBUV-2 O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	SBUV-2	SBUV/2	NOAA 17	-1
+21003	NOAA 17 AMSUA Radiances All-sky	AMSUA All-sky	Satellite Sounding	ATOVS	ALLSKY	SSMI/TRMM	AMSUA	AMSU-A	NOAA 17	-1
+5034	NOAA 17 SBUV-2 MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	SBUV-2	SBUV/2	NOAA 17	-1
+43003	AMSUB NOAA 17 AMSUB Radiances All-sky	AMSUB All-sky	Satellite Sounding	ATOVS	ALLSKY	SSMI/TRMM	AMSUB	AMSU-B	NOAA 17	-1
+13	NOAA 18 HIRS Radiances	HIRS	Satellite Sounding	ATOVS	SATEM	Radiances	HIRS	HIRS/4	NOAA 18	-1
+1004	NOAA 18 AMSUA Radiances	AMSUA	Satellite Sounding	ATOVS	SATEM	Radiances	AMSUA	AMSU-A	NOAA 18	-1
+2004	NOAA 18 AMSUB Radiances	AMSUB	Satellite Sounding	ATOVS	SATEM	Radiances	AMSUB	AMSU-B	NOAA 18	-1
+5011	NOAA 18 SBUV-2 O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	SBUV-2	SBUV/2	NOAA 18	-1
+21004	NOAA 18 AMSUA Radiances All-sky	AMSUA All-sky	Satellite Sounding	ATOVS	ALLSKY	SSMI/TRMM	AMSUA	AMSU-A	NOAA 18	-1
+3003	NOAA 18 MHS Radiances	MHS	Satellite Sounding	ATOVS	SATEM	Radiances	MHS	MHS	NOAA 18	-1
+5035	NOAA 18 SBUV-2 MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	SBUV-2	SBUV/2	NOAA 18	-1
+43004	AMSUB NOAA 18 AMSUB Radiances All-sky	AMSUB All-sky	Satellite Sounding	ATOVS	ALLSKY	SSMI/TRMM	AMSUB	AMSU-B	NOAA 18	-1
+44003	MHS NOAA 18 MHS Radiances All-sky	MHS All-sky	Satellite Sounding	ATOVS	ALLSKY	SSMI/TRMM	MHS	MHS	NOAA 18	-1
+14	NOAA 19 HIRS Radiances	HIRS	Satellite Sounding	ATOVS	SATEM	Radiances	HIRS	HIRS/4	NOAA 19	-1
+1005	NOAA 19 AMSUA Radiances	AMSUA	Satellite Sounding	ATOVS	SATEM	Radiances	AMSUA	AMSU-A	NOAA 19	-1
+3001	NOAA 19 MHS Radiances	MHS	Satellite Sounding	ATOVS	SATEM	Radiances	MHS	MHS	NOAA 19	-1
+5012	NOAA 19 SBUV-2 O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	SBUV-2	SBUV/2	NOAA 19	-1
+21005	NOAA 19 AMSUA Radiances All-sky	AMSUA All-sky	Satellite Sounding	ATOVS	ALLSKY	SSMI/TRMM	AMSUA	AMSU-A	NOAA 19	-1
+5036	NOAA 19 SBUV-2 MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	SBUV-2	SBUV/2	NOAA 19	-1
+44001	MHS NOAA 19 MHS Radiances All-sky	MHS All-sky	Satellite Sounding	ATOVS	ALLSKY	SSMI/TRMM	MHS	MHS	NOAA 19	-1
+34001	NPP ATMS Radiances	ATMS	Radiances    (Satellite Measured) 	ATMS	SATEM	Radiances	ATMS	ATMS	NPP	-1
+36001	NPP CRIS Radiances	CRIS	Radiances    (Satellite Measured) 	CRIS	SATEM	Radiances	CRIS	CrIRS/NP	NPP	-1
+5065	NPP VIIRS aerosol optical thickness	RESAT	Satellite Sounding	VIIRS aerosol optical thickness	SATEM	Retrieved Atmospheric Constituents	VIIRS	VIRS	NPP	-1
+5068	NPP OMPS O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	OMPS	OMPS	NPP	-1
+49001	NPP ATMS Radiances All-sky	ATMS All-sky	Radiances    (Satellite Measured) 	ATMS	ALLSKY	SSMI/TRMM	ATMS	ATMS	NPP	-1
+5091	NPP VIIRS aerosol optical depth	RESAT	Satellite Sounding	MODIS aerosol	SATEM	Retrieved Atmospheric Constituents	VIIRS	VIIRS	NPP	-1
+5092	NPP OMPS-LP O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	OMPS	OMPS	NPP	-1
+10001	DMSP 7 SSMI All-sky	SSMI All-sky	ERS-SSMI-SCAT	SSMI	ALLSKY	SSMI/TRMM	SSM/I	SSM/I	DMSP 7	-1
+10002	DMSP 8 SSMI All-sky	SSMI All-sky	ERS-SSMI-SCAT	SSMI	ALLSKY	SSMI/TRMM	SSM/I	SSM/I	DMSP 8	-1
+20001	DMSP 8 SSMI	SSMI	Satellite Sounding	ATOVS	SATEM	Radiances	SSM/I	SSM/I	DMSP 8	-1
+56001	DMSP 8 SSMI 1DVAR TCWV Cloudy-Sky	SSMI 1DVAR TCWV Cloudy-Sky	ERS-SSMI-SCAT	SSMI	SATEM	SSMI/TRMM	SSM/I	SSM/I	DMSP 8	-1
+10009	DMSP 8 SSMI CMSAF All-sky	SSMI All-sky	ERS-SSMI-SCAT	SSMI CMSAF	ALLSKY	SSMI/TRMM	SSM/I	SSM/I	DMSP 8	-1
+10003	DMSP 9 SSMI All-sky	SSMI All-sky	ERS-SSMI-SCAT	SSMI	ALLSKY	SSMI/TRMM	SSM/I	SSM/I	DMSP 9	-1
+20002	DMSP 9 SSMI	SSMI	Satellite Sounding	ATOVS	SATEM	Radiances	SSM/I	SSM/I	DMSP 9	-1
+10004	DMSP 10 SSMI All-sky	SSMI All-sky	ERS-SSMI-SCAT	SSMI	ALLSKY	SSMI/TRMM	SSM/I	SSM/I	DMSP 10	-1
+20003	DMSP 10 SSMI	SSMI	Satellite Sounding	ATOVS	SATEM	Radiances	SSM/I	SSM/I	DMSP 10	-1
+56002	DMSP 10 SSMI 1DVAR TCWV Cloudy-Sky	SSMI 1DVAR TCWV Cloudy-Sky	ERS-SSMI-SCAT	SSMI	SATEM	SSMI/TRMM	SSM/I	SSM/I	DMSP 10	-1
+10010	DMSP 10 SSMI CMSAF All-sky	SSMI All-sky	ERS-SSMI-SCAT	SSMI CMSAF	ALLSKY	SSMI/TRMM	SSM/I	SSM/I	DMSP 10	-1
+10005	DMSP 11 SSMI All-sky	SSMI All-sky	ERS-SSMI-SCAT	SSMI	ALLSKY	SSMI/TRMM	SSM/I	SSM/I	DMSP 11	-1
+20004	DMSP 11 SSMI	SSMI	Satellite Sounding	ATOVS	SATEM	Radiances	SSM/I	SSM/I	DMSP 11	-1
+56003	DMSP 11 SSMI 1DVAR TCWV Cloudy-Sky	SSMI 1DVAR TCWV Cloudy-Sky	ERS-SSMI-SCAT	SSMI	SATEM	SSMI/TRMM	SSM/I	SSM/I	DMSP 11	-1
+58001	DMSP 11 SSMT2 Radiances	SSMT2	Satellite Sounding	ATOVS	SATEM	Radiances	SSM/T-2	SSM/T-2	DMSP 11	-1
+10011	DMSP 11 SSMI CMSAF All-sky	SSMI All-sky	ERS-SSMI-SCAT	SSMI CMSAF	ALLSKY	SSMI/TRMM	SSM/I	SSM/I	DMSP 11	-1
+58002	DMSP 12 SSMT2 Radiances	SSMT2	Satellite Sounding	ATOVS	SATEM	Radiances	SSM/T-2	SSM/T-2	DMSP 12	-1
+10006	DMSP 13 SSMI All-sky	SSMI All-sky	ERS-SSMI-SCAT	SSMI	ALLSKY	SSMI/TRMM	SSM/I	SSM/I	DMSP 13	-1
+20005	DMSP 13 SSMI	SSMI	Satellite Sounding	ATOVS	SATEM	Radiances	SSM/I	SSM/I	DMSP 13	-1
+56004	DMSP 13 SSMI 1DVAR TCWV Cloudy-Sky	SSMI 1DVAR TCWV Cloudy-Sky	ERS-SSMI-SCAT	SSMI	SATEM	SSMI/TRMM	SSM/I	SSM/I	DMSP 13	-1
+10012	DMSP 13 SSMI CMSAF All-sky	SSMI All-sky	ERS-SSMI-SCAT	SSMI CMSAF	ALLSKY	SSMI/TRMM	SSM/I	SSM/I	DMSP 13	-1
+10007	DMSP 14 SSMI All-sky	SSMI All-sky	ERS-SSMI-SCAT	SSMI	ALLSKY	SSMI/TRMM	SSM/I	SSM/I	DMSP 14	-1
+20006	DMSP 14 SSMI	SSMI	Satellite Sounding	ATOVS	SATEM	Radiances	SSM/I	SSM/I	DMSP 14	-1
+56005	DMSP 14 SSMI 1DVAR TCWV Cloudy-Sky	SSMI 1DVAR TCWV Cloudy-Sky	ERS-SSMI-SCAT	SSMI	SATEM	SSMI/TRMM	SSM/I	SSM/I	DMSP 14	-1
+58003	DMSP 14 SSMT2 Radiances	SSMT2	Satellite Sounding	ATOVS	SATEM	Radiances	SSM/T-2	SSM/T-2	DMSP 14	-1
+10013	DMSP 14 SSMI CMSAF All-sky	SSMI All-sky	ERS-SSMI-SCAT	SSMI CMSAF	ALLSKY	SSMI/TRMM	SSM/I	SSM/I	DMSP 14	-1
+10008	DMSP 15 SSMI All-sky	SSMI All-sky	ERS-SSMI-SCAT	SSMI	ALLSKY	SSMI/TRMM	SSM/I	SSM/I	DMSP 15	-1
+20007	DMSP 15 SSMI	SSMI	Satellite Sounding	ATOVS	SATEM	Radiances	SSM/I	SSM/I	DMSP 15	-1
+56006	DMSP 15 SSMI 1DVAR TCWV Cloudy-Sky	SSMI 1DVAR TCWV Cloudy-Sky	ERS-SSMI-SCAT	SSMI	SATEM	SSMI/TRMM	SSM/I	SSM/I	DMSP 15	-1
+58004	DMSP 15 SSMT2 Radiances	SSMT2	Satellite Sounding	ATOVS	SATEM	Radiances	SSM/T-2	SSM/T-2	DMSP 15	-1
+10014	DMSP 15 SSMI CMSAF All-sky	SSMI All-sky	ERS-SSMI-SCAT	SSMI CMSAF	ALLSKY	SSMI/TRMM	SSM/I	SSM/I	DMSP 15	-1
+13001	DMSP 16 SSMIS Radiances All-sky	SSMIS All-sky	Satellite Sounding	SSMIS	ALLSKY	SSMI/TRMM	SSMIS	SSMIS	DMSP 16	-1
+24001	DMSP 16 SSMIS Radiances	SSMIS	Satellite Sounding	SSMIS	SATEM	Radiances	SSMIS	SSMIS	DMSP 16	-1
+4002	GOES 8 GEOS Radiances	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	IMAGER	IMAGER	GOES 8	-1
+4003	GOES 9 GEOS Radiances	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	IMAGER	IMAGER	GOES 9	-1
+4004	GOES 10 GEOS Radiances	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	IMAGER	IMAGER	GOES 10	-1
+4005	GOES 11 GEOS Radiances	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	IMAGER	IMAGER	GOES 11	-1
+4006	GOES 12 GEOS Radiances	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	IMAGER	IMAGER	GOES 12	-1
+4011	GOES 13 GEOS Radiances	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	IMAGER	IMAGER	GOES 13	-1
+4014	GOES 14 GEOS Radiances 	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	IMAGER	IMAGER	GOES 14	-1
+4015	GOES 15 GEOS Radiances 	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	IMAGER	IMAGER	GOES 15	-1
+9004	QuickSCAT SeaWind	SCATT	ERS-SSMI-SCAT	QSCAT	Scatterometer	QSCAT	SeaWinds	SeaWinds	QUIKSCAT	-1
+14001	TRMM TMI Radiances All-sky	TMI All-sky	Satellite Sounding	TRMM	ALLSKY	SSMI/TRMM	TMI	TMI	TRMM	-1
+23001	TRMM TMI Radiances	TMI	Satellite Sounding	TRMM	SATEM	Radiances	TMI	TMI	TRMM	-1
+19001	CORIOLIS  WINDSAT All-sky	WINDSAT All-sky	Satellite Sounding	WINDSAT	ALLSKY	SSMI/TRMM	WINDSAT	MWHS-2 (or WINDSAT for data from Coriolis satellite)	CORIOLIS	-1
+13002	DMSP 17 SSMIS Radiances All-sky	SSMIS All-sky	Satellite Sounding	SSMIS	ALLSKY	SSMI/TRMM	SSMIS	SSMIS	DMSP17	-1
+24002	DMSP 17 SSMIS Radiances	SSMIS	Satellite Sounding	SSMIS	SATEM	Radiances	SSMIS	SSMIS	DMSP17	-1
+13003	DMSP 18 SSMIS Radiances All-sky	SSMIS All-sky	Satellite Sounding	SSMIS	ALLSKY	SSMI/TRMM	SSMIS	SSMIS	DMSP18	-1
+24003	DMSP 18 SSMIS Radiances	SSMIS	Satellite Sounding	SSMIS	SATEM	Radiances	SSMIS	SSMIS	DMSP18	-1
+5017	METEOR 3-5 TOMS O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	TOMS	TOMS	METEOR 3-5	-1
+5041	METEOR 3-5 TOMS MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	TOMS	TOMS	METEOR 3-5	-1
+9006	OceanSat-2 Scatterometer	SCATT	ERS-SSMI-SCAT	OSCAT	Scatterometer	OSCAT	OSCAT	SCAT	Oceansat-2	-1
+42001	SAPHIR All-sky	SAPHIR All-sky	Satellite Sounding	SAPHIR	ALLSKY	SSMI/TRMM	SAPHIR	SAPHIR	Megha-Tropiques	-1
+7017	Megha-Tropiques GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	ROSA	ROSA	Megha-Tropiques	-1
+26001	FY-3A MWHS Radiances	MWHS	Satellite Sounding	VASS	SATEM	Radiances	MWHS	MWHS	FY-3A	-1
+27001	FY-3A MWTS Radiances	MWTS	Satellite Sounding	VASS	SATEM	Radiances	MWTS	MWAS	FY-3A	-1
+28001	FY-3A MWRI  Radiances All-sky	MWRI All-sky	Satellite Sounding	Micro Wave Radiation Imager (MWRI)	ALLSKY	SSMI/TRMM	MWRI	MWRI	FY-3A	-1
+29001	FY-3A IRAS Radiances	IRAS	Satellite Sounding	VASS	SATEM	Radiances	IRAS	IRAS	FY-3A	-1
+29002	FY-3B IRAS Radiances	IRAS	Satellite Sounding	VASS	SATEM	Radiances	IRAS	IRAS	FY-3B	-1
+28002	FY-3B MWRI  Radiances All-sky	MWRI All-sky	Satellite Sounding	Micro Wave Radiation Imager (MWRI)	ALLSKY	SSMI/TRMM	MWRI	MWRI	FY-3B	-1
+27002	FY-3B MWTS Radiances	MWTS	Satellite Sounding	VASS	SATEM	Radiances	MWTS	MWAS	FY-3B	-1
+26002	FY-3B MWHS Radiances	MWHS	Satellite Sounding	VASS	SATEM	Radiances	MWHS	MWHS	FY-3B	-1
+32001	NOAA 2 VTPR1 Radiances	VTPR1	Satellite Sounding	TOVS1B	SATEM	Radiances	VTPR1	VTPR1	NOAA 2	-1
+33001	NOAA 2 VTPR2 Radiances	VTPR2	Satellite Sounding	TOVS1B	SATEM	Radiances	VTPR2	VTPR2	NOAA 2	-1
+32002	NOAA 3 VTPR1 Radiances	VTPR1	Satellite Sounding	TOVS1B	SATEM	Radiances	VTPR1	VTPR1	NOAA 3	-1
+33002	NOAA 3 VTPR2 Radiances	VTPR2	Satellite Sounding	TOVS1B	SATEM	Radiances	VTPR2	VTPR2	NOAA 3	-1
+32003	NOAA 4 VTPR1 Radiances	VTPR1	Satellite Sounding	TOVS1B	SATEM	Radiances	VTPR1	VTPR1	NOAA 4	-1
+33003	NOAA 4 VTPR2 Radiances	VTPR2	Satellite Sounding	TOVS1B	SATEM	Radiances	VTPR2	VTPR2	NOAA 4	-1
+32004	NOAA 5 VTPR1 Radiances	VTPR1	Satellite Sounding	TOVS1B	SATEM	Radiances	VTPR1	VTPR1	NOAA 5	-1
+33004	NOAA 5 VTPR2 Radiances	VTPR2	Satellite Sounding	TOVS1B	SATEM	Radiances	VTPR2	VTPR2	NOAA 5	-1
+2	NOAA 6 HIRS Radiances	HIRS	Satellite Sounding	ATOVS	SATEM	Radiances	HIRS	HIRS/2	NOAA 6	-1
+30002	NOAA 6 MSU Radiances	MSU	Satellite Sounding	ATOVS	SATEM	Radiances	MSU	MSU	NOAA 6	-1
+31002	NOAA 6 SSU Radiances	SSU	Satellite Sounding	ATOVS	SATEM	Radiances	SSU	SSU	NOAA 6	-1
+20	NOAA 6 HIRS Radiances	HIRS	Satellite Sounding	TOVS1B	SATEM	Radiances	HIRS	HIRS/2	NOAA 6	-1
+30013	NOAA 6 MSU TOVS1B Radiances	MSU	Satellite Sounding	TOVS1B	SATEM	Radiances	MSU	MSU	NOAA 6	-1
+31012	NOAA 6 SSU TOVS1B Radiances	SSU	Satellite Sounding	TOVS1B	SATEM	Radiances	SSU	SSU	NOAA 6	-1
+3	NOAA 7 HIRS Radiances	HIRS	Satellite Sounding	ATOVS	SATEM	Radiances	HIRS	HIRS/2	NOAA 7	-1
+30003	NOAA 7 MSU Radiances	MSU	Satellite Sounding	ATOVS	SATEM	Radiances	MSU	MSU	NOAA 7	-1
+31003	NOAA 7 SSU Radiances	SSU	Satellite Sounding	ATOVS	SATEM	Radiances	SSU	SSU	NOAA 7	-1
+21	NOAA 7 HIRS Radiances	HIRS	Satellite Sounding	TOVS1B	SATEM	Radiances	HIRS	HIRS/2	NOAA 7	-1
+30014	NOAA 7 MSU TOVS1B Radiances	MSU	Satellite Sounding	TOVS1B	SATEM	Radiances	MSU	MSU	NOAA 7	-1
+31013	NOAA 7 SSU TOVS1B Radiances	SSU	Satellite Sounding	TOVS1B	SATEM	Radiances	SSU	SSU	NOAA 7	-1
+1	TIROS-N HIRS Radiances	HIRS	Satellite Sounding	ATOVS	SATEM	Radiances	HIRS	HIRS/2	TIROS-N	-1
+30001	TIROS-N MSU Radiances	MSU	Satellite Sounding	ATOVS	SATEM	Radiances	MSU	MSU	TIROS-N	-1
+31001	TIROS-N SSU Radiances	SSU	Satellite Sounding	ATOVS	SATEM	Radiances	SSU	SSU	TIROS-N	-1
+22	TIROS-N HIRS Radiances	HIRS	Satellite Sounding	TOVS1B	SATEM	Radiances	HIRS	HIRS/2	TIROS-N	-1
+30015	TIROS-N MSU TOVS1B Radiances	MSU	Satellite Sounding	TOVS1B	SATEM	Radiances	MSU	MSU	TIROS-N	-1
+31014	TIROS-N SSU TOVS1B Radiances	SSU	Satellite Sounding	TOVS1B	SATEM	Radiances	SSU	SSU	TIROS-N	-1
+7003	GRACE A GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	GPS	CHAMP GPS sounder	GRACE A	-1
+7014	GRACE B GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	GPS	CHAMP GPS sounder	GRACE B	-1
+7004	COSMIC-1 GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	GPS	CHAMP GPS sounder	COSMIC-1	-1
+7005	COSMIC-2 GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	GPS	CHAMP GPS sounder	COSMIC-2	-1
+7006	COSMIC-3 GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	GPS	CHAMP GPS sounder	COSMIC-3	-1
+7007	COSMIC-4 GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	GPS	CHAMP GPS sounder	COSMIC-4	-1
+7008	COSMIC-5 GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	GPS	CHAMP GPS sounder	COSMIC-5	-1
+7009	COSMIC-6 GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	GPS	CHAMP GPS sounder	COSMIC-6	-1
+46001	IRIS Nimbus-3 Radiances	IRIS	Satellite Sounding	TOVS1B	SATEM	Radiances	IRIS	IRIS	NIMBUS 3	-1
+46002	IRIS Nimbus-4 Radiances	IRIS	Satellite Sounding	TOVS1B	SATEM	Radiances	IRIS	IRIS	NIMBUS 4	-1
+5070	NIMBUS 4 BUV	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	SBUV-2	BUV	NIMBUS 4	-1
+5018	NIMBUS 7 SBUV-2  O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	SBUV-2	SBUV/2	NIMBUS 7	-1
+5022	NIMBUS 7 TOMS  O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	TOMS	TOMS	NIMBUS 7	-1
+5042	NIMBUS 7 SBUV-2  MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	SBUV-2	SBUV/2	NIMBUS 7	-1
+5043	NIMBUS 7 TOMS  MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	TOMS	TOMS	NIMBUS 7	-1
+5023	EARTH PROBE TOMS O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	TOMS	TOMS	EARTH PROBE	-1
+5044	EARTH PROBE TOMS MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	TOMS	TOMS	EARTH PROBE	-1
+5020	TERRA MODIS Aerosol	RESAT	Satellite Sounding	MODIS aerosol	SATEM	Retrieved Atmospheric Constituents	MODIS	MODIS	TERRA	-1
+35001	TERRA MOPITT layer integrated mass density with averaging kernels and a priori profile	RESAT Averaging Kernels	Satellite Sounding	Layer integrated mass density with averaging kernels and a priori profile	SATEM	Retrieved Atmospheric Constituents	MOPITT	MOPITT	TERRA	-1
+1008	AQUA AMSUA Radiances	AMSUA	Satellite Sounding	ATOVS	SATEM	Radiances	AMSUA	AMSU-A	AQUA	-1
+22001	AQUA AMSRE Radiances	AMSRE	Satellite Sounding	AMSRE	SATEM	Radiances	AMSRE	AMSR-E	AQUA	-1
+12001	AQUA AIRS Radiances	AIRS	Satellite Sounding	AIRS	SATEM	Radiances	AIRS	AIRS	AQUA	-1
+15001	AQUA AMSRE Radiances All-sky	AMSRE All-sky	Satellite Sounding	AMSRE	ALLSKY	SSMI/TRMM	AMSRE	AMSR-E	AQUA	-1
+21008	AQUA AMSUA Radiances All-sky	AMSUA All-sky	Satellite Sounding	ATOVS	ALLSKY	SSMI/TRMM	AMSUA	AMSU-A	AQUA	-1
+5019	AQUA MODIS Aerosol	RESAT	Satellite Sounding	MODIS aerosol	SATEM	Retrieved Atmospheric Constituents	MODIS	MODIS	AQUA	-1
+5004	AURA MLS O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	MLS	MLS (EOS-Aura)	AURA	-1
+5005	AURA OMI O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	OMI	OMI	AURA	-1
+35008	AURA OMI layer integrated mass density with averaging kernels	RESAT Averaging Kernels	Satellite Sounding	Layer integrated mass density with averaging kernels	SATEM	Retrieved Atmospheric Constituents	OMI	OMI	AURA	-1
+5028	AURA MLS MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	MLS	MLS (EOS-Aura)	AURA	-1
+5029	AURA OMI MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	OMI	OMI	AURA	-1
+5048	AURA OMI Layer integrated mass density	RESAT	Satellite Sounding	Layer integrated mass density	SATEM	Retrieved Atmospheric Constituents	OMI	OMI	AURA	-1
+7011	CNOFS GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	GPS	CHAMP GPS sounder	C/NOFS	-1
+5066	CALIPSO attenuated aerosol lidar backscatter	RESAT	Satellite Sounding	CALIPSO attenuated aerosol lidar backscatter	SATEM	Retrieved Atmospheric Constituents	CALIOP	CALIOP	CALIPSO	-1
+62001	Calipso CALIOP backscatter	Cloud Lidar	Satellite Sounding	Cloud backscatter	Satellite cloud-aerosol lidar-radar	Cloud radar and cloud-aerosol lidar	CALIOP	CALIOP	CALIPSO	-1
+61001	CloudSat CPR reflectivity	Cloud reflectivity	Satellite Sounding	Cloud reflectivity	Satellite cloud-aerosol lidar-radar	Cloud radar and cloud-aerosol lidar	CPR	CPR (Cloudsat)	CloudSat	-1
+4019	COMS-1 GEOS Radiances 	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	COMS MI	Missing value	COMS-1	-1
+7012	SAC-C GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	GPS	CHAMP GPS sounder	SAC-C	-1
+7018	KOMPSAT-5 GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	IGOR	IGOR	KOMPSAT-5	-1
+50001	GPM GMI Radiances All-sky	GMI All-sky	Satellite Sounding	GPM	ALLSKY	SSMI/TRMM	GMI	GMI	GPM	-1
+55001	FY-3C MWTS2 Radiances	MWTS2	Satellite Sounding	VASS	SATEM	Radiances	MWTS2	MWTS2	FY-3C	-1
+28003	FY-3C MWRI Radiances All-sky	MWRI All-sky	Satellite Sounding	Micro Wave Radiation Imager (MWRI)	ALLSKY	SSMI/TRMM	MWRI	MWRI	FY-3C	-1
+57001	FY-3C MWHS2 Radiances All-sky	MWHS2 All-sky	Satellite Sounding	VASS	ALLSKY	SSMI/TRMM	MWHS2	MWHS-2 (or WINDSAT for data from Coriolis satellite)	FY-3C	-1
+29003	FY-3C IRAS Radiances	IRAS	Satellite Sounding	VASS	SATEM	Radiances	IRAS	IRAS	FY-3C	-1
+7016	FY-3C GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	GNOS	GNOS	FY-3C	-1
+9008	ISS RapidScat	SCATT	ERS-SSMI-SCAT	RSCAT	Scatterometer	OSCAT	RSCAT	RSCAT	ISS	-1
+9009	HY-2A HSCAT	SCATT	ERS-SSMI-SCAT	RSCAT	Scatterometer	OSCAT	HSCAT	HSCAT	HY-2a	-1
+59001	SMAP	SMAP	SMOS	SMAP	SATEM	SMAP	SMAP	SMAP	SMAP	-1
+13004	DMSP 19 SSMIS Radiances All-sky	SSMIS All-sky	Satellite Sounding	SSMIS	ALLSKY	SSMI/TRMM	SSMIS	SSMIS	DMSP 19	-1
+24004	DMSP 19 SSMIS Radiances	SSMIS	Satellite Sounding	SSMIS	SATEM	Radiances	SSMIS	SSMIS	DMSP 19	-1
+5073	SCISAT-1 ACE-FTS MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	ACE-FTS	ACE-FTS	SCISAT-1	-1
+5076	SCISAT-1 ACE-FTS O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	ACE-FTS	ACE-FTS	SCISAT-1	-1
+5075	ODIN SMR MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	SMR	SMR	ODIN	-1
+5077	ODIN OSIRIS O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	OSIRIS	OSIRIS	ODIN	-1
+5078	ODIN SMR O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	SMR	SMR	ODIN	-1
+5074	ODIN OSIRIS MACC O3	RESAT	Satellite Sounding	Retrieved O3 Layers for MACC ozone observation operator	SATEM	Retrieved Atmospheric Constituents	OSIRIS	OSIRIS	ODIN	-1
+5082	Sentinel 3A SLSTR Aerosol	RESAT	Satellite Sounding	MODIS aerosol	SATEM	Retrieved Atmospheric Constituents	SLSTR	SLSTR	Sentinel 3A	-1
+5079	Sentinel 5P TROPOMI O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	TROPOMI	SW	Sentinel 5P	-1
+35014	Sentinel 5P TROPOMI layer volumetric mixing ratio with averaging kernels and a priori profile	RESAT Averaging Kernels	Satellite Sounding	Layer volumetric mixing ratio with averaging kernels and a priori profile	SATEM	Retrieved Atmospheric Constituents	TROPOMI	SW	Sentinel 5P	-1
+35015	Sentinel 5P TROPOMI layer integrated mass density with averaging kernels and a priori profile	RESAT Averaging Kernels	Satellite Sounding	Layer integrated mass density with averaging kernels and a priori profile	SATEM	Retrieved Atmospheric Constituents	TROPOMI	SW	Sentinel 5P	-1
+35016	Sentinel 5P TROPOMI layer integrated mass density with averaging kernels	RESAT Averaging Kernels	Satellite Sounding	Layer integrated mass density with averaging kernels	SATEM	Retrieved Atmospheric Constituents	TROPOMI	SW	Sentinel 5P	-1
+5081	Sentinel 5P TROPOMI Layer integrated mass density	RESAT	Satellite Sounding	Layer integrated mass density	SATEM	Retrieved Atmospheric Constituents	TROPOMI	SW	Sentinel 5P	-1
+4025	GOES 16 GEOS Radiances	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	ABI	ABI	GOES 16	-1
+9010	ScatSat-1 SCAT	SCATT	ERS-SSMI-SCAT	RSCAT	Scatterometer	OSCAT	OSCAT	SCAT	ScatSat-1	-1
+34002	NOAA 20 ATMS Radiances	ATMS	Radiances    (Satellite Measured) 	ATMS	SATEM	Radiances	ATMS	ATMS	NOAA 20	-1
+49002	NOAA 20 ATMS Radiances All-sky	ATMS All-sky	Radiances    (Satellite Measured) 	ATMS	ALLSKY	SSMI/TRMM	ATMS	ATMS	NOAA 20	-1
+36002	NOAA 20 CRIS Radiances	CRIS	Radiances    (Satellite Measured) 	CRIS	SATEM	Radiances	CRIS	CrIRS/NP	NOAA 20	-1
+5084	NOAA 20 OMPS O3	RESAT	Satellite Sounding	Retrieved O3 Layers	SATEM	Retrieved Atmospheric Constituents	OMPS	OMPS	NOAA 20	-1
+5090	NOAA 20 VIIRS aerosol optical depth	RESAT	Satellite Sounding	MODIS aerosol	SATEM	Retrieved Atmospheric Constituents	VIIRS	VIIRS	NOAA 20	-1
+9012	OceanSat-3 Scatterometer	SCATT	ERS-SSMI-SCAT	RSCAT	Scatterometer	OSCAT	OSCAT	SCAT	Oceansat-3	-1
+9013	HY-2B HSCAT	SCATT	ERS-SSMI-SCAT	RSCAT	Scatterometer	OSCAT	HSCAT	HSCAT	Hai Yang 2B (HY - 2B, SOA/NSOAS China)	-1
+9014	CFOSAT Scatterometer	SCATT	ERS-SSMI-SCAT	FSCAT	Scatterometer	FSCAT	FSCAT	FSCAT	CFOSAT	-1
+5083	Sentinel 3B SLSTR Aerosol	RESAT	Satellite Sounding	MODIS aerosol	SATEM	Retrieved Atmospheric Constituents	SLSTR	SLSTR	Sentinel 3B	-1
+7024	COSMIC2 E1 GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	Tri-G	Tri-G	COSMIC-2 E1	-1
+7025	COSMIC2 E2 GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	Tri-G	Tri-G	COSMIC-2 E2	-1
+7026	COSMIC2 E3 GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	Tri-G	Tri-G	COSMIC-2 E3	-1
+7027	COSMIC2 E4 GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	Tri-G	Tri-G	COSMIC-2 E4	-1
+7028	COSMIC2 E5 GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	Tri-G	Tri-G	COSMIC-2 E5	-1
+7029	COSMIC2 E6 GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	Tri-G	Tri-G	COSMIC-2 E6	-1
+55002	FY-3D MWTS2 Radiances	MWTS2	Satellite Sounding	VASS	SATEM	Radiances	MWTS2	MWTS2	FY-3D	-1
+57002	FY-3D MWHS2 Radiances All-sky	MWHS2 All-sky	Satellite Sounding	VASS	ALLSKY	SSMI/TRMM	MWHS2	MWHS-2 (or WINDSAT for data from Coriolis satellite)	FY-3D	-1
+28004	FY-3D MWRI Radiances All-sky	MWRI All-sky	Satellite Sounding	Micro Wave Radiation Imager (MWRI)	ALLSKY	SSMI/TRMM	MWRI	MWRI	FY-3D	-1
+7022	FY-3D GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	GNOS	GNOS	FY-3D	-1
+7020	GRACE C GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	Tri-G	Tri-G	GRACE C	-1
+7021	GRACE D GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	Tri-G	Tri-G	GRACE D	-1
+4026	GOES 17 GEOS Radiances	GEOS	SATOB	GEOS Radiances	SATEM	Radiances	ABI	ABI	GOES 17	-1
+7030	SPIRE Lemur 3U GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	SGNOS-A	SGNOS-A	Spire Lemur 3U CubeSat	-1
+7031	Sentinel 6A GPSRO	GPSRO	Satellite Sounding	GPS Radio Occultation	Limb	GPS Radio Occultation	Tri-G	Tri-G	Sentinel 6A	-1
+9015	HY-2C HSCAT	SCATT	ERS-SSMI-SCAT	RSCAT	Scatterometer	OSCAT	HSCAT	HSCAT	Hai Yang 2C (HY-2C, SOA/NSOAS China)	-1
+37004	ERS 1 RALT WAVE	WAVE integrated Parameters	ERS-SSMI-SCAT	RADAR ALTIMETER	WAVE	RALT	-1	-1	ERS 1	-1
+37005	ERS 2 RALT WAVE	WAVE integrated Parameters	ERS-SSMI-SCAT	RADAR ALTIMETER	WAVE	RALT	-1	-1	ERS 2	-1
+8030	METOP-B AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	METOP-1 (Metop-B)	-1
+8027	METOP-A AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	METOP-2 (Metop-A)	-1
+8059	METOP-C AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	METOP-3 (Metop-C)	-1
+37006	CRYOSAT 2 RALT WAVE	WAVE integrated Parameters	ERS-SSMI-SCAT	CRYOSAT-2 RADAR ALTIMETER	WAVE	RALT	-1	-1	CryoSat-2	-1
+8002	METEOSAT 3 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	METEOSAT 3	-1
+8003	METEOSAT 4 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	METEOSAT 4	-1
+8004	METEOSAT 5 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	METEOSAT 5	-1
+8005	METEOSAT 6 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	METEOSAT 6	-1
+8006	METEOSAT 7 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	METEOSAT 7	-1
+8007	METEOSAT 8 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	METEOSAT 8	-1
+8008	METEOSAT 9 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	METEOSAT 9	-1
+8031	METEOSAT 10 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	METEOSAT 10	-1
+8034	Meteosat-1 AMV	SATOB	SATOB	SATOB AMV	SATOB	SATOB AMV	-1	-1	METEOSAT 1	-1
+8001	METEOSAT 2 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	METEOSAT 2	-1
+37001	ENVISAT RALT WAVE	WAVE integrated Parameters	ERS-SSMI-SCAT	ENVISAT RADAR ALTIMETER 	WAVE	RALT	-1	-1	ENVISAT	-1
+8056	METEOSAT 11 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	METEOSAT 11	-1
+8043	GMS-3 SATOB-AMV	SATOB	SATOB	SATOB AMV	SATOB	SATOB AMV	-1	-1	GMS 3	-1
+8032	GMS-3 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	GMS 3	-1
+8033	GMS-4 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	GMS 4	-1
+8009	GMS 5 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	GMS 5	-1
+8010	MTSAT-1R AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	MTSAT-1R	-1
+8026	MTSAT-2 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	MTSAT-2	-1
+8053	Himawari 8 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	Himawari-8	-1
+8058	Himawari 9 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	Himawari-9	-1
+8036	NOAA 9 AVHRR AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	NOAA 9	-1
+8037	NOAA 10 AVHRR AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	NOAA 10	-1
+8038	NOAA 11 AVHRR AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	NOAA 11	-1
+8039	NOAA 12 AVHRR AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	NOAA 12	-1
+8040	NOAA 14 AVHRR AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	NOAA 14	-1
+8015	NOAA 15 AVHRR IR AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	NOAA 15	-1
+8016	NOAA 16 AVHRR IR AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	NOAA 16	-1
+8017	NOAA 17 AVHRR IR AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	NOAA 17	-1
+8018	NOAA 18 AVHRR IR AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	NOAA 18	-1
+8019	NOAA 19 AVHRR IR AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	NOAA 19	-1
+8050	NPP AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	NPP	-1
+8051	GOES 6 AMV subtype 82	SATOB	SATOB	SATOB AMV	SATOB	SATOB AMV	-1	-1	GOES 6	-1
+8052	GOES 6 AMV subtype 83	SATOB	SATOB	GOES-6 AMV subtype 83	SATOB	SATOB AMV	-1	-1	GOES 6	-1
+8042	GOES 8 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	GOES 8	-1
+8011	GOES 9 WV AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	GOES 9	-1
+8012	GOES 10 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	GOES 10	-1
+8013	GOES 11 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	GOES 11	-1
+8014	GOES 12 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	GOES 12	-1
+8025	GOES 13 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	GOES 13	-1
+8028	GOES 14 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	GOES 14	-1
+8029	GOES 15 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	GOES 15	-1
+37002	JASON 1 RALT WAVE	WAVE integrated Parameters	ERS-SSMI-SCAT	JASON RADAR ALTIMETER	WAVE	RALT	-1	-1	JASON 1	-1
+37003	JASON 2 RALT WAVE	WAVE integrated Parameters	ERS-SSMI-SCAT	JASON-2 RADAR ALTIMETER	WAVE	RALT	-1	-1	JASON 2	-1
+8046	KALPANA-1 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	KALPANA-1	-1
+37007	SARAL RALT WAVE	WAVE integrated Parameters	ERS-SSMI-SCAT	SARAL RADAR ALTIMETER	WAVE	RALT	-1	-1	SARAL	-1
+8049	INSAT-3D AMVs	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	INSAT 3D	-1
+8022	FY-2C IR AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	FY-2C	-1
+8023	FY-2D IR AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	FY-2D	-1
+8024	FY-2E IR AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	FY-2E	-1
+8035	NOAA 7 AVHRR AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	NOAA 7	-1
+8020	TERRA MODIS AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	TERRA	-1
+8021	AQUA MODIS AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	AQUA	-1
+8045	COMS-1 AMV 	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	COMS-1	-1
+8048	Dual-Metop AMVs	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	Combination of Metop-1 to Metop-3	-1
+8047	Leo-Geo AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	Non specific mixture of geostationary and low earth orbiting satellites	-1
+8044	GMS-1 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	GMS	-1
+8041	GMS-2 SATOB-AMV	SATOB	SATOB	SATOB AMV	SATOB	SATOB AMV	-1	-1	GMS 2	-1
+8054	FY-2G AMVs	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	FY-2G	-1
+37008	JASON 3 RALT WAVE	WAVE integrated Parameters	ERS-SSMI-SCAT	JASON-2 RADAR ALTIMETER	WAVE	RALT	-1	-1	JASON 3	-1
+37009	Sentinel 3A RALT WAVE	WAVE integrated Parameters	ERS-SSMI-SCAT	SENTINEL 3 RADAR ALTIMETER	WAVE	RALT	-1	-1	Sentinel 3A	-1
+8062	Sentinel 3A AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	Sentinel 3A	-1
+8057	GOES 16 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	GOES 16	-1
+8060	NOAA 20 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	NOAA 20	-1
+37010	Sentinel 3B RALT WAVE	WAVE integrated Parameters	ERS-SSMI-SCAT	SENTINEL 3 RADAR ALTIMETER	WAVE	RALT	-1	-1	Sentinel 3B	-1
+8063	Sentinel 3B AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	Sentinel 3B	-1
+8061	GOES 17 AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	GOES 17	-1
+38001	Sentinel 1A SAR-C	WAVE spectra	ERS-SSMI-SCAT	Sentinel 1 SAR-C	WAVE	RALT	-1	-1	Sentinel 1A	-1
+38002	Sentinel 1B SAR-C	WAVE spectra	ERS-SSMI-SCAT	Sentinel 1 SAR-C	WAVE	RALT	-1	-1	Sentinel 1B	-1
+37012	Sentinel 6A RALT WAVE	WAVE integrated Parameters	ERS-SSMI-SCAT	Sentinel 6 RALT WAVE	WAVE	RALT	-1	-1	Sentinel 6A	-1
+37013	Sentinel 6B RALT WAVE	WAVE integrated Parameters	ERS-SSMI-SCAT	Sentinel 6 RALT WAVE	WAVE	RALT	-1	-1	Sentinel 6B	-1
+8064	Mixed Sentinel AMV	SATOB	SATOB	AMV	SATOB	AMV	-1	-1	Combination of Sentinel-3 satellites	-1
+39001	1h rain gauge accumulation	RAINGG	Land Surface	Rain Gauge	-1	-1	-1	-1	-1	3600
+39002	3h rain gauge accumulation	RAINGG	Land Surface	Rain Gauge	-1	-1	-1	-1	-1	10800
+39003	6h rain gauge accumulation	RAINGG	Land Surface	Rain Gauge	-1	-1	-1	-1	-1	21600
+39004	12h rain gauge accumulation	RAINGG	Land Surface	Rain Gauge	-1	-1	-1	-1	-1	43200
+39005	24h rain gauge accumulation	RAINGG	Land Surface	Rain Gauge	-1	-1	-1	-1	-1	86400

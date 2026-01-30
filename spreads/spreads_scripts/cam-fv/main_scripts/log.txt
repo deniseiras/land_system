@@ -1,0 +1,297 @@
+nohup: ignoring input
+
+ START CYCLES 
+
+
+ Consistent values for CONTINUE_RUN and CYCLES number 
+
+ SCRIPTDIR= /users_home/cmcc/gc02720/spreads/spreads_scripts/cam-fv/main_scripts
+ CLONESROOT=  /users_home/cmcc/gc02720/cesm-exp/iasi0
+ case_name= iasi0
+ nens= 5
+
+ cycle number 1
+ Assimilation required!
+1
+ check_assi is positive! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/iasi0/iasi0_0001
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/iasi0/iasi0_0001/env_batch.xml, check files /users_home/cmcc/gc02720/model/cmcc-cm/cime/../ccs_config/machines/config_batch.xml
+ Started with 82203
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/iasi0/iasi0_0002
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/iasi0/iasi0_0002/env_batch.xml, check files /users_home/cmcc/gc02720/model/cmcc-cm/cime/../ccs_config/machines/config_batch.xml
+ Started with 82205
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/iasi0/iasi0_0003
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/iasi0/iasi0_0003/env_batch.xml, check files /users_home/cmcc/gc02720/model/cmcc-cm/cime/../ccs_config/machines/config_batch.xml
+ Started with 82212
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/iasi0/iasi0_0004
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/iasi0/iasi0_0004/env_batch.xml, check files /users_home/cmcc/gc02720/model/cmcc-cm/cime/../ccs_config/machines/config_batch.xml
+ Started with 82215
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/iasi0/iasi0_0005
+
+env_batch.xml appears to have changed, regenerating batch scripts
+manual edits to these file will be lost!
+
+WARNING: Could NOT find a start file to use usingic_phase1.clm2.r.2017-10-02-00000.nc
+submit_jobs case.run
+Submit job case.run
+Deprecated "arg" node detected in /users_home/cmcc/gc02720/cesm-exp/iasi0/iasi0_0005/env_batch.xml, check files /users_home/cmcc/gc02720/model/cmcc-cm/cime/../ccs_config/machines/config_batch.xml
+ Started with 82219
+ string_id =  done(82203) && done(82205) && done(82212) && done(82215) && done(82219)
+Job has been assigned to project 'R000'.
+Job <82220> is submitted to queue <p_short>.
+<<Waiting for dispatch ...>>
+<<Starting on n007-ibj>>
+start -- BOGUS ASSIM
+Fri Mar 29 12:43:36 CET 2024 -- END BOGUS ASSIM
+Fri Mar 29 12:43:36 CET 2024 -- BEGIN CAM_ASSIMILATE
+FGAT is TRUE
+WARNING! Many conda enviroments may include MPI installation (i.e. mpicc/mpirun). If you wish to use Intel MPI to build or execute your code, please unload and load "impi-xxxx.xx.xx" module after load/source/activate the involved conda env. Please type "which mpirun" to verify the executables paths.
+Module loaded!
+Loading intel-2021.6.0/2021.6.0
+  Loading requirement: oneapi-2022.1.0/compiler-rt/2022.1.0
+Loading intel-2021.6.0/sqlite/3.40.0-v3tky
+  Loading requirement: intel-2021.6.0/ncurses/6.3-vkhgo
+    intel-2021.6.0/readline/8.2-mavzw intel-2021.6.0/zlib/1.2.13-2hp37
+Loading intel-2021.6.0/perl-dbi/1.643-3satl
+  Loading requirement: intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+    intel-2021.6.0/bzip2/1.0.8-odjrk intel-2021.6.0/gdbm/1.23-pxcvo
+    intel-2021.6.0/perl/5.36.0-jj4hw
+Loading intel-2021.6.0/jasper/2.0.32-rofnd
+  Loading requirement: intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+Currently Loaded Modulefiles:
+anaconda/3-2022.10
+oneapi-2022.1.0/compiler-rt/2022.1.0
+intel-2021.6.0/2021.6.0
+intel-2021.6.0/libszip/2.1.1-tvhyi
+impi-2021.6.0/2021.6.0
+intel-2021.6.0/ncurses/6.3-vkhgo
+intel-2021.6.0/readline/8.2-mavzw
+intel-2021.6.0/zlib/1.2.13-2hp37
+intel-2021.6.0/sqlite/3.40.0-v3tky
+intel-2021.6.0/berkeley-db/18.1.40-ybvzh
+intel-2021.6.0/bzip2/1.0.8-odjrk
+intel-2021.6.0/gdbm/1.23-pxcvo
+intel-2021.6.0/perl/5.36.0-jj4hw
+intel-2021.6.0/perl-dbi/1.643-3satl
+intel-2021.6.0/perl-dbd-sqlite/1.72-3f7xn
+intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
+intel-2021.6.0/jasper/2.0.32-rofnd
+intel-2021.6.0/libunwind/1.6.2-3lp4l
+gcc-12.2.0/12.2.0
+ SCRIPTDIR= /users_home/cmcc/gc02720/spreads/spreads_scripts/cam-fv/main_scripts
+ DARTROOT=  /users_home/cmcc/gc02720/spreads
+ CLONESROOT=  /users_home/cmcc/gc02720/cesm-exp/iasi0
+ case_name= iasi0
+ NTSLOTS = 13
+ CASEROOT0001= /users_home/cmcc/gc02720/cesm-exp/iasi0/iasi0_0001
+ I am inside /users_home/cmcc/gc02720/cesm-exp/iasi0/iasi0_0001 
+ xmlquery start
+ scomp = cam
+ CASE = iasi0_0001
+ CAM_DYCORE = fv
+ EXEROOT = /work/cmcc/gc02720/CMCC-CM/iasi0_0001/bld
+ RUNDIR = /work/cmcc/gc02720/CMCC-CM/iasi0_0001/run
+ archive = /work/cmcc/gc02720/CMCC-CM/archive
+ TOTALPES = 36
+ xmlquery end
+ TOTALPES= 180
+ TMPROOT= /work/cmcc/gc02720/CMCC-CM/TMPIASI0
+ CASESRUNROOT= /work/cmcc/gc02720/CMCC-CM
+
+ START CHECK JOBS
+
+ SCRIPTDIR= /users_home/cmcc/gc02720/spreads/spreads_scripts/cam-fv/main_scripts
+ CLONESROOT=  /users_home/cmcc/gc02720/cesm-exp/iasi0
+ case_name= iasi0
+ nens= 5
+
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/iasi0/iasi0_0001
+resubmit_num 0
+ job finished! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/iasi0/iasi0_0002
+resubmit_num 0
+ job finished! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/iasi0/iasi0_0003
+resubmit_num 0
+ job finished! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/iasi0/iasi0_0004
+resubmit_num 0
+ job finished! 
+ Enter in: /users_home/cmcc/gc02720/cesm-exp/iasi0/iasi0_0005
+resubmit_num 0
+ job finished! 
+ All jobs finished correctly!
+
+ END CHECK JOBS
+
+rundir
+/work/cmcc/gc02720/CMCC-CM/iasi0_0001/run
+ FILE = iasi0_0001.cam.r.2017-10-02-21600.nc
+ ATM_DATE_EXT = 2017-10-02-21600
+ ATM_DATE = 2017-10-02-21600
+ ATM_YEAR = 2017
+ ATM_MONTH = 10
+ ATM_DAY = 02
+ ATM_SECONDS = 21600
+ ATM_HOUR = 6
+ valid time of model is 2017 10 02 21600 (seconds)
+ valid time of model is 2017 10 02 6 (hours)
+INFVAL =  5
+ Inflation used. Restage  previous inflation files if any exist.
+ No HIDE dir found.
+Fri Mar 29 12:43:51 CET 2024 -- BEGIN COPY BLOCK
+Fri Mar 29 12:43:51 CET 2024 -- END COPY BLOCK
+stages_except_output = {forecast}
+stages_all = {forecast,output}
+Remove old databases from TS1
+Copy the new databases in TS1
+Remove old databases from TS2
+Copy the new databases in TS2
+Remove old databases from TS3
+Copy the new databases in TS3
+Remove old databases from TS4
+Copy the new databases in TS4
+Remove old databases from TS5
+Copy the new databases in TS5
+Remove old databases from TS6
+Copy the new databases in TS6
+Remove old databases from TS7
+Copy the new databases in TS7
+Remove old databases from TS8
+Copy the new databases in TS8
+Remove old databases from TS9
+Copy the new databases in TS9
+Remove old databases from TS10
+Copy the new databases in TS10
+Remove old databases from TS11
+Copy the new databases in TS11
+Remove old databases from TS12
+Copy the new databases in TS12
+Remove old databases from TS13
+Copy the new databases in TS13
+Fri Mar 29 12:43:53 CET 2024 -- BEGIN PREPROCESSING
+Fri Mar 29 12:43:53 CET 2024
+BEGIN PYTHON PROCESS 
+Member: 1, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0001/run/iasi0_0001.cam.i.2017-10-02-10800.nc
+Member: 1, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0001/run/iasi0_0001.cam.i.2017-10-02-12600.nc
+Member: 1, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0001/run/iasi0_0001.cam.i.2017-10-02-14400.nc
+Member: 1, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0001/run/iasi0_0001.cam.i.2017-10-02-16200.nc
+Member: 1, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0001/run/iasi0_0001.cam.i.2017-10-02-18000.nc
+Member: 1, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0001/run/iasi0_0001.cam.i.2017-10-02-19800.nc
+Member: 1, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0001/run/iasi0_0001.cam.i.2017-10-02-21600.nc
+Member: 1, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0001/run/iasi0_0001.cam.i.2017-10-02-23400.nc
+Member: 1, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0001/run/iasi0_0001.cam.i.2017-10-02-25200.nc
+Member: 1, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0001/run/iasi0_0001.cam.i.2017-10-02-27000.nc
+Member: 1, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0001/run/iasi0_0001.cam.i.2017-10-02-28800.nc
+Member: 1, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0001/run/iasi0_0001.cam.i.2017-10-02-30600.nc
+Member: 1, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0001/run/iasi0_0001.cam.i.2017-10-02-32400.nc
+Member: 2, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0002/run/iasi0_0002.cam.i.2017-10-02-10800.nc
+Member: 2, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0002/run/iasi0_0002.cam.i.2017-10-02-12600.nc
+Member: 2, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0002/run/iasi0_0002.cam.i.2017-10-02-14400.nc
+Member: 2, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0002/run/iasi0_0002.cam.i.2017-10-02-16200.nc
+Member: 2, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0002/run/iasi0_0002.cam.i.2017-10-02-18000.nc
+Member: 2, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0002/run/iasi0_0002.cam.i.2017-10-02-19800.nc
+Member: 2, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0002/run/iasi0_0002.cam.i.2017-10-02-21600.nc
+Member: 2, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0002/run/iasi0_0002.cam.i.2017-10-02-23400.nc
+Member: 2, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0002/run/iasi0_0002.cam.i.2017-10-02-25200.nc
+Member: 2, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0002/run/iasi0_0002.cam.i.2017-10-02-27000.nc
+Member: 2, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0002/run/iasi0_0002.cam.i.2017-10-02-28800.nc
+Member: 2, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0002/run/iasi0_0002.cam.i.2017-10-02-30600.nc
+Member: 2, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0002/run/iasi0_0002.cam.i.2017-10-02-32400.nc
+Member: 3, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0003/run/iasi0_0003.cam.i.2017-10-02-10800.nc
+Member: 3, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0003/run/iasi0_0003.cam.i.2017-10-02-12600.nc
+Member: 3, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0003/run/iasi0_0003.cam.i.2017-10-02-14400.nc
+Member: 3, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0003/run/iasi0_0003.cam.i.2017-10-02-16200.nc
+Member: 3, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0003/run/iasi0_0003.cam.i.2017-10-02-18000.nc
+Member: 3, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0003/run/iasi0_0003.cam.i.2017-10-02-19800.nc
+Member: 3, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0003/run/iasi0_0003.cam.i.2017-10-02-21600.nc
+Member: 3, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0003/run/iasi0_0003.cam.i.2017-10-02-23400.nc
+Member: 3, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0003/run/iasi0_0003.cam.i.2017-10-02-25200.nc
+Member: 3, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0003/run/iasi0_0003.cam.i.2017-10-02-27000.nc
+Member: 3, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0003/run/iasi0_0003.cam.i.2017-10-02-28800.nc
+Member: 3, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0003/run/iasi0_0003.cam.i.2017-10-02-30600.nc
+Member: 3, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0003/run/iasi0_0003.cam.i.2017-10-02-32400.nc
+Member: 4, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0004/run/iasi0_0004.cam.i.2017-10-02-10800.nc
+Member: 4, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0004/run/iasi0_0004.cam.i.2017-10-02-12600.nc
+Member: 4, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0004/run/iasi0_0004.cam.i.2017-10-02-14400.nc
+Member: 4, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0004/run/iasi0_0004.cam.i.2017-10-02-16200.nc
+Member: 4, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0004/run/iasi0_0004.cam.i.2017-10-02-18000.nc
+Member: 4, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0004/run/iasi0_0004.cam.i.2017-10-02-19800.nc
+Member: 4, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0004/run/iasi0_0004.cam.i.2017-10-02-21600.nc
+Member: 4, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0004/run/iasi0_0004.cam.i.2017-10-02-23400.nc
+Member: 4, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0004/run/iasi0_0004.cam.i.2017-10-02-25200.nc
+Member: 4, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0004/run/iasi0_0004.cam.i.2017-10-02-27000.nc
+Member: 4, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0004/run/iasi0_0004.cam.i.2017-10-02-28800.nc
+Member: 4, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0004/run/iasi0_0004.cam.i.2017-10-02-30600.nc
+Member: 4, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0004/run/iasi0_0004.cam.i.2017-10-02-32400.nc
+Member: 5, TS1: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0005/run/iasi0_0005.cam.i.2017-10-02-10800.nc
+Member: 5, TS2: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0005/run/iasi0_0005.cam.i.2017-10-02-12600.nc
+Member: 5, TS3: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0005/run/iasi0_0005.cam.i.2017-10-02-14400.nc
+Member: 5, TS4: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0005/run/iasi0_0005.cam.i.2017-10-02-16200.nc
+Member: 5, TS5: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0005/run/iasi0_0005.cam.i.2017-10-02-18000.nc
+Member: 5, TS6: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0005/run/iasi0_0005.cam.i.2017-10-02-19800.nc
+Member: 5, TS7: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0005/run/iasi0_0005.cam.i.2017-10-02-21600.nc
+Member: 5, TS8: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0005/run/iasi0_0005.cam.i.2017-10-02-23400.nc
+Member: 5, TS9: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0005/run/iasi0_0005.cam.i.2017-10-02-25200.nc
+Member: 5, TS10: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0005/run/iasi0_0005.cam.i.2017-10-02-27000.nc
+Member: 5, TS11: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0005/run/iasi0_0005.cam.i.2017-10-02-28800.nc
+Member: 5, TS12: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0005/run/iasi0_0005.cam.i.2017-10-02-30600.nc
+Member: 5, TS13: python preproc. /work/cmcc/gc02720/CMCC-CM/iasi0_0005/run/iasi0_0005.cam.i.2017-10-02-32400.nc
+Fri Mar 29 12:47:01 CET 2024
+END PYTHON PROCESS 
+ Extract information phis from /work/cmcc/gc02720/CMCC-CM/iasi0_0001/run/iasi0_0001.cam.h0.2017-10-02-00000.nc
+ MYSTRING = inf_initial_from_restart    true    false 
+ PRIOR_INF= 5
+ POSTE_INF= 0
+ PRIOR_INFLATION_FROM_RESTART = true
+ USING_PRIOR_INFLATION = true
+ POSTE_INFLATION_FROM_RESTART = ignored
+ USING_POSTE_INFLATION = false
+ CONTINUE_RUN = FALSE
+./cases_assimilate.bash: line 606: [CONTINUE_RUN: command not found
+latestfile
+latestfile
+ nfiles = 2
+ latest_mean = latestfile
+ latest_sd = latestfile
+'latestfile' -> 'input_priorinf_mean.nc'
+'latestfile' -> 'input_priorinf_sd.nc'
+ add TS TREFHT LANDFRAC QVMR to the inflation files
+Traceback (most recent call last):
+  File "/work/cmcc/gc02720/CMCC-CM/TMPIASI0/./rep_inflation.py", line 6, in <module>
+    data1 = Dataset('input_priorinf_mean.nc','r+')
+  File "src/netCDF4/_netCDF4.pyx", line 2463, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2026, in netCDF4._netCDF4._ensure_nc_success
+OSError: [Errno -51] NetCDF: Unknown file format: b'input_priorinf_mean.nc'
+ assimilation did not work properly, forecast and cleaning procedures are skipped
+
+ END CYCLES 
+

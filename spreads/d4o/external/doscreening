@@ -1,0 +1,103 @@
+#!/bin/bash
+#
+# Usage: ./doscreening dbfile(s)
+#        ./doscreening "TS5/bufr.*.db"  # process all timeslot#5 dbfiles that start with "bufr." and end with ".db"
+# 
+
+# (0) Check args
+
+cmdfile=$(readlink -f $0)
+cmddir=$(dirname $cmdfile)
+
+function Usage()
+{
+    egrep -A1 '^# Usage:' $cmdfile | perl -pe 's/^# //'
+}
+
+if [[ $# -lt 1 ]] ; then
+    Usage
+    exit 1
+fi
+
+# (1) Initialize env: get access to compilers, SQLite3 version and d4o library of the USER=ss35621 on Zeus
+
+#source /usr/share/Modules/init/bash # this is needed ONLY if ran as a batch job
+source /users_home/cmcc/ss35621/load-modules-d4o.zeus
+source /data/cmcc/ss35621/d4o/install/INTEL/source.me
+
+# prepare $files
+
+files=""
+for ff in "$@"
+do
+    for f in $(eval echo "$ff")
+    do
+        files+=":$f"
+    done
+done
+files=$(echo "$files" | perl -pe 's/^://; s/:/\n/g;' | sort -u | perl -pe 's/\n/ /g;' | perl -pe 's/\s+$//;');
+
+timestamp=$(date +%s) # stderr+stdout output goes to log.$timestamp.txt
+
+{
+    set -euo pipefail
+
+    echo 'Running: $0 '"$@"
+    
+    set -x # display commands executed
+
+    # (2) Re-build the Screening executable
+    
+    #make clean # clean up existing objects & executables
+    make Screening
+    
+    # (3) Untar sample inputs
+    
+    tar -zxf aircraft_2019040506.tgz # overwrites existing files; comment out if not desired everytime
+    
+    # (4) Run Screening with dbfile(s) -- usually under the TS*/ directories obtained from the tarball
+    
+    export d4o_debug=1:0 # debug level 1 for task#0
+    
+    ./Screening $files
+    
+    # (5) Perform some ad-hoc SQL-queries (comprehensive docs under https://www.sqlite.org)
+    
+    set +x
+    set +eu # switch off error exits
+    
+    sqlite='sqlite3 -readonly -batch -init /dev/null -nullvalue NULL -box' # a short-hand for r/o access to sqlite3-dbfile (try also -table or -csv -header instead of -box)
+    
+    declare -A sql
+    
+    sql[1]=".schema" # or if for 'hdr' only then just ".schema hdr"
+    sql[2]="select id,reportype,obstype,codetype,bufrtype,subtype,lat,lon,deglat,deglon,geoarea,status from hdr where status = 1 order by id limit 10"
+    sql[3]="select count(*) from hdr where status = 1"
+    sql[4]="select reportype,obstype,codetype,count(*) from hdr group by reportype,obstype,codetype"
+    sql[5]="select count(*) from body where status = 1"
+    sql[6]="select count(*) from ens where status = 1"
+    sql[7]="select id,reportype,entryno,varno,obsvalue,vertco_type,levelht,ppcode from hdr join body on id=hdr_id where body.status = 1 order by id,entryno limit 20"
+    sql[8]="select id,reportype,entryno,varno,obsvalue,member,prior,posterior from hdr join body on id=body.hdr_id join ens on body.hdr_id = ens.hdr_id and entryno = body_entryno where ens.status = 0 limit 30"
+    
+    for f in $files
+    do
+	if [[ -r $f ]] ; then
+	    echo "Processing $f ..."
+	    n=${#sql[@]}
+	    for ((i=1; i<=$n; i++))
+	    do
+		query=${sql[$i]}
+		echo "query#$i: $query"
+		$sqlite $f "$query"
+	    done
+	fi
+    done
+
+    pwd
+    ls -ltra
+} 2>&1 | tee log.$timestamp.txt
+
+
+echo "Output saved also into the file log.$timestamp.txt"
+
+exit 0

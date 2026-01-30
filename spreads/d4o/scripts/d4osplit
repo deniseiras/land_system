@@ -1,0 +1,344 @@
+#!/bin/bash
+#
+# Usage: d4osplit [parallel=0|1] "timeslot(s)" "bufr*db"  # parallel=1 the default i.e. all given timeslots processed in parallel (but the files still sequentially)
+#        d4osplit 1 bufr.1.db                   # pulls just timeslot#1 out of the database bufr.1.db and places outcome to TS1/bufr.1.db
+#        d4osplit 1-3 atovs.10.db atovs.11.db   # pulls timeslots 1..3 from the databases atovs.10.db atovs.11.db
+#        d4osplit 4,7-13 "iasi.*.db"            # pulls timeslots 4,7..13 from the databases expressed as wildcards iasi.*.db
+#        d4osplit parallel=0 4,7-13 "iasi.*.db" # the same as previous, but runs sequentially -- one timeslot at a time
+#        d4osplit parallel=0 ens=80 4,7-13 "iasi.*.db" # the same as previous, but runs sequentially -- one timeslot at a time AND creates 80 ens member tables
+#        d4osplit parallel=0 ens=80 catalog=catalog.db 4,7-13 "iasi.*.db" # the same as previous, but runs in parallel and creates timeslot-wise catalog.db's
+#        d4osplit backup=0 ... # turns-off creation of backup databases under TS*/backups/
+# 
+
+cmdfile=$(readlink -f $0)
+cmddir=$(dirname $cmdfile)
+
+function Usage()
+{
+    egrep -A8 '^# Usage:' $cmdfile | perl -pe 's/^# //'
+}
+
+shopt -s extglob # enables extglob i.e. @(x|y|z) regular expressions in bash
+
+parallel=1
+regex1='^parallel=(0|1)$'
+ens=0
+regex2='^ens=[0-9]+$'
+catalog=/dev/null
+regex3='^catalog=.+$'
+backup=1
+regex4='^backup=(0|1)$'
+
+if [[ $# -ge 1 ]] ; then
+    for ff in "$@"
+    do
+	if [[ "$ff" =~ $regex1 ]] ; then # parallel
+	    #echo "$ff"
+	    eval $ff
+	    shift
+	elif [[ "$ff" =~ $regex2 ]] ; then # ens
+	    #echo "$ff"
+	    eval $ff
+	    shift
+	elif [[ "$ff" =~ $regex3 ]] ; then # catalog
+	    #echo "$ff"
+	    eval $ff
+	    shift
+	elif [[ "$ff" =~ $regex4 ]] ; then # backup
+	    #echo "$ff"
+	    eval $ff
+	    shift
+	fi
+    done
+fi
+
+if [[ $# -lt 2 ]] ; then
+    Usage
+    exit 1
+fi
+
+d4ocatalog=$cmddir/d4ocatalog
+[[ -x $d4ocatalog ]] || d4ocatalog=$(which d4ocatalog 2>/dev/null || echo "d4ocatalog")
+
+set -eu
+
+tslots=$1
+shift 1
+
+files=""
+for ff in "$@"
+do
+    for f in $(eval echo "$ff")
+    do
+	if [[ -r $f ]] ; then
+	    files+=":$f"
+	fi
+    done
+done
+
+files=$(echo "$files" | perl -pe 's/^://; s/:/\n/g;' | sort -u | perl -pe 's/\n/ /g;' | perl -pe 's/\s+$//;');
+
+tslots=$(echo $tslots | perl -pe 's/\s+//g; s/,/\n/g;' | perl -ne 'printf("$1\n")if(m/^(\d+)$/);if(m/^(\d+)-(\d+)$/){foreach($1..$2){printf("$_\n")}}' | sort -nu | perl -pe 's/\n/ /g;' | perl -pe 's/\s+$//;')
+
+callcliro="sqlite3 -batch -init /dev/null -nullvalue NULL -noheader -csv -readonly"
+callclild="sqlite3 -batch -init /dev/null -nullvalue NULL -readonly"
+callclist="sqlite3 -batch -init /dev/null -nullvalue NULL"
+callclibx="sqlite3 -batch -init /dev/null -nullvalue NULL -box -readonly"
+callcliln="sqlite3 -batch -init /dev/null -nullvalue NULL -line -header -readonly"
+
+pid=$$
+export TMPSLASH=${TMPSLASH:-/tmp} # potentially /dev/shm
+export tmpdir=$TMPSLASH/$USER/d4osplit.$pid
+echo "[$(date +%s.%N)] $(date): Temporary dumps written to $tmpdir on host $(hostname -f)"
+mkdir -pv $tmpdir
+df -h $tmpdir
+
+export LOGS=${LOGS:-logs}
+mkdir -pv $LOGS || :
+
+errfile=$(readlink -f $LOGS/errors-in-d4osplit.$pid.txt)
+rm -f $errfile
+
+_files=""
+for f in $files
+do
+    f=$(readlink -f $f)
+    [[ -r $f ]] && _files+="$f "
+done
+files=$_files
+
+for f in $files
+do
+    f=$(readlink -f $f)
+    echo " "
+    echo "[$(date +%s.%N)] $(date): Processing input database $f ..."
+    ls -ltrh $f
+    
+    declare -A cols
+    
+    tables=$($callcliro $f "select name from sqlite_master where type='table'" | grep -Pv '^sqlite_' | perl -pe 's/\n/ /' | perl -pe 's/\s*$//')
+    for tbl in $tables
+    do
+	cols[$tbl]=$($callcliro $f "select '$tbl'||'.'||name from pragma_table_info('$tbl')" | perl -pe 's/\n/,/' | perl -pe 's/,\s*$//')
+	#echo "$tbl : ${cols[$tbl]}"
+    done    	 
+
+    for ts in $tslots # all parallel
+    do
+	echo "[$(date +%s.%N)] $(date): Creating DBs from $f for timeslot#$ts ..."
+	{
+	    d=TS$ts
+	    mkdir -pv $d
+	    cd $d
+	    pwd
+
+	    schema=$(basename $f .db).sch
+	    load=$(basename $f .db).load
+	    store=$(basename $f .db).store
+	    
+	    cat /dev/null > $load
+	    echo ".once $schema" >> $load
+	    echo ".schema"       >> $load
+	    dumps=""
+	    for tbl in $tables
+	    do
+		if [[ "$tbl" = "ens" ]] && [[ $ens -gt 0 ]] ; then
+		    # we do nothing when ens > 0 since we are about to create entries for ens-table upon store-phase
+		    # and this has to come AFTER all relevant tables ahead of ens-table have been created (in particular hdr & body)
+		    :
+		else
+		    echo ".mode insert $tbl" >> $load
+		    adump="$tmpdir/$(basename $f .db).TS$ts.$tbl.tbl.gz"
+		    echo ".once '|gzip -c > $adump'" >> $load
+		    dumps+=" $adump"
+		    c=${cols[$tbl]}
+		    add=" AND $tbl.status & 1 = 1"
+		    echo "$c" | grep -Pq "\b$tbl\.status\b" || add=""
+		    if [[ "$tbl" = "status_bits" ]] ; then
+			echo "select $c from $tbl;" >> $load
+		    elif [[ "$tbl" = @(hdr|toc) ]] ; then
+			echo "select $c from $tbl where timeslot = $ts$add;" >> $load
+		    else
+			echo "select $c from hdr join $tbl on id = hdr_id where timeslot = $ts AND hdr.status & 1 = 1$add;" >> $load
+		    fi
+		fi
+	    done
+	    
+	    # Update hdr.nbody & hdr.nsat to reflect the remaining data rows in child tables body & sat, respectively
+	    echo ".mode tabs" >> $load
+	    for tbl in sat body
+	    do
+		nf=$tmpdir/$(basename $f .db).TS$ts.$tbl.n.gz
+		echo ".once '|gzip -c > $nf'" >> $load
+		dumps+=" $nf"
+		c=${cols[$tbl]}
+		add=" AND $tbl.status & 1 = 1"
+		echo "$c" | grep -Pq "\b$tbl\.status\b" || add=""
+		echo "SELECT 'UPDATE hdr SET n${tbl}='||COUNT(*)||' WHERE id='||id||';' FROM hdr JOIN $tbl ON id=hdr_id WHERE timeslot = $ts$add GROUP BY id HAVING n$tbl <> COUNT(*);" >> $load
+	    done
+
+	    echo ".stats" >> $load
+
+	    echo "[$(date +%s.%N)] $(date): Dumping active obs from input database $f : timeslot#$ts ..."
+	    
+	    rc=0
+	    
+	    set -x
+	    cat $load
+	    $callclild $f < $load || rc=$?
+	    set +x
+	    [[ $rc -eq 0 ]] || echo "Failure in $(pwd): $callclild $f < $load" | tee -a $errfile
+
+	    if [[ $rc -eq 0 ]] ; then
+		cat /dev/null > $store
+		echo ".output /dev/null" >> $store
+		echo "PRAGMA foreign_keys = OFF;" >> $store
+		echo "PRAGMA synchronous = OFF;"  >> $store
+		#echo "PRAGMA journal_mode = MEMORY;" >> $store
+		echo "PRAGMA journal_mode = OFF;" >> $store
+		echo "PRAGMA locking_mode = EXCLUSIVE;" >> $store
+		#echo "PRAGMA page_size = 4096;" >> $store
+		echo "PRAGMA cache_size = ${PRAGMA_CACHE_SIZE:--100000};" >> $store # kibibytes if < 0, pages if > 0
+		echo ".read $schema" >> $store
+		
+		for adump in $dumps
+		do
+		    echo ".read '|gunzip -c < $adump'" >> $store
+		done
+		
+		if [[ $ens -gt 0 ]] ; then # Let's populate ens-table now : we do NOT need WHERE-stmt as all obs active & at the current timeslot
+		    echo ".bail on" >> $store
+		    echo "DELETE FROM ens;" >> $store
+		    echo ".bail off" >> $store
+		    member=0
+		    while [[ $member -lt $ens ]]
+		    do
+			((++member))
+			echo "INSERT INTO ens (body_entryno,hdr_id,member) SELECT entryno,id,$member FROM hdr JOIN body ON id = hdr_id ORDER BY entryno,id;" >> $store
+		    done
+		fi
+		
+		echo ".output" >> $store
+		echo ".stats" >> $store
+		newdb=$(basename $f)
+		
+		rm -f $newdb
+		newdb=$(readlink -f $newdb)
+		
+		ls -ltrh $schema $tmpdir/$(basename $f .db).TS$ts.*.tbl.gz $load $store || :
+		
+		echo "[$(date +%s.%N)] $(date): Creating output database $newdb from dumps : timeslot#$ts ..."
+		
+		set -x
+		cat $store
+		$callclist $newdb < $store || rc=$?
+		set +x
+		[[ $rc -eq 0 ]] || echo "Failure in $(pwd): $callclist $newdb < $store" | tee -a $errfile
+
+		if [[ $rc -eq 0 ]] ; then
+		    rm -fv $schema $tmpdir/$(basename $f .db).TS$ts.*.tbl.gz $tmpdir/$(basename $f .db).TS$ts.*.n.gz $load $store # comment this line if you want to see contents of these files
+		    
+		    sql=""
+		    first=""
+		    for tbl in $tables
+		    do
+			sql+="$first"
+			sql+="SELECT '$tbl' AS 'table', COUNT(*) AS nrows, (SELECT COUNT(*) FROM pragma_table_info('$tbl')) AS ncols"
+			sql+=", (SELECT GROUP_CONCAT(name) FROM pragma_table_info('$tbl')) AS cols"   # STORED colnames only
+			sql+=", (SELECT GROUP_CONCAT(name) FROM pragma_table_xinfo('$tbl')) AS vcols" # STORED colnames with VIRTUAL ones
+			sql+=" FROM '$tbl'"
+			first=" UNION ALL "
+		    done
+		    
+		    #$callclibx $newdb "$sql"
+		    echo "$callcliln $newdb"
+		    $callcliln $newdb "$sql" || rc=$?
+		    [[ $rc -eq 0 ]] || echo "Failure in $(pwd): $callclild $newdb $sql" | tee -a $errfile
+		    
+		    ls -ltrh $f $newdb
+
+		    # check & remove if empty
+		    
+		    empty=0
+		    if [[ -s $newdb ]] ; then
+			zeros=$($callcliro $newdb "select (SELECT COUNT(*) FROM hdr),(SELECT COUNT(*) FROM body)")
+			[[ "$zeros" = "0,0" ]] && empty=1
+		    else
+			empty=1
+		    fi
+
+		    if [[ $empty -ne 1 ]] ; then
+			$cmddir/d4ofixtoc $newdb
+		    fi
+		    
+		    bckdir=$(dirname $newdb)/backups
+		    bckdb=$bckdir/$(basename $newdb)
+		    rm -fv $bckdb # always try to remove its backup
+		    
+		    if [[ $empty -eq 1 ]] ; then
+		       rm -fv $newdb # removing empty database file
+		    elif [[ $backup -eq 1 ]] ; then
+			mkdir -pv $bckdir
+			/bin/cp -pv $newdb $bckdir
+		    fi
+			   
+		fi
+	    fi
+	} > $LOGS/d4osplit.$(basename $f .db).TS$ts.txt 2>&1 & 
+	if [[ $parallel -eq 0 ]] ; then
+	    echo "[$(date +%s.%N)] $(date): Waiting d4osplit timeslot#$ts for $f to complete ..."
+	    wait
+	    echo "[$(date +%s.%N)] $(date): d4osplit over timeslot#$ts on $f completed"
+	    #ls -ltr $LOGS/d4osplit.$(basename $f .db).TS$ts.txt || :
+	fi	    
+    done
+    if [[ $parallel -eq 1 ]] ; then
+	echo "[$(date +%s.%N)] $(date): Waiting d4osplit-subprocesses (timeslots $tslots) for $f to complete ..."
+	wait
+	echo "[$(date +%s.%N)] $(date): d4osplits over timeslots ($tslots) on $f completed"
+	#ls -ltr $LOGS/d4osplit.$(basename $f .db).TS*.txt || :
+    fi
+    unset cols
+    [[ -s $errfile ]] && break
+done
+
+if [[ ! -s $errfile ]] && [[ "$catalog" != "/dev/null" ]] ; then
+    for ts in $tslots # all parallel
+    do
+	echo "[$(date +%s.%N)] $(date): Creating catalog DBs for timeslot#$ts ..."
+	{
+	    d=TS$ts
+	    cd $d
+	    _files=""
+	    for f in $files
+	    do
+		f=$(basename $f)
+		[[ -r $f ]] && _files+="$f "
+	    done
+	    set -x
+	    $d4ocatalog $catalog $_files
+	} > $LOGS/d4ocatalog.TS$ts.txt 2>&1 &
+	if [[ $parallel -eq 0 ]] ; then
+	    echo "[$(date +%s.%N)] $(date): Waiting d4ocatalog for timeslot#$ts to complete ..."
+	    wait
+	    echo "[$(date +%s.%N)] $(date): d4ocatalog for timeslot#$ts to completed"
+	    #ls -ltr $LOGS/d4ocatalog.TS$ts.txt || :
+	fi
+    done
+    if [[ $parallel -eq 1 ]] ; then
+	echo "[$(date +%s.%N)] $(date): Waiting d4ocatalog-subprocesses for timeslots ($tslots) to complete ..."
+	wait
+	echo "[$(date +%s.%N)] $(date): d4ocatalog for timeslots ($tslots) completed"
+	#ls -ltr $LOGS/d4ocatalog.TS$ts.txt || : 
+    fi
+fi
+
+set +eu
+set -x
+df -h $tmpdir
+du -sh $tmpdir
+ls -ltr $tmpdir
+#[[ -s $errfile ]] || rm -rfv $tmpdir
+rm -rfv $tmpdir
+
+	 

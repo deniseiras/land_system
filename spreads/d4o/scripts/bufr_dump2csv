@@ -1,0 +1,138 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+my $bufr_dump = qx(which bufr_dump 2>/dev/null || echo "bufr_dump");
+chomp($bufr_dump);
+die "Unable to find executable ($bufr_dump) for BUFR-dumping" unless (-x "$bufr_dump");
+
+my $bufr_count = qx(which bufr_count 2>/dev/null || echo "bufr_count"); # alias "codes_count"
+chomp($bufr_count);
+die "Unable to find executable ($bufr_count) for BUFR msg counting" unless (-x "$bufr_count");
+
+my $debug = 0;
+my $jF = 0;
+my @args = ();
+my @files = ();
+for my $f (@ARGV) {
+    if ($f =~ m{^-(\S+)$}) {
+	my $label = $1;
+	$label =~ s/^-//;
+	if ($label eq "debug") {
+	    ++$debug;
+	}
+	elsif ($label eq "jF") {
+	    $jF = 1;
+	    push(@args,"-jf");
+	}
+	else {
+	    push(@args,$f);
+	}
+    }
+    elsif (-r $f) {
+	push(@files,$f);
+    }
+}
+my $args = @args ? join(" ",@args) : "-jf"; # -ja sometimes messes things up
+unless ($jF) {
+    #$jF = 1 unless (@args); # .. but we prefer some header stuff from -ja which plain -jf cannot give us
+    $jF = 1 if ($args =~m{\s*-jf\b});
+}
+
+for my $f (@files) {
+    next unless (-r $f);
+    my $msgcount=qx($bufr_count $f 2>/dev/null || echo 0);
+    chomp($msgcount);
+    next unless ($msgcount > 0);
+    my $in = undef;
+    { 
+	my $cmd =
+	    $jF ?
+	    sprintf("(%s %s %s -ja | head -n1000 | awk '/messages/,/unexpandedDescriptors/{print}END{print \"%s\"}' && %s %s %s) |",
+		    $bufr_dump,$args,$f,
+		    '\"value\" : null }', # *must* have the "value"-field -- however dummy it is
+		    $bufr_dump,$args,$f)
+	    : sprintf("%s %s %s |",$bufr_dump,$args,$f);
+	printf(STDERR "Running pipe %s\n",$cmd) if ($debug);
+	unless (open(IN,$cmd)) {
+	    printf(STDERR "Unable to open pipe '%s'\n",$cmd);
+	    next;
+	}
+	local $/ = undef;
+	$in = <IN>;
+	close(IN);
+    }
+    my $nlines = 0; # input newlines found
+    while ($in =~ m%\n%g) { ++$nlines; }
+    my %header = ();
+    my @header = ();
+    my @rows = ();
+    my $header = undef;
+    push(@rows,$header);
+    my $nrows = @rows - 1;
+    printf(STDERR "%s: Filtering %s bytes (%s lines) of intermediate JSON-data ...\n",
+	   $f,&Commify(length($in)),&Commify($nlines)) if ($debug);
+    while ($in =~ m%{\s*("key".*?)\s*}%sg) {
+	my $s = sprintf(",%s",$1);
+	my $nvals = 1;
+	$s =~ s/\[\s*(.*?)\s*\]/&Tidy($1,\$nvals)/sge if ($s =~ m{\[});
+	$s =~ s/,\s*\n/,/g;
+	$s =~ s/,\s+"/,"/g;
+	chomp($s);
+	$s =~ s/(,"value"\s+:)/,"nvals" : $nvals$1/; # insert $nvals
+	while ($s =~ m{,"(\w+)"\s+:\s+}g) {
+	    my $key = $1;
+	    $header{$key} = 1, push(@header,$key) unless (exists($header{$key}));
+	}
+	$s =~ s/"\w+"\s+:\s+//g;
+	$s =~ s/^,//;
+	$s =~ s/\bnull\b/NULL/g;
+	push(@rows,$s);
+	$nrows = @rows - 1;
+	printf(STDERR "%s: %d\r",$f,$nrows) if ($debug && $nrows % 100000 == 0);
+    }
+    $nrows = @rows - 1;
+    printf(STDERR "%s: %d (%s)-records processed\n",$f,$nrows,join(",",@header)) if ($debug);
+    if (@header) {
+	$header = sprintf("#%s",join(",",@header));
+	$rows[0] = $header;
+	
+	my $outf = sprintf("%s",$f);
+	$outf = qx(basename $outf);
+	chomp($outf);
+	$outf =~ s/\.\w+$//;
+	$outf .= sprintf("%s",$args);
+	$outf =~ s/\s+//g;
+	#$outf =~ s/[-_]/./g;
+	$outf .= ".csv";
+	printf(STDERR "%s: Dumping records to CSV-file %s ...\n",$f,$outf) if ($debug);
+	printf("%s;%s;%d\n",$outf,$f,$msgcount);
+	open(OUT,"> $outf") || die "Unable to write output file '$outf'";
+	map { printf(OUT "%s\n",$_); } @rows;
+	close(OUT);
+    }
+}
+
+sub Tidy {
+    my ($s,$nvals) = @_;
+    $s =~ s/,/:/g;
+    $s =~ s/\s+//g;
+    if (defined($nvals)) {
+	$$nvals = split(/:/,$s);
+	$s =~ s/\bnull\b//gi if ($$nvals > 1);
+    }
+    return sprintf('"%s"',$s);
+}
+
+sub Commify {
+    my ($text) = @_;
+    if ($text =~ m{^\d+$}) {
+        $text = reverse $text;
+        $text =~ s/(\d\d\d)(?=\d)(?!\d*\.)/${1},/g;
+        $text = reverse $text;
+    }
+    return $text;
+}
+
+

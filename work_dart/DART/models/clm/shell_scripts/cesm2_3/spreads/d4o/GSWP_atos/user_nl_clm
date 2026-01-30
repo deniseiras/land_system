@@ -1,0 +1,47 @@
+!----------------------------------------------------------------------------------
+! Users should add all user specific namelist changes below in the form of 
+! namelist_var = new_namelist_value 
+!
+! EXCEPTIONS: 
+! Set use_cndv           by the compset you use and the CLM_BLDNML_OPTS -dynamic_vegetation setting
+! Set use_vichydro       by the compset you use and the CLM_BLDNML_OPTS -vichydro           setting
+! Set use_cn             by the compset you use and CLM_BLDNML_OPTS -bgc  setting
+! Set use_crop           by the compset you use and CLM_BLDNML_OPTS -crop setting
+! Set spinup_state       by the CLM_BLDNML_OPTS -bgc_spinup      setting
+! Set co2_ppmv           with CCSM_CO2_PPMV                      option
+! Set fatmlndfrc         with LND_DOMAIN_PATH/LND_DOMAIN_FILE    options
+! Set finidat            with RUN_REFCASE/RUN_REFDATE/RUN_REFTOD options for hybrid or branch cases
+!                        (includes $inst_string for multi-ensemble cases)
+!                        or with CLM_FORCE_COLDSTART to do a cold start
+!                        or set it with an explicit filename here.
+! Set maxpatch_glc       with GLC_NEC                            option
+! Set glc_do_dynglacier  with GLC_TWO_WAY_COUPLING               env variable
+!----------------------------------------------------------------------------------
+
+fsurdat = '$DIN_LOC_ROOT/lnd/clm2/surfdata_map/surfdata_0.47x0.63_16pfts_Irrig_CMIP6_simyr1850_c170919.nc'
+flanduse_timeseries='$DIN_LOC_ROOT/lnd/clm2/surfdata_map/landuse.timeseries_0.47x0.63_hist_16pfts_Irrig_CMIP6_simyr1850-2015_c171025.nc'
+!finidat= '/work/csp/dp16116/CESM2/cm3_lnd_t03/run/init_generated_files/clmi.I1850Clm50BgcCrop-ciso.1366-01-01.0.47x0.63_tn0.25v3_simyr1850_c230210.nc'
+
+!use_init_interp = .true.
+
+!SNOW OPTIONS
+!reset_snow = .true.
+h2osno_max = 10000.0
+lotmp_snowdensity_method = 'TruncatedAnderson1976'
+wind_dependent_snow_density = .false.
+albice=0.6,0.4
+
+!for year tag in perpetual run 
+check_finidat_year_consistency= .false.
+check_finidat_pct_consistency= .false.
+
+!SPS4-style output
+
+hist_empty_htapes=.true.
+hist_mfilt = 1,365,
+hist_nhtfrq = 0, -24,
+hist_avgflag_pertape = ' ','A',
+hist_fincl1 = 'SOILLIQ', 'QVEGT', 'H2OSNO', 'TLAI', 'FSNO', 'SOILWATER_10CM', 'SOILICE','QRUNOFF', 'QDRAI', 'SNOWDP','QSOIL','QVEGE'
+hist_fincl2 = 'H2OSNO','SNOWDP','QOVER','QDRAI','H2OSOI','QFLX_SNOW_GRND','TBOT','SOILLIQ','SOILICE',
+urban_hac = 'OFF'
+

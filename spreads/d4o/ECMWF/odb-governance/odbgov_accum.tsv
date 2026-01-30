@@ -1,0 +1,6 @@
+id	description	group	bufrtype	subtype	accumulation_length
+39001	1h rain gauge accumulation	RAINGG	Land Surface	Rain Gauge	3600
+39002	3h rain gauge accumulation	RAINGG	Land Surface	Rain Gauge	10800
+39003	6h rain gauge accumulation	RAINGG	Land Surface	Rain Gauge	21600
+39004	12h rain gauge accumulation	RAINGG	Land Surface	Rain Gauge	43200
+39005	24h rain gauge accumulation	RAINGG	Land Surface	Rain Gauge	86400

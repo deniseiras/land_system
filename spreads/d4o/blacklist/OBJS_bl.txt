@@ -1,0 +1,12 @@
+OBJS_bl =  \
+        bl/library/blackbox.o \
+        bl/library/blackbox_init.o \
+        bl/library/blacklist.o \
+        bl/library/dynamic_linking.o \
+        bl/library/dynamic_symbols.o \
+        bl/library/fail_nodefsh.o \
+        bl/library/fast_strcmp.o \
+        bl/library/funcs_varargs.o \
+        bl/library/numarg_error.o \
+        bl/library/wildcard_strcmp.o
+# end of OBJS_bl -- total 10 objects

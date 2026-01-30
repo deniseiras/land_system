@@ -1,0 +1,37 @@
+#!/bin/bash
+
+perlscript=${1:-""}
+shift
+
+if [[ "$perlscript" = "" ]] ; then # nothing to run & profile ?
+    echo "Usage: $0 your-perl-script-to-be-profiled [args]"
+    exit 1
+fi
+
+perlscript=$(which "$perlscript" 2>/dev/null || echo "$perlscript")
+
+set -eu
+
+cmddir=$(dirname $0)
+if [[ "$cmddir" = "." ]] ; then
+    cmd=$(which $0 2>/dev/null)
+    cmddir=$(dirname $cmd 2>/dev/null)
+fi
+perl=$(which perl 2>/dev/null || echo "perl")
+nytprofhtml=$(which nytprofhtml 2>/dev/null || echo "")
+profout=$TMPDIR/nytprof.out.$$
+/bin/rm -f $profout
+
+export NYTPROF=optimize=0:trace=0:start=init:file=$profout
+
+set -x
+$perl -d:NYTProf $perlscript ${@:-} || exit $?
+set +x
+
+if [[ -f $profout ]] ; then
+    profdir=$TMPDIR/nytprof.$$
+    $nytprofhtml -o $profdir -f $profout -d --no-flame
+    #export NYPROF_BROWSER=${NYPROF_BROWSER:-"firefox"}
+    export NYPROF_BROWSER=${NYPROF_BROWSER:-"google-chrome"}
+    nohup $NYPROF_BROWSER $profdir/index.html >/dev/null 2>&1 < /dev/null &
+fi

@@ -1,0 +1,2931 @@
+#!/usr/bin/env perl
+#
+# ecperf-digest by Sami Saarinen, HPCK, Oct-Nov 2021
+#
+
+use strict;
+use warnings;
+no warnings 'once';
+use POSIX ":sys_wait_h";
+use POSIX qw(fmod);
+use File::Path qw(make_path);
+use Data::Dumper qw(Dumper);
+
+use Carp qw(verbose confess);
+#$Carp::Verbose = 1;
+$Carp::MaxArgLen = 0;
+$Carp::MaxArgNums = 0;
+$Carp::RefArgFormatter = sub {
+    Data::Dumper->Dump($_[0]); # not necessarily safe
+};
+
+our $ERR = \*STDERR;
+our $erronce = 0;
+sub ErrExit {
+    printf($ERR "\n");
+    unless ($erronce++) {
+	printf($ERR "##### Aborting ...\n");
+	# Remove databases based on existence of suffix "-journal"
+	my $JRNL;
+	if (open($JRNL,"/bin/ls -C1 *-journal 2>/dev/null |")) {
+	    for (<$JRNL>) {
+		chomp;
+		unlink($_);
+		s/-journal$//;
+		unlink($_);
+		printf($ERR "\tRemoved potentially open & incomplete database %s\n",$_);
+	    }
+	    close($JRNL);
+	}
+    }
+    &confess( @_ );
+}
+
+$SIG{ __DIE__  } = sub { &ErrExit(@_); };
+$SIG{ __WARN__ } = sub { &ErrExit(@_); };
+$SIG{   INT    } = sub { &ErrExit(@_); };
+
+use Getopt::Long qw(:config no_ignore_case bundling);
+Getopt::Long::Configure("bundling_override");
+
+our $sqlite_dir = exists($ENV{"SQLITE_DIR"}) ? $ENV{"SQLITE_DIR"} : "/usr";
+our $sqlite_exe = undef;
+our $sqlite_version = undef;
+our $dbd_sqlite_version = undef;
+
+# Some constants & initial settings
+
+$| = 1; # Sets STDERR line buffered
+#open STDERR, '>&STDOUT'; # does not work as expected
+our $OUT = undef;
+our $null = "NULL";
+our $debug = 0;
+our $username = exists($ENV{"USER"}) ? $ENV{"USER"} : "unknown";
+our $tmpdir = exists($ENV{"TMPDIR"}) ? $ENV{"TMPDIR"} : sprintf("/tmp/%s",$username);
+our $ppid = $$; # parent process id
+
+our $iif = 1; # We assume IIF function exists; if not, supply --noiif
+
+our $verbose = 0;
+our $dbi_profile = 0;
+
+my $annotate_default = 3;
+my $parallel_default = qx(nproc --all);
+chomp($parallel_default);
+$parallel_default /= 2 if ($parallel_default >= 2);
+
+our @valid_modes = (); # will be defined in DBInit() based on sqlite3 version
+our $mode_default = "column"; # or anything in the @valid_modes
+
+# Some useful caches
+
+my %scope_cache = ();
+our %dir_cache = (); 
+our %bn_cache = (); 
+our %dirbn_cache = (); 
+our %src_cache = ();
+
+# Args
+
+our $arg0 = "$0";
+$arg0 = qx(readlink -f $arg0);
+chomp($arg0);
+my @saved_args = @ARGV;
+my $cmdgiven = join " ",($arg0,@saved_args);
+
+our @args = ();
+
+our $args = {
+    all => 0,
+    annotate => 0,
+    batch => 0,
+    best => 0,
+    calltree => 0,
+    csv => undef,
+    dbi_profile => 0,
+    debug => 0,
+    events => undef,
+    header => 1,
+    help => 0, # TBD
+    iif => $iif,
+    input_file => undef,
+    less => 1,
+    limit => undef,
+    linenos => 0,
+    lines => 0,
+    memory_database => 0,
+    minsamples => 1,
+    mintime => 0,
+    mode => $mode_default,
+    output_file => undef,
+    parallel => 1,
+    pc => 0,
+    query_only => undef,
+    replicate_code_locations => 0,
+    searchpath => undef,
+    select => undef,
+    stdio => 0,
+    tag => undef,
+    tee => 1,
+    tid => undef,
+    timeconversion => 1,
+    top => 5,
+    trace => 1,
+    verbose => $verbose,
+    where => undef,
+    
+    ARGV_IN => \@saved_args,
+    ARGV_OUT => \@ARGV,
+    args => \@args,
+    };
+
+&GetOptions(
+    "all+" => sub { &HandleArgs(0,@_,undef,"top",-1); },
+    "annotate|a:i" => sub { &HandleArgs(0,@_,undef,undef,undef,$annotate_default); },
+      "noannotate" => sub { &HandleArgs(0,@_); },
+    "batch+" => sub { &HandleArgs(0,@_,1); },
+      "nobatch" => sub { &HandleArgs(0,@_); },
+    "best|b+" => sub { &HandleArgs(0,@_,1); },
+      "nobest" => sub { &HandleArgs(0,@_); },
+    "calltree|c+" => sub { &HandleArgs(0,@_,1); },
+      "nocalltree" => sub { &HandleArgs(0,@_); },
+    "csv" => sub { &HandleArgs(0,@_,undef,"mode","csv"); },
+    "dbi_profile=s" => sub { &HandleArgs(1,@_); },
+    "debug|d+" => sub { &HandleArgs(0,@_,1); },
+      "nodebug" => sub { &HandleArgs(0,@_); },
+    "events|e=s" => sub { &HandleArgs(0,@_,','); },
+    "header+" => sub { &HandleArgs(0,@_,1); },
+      "noheader" => sub { &HandleArgs(0,@_); },
+    "help|usage|h" => sub { &Usage(); }, # TBD
+    "iif+" => sub { &HandleArgs(0,@_,1); },
+      "noiif" => sub { &HandleArgs(0,@_); },
+    "input_file|i=s" => sub { &HandleArgs(0,@_,';'); },
+    "less+" => sub { &HandleArgs(0,@_,1,"stdio",0); },
+    "limit=i" => sub { &HandleArgs(0,@_); },
+    "linenos|l+" => sub { &HandleArgs(0,@_,1,"lines",1); },
+      "nolinenos" => sub { &HandleArgs(0,@_,undef,"lines",0); },
+    "lines+" => sub { &HandleArgs(0,@_,1,"linenos",1); },
+      "nolines" => sub { &HandleArgs(0,@_,undef,"linenos",0); },
+    "memory_database+" => sub { &HandleArgs(0,@_,1); },
+    "minsamples=i" => sub { &HandleArgs(0,@_); },
+    "mintime=f" => sub { &HandleArgs(0,@_); },
+    "mode=s" => sub { &HandleArgs(0,@_); },
+    "output_file|o=s" => sub { &HandleArgs(0,@_,undef,"less",0); },
+    "parallel|j:i" => sub { &HandleArgs(0,@_,undef,undef,undef,$parallel_default); },
+      "noparallel" => sub { &HandleArgs(0,@_); },
+    "pc|program_counters+" => sub { &HandleArgs(0,@_,1); },
+      "nopc" => sub { &HandleArgs(0,@_); },
+    "query_only|q=s" => sub { &HandleArgs(1,@_,';',"less",0); },
+    "select=s" => sub {
+	my ($var,$value) = @_;
+	$var = "query_only";
+	$value = "SELECT $value";
+	&HandleArgs(1,($var,$value),';',"less",0);
+    },
+    "replicate_code_locations+" => sub { &HandleArgs(0,@_,1); },
+      "noreplicate_code_locations" => sub { &HandleArgs(0,@_); },
+    "searchpath|s=s" => sub { &HandleArgs(0,@_,':'); },    
+    "stdio+" => sub { &HandleArgs(0,@_,1,"less",0); },
+    "tag=s" => sub { &HandleArgs(0,@_); },
+    "tee+" => sub { &HandleArgs(0,@_,1); },
+      "notee" => sub { &HandleArgs(0,@_); },
+    "tid|pertid:s" => sub { &HandleArgs(0,@_,';'); },
+    "timeconversion+" => sub { &HandleArgs(0,@_,1); },
+      "notimeconversion" => sub { &HandleArgs(0,@_); },
+    "top|t=i" => sub { &HandleArgs(0,@_); },
+    "trace+" => sub { &HandleArgs(0,@_,1); },
+      "notrace" => sub { &HandleArgs(0,@_); },
+    "verbose|v+" => sub { &HandleArgs(0,@_,1); },
+      "noverbose" => sub { &HandleArgs(0,@_); },
+    "where|w=s" => sub { &HandleArgs(1,@_,';'); },    
+    "enable|with=s" => sub { &HandleArgs(0,@_); },
+    "disable|without=s" => sub { &HandleArgs(0,@_); },
+    );
+
+$debug = $args->{debug};
+$verbose = $args->{verbose};
+$dbi_profile = $args->{dbi_profile};
+
+&DBInit();
+&DoProfiling();
+
+exit 0;
+
+# Functions
+
+sub DBInit() {
+    #    # Below: Turn off via export DBI_PROFILE=0
+    #    $ENV{"DBI_PROFILE"} = 0 unless (exists($ENV{"DBI_PROFILE"})); # Profiling
+    #    $ENV{"DBI_PROFILE"} = 1 unless (exists($ENV{"DBI_PROFILE"})); # compact & decent output
+    #    $ENV{"DBI_PROFILE"} = 2 unless (exists($ENV{"DBI_PROFILE"})); # compact & decent output
+    #    #$ENV{"DBI_PROFILE"} = '!Statement:!MethodClass:!Caller2' unless (exists($ENV{"DBI_PROFILE"}));
+    #$ENV{"DBI_PROFILE"} = 0 unless (exists($ENV{"DBI_PROFILE"})); # Profiling
+    $ENV{"DBI_PROFILE"} = $dbi_profile;
+
+    if (1) {
+	$sqlite_exe = qx(which sqlite3 || echo "sqlite3");
+	chomp($sqlite_exe);
+    }
+    else { # obsolete
+	if (defined($sqlite_dir) && -d "${sqlite_dir}/bin" && -x "${sqlite_dir}/bin/sqlite3") {
+	    $sqlite_exe = "${sqlite_dir}/bin/sqlite3";}
+	else {
+	    $sqlite_exe = qx(which sqlite3 || echo "sqlite3");
+	    chomp($sqlite_exe);
+	}
+    }
+    $sqlite_version = qx($sqlite_exe -version -batch -init /dev/null 2>/dev/null);
+    chomp($sqlite_version);
+
+    my ($major,$minor) = split(/\./,$sqlite_version);
+    my $version = 0 + sprintf("%d.%d",$major,$minor);
+    @valid_modes =
+	($version < 3.33) ? 
+	qw(ascii column csv html insert line list quote tabs tcl) :
+	qw(ascii column csv html insert line list quote tabs tcl box json markdown table);
+
+    if (defined($sqlite_dir) && -d "${sqlite_dir}/lib" && -r "${sqlite_dir}/lib/libsqlite3.so") {
+	my $ld_library_path = exists($ENV{"LD_LIBRARY_PATH"}) ? $ENV{"LD_LIBRARY_PATH"} : undef;
+	printf($ERR "DBInit(): >LD_LIBRARY_PATH='%s'\n",defined($ld_library_path) ? $ld_library_path : "<undef>") if ($debug > 1);
+	if (defined($ld_library_path)) {
+	    $ld_library_path = sprintf("%s:%s","${sqlite_dir}/lib",$ld_library_path);
+	}
+	else {
+	    $ld_library_path = sprintf("%s","${sqlite_dir}/lib");
+	}
+	$ENV{"LD_LIBRARY_PATH"} = $ld_library_path; # this is NOT too late to (re-)set !!
+	printf($ERR "DBInit(): <LD_LIBRARY_PATH='%s'\n",$ENV{"LD_LIBRARY_PATH"}) if ($debug > 1);
+    }
+    require DBI; # runtime rather than compile-time (use DBI) evaluation
+    require DBD::SQLite; # explicit SQLite connection -- to get hold of the version number
+    $dbd_sqlite_version = &DBD::SQLite::Constants::SQLITE_VERSION_NUMBER(); # f.ex. 3036000 aka 3.36.0
+    printf($ERR "DBInit(): '%s' -- version: %s [DBD::SQLite version %s]\n",$sqlite_exe,$sqlite_version,$dbd_sqlite_version) if ($debug || $verbose);
+
+    ($major,$minor) = (0+sprintf("%d",$dbd_sqlite_version/1000000),fmod(0+sprintf("%d",$dbd_sqlite_version/1000),1000));
+    my $dbdvers = 0 + sprintf("%d.%d",$major,$minor);
+    
+    $iif = ($version >= 3.32 && $dbdvers >= 3.32) ? $args->{iif} : 0; # IIF-function
+}
+
+sub HandleArgs {
+    my $numargs = @_;
+    my ($check_quotation, $opt_name, $opt_value, $inc, $trackvar, $trackvalue, $default) = @_;
+    if ($check_quotation) {
+	# When applicable, change single quotes to double quotes
+	$opt_value =~ s/[']/"/g if ($opt_value =~ m{[']});
+    }
+    if ($opt_name eq "enable") {
+	$args->{"$opt_value"} = 1 if (exists($args->{"$opt_value"}));
+    }
+    elsif ($opt_name eq "disable") {
+	$args->{"$opt_value"} = 0 if (exists($args->{"$opt_value"}));
+    }
+    elsif (exists($args->{"$opt_name"})) {
+	unless (defined($inc)) {
+	    $opt_value = $args->{"$opt_name"} = ($opt_value eq "undef") ? undef : (defined($default) && ($opt_value =~ m{^(0|)$})) ? $default : $opt_value;
+	}
+	else {
+	    if ($inc =~ m{^\d+$}) {
+		$args->{"$opt_name"} += $inc;
+	    }
+	    else {
+		my $field_separator = $inc;
+		if (defined($args->{"$opt_name"}) && length($args->{"$opt_name"}) > 0) {
+		    $args->{"$opt_name"} .= sprintf("%s%s",$field_separator,$opt_value);
+		}
+		else {
+		    $args->{"$opt_name"} = "$opt_value";
+		}
+	    }
+	}
+    }
+    elsif ($opt_name =~ m{^(no)(\S+)$}) {
+	my $name = $2;
+	$args->{"$name"} = 0 if (exists($args->{"$name"}));
+    }
+    if (defined($trackvalue) && defined($trackvar) && exists($args->{"$trackvar"})) {
+	$args->{"$trackvar"} = $trackvalue;
+    }
+
+    printf($ERR "HandleArgs [numargs=%d,check_quotation=%d] : %s='%s' inc='%s' trackvar=%s trackvalue='%s' default='%s'\n",
+	   $numargs,$check_quotation,
+	   $opt_name, $opt_value,
+	   defined($inc) ? $inc : "<undef>",
+	   defined($trackvar) ? $trackvar : "<undef>",
+	   defined($trackvalue) ? $trackvalue : "<undef>",
+	   defined($default) ? $default : "<undef>") if ($args->{debug});
+
+    if (defined($inc) && $inc eq "1") {
+	push(@args,sprintf("--%s",$opt_name));
+    }
+    elsif ($check_quotation) {
+	my $quote = "'";
+	push(@args,sprintf("--%s %s%s%s",$opt_name,$quote,$opt_value,$quote));
+    }
+    else {
+	push(@args,sprintf("--%s %s",$opt_name,$opt_value));
+    }
+}
+
+sub DoProfiling {
+    &DumpDataStruct($ERR,"\$args",1,$args) if ($debug);
+
+    my $header_on = $args->{header};
+    my $trace_on = $args->{trace};
+    
+    my $mode = lc($args->{mode});
+    printf($ERR "valid_modes = %s\n",join(" ",@valid_modes)) if ($debug);
+    my @modes = grep { m{^$mode}i } @valid_modes;
+    my $nmodes = @modes;
+    $mode = ($nmodes == 1) ? $modes[0] : $mode_default;
+    
+    my $query_only = $args->{query_only};
+    
+    my $in_memory_db_only = defined($query_only) ? 0 : $args->{memory_database};
+    
+    my $tag = $args->{tag};
+    
+    my $best = $args->{best};
+
+    my $where = $args->{where}; # a semi-colon (;) separated list
+
+    my $top = $args->{top};
+    $top = -1 if ($top <= 0 || defined($where)); # SELECT .. FROM .. LIMIT -1 prints all but LIMIT 0 nothing
+
+    my $requested_events = $args->{events}; # a comma (,) separated list of events we are interested in
+
+    my $with_pc = $args->{pc};
+    my $linenos = $args->{lines};
+    my $annotate = $args->{annotate};
+    $linenos = 1 if ($annotate > 0);
+    $linenos = 1 if ($with_pc);
+    $with_pc = 0 unless ($linenos);
+
+    my $searchpath = $args->{searchpath}; # a colon (:) separated list
+    $searchpath = "." if ($annotate > 0 && !defined($searchpath)); # to prevent need to supply --searchpath=. with --annotate
+    my $strictly_searchpath = 1; # NB: currently this is *FIXED* to 1 (TBD)
+
+    my $calltree = $args->{calltree};
+    my $replicate_code_locations = $args->{replicate_code_locations};
+    $replicate_code_locations = 0 if ($calltree);
+
+    my $minsamples = $args->{minsamples};
+    my $mintime = $args->{mintime};
+
+    my $pertid = $args->{tid};
+
+    my $timeconv = $args->{timeconversion};
+
+    my $limit = $args->{limit};
+
+    # Scan input data : Either *.gz or *.db files
+
+    my $input_file = $args->{input_file}; # a semi-colon (;) separated list
+    my @input_files = ();
+    @input_files = split(/\;/,$input_file) if (defined($input_file));
+    push(@input_files,@ARGV) if (@ARGV);
+    
+    my @files = ();
+    for my $f (@input_files) {
+	if (-d $f) {
+	    my $findcmd = sprintf("find %s \\( -name 'exe-*.gz' -o -name 'ecperf-exe-*.db' \\) -type f -print 2>/dev/null",$f);
+	    my $IN;
+	    if (open($IN,"$findcmd |")) {
+		for $f (<$IN>) {
+		    chomp($f);
+		    if (-r $f) {
+			$f = qx(readlink -f $f);
+			chomp($f);
+			push(@files,$f);
+		    }
+		}
+		close($IN);
+	    }
+	}
+	elsif (-r $f) {
+	    $f = qx(readlink -f $f);
+	    chomp($f);
+	    push(@files,$f);
+	}
+    }
+
+    @files = &Uniq(@files); # remove duplicates
+    my $nfiles = @files;
+
+    return unless ($nfiles > 0);
+    
+    my $parallel = $args->{parallel};
+    $parallel = 1 if ($parallel < 1);
+    $parallel = $nfiles if ($parallel > $nfiles);
+    my $batch = $args->{batch};
+    #my $output_file = ($parallel > 1) ? undef : $args->{output_file};
+    my $output_file = $args->{output_file};
+    my $tee = $batch ? 0 : $args->{tee};
+    my $less = $args->{less} ? "less" : "cat"; # NB: $args->{less} = 0 when defined($args->{output_file})
+
+    my @outfiles = ();
+    
+    if ($parallel > 1) {
+	my @parargs = ();
+	my $master_header = $header_on;
+	my $master_trace = defined($output_file) ? 0 : $trace_on;
+	make_path($tmpdir) unless (-d $tmpdir);
+	for my $f (@files) {
+	    my $output_file = &BaseName($f);
+	    $output_file =~ s/\.\w+$//;
+	    $output_file .= ".txt";
+	    $output_file = sprintf("%s/%s",$tmpdir,$output_file);
+	    push(@outfiles,$output_file);
+	    my $parargs = sprintf("%s %s --batch -j1%s%s -o %s %s",
+				  $arg0,join(" ",@args),
+				  sprintf(" --%sheader",$master_header ? "" : "no"),
+				  sprintf(" --%strace",$master_trace ? "" : "no"),
+				  $output_file,$f);
+	    printf($ERR "%s\n",$parargs) if ($debug);
+	    push(@parargs,$parargs);
+	    $master_header = 0;
+	    $master_trace = 0;
+	}
+	my $maxpars = @parargs;
+	my $completed = 0;
+	my $launched = 0;
+	my $running = 0;
+	my @pids = ();
+	my %parargs = ();
+	
+	while ($completed < $maxpars) {
+	    while ($launched < $maxpars && $running < $parallel) {
+		my $cmd = $parargs[$launched++];
+		my $kid = fork() || exec($cmd);
+		return unless ($kid); # child
+		push(@pids,$kid);
+		$parargs{$kid} = $cmd;
+		++$running;
+		if ($debug || $verbose) {
+		    my $tlog = &GetLoggingTime();
+		    printf($ERR "[L] %s: pids=%d:%d running=%d launched=%d/completed=%d of %d\n",
+			   $tlog,$ppid,$kid,$running,$launched,$completed,$maxpars);
+		    printf($ERR "[L] %s: %s\n",$tlog,$cmd);
+		}
+	    }
+	    SLEEP: for my $secs (qw(1 2 4 8)) {
+		my $kid = waitpid(-1,WNOHANG);
+		if ($kid > 0) {
+		    ++$completed;
+		    --$running;
+		    my $cmd = $parargs{$kid};
+		    if ($debug || $verbose) {
+			my $tlog = &GetLoggingTime();
+			printf($ERR "[C] %s: pids=%d:%d completed\n",
+			       $tlog,$ppid,$kid);
+			printf($ERR "[C] %s: %s\n",$tlog,$cmd);
+		    }
+		    last SLEEP;
+		}
+		sleep($secs);
+	    }
+	} # while ($completed < $maxpars)
+
+    }
+    
+    if (defined($output_file)) {
+	if ($tee) {
+	    $OUT = \*STDOUT unless open($OUT,"| tee $output_file");
+	}
+	else {
+	    $OUT = \*STDOUT unless open($OUT,"> $output_file");
+	}
+    }
+    else {
+	$OUT = \*STDOUT unless open($OUT,"| $less");
+    }
+    
+    $ERR = $OUT if ($batch); # Does not work ? TBD
+
+    if ($parallel > 1) { # parent
+	for my $f (@outfiles) {
+	    if (-r $f) {
+		my $FH;
+		if (open($FH,"< $f")) {
+		    my $input = do { local $/ = undef; <$FH> }; # slurp
+		    close($FH);
+		    printf($OUT "%s",$input);
+		}
+	    }
+	}
+	return;
+    }
+	    
+    for my $f (@files) {
+	my $db_handle = undef;
+	my $readonly = undef;
+	my $db_name = undef;
+	my $save_db = 0;
+	if ($f =~ m{\.db$}) {
+	    ($db_handle,$readonly,$db_name) = &UseExistingDB($f); # ro = read-only
+	}
+	else {
+	    ($db_handle,$readonly,$db_name) = &CreateNewDB($f,$in_memory_db_only,$top,$calltree,$tag); # rwc = read-write-create
+	    $save_db = 1 unless ($in_memory_db_only);
+	}
+
+	if (defined($db_handle)) {
+
+	    unless (defined($query_only)) {
+		my $prt = { # Print layout
+		    params => {
+		    # Integers or floats here only
+			best => $best,
+			top => $top,
+			linenos => $linenos,
+			timeconv => $timeconv,
+			calltree => $calltree,
+			minsamples => $minsamples,
+			mintime => $mintime,
+			with_pc => $with_pc,
+			replicate_code_locations => $replicate_code_locations,
+			annotate => $annotate,
+			strictly_searchpath => $strictly_searchpath,
+			limit => $limit,
+			verbose => $verbose,
+		    },
+		    # These are strings
+		    where => $where,
+		    events => $requested_events,
+		    pertid => $pertid,
+		    searchpath => $searchpath,
+		    title => &BaseName($f),
+		};
+	    
+		&DumpDataStruct($OUT,"Print layout",1,$prt) if ($debug > 1);
+
+		&ProfileOutput($OUT,$db_handle,$prt);
+	    }
+
+	    CloseDB($db_handle,$save_db);
+	}
+
+	if (defined($query_only) && defined($db_name)) {
+	    &CLIsqlite3($db_name,$query_only,$header_on,$trace_on,$mode,$output_file,$batch);
+	    $header_on = 0;
+	    $trace_on = 0;
+	}
+    }
+}
+
+sub ProfileOutput {
+    my ($FH,$dbh,$prt) = @_;
+
+    my ($top,$linenos,$timeconv,
+	$calltree,$minsamples,$mintime,
+	$with_pc,$replicate_code_locations,$best,
+	$annotate,$strictly_searchpath,$limit,$verbose) = (undef) x 14;
+    
+    for (qw(top ntids linenos timeconv  
+	    calltree minsamples mintime
+	    with_pc replicate_code_locations best
+	    annotate strictly_searchpath limit verbose)) {
+	my $var = $_;
+	my $value = (exists($prt->{params}->{"$var"}) && defined($prt->{params}->{"$var"})) ? $prt->{params}->{"$var"} : 0;
+	my $assign_stmt = sprintf("\$%s = %s",$var,$value); # Note: does not handle strings e.g. searchpath would not work
+	printf($FH "%s\n",$assign_stmt) if ($debug > 1);
+	eval "$assign_stmt";
+    }
+
+    my ($query,$qh,$qres,$nrows,$ncols);
+    
+    #$with_pc = 0 unless ($linenos);
+    #$replicate_code_locations = 0 if ($calltree);
+
+    my $events = $prt->{events};
+    my $searchpath = $prt->{searchpath};
+    my $pertid = $prt->{pertid};
+
+    if (defined($pertid)) {
+	if (length($pertid) == 0) { # pertid has been acticated but the list is empty indicating you want output from each tid separately
+	    my @tidlist = ();
+	    $query = "SELECT DISTINCT tid FROM pertid ORDER BY tid";
+	    $qh = &PrepareQueryDB($dbh,$query);
+	    &ExecuteQueryDB($qh);
+	    $qres = &FetchQueryDB($qh);
+	    $nrows = $qh->rows;
+	    $ncols = @{ $qh->{NAME} }; # in absense of anything better ;-(
+	    # ncols must be 1
+	    foreach my $row ( @$qres ) {
+		my ($tid) = @$row;
+		push(@tidlist,$tid);
+	    }
+	    $pertid = join(";",@tidlist);
+	}
+	else {
+	    my @pertid_chunks = split(/\;/,$pertid);
+	    $pertid = "";
+	    my $delim = "";
+	    map {
+		if (length($_) > 0) { # make sure empty slots are removed
+		    $pertid .= sprintf("%s%s",$delim,$_);
+		    $delim = ";";
+		}
+	    } @pertid_chunks;
+	}
+    }
+    &DumpDataStruct($ERR,"ProfileOutput:\$pertid",1,$pertid) if ($debug > 1);
+
+    my @pertid_chunks = ();
+    if (defined($pertid)) {
+	@pertid_chunks = split(/\;/,$pertid);
+    }
+    else {
+	@pertid_chunks = (undef);
+    }
+
+    my $where = $prt->{where};
+    if (defined($where)) {
+	my @where = split(/\;/,$where);
+	$where = join("\n AND ",@where);
+    }
+
+    $query = "SELECT id,name,nevents,nsamples FROM event";
+    if (defined($events)) { # requesting only these events ?
+	my @list = split(/,/,$events);
+	my $list = join("','",@list);
+	$query .= sprintf(" WHERE name IN ('%s')",$list);
+    }
+    $query .= " ORDER BY id";
+    $qh = &PrepareQueryDB($dbh,$query);
+    &ExecuteQueryDB($qh);
+    $qres = &FetchQueryDB($qh);
+    $nrows = $qh->rows;
+    $ncols = @{ $qh->{NAME} }; # in absense of anything better ;-(
+    # ncols must be 4
+    printf($FH "\n#Returned %d rows x %d cols from : %s\n",$nrows,$ncols,$query) if ($debug);
+    my @events = ();
+    my @ids = ();
+    my @total_events = ();
+    my @total_samples = ();
+    my $e;
+    foreach my $row ( @$qres ) {
+	my ($id,$name,$nevents,$nsamples) = @$row;
+	push(@ids,$id);
+	push(@events,$name);
+	push(@total_events,$nevents);
+	push(@total_samples,$nsamples);
+    }
+    &FinishQueryDB($qh);
+
+    #my $scopelen = $calltree ? 0 : -($max_scopelen+2);
+    #my $scopelen = -($max_scopelen+2);
+    #my $scopelen = -$max_scopelen;
+    my ($ntids,$scopelen,$sampling_time,$runtime,$sampling_frequency) = (0,0,0,0,0);
+
+    $query = "SELECT num_threads,-max_scopelen,sampling_time,runtime,sampling_frequency FROM mpi LIMIT 1";
+    $qh = &PrepareQueryDB($dbh,$query);
+    &ExecuteQueryDB($qh);
+    $qres = &FetchQueryDB($qh);
+    $nrows = $qh->rows;
+    $ncols = @{ $qh->{NAME} }; # in absense of anything better ;-(                                                                                                                                                                         
+    # ncols must be 5
+    printf($FH "\n#Returned %d rows x %d cols from : %s\n",$nrows,$ncols,$query) if ($debug);
+    foreach my $row ( @$qres ) {
+	($ntids,$scopelen,$sampling_time,$runtime,$sampling_frequency) = @$row;
+	last;
+    }
+    printf($FH "ntids = %d : scopelen = %d : sampling_time = %s : runtime = %s : freq = %s\n",$ntids,$scopelen,$sampling_time,$runtime,$sampling_frequency) if ($debug);
+    
+    my $title = sprintf("[%s] : Time = %s (%s)",$prt->{title},&TimeConv($sampling_time,$timeconv),&TimeConv($runtime,$timeconv));
+
+    printf($FH "\n#  %s: Displaying %s(per-TID, ntids=%d, %s-sorted) records with # of samples >= %d and time >= %.6f secs%s\n",
+	   $title,
+	   $top > 0 ? sprintf("top-%d ",$top) : "",
+	   $ntids,
+	   "#Events",
+	   $minsamples, $mintime,
+	   (defined($limit) && $limit > 0) ? sprintf(" up to %d rows/output",$limit) : "");
+
+    return if ($ntids <= 0 || $sampling_time <= 0);
+    
+    my $cpulen = 10;
+
+    # Pre-determine the max width of the Event:name -column
+    my $evwidth = 0;
+    $e = -1;
+    for my $name (@events) {
+	++$e;
+	my $evlabel = "\#Events:$name";
+	my $evlen = length($evlabel);
+	my $totalev = &UnCommify($total_events[$e]);
+	my $totalev_with_commas = &Commify($totalev);
+	my $totlen = length($totalev_with_commas);
+	$evlen = $evwidth if ($evlen < $evwidth);
+	$evlen = $totlen if ($evlen < $totlen);
+	$evwidth = $evlen;
+    }
+
+    return unless (++$evwidth > 1);
+    
+    # prof          : linenos = 0 && calltree = 0 && with_pc = 0
+    # proflines     : linenos = 1 && calltree = 0 && with_pc = 0
+    # profpc        : linenos = 1 && calltree = 0 && with_pc = 1
+    # callprof      : linenos = 0 && calltree = 1 && with_pc = 0
+    # callproflines : linenos = 1 && calltree = 1 && with_pc = 0
+    # callprofpc    : linenos = 1 && calltree = 1 && with_pc = 1
+    
+    my $view = "";
+    $view .= "call" if ($calltree);
+    $view .= "prof";
+    $view .= $with_pc ? "pc" : "lines" if ($linenos);
+    
+    $e = -1;
+    EVENT: for my $name (@events) {
+	++$e;
+	my $totalsam = &UnCommify($total_samples[$e]);
+	my $totalev = &UnCommify($total_events[$e]);
+	my $totalev_with_commas = &Commify($totalev);
+	my $totlen = length($totalev_with_commas);
+	my $evlabel = "\#Events:$name";
+	printf($FH "\n#  %s: Total number of %s = %s (%s #Ev/sec/thread) in %d samples over %d threads at %.0f Hz (nominal %.0f Hz)\n",
+	       $title,$evlabel,
+	       $totalev_with_commas,&Human(int($totalev/$sampling_time/$ntids)),
+	       $totalsam,$ntids,
+	       int($totalsam/$sampling_time/$ntids),
+	       $sampling_frequency);
+	my $evlen = $evwidth;
+	my $z = "Event-%";
+	my $first = sprintf("#Top  %9s %10s %*s %9s | %-9s %7s %10s %*s %s\n".
+			    "#---  %9s %10s %*s %9s + %-9s %7s %10s %*s %s\n",
+			    "${z}",
+			    "[Time]",$evlen,"$evlabel"            ,"(#Ev/sec)","Samples","TID",&Center("CPU-list",$cpulen),$scopelen,"Scope","Code location",
+			    "-" x length($z),
+			    "------",$evlen,"-" x length($evlabel),"---------","-------","---",&Center("--------",$cpulen),$scopelen,"-----","-------------");
+	
+	
+	#best  top  event_id  event_name  prc    mevs      time      nevents     nsamples  tid     cpulist  scope  code_location                       
+	#----  ---  --------  ----------  -----  --------  --------  ----------  --------  ------  -------  -----  ------------------------------------
+	#*     1    1         cycles      25.09  3552.013  0.846235  3005837801  30        305323  0        USER   rhs_._omp_fn.0 @ lu-mz.A.x (rhs.f90)
+	#|     1    1         cycles      23.3   3548.298  0.782853  2777795755  28        305331  6        USER   rhs_._omp_fn.0 @ lu-mz.A.x (rhs.f90)
+	#|     1    1         cycles      21.69  3643.968  0.71424   2602668851  26        305337  8        USER   rhs_._omp_fn.0 @ lu-mz.A.x (rhs.f90)
+	#|     1    1         cycles      19.58  3567.813  0.640788  2286210694  23        305336  2        USER   rhs_._omp_fn.0 @ lu-mz.A.x (rhs.f90)
+	#|     1    1         cycles      18.77  3120.229  0.716853  2236746899  22        305333  1        USER   rhs_._omp_fn.0 @ lu-mz.A.x (rhs.f90)
+	#|     1    1         cycles      18.24  3103.462  0.691755  2146834481  20        305334  7        USER   rhs_._omp_fn.0 @ lu-mz.A.x (rhs.f90)
+
+      CHUNK: for my $tidcsv (@pertid_chunks) {
+	
+	#$query = sprintf("SELECT top,prc,mevs,time,nevents,nsamples,tid,cpulist,scope,code_location FROM %s\nWHERE event_id = %d",$view,$e+1);
+	$query = sprintf("SELECT top,prc,mevs,time,nevents,nsamples,tid,cpulist,scope,code_location FROM %s\nWHERE event_name = '%s'",$view,$name);
+	$query .= sprintf("\n  AND top <= %d",$top) if ($top >= 0);
+	$query .= sprintf("\n  AND best = '*'") if ($best);
+	$query .= sprintf("\n  AND nsamples >= %d",$minsamples) if ($minsamples > 1);
+	$query .= sprintf("\n  AND time >= %s",$mintime) if ($mintime > 0);
+	$query .= sprintf("\n  AND tid IN (%s)",$tidcsv) if (defined($tidcsv));
+	$query .= sprintf("\n  AND %s",$where) if (defined($where));
+	$query .= sprintf("\nORDER BY top,nevents DESC,time DESC");
+	$query .= sprintf("\nLIMIT %d",$limit) if (defined($limit) && $limit > 0);
+	$qh = &PrepareQueryDB($dbh,$query);
+	&ExecuteQueryDB($qh);
+	$qres = &FetchQueryDB($qh);
+	$nrows = $qh->rows;
+	$ncols = @{ $qh->{NAME} }; # in absense of anything better ;-(
+	$query =~ s/\n\s*/ /g;
+
+	#printf($FH "\n");
+	#printf($FH "# '%s' (%dx%d) : %s\n",$name,$nrows,$ncols,$query) if ($verbose);
+	printf($FH "# (%dx%d) : %s\n",$nrows,$ncols,$query) if ($verbose);
+	printf($FH "%s",$first);
+	
+	next CHUNK if ($nrows <= 0);
+
+	my $lastid = 0;
+	my $annos = undef;
+	foreach my $row ( @$qres ) {
+	    my ($id,$prc,$mevs,$time,$nevents,$nsamples,$tid,$cpulist,$scope,$cloc) = @$row;
+	    my $newid = ($id > $lastid) ? 1 : 0;
+	    if ($newid && defined($annos)) {
+		printf($FH "%s",$annos);
+		$annos = undef;
+	    }
+	    $cpulist = &Rangify(split(/,/,$cpulist)) if ($cpulist =~ m{,});
+	    my $s = sprintf("   %7.2f%% %10s %*s ( %4sM ) | %-9d %7d %10s",
+			    $prc,   &TimeConv($time,$timeconv),
+			    $evlen, &Commify($nevents), &Human(int($mevs+0.5)),
+			    $nsamples,
+			    $tid, &Center($cpulist,$cpulen));
+	    if ($calltree && $newid) {
+		# NB: $replicate_code_locations = 0 (off) when $calltree = 1 (on) -- otherwise very messy output
+		my $tabs = "   |          ";
+		my ($skip,$root) = split(/\n/,$cloc);
+		$root =~ s/^\s*\\\s*\S+\s*//; # the root of the tree i.e. topmost code location
+		$cloc =~ s/[\t]+/$tabs/g;
+		$cloc = sprintf("%s%s",$root,$cloc);
+	    }
+	    my $tagi = ($newid || $replicate_code_locations) ? sprintf(" %*s %s",$scopelen,$scope,$cloc) : "";
+	    my $head = ($newid || $replicate_code_locations) ? sprintf("%4d",$id) : sprintf("   |");
+	    printf($FH "%s%s%s\n",$head,$s,$tagi);
+	    
+	    if ($newid && $annotate > 0) {
+		if ($cloc =~ m{\((\S+:\d+)\)}) {
+		    $annos = &AnnotateWithSourceLines($annotate,$1,$strictly_searchpath,$searchpath);
+		}
+	    }
+	    
+	    $lastid = $id;
+	} # foreach my $row ( @$qres )
+	printf($FH "%s",$annos) if (defined($annos));
+	
+	&FinishQueryDB($qh);
+      } # CHUNK:
+    } # EVENT:
+}
+
+sub DumpDataStruct {
+    my ($FH,$name,$indent,@list) = @_;
+    if (@list) {
+        local $Data::Dumper::Terse = 1;
+        local $Data::Dumper::Purity = 0;
+        local $Data::Dumper::Deepcopy = 0;
+        local $Data::Dumper::Indent = $indent;
+        local $Data::Dumper::Useqq = 0;
+        local $Data::Dumper::Sortkeys = 1;
+        local $Data::Dumper::Trailingcomma = 0;
+	my $prefix = ($indent > 0) ? "# " : "";
+	local $Data::Dumper::Pad = $prefix;
+	
+        my $s = sprintf("%s",Dumper(@list));
+	chomp($s);
+	printf($FH "%s\n%s%s = \n%s\n%s\n",
+	       $prefix,$prefix,$name,$s,$prefix);
+    }
+}
+
+sub BigHex {
+    my ($hex) = @_;
+    $hex =~ s/^0x//i;
+    my $hexlen = length($hex);
+    $hex = sprintf("%s%s","0" x (16 - $hexlen),$hex) if ($hexlen < 16);
+    my $part = qr/[0-9a-fA-F]{8}/;
+    printf($ERR "%s is not a 64-bit hex number",$hex), return undef,
+        unless my ($high, $low) = $hex =~ /^($part)($part)$/;
+    return hex("0x$low") + (hex("0x$high") << 32);
+}
+	
+sub BaseName {
+    my ($s) = @_;
+    my $bn = "[undef]";
+    if (defined($s)) {
+	if (exists($bn_cache{$s})) {
+	    $bn = $bn_cache{$s};
+	}
+	else {
+	    $bn = $s;
+	    $bn =~ s%^.*/%%;
+	    $bn_cache{$s} = $bn;
+	}
+    }
+    return $bn;
+}
+
+sub DirName {
+    my ($s) = @_;
+    my $dir = ".";
+    if (defined($s)) {
+	if (exists($dir_cache{$s})) {
+	    $dir = $dir_cache{$s};
+	}
+	elsif ($s =~ m{^\s*(.*)/}) {
+	    $dir_cache{$s} = $dir = $1;
+	}
+    }
+    return $dir;
+}
+
+sub DirBaseName {
+    my ($s) = @_;
+    my ($dir,$bn) = (".","[undef]");
+    if (defined($s)) {
+        if (exists($dirbn_cache{$s})) {
+	    ($dir,$bn) = split(/\t/,$dirbn_cache{$s});
+	}
+	elsif ($s =~ m{^\s*(.*)/(\S+)\s*$}) {
+	    ($dir,$bn) = ($1,$2);
+	    $dirbn_cache{$s} = sprintf("%s\t%s",$dir,$bn);
+	}
+	elsif ($s =~ m{^(\[.*\])$}) {
+	    $bn = $1;
+	    $dirbn_cache{$s} = sprintf("%s\t%s",$dir,$bn);
+	}
+    }
+    return ($dir,$bn);
+}
+
+sub Rangify {
+    my $numcsv = join(",",&NumSortUniq(@_));
+    my @out = ();
+    my $delim = "";
+    my $prev = undef;
+    my @list = split(/,/,$numcsv);
+    my ($begin,$end) = (undef,undef);
+    for (@list) {
+        if (defined($prev)) {
+            if ($prev + 1 == $_) {
+                $end = $_;
+                $prev = $_;
+            }
+            else {
+                if ($begin == $end) {
+                    push(@out,$begin);
+                }
+                else {
+                    push(@out,sprintf("%d-%d",$begin,$end));
+                }
+                $begin = $_;
+                $end = $_;
+                $prev = $_;
+            }
+        }
+        else {
+            $begin = $_;
+            $end = $_;
+            $prev = $_;
+        }
+    }
+    if (defined($begin) && defined($end)) {
+        if ($begin == $end) {
+            push(@out,$begin);
+        }
+        else {
+            push(@out,sprintf("%d-%d",$begin,$end));
+        }
+    }
+    return join(",",@out);
+}
+
+sub Uniq { 
+    # Preserves the original array order, but removes duplicates
+    my %seen;
+    return grep { !$seen{$_}++ } @_;
+}
+
+sub NumSortUniq { 
+    # Removes duplicates and returns sorted array
+    return sort { $a <=> $b } (&Uniq(@_));
+}
+
+sub HasItem {
+    my ($item,$list) = @_;
+    my $found = 0;
+    if (defined($item) && defined($list)) {
+	$found = grep m{^${item}$},@$list;
+    }
+    return $found;
+}
+
+sub Center {
+    my ($s,$width) = @_;
+    my $len = length($s);
+    unless ($len >= $width) {
+	my $nspaces = $width - $len;
+	my $leftside = int(($nspaces+1)/2);
+	my $riteside = $nspaces - $leftside;
+	#printf(STDERR "s='%s' : len=%d : width=%d : nspaces=%d : leftside=%d : riteside=%d\n",$s,$len,$width,$nspaces,$leftside,$riteside); exit 123;
+	$s = sprintf("%s%s%s"," " x $leftside, $s, " " x $riteside);
+    }
+    return $s;
+}
+
+sub Commify {
+    my ($text) = @_;
+    if ($text =~ m{^\d+$}) {
+	$text = reverse $text;
+	$text =~ s/(\d\d\d)(?=\d)(?!\d*\.)/${1},/g;
+	$text = reverse $text;
+    }
+    return $text;
+}
+
+sub UnCommify {
+    my ($text) = @_;
+    $text =~ s/^\s+//;
+    $text =~ s/\s+.*$//;
+    $text =~ s/,//g;
+    return $text;
+}
+
+sub TimeConv {
+    my ($t,$timeconv) = @_;
+    my $s = undef;
+    if ($timeconv) {
+        my $sfx = "";
+        if ($t < 1) {
+            $t *= 1000;
+            $sfx = "m";
+            if ($t < 1) {
+                $t *= 1000;
+                $sfx = "u";
+		if ($t < 10) {
+		    $t *= 1000;
+		    $sfx = "n";
+		}
+            }
+            $s = sprintf("%.0f%ss",$t,$sfx);
+        }
+    }
+    unless (defined($s)) {
+        $s = sprintf("%.0fs",$t) if (!defined($s) && $t >= 1000);
+        $s = sprintf("%.1fs",$t) if (!defined($s) && $t >= 100);
+        $s = sprintf("%.3fs",$t) if (!defined($s) && $t < 1);
+        $s = sprintf("%.2fs",$t) if (!defined($s));
+    }
+    return $s;
+}
+
+sub Human {
+    my ($text,$bibytes) = @_;
+    $bibytes = 0 unless (defined($bibytes));
+    if ($text =~ m{^(\d+)$}) {
+	my $n = sprintf("%s",$1);
+	# If bibytes == 0 :
+	# K = 1,000
+	# M = 1,000,000
+	# G = 1,000,000,000
+	# T = 1,000,000,000,000
+	# P = 1,000,000,000,000,000
+	# Else
+	# K = 1024^1
+	# M = 1024^2
+	# G = 1024^3
+	# T = 1024^4
+	# P = 1024^5
+	my $base = $bibytes ? 1024 : 1000;
+	my $label = "";
+	my $mult = 10;
+	if ($n > $mult*($base ** 5)) { # P
+	    $n /= ($base ** 5);
+	    $label = "P";
+	}
+	elsif ($n > $mult*($base ** 4)) { # T
+	    $n /= ($base ** 4);
+	    $label = "T";
+	}
+	elsif ($n > $mult*($base ** 3)) { # G
+	    $n /= ($base ** 3);
+	    $label = "G";
+	}
+	elsif ($n > $mult*($base ** 2)) { # M
+	    $n /= ($base ** 2);
+	    $label = "M";
+	}
+	elsif ($n > $mult*$base) { # K
+	    $n /= $base;
+	    $label = "K";
+	}
+	$text = sprintf("%.0f%s",$n,$label);
+    }
+    return $text;
+}
+
+sub GetScope {
+    my ($bnexe, $sym, $dir, $bn, $src) = @_;
+    my $path = ($dir ne ".") ? "$dir/$bn" : "$bn";
+    my $scope = undef;
+    if (defined($bnexe) && $bn eq $bnexe) {
+        $scope = "USER";
+    }
+    elsif ($sym =~ m{^__(libm|svml)_}) {
+        $scope = "MATH";
+    }
+    elsif ($bn =~ m{^\[(\S+)\]$}) {
+        $scope = uc($1);
+    }
+    elsif ($bn =~ m{lib.*(mpi|pthread)}) {
+        $scope = uc($1);
+    }
+    elsif ($bn =~ m{lib(mlx|ucx|ucp|ucs|uct|open-pal|fabric)}i) {
+        $scope = "MPI";
+    }
+    elsif ($bn =~ m{\b(ib_\w+|\w+_ib)\.\w+}) { # IB
+        $scope = "MPI";
+    }
+    elsif ($bn =~ m{lib(.*infinipath|ibverbs)}) {
+        $scope = "MPI";
+    }
+    elsif ($bn =~ m{\bmlx}) { # Mellanox
+        $scope = "MPI";
+    }
+    elsif ($bn =~ m{lib(.*blas|sci|mkl|lapack|fftw|blis|flame|essl)}i) {
+        $scope = "BLAS";
+    }
+    elsif ($bn =~ m{lib(tbb|tc|je)malloc}i) {
+        $scope = uc($1)."MALLOC";
+    }
+    elsif ($bn =~ m{lib(.*math|m([-]\d+\.\d+)?)}) {
+        $scope = "MATH";
+    }
+    elsif ($bn =~ m{lib.*net.*cdf}) {
+        $scope = "NETCDF";
+    }
+    elsif ($bn =~ m{lib.*hdf}) {
+        $scope = "HDF";
+    }
+    elsif ($bn =~ m{lib(\w+kit)}) {
+        $scope = uc($1);
+    }
+    elsif ($bn =~ m{libatlas}) {
+        $scope = "ATLAS";
+    }
+    elsif ($bn =~ m{lib(fdb|multio)}) {
+        $scope = "FDB";
+    }
+    elsif ($bn =~ m{libmars}i) {
+        $scope = "MARS";
+    }
+    elsif ($bn =~ m{libeccodes}) {
+        $scope = "ECCODES";
+    }
+    elsif ($bn =~ m{libemos}) {
+        $scope = "EMOS";
+    }
+    elsif ($bn =~ m{libpgen}) {
+        $scope = "PGEN";
+    }
+    elsif ($bn =~ m{liboops}i) {
+        $scope = "OOPS";
+    }
+    elsif ($bn =~ m{lib.*odc}i) {
+        $scope = "ODC";
+    }
+    elsif ($bn =~ m{libnss}i) {
+        $scope = "NSS";
+    }
+    elsif ($bn =~ m{libslurm}i) {
+        $scope = "SLURM";
+    }
+    elsif ($bn =~ m{libodb}i) {
+        $scope = "ODB";
+    }
+    elsif ($bn =~ m{lib(ECMA|CCMA|RSTBIAS|COUNTRYRSTRHBIAS|SONDETYPERSTRHBIAS)}) {
+        $scope = "ODB";
+    }
+    elsif ($dir =~ m{/ifs/CY}) {
+        $scope = "USER";
+    }
+    elsif ($bn =~ m{lib\w+\.[DS]P\.so}) {
+        $scope = "USER"; # e.g. /some/dir/install_DP/lib/libifsaux.DP.so
+    }
+    elsif ($bn =~ m{libgrib}) {
+        $scope = "GRIB";
+    }
+    elsif ($bn =~ m{libbufr}) {
+        $scope = "BUFR";
+    }
+    elsif ($bn =~ m{\b(mca_|libugni)}) {
+        $scope = "MPI";
+    }
+    elsif ($bn =~ m{lib(xml|nl)}) {
+        $scope = uc($1);
+    }
+    elsif ($bn =~ m{hwloc}) {
+        $scope = "HWLOC";
+    }
+    elsif ($bn =~ m{lib.*(fort|f90|f95)}) {
+        $scope = "FORTRAN";
+    }
+    elsif ($bn =~ m{lib(fi|f)\b}) {
+        $scope = "FORTRAN";
+    }
+    elsif ($bn =~ m{libu\b}) {
+        $scope = "CRAYLIBS";
+    }
+    elsif ($bn =~ m{lib.*cc}) {
+        $scope = "CC";
+    }
+    elsif ($bn =~ m{lib(gomp|craymp|iomp|pgmp|omp|xlsmp|nvomp)}) {
+        $scope = "OMP";
+    }
+    elsif ($bn =~ m{lib(c|z|dl|rt|bz)([-]\d+\.\d+)?}) {
+        $scope = "LIB" . uc($1);
+    }
+    elsif ($bn =~ m{\bld-}) {
+        $scope = "LD";
+    }
+    elsif ($bn =~ m{\.(x|exe)$}) {
+        $scope = "USER";
+    }
+    elsif ($bn =~ m{^(ifsmaster|masterodb)}i) {
+        $scope = "USER";
+    }
+    elsif ($dir =~ m{/craylibs/} || $dir =~ m{/opt/cray/}) {
+        $scope = "CRAYLIBS";
+    }
+    elsif ($dir =~ m{/opt/(\w+)/}) {
+        $scope = uc($1);
+    }
+    elsif ($path =~ m{/lustre-client}i) {
+        $scope = "LUSTRE";
+    }
+    elsif ($path =~ m{/(mca_|openmpi|hpcx)}i) {
+        $scope = "MPI";
+    }
+    elsif ($dir =~ m{/usr/local/apps}) {
+        $scope = "APPS";
+    }
+    elsif (defined($src) && $src =~ m{^\[(\S+)\]$}) {
+        $scope = uc($1);
+    }
+    else {
+        $scope = ($bn =~ m{^lib(\S+)\.so.*$}) ? uc($1) : "UNDEF";
+    }
+    return $scope;
+}
+
+sub PrettyfiCmdLines {
+    my ($s) = @_;
+    my @tmp = split(/\s+/,$s);
+    my $ntmp = @tmp;
+    my @s = ();
+    my ($begin,$end) = (0,$ntmp);
+    for (my $i=$begin; $i<$end; ) {
+        my $inc = 1;
+        if ($i < $end-1) {
+            if ($tmp[$i] =~ m/^-\w+\b/ && $tmp[$i+1] !~ m/^-/) {
+                $inc = 2;
+            }
+            elsif ($tmp[$i] eq "--") {
+		$inc = 1;
+	    }
+            elsif ($tmp[$i] =~ m/^--/ && $tmp[$i] =~ m/=/) {
+                $inc = 1;
+            }
+            elsif ($tmp[$i] =~ m/^--/ && $tmp[$i+1] !~ m/^-/) {
+                $inc = 2;
+            }
+            elsif ($tmp[$i] !~ m/^-/ && $tmp[$i+1] !~ m/^-/) {
+                $inc = 2;
+            }
+        }
+        push(@s,sprintf("%s %s",$tmp[$i],$tmp[$i+1])) if ($inc == 2);
+        push(@s,$tmp[$i]) if ($inc == 1);
+        $i += $inc;
+    }
+    my $out = "";
+    my $cont = "\n\# ";
+    for (@s) {
+        $out .= sprintf("%s%s",$cont,$_);
+        $cont = " \\\n\#        ";
+    }
+    $out .= sprintf("\n");
+    return ($out,@s);
+}
+
+sub GetKey {
+    my (@chain) = @_;
+    my $key = join("\n",@chain);
+    return md5_base64($key);
+}
+
+sub PadIP {
+    my ($hex) = @_;
+    my $hexlen = length($hex);
+    $hex = sprintf("%s%s","0" x (16 - $hexlen),$hex) if ($hexlen < 16);
+    return $hex;
+}
+
+sub AnnotateWithSourceLines {
+    my ($annotate,$src,$stricly_searchpath,$searchpath) = @_;
+    my $out = undef;
+    if ($annotate > 0 && defined($src) && $src =~ m{^\s*(.*):(\d+)\s*$}) {
+        my ($srcfile,$linenum) = ($1,$2);
+	printf($ERR "(srcfile=%s,linenum=%d)\n",$srcfile,$linenum) if ($debug > 1);
+        if (defined($srcfile) && defined($linenum) && $linenum > 0) {
+            my $filetag = $srcfile;
+            my $found = exists($src_cache{$filetag}) ? 1 : 0;
+            unless ($found) {
+                unless ($stricly_searchpath) {
+                    $found = (-r $srcfile) ? 1 : 0;
+                }
+                unless ($found) {
+                    if (defined($searchpath)) {
+                        my @paths_in = ();
+                        my $bn = &BaseName($srcfile);
+		        SEARCHPATH: for my $dir (split(/:/,$searchpath)) {
+			    if (-d $dir) {
+				if (-r "$dir/$bn") { # exact match ~ rare
+				    $srcfile = "$dir/$bn";
+				    $found = 1;
+				    last SEARCHPATH;
+				}
+                                else { # Not much optimized
+                                    my $findcmd = sprintf("find %s -name '%s' -type f -print 2>/dev/null",$dir,$bn);
+				    printf($ERR "%s\n",$findcmd) if ($debug > 1);
+                                    my $IN;
+                                    if (open($IN,"$findcmd |")) { # there can be multiple occurences of the same file (in basename sense)
+                                        @paths_in = reverse split(m{/},$srcfile) unless (@paths_in); # Used to calculate the best matching score
+                                        my $npaths_in = @paths_in;
+                                        my $bestscore = 0;
+                                        my $match = undef;
+					my $in = do { local $/ = undef; <$IN> };
+                                        close($IN);
+				        FIND_OUTER: for my $f (split(/\n/,$in)) {
+                                            chomp($f);
+                                            my @paths_out = reverse split(m{/},$f);
+                                            my $n = @paths_out;
+                                            $n = $npaths_in if ($n > $npaths_in);
+                                            my $score = 0;
+					    FIND_INNER: for my $i (0 .. $n - 1) {
+                                                if ($paths_out[$i] eq $paths_out[$i]) {
+                                                    ++$score;
+                                                    next FIND_INNER;
+                                                }
+                                                last FIND_INNER;
+                                            } # FIND_INNER
+                                            if ($bestscore < $score) {
+                                                $bestscore = $score;
+                                                $match = $f;
+                                            }
+                                        } # FIND_OUTER
+                                        if (defined($match)) {
+                                            $srcfile = $match;
+                                            $found = 1;
+                                            last SEARCHPATH;
+                                        }
+                                    } # if (open($IN,"$findcmd |")) ...
+                                } # if (-r "$dir/$bn") ... else ...
+                            } # if (-d $dir) ...
+                        } # SEARCHPATH
+                    } # if (defined($searchpath)) ...
+                } # unless ($found)
+                if ($found) {
+                    # read once & cache
+                    my $IN;
+                    if (open($IN,"< $srcfile")) {
+			my $in = do { local $/ = undef; <$IN> };
+                        close($IN);
+                        @{$src_cache{$filetag}} = ($srcfile,$in); # input data array by reference
+                    }
+                }
+            }
+            if ($found) {
+                my ($actualsrc,$in) = @{$src_cache{$filetag}}; # a reference to input data array
+		my @in = split(/\n/,$in);
+                my $nin = @in;
+                my ($begin,$end) = ($linenum - $annotate - 1, $linenum + $annotate - 1); # Add -1 since zero-origin indexing
+                $begin = 0 if ($begin < 0);
+                $end = $nin-1 if ($end > $nin-1);
+                if ($begin <= $end) {
+                    $out = sprintf("\n%14s***  %s near line %d\n","",$actualsrc,$linenum);
+                    for my $i ($begin .. $end) {
+                        my $line = $in[$i];
+                        chomp($line);
+                        $line =~ s/\s+$//;
+                        my $num = $i + 1;
+                        if ($num == $linenum) {
+                            $out .= sprintf("%7s#%-6d| %s\n","",$num,$line);
+                        }
+                        else {
+                            $out .= sprintf("%14s| %s\n","",$line);
+                        }
+                    } # for my $i ($begin .. $end)
+		    $out .= "\n";
+                } # if ($begin <= $end) ...
+            } # if ($found) ...
+        } # if (defined($srcfile) && defined($linenum) && $linenum > 0) ...
+    } # if ($src =~ m{^\s*(.*):(\d+)\s*$}) ...
+    printf($ERR "AnnotateWithSourceLines(%d,%s,%d,%s) = %d = length of output\n",
+	   $annotate,defined($src) ? $src : "undef",$stricly_searchpath,defined($searchpath) ? $searchpath : "undef",
+	   defined($out) ? length($out) : 0) if ($debug > 1);
+    return $out;
+}
+
+sub NanoSecs {
+    my ($secs) = @_;
+    return int($secs * 1e+9);
+}
+
+sub OpenDB {
+    my ($database,$status,$stmt) = @_;
+    my $dbh = undef; # handle
+    my $readonly = 0;
+    if (defined($database)) {
+	$status = "mem" unless (defined($status));
+	if ($status =~ m{^mem$}i) {
+	    $database = ":memory:"; # in-memory database
+	}
+	else {
+	    $database .= ".db" unless ($database =~ m{\.db$});
+	}
+	my $driver = "SQLite";
+	my $dsn = "DBI:$driver:";
+	my $userid = undef;
+	my $password = undef;
+	my $make_ro = undef;
+	if ($status =~ m{^new$}i) {
+	    unlink $database if (-f $database); # delete existing database file
+	    $dsn .= "uri=file:${database}?mode=rwc"; # read-write-create := rwc 
+	}
+	elsif ($status =~ m{^old$}i) {
+	    $readonly = 1;
+	    # Something wrong with earlier DBD::SQLite : even if you don't update (just SELECT), it requires R/W !!!
+	    if ($dbd_sqlite_version >= 3036000) {
+		$dsn .= "uri=file:${database}?mode=ro"; # Read/Only
+	    }
+	    else {
+		$dsn .= "uri=file:${database}?mode=rw"; # Read/Write
+	    }
+	}
+	else { # in-memory database
+	    $dsn .= "database=${database}"; # is also "rwc"
+	}
+
+	$dbh = DBI->connect($dsn, $userid, $password, { RaiseError => 1, AutoCommit => 0 });
+	#or die $DBI::errstr;
+
+	if (defined($stmt)) { # e.g. pragmas
+	    #$stmt .= ";" unless ($stmt =~ m{;$});
+	    $dbh->do($stmt);
+	}
+    }
+    return ($dbh,$readonly);
+}
+
+sub CommitDB {
+    my ($dbh) = @_;
+    if (defined($dbh)) {
+	#local $dbh->{AutoCommit} = 0;
+	#$dbh->do('BEGIN TRANSACTION');
+	$dbh->do('COMMIT'); # does the job
+	#local $dbh->{AutoCommit} = 1;
+    }
+}
+
+sub CreateTableDB {
+    my ($dbh,$table,$var,$type,$attr,$extras) = @_;
+    my $stmt = undef;
+    if (defined($dbh)) {
+	$stmt = sprintf("CREATE TABLE IF NOT EXISTS '%s' (\n",lc($table));
+	my @cols = ();
+	my $ncols = @$var;
+	for my $k (0 .. $ncols-1) {
+	    push(@cols,sprintf("  %s %s%s",
+			       lc($$var[$k]),
+			       uc($$type[$k]),
+			       defined($attr) && defined($$attr[$k]) ? " ".uc($$attr[$k]) : ""));
+	}
+        $stmt .= join(",\n",@cols);
+	if (defined($extras)) {
+	    map { $stmt .= sprintf(",\n  %s",$_); } @$extras;
+	}
+        $stmt .= "\n)";
+	printf($ERR "CreateTableDB:\n%s\n",$stmt) if ($verbose > 1 || $debug > 1);
+	$dbh->do($stmt);
+    }
+    return $stmt;
+}
+
+sub CloseDB {
+    my ($dbh,$save_db,$stmt) = @_;
+    if (defined($dbh)) {
+
+	if ($save_db) {
+	    &CommitDB($dbh);
+	    #$dbh->do('COMMIT'); # does all the outstanding statements in a one-go
+	    
+	    # If VACUUM needed, uncomment the next two lines
+	    #local $dbh->{AutoCommit} = 1;
+	    #$dbh->do('VACUUM');
+	    
+	    #my $close_stmt = "PRAGMA foreign_keys = ON; PRAGMA foreign_key_check";
+	    
+	    if (defined($stmt)) { # e.g. pragmas
+		#$stmt .= ";" unless ($stmt =~ m{;$});
+		$dbh->do($stmt);
+	    }
+	}
+	
+	$dbh->disconnect();
+    }
+}
+
+sub InsertIntoTableDB {
+    my ($dbh,$table,$var,$value) = @_;
+    my $stmt = undef;
+    if (defined($dbh)) {
+	$stmt = sprintf("INSERT INTO %s ('",lc($table));
+	$stmt .= join("','",map { lc($_); } @$var);
+	$stmt .= "') VALUES (";
+	my $delim = "";
+	map {
+	    $stmt .= $delim;
+	    if (defined($_)) {
+		$stmt .= (uc($_) ne "NULL") ? sprintf("'%s'",$_) : "NULL";
+	    }
+	    else {
+		$stmt .= "NULL";
+	    }
+	    $delim = ",";
+	} @$value;
+	$stmt .= ")";
+	$dbh->do($stmt);
+    }
+    return $stmt;
+}
+
+sub CreateViewDB {
+    my ($dbh,$view,$query) = @_;
+    my $stmt = undef;
+    if (defined($dbh)) {
+        $stmt = sprintf("CREATE VIEW IF NOT EXISTS '%s' AS\n%s",$view,join("\n",@$query));
+	printf($ERR "CreateViewDB:\n%s\n",$stmt) if ($verbose > 1 || $debug > 1);
+        $dbh->do($stmt);
+    }
+    return $stmt;
+}
+
+sub InsertIntoTableViaQueryDB {
+    my ($dbh,$table,$var,$query) = @_;
+    my $stmt = undef;
+    if (defined($dbh)) {
+	$stmt = sprintf("INSERT INTO %s ('",lc($table));
+	$stmt .= join("','",map { lc($_); } @$var);
+	$stmt .= "')\n$query";
+	$dbh->do($stmt);
+    }
+    return $stmt;
+}
+
+sub UpdateTableDB {
+    my ($dbh,$table,$var,$value,$where_cond) = @_;
+    my $stmt = undef;
+    if (defined($dbh)) {
+	# Just one "var = value" at a time, I'm afraid
+	$stmt = sprintf("UPDATE %s SET %s = %s",lc($table),lc($var),defined($value) ? "'${value}'" : "NULL");
+	$stmt .= sprintf(" WHERE %s",$where_cond) if (defined($where_cond));
+	$dbh->do($stmt);
+    }
+    return $stmt;
+}
+
+sub FetchQueryDB {
+    my ($sth,$slice,$max_rows) = @_;
+    my $res = undef;
+    $res = $sth->fetchall_arrayref($slice,$max_rows) if (defined($sth));
+    return $res;
+}
+
+sub FinishQueryDB {
+    my ($sth) = @_;
+    $sth->finish() if (defined($sth));
+}
+
+# Tim Bunce says prepare + bind_param + execute is faster than a single "do"
+
+sub PrepareQueryDB {
+    my ($dbh,$query) = @_;
+    my $sth = undef;
+    if (defined($dbh) && defined($query)) {
+	my $i = 1;
+	#printf($ERR "[IN]:  PrepareQueryDB(dbh,%s)\n",$query);
+	$query =~ s/([?])([^0-9])/$1.($i++).$2/eg; # Plain & consecutive "?" get changed to ?1, ?2, ...
+	#printf($ERR "[OUT]: PrepareQueryDB(dbh,%s)\n",$query);
+	#-printf($ERR "PrepareQueryDB(dbh,%s)\n",$query);
+	$sth = $dbh->prepare($query);
+    }
+    return $sth; # statement handle
+}
+
+sub ExecuteQueryDB {
+    my ($sth,$value,$dobind) = @_;
+    if (defined($sth)) {
+	unless (defined($dobind) && $dobind == 1) {
+	    # This is the default i.e. by omitting $dobind argument you just call execute(@$value)
+	    # NB: assuming undef's turn into NULL's (but explicit "NULL"'s stored as strings "NULL" !!)
+	    if (defined($value)) {
+		# Make sure explicit "NULL" strings become actual NULL
+		my @cols = @$value;
+		map { $_ = undef if (defined($_) && uc($_) eq "NULL"); } @cols;
+		$sth->execute(@cols);
+	    }
+	    else {
+		$sth->execute();
+	    }
+	    return;
+	}
+	elsif (defined($value)) {
+	    # bind_param (and parsing before can be time consuming
+	    my $i = 0;
+	    map {
+		my $val;
+		if (defined($_)) {
+		    $val = (uc($_) ne "NULL") ? sprintf("%s",$_) : "NULL"; # Note: Must have *NO* quotes around '%s' -- just a plain %s
+		}
+		else {
+		    $val = "NULL";
+		}
+		$sth->bind_param(++$i, $val);
+		#printf($ERR "Bound %s into parameter #%d\n",$val,$i);
+	    } @$value;
+	}
+	$sth->execute();
+    }
+}
+
+sub DerivedViews {
+    my ($dbh) = @_;
+    if (defined($dbh)) {
+	my $union = "UNION"; # rather than "UNION ALL"
+	&CreateViewDB($dbh,"grandsummary",
+		      #["tid","value","unit","description","refcount"],
+		      [
+		       "SELECT          tid,printf('%.5f',scale * SUM(0.0+numer)/SUM(0.0+denom)) AS value,unit, description, SUM(refcount) AS refcount FROM (",
+		       "SELECT          tid,1e-9 AS scale, SUM(0.0+nevents)   AS numer, SUM(time)     AS denom, 'GHz' AS unit",
+		       " ,'cycles per second' AS description, count(*) AS refcount",
+		       " FROM per WHERE event_name IN ('cycles','cpu-cycles') AND time > 0 GROUP BY tid,unit",
+		       "$union",
+		       "SELECT a.tid AS tid,1.0  AS scale, SUM(0.0+a.nevents) AS numer, SUM(0.0+b.nevents) AS denom, 'IPC' AS unit",
+		       " ,'instructions per cycle' AS description, count(*) AS refcount",
+		       " FROM per AS a, per AS b WHERE a.event_name = 'instructions' AND b.event_name IN ('cycles','cpu-cycles') AND a.tid = b.tid GROUP BY a.tid,unit",
+		       "$union",
+		       "SELECT a.tid AS tid,1.0  AS scale, SUM(0.0+a.nevents) AS numer, SUM(0.0+b.nevents) AS denom, 'CPI' AS unit",
+		       " ,'cycles per instruction' AS description, count(*) AS refcount",
+		       " FROM per AS a, per AS b WHERE b.event_name = 'instructions' AND a.event_name IN ('cycles','cpu-cycles') AND a.tid = b.tid GROUP BY a.tid,unit",
+		       "$union",
+		       "SELECT a.tid AS tid,1.0  AS scale, SUM(0.0+a.nevents) AS numer, SUM(0.0+b.nevents) AS denom, 'L1 cache miss ratio' AS unit",
+		       " ,'L1-dcache-load-misses over L1-dcache-loads' AS description, count(*) AS refcount",
+		       " FROM per AS a, per AS b WHERE b.event_name = 'L1-dcache-loads' AND a.event_name = 'L1-dcache-load-misses' AND a.tid = b.tid GROUP BY a.tid,unit",
+		       "$union",
+		       "SELECT a.tid AS tid,1e-3 AS scale, SUM(0.0+a.nevents) AS numer, SUM(0.0+b.nevents) AS denom, 'L1 cache miss rate PTI' AS unit",
+		       " ,'L1-dcache-load-misses per 1000 instructions' AS description, count(*) AS refcount",
+		       " FROM per AS a, per AS b WHERE b.event_name = 'instructions' AND a.event_name = 'L1-dcache-load-misses' AND a.tid = b.tid GROUP BY a.tid,unit",
+		       "$union",
+		       "SELECT a.tid AS tid,1.0  AS scale, SUM(0.0+a.nevents) AS numer, SUM(0.0+b.nevents) AS denom, 'Branch mispredict ratio' AS unit",
+		       " ,'branch-misses over branch-instructions' AS description, count(*) AS refcount",
+		       " FROM per AS a, per AS b WHERE b.event_name IN ('branches','branch-instructions') AND a.event_name = 'branch-misses' AND a.tid = b.tid GROUP BY a.tid,unit",
+		       "$union",
+		       "SELECT a.tid AS tid,1e-3 AS scale, SUM(0.0+a.nevents) AS numer, SUM(0.0+b.nevents) AS denom, 'Branch mispredict rate PTI' AS unit",
+		       " ,'branch-misses per 1000 instructions' AS description, count(*) AS refcount",
+		       " FROM per AS a, per AS b WHERE b.event_name = 'instructions' AND a.event_name = 'branch-misses' AND a.tid = b.tid GROUP BY a.tid,unit",
+		       "$union",
+		       "SELECT a.tid AS tid,1.0  AS scale, SUM(0.0+a.nevents) AS numer, SUM(0.0+b.nevents) AS denom, 'Data TLB miss ratio' AS unit",
+		       " ,'dTLB-load-misses over cache-references' AS description, count(*) AS refcount",
+		       " FROM per AS a, per AS b WHERE b.event_name = 'cache-references' AND a.event_name = 'dTLB-load-misses' AND a.tid = b.tid GROUP BY a.tid,unit",
+		       "$union",
+		       "SELECT a.tid AS tid,1e-3 AS scale, SUM(0.0+a.nevents) AS numer, SUM(0.0+b.nevents) AS denom, 'Data TLB miss rate PTI' AS unit",
+		       " ,'dTLB-load-misses per 1000 instructions' AS description, count(*) AS refcount",
+		       " FROM per AS a, per AS b WHERE b.event_name = 'instructions' AND a.event_name = 'dTLB-load-misses' AND a.tid = b.tid GROUP BY a.tid,unit",
+		       ") GROUP BY unit,tid ORDER BY unit,tid",
+		      ],
+	    );
+    }
+}
+
+sub DefineTables {
+    my ($dbh) = @_;
+    if (defined($dbh)) {
+	my $primkey = "PRIMARY KEY";
+	my $notnull = "NOT $null";
+	my $def0 = "DEFAULT 0";
+	my $def1 = "DEFAULT 1";
+	my $defnull = "DEFAULT NULL";
+	my $nnd0 = "$notnull $def0";
+	my $nnd1 = "$notnull $def1";
+	my $unique = "UNIQUE";
+
+	&CreateTableDB($dbh,"mmap",
+		       ["tid"    ,"cpu"    ,"reltime","type"   ,"key"   ,"address","protection","object"],
+		       ["integer","integer","real"   ,"integer","text"  ,"text"   ,"text"      ,"text"  ],
+		       [$nnd0    ,$nnd0    ,undef    ,$defnull ,$notnull,$notnull ,$notnull    ,$notnull]);
+
+	&CreateTableDB($dbh,"mpi",
+		       ["rank"   ,"hostname","user","cpudesc","omp_places","omp_threads","num_threads","num_event_ids",
+			"pid","tidlist","cpulist",
+			"captured","captured_epoch","reference","reference_epoch","reference_clock",
+			"runtime","sampling_delay",
+			"sampling_frequency","sampling_time","sampling_begin_clock","sampling_end_clock",
+			"database_filename",
+			"executable","perfdata_filename","perfdata_filesize","report_filename","report_filesize","report_datasize",
+			"max_scopelen","perf_event_paranoid","kptr_restrict","nmi_watchdog",
+		       ],
+		       ["integer","text"    ,"text","text"   ,"text"      ,"integer"    ,"integer"    ,"integer",
+			"integer"          ,"text"   ,"text"   ,
+			"datetime","text"         ,"datetime" ,"text"           ,"real",
+			"real"   , "real"         ,
+			"integer"           ,"real"         ,"real"            ,"real",
+			"text",
+			"text"      ,"text"             ,"integer"          ,"text"           ,"integer"        ,"integer",
+			"integer"    ,"integer"             ,"integer"      ,"integer"      ,
+		       ],
+		       ["$primkey $def0",undef,undef,undef,undef,$def0,$def0,$def0,
+			undef,undef,undef,
+			undef,undef,undef,undef,undef,
+			$def0,$def0,
+			$def0,undef,undef,undef,
+			undef,
+			undef,undef,$def0,undef,$def0,$def0,
+			sprintf("DEFAULT %d",length("SCOPE")),undef,undef,undef,
+		       ]);
+	
+	&CreateTableDB($dbh,"event",
+		       ["id"      ,"name","nevents","nsamples","mpirank"],
+		       ["integer" ,"text","integer","integer" ,"integer"],
+		       ["$primkey $notnull $unique",$notnull,$nnd0,$nnd0,undef],
+		       ["FOREIGN KEY(mpirank) REFERENCES mpi(rank)"]);
+	
+	&CreateTableDB($dbh,"sample",
+		       ["id"     ,"event_id","tid"    ,"cpu"    ,"nevents","reltime","deltatime","fraction" ],
+		       ["integer","integer" ,"integer","integer","integer","real"   ,"real"     ,"real"     ],
+		       ["$primkey $notnull $unique",$notnull,$notnull,$notnull,$nnd0,$nnd0,$nnd0,$nnd0      ],
+		       ["FOREIGN KEY(event_id) REFERENCES event(id)"]);
+	
+	&CreateTableDB($dbh,"objdir", # directory names (DirName) encountered for object files
+		       ["id"     ,"refcount","name"],
+		       ["integer","integer" ,"text"],
+		       ["$primkey $notnull $unique",$nnd0,$unique]);
+
+	&CreateTableDB($dbh,"srcdir", # directory names (DirName) encountered for source files
+		       ["id"     ,"refcount","name"],
+		       ["integer","integer" ,"text"],
+		       ["$primkey $notnull $unique",$nnd0,$unique]);
+	
+	&CreateTableDB($dbh,"objbn", # basenames (BaseName) encountered for object files
+		       ["id"     ,"refcount","name"],
+		       ["integer","integer" ,"text"],
+		       ["$primkey $notnull $unique",$nnd0,$unique]);
+
+	&CreateTableDB($dbh,"srcbn", # basenames (BaseName) encountered for source files
+		       ["id"     ,"refcount","name"],
+		       ["integer","integer" ,"text"],
+		       ["$primkey $notnull $unique",$nnd0,$unique]);
+	
+	&CreateTableDB($dbh,"sym", # plain (function) symbols w/o offsets
+		       ["id"     ,"refcount","name"],
+		       ["integer","integer" ,"text"],
+		       ["$primkey $notnull $unique",$nnd0,$unique]);
+	
+	&CreateTableDB($dbh,"tpl", # TemPLate args
+		       ["id"     ,"refcount","name"],
+		       ["integer","integer" ,"text"],
+		       ["$primkey $notnull $unique",$nnd0,$unique]);
+	
+	&CreateTableDB($dbh,"trace",
+		       ["id"     ,"refcount","scope", "symbol", "object_dir", "object", "source_dir", "source"],
+		       ["integer","integer" ,"text" , "text"  , "text"      , "text"  , "text"      , "text"  ],
+		       ["$primkey $notnull $unique",$nnd0,$defnull,undef,undef,undef  ,  undef      ,  undef  ],
+		       ["FOREIGN KEY(symbol) REFERENCES sym(name)",
+			"FOREIGN KEY(object_dir) REFERENCES objdir(name)",
+			"FOREIGN KEY(object) REFERENCES objbn(name)",
+			"FOREIGN KEY(source_dir) REFERENCES srcdir(name)",
+			"FOREIGN KEY(source) REFERENCES srcbn(name)"]);
+    
+	&CreateTableDB($dbh,"call",
+		       ["sample_id","level"  ,"depth"  ,"pc"    ,"sym_id" ,"sym_off","tpl_id" ,"objdir_id","objbn_id","srcdir_id","srcbn_id","linenum","trace_id"],
+		       ["integer"  ,"integer","integer","text"  ,"integer", "text"  ,"integer","integer"  ,"integer" ,"integer"  ,"integer" ,"integer","integer" ],
+		       [$notnull   ,$nnd1    ,$nnd1    ,$notnull,$notnull ,  undef  ,$notnull ,$notnull   ,$notnull  ,$notnull   ,$notnull  , undef   ,$notnull  ],
+		       ["$primkey(sample_id,level)",
+			"FOREIGN KEY(sample_id) REFERENCES sample(id)",
+			"FOREIGN KEY(sym_id) REFERENCES sym(id)",
+			"FOREIGN KEY(tpl_id) REFERENCES tpl(id)",
+			"FOREIGN KEY(objdir_id) REFERENCES objdir(id)",
+			"FOREIGN KEY(objbn_id) REFERENCES objbn(id)",
+			"FOREIGN KEY(srcdir_id) REFERENCES srcdir(id)",
+			"FOREIGN KEY(srcbn_id) REFERENCES srcbn(id)",
+			"FOREIGN KEY(trace_id) REFERENCES trace(id)"]);
+	
+	&CreateTableDB($dbh,"catalog",
+		       ["kind"  ,"vartype","var" ,  "idx" ,"value","lenvalue"],
+		       ["text"  ,"text"   ,"text",  "text","text" ,"integer" ],
+		       [$notnull,undef    ,undef ,$defnull,  undef,$def0     ]);
+
+	&CreateTableDB($dbh,"metadata",
+		       ["id"      ,"cmd"             ,"output", "len"     ],
+		       ["integer" ,"text"            ,"text"  , "integer" ],
+		       ["$primkey","$notnull $unique",$notnull,$def0      ]);
+    }
+}
+
+sub DefineViews {
+    my ($dbh) = @_;
+    if (defined($dbh)) {
+	#my $cdelim = 'char(10)||char(9)||char(9)';
+	my $cdelim = "\n\t\t";
+	my $nil = '???'; # '<null>'
+		
+	&CreateViewDB($dbh,"per",
+		      ["SELECT event_id,event.name AS event_name,tid,cpu",
+		       "      ,SUM(sample.nevents) AS nevents",
+		       "      ,COUNT(*) AS nsamples",
+		       "      ,SUM(sample.deltatime) AS time",
+		       " FROM  event",
+		       " INNER JOIN sample",
+		       "    ON event.id = event_id",
+		       " GROUP BY event_id,event_name,tid,cpu",
+		       " ORDER BY event_id,event_name,tid,cpu"]);
+
+	&CreateViewDB($dbh,"perscope",
+		      ["SELECT event_id,event.name AS event_name,scope,tid",
+		       "      ,SUM(sample.nevents) AS nevents",
+		       "      ,COUNT(*) AS nsamples",
+		       "      ,SUM(sample.deltatime) AS time",
+		       " FROM  event,sample,call,trace",
+		       " WHERE level = 1",
+		       "   AND event.id = event_id",
+		       "   AND sample_id = sample.id",
+		       "   AND trace_id = trace.id",
+		       " GROUP BY event_id,event_name,scope,tid",
+		       " ORDER BY event_id,event_name,scope,tid"]);
+
+	for my $tid_or_cpu (qw(tid cpu)) {
+	    my ($first,$second) = ($tid_or_cpu eq "tid") ? qw(tid cpu) : qw(cpu tid);
+	    &CreateViewDB($dbh,"per$first",
+			  ["SELECT event_id,event_name,$first",
+			   "      ,SUM(nevents) AS nevents",
+			   "      ,SUM(nsamples) AS nsamples",
+			   "      ,SUM(time) AS time",
+			   "      ,GROUP_CONCAT(DISTINCT $second) AS ${second}list",
+			   " FROM (",
+			   "   SELECT event_id,event_name,$first",
+			   "         ,nevents,nsamples,time",
+			   "         ,$second",
+			   "   FROM  per",
+			   "   GROUP BY event_id,event_name,$first,$second",
+			   "   ORDER BY event_id,event_name,$first,$second",
+			   "      ) AS t",
+			   " GROUP BY event_id,event_name,$first",
+			   " ORDER BY event_id,event_name,$first"]);
+	}
+	
+	# with recursive forloop(i) as (values(1) union all select i+1 from for where i < (select max(id) from event)) select table from forloop,table where event_id = i;
+	# this is better :
+	# WITH forloop(i) AS (SELECT DISTINCT id FROM event ORDER BY id)
+
+	my $without_trees = {
+	    prof => ['%s @ %s (%s)',''],
+	    proflines => ['%s @ %s (%s:%d)',',linenum'],
+	    profpc => ['[0x%s] %s+%s @ %s (%s:%d)',',linenum','pc'],
+	};
+
+	for my $view (sort keys %$without_trees) {
+	    my $values = $without_trees->{$view};
+	    my ($fmt,$linenum,$pc,$sym_off) = @$values;
+	    my $prtfarg = "COALESCE(symbol,'$nil'),COALESCE(object,'$nil'),COALESCE(source,'$nil')$linenum) AS code_location";
+	    if (defined($pc)) { # much more complicated ...
+		$prtfarg = "$pc,COALESCE(symbol,'$nil'),".
+		    &IIF("sym_off IS NOT $null","printf('0x%s',sym_off)","'$nil'").
+		    ",COALESCE(object,'$nil'),COALESCE(source,'$nil')$linenum) AS code_location";
+	    }
+	    #printf($ERR "view=%s : fmt='%s' : linenum='%s'\n",$view,$fmt,$linenum);
+	    &CreateViewDB($dbh,"$view", # symbol + object + source w/o or with line numbers, w/o calling tree
+			  [
+			   "WITH forloop(i) AS (SELECT DISTINCT id FROM event ORDER BY id)",
+			   "SELECT printf('%s',".&IIF("nevents == mx","'*'","'|'").") AS best,top,event_id,event_name",
+			   "      ,0.0+printf('%.2f',prc) AS prc,0.0+printf('%.3f',mevs) AS mevs",
+			   "      ,0.0+printf('%.6f',time) AS time,nevents,nsamples",
+			   "      ,tid,cpulist,scope,code_location FROM (",
+			   "  SELECT t.* FROM forloop,(SELECT DENSE_RANK() OVER (PARTITION BY event_id ORDER BY mx DESC,code_location) AS top",
+			   "        ,event_id,event_name,prc,".&IIF("time > 0","(1e-6*nev)/time","0.0")." AS mevs",
+			   "        ,time,nev AS nevents,nsa AS nsamples,tid,cpulist,scope,code_location,mx FROM (",
+			   "    SELECT *,MAX(nev) OVER (PARTITION BY code_location,event_id ORDER BY nev DESC) AS mx FROM (",
+			   "      SELECT event_id,event.name AS event_name",
+			   "           ,100.0*SUM(fraction) AS prc",
+			   "           ,SUM(deltatime) AS time",
+			   "           ,SUM(sample.nevents) AS nev",
+			   "           ,COUNT(*) AS nsa",
+			   "           ,tid,GROUP_CONCAT(DISTINCT cpu) AS cpulist,scope",
+			   "           ,printf('$fmt',",
+			   "            $prtfarg",
+			   "      FROM  event,sample,call,trace",
+			   "      WHERE level = 1",
+			   "        AND event_id = event.id",
+			   "        AND sample_id = sample.id",
+			   "        AND trace_id = trace.id",
+			   "      GROUP BY event_id,tid,code_location",
+			   "    ))) AS t",
+			   "  WHERE t.event_id = forloop.i",
+			   "  ORDER BY mx DESC, code_location, nevents DESC, prc DESC, time, event_id",
+			   ")",
+			  ]);
+	}
+
+	my $with_trees = {
+	    callprof => ['%s @ %s (%s)',''],
+	    callproflines => ['%s @ %s (%s:%d)',',linenum'],
+	    callprofpc => ['[0x%s] %s+%s @ %s (%s:%d)',',linenum','pc'],
+	};
+
+	for my $view (sort keys %$with_trees) {
+	    my $values = $with_trees->{$view};
+	    my ($fmt,$linenum,$pc) = @$values;
+	    my $prtfarg = "COALESCE(symbol,'$nil'),COALESCE(object,'$nil'),COALESCE(source,'$nil')$linenum),' ') AS code_location";
+	    if (defined($pc)) { # much more complicated ...
+		$prtfarg = "$pc,COALESCE(symbol,'$nil'),".
+		    &IIF("sym_off IS NOT $null","printf('0x%s',sym_off)","'$nil'").
+		    ",COALESCE(object,'$nil'),COALESCE(source,'$nil')$linenum),' ') AS code_location";
+	    }
+	    #printf($ERR "view=%s : fmt='%s' : linenum='%s'\n",$view,$fmt,$linenum);
+	    &CreateViewDB($dbh,"$view", # symbol + object + source w/o or with line numbers, WITH calling tree
+			  [
+			   "WITH forloop(i) AS (SELECT DISTINCT id FROM event ORDER BY id)",
+			   "SELECT printf('%s',".&IIF("nevents == mx","'*'","'|'").") AS best,top,event_id,event_name",
+			   "      ,0.0+printf('%.2f',prc) AS prc,0.0+printf('%.3f',mevs) AS mevs",
+			   "      ,0.0+printf('%.6f',time) AS time,nevents,nsamples",
+			   "      ,tid,cpulist,depth,scope,code_location FROM (",
+			   "  SELECT t.* FROM forloop,(SELECT DENSE_RANK() OVER (PARTITION BY event_id ORDER BY mx DESC,code_location) AS top",
+			   "        ,event_id,event_name,prc,".&IIF("time > 0","(1e-6*nev)/time","0.0")." AS mevs",
+			   "        ,time,nev AS nevents,nsa AS nsamples,tid,cpulist,depth,scope,code_location,mx FROM (",
+			   "    SELECT *,MAX(nev) OVER (PARTITION BY code_location,event_id ORDER BY nev DESC) AS mx FROM (",
+			   "      SELECT * FROM (",
+			   "        SELECT event_id,event.name AS event_name",
+			   "             ,100.0*SUM(fraction) AS prc",
+			   "             ,SUM(deltatime) AS time",
+			   "             ,SUM(sample.nevents) AS nev",
+			   "             ,COUNT(*) AS nsa",
+			   "             ,tid,GROUP_CONCAT(DISTINCT cpu) AS cpulist,scope,depth",
+			   "             ,GROUP_CONCAT(printf('${cdelim}%*s\\ {%s} $fmt',level,' ',scope,",
+			   "              $prtfarg",
+			   "        FROM  event,sample,call,trace",
+			   "        WHERE event_id = event.id",
+			   "          AND sample_id = sample.id",
+			   "          AND trace_id = trace.id",
+			   "        GROUP BY sample_id",
+			   "      ) GROUP BY event_id,tid,code_location",
+			   "    ))) AS t",
+			   "  WHERE t.event_id = forloop.i",
+			   "  ORDER BY mx DESC, code_location, nevents DESC, prc DESC, time, event_id",
+			   ")",
+			  ]);
+	}
+
+	&DerivedViews($dbh);
+    
+    }
+}
+
+sub CheckingDB {
+    my ($dbh,$top) = @_;
+    for my $tbl_or_view (qw(event sample call trace sym 
+			    tpl objdir objbn srcdir srcbn
+			    catalog metadata
+			    per pertid percpu perscope 
+			    prof proflines profpc callprof callproflines callprofpc grandsummary)) {
+	my $limit = $top;
+	my $query = "SELECT * FROM $tbl_or_view LIMIT $limit";
+	my $qh = &PrepareQueryDB($dbh,$query);
+	&ExecuteQueryDB($qh);
+	my $qres = &FetchQueryDB($qh); # returns all columns and rows requested
+	#my $qres = &FetchQueryDB($qh,undef,1); # return 1 row
+	#my $qres = &FetchQueryDB($qh,[-2,-1]); # bad: returns two last columns, which ones ?
+	if (defined($qres)) {
+	    my @colnames = @{ $qh->{NAME_lc} }; # NAME_uc would be UPPERCASE, NAME would be database engine dependent
+	    my $ncols = @colnames; # wrong if slice was used
+	    my $cols = "";
+	    my $minlen = 5;
+	    my @lencols = map { my $len = length($_); ($len < $minlen) ? $minlen : $len; } @colnames;
+	    my $row; # quickly check lengths on all the output data cols
+	    foreach $row ( @$qres ) {
+		for my $k (0 .. $ncols-1) {
+		    my $val = $$row[$k];
+		    $val = "NULL" unless (defined($val));
+		    unless (substr($val,0,1) eq '\n') {
+			my $len = length($val);
+			$lencols[$k] = $len if ($lencols[$k] < $len);
+		    }
+		}
+	    }
+	    #print $OUT "@lencols\n";
+	    my $delim = "#";
+	    for my $k (0 .. $ncols-1) {
+		my $len = $lencols[$k];
+		if ($k < $ncols-1) {
+		    $cols .= sprintf("%s%*s",$delim,$len,$colnames[$k]);
+		}
+		else {
+		    $cols .= sprintf("%s%s",$delim,$colnames[$k]);
+		}
+		$delim = " ";
+	    }
+	    my $nrows = $qh->rows;
+	    printf($OUT "\n#Returned %d rows x %d cols from : %s\n",$nrows,$ncols,$query);
+	    printf($OUT "%s\n",$cols);
+	    foreach $row ( @$qres ) {
+		my $csv = "";
+		for my $k (0 .. $ncols-1) {
+		    my $len = $lencols[$k];
+		    my $val = $$row[$k];
+		    $val = "NULL" unless (defined($val));
+		    if ($k < $ncols-1) {
+			$csv .= sprintf("%s%*s",$delim,$len,$val);
+		    }
+		    else {
+			$csv .= sprintf("%s%s",$delim,$val);
+		    }
+		}
+		printf($OUT "%s\n",$csv);
+	    }
+	    printf($OUT "\n");
+	}
+	&FinishQueryDB($qh);
+    }
+}
+
+sub CreateNewDB {
+    my ($f,$memdb,$top,$calltree,$tag) = @_;
+    
+    my $metadata = '<METADATA>';
+    my $chaindelim = ' ; ';
+    my $blank = '<BLANK>';
+    
+    printf($ERR "Processing input file %s ...\n",$f) if ($debug || $verbose);
+    my $gz = ($f =~ m{\.gz$}) ? 1 : 0;
+    
+    my $perl_filter = 's/^\s*$/'."$blank".'\n/; s/^\s+//; s/\s+$/\n/; s/kernel\.kallsyms/kernel/g; printf("%s",$_) unless (m{^([0-9a-f]+)\s+\[unknown\]\s+\(\[unknown\]\)$});';
+    my $exclude_bad_unknowns = sprintf("perl -ne '%s'",$perl_filter); # also remove blanks at the begin & end of each line -- "for free"
+
+    my $FH;
+    return undef unless (open($FH,$gz ? "gunzip -c < $f | $exclude_bad_unknowns |" : "zcat $f 2>/dev/null || cat $f | $exclude_bad_unknowns |"));
+    my $input = do { local $/ = undef; <$FH> }; # slurp
+    close($FH);
+
+    my $sample_db = &BaseName($f);
+    $sample_db =~ s/\.\w+$//;
+    $sample_db = sprintf("ecperf-%s",$sample_db);
+    $sample_db .= sprintf(".tag-%s",$tag) if (defined($tag));
+    $sample_db .= ".db";
+    $sample_db = qx(readlink -f $sample_db);
+    chomp($sample_db);
+    
+    my $open_status = $memdb ? "MEM" : "NEW";
+    my $open_stmt = "PRAGMA foreign_keys = ON";
+    my ($dbh,$readonly) = &OpenDB($sample_db,$open_status,$open_stmt);
+    
+    if ($open_status eq "NEW") {
+	printf($ERR "Creating new database %s ...\n",$sample_db) if ($debug || $verbose);
+    }
+
+    my $header = {
+	    "captured on" => undef,
+	    cmdline => undef,
+	    rptline => undef,
+	    hostname => undef,
+	    "os release" => undef,
+	    "perf version" => undef,
+	    arch => undef,
+	    cpudesc => undef,
+	    cpuid => undef,
+	    "total memory" => undef,
+	    "nrcpus online" => undef,
+	    "nrcpus avail" => undef,
+	    "reference time" => undef,
+	    "time of first sample" => undef,
+	    "time of last sample" => undef,
+	    "sample duration" => undef,
+	    "clockid frequency" => undef,
+	    "clockid" => undef,
+	    "group" => undef,
+	    "cpu pmu capabilities" => undef,
+	    "pmu mappings" => undef,
+	    "missing features" => undef,
+    };
+
+    my $header_only = ($input =~ m{^#\s+[=]+.*?\n(.*?)\n#\s+[=]+}ms) ? $1 : "";
+    my $metadata_only = ($input =~ m{^(#\s+${metadata}\s+begin.*)}ms) ? $1 : "";
+
+    for my $key (keys %$header) {
+	if ($header_only =~ m{^#\s+(?:$key)\s*:\s*(.*?)\s*\n}ms) {
+	    $header->{$key} = $1;
+	}
+	elsif ($metadata_only =~ m{^#\s+(?:$key)\s*:\s*(.*?)\s*\n}ms) {
+	    $header->{$key} = $1;
+	}
+    }
+
+    # Actual event names (with :D -modifier, or that of dropped)
+    my @events = ();
+    while ($header_only =~ m{^#\s*event\s*:\s*name\s*=\s*(\S+),}msg) {
+	my $name = $1;
+	$name =~ s/:\S+$//;
+	push(@events,$name) unless ($name eq "dummy"); # weirdo
+    }
+    @events = ("cycles") unless (@events);
+    $header->{events} = \@events;
+
+    # Show event groups e.g. {cycles,instructions}
+    my @groups = ();
+    if (defined($header->{group})) {
+	while ($header_only =~ m{^#\s+(?:group)\s*:\s*(.*?)\s*\n}gms) {
+	    push(@groups,$1);
+	}
+	$header->{groups} = \@groups;
+    }
+    delete($header->{group});
+
+    if (defined($header->{"captured on"})) {
+	my $datetime = $header->{"captured on"};
+	my $epoch = qx(date --date="$datetime" +%s);
+	chomp($epoch);
+	$header->{"captured epoch"} = sprintf("%s.%6.6d",$epoch,0);
+	$datetime = qx(date --date="$datetime" +"%Y-%m-%d %T");
+	chomp($datetime);
+	$header->{"captured datetime"} = sprintf("%s.%6.6d",$datetime,0);
+    }
+    delete($header->{"captured on"});
+    
+    # "pmu mappings" => undef,
+    if (defined($header->{"pmu mappings"})) {
+	my @x = split(/,\s+/,$header->{"pmu mappings"});
+	my $x = {};
+	for (@x) {
+	    my ($var,$value) = split(/\s+=\s+/);
+	    $x->{$var} = $value;
+	}
+	$header->{"pmu mappings"} = $x;
+    }
+
+    # "missing features" => undef,
+    if (defined($header->{"missing features"})) {
+	my @x = split(/\s+/,$header->{"missing features"});
+	$header->{"missing features"} = \@x;
+    }
+    
+    if (defined($header->{rptline})) {
+	my ($s,@s) = &PrettyfiCmdLines($header->{rptline});
+	$header->{"report cmdline"} = \@s;
+	delete($header->{rptline});
+    }
+	    
+    my $filesize = (stat $f)[7];
+    my $datasize = length($input);
+    $header->{"report datasize"} = sprintf("%s bytes",&Commify($datasize));
+    $header->{"report filename"} = $f;
+    $header->{"report filesize"} = sprintf("%s bytes",&Commify($filesize));
+
+    my ($exe,$mpirank,$omp,$freq) = (undef) x 4;
+    {
+	my $bn = &BaseName($f);
+	$exe = $1, $mpirank = $2 if ($bn =~ m{exe-(\S+)\.mpi-(\d+)\.});
+	$omp = $1 if ($bn =~ m{\.omp-(\d+)\.});
+	$freq = $1 if ($bn =~ m{\.freq-(\d+)hz}i);
+	$header->{"executable"} = $exe if (defined($exe));
+	$header->{"mpirank"} = $mpirank if (defined($mpirank));
+	$header->{"omp_threads"} = $omp if (defined($omp));
+	$header->{"frequency"} = $freq if (defined($freq));
+    }
+    
+    my $perfdatasize = 0;
+    my $perfdatafile = undef;
+    if ($metadata_only =~ m{^#\s+${metadata}\s*(?:ls -l)\s+(\S+)\s*\n#\s+(.*?)\s*\n}oms) {
+	$perfdatafile = $1;
+	my $ls_l = $2;
+	my (@ls_l) = split(/\s+/,$ls_l);
+	if ($ls_l[-1] eq $perfdatafile) {
+	    $header->{"perfdata filesize"} = $perfdatasize = sprintf("%s bytes",&Commify($ls_l[-5]));
+	    $header->{"perfdata filename"} = $perfdatafile;
+	}
+    }
+    
+    my $envs = {};
+    {
+	my @targets = qw(MPI KMP_ PMIX_ PMI_ OMPI_ OMP_ I_MPI_ EC
+			 SLURM TBB HUGETLB_ LD_ PATH LAUNCHCMD 
+			 DATA USER HOME srun SRUN PERF DR_HOOK UCX_ FI_ FDB);
+	my $targets = join("|",@targets);
+	while ($metadata_only =~ m{^#\s+((?:$targets)\w*)=([^\n]*?)\s*\n}msg) {
+	    my ($key,$val) = ($1,$2);
+	    $val =~ s/^\s+//;
+	    unless ($key =~ m{PATH} && $val =~ m{:}) {
+		$envs->{$key} = $val;
+		if ($key =~ m{cmd}i && $val =~ m{\s+(--|-)}) {
+		    my ($s,@s) = &PrettyfiCmdLines($envs->{$key});
+		    $envs->{$key} = \@s;
+		}
+	    }
+	    else {
+		$envs->{$key} = [];
+		push(@{$envs->{$key}},split(/:/,$val));
+	    }
+	}
+	if (exists($envs->{PERF_PROFEXE})) {
+	    $header->{"executable"} = $exe = $envs->{PERF_PROFEXE};
+	}
+    }
+    my $bnexe = defined($exe) ? &BaseName($exe) : undef;
+
+    my @metadata = ();
+    my %metadata = ();
+    while ($metadata_only =~ m{^#\s+${metadata}\s+([^\n]*?)\s*\n}msg) {
+	my $mkey = $1;
+	$metadata{$mkey} = undef;
+	push(@metadata,$mkey);
+    }
+    for my $mkey (@metadata) {
+	if ($metadata_only =~ m{^#\s+${metadata}\s+${mkey}\s*\n(.*?)\s*\n#\s+${metadata}\s+}ms) {
+	    my $blob = $1;
+	    $blob =~ s/^# //msg;
+	    chomp($blob);
+	    $metadata{$mkey} = sprintf("\n%s\n",$blob);
+	}
+    }
+    delete($metadata{"begin"});
+    delete($metadata{"end"});
+    #&DumpDataStruct($ERR,"%metadata",1,\%metadata);
+    
+    my $sampling_rate_nominal = undef;
+    if (defined($header->{cmdline})) {
+	my ($s,@s) = &PrettyfiCmdLines($header->{cmdline});
+	#printf($OUT "%s\n",$s);
+	#map { printf($OUT "%s\n",$_); } @s;
+	$header->{cmdline} = \@s;
+	$header->{"sampling frequency"} = undef;
+	$header->{"sampling period"} = undef;
+	for (@{$header->{cmdline}}) {
+	    #printf($OUT "cmdline: %s\n",$_);
+	    if (m{^-e\s+(\S+)\s*$}) { # events as requested
+		$header->{"events as requested"} = $1;
+	    }
+	    elsif (m{^(?:-F\s+|--freq(?:=|\s+))(\S+)\s*$}) {
+		$sampling_rate_nominal = $header->{"sampling frequency"} = sprintf("%s Hz",$1);
+	    }
+	    #elsif (m{^(?:-c\s+|--count(?:=|\s+))(\S+)\s*$}) { # Deprecated now
+	    #    $header->{"sampling period"} = sprintf("%s cycles interval",$1);
+	    #}
+	}
+    }
+
+    if (defined($header->{"total memory"})) {
+	if ($header->{"total memory"} =~ m{^(\d+)\s+kB$}) {
+	    $header->{"memory available"} = sprintf("%siB %sB",&Human($1*1000,1),&Human($1*1000));
+	    delete($header->{"total memory"});
+	}
+    }
+    
+    if (defined($header->{"reference time"})) {
+	if ($header->{"reference time"} =~ m{^(\S+)\s+(\S+)\s+=\s+(\S+)\s+\S+\s+=\s+(\S+)}) {
+	    $header->{"reference datetime"} = "$1 $2";
+	    $header->{"reference epoch"} = "$3";
+	    $header->{"reference clock"} = "$4";
+	    delete($header->{"reference time"});
+	}
+    }
+    
+    if (defined($header->{"sample duration"})) {
+	if ($header->{"sample duration"} =~ m{^(\d+\.\d+)\s+ms$}) {
+	    $header->{"sampling time"} = sprintf("%.6f",$1 / 1000.0);
+	    delete($header->{"sample duration"});
+	}
+    }
+
+    $header->{"sampling clock"} = [];
+    for (qw(first last)) {
+	if (defined($header->{"time of $_ sample"})) {
+	    push(@{$header->{"sampling clock"}},$header->{"time of $_ sample"});
+	    delete($header->{"time of $_ sample"});
+	}
+    }
+
+    my $sampling_time = $header->{"sampling time"};
+    
+    # Grand total counts of events & samples over {name}
+    my %total_events = (); # over {name}
+    my %total_samples = (); # over {name}
+    my %event_id = ();
+
+    my $sth;
+    
+    &DefineTables($dbh); # if $open_status == NEW
+    
+    my %objdir_id = ();
+    my %objdir_id_refs = ();
+    my $objdir_id = 0;
+    
+    my %srcdir_id = ();
+    my %srcdir_id_refs = ();
+    my $srcdir_id = 0;
+
+    my %objbn_id = ();
+    my %objbn_id_refs = ();
+    my $objbn_id = 0;
+
+    my %srcbn_id = ();
+    my %srcbn_id_refs = ();
+    my $srcbn_id = 0;
+
+    my %sym_id = ();
+    my %sym_id_refs = ();
+    my $sym_id = 0;
+
+    my %tpl_id = ();
+    my %tpl_id_refs = ();
+    my $tpl_id = 0;
+
+    my %trace_id = ();
+    my %trace_id_refs = ();
+    my $trace_id = 0;
+
+    my $id = 0;
+    $sth = &PrepareQueryDB($dbh,"INSERT INTO event (id,name,mpirank) VALUES (?1,?2,?3)");
+    for (@events) {
+	$total_events{$_} = 0;
+	$total_samples{$_} = 0;
+	$event_id{$_} = ++$id;
+	&ExecuteQueryDB($sth,[$id , $_, $mpirank]);
+    }
+    &FinishQueryDB($sth);
+
+    my $sth_sample = &PrepareQueryDB($dbh,"INSERT INTO sample (id,event_id,tid,cpu,nevents,reltime,deltatime) VALUES (?,?,?,?,?,?,?)");
+    my $sth_call = &PrepareQueryDB($dbh,"INSERT INTO call (sample_id,level,depth,pc,sym_id,sym_off,tpl_id,objdir_id,objbn_id,srcdir_id,srcbn_id,linenum,trace_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    
+    my @tidlist = ();
+    my $tidlist = {}; # over {tid} ; values := cpulist
+
+    my @cpulist = ();
+    my %cpulist = (); # over {cpu}
+
+    my %ev = (); # over {name}{tid}
+    
+    my $chain_label = undef;
+
+    my $max_scopelen = length("SCOPE");
+    my $perf_event_paranoid = undef;
+    my $kptr_restrict = undef;
+    my $nmi_watchdog = undef;
+
+    $id = 0; # unique id ("auto-incremented")
+
+    my $pid = undef;
+    $pid = $1 if ($input =~ m{\bPERF_RECORD_COMM:\s+perf-exec:(\d+)/\d+});
+    
+    #                           TID        CPU         RELTIME     NEVENTS  NAME      CHAIN
+    INPUT: while ($input =~ m{^(\d+)\s+\[(\d{3})\]\s+(\d+\.\d+):\s+(\d+)\s+(\S+):\n(.*?)^${blank}\n}msgo) {
+	#my $match = $&;
+
+	my ($tid,$cpu,$reltime,$nevents,$name,$chain) = ($1*1,$2*1,$3*1,$4*1,$5,$6);
+
+	++$id;
+	
+	$name =~ s/:\S+$//;
+	next INPUT unless (exists($event_id{$name}));
+
+	my @chain = split(/\n/,$chain);
+	my $nchain = @chain;
+
+	if ($nchain < 2) { # Rare, but possible : no tree found => base would become empty => substituting unknowns
+	    @chain = ("0 [unknown] ([unknown])","[unknown]");
+	    $nchain = @chain;
+	}
+	
+	pop(@chain), --$nchain unless ($nchain%2 == 0);
+	
+	my $event_id = $event_id{$name};
+	
+	push(@cpulist,$cpu), $cpulist{$cpu} = 1 unless (exists($cpulist{$cpu}));
+	
+	push(@tidlist,$tid), $tidlist->{$tid} = [$cpu] unless (exists($tidlist->{$tid}));
+	@{$tidlist->{$tid}} = &Uniq(@{$tidlist->{$tid}},$cpu) unless ($tidlist->{$tid}[-1] == $cpu);
+
+	# Question : should we set $nchain = 2 when $calltree == 0 ? YES
+	$nchain = 2 if ($calltree == 0 && $nchain > 2);
+	
+	my $p = { # Current sample
+	    cpu => $cpu,
+	    reltime => $reltime,
+	    deltatime => $reltime,
+	    nevents => $nevents,
+	    name => $name,
+	    tid => $tid,
+	    id => $id,
+	};
+
+	my $deltatime = 0;
+	my $update_deltatime = 1;
+	unless (exists($ev{$name}{$tid})) {
+	    $ev{$name}{$tid} = {
+		name => $name,
+		tid => $tid,
+		deltatime => 0,
+		maxtime => 0,
+		nevents => 0,
+		nsamples => 0,
+		sample => [],
+		cpulist => [$cpu],
+	    };
+	    $update_deltatime = 0;
+	}
+	
+	my $ev = \$ev{$name}{$tid};
+	$$ev->{maxtime} = $p->{reltime} if ($$ev->{maxtime} < $p->{reltime});
+	$$ev->{nevents} += $p->{nevents};
+	if ($update_deltatime) {
+	    my $latest = $$ev->{sample}[-1];
+	    $deltatime = $p->{deltatime} = sprintf("%.9f",$p->{reltime} - $latest->{reltime});
+	}
+	$$ev->{deltatime} += $p->{deltatime}; # should (at the end) equal to $$ev->{maxtime} -- unless time-window zooming ? TBD
+
+	&ExecuteQueryDB($sth_sample,[$id ,$event_id ,$tid ,$cpu ,$nevents ,$reltime ,$deltatime]);
+	
+	my @folded = ();
+	{
+	    # Fold (join) each odd line with the following even line to itself
+	    my $data;
+	    my $j = 0;
+	    my ($pc,$symbol,$offset,$tpl,$objdir,$objbn,$srcdir,$srcbn,$linenum);
+	    my $offenders = undef;
+	    map {
+		if (++$j%2) { # odd line
+		    ($pc,$symbol,$offset,$tpl,$objdir,$objbn,$srcdir,$srcbn,$linenum) = (undef) x 9;
+		    if (m{^(\S+)\s+(.*)\s+\((.*)\)$}) {
+		    #if (m{^(\S+)\s+(.*)\s+\(([^)]+)\)$}) {
+			$pc = $1;
+			my ($sym,$obj) = ($2,$3);
+			if ($sym =~ m{<}) {
+			    $sym =~ s/(<.*>)//;
+			    $tpl = $1;
+			}
+			$tpl = -1 unless (defined($tpl));
+			($symbol,$offset) = split(/\+0x/,$sym);
+			$offset = -1 unless (defined($offset));
+			($objdir,$objbn) = &DirBaseName($obj);
+		    }
+		    else {
+			$offenders = $_;
+		    }
+		}
+		else { # even line
+		    unless (defined($offenders)) { 
+			my $src = $_;
+			$linenum = $1, $src =~ s/:\d+.*$// if ($src =~ m{:(\d+)});
+			$linenum = 0 unless (defined($linenum));
+			$src = $1 if (substr($src,0,1) eq '[' && $src =~ m{^(\[.*?\])});
+			($srcdir,$srcbn) = &DirBaseName($src);
+			$data = join($chaindelim,($pc,$symbol,$offset,$tpl,$objdir,$objbn,$srcdir,$srcbn,$linenum));
+			push(@folded,$data);
+		    }
+		    else {
+			printf($ERR "Unrecognized pair of input lines -- cannot be folded into one .. ignored : \n%s\n%s\n",
+			       $offenders,$_);
+			$offenders = undef;
+			#die "hard";
+		    }
+		}
+	    } @chain;
+
+	    @folded = &Uniq(@folded);
+
+	    my $depth = @folded;
+	    my $level = 0;
+
+	    for (@folded) {
+		++$level;
+		
+		($pc,$symbol,$offset,$tpl,$objdir,$objbn,$srcdir,$srcbn,$linenum) = split(/${chaindelim}/);
+
+		my $concat = join(";",($symbol,$objdir,$objbn,$srcbn));
+		$scope_cache{$concat} = &GetScope($bnexe,$symbol,$objdir,$objbn,$srcbn) unless (exists($scope_cache{$concat}));
+		my $scope = $scope_cache{$concat};
+		my $len = length($scope);
+		$max_scopelen = $len if ($max_scopelen < $len);
+		$scope = $null if ($scope =~ m{^\[(?:undef|unknown)\]$}i);
+		
+		my ($id_tpl,$id_sym,$id_objdir,$id_objbn,$id_srcdir,$id_srcbn,$id_trace) = (undef) x 7;
+
+		$tpl = $null if ($tpl eq "-1");
+		$tpl_id{$tpl} = ++$tpl_id, $tpl_id_refs{$tpl} = 0 unless (exists($tpl_id{$tpl}));
+		$id_tpl = $tpl_id{$tpl}; # unless ($tpl eq $null);
+		++$tpl_id_refs{$tpl};
+
+		$symbol = $null if ($symbol =~ m{^\[(?:\S+)\]$}i);
+		$sym_id{$symbol} = ++$sym_id, $sym_id_refs{$symbol} = 0 unless (exists($sym_id{$symbol}));
+		$id_sym = $sym_id{$symbol}; # unless ($symbol eq $null);
+		++$sym_id_refs{$symbol};
+
+		$objdir = $null if ($objdir eq "." || $objdir =~ m{^\[(?:\S+)\]$}i);
+		$objdir_id{$objdir} = ++$objdir_id, $objdir_id_refs{$objdir} = 0 unless (exists($objdir_id{$objdir}));
+		$id_objdir = $objdir_id{$objdir}; # unless ($objdir eq $null);
+		++$objdir_id_refs{$objdir};
+		
+		#$objbn = $null if ($objbn =~ m{^\[(?:undef|unknown)\]$}i);
+		$objbn = $null if ($objbn =~ m{^\[(?:\S+)\]$}i);
+		$objbn_id{$objbn} = ++$objbn_id, $objbn_id_refs{$objbn} = 0 unless (exists($objbn_id{$objbn}));
+		$id_objbn = $objbn_id{$objbn}; # unless ($objbn eq $null);
+		++$objbn_id_refs{$objbn};
+		
+		$srcdir = $null if ($srcdir eq "." || $srcdir =~ m{^\[(?:\S+)\]$}i);
+		$srcdir_id{$srcdir} = ++$srcdir_id, $srcdir_id_refs{$srcdir} = 0 unless (exists($srcdir_id{$srcdir}));
+		$id_srcdir = $srcdir_id{$srcdir}; # unless ($srcdir eq $null);
+		++$srcdir_id_refs{$srcdir};
+
+		#$srcbn = $null if ($srcbn =~ m{^\[(?:undef|unknown)\]$}i);
+		$srcbn = $null if ($srcbn =~ m{^\[(?:\S+)\]$}i);
+		$srcbn_id{$srcbn} = ++$srcbn_id, $srcbn_id_refs{$srcbn} = 0 unless (exists($srcbn_id{$srcbn}));
+		$id_srcbn = $srcbn_id{$srcbn}; # unless ($srcbn eq $null);
+		++$srcbn_id_refs{$srcbn};
+		
+		$linenum = $null unless ($linenum > 0);
+		$offset = $null if ($offset eq "-1");
+
+		# trace.symbols construction and trace_id determination -- no $offset nor $linenum added
+		
+		my $trace = "";
+
+		$trace = $scope unless ($scope eq $null);
+		$trace .= $chaindelim;
+		
+		$trace .= sprintf("%s",$symbol); # unless ($symbol eq $null);
+		$trace .= $chaindelim;
+		
+		if ($objdir ne $null && $objbn ne $null) {
+		    $trace .= sprintf("%s%s%s",$objdir,$chaindelim,$objbn);
+		}
+		elsif ($objbn ne $null) {
+		    $trace .= sprintf("%s%s%s",$null,$chaindelim,$objbn);
+		}
+		else {
+		    $trace .= sprintf("%s%s%s",$null,$chaindelim,$null);
+		}
+		$trace .= $chaindelim;
+
+		if ($srcdir ne $null && $srcbn ne $null) {
+		    $trace .= sprintf("%s%s%s",$srcdir,$chaindelim,$srcbn);
+		}
+		elsif ($srcbn ne $null) {
+		    $trace .= sprintf("%s%s%s",$null,$chaindelim,$srcbn);
+		}
+		else {
+		    $trace .= sprintf("%s%s%s",$null,$chaindelim,$null);
+		}
+		
+		$trace_id{$trace} = ++$trace_id, $trace_id_refs{$trace} = 0 unless (exists($trace_id{$trace}));
+		$id_trace = $trace_id{$trace};
+		++$trace_id_refs{$trace};
+
+		&ExecuteQueryDB($sth_call,[$id,$level,$depth,$pc,$id_sym,$offset,$id_tpl,$id_objdir,$id_objbn,$id_srcdir,$id_srcbn,$linenum,$id_trace]);
+	    } # for (@folded) ...
+	}
+	
+	{
+	    # Add new sample 
+	    push(@{$$ev->{sample}},$p);
+	    # Update CPU-list
+	    @{$$ev->{cpulist}} = &Uniq(@{$$ev->{cpulist}},$cpu) unless ($$ev->{cpulist}[-1] == $cpu);
+	}
+	
+	# Accumulate grand totals for # of events & samples for event name
+	$total_events{$name} += $p->{nevents};
+	++$total_samples{$name};	
+    } # INPUT: ...
+
+    my @mmap = ();
+    my @mmap2 = ();
+
+    MMAP: while ($input =~ m{^(\d+)\s+\[(\d{3})\]\s+(\d+\.\d+):\s+PERF_RECORD_MMAP(\d+)?\s+\S+\s+(\[0x.*?)\n}msgo) {
+	my ($tid,$cpu,$reltime,$type,$value) = ($1,$2,$3,$4,$5);
+	unless (defined($type)) {
+	    push(@mmap,join($chaindelim,($tid,$cpu,$reltime,$value)));
+	}
+	else {
+	    push(@mmap2,join($chaindelim,($tid,$cpu,$reltime,$value)));
+	}
+    }
+    
+    $input = undef;
+    
+    # Print results
+
+    printf($OUT "\n\n") if ($debug);
+    
+    my $ntids = @tidlist;
+    #printf($OUT "# TID-list (#%d) = %s\n",$ntids,join(",",sort(@tidlist)));
+    $header->{ntids} = $ntids;
+    $header->{"TID-list"} = join(",",sort(@tidlist));
+    $pid = $tidlist[0] if (!defined($pid) && $ntids > 0);
+
+    for (@tidlist) {
+	my $range = &Rangify(@{$tidlist->{$_}});
+	$tidlist->{$_} = $range;
+    }
+
+    my $ncpus = @cpulist;
+    my $range = &Rangify(sort(@cpulist));
+    $header->{ncpus} = $ncpus;
+    $header->{"CPU-list"} = $range;
+    #printf($OUT "# CPU-list (#%d) = %s\n",$ncpus,$range);
+    #printf($OUT "\n");
+    
+    if ($debug > 1) {
+	&DumpDataStruct($OUT,"%header",1,$header);
+	printf($OUT "\n");
+    }
+
+    #    map { $total_events{$_} = &Commify($total_events{$_}); } keys %total_events;
+
+    my $grand_total_samples = 0;
+    my $nevent_keys = @events;
+    map { $grand_total_samples += $total_samples{$_}; } keys %total_samples;
+    my $sampling_rate_actual = 0;
+    $sampling_rate_actual = $grand_total_samples/$sampling_time/$ntids/$nevent_keys if ($sampling_time > 0 && $ntids > 0 && $nevent_keys > 0);
+    $sampling_rate_actual = sprintf("%.0f Hz",$sampling_rate_actual);
+
+    if ($debug > 1) {
+	printf($OUT "#   Events = %s\n",join(",",@events));
+	printf($OUT "\n");
+	
+	&DumpDataStruct($OUT,"%total_events",2,\%total_events);
+	printf($OUT "\n");
+
+	&DumpDataStruct($OUT,"%total_samples",2,\%total_samples);
+	printf($OUT "\n");
+    }
+
+    $sth = &PrepareQueryDB($dbh,"UPDATE event SET nevents = ?1, nsamples = ?2 WHERE id = ?3");
+    for (@events) {
+	&ExecuteQueryDB($sth,[&UnCommify($total_events{$_}),&UnCommify($total_samples{$_}),$event_id{$_}]);
+    }
+    &FinishQueryDB($sth);
+
+    $sth = &PrepareQueryDB($dbh,"INSERT INTO objdir (id,refcount,name) VALUES (?1,?2,?3)");
+    for my $key (sort { $objdir_id{$a} <=> $objdir_id{$b} } keys %objdir_id) {
+	&ExecuteQueryDB($sth,[$objdir_id{$key},$objdir_id_refs{$key},$key]);
+    }
+    &FinishQueryDB($sth);
+
+    $sth = &PrepareQueryDB($dbh,"INSERT INTO objbn (id,refcount,name) VALUES (?1,?2,?3)");
+    for my $key (sort { $objbn_id{$a} <=> $objbn_id{$b} } keys %objbn_id) {
+	&ExecuteQueryDB($sth,[$objbn_id{$key},$objbn_id_refs{$key},$key]);
+    }
+    &FinishQueryDB($sth);
+
+    $sth = &PrepareQueryDB($dbh,"INSERT INTO srcdir (id,refcount,name) VALUES (?1,?2,?3)");
+    for my $key (sort { $srcdir_id{$a} <=> $srcdir_id{$b} } keys %srcdir_id) {
+	&ExecuteQueryDB($sth,[$srcdir_id{$key},$srcdir_id_refs{$key},$key]);
+    }
+    &FinishQueryDB($sth);
+
+    $sth = &PrepareQueryDB($dbh,"INSERT INTO srcbn (id,refcount,name) VALUES (?1,?2,?3)");
+    for my $key (sort { $srcbn_id{$a} <=> $srcbn_id{$b} } keys %srcbn_id) { 
+	&ExecuteQueryDB($sth,[$srcbn_id{$key},$srcbn_id_refs{$key},$key]);
+    }
+    &FinishQueryDB($sth);
+
+    $sth = &PrepareQueryDB($dbh,"INSERT INTO sym (id,refcount,name) VALUES (?1,?2,?3)");
+    for my $key (sort { $sym_id{$a} <=> $sym_id{$b} } keys %sym_id) {
+	&ExecuteQueryDB($sth,[$sym_id{$key},$sym_id_refs{$key},$key]);
+    }
+    &FinishQueryDB($sth);
+
+    $sth = &PrepareQueryDB($dbh,"INSERT INTO tpl (id,refcount,name) VALUES (?1,?2,?3)");
+    for my $key (sort { $tpl_id{$a} <=> $tpl_id{$b} } keys %tpl_id) {
+	&ExecuteQueryDB($sth,[$tpl_id{$key},$tpl_id_refs{$key},$key]);
+    }
+    &FinishQueryDB($sth);
+
+    $sth = &PrepareQueryDB($dbh,"INSERT INTO trace (id,refcount,scope,symbol,object_dir,object,source_dir,source) VALUES (?,?,?,?,?,?,?,?)");
+    for my $key (sort { $trace_id{$a} <=> $trace_id{$b} } keys %trace_id) {
+	my ($scope,$func,$objdir,$obj,$srcdir,$src) = split(/${chaindelim}/,$key);
+	&ExecuteQueryDB($sth,[$trace_id{$key},$trace_id_refs{$key},$scope,$func,$objdir,$obj,$srcdir,$src]);
+    }
+    &FinishQueryDB($sth);
+
+    # Create some useful views
+    # NB: These do NOT gather & store any data into the DB, but you can issue "SELECT * FROM viewname WHERE ..." at any time, like with tables
+
+    &DefineViews($dbh);
+
+    my ($query,$qh,$qres);
+
+    $qh = &PrepareQueryDB($dbh,"SELECT event_id,tid,nevents FROM pertid ORDER BY event_id,tid");
+    &ExecuteQueryDB($qh);
+    $qres = &FetchQueryDB($qh); # returns all columns and rows requested
+    
+    $sth = &PrepareQueryDB($dbh,"UPDATE sample SET fraction = CAST(nevents AS real)/CAST(?3 AS real) WHERE event_id = ?1 AND tid = ?2");
+    if (defined($qres)) {
+	foreach my $row ( @$qres ) {
+	    my ($event_id,$tid,$nevents) = @$row;
+	    &ExecuteQueryDB($sth,[$event_id,$tid,$nevents]);
+	}
+    }
+    &FinishQueryDB($sth);
+    &FinishQueryDB($qh);
+
+    $sth = &PrepareQueryDB($dbh,"INSERT INTO metadata (id,cmd,output,len) VALUES (?1,?2,?3,?4)");
+    $id = 0;
+    for my $mkey (@metadata) {
+	my $cmd = $mkey;
+	if (exists($metadata{$mkey})) {
+	    my $output = $metadata{$mkey};
+	    #printf($ERR "%s => undef\n",$cmd) unless (defined($output));
+	    next unless (defined($output));
+	    &ExecuteQueryDB($sth,[++$id,$cmd,$output,length($output)]);
+	}
+    }
+    &FinishQueryDB($sth);
+
+    # Get values for triplet $perf_event_paranoid,$kptr_restrict,$nmi_watchdog (going to the MPI-table)
+    
+    $qh = &PrepareQueryDB($dbh,"SELECT REPLACE(cmd,'cat /proc/sys/kernel/',''),output FROM metadata WHERE cmd LIKE '%/proc/sys/kernel/%'");
+    &ExecuteQueryDB($qh);
+    $qres = &FetchQueryDB($qh); # returns all columns and rows requested
+    if (defined($qres)) {
+	foreach my $row ( @$qres ) {
+	    my ($var,$value) = @$row;
+	    $value =~ s/^\s*(\d+)\s*$/$1/;
+	    my $assign_stmt = sprintf("\$%s = %d",$var,$value);
+	    printf($ERR "%s\n",$assign_stmt) if ($debug > 1);
+	    eval "$assign_stmt";
+	}
+    }
+    
+    my $catalog = "ecperf";
+	
+    $sth = &PrepareQueryDB($dbh,"INSERT INTO catalog (kind,vartype,var,idx,lenvalue,value) VALUES (?1,?2,?3,?4,?5,?6)");
+    
+    for my $var (sort keys %$header) {
+	my $value = $header->{$var};
+	my $index = ref($value);
+	$index = undef if (length($index) == 0);
+	if (defined($index)) {
+	    if ($index eq "ARRAY") {
+		my $nvals = @$value;
+		&ExecuteQueryDB($sth,[$catalog,undef,"\#$var",undef,defined($nvals) ? length($nvals) : undef,$nvals]);
+		my $i = 0;
+		for (@$value) {
+		    &ExecuteQueryDB($sth,[$catalog,$index,$var,++$i,length($_),$_]);
+		}
+	    }
+	    elsif ($index eq "HASH") {
+		for my $key (sort keys %$value) {
+		    my $val = $$value{$key};
+		    &ExecuteQueryDB($sth,[$catalog,$index,$var,$key,length($val),$val]);
+		}
+	    }
+	}
+	else {
+	    &ExecuteQueryDB($sth,[$catalog,undef,$var,undef,defined($value) ? length($value) : undef,$value]);
+	}
+    }
+    
+    $catalog = "printenv";
+    for my $var (sort keys %$envs) {
+	my $value = $envs->{$var};
+	my $index = ref($value);
+	$index = undef if (length($index) == 0);
+	if (defined($index)) {
+	    if ($index eq "ARRAY") {
+		my $nvals = @$value;
+		&ExecuteQueryDB($sth,[$catalog,undef,"\#$var",undef,defined($nvals) ? length($nvals) : undef,$nvals]);
+		my $i = 0;
+		for (@$value) {
+		    &ExecuteQueryDB($sth,[$catalog,$index,$var,$i++,length($_),$_]);
+		}
+	    }
+	    elsif ($index eq "HASH") {
+		for my $key (sort keys %$value) {
+		    my $val = $$value{$key};
+		    &ExecuteQueryDB($sth,[$catalog,$index,$var,$key,length($val),$val]);
+		}
+	    }
+	}
+	else {
+	    &ExecuteQueryDB($sth,[$catalog,undef,$var,undef,defined($value) ? length($value) : undef,$value]);
+	}
+    }
+    &FinishQueryDB($sth);
+    
+    if ($debug > 1) {
+	&DumpDataStruct($OUT,"%envs",1,$envs);
+	printf($OUT "\n");
+    }
+
+    $sth = &PrepareQueryDB($dbh,"INSERT INTO mmap (tid,cpu,reltime,type,key,address,protection,object) VALUES(?1,?2,?3,?4,?5,?6,?7,?8)");
+    for (@mmap) {
+	my ($type,$tid,$cpu,$reltime,$value) = (undef,split(/${chaindelim}/));
+	my $obj = $value;
+	$obj =~ s/^.*\s+(\S+)$/$1/;
+	my $key = &BaseName($obj);
+	my $prot = ($value =~ m{\]:\s+(\S+)\s+}) ? $1 : undef;
+	my $addr = ($value =~ m{^(\[.*\]):\s+\S+}) ? $1 : undef;
+	&ExecuteQueryDB($sth,[$tid,$cpu,$reltime,$type,$key,$addr,$prot,$obj]);
+    }
+    for (@mmap2) {
+	my ($type,$tid,$cpu,$reltime,$value) = (2,split(/${chaindelim}/));
+	my $obj = $value;
+	$obj =~ s/^.*\s+(\S+)$/$1/;
+	my $key = &BaseName($obj);
+	my $prot = ($value =~ m{\]:\s+(\S+)\s+}) ? $1 : undef;
+	my $addr = ($value =~ m{^(\[.*\]):\s+\S+}) ? $1 : undef;
+	&ExecuteQueryDB($sth,[$tid,$cpu,$reltime,$type,$key,$addr,$prot,$obj]);
+    }
+    &FinishQueryDB($sth);
+			   
+    $sth = &PrepareQueryDB($dbh,"INSERT INTO mpi ".
+			   "(rank,hostname,user,cpudesc,omp_places,omp_threads,num_threads,num_event_ids".
+			   ",pid,tidlist,cpulist".
+			   ",captured,captured_epoch,reference,reference_epoch,reference_clock".
+			   ",runtime,sampling_delay".
+			   ",sampling_frequency,sampling_time,sampling_begin_clock,sampling_end_clock".
+			   ",database_filename".
+			   ",executable,perfdata_filename,perfdata_filesize,report_filename,report_filesize,report_datasize".
+			   ",max_scopelen,perf_event_paranoid,kptr_restrict,nmi_watchdog)".
+			   " VALUES (?,?,?,?,?, ?,?,?, ?,?,?,?,?, ?,?, ?,?,?,?,?, ?, ?,?,?,?,?,?, ?,?, ?,?,?,?)");
+    {
+	my ($rank,$hostname,$user,$cpudesc,$omp_places,$omp_threads,$num_threads,$num_event_ids) = (
+	    $mpirank,$header->{hostname},$envs->{USER},$header->{cpudesc},$envs->{OMP_PLACES},$omp,$ntids,scalar @events);
+	my ($tidlist,$cpulist) = ($header->{"TID-list"},$header->{"CPU-list"});
+	my ($captured,$captured_epoch,$reference,$reference_epoch,$reference_clock) = (
+	    $header->{"captured datetime"},
+	    $header->{"captured epoch"},
+	    $header->{"reference datetime"},
+	    $header->{"reference epoch"},
+	    $header->{"reference clock"});
+	my ($sampling_frequency,$sampling_time,@sampling_clock) = ($freq,$header->{"sampling time"},@{$header->{"sampling clock"}});
+	my ($runtime,$sampling_delay) = ($sampling_clock[1] - $reference_clock, $sampling_clock[0] - $reference_clock);
+	my ($database_filename,$executable,$perfdata_filename,$perfdata_filesize,$report_filename,$report_filesize,$report_datasize) = (
+	    $sample_db,$exe,
+	    $header->{"perfdata filename"},&UnCommify($header->{"perfdata filesize"}),
+	    $header->{"report filename"},&UnCommify($header->{"report filesize"}),&UnCommify($header->{"report datasize"}));
+	&ExecuteQueryDB($sth,[
+			    $rank,$hostname,$user,$cpudesc,$omp_places,$omp_threads,$num_threads,$num_event_ids,
+			    $pid,$tidlist,$cpulist,
+			    $captured,$captured_epoch,$reference,$reference_epoch,$reference_clock,
+			    $runtime,$sampling_delay,
+			    $sampling_frequency,$sampling_time,@sampling_clock,
+			    $database_filename,
+			    $executable,$perfdata_filename,$perfdata_filesize,$report_filename,$report_filesize,$report_datasize,
+			    $max_scopelen,$perf_event_paranoid,$kptr_restrict,$nmi_watchdog,
+			]);
+    }
+    &FinishQueryDB($sth);
+    
+    &CheckingDB($dbh,$top) if ($debug > 1);
+
+    return ($dbh,$readonly,$sample_db);
+}
+
+sub UseExistingDB {
+    my ($sample_db) = @_;
+    $sample_db = qx(readlink -f $sample_db);
+    chomp($sample_db);
+    my $open_status = "OLD";
+    my ($dbh,$readonly) = &OpenDB($sample_db,$open_status);
+    return ($dbh,$readonly,$sample_db);
+}
+
+sub CLIsqlite3 {
+    # Invoking Command Line Interface (CLI)
+    my ($sample_db,$query_only,$header,$trace,$mode,$output_file,$batch) = @_;
+    if (defined($query_only) && defined($sample_db) && -r $sample_db) {
+	#my @query = split(/;/,$query_only);
+	printf($ERR "CLIsqlite3(): '%s' -- version: %s\n",$sqlite_exe,$sqlite_version) if ($debug || $verbose);
+	$trace  = $trace ? "stdout --plain" : "off";
+	$header = $header ? "on" : "off";
+	my $cliargs = {
+	    pre => [
+		"-init /dev/null",
+		"-readonly",
+		"-batch",
+		],
+	    post => [
+		".output stdout",
+		".timer off",
+		".trace $trace",
+		".width",
+		".nullvalue $null",
+		".mode $mode",
+		".headers $header",
+		($debug || $verbose) ? ".database" : "",
+		],
+	};
+	my $clicmd = $sqlite_exe;
+	map { $clicmd .= sprintf(" %s",$_); } @{$cliargs->{pre}};
+	$clicmd .= sprintf(" %s",$sample_db);
+	map { $clicmd .= sprintf(" '%s'",$_); } @{$cliargs->{post}};
+	$clicmd .= sprintf(" '%s'",$query_only);
+	$clicmd .= sprintf(" 2>/dev/null") unless ($debug || $verbose);
+	$clicmd .= sprintf(" %s %s",$batch ? ">" : "| tee",$output_file) if (defined($output_file));
+	printf($ERR "%s\n",$clicmd) if ($debug || $verbose);
+	system($clicmd);
+    }
+}
+
+sub GetLoggingTime {
+    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=localtime(time);
+    my $nice_timestamp = sprintf ( "%04d%02d%02dT%02d:%02d:%02d",
+                                   $year+1900,$mon+1,$mday,$hour,$min,$sec);
+    return $nice_timestamp;
+}
+
+sub IIF {
+    my ($cond,$true,$false) = @_;
+    return
+	$iif ? sprintf("IIF(%s,%s,%s)",$cond,$true,$false) :
+	sprintf("CASE WHEN %s THEN %s ELSE %s END",$cond,$true,$false);
+}
+
+__DATA__
+196074 [002]     3.579526017:  100000001   branch-instructions: 
+            55daa6ba6f34 sync_left_+0x34 (/home/mps/test/perffi/NAS-parallel-BMs/NPB3.4.1-MZ/NPB3.4-MZ-MPI/bin/lu-mz.A.x)
+  /home/mps/test/perffi/NAS-parallel-BMs/NPB3.4.1-MZ/NPB3.4-MZ-MPI/LU-MZ/syncs.f90:77
+            55daa6ba9974 exchange_1_+0x404 (/home/mps/test/perffi/NAS-parallel-BMs/NPB3.4.1-MZ/NPB3.4-MZ-MPI/bin/lu-mz.A.x)
+  /home/mps/test/perffi/NAS-parallel-BMs/NPB3.4.1-MZ/NPB3.4-MZ-MPI/LU-MZ/exchange_1.f90:76
+            55daa6b9c959 ssor_._omp_fn.0+0x719 (/home/mps/test/perffi/NAS-parallel-BMs/NPB3.4.1-MZ/NPB3.4-MZ-MPI/bin/lu-mz.A.x)
+  /home/mps/test/perffi/NAS-parallel-BMs/NPB3.4.1-MZ/NPB3.4-MZ-MPI/LU-MZ/ssor.f90:132
+            14701ffb1165 [unknown] (/usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+  libgomp.so.1.0.0[1d165]
+            14701fb9a44f start_thread+0xdf (/usr/lib/x86_64-linux-gnu/libpthread-2.33.so)
+  ./nptl/pthread_create.c:473
+            14701fea4d52 __GI___clone+0x42
+  ./misc/../sysdeps/unix/sysv/linux/x86_64/clone.S:95 (inlined)
+

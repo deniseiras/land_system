@@ -1,0 +1,10 @@
+%include <includes/head.h>
+
+for file in $(find %ECF_HOME% -iname "*.job*" -mtime +2 -print);do
+
+    fnumber=$(echo ${file} | sed 's/.job/./g')
+    rm -f $file $fnumber
+
+
+done
+%include <includes/tail.h>

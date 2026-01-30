@@ -1,0 +1,15 @@
+integer, parameter :: g_pressure = 1
+integer, parameter :: g_gpheight = 2
+integer, parameter :: g_tovs_cha = 3
+integer, parameter :: g_scat_cha = 4
+integer, parameter :: g_modlevno = 5
+integer, parameter :: g_imp_param = 6
+integer, parameter :: g_cha_number = 7
+integer, parameter :: g_cha_wavelength = 8
+integer, parameter :: g_cha_frequency = 9
+integer, parameter :: g_ocean_depth = 10
+integer, parameter :: g_derived_pressure = 11
+integer, parameter :: g_amb_wind_num = 12
+integer, parameter :: g_cloud_top_pressure = 13
+integer, parameter :: g_tangent_height = 14
+integer, parameter :: g_model_pressure = 15

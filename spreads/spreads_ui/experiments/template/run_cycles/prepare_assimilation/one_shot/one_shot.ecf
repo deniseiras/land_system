@@ -1,0 +1,407 @@
+%include <includes/head.h>
+
+
+ACTIVATE_ASSI=$(ecflow_client --query event /%CASE_NAME%/run_cycles:ACTIVATE_ASSI)
+if [ $ACTIVATE_ASSI == 'set' ];then
+    export ACTIVATE_ASSI='TRUE'
+else
+    export ACTIVATE_ASSI='FALSE'
+fi
+# add if only if activate_assi = true
+# if [ $ACTIVATE_ASSI == "TRUE" ];then
+# ==============================================================================
+# Block 7: Actually run the assimilation.
+#
+# DART namelist settings required:
+# &filter_nml
+#    adv_ens_command         = "no_CESM_advance_script",
+#    obs_sequence_in_name    = 'obs_seq.out'
+#    obs_sequence_out_name   = 'obs_seq.final'
+#    single_file_in          = .false.,
+#    single_file_out         = .false.,
+#    stages_to_write         = stages you want + ,'output'
+#    input_state_file_list   = 'cam_init_files'
+#    output_state_file_list  = 'cam_init_files',
+#
+# WARNING: the default mode of this script assumes that
+#          input_state_file_list = output_state_file_list, so that
+#          the CAM initial files used as input to filter will be overwritten.
+#          The input model states can be preserved by requesting that stage
+#          'forecast' be output.
+#
+# ==============================================================================
+
+# In the default mode of CAM assimilations, filter gets the model state(s)
+# from CAM initial files.  This section puts the names of those files into a text file.
+# The name of the text file is provided to filter in filter_nml:input_state_file_list.
+
+# NOTE:
+# If the files in input_state_file_list are CESM initial files (all vars and
+# all meta data), then they will end up with a different structure than
+# the non-'output', stage output written by filter ('preassim', 'postassim', etc.).
+# This can be prevented (at the cost of more disk space) by copying
+# the CESM format initial files into the names filter will use for preassim, etc.:
+#    > cp $case.cam_0001.i.$date.nc  preassim_member_0001.nc.
+#    > ... for all members
+# Filter will replace the state variables in preassim_member* with updated versions,
+# but leave the other variables and all metadata unchanged.
+
+# If filter will create an ensemble from a single state,
+#    filter_nml: perturb_from_single_instance = .true.
+# it's fine (and convenient) to put the whole list of files in input_state_file_list.
+# Filter will just use the first as the base to perturb.
+
+export SCRIPTDIR="%ECF_HOME%/source/%CASE_NAME%/main_scripts"
+
+cd ${SCRIPTDIR}
+
+export nens=%NENS%
+donepath=$(echo %ECF_NAME% | sed 's/%TASK%//g')
+its=1
+
+# if [ ${its} -ne 7 ];then
+
+#     sleep $(echo "(${its}*4)" | bc)
+# else
+#     ecflow_client --alter=change variable done 0 ${donepath}
+#     ecflow_client --alter=change variable first_departure null ${donepath}
+#     ecflow_client --alter=change variable last_departure null ${donepath}
+#     ecflow_client --alter=change variable end_order null ${donepath}
+
+# fi
+
+export CESMEXP='cesm-exp'
+export case_name=%CASE_NAME%
+export CLONESROOT="/work/cmcc/${USER}/${CESMEXP}/${case_name}"
+export CASEROOT0001="$CLONESROOT/${case_name}_0001"
+export TMPROOT="/work/cmcc/${USER}/CMCC-CM/TMP"$(echo "${case_name}" | tr [:lower:] [:upper:])
+export DARTROOT=%ECF_HOME%/..
+
+source /etc/profile.d/modules.sh
+source /data/cmcc/${USER}/d4o/install/INTEL/source.me
+
+#===================================================
+# Take the id of the case.submit processes
+take_id()
+{
+
+  output=$($*)
+  echo $output | head -n1 | cut -d'<' -f2 | cut -d'>' -f1
+}
+
+## D4O
+# module purge
+# module load cmake/3.17.3
+# module load intel20.1/20.1.217
+# module load intel20.1/szip/2.1.1
+# module load curl/7.70.0
+# module load impi20.1/19.7.217
+# #module load anaconda/3.9 # gives access to python 3 PAY ATTENTION IT CAN INTERFERE WITH THE PYTHON SCRIPT USED!
+# module load dbi/1.643
+# module load sqlite/3.38.0
+# module load dbd-sqlite/1.70
+# module load anaconda/2.7
+
+# module load ncl/6.6.2
+#module load anaconda/3.8
+
+
+if [ %ECF_HOSTNAME% == 'zeus' ];then
+
+    source /etc/profile.d/modules.sh
+
+    export LANGUAGE=en_US.UTF-8
+    export LC_ALL=en_US.UTF-8
+    export LANG=en_US.UTF-8
+    export LC_TYPE=en_US.UTF-8
+
+    module load impi20.1/19.7.217 impi20.1/netcdf/C_4.7.4-F_4.5.3_CXX_4.3.1 impi20.1/hdf5/1.12.0 intel20.1/20.1.217 intel20.1/cdo/1.9.8 intel20.1/eccodes/2.17.0 intel20.1/h4cflib/1.3 intel20.1/hdf4/4.2.13 intel20.1/hdf5/1.12.0 intel20.1/magics/3.3.1 intel20.1/nco/4.9.3 intel20.1/ncview/2.1.8 intel20.1/netcdf/C_4.7.4-F_4.5.3_CXX_4.3.1
+    module load ncl/6.6.2
+    source /zeus/opt/anaconda/3.9/etc/profile.d/conda.sh
+    module load anaconda/3.9
+    # conda activate /work/cmcc/mg20022/.conda/envs/ecflow
+elif [ %ECF_HOSTNAME% == 'juno' ]; then
+
+   echo "d4o modules for juno"
+   source %ECF_CLONE%/../d4o/load-modules-d4o.juno
+
+fi
+
+date
+echo "BEGIN FILTER PROCESSES "
+
+# export CASEROOT0001="$CLONESROOT/${case_name}_0001"
+
+cd ${CASEROOT0001}
+echo $SHELL
+echo " xmlquery start"
+export scomp=`./xmlquery COMP_ATM      --value`
+export CASE=`./xmlquery CASE          --value`
+export ensemble_size=`./xmlquery NINST_ATM     --value`
+export CAM_DYCORE=`./xmlquery CAM_DYCORE    --value`
+export EXEROOT=`./xmlquery EXEROOT       --value`
+export RUNDIR=`./xmlquery RUNDIR        --value`
+export archive=`./xmlquery DOUT_S_ROOT   --value`
+# export TOTALPES=`./xmlquery TOTALPES      --value`
+
+export CONT_RUN=`./xmlquery CONTINUE_RUN  --value`
+# when you make a long forecast run without assimilation and then you want to assimilate obs but you do not have
+# inflation files then  force one cycle CONT_RUN FALSE
+#exportenv CONT_RUN                  FALSE
+
+export CHECK_TIMING=`./xmlquery CHECK_TIMING  --value`
+export DATA_ASSIMILATION_CYCLES=`./xmlquery DATA_ASSIMILATION_CYCLES --value`
+
+export nens=%NENS%
+echo " TMPROOT= $TMPROOT"
+
+export CASESRUNROOT=`echo $RUNDIR | sed -e "s/\/${case_name}_0001\/run//g" `
+export MP_DEBUG_NOTIMEOUT=yes
+export NUMTASKS_PERNODE='36'
+
+export save_stages_freq="RESTART_TIMES"
+export BASEOBSDIR="/users_home/cmcc/sm09722/BUFR_D4O"
+export DIVISION=csp
+
+cd ${TMPROOT}/TS${its}
+if [ ! -f run_filter.bash ]; then 
+    cp ${TMPROOT}/run_filter.bash . 
+fi
+rm -f log.txt
+chmod 755 run_filter.bash
+
+export workmode='yes'
+
+
+# ==============================================================================
+# Block 7: Actually run the assimilation.
+#
+# DART namelist settings required:
+# &filter_nml
+#    adv_ens_command         = "no_CESM_advance_script",
+#    obs_sequence_in_name    = 'obs_seq.out'
+#    obs_sequence_out_name   = 'obs_seq.final'
+#    single_file_in          = .false.,
+#    single_file_out         = .false.,
+#    stages_to_write         = stages you want + ,'output'
+#    input_state_file_list   = 'cam_init_files'
+#    output_state_file_list  = 'cam_init_files',
+#
+# WARNING: the default mode of this script assumes that
+#          input_state_file_list = output_state_file_list, so that
+#          the CAM initial files used as input to filter will be overwritten.
+#          The input model states can be preserved by requesting that stage
+#          'forecast' be output.
+#
+# ==============================================================================
+
+# In the default mode of CAM assimilations, filter gets the model state(s)
+# from CAM initial files.  This section puts the names of those files into a text file.
+# The name of the text file is provided to filter in filter_nml:input_state_file_list.
+
+# NOTE:
+# If the files in input_state_file_list are CESM initial files (all vars and
+# all meta data), then they will end up with a different structure than
+# the non-'output', stage output written by filter ('preassim', 'postassim', etc.).
+# This can be prevented (at the cost of more disk space) by copying
+# the CESM format initial files into the names filter will use for preassim, etc.:
+#    > cp $case.cam_0001.i.$date.nc  preassim_member_0001.nc.
+#    > ... for all members
+# Filter will replace the state variables in preassim_member* with updated versions,
+# but leave the other variables and all metadata unchanged.
+
+# If filter will create an ensemble from a single state,
+#    filter_nml: perturb_from_single_instance = .true.
+# it's fine (and convenient) to put the whole list of files in input_state_file_list.
+# Filter will just use the first as the base to perturb.
+
+
+
+
+cd ${TMPROOT}
+export line=$(grep input_state_file_list input.nml | sed -e "s#[=,'\.]# #g" | awk '{print $2}' )
+export input_file_list_name=$line
+# If the file names in $output_state_file_list = names in $input_state_file_list,
+# then the restart file contents will be overwritten with the states updated by DART.
+export line=$(grep output_state_file_list input.nml | sed -e "s#[=,'\.]# #g" | awk '{print $2}')
+export output_file_list_name=$line
+
+if [ $input_file_list_name != $output_file_list_name ]; then
+echo "ERROR: assimilate.csh requires that input_file_list = output_file_list"
+echo "       You can probably find the data you want in stage 'forecast'."
+echo "       If you truly require separate copies of CAM's initial files"
+echo "       before and after the assimilation, see revision 12603, and note that"
+echo "       it requires changing the linking to cam_initial_####.nc, below."
+exit 130
+fi
+
+echo "input/output_file_lis_name = ${input_file_list_name}"
+
+echo  "ONE SHOT ASSIMILATION, d4o_departure=all"
+
+# Merge the dbs to create the allTS dir
+echo "DB MERGING, CREATION OF allTS dir"
+if [ -d "${TMPROOT}/allTS" ]; then
+    rm -Rf ${TMPROOT}/allTS
+fi
+
+# set +e
+${TMPROOT}/d4ojoinall
+cp ${DARTROOT}/d4o/scripts/d4ocatalog ${TMPROOT}/allTS/
+cd ${TMPROOT}/allTS/
+${TMPROOT}/allTS/d4ocatalog catalog.db "*.db"
+# set -e
+cd ${TMPROOT}
+
+export  MYSTRING=$(grep inf_flavor input.nml)
+export  MYSTRING=$(echo $MYSTRING | sed -e "s#[=,'\.]# #g")
+export  PRIOR_INF=$(echo $MYSTRING | awk '{print $2}')
+
+# If no inflation is requested, the inflation restart source is ignored
+if [ $PRIOR_INF -eq 0 ];then
+    export  USING_PRIOR_INFLATION="false"
+else
+    export  USING_PRIOR_INFLATION="true"
+fi
+
+# Copy the inflation files, filter and other support files for the filters
+if [ $USING_PRIOR_INFLATION == true ]; then  
+    cp ${TMPROOT}/input_priorinf_mean.nc ${TMPROOT}/allTS/
+    cp ${TMPROOT}/input_priorinf_sd.nc ${TMPROOT}/allTS/
+fi
+    
+cp ${TMPROOT}/*.dat ${TMPROOT}/allTS
+cp ${TMPROOT}/fil*  ${TMPROOT}/allTS
+cp ${TMPROOT}/*.csv ${TMPROOT}/allTS
+cp ${TMPROOT}/*.nc  ${TMPROOT}/allTS
+cp ${TMPROOT}/*.nml  ${TMPROOT}/allTS
+
+# stage_to_write must be 'forecast', output' it should be already specified!
+
+# Link the new backgrounds
+export inst=1
+while [ $inst -le $nens ];do
+    export inst_string=$(printf _%%04d $inst)
+    export datets=$(ls -l $CASESRUNROOT/${case_name}$inst_string/run/*cam.i* | tail -n 7 | head -n 1 | cut -d '.' -f4) #BASED ON 13 TSLOTS
+    export ftoass="$CASESRUNROOT/${case_name}$inst_string/run/${case_name}$inst_string.cam.i.${datets}.nc"
+    echo "allTS member ${inst}: insert ${ftoass} in ${input_file_list_name}"
+    echo "${ftoass}" >> ${TMPROOT}/allTS/${input_file_list_name}
+    inst=$(echo "${inst}+1" | bc)
+done
+
+# # Do the assimilation in one shot
+# echo 'CALLING take_f.sh'
+# ${TMPROOT}/take_f.sh ${TMPROOT} "filter" "all" 
+# echo 'END take_f.sh'
+
+cd ${TMPROOT}/allTS/
+cp ${TMPROOT}/run_filter_all.bash . 
+
+rm -f assimilate.err
+rm -f assimilate.out
+echo "" > dart_log.out
+
+echo "TS$its: change the name of the process in order to better follow what is happening with bjobs"
+sed -i "s@.*#BSUB -J.*@#BSUB -J %CASE_NAME%_dep_TS${its}@g" run_filter_all.bash
+# jobid=$(take_id bsub < run_filter_all.bash) 
+# sed -i "s@4:00@00:40@g" run_filter_all.bash
+jobid=$(take_id bsub < run_filter_all.bash)
+# jobid=$(take_id bsub -q p_short -I -x -n 8 -R "span[ptile=1]" -P R000 -m spreads_nodes blaunch hostname < run_filter_all.bash)
+ecflow_client --alter=add variable JOB_ID "${jobid}" %ECF_NAME%
+sleep 5
+bwait -w "started(${jobid})"
+# ecflow_client --label=info "Start to run $(date)"
+
+start=$(date "+%%Y-%%m-%%d %%H:%%M")
+ecflow_client --label=info "START: $start"
+sleep 30
+
+try=0
+stuck=0
+
+while [ $(bjobs -r ${jobid} | awk '{print $3}' | sed '/^$/d' |  tail -1)  == "RUN" ];do
+
+   sleep 1m
+
+   if grep -q " Before computing prior observation values TIME" <<< "$(tail -1 dart_log.out)"; then
+
+      stuck=$(echo "${stuck}+1" | bc)
+      # cp dart_log.out dart_log.out_stuck
+      # cp dart_log.nml dart_log.nml_stuck
+      # brequeue ${jobid}
+      ecflow_client --label=info "START: $start / STRUCK:  $stuck minutes / RUNNING"
+      # sleep 60
+      # bwait -w "started(*%CASE_NAME%_dep_TS${its})"
+
+      try=$(echo "${try}+1" | bc)
+      stuck=${try}
+
+      # break
+
+   fi
+   # if [ ${try} -eq 5 ];then
+   #    exit 1
+   # fi
+
+done
+
+
+# try=0
+# stuck=0
+# while [ ${try} -lt %MAXTRY% ];do
+
+#    sleep 2m
+
+#    while [ true ];do
+
+#       sleep 2m
+
+#       if [[ $(bjobs -r ${jobid} | awk '{print $3}' | sed '/^$/d' |  tail -1)  == "RUN" ]];then
+
+#          if grep -q " Before computing prior observation values TIME" <<< "$(tail -1 dart_log.out)"; then
+
+#             cp dart_log.out dart_log.out_stuck
+#             cp dart_log.nml dart_log.nml_stuck
+#             brequeue ${jobid}
+#             try=$(echo "${try}+1" | bc)
+
+#             ecflow_client --label=info "START: $start / STRUCK: $(date) / TRY: ${try}"
+#             sleep 60
+#             bwait -w "started(${jobid})"
+
+#             stuck=${try}
+
+#             break
+
+#          fi
+#          # if [ ${try} -eq 5 ];then
+#          #    exit 1
+#          # fi
+#       else
+#          try=%MAXTRY%
+#          break
+#       fi
+#    done
+
+# done
+end=$(date "+%%Y-%%m-%%d %%H:%%M")
+
+if [ $(grep "2" ${TMPROOT}/allTS/filter.flag) ];then
+   echo " phase 1 ended succesfully, in TS"$its
+
+   ecflow_client --label=info "allTS ended succesfully, in TS${its}: START ${start} / FINISH: ${end} / STUCK MINUTES: ${stuck}"
+else
+#    ecflow_client --label=info "Phase 1 ended not succesfully. $(date)"
+   ecflow_client --label=info "allTS ended NOT succesfully: START $start / FINISH: ${end} / STRUCK MINUTES:  $stuck"
+   ecflow_client --suspend=/%CASE_NAME%/run_cycles/prepare_assimilation/spreads_assim/filter_assim
+
+
+#    exit 1
+fi
+
+# end=$(date "+%%Y-%%m-%%d %%H:%%M")
+# ecflow_client --label=info "START: ${start} / FINISH: ${end} / STUCK TIMES: ${stuck}"
+
+# fi
+
+%include <includes/tail.h>

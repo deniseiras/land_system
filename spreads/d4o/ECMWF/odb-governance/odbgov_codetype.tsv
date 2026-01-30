@@ -1,0 +1,72 @@
+code	description
+3	Radar Rain Rates
+8	Old ERS 1
+11	Manual Land SYNOP
+14	Automatic Land SYNOP
+21	SHIP
+23	Reduced SHIP
+24	Automatic SHIP
+32	Land PILOT
+33	PILOT SHIP
+34	American Wind Profiler
+35	Land TEMP
+36	TEMP SHIP
+37	MOBILE TEMP
+39	ROCOB TEMP
+40	SHIP ROCOB TEMP
+41	CODAR
+63	DRIBU-BATHY
+64	DRIBU-TESAC
+86	SATEM
+90	AMV
+110	Ground-based GPS
+122	ERS
+131	Japanese Wind Profiler
+134	European Wind Profiler
+135	DROP Sonde
+139	ASCAT
+140	METAR
+141	AIREP
+144	AMDAR
+145	ACARS
+165	DRIBU
+180	PAOB
+186	SATEM
+206	Retrieved Atmospheric Constituents
+210	Radiances
+214	TCWC
+215	SSMI/TRMM
+241	COLBA
+250	GPS Radio Occultation
+301	QSCAT
+302	OSCAT
+400	SMOS
+187	Doppler Wind Lidar
+17	Additional Land Surface Data
+123	RALT
+88	SATOB AMV
+109	Land High Resolution Temp
+111	SHIP High Resolution TEMP
+148	TAMDAR
+149	ACARs with mixing ratio
+112	BUFR LAND PILOT
+113	BUFR SHIP PILOT
+170	BUFR LAND SYNOP
+172	BUFR LAND SYNOP 2
+176	BUFR LAND SYNOP WMO Region 6
+178	BUFR LAND SYNOP 1 HOURLY
+181	TYPHO Report
+146	WIGOS AMDAR
+182	BUFR SHIP SYNOP
+401	SMAP
+189	BUFR DRIFTING BUOYS
+188	BUFR MOORED BUOYS
+197	Cloud radar and cloud-aerosol lidar
+200	Satellite Lightning Imager
+201	Ground-based Lightning Network
+230	BUFR TEMP DROP
+303	FSCAT
+231	BUFR TEMP DESCENT
+151	ADS-C
+147	Mode-S
+179	Crowd AWS

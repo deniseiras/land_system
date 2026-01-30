@@ -1,0 +1,16 @@
+FC=gfortran
+FC77=gfortran
+CC=gcc
+LDFLAGS_ARCH=-g -fopenmp  -Wl,-rpath='$$ORIGIN'/../lib
+CFLAGS_ARCH=-g -fPIC -fopenmp
+FFLAGS_ARCH=-g -fPIC -O3 -fopenmp -ffree-line-length-none -fbacktrace
+
+#AR=ar r
+AR=$(CC) -g -shared -o
+EXT_LIB=$(EXT_SO)
+
+F2PY=f2py --fcompiler=gnu95
+F2PYFLAGS_ARCH="-fPIC"
+F2PYLDFLAGS_ARCH="-lgomp"
+
+FFLAGS_ARCH_lapack=-g -fPIC -O3 -fopenmp

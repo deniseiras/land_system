@@ -1,0 +1,75 @@
++ set -o pipefail
++ export ECF_PORT=3155
++ ECF_PORT=3155
++ export ECF_HOST=login1.juno.cmcc.scc
++ ECF_HOST=login1.juno.cmcc.scc
++ export ECF_NAME=/gio_ecflow1/run_cycles/prepare_assimilation/postprocess/diagnostics
++ ECF_NAME=/gio_ecflow1/run_cycles/prepare_assimilation/postprocess/diagnostics
++ export ECF_PASS=5J.J7pGj
++ ECF_PASS=5J.J7pGj
++ export ECF_TRYNO=5
++ ECF_TRYNO=5
++ export ECF_TRIES=0
++ ECF_TRIES=0
++ export ECF_RID=2065109
++ ECF_RID=2065109
++ export PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/imagemagick/7.0.8-7-2475g3fynku56e7rbgq65zz2xbmy6k26/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/ncview/2.1.8-sds5t7td2iyndfz25r537rsyxvx63wn6/bin:/work/cmcc/gc02720/.conda/envs/spreads/bin:/juno/opt/anaconda/3-2022.10/condabin:/users_home/cmcc/gc02720/.local/bin:/users_home/cmcc/gc02720/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/imagemagick/7.0.8-7-2475g3fynku56e7rbgq65zz2xbmy6k26/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/ncview/2.1.8-sds5t7td2iyndfz25r537rsyxvx63wn6/bin:/work/cmcc/gc02720/.conda/envs/spreads/bin:/juno/opt/anaconda/3-2022.10/condabin:/users_home/cmcc/gc02720/.local/bin:/users_home/cmcc/gc02720/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ ecflow_client --init=2065109
++ trap ERROR 0
++ trap '{ echo "Killed by a signal"; ERROR ; }' 1 2 3 4 5 6 7 8 10 12 13 15
++ export SCRIPTDIR=/users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts
++ SCRIPTDIR=/users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts
+++ ecflow_client --query event /gio_ecflow1/run_cycles:FORECAST
++ FORECAST=set
++ '[' set == set ']'
++ export FORECAST=TRUE
++ FORECAST=TRUE
++ '[' '!' -d /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics ']'
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ '[' TRUE == TRUE ']'
++ set +e
++ ls -d /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600
+/work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1/gio_ecflow1-2017-10-02-21600
++ '[' 0 -eq 0 ']'
++ ./run.ksh gio_ecflow1
++ case_name=gio_ecflow1
++ pwd
++ datahome=/users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ cd /work/cmcc/gc02720/CMCC-CM/archive/gio_ecflow1
++ ls -d gio_ecflow1-2017-10-02-21600
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/quick_spreads
++ sed 's/gio_ecflow1\-//g'
++ echo gio_ecflow1-2017-10-02-21600
++ dt=2017-10-02-21600
++ [ ! -f /work/cmcc/gc02720/CMCC-CM/basic_diag/gio_ecflow1/2017-10-02-21600/utest_all.npz ]
++ mkdir -p src/gio_ecflow1/2017-10-02-21600
++ cp -f quick_spreads_diag_exec.bash quick_spreads_diag.py src/gio_ecflow1/2017-10-02-21600/
++ cd src/gio_ecflow1/2017-10-02-21600
++ sed -i $'s/assim_date/\'2017-10-02-21600\'/g' quick_spreads_diag.py
++ sed -i s@mg20022@gc02720@g quick_spreads_diag.py
++ sed -i s/case_name/gio_ecflow1_2017-10-02-21600/g quick_spreads_diag_exec.bash
++ sed -i $'s@NOME@\'gio_ecflow1\'@g' quick_spreads_diag.py
++ bsub
++ 0< quick_spreads_diag_exec.bash
+Job has been assigned to project 'R000'.
+Job <171712> is submitted to queue <p_long>.
++ sleep 1
++ set -e
++ sleep 30
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts/diagnostics/viewer
++ cp viewer_preprocess_quick_spreads.py run_viewer_preprocess_quick_spreads.py
++ sed -i s@mg20022/CMCC-CM@gc02720/CMCC-CM@g run_viewer_preprocess_quick_spreads.py
++ sed -i s@spreads_official@gio_ecflow1@g run_viewer_preprocess_quick_spreads.py
++ ./run_viewer_preprocess_quick_spreads.py
++ echo ''
+
++ echo '----- END TASK ---'
+----- END TASK ---
++ echo ''
+
++ ecflow_client --label=Info 'OK... 20230901  13:34'
++ wait
++ ecflow_client --complete
++ trap 0
++ exit 0

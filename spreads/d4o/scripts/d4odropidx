@@ -1,0 +1,63 @@
+#!/bin/bash
+#
+# Usage: d4odropidx database(s) # drops all indices that have been created by user i.e. NOT sqlite internal auto-indices
+# 
+
+cmdname=$(basename $0)
+cmdfile=$(readlink -f $0)
+cmddir=$(dirname $cmdfile)
+cmdfile=$cmddir/$cmdname
+
+kmd=$(basename $0)
+PS4='+ [$kmd:${LINENO}]: '
+
+function Usage()
+{
+    egrep -A1 '^# Usage:' $cmdfile | perl -pe 's/^# //'
+}
+
+set -eu
+
+files=""
+for ff in ${@:-"*.[0-9]*.db"}
+do
+    for f in $(eval echo "$ff")
+    do
+	if [[ -w $f ]] ; then # must be writeable database
+	    f=$(basename $f)
+	    files+=":$f"
+	fi
+    done
+done
+files=$(echo "$files" | perl -pe 's/^://; s/:/\n/g;' | sort -u -n -t. -k2 | perl -pe 's/\n/ /g;' | perl -pe 's/\s+$//;')
+
+callcliro="sqlite3 -batch -init /dev/null -readonly"
+callclirw="sqlite3 -batch -init /dev/null"
+
+rc=0
+for f in $files
+do
+    fsize=$(stat -c %s $f 2>/dev/null || echo 0)
+    saved_idx=$(basename $f .db).idx.saved
+    echo "Warning: Dropping all user indices from database '$f' ($fsize bytes) -- performance degradation will be huge"
+    echo "         Please make a note of the existing user indices (also saved in the file '$saved_idx')"
+    $callcliro $f '.schema' | fgrep -i 'create index' | tee $saved_idx
+    $callclirw $f <<'EOF'|| ((rc += 1))
+-- SELECT type,name FROM sqlite_master ORDER BY type,name;
+PRAGMA writable_schema = 1;
+DELETE FROM sqlite_master WHERE type = "index" AND name REGEXP "^idx_";
+PRAGMA writable_schema = 0;
+-- SELECT type,name FROM sqlite_master ORDER BY type,name;
+VACUUM;
+EOF
+    fsizenew=$(stat -c %s $f 2>/dev/null || echo 0)
+    echo "Warning: Database '$f' size has changed from $fsize to $fsizenew bytes"
+    echo "         To re-introduce the removed user indices, simply run : $callclirw $f < $saved_idx" 
+done
+
+set -x
+exit $rc
+
+
+
+

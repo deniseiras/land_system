@@ -1,0 +1,498 @@
+# EnFSOI_Jf diagnostic computation for ensemble systems.
+# Skeleton for single cycle! Need to be extended.
+# @author: Giovanni Conti 
+# @date: 04 March 2024
+
+
+
+
+# Import session.
+#------------------------------------------
+#------------------------------------------
+import os
+import sqlite3
+import pandas as pd
+import numpy as np
+import math
+from netCDF4 import Dataset
+import bisect
+import datetime
+from fsoijo_plot import *
+
+
+
+
+# Parameters definition. 
+#------------------------------------------
+#------------------------------------------
+#******************************************
+#    MODIFY THE PARAMETERS HERE!
+#******************************************
+
+# Exp name.
+ename = "testfsoi"
+
+# Analysis date ("YYYY-MM-DD-SSSSS").
+adate = "2017-10-02-43200"
+
+# Forecast date ("YYYY-MM-DD-SSSSS").
+fdate = "2017-10-03-43200"
+
+# Path to the exp archive
+patharc   = '/work/cmcc/gc02720/CMCC-CM/archive'
+
+path2an  = patharc + '/' + ename + '/' + ename + '-' + adate
+path2f   = patharc + '/' + ename + '-forecast/' + ename + '_forecast-' + fdate + '/fsoi_jf-db'
+
+#obs2proc  = ['RADIOSONDE_U_WIND_COMPONENT', \
+#             'RADIOSONDE_V_WIND_COMPONENT', \
+#             'RADIOSONDE_TEMPERATURE', \
+#             'AIRCRAFT_U_WIND_COMPONENT', \
+#             'AIRCRAFT_V_WIND_COMPONENT', \
+#             'AIRCRAFT_TEMPERATURE', \
+#             'ACARS_U_WIND_COMPONENT', \
+#             'ACARS_V_WIND_COMPONENT', \
+#             'ACARS_TEMPERATURE', \
+#             'SAT_U_WIND_COMPONENT', \
+#             'SAT_V_WIND_COMPONENT', \
+#             'GPSRO_REFRACTIVITY', \
+#             'EOS_2_AMSUA_TB', \
+#             'NOAA_15_AMSUA_TB', \
+#             'NOAA_16_AMSUA_TB', \
+#             'NOAA_17_AMSUA_TB', \
+#             'NOAA_18_AMSUA_TB', \
+#             'NOAA_19_AMSUA_TB', \
+#             'METOP_1_AMSUA_TB', \
+#             'METOP_2_AMSUA_TB' \
+##             'VADWND_U_WIND_COMPONENT',\
+##             'VADWND_V_WIND_COMPONENT'\
+#            ]
+
+
+obs2proc  = [ 'EOS_2_AMSUA_TB', \
+             'NOAA_15_AMSUA_TB', \
+             'NOAA_16_AMSUA_TB', \
+             'NOAA_17_AMSUA_TB', \
+             'NOAA_18_AMSUA_TB', \
+             'NOAA_19_AMSUA_TB', \
+             'METOP_1_AMSUA_TB', \
+             'METOP_2_AMSUA_TB' \
+            ]
+
+
+#obs4ver  = ['RADIOSONDE_U_WIND_COMPONENT', \
+#             'RADIOSONDE_V_WIND_COMPONENT', \
+#             'RADIOSONDE_TEMPERATURE', \
+#             'AIRCRAFT_U_WIND_COMPONENT', \
+#             'AIRCRAFT_V_WIND_COMPONENT', \
+#             'AIRCRAFT_TEMPERATURE', \
+#             'ACARS_U_WIND_COMPONENT', \
+#             'ACARS_V_WIND_COMPONENT', \
+#             'ACARS_TEMPERATURE', \
+#             'SAT_U_WIND_COMPONENT', \
+#             'SAT_V_WIND_COMPONENT', \
+#             'GPSRO_REFRACTIVITY', \
+#             'EOS_2_AMSUA_TB', \
+#             'NOAA_15_AMSUA_TB', \
+#             'NOAA_16_AMSUA_TB', \
+#             'NOAA_17_AMSUA_TB', \
+#             'NOAA_18_AMSUA_TB', \
+#             'NOAA_19_AMSUA_TB', \
+#             'METOP_1_AMSUA_TB', \
+#             'METOP_2_AMSUA_TB' \
+##             'VADWND_U_WIND_COMPONENT',\
+##             'VADWND_V_WIND_COMPONENT'\
+#            ]
+
+
+obs4ver  = [ 'EOS_2_AMSUA_TB']
+
+
+
+# Number of ensemble members.
+nens = 3
+
+# Where to save the output, plot and data.
+path2sv = path2f + '/diag-' + fdate
+
+# Plot samples img?
+plot_img = 'TRUE'
+
+# Chose level of output. 
+# DEBUG = 1 only cells indication, DEBUG = 2 add vertical information, DEBUG = 3 also obs retrieve info
+# DEBUG = 4 print also the pandas query dataframe
+DEBUG = 4
+
+
+# Plot maps only on these levels 
+#reflevs=(850,500,400,200,150,90)
+reflevs=(150,)
+
+
+#******************************************
+#    DO NOT MODIFY BELOW 
+#******************************************
+
+# Get the current date and time
+start_t = datetime.datetime.now()
+print('\n',start_t)
+
+
+#------------------------------------------
+# Print the parameters used.
+print('\n Computation parameters:')
+print(' Experiment name: ', ename)
+print(' Analysis date: ', adate)
+print(' Forecast date: ', fdate)
+print(' Path archive: ', patharc)
+print(' Path analysis: ', path2an)
+print(' Path forecast: ', path2f)
+print(' Path save: ', path2sv)
+print(' Observation to process: ', obs2proc)
+print(' Observation for verification: ', obs4ver)
+print(' Reference levels: ', reflevs)
+
+
+
+#---------------------------------------------
+# Create the save dir if needed
+if not os.path.exists(path2sv):
+     try:
+         os.mkdir(path2sv)
+     except OSError:
+         print ("\nCreation of the directory %s failed" % path2sv)
+     else:
+         print ("\nSuccessfully created the directory %s " % path2sv)
+
+
+
+
+# Computation.
+#------------------------------------------
+#------------------------------------------
+
+print('\n Start the computation...')
+
+
+# Determine how many db are present in the analysis and verification dir.
+# Analisys check --------------------------------------------------------
+print('\n\n Analysis db check ...')
+print(' -------------------------------------------------------')
+
+listdb_an=[]
+rescatalog=False
+catalog_file=''
+for file in os.listdir(path2an):
+    if file.endswith(".db"):
+       if 'catalog' in file:
+          rescatalog=True
+          catalog_file=file
+          print('\n catalog: ' + catalog_file)
+       else:
+         listdb_an.append(os.path.join(path2an, file))
+listdb_an.sort()
+print("\n databases analysis: ", listdb_an)
+
+
+# From catalog determine all the different kind of observation.
+# We always have a catalog.db (the last element of the list), 
+# so create a connection.
+#rescatalog=any(item in path2db+'/'+'catalog.db' for item in listdb)
+if rescatalog!=True:
+   print('\n ERROR: catalog not present!\n')
+   exit()
+
+con=sqlite3.connect(path2an + '/'+ catalog_file)
+df = pd.read_sql("select * from catalog", con)
+con.close()
+dartotype=df['description'].unique()
+# Remove 'none' and '' from the list if present.
+dartotype=dartotype[dartotype != np.array(None)]
+dartotype=dartotype[dartotype != np.array('')]
+print("\n List of ALL the different SPREADS obs type at analysis time:\n", dartotype, "\n")
+
+
+# Check that some of the obs in the list obs2proc is present in 
+# the dbs, otherwise exit.
+cnt=0
+for o2p in obs2proc:
+    if np.where(dartotype==o2p) != []:
+       cnt=cnt+1
+if cnt==0:
+   print(' ERROR, no observations to study in the dbs')
+   exit()
+
+
+# Mask the dbs that must be excluded in the computation
+maskdb = []
+
+for db in listdb_an:
+    if any('AMSUA' in obs for obs in obs2proc) and 'AMSU' in db:
+        maskdb.append(1)
+    elif any('SAT' in obs for obs in obs2proc) and 'AMV' in db:
+        maskdb.append(1)
+    elif any('AIRCRAFT' in obs or 'ACARS' in obs for obs in obs2proc) and 'ARC' in db:
+        maskdb.append(1)
+    elif any('RADIOSONDE' in obs for obs in obs2proc) and 'SND' in db:
+        maskdb.append(1)
+    elif any('GPSRO' in obs for obs in obs2proc) and 'GPSRO'in db:
+        maskdb.append(1)
+    elif any('VADWND' in obs for obs in obs2proc) and 'WDP' in db:
+        maskdb.append(1)
+    else:
+        maskdb.append(0)
+
+
+print(' maskdb= ', maskdb)
+print(' maskdb len= ', len(maskdb))
+print(' listdb len= ', len(listdb_an))
+
+
+
+# Verification check ------------------------------------------------
+print('\n\n Verification db check ...')
+print(' -------------------------------------------------------')
+
+
+listdb_f=[]
+rescatalog=False
+catalog_file=''
+for file in os.listdir(path2f):
+    if file.endswith(".db"):
+       if 'catalog' in file:
+          rescatalog=True
+          catalog_file=file
+          print('\n catalog: ' + catalog_file)
+       else:
+         listdb_f.append(os.path.join(path2f, file))
+listdb_f.sort()
+print("\n databases verification: ", listdb_f)
+
+
+# From catalog determine all the different kind of observation.
+# We always have a catalog.db (the last element of the list), 
+# so create a connection.
+#rescatalog=any(item in path2db+'/'+'catalog.db' for item in listdb)
+if rescatalog!=True:
+   print('\n ERROR: catalog not present!\n')
+   exit()
+
+con=sqlite3.connect(path2f + '/'+ catalog_file)
+df = pd.read_sql("select * from catalog", con)
+con.close()
+dartotype=df['description'].unique()
+# Remove 'none' and '' from the list if present.
+dartotype=dartotype[dartotype != np.array(None)]
+dartotype=dartotype[dartotype != np.array('')]
+print("\n List of ALL the possible SPREADS obs type for verification:\n", dartotype, "\n")
+
+
+# Check that some of the obs in the list obs2proc is present in 
+# the dbs, otherwise exit.
+cnt=0
+for o2p in obs2proc:
+    if np.where(dartotype==o2p) != []:
+       cnt=cnt+1
+if cnt==0:
+   print(' ERROR, no observations to study in the dbs')
+   exit()
+
+
+# Mask the dbs that must be excluded in the computation
+maskdb_f = []
+
+for db in listdb_f:
+    if any('AMSUA' in obs for obs in obs4ver) and 'AMSU' in db:
+        maskdb_f.append(1)
+    elif any('SAT' in obs for obs in obs4ver) and 'AMV' in db:
+        maskdb_f.append(1)
+    elif any('AIRCRAFT' in obs or 'ACARS' in obs for obs in obs4ver) and 'ARC' in db:
+        maskdb_f.append(1)
+    elif any('RADIOSONDE' in obs for obs in obs4ver) and 'SND' in db:
+        maskdb_f.append(1)
+    elif any('GPSRO' in obs for obs in obs4ver) and 'GPSRO'in db:
+        maskdb_f.append(1)
+    elif any('VADWND' in obs for obs in obs4ver) and 'WDP' in db:
+        maskdb_f.append(1)
+    else:
+        maskdb_f.append(0)
+
+
+print(' maskdb_f= ', maskdb_f)
+print(' maskdb_f len= ', len(maskdb_f))
+print(' listdb_f len= ', len(listdb_f))
+
+
+
+
+
+# Real computation ------------------------------------------------
+print('\n\n Check finished, start the real computation')
+print(' -------------------------------------------------------')
+
+# For each obs type  chosen at analysis tiem we need to compute
+# \delta y_f^{\top} R_f^{-1} Y_f Y_a^{\top} R_a^{-1}
+# Remember that each type of obs will have a weight that 
+# depends on all the types chosen at verification time.
+
+
+#------------------------------------------------------------------------------------------
+# Load all the obs at verification time 
+# collect obs, prior, prior_mean, obs var, 
+dfos_f  = pd.DataFrame()
+df_temp = pd.DataFrame()
+for db, maskcc in zip(listdb_f, maskdb_f):
+    # print('db:', db)
+    if maskcc == 0:
+        continue
+
+    if DEBUG >= 2:
+        print("\n Working with db: ", db, flush=True)
+
+    # Retrieve the vertical column of observations for the subdomain considered.
+    # Convert the list to a string format with quotes
+    obs4ver_str = ', '.join([f"'{obs}'" for obs in obs4ver])
+    con=sqlite3.connect(db)
+    df_temp = pd.read_sql(f"select entryno, id, kind, obsvalue, obs_error_variance, prior_mean, prior, dart_qc, member, deglat, deglon,\
+                                levelht, (select distinct description from toc where kind=body.kind) \
+                                as description from hdr join body on id=body.hdr_id join ens on id=ens.hdr_id and \
+                                entryno=body_entryno where description IN ({obs4ver_str}) AND dart_qc=0 AND member<={nens}", con) 
+    con.close()
+
+    # If there are not observation skip.
+    if len(df_temp['obsvalue'].tolist())<=0:
+       print("\n No obs in this task from this db", flush=True)
+       continue
+
+    # Inside d4o we have Pa not hPa. 
+    if DEBUG >= 1:
+        print("\n Convert levelht in hPa. ", flush=True)
+
+    # For GPSRO we need to convert levelht from meters to hPa in order to use keep the same code below for all the types.
+    # The other levelht must insead be converted in hPa.
+    if 'GPSRO'in db:
+        df_temp['levelht'] = P0*(1-df_temp['levelht']/44307.69396)**(1/0.190284)
+    else:
+        df_temp['levelht'] = df_temp['levelht'] / 100
+
+    #df_temp['levelht'] = df_temp['levelht']/100
+    dfos_f = pd.concat([dfos_f, df_temp], ignore_index=True)
+
+    if DEBUG >= 4:
+        print("\n Pandas Obs: \n", dfos_f, flush=True)
+  
+
+# PAY ATTENTION WE NEED TO IMPOSE SOME ORDER BECASUE NOT NECESSARITLY THE FIRST ROW OF MEMBER 1 CORRESPOND TOTHE OBSERVATION OF 1 ROW FOR MEMBER 2!!!!! 
+# Group by observation values, deglat, deglon, and levelht columns and sort within each group by member
+print("\n Sort obs")
+dfos_f_sorted = dfos_f.sort_values(by=['obsvalue', 'deglat', 'deglon', 'levelht', 'member'])
+
+if DEBUG>=4:
+    print("\n Pandas Obs sorted: \n", dfos_f_sorted, flush=True)
+
+
+#------------------------------------------------------------------------------------------
+# Generate the term \delta y_f^{\top} R_f^{-1} (R is diagonal in our system)
+# size order 1 x 10^6 
+df_member_ne = dfos_f[dfos_f['member'] == 1]
+# Number of observation for verification
+Nof = len(df_member_ne)
+# Calculate the differences between 'obsvalue' and 'prior_mean'
+differences = (df_member_ne['obsvalue'] - df_member_ne['prior_mean'])/ df_member_ne['obs_error_variance']
+# Convert the result to a numpy array with shape (1, len(df_member_1))
+yf_T_IRf = np.array(differences).reshape(1, -1)
+
+
+
+
+#------------------------------------------------------------------------------------------
+# Instead of computing the intermediate term  Y_f
+# size order 10^6 x 80
+# we can compute the j column of Y_f by time and considering the scalar product with
+# \delta y_f^{\top} R_f^{-1} automatically computing the j term of \delta y_f^{\top} R_f^{-1} Y_f
+# which total size is of order 1 x 80
+yf_T_IRf_Yf = np.zeros([1,nens])
+for ne in range(nens):
+    df_member_ne = dfos_f[dfos_f['member'] == ne]
+    differences = df_member_ne['prior'] - df_member_ne['prior_mean']
+    yf_T_IRf_Yf[1,ne] =np.dot(yf_T_IRf,differences)
+
+
+
+
+#------------------------------------------------------------------------------------------
+# Load analysis obs type to process
+# Also in this case we avoid the computation of the full matrix Y_a^{\top} of size 80 x 10^6
+# we can compute directly  the ith entriy of the final array 1 x 10^6 given by 
+# \delta y_f^{\top} R_f^{-1} Y_f Y_a^{\top}
+dfos_f  = pd.DataFrame()
+df_temp = pd.DataFrame()
+for db, maskcc in zip(listdb_f, maskdb_f):
+    # print('db:', db)
+    if maskcc == 0:
+        continue
+
+    if DEBUG >= 2:
+        print("\n Working with db: ", db, flush=True)
+
+    # Retrieve the vertical column of observations for the subdomain considered.
+    # Convert the list to a string format with quotes
+    obs4ver_str = ', '.join([f"'{obs}'" for obs in obs4ver])
+    con=sqlite3.connect(db)
+    df_temp = pd.read_sql(f"select entryno, id, kind, obsvalue, obs_error_variance, prior_mean, prior, dart_qc, member, deglat, deglon,\
+                                levelht, (select distinct description from toc where kind=body.kind) \
+                                as description from hdr join body on id=body.hdr_id join ens on id=ens.hdr_id and \
+                                entryno=body_entryno where description IN ({obs4ver_str}) AND dart_qc=0 AND member<={nens}", con)
+    con.close()
+
+    # If there are not observation skip.
+    if len(df_temp['obsvalue'].tolist())<=0:
+       print("\n No obs in this task from this db", flush=True)
+       continue
+
+    # Inside d4o we have Pa not hPa. 
+    if DEBUG >= 1:
+        print("\n Convert levelht in hPa. ", flush=True)
+
+    # For GPSRO we need to convert levelht from meters to hPa in order to use keep the same code below for all the types.
+    # The other levelht must insead be converted in hPa.
+    if 'GPSRO'in db:
+        df_temp['levelht'] = P0*(1-df_temp['levelht']/44307.69396)**(1/0.190284)
+    else:
+        df_temp['levelht'] = df_temp['levelht'] / 100
+
+    #df_temp['levelht'] = df_temp['levelht']/100
+    dfos_f = pd.concat([dfos_f, df_temp], ignore_index=True)
+
+    if DEBUG >= 4:
+        print("\n Pandas Obs: \n", dfos_f, flush=True)
+
+
+
+
+
+
+#------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+# END
+#------------------------------------------
+#------------------------------------------
+# Get the current date and time
+final_t = datetime.datetime.now()
+print('\n',final_t)
+print('Execution Time: ',final_t-start_t)
+
+print('\n -------------------- END ------------------- \n')
+
+
+
+

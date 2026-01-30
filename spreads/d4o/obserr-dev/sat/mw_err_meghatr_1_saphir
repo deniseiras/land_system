@@ -1,0 +1,22 @@
+ --- Megha-Tropiques SAPHIR ---
+ Ch  Class Clear  nModels     Comment
+  1      1     F        2   ;183pm0.2
+  2      1     F        2   ;183pm1.1
+  3      1     F        2   ;183pm2.7
+  4      0     F        2   ;183pm4.2
+  5      0     F        2   ;183pm6.6
+  6      0     F        2  ;183pm11.0
+--- Error model details -- see yommwave.F90 for what the proxy codes refer to --
+ Ch Where  Proxy  Err_min  Err_max  Min_prx  Max_prx  FG_err  A    B  Cldy_prx  Cldy_diag
+  1   Sea      5      3.8     25.0      3.2     90.0     0.0  1  1.0         5        3.2
+  1  Land      5      3.8     25.0      3.2     90.0     0.0  1  1.0         5        3.2
+  2   Sea      5      4.0     40.0      3.2     77.2     0.0  1  1.0         5        3.2
+  2  Land      5      4.0     40.0      3.2     77.2     0.0  1  1.0         5        3.2
+  3   Sea      5      3.5     55.0      2.5     70.0     0.0  1  0.5         5        3.2
+  3  Land      5      3.5     55.0      2.5     70.0     0.0  1  0.5         5        3.2
+  4   Sea      5      3.0     75.0      1.0     72.2     0.0  1  0.5         5        3.2
+  4  Land      5      3.0     75.0      1.0     72.2     0.0  1  0.5         5        3.2
+  5   Sea      5      2.0     85.0      1.0     78.2     0.0  1  0.0         5        3.2
+  5  Land      5      2.0     85.0      1.0     78.2     0.0  1  0.0         5        3.2
+  6   Sea      5      2.0    100.0      1.0     75.2     0.0  1  0.0         5        3.2
+  6  Land      5      2.0    100.0      1.0     75.2     0.0  1  0.0         5        3.2

@@ -1,0 +1,52 @@
+#!/bin/bash
+#
+# Simple build of bl95.x using GNU-compiler & -DLINUX
+#
+
+set -aeu
+
+thisdir=$(pwd)
+
+cmd=$(which $0)
+cmdname=$(basename $cmd)
+cmddir=$(cd $(dirname $cmd); pwd)
+
+#echo $cmd
+#echo $cmdname
+#echo $cmddir
+
+BL95X=${BL95X:-$cmddir/bl95.x}
+#if [[ -x $BL95X ]] ; then
+#    set -x
+#else
+    tmpdir=${TMPDIR:-/tmp}
+    tmpdir=$tmpdir/$cmdname.${SEED:-$$}
+    
+    rm -rf $tmpdir
+    mkdir -p $tmpdir
+    cd $tmpdir
+    pwd
+    
+    ln -sv $cmddir/../compiler/*.{c,l,y} .
+    ln -sv  $cmddir/../include/*.h .
+    #chmod u+rw *
+    
+    YACC=${YACC:-"bison --yacc"}
+    LEX=${LEX:-flex}
+    
+    set -x
+
+    $YACC -d yacc.y
+    $LEX lex.l
+    ${CC:-gcc} -I. -DLINUX -DIS_MAIN_PROG *.c -o $BL95X -lfl -lm || \
+    ${CC:-gcc} -I. -DLINUX -DIS_MAIN_PROG *.c -o $BL95X      -lm
+    ldd $BL95X
+
+    cd $thisdir
+
+    rm -rf $tmpdir
+#fi
+
+ls -l $BL95X
+ldd $BL95X
+

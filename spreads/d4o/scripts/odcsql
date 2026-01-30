@@ -1,0 +1,282 @@
+#!/bin/bash
+#
+# Usage: odcsql [-h|-help|--help]
+#               [-T|-noheader|--noheader]
+#               [-N|-nonulls|--nonulls]
+#               [-Z|-zeros|--zeros]
+#               [-csv|--csv]
+#               [-sqlite|--sqlite]
+#               [-S|-suppress|--suppress]
+#               [-H|-header|--header]
+#               [-v|-verbose|--verbose]
+#               [--limit=limit_lines] [--offset=offset]
+#               {[limit_lines]|[offset,limit_lines]}
+#               [/path/]database.odc 'sql-query'
+# 
+# With -csv is a short-hand for :
+#        odc sql 'sql-query' -i database.odc --full_precision --no_alignment -delimiter ,
+# 
+# Without -csv is a short-hand for :
+#        odc sql 'sql-query' -i database.odc
+# 
+# The optional -T disables printing of column names
+# 
+# With -sqlite optiona a SQLite3 database will be created from ODC -- f.ex. the command
+# 
+#        odcsql -sqlite database.odc 'sql-query'
+# 
+# implies
+# 
+#       odcsql -csv database.odc 'sql-query' | env TBLOUTPUT=2 csv2sqlite -"$(basename database.odc .odc)"
+# 
+# and resulting SQLite3 database "database.db" (or similar) creation
+# (the TLBOUTPUT=2 provides the actual table name and path to the created "database.db")
+# In addition, the -sqlite option preserves NULLs, does print header + data rows
+# 
+# NB1: "limit_lines" is a plain integer indicating the (max) number of DATA lines to be displayed (i.e. excl. column name line)
+# NB2: "offset,limit_lines" skips first "offset" number of lines and displays the remaining "limit_lines"
+# 
+
+cmdfile=$(readlink -f $0)
+cmddir=$(dirname $cmdfile)
+
+function Usage()
+{
+    egrep -A35 '^# Usage:' $cmdfile | perl -pe 's/^# //' >&2
+    exit 1
+}
+
+set -eu
+set -o pipefail # be aware of error code 141 i.e. SIGPIPE, though
+
+# rmdi = -2147483647[.0000]
+#  mdi =  2147483647
+
+go=0
+
+sqlite3=$(which sqlite3 2>/dev/null || echo "")
+dbfile=""
+odcfile=/dev/null
+docsv=0
+csv=""
+sqlite=0
+colnames=1
+nulls=1
+header_only=0
+offset=0
+limit=0
+query=""
+cat=cat
+reducezeros=0
+keepzeros=0
+suppress=0
+verbose=0
+
+export _space=" "
+tabfilter='perl -pe s/\t\s*/$ENV{_space}/g'
+    
+re1='^[0-9]+$' # regular expression for "limit"
+re2='^[0-9]+,[0-9]+$' # regular expression for "offset" + comma + "limit"
+
+relim='^--limit=[0-9]+$'
+reoff='^--offset=[0-9]+$'
+
+while [[ $# -gt 0 ]]
+do
+    if [[ "$1" = "-csv" ]] || [[ "$1" = "--csv" ]] ; then
+	if [[ "$csv" = "" ]] ; then
+	    csv="--full_precision --no_alignment -delimiter ,"
+	    reducezeros=1
+	    docsv=1
+	fi
+	shift
+    elif [[ "$1" = "-sqlite" ]] || [[ "$1" = "--sqlite" ]] ; then
+	sqlite=1
+	docsv=1
+	shift
+    elif [[ "$1" = "-N" ]] || [[ "$1" = "-nonulls" ]] || [[ "$1" = "--nonulls" ]] ; then
+	nulls=0
+	shift
+    elif [[ "$1" = "-Z" ]] || [[ "$1" = "-zeros" ]] || [[ "$1" = "--zeros" ]] ; then
+	keepzeros=1
+	shift
+    elif [[ "$1" = "-S" ]] || [[ "$1" = "-suppress" ]] || [[ "$1" = "--suppress" ]] ; then
+	suppress=1 # do not attempt to use SQLite dbfile even if found
+	shift
+    elif [[ "$1" = "-T" ]] || [[ "$1" = "-noheader" ]] || [[ "$1" = "--noheader" ]] ; then
+	colnames=0
+	shift
+    elif [[ "$1" = "-H" ]] || [[ "$1" = "-header" ]] || [[ "$1" = "--header" ]] ; then
+	header_only=1
+	shift
+    elif [[ "$1" = "-v" ]] || [[ "$1" = "-verbose" ]] || [[ "$1" = "--verbose" ]] ; then
+	verbose=1
+	shift
+    elif [[ "$1" = "-h" ]] || [[ "$1" = "-help" ]] || [[ "$1" = "--help" ]] ; then
+	Usage
+	shift
+    elif [[ "$1" =~ $relim ]] ; then # limit
+	limit=$(echo ":$1" | perl -pe 's/:--limit=//')
+	shift
+    elif [[ "$1" =~ $reoff ]] ; then # offset
+	offset=$(echo ":$1" | perl -pe 's/:--offset=//')
+	shift
+    elif [[ "$1" =~ $re1 ]] ; then # limit
+	limit=$1
+	shift
+    elif [[ "$1" =~ $re2 ]] ; then # offset,limit
+	offset=$(echo "$1" | cut -d, -f1)
+	limit=$(echo "$1" | cut -d, -f2)
+	shift
+    elif [[ -r "$1" ]] ; then
+	odcfile="$1"
+	outdb=$(echo "$odcfile" | perl -pe 's/\.odc\.(\d+)$/.$1.odc/;s/\.odc$//;')".db"
+	[[ ! -s $outdb ]] || dbfile=$outdb
+	unset outdb
+	shift
+    else
+	query="$@"
+	if [[ "$dbfile" = "" ]] || [[ "$sqlite3" = "" ]] || [[ $sqlite -eq 1 ]] || [[ $header_only -eq 1 ]] || [[ $suppress -eq 1 ]] ; then
+	    go=1
+	else
+	    go=2 # Use sqlite3 over $dbfile
+	fi
+	break
+    fi
+done
+
+[[ $go -gt 0 ]] || Usage
+
+rc=0
+
+if [[ $go -eq 1 ]] ; then
+    
+    if [[ $sqlite -eq 1 ]] ; then
+	csv="--full_precision --no_alignment -delimiter ,"
+	colnames=1
+	header_only=0
+	nulls=1
+	outtbl=$(basename "$odcfile" | perl -pe 's/\.odc\.(\d+)$/.$1.odc/;s/\.odc$//;')
+	cat="env TBLOUTPUT=${TBLOUTPUT:-2} $cmddir/csv2sqlite -$outtbl"
+	[[ $verbose -eq 0 ]] || echo -e "\n$(date -u): ${cmdfile}: $cat\n" >&2
+	reducezeros=1
+    fi
+    
+    if [[ $header_only -eq 1 ]] ; then
+	colnames=1
+	offset=0 # since irrelevant
+	limit=0 # since irrelevant
+    fi
+    
+    if [[ $colnames -eq 0 ]] ; then
+	csv+=" -T"
+    elif [[ $limit -gt 0 ]] ; then
+	limit=$((limit+1))
+    fi
+    
+    if [[ $nulls -eq 0 ]] ; then
+	csv+=" -N"
+	nullfilter="cat"
+    else
+	nullfilter='perl -pe s/[-]?2147483647(\.0+)?/NULL/g'
+    fi
+    
+    if [[ $keepzeros -eq 1 ]] || [[ $docsv -eq 0 ]] ; then
+	reducezeros=0
+    fi
+    
+    if [[ $reducezeros -eq 1 ]] ; then
+	# reduce output by changing 0.0123000 to 0.0123 and 24567.0 to 24567
+	zerofilter='perl -pe s/(\.\d+?)0+($|,)/$1$2/g;s/\.0($|,)/$1/g'
+    else
+	zerofilter=cat
+    fi
+
+    {
+	if [[ $header_only -eq 1 ]] ; then
+	    # Only display the column names -line
+	    odc sql "$query" -i $odcfile $csv | egrep -v '^S.MPLIFY' | head -n1 | $tabfilter
+	elif [[ $offset -eq 0 ]] && [[ $limit -eq 0 ]] ; then
+	    # Display *all* DATA lines available
+	    odc sql "$query" -i $odcfile $csv | egrep -v '^S.MPLIFY' | $nullfilter | $zerofilter | $tabfilter
+	else
+	    if [[ $offset -gt 0 ]] && [[ $colnames -eq 1 ]] ; then
+		# Always display column names first
+		odc sql "$query" -i $odcfile $csv | egrep -v '^S.MPLIFY' | head -n1  | $tabfilter
+		# Then DATA lines only
+		limit=$((limit-1))
+		if [[ $limit -gt 0 ]] ; then
+		    odc sql "$query" -i $odcfile $csv -T | egrep -v '^S.MPLIFY' | head -n$((offset+limit)) | tail -n$limit | $nullfilter | $zerofilter | $tabfilter
+		fi
+	    else
+		odc sql "$query" -i $odcfile $csv | egrep -v '^S.MPLIFY' | head -n$((offset+limit)) | tail -n$limit | $nullfilter | $zerofilter | $tabfilter
+	    fi
+	fi
+    } | $cat || rc=$?
+    
+elif [[ $go -eq 2 ]] ; then
+    
+    sqlite3+=" -readonly -batch -init /dev/null -noheader -csv"
+    table=$($sqlite3 $dbfile .tables 2>/dev/null || echo "unknown")
+    
+    if [[ $nulls -eq 0 ]] ; then
+	nullfilter="cat"
+    else
+	sqlite3+=" -nullvalue NULL"
+	nullfilter='perl -pe s/[-]?2147483647(\.0+)?/NULL/g;s/""/NULL/g;'
+    fi
+
+    if [[ $docsv -eq 1 ]] ; then
+	delim=,
+	strip=cat
+    else
+	delim=";"
+	strip='perl -pe s/;/$ENV{_space}/g'
+    fi
+    sqlite3+=" -separator $delim"
+    
+    if [[ $keepzeros -eq 1 ]] || [[ $docsv -eq 0 ]] ; then
+	reducezeros=0
+    fi
+    
+    if [[ $reducezeros -eq 1 ]] ; then
+	# reduce output by changing 0.0123000 to 0.0123 and 24567.0 to 24567
+	zerofilter='perl -pe s/(\.\d+?)0+($|,)/$1$2/g;s/\.0($|,)/$1/g'
+    else
+	zerofilter=cat
+    fi
+
+    sql=$query
+    has_where=$(echo "$sql" | grep -ciP '\s+WHERE\s+' || :)
+    if [[ $has_where -eq 0 ]] ; then
+	# WHERE-cond not found -- just append 'FROM table'
+	sql+=" FROM $table"
+    else # otherwise insert 'FROM table' appropriately
+	sql=$(echo ":$sql" | perl -pe 's/^://;s/(\s+)(WHERE\s+)/${1}FROM '$table' $2/i;')
+    fi
+
+    #sql=$(echo ":$sql" | perl -pe 's/^://;s/\s+/ /g;s/\brownumber\(\)/_rowid_/gi;s/\@\w+//g;s/\bint\(\s*(\w+)\s*\)/cast($1 as int)/gi;')
+    sql=$(echo ":$sql" | perl -pe 's/^://;s/\brownumber\(\)/_rowid_/gi;s/\@\w+//g;s/\bint\s*\(\s*(\w+)\s*\)/cast($1 as int)/gi;')
+    
+    [[ $limit  -le 0 ]] || sql+=" LIMIT $limit"
+    [[ $offset -le 0 ]] || sql+=" OFFSET $offset"
+
+    {
+	if [[ $colnames -eq 1 ]] ; then
+	    #--# Use still odc sql to print the header line only
+	    #--odc sql "$query" -i $odcfile --full_precision --no_alignment -delimiter $delim | head -n1 | $strip
+	    sqlite3+=" -header"
+	fi
+
+	[[ $verbose -eq 0 ]] || echo -e "\n$(date -u): ${cmdfile}: $sqlite3 $dbfile\n$sql\n" >&2
+	
+	$sqlite3 $dbfile "$sql"  | $nullfilter | $zerofilter | $strip
+    } | $cat || rc=$?
+    
+fi
+
+[[ $rc -ne 141 ]] || rc=0 # grep causes SIGPIPE i.e. 128+13 = 141 -- we will ignore that .. and set rc to zero
+
+[[ $verbose -eq 0 ]] || echo "$(date -u): ${cmdfile}: exit $rc" >&2
+
+exit $rc

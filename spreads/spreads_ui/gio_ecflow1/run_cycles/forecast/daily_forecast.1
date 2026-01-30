@@ -1,0 +1,107 @@
++ set -o pipefail
++ export ECF_PORT=3155
++ ECF_PORT=3155
++ export ECF_HOST=login1.juno.cmcc.scc
++ ECF_HOST=login1.juno.cmcc.scc
++ export ECF_NAME=/gio_ecflow1/run_cycles/forecast/daily_forecast
++ ECF_NAME=/gio_ecflow1/run_cycles/forecast/daily_forecast
++ export ECF_PASS=PkKuMP9i
++ ECF_PASS=PkKuMP9i
++ export ECF_TRYNO=1
++ ECF_TRYNO=1
++ export ECF_TRIES=0
++ ECF_TRIES=0
++ export ECF_RID=2529960
++ ECF_RID=2529960
++ export PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/imagemagick/7.0.8-7-2475g3fynku56e7rbgq65zz2xbmy6k26/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/ncview/2.1.8-sds5t7td2iyndfz25r537rsyxvx63wn6/bin:/work/cmcc/gc02720/.conda/envs/spreads/bin:/juno/opt/anaconda/3-2022.10/condabin:/users_home/cmcc/gc02720/.local/bin:/users_home/cmcc/gc02720/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ PATH=/work/cmcc/mg20022/.conda/envs/ecflow/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/imagemagick/7.0.8-7-2475g3fynku56e7rbgq65zz2xbmy6k26/bin:/juno/opt/spacks/0.20.0/opt/spack/linux-rhel8-icelake/intel-2021.6.0/ncview/2.1.8-sds5t7td2iyndfz25r537rsyxvx63wn6/bin:/work/cmcc/gc02720/.conda/envs/spreads/bin:/juno/opt/anaconda/3-2022.10/condabin:/users_home/cmcc/gc02720/.local/bin:/users_home/cmcc/gc02720/bin:/juno/opt/module-environment/5.2.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/perf/1.2/bin:/usr/bsd:/usr/ucb:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc:/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/ibm/lsfsuite/ext/gui/3.0/wlp/bin:/opt/ibm/lsfsuite/ext/gui/3.0/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/bin:/opt/ibm/lsfsuite/ext/ppm/10.2/linux2.6-glibc2.3-x86_64/bin:/opt/lenovo/onecli:/opt/ibm/jre/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/juno/opt/batch_tools/bin:/juno/opt/tools/bin:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin
++ ecflow_client --init=2529960
++ trap ERROR 0
++ trap '{ echo "Killed by a signal"; ERROR ; }' 1 2 3 4 5 6 7 8 10 12 13 15
++ export SCRIPTDIR=/users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts
++ SCRIPTDIR=/users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts
++ cd /users_home/cmcc/gc02720/spreads/spreads_ui/source/gio_ecflow1/main_scripts
++ export nens=5
++ nens=5
+++ echo /gio_ecflow1/run_cycles/forecast/daily_forecast
+++ sed s/daily_forecast//g
++ donepath=/gio_ecflow1/run_cycles/forecast/
++ export CESMEXP=cesm-exp
++ CESMEXP=cesm-exp
++ export case_name=gio_ecflow1
++ case_name=gio_ecflow1
++ export CLONESROOT=/users_home/cmcc/gc02720/cesm-exp/gio_ecflow1
++ CLONESROOT=/users_home/cmcc/gc02720/cesm-exp/gio_ecflow1
++ export NTSLOTS=13
++ NTSLOTS=13
++ export CASEROOT0001=/users_home/cmcc/gc02720/cesm-exp/gio_ecflow1/gio_ecflow1_0001
++ CASEROOT0001=/users_home/cmcc/gc02720/cesm-exp/gio_ecflow1/gio_ecflow1_0001
+++ echo gio_ecflow1
+++ tr '[:lower:]' '[:upper:]'
++ export TMPROOT=/work/cmcc/gc02720/CMCC-CM/TMPGIO_ECFLOW1
++ TMPROOT=/work/cmcc/gc02720/CMCC-CM/TMPGIO_ECFLOW1
++ export CESMDATAROOT=/data/inputs/CESM
++ CESMDATAROOT=/data/inputs/CESM
+++ ecflow_client --query event /gio_ecflow1/run_cycles:FORECAST
++ FORECAST=set
++ '[' set == set ']'
++ export FORECAST=TRUE
++ FORECAST=TRUE
+++ ecflow_client --query event /gio_ecflow1/run_cycles:FSOI_Jo
++ FSOI_Jo=set
++ '[' set == set ']'
++ export FSOI_Jo=TRUE
++ FSOI_Jo=TRUE
+++ ecflow_client --query event /gio_ecflow1/run_cycles/forecast:00Z
++ Z00=clear
++ '[' clear == set ']'
++ export Z00=FALSE
++ Z00=FALSE
+++ ecflow_client --query event /gio_ecflow1/run_cycles/forecast:12Z
++ Z12=clear
++ '[' clear == set ']'
++ export Z12=FALSE
++ Z12=FALSE
+++ ecflow_client --query event /gio_ecflow1/run_cycles/forecast:ALL
++ ALLZ=set
++ '[' set == set ']'
++ export ALLZ=TRUE
++ ALLZ=TRUE
++ [[ TRUE == \T\R\U\E ]]
++ nohup ./cases_forecast.sh gio_ecflow1 5 5 TRUE 1
+++ date
++ ecflow_client --label=info 'LAST FORECAST: Mon Sep  4 02:04:31 CEST 2023'
++ echo ''
+
++ echo '----- END TASK ---'
+----- END TASK ---
++ echo ''
+
++ ecflow_client --label=Info 'OK... 20230904  00:04'
++ wait
+
+ START FORECAST PROCEDURE 
+
+ Forecast cases container dir = /work/cmcc/gc02720/cesm-exp
+ Container dir = /work/cmcc/gc02720/CMCC-CM
+ Archive dir = /work/cmcc/gc02720/CMCC-CM/archive
+ Experiment name = gio_ecflow1
+ Numeber of instances = 5
+ Number of forecast members = 5
+ Number of forecast days = 1
+ Output for FSOI_Jo = TRUE
+ 
+ Check time of the last assimilation cycle
+ Last assimilation cycle time (s): 00000
+ Time correct, create the forecast experiment
+ Create the forecast container if not present
+ 
+ forecast member 1
+
+ERROR: Missing cloneroot directory /users_home/cmcc/gc02720/cesm-exp/gio_ecflow1/gio_ecflow1_0001 
+./cases_forecast.sh: line 106: cd: /work/cmcc/gc02720/cesm-exp/gio_ecflow1-forecast/gio_ecflow1_f_0001-2017-10-07-00000: No such file or directory
+./cases_forecast.sh: line 108: ./xmlquery: No such file or directory
+./cases_forecast.sh: line 133: ./preview_namelists: No such file or directory
++ ecflow_client --complete
++ trap 0
++ exit 0

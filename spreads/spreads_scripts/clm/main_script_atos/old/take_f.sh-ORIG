@@ -1,0 +1,59 @@
+#!/bin/bash
+
+TMPROOT=$1
+execfile=$2
+d4odep=$3
+nits=$4
+
+
+#===================================================
+#
+# Define shell functions
+#
+#===================================================
+# Take the id of the case.submit processes
+take_id()
+{
+
+  output=$($*)
+  echo $output | awk '{print $NF}'
+}
+#===================================================
+
+
+date
+echo "BEGIN FILTER PROCESSES "$TMPROOT" "$execfile" "$nits" "$d4odep
+source /data/cmcc/${USER}/d4o/install/INTEL/source.me
+if [ $execfile == "filter" ]
+  then
+ 
+     # chose the working mode for filter
+     if [ $d4odep == "yes" ]
+      then
+         for i in $(seq $nits)
+           do 
+             cd ${TMPROOT}/TS${i}
+             if [ ! -f run_filter_departures.bash ]; then cp ${TMPROOT}/run_filter_departures.bash . ;fi
+             rm -f log_dep.txt
+             echo "change the name of the process in order to better follow what is happening with bjobs"
+             sed -i "s@.*#BSUB -J.*=.*@#BSUB -J dep_TS${i}@g" ${TMPROOT}/run_filter_departures.bash
+             # ./run_filter.bash > log_dep.txt
+             bsub < run_filter_departures.bash > log_dep.txt
+          done
+     else
+          #d4odep=no
+          cd ${TMPROOT}/allTS
+          if [ ! -f run_filter.bash ]; then cp ${TMPROOT}/run_filter.bash . ;fi
+          rm -f log_filter.txt
+          echo "change the name of the process, for filter, in order to better follow what is happening with bjobs"
+          sed -i "s@.*#BSUB -J.*=.*@#BSUB -J filter_allTS@g" ${TMPROOT}/run_filter_departures.bash
+          #./run_filter.bash > log_filter.txt
+          bsub < run_filter.bash > log_filter.txt
+     fi
+     cd ${TMPROOT}
+else
+    rm -f inflog.txt
+    ./fill_inflation_restart >> inflog.txt
+fi
+
+exit

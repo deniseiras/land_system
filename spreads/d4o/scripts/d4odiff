@@ -1,0 +1,316 @@
+#!/bin/bash
+#
+# Usage: d4odiff database1 database2
+#                tol=epsilon limit=maxrows
+#                fmt=[box|csv|table] -[box|csv|table]
+#                where='cond' tables='tbl_1,tbl_2,tbl_3,...'
+#                uncond=[0|1] -uncond
+#                cols='col_1,col_2,col_3,...'
+#
+
+cmdfile=$(readlink -f $0)
+
+function Usage()
+{
+    egrep -A5 '^# Usage:' $cmdfile | perl -pe 's/^# //'
+}
+
+if [[ $# -lt 2 ]] ; then
+    Usage
+    exit 1
+fi
+
+set -eu
+
+shopt -s extglob # enables extglob i.e. @(x|y|z) regular expressions in bash
+
+db1=$1
+db2=$2
+
+deftol="2.220446049250313e-016" # "1e-16"
+deflimit=5
+defmt="box"
+
+declare -A args
+
+args["tol"]=$deftol
+args["limit"]=$deflimit
+args["fmt"]=$defmt
+args["tables"]=""
+args["where"]=""
+args["uncond"]=0
+args["cols"]=""
+
+rc=0
+
+shift 2
+if [[ $# -gt 0 ]] ; then
+    for x in "${@}"
+    do
+	# look for key=val pairs
+	key=$(echo $x | perl -pe 's/^(\w+)=.*$/$1/')
+	val=$(echo $x | perl -pe 's/^\w+=(.*$)/$1/')
+	[[ "$key" = @(tol*) ]] && key=tol
+	[[ "$key" = @(fmt|for*) ]] && key=fmt
+	[[ "$key" = @(lim*) ]] && key=limit
+	[[ "$key" = @(tab*) ]] && key=tables
+	[[ "$key" = @(whe*) ]] && key=where
+	[[ "$key" = @(unc*) ]] && key=uncond
+	[[ "$key" = @(col*) ]] && key=cols
+	if [[ "$key" = @(tol|fmt|limit|where|uncond|cols) ]] ; then
+	    args[$key]=$val
+	elif [[ "$key" = @(tables) ]] ; then
+	    args[$key]+="$val "
+	elif [[ "$x" = -@(box|csv|table) ]] ; then
+	    args["fmt"]=$(echo ":$x" | perl -pe 's/^:-//')
+	elif [[ "$x" = "-uncond" ]] ; then
+	    args["uncond"]=1
+	else
+	    echo "Error: Invalid argument $x" >&2
+	    ((++rc))
+	fi
+    done
+fi
+
+if [[ ! -r $db1 ]] ; then
+    echo "Error: Unable to locate database1 '$db1'" >&2
+    ((++rc))
+fi
+
+if [[ -r $db1 ]] && [[ -d $db2 ]] ; then
+    db2+="/$(basename $db1)"
+fi
+
+if [[ ! -r $db2 ]] ; then
+    echo "Error: Unable to locate database2 '$db2'" >&2
+    ((++rc))
+fi
+
+if [[ $rc -gt 0 ]] ; then
+    Usage
+    exit $rc
+fi
+
+for key in "${!args[@]}"
+do
+    value=${args[$key]}
+    echo "args[$key] => $value" >&2
+done
+
+tol=${args["tol"]}
+limit=${args["limit"]}
+fmt=${args["fmt"]}
+tables=$(echo ${args["tables"]} | perl -pe 's/,/ /g; s/\s+$//; s/^,//; s/,$//;') # trim
+auxwhere=${args["where"]}
+uncond=${args["uncond"]}
+usercols=$(echo ${args["cols"]} | perl -pe 's/\s+/,/g; s/[,]+/,/g; s/^,//; s/,$//;') # trim
+orcols=$(echo "$usercols" | perl -pe 's/,/|/g') # trim to or-list
+
+[[ "$uncond" != "1" ]] && uncond=0
+[[ $uncond -eq 1 ]] && [[ "$auxwhere" = "" ]] && auxwhere=1
+
+echo "$(basename $0) $db1 $db2 tol=$tol limit=$limit fmt=$fmt tables='$tables' where='$auxwhere' uncond=$uncond cols='$usercols'" >&2
+
+callcliro="sqlite3 -batch -init /dev/null -nullvalue NULL -noheader -csv -readonly"
+callclimm="sqlite3 -batch -init /dev/null -nullvalue NULL -noheader -csv :memory:"
+
+declare -A tbl
+declare -A cols # type:name
+
+info="pragma_table_info" # only non-virtual (=stored) columns will be fetched -- SELECT * FROM table maybe failing
+#info="pragma_table_xinfo" # will provide virtual columns, too -- as with SELECT * FROM table
+for f in $db1 $db2
+do
+    #echo "$f"
+    tbl[$f]=$($callcliro $f "select name from sqlite_master where type='table'" | perl -pe 's/\n/ /' | perl -pe 's/\s*$//')
+    for t in ${tbl[$f]}
+    do
+	ft="$f:$t"
+	#cols[$ft]=$($callcliro $f "select type||':'||name from ${info}('$t')" | sort | perl -pe 's/\n/ /' | perl -pe 's/\s*$//') # column order arbitrary -- TBD
+	cols[$ft]=$($callcliro $f "select type||':'||name from ${info}('$t')" | perl -pe 's/\n/ /' | perl -pe 's/\s*$//')
+	cl=${cols[$ft]}
+	ncl=$(echo ${cols[$ft]} | wc -w)
+    done
+done
+
+# begin debug
+if [[ 0 -eq 1 ]] ; then
+    for key in "${!tbl[@]}"
+    do
+	value=${tbl[$key]}
+	echo "$key => $value" >&2
+    done
+    for key in "${!cols[@]}"
+    do
+	value=${cols[$key]}
+	echo "$key => $value" >&2
+    done
+fi
+    
+if [[ 0 -eq 1 ]] ; then
+    for value in "${tbl[@]}"
+    do
+	echo "$value" >&2
+    done
+fi
+# end debug
+
+# Database tables must also be in the same order (TBD)
+
+t1=${tbl[$db1]}
+t2=${tbl[$db2]}
+
+if [[ "$t1" != "$t2" ]] ; then
+    echo "Error: Database tables mismatch detected" >&2
+    echo "       $db1 tables : $t1" >&2
+    echo "       $db2 tables : $t2" >&2
+    Usage
+    exit 1
+fi
+
+rc=0
+
+[[ "$tables" = "" ]] && tables=$t1
+
+tbls=""
+for t in $tables # t1 == t2
+do
+    bueno=1
+    ft1="$db1:$t"
+    ft2="$db2:$t"
+    
+    cl=${cols[$ft1]}
+    echo "$t =>" >&2
+    echo "$cl" | perl -pe 's/\s+/\n/g' | perl -pe 's/^/\t/' >&2
+    
+    # check columns : their count and order (TBD) must be the same
+    c1=${cols[$ft1]}
+    c2=${cols[$ft2]}
+    if [[ "$c1" != "$c2" ]] ; then
+	echo "Error: Column mismatch detected for table '$t'" >&2
+	echo "       $ft1 columns : $c1" >&2
+	echo "       $ft2 columns : $c2" >&2
+	((++rc))
+	bueno=0
+    fi
+
+    # check number of rows in tables via count(*)
+    c1=$($callcliro $db1 "select count(*) from $t" | perl -pe 's/\n/ /;')
+    c2=$($callcliro $db2 "select count(*) from $t" | perl -pe 's/\n/ /;')
+    if [[ "$c1" != "$c2" ]] ; then
+	echo "Warning: Number of rows in table '$t' differ:" >&2
+	echo "         $ft1 nrows = $c1" >&2
+	echo "         $ft2 nrows = $c2" >&2
+	echo "         The table '$t' will be excluded from further processing" >&2
+	#((++rc))
+    else
+	echo "Number of rows in table '$t' = $c1" >&2
+	[[ $bueno -eq 0 ]] || tbls+=" $t"
+    fi
+
+done
+
+if [[ $rc -gt 0 ]] ; then
+    Usage
+    exit $rc
+else
+    tables=$tbls
+fi
+
+# All bueno so far -- let's get serious
+# If type REAL then calculate ABS(diffs) between each database column, each rowid -- must not be > $tol
+# If any other type then compare for equality (must be exact match)
+# Allow up to $limit diffs for any table
+
+#p1="egrep ^(#compare|==diff)"
+#p2="perl -pe s/[*]//g"
+
+# TBD
+p1=cat
+p2=cat
+
+set +x
+{
+    #echo ".echo on"
+    echo "attach database 'file:$db1?mode=ro' as a;"
+    echo "attach database 'file:$db2?mode=ro' as b;"
+    echo ".databases"
+    #echo "PRAGMA full_column_names = ON; PRAGMA short_column_names = OFF;"
+    echo "PRAGMA full_column_names = OFF; PRAGMA short_column_names = ON;"
+    #echo ".trace stdout --plain"
+    
+    for t in $tables # t1 == t2
+    do
+	#echo "Processing table $t ..." >&2
+	ft="$db1:$t"
+	cl=${cols[$ft]} # now c1 == c2
+	#echo "cl=$cl" >&2
+	if [[ "$orcols" != "" ]] ; then
+	    tmpcols=$(echo "$cl" | perl -pe 's/,/ /g')
+	    cl=""
+	    for c in $tmpcols
+	    do
+		type=$(echo $c | cut -f1 -d:)
+		name=$(echo $c | cut -f2 -d:)
+		if [[ "$name" =~ ^(${orcols})$ ]] ; then
+		    cl+=" ${type}:$name"
+		fi
+	    done
+	    cl=$(echo "$cl" | perl -pe 's/^\s+//')
+	fi
+	#echo "cl=$cl" >&2
+	[[ "$cl" != "" ]] || break
+	aacols=$(echo "$cl" | perl -pe 's/\S+:(\S+)/,aa.$1/g; s/\s+//g')
+	#echo "aacols '$aacols'" >&2
+	join="from a.$t as aa join b.$t as bb on aa.rowid = bb.rowid"
+	echo "select '1 $db1:$t' as '#compare',aa.rowid as rowid$aacols"
+	echo "$join"
+	wherecond=""
+	if [[ "$auxwhere" = "" ]] ; then
+	    or="where ("
+	else
+	    or="where ($auxwhere) and ("
+	    [[ $uncond -ne 0 ]] && or+="1 or"
+	fi
+	delta=""
+	for c in $cl
+	do
+	    type=$(echo $c | cut -f1 -d:)
+	    name=$(echo $c | cut -f2 -d:)
+	    #echo "type=$type;name=$name" >&2
+	    if [[ "$type" = "REAL" ]] ; then
+		wherecond+="$or abs(aa.$name - bb.$name) > $tol"
+		delta+=",iif(abs(aa.$name - bb.$name) > $tol,printf('%s*',aa.$name - bb.$name),' ')"
+	    elif [[ "$type" = "INTEGER" ]] ; then
+		wherecond+="$or aa.$name - bb.$name <> 0"
+		delta+=",iif(aa.$name - bb.$name <> 0,printf('%d*',aa.$name - bb.$name),' ')"
+	    else
+		wherecond+="$or aa.$name <> bb.$name"
+		delta+=",iif(aa.$name <> bb.$name,'*differs*',' ')"
+	    fi
+	    wherecond+=" or (aa.$name is null and bb.$name is not null) or (bb.$name is null and aa.$name is not null)"
+	    or="<nl>or"
+	done
+	echo "$wherecond )" | perl -pe 's/<nl>/\n/g'
+	echo "union all"
+	bbcols=$(echo $cl | perl -pe 's/\S+:(\S+)/,bb.$1/g; s/\s+//g')
+	#echo "bbcols '$bbcols'" >&2
+	echo "select '2 $db2:$t' as '#compare',bb.rowid as rowid$bbcols"
+	echo "$join"
+	echo "$wherecond )" | perl -pe 's/<nl>/\n/g'
+	echo "union all"
+	echo "select '==diffs:$t' as '#compare',aa.rowid as rowid$delta"
+	echo "$join"
+	echo "$wherecond )" | perl -pe 's/<nl>/\n/g'
+	if [[ $limit -gt 0 ]] ; then
+	    echo "order by rowid,1 limit $((limit*3));"
+	else
+	    echo "order by rowid,1;"
+	fi
+    done
+} | (set -x; $callclimm -header -$fmt) | $p1 | $p2
+
+
+
+
+

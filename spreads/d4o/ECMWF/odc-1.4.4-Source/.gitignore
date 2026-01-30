@@ -1,0 +1,12 @@
+*.swp
+*.sublime-workspace
+.tags*
+CMakeLists.txt.user*
+*.autosave
+*.sublime-workspace
+.*.sw*
+.*un~
+Testing/*
+tests/core/Testing/*
+build
+docs/_build

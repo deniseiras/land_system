@@ -22,12 +22,12 @@ Includes and manages all repos necessary for running, as d4o, CMCC-CM and DART, 
 - users_home_cmcc_cp1
   - CMCC-CM
     - original git source: branch cmcc-cm - git@github.com:CMCC-Foundation/CMCC-CM.git 
-    - modified files for Cassandra porting:
+    - cime_config
       - cime_config/testlist_allactive.xml
       - cime_config/config_pes.xml
-  - CMCC-CM/ccs_config 
-    - original git source: branch cmcc-cm_cp1 - https://github.com/CMCC-Foundation/ccs_config_cmcc
-    - modified files for Cassandra porting:
+  - CMCC-CM
+    - ccs_config 
+      - original git source: branch cmcc-cm_cp1 - https://github.com/CMCC-Foundation/ccs_config_cmcc
       - machines/config_batch.xml
       - machines/config_machines.xml
       - machines/config_workflow.xml

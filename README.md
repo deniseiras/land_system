@@ -2,6 +2,38 @@
 Repository for running the Land spreads d4o system in Cassandra Supercomputer. 
 Includes and manages all repos necessary for running, as d4o, CMCC-CM and DART, that was not managed anymore in JUNO.
 
+
+## System instalation
+
+### d4o installation
+
+Enter in the d4o root folder
+```
+cd spreads/d4o
+````
+
+OPTIONAL: Update the `branch` variable if needed (i.e., a second installation), because this variable is used in the installation directory definition. (check build.cassandra file)
+```
+export branch=d4o_cassandra
+```
+
+**Note the installed libraries in the installation directories have static linkin to the current directory (....spreads/d40). It means you cannot move the land_system root directory or others inside spreads folder**
+
+Then, compile all the d4o, including libraries:
+```
+make cassandra
+```
+
+In case of sucess, you will see a message like :
+
+```txt
+===> To initialize your d4o-environment under INTEL : source /data/cmcc/<USER>/<BRANCH>install/INTEL/source.me
++ exit 0
+>>> Build log now in the <YOUR_ROOT>/land_system/spreads/d4o/.build-log.INTEL.1234567890.txt
+```
+
+Then, source the file as shown in the message to proceed with the running.
+
 ## Repository structure:
 
 - land
@@ -40,3 +72,150 @@ Includes and manages all repos necessary for running, as d4o, CMCC-CM and DART, 
   - DART
     - original git source: branch main - https://github.com/NCAR/DART.git
 
+## System execution using EC Flow (TODO)
+
+## System execution using scripts
+
+### Building and running the CLM model
+
+#### 1. Experiment definition
+
+After the d4o installation (above), source the file as shown in the message in the installation section.
+
+Then ...
+```
+cd ./work_dart/DART/models/clm/shell_scripts/cesm2_3 
+```
+
+
+Copy the templates using a new name for your experiment, i.e TEST_GSWP :
+```
+cp ./work_dart/DART/models/clm/shell_scripts/cesm2_3/spreads/d4o/DART_params_d4o_template_GSWP.csh ./DART_params_d40_TEST_GSWP.csh 
+cp ./work_dart/DART/models/clm/shell_scripts/cesm2_3/spreads/d4o/CLM5_CMCC_d4o_template_GSWP ./CLM5_CMCC_d4o_TEST_GSWP
+```
+
+Now, configure the experiment.  
+
+First, in `./DART_params_d40_TEST_GSWP.csh`, set the variables:
+- num_instances = the number of members (integer)
+- CASE = name of the experiment, in example: TEST_GSWP (select the variable in the in the corresponding place for the number of instances you are using)
+- ref* = refers to variables that compose the IC (i.e. refcase = d4o_all60_as, refyear = 2002) …
+- start_* = refers to the date of start of execution. It must exist a file named user_nml_datm_streams_<member_num>,  in the directory referred to in the variable SOURCEDIR, that points to the forcing netcdf files, which must have data from the day before the start dates
+- stop_n = days in a cycle
+- any other optional parameters 
+
+Now change file `CLM5_CMCC_d4o_TEST_GSWP`	:
+- to point for the file  DART_params_d40_TEST_GSWP.csh to source: source DART_params_d40_TEST_GSWP.csh
+- Change the line copy ${COPY} DARTXXXXXXXX.csh     ${caseroot}/DART_params.csh to DART_params_d40_TEST_GSWP.csh
+- number of tasks refers to the number of processes per member. (min = 1 ; max = number of cores per node).  I.e. , JUNO has 72 cores per node. Could use 36, i.e. More tasks may have more performance. Example.
+  - ./xmlchange NTASKS=36 
+  - ./xmlchange NTASKS_LND=36 
+
+Check the forcings pointed by the SOURCEDIR variable: check the files in that directory. Check the files user_nl related to the members you’re using.
+
+#### 2. Experiment construction
+
+Run the script to build the experiment 
+```
+./CLM5_CMCC_d4o_TEST_GSWP
+```
+
+If the experiment build was successful, **ignore the instructions that appeared** (need to fix)
+
+#### 3. Model run
+
+Start by:
+```
+cd ./work_d4o/TEST_GSWP
+./case.submit 	
+```
+
+Check cesm.stdout.<JOBID> for errors and  cesm.stderr.<JOBID> for errors. The error below is not an error actually, ignore it. (TODO fix) 
+
+  ERROR: Model did not complete - see ./work_d4o/TEST_GSWP/run/drv.log.528704.250306-110110 
+  
+The actual log files are named drv_<MEMBER>.<JOBID>* . Check them.
+
+Also, check in the run dir:
+- ESMF_Profile.summary was created
+- rpointer files points to the date after the run date 
+- History netcdf files were created: I.e. TEST_GSWP.clm2_<MEMBER>.h<HISTORY>.2000-01-02-00000.nc
+- Restart file netcdf files were created: I.e. TEST_GSWP.clm2_<MEMBER>.r.2000-01-03-00000.nc
+- Files (?)  were created: I.e. TEST_GSWP.clm2_<MEMBER>.rh<HISTORY>.2000-01-03-00000.nc
+- Files (?)  were created: I.e. TEST_GSWP.cpl_<MEMBER>.r.2000-01-03-00000.nc
+- Files (?)  were created: I.e. TEST_GSWP.datm_<MEMBER>.r.2000-01-03-00000.nc
+
+### Assimilation configuration
+
+With everything ok, copy the d4o_config: 
+```
+cp ./work_dart/DART/models/clm/shell_scripts/cesm2_3/spreads/d4o/d4o_config_template.sh ./work_d4o/TEST_GSWP/d4o_config.sh
+````
+
+Edit d4o_config.sh and change the variable `firstda` according with the date of the beginning of the run and `ens_dir`="ens_NN" , where NN is the number of members. 
+
+Also check the dobs, in experiments after +-2003 the databases are at ./land/datain/d4o
+
+Then, execute:
+```
+./d4o_config.sh 
+```
+
+Certify if all files copied made in d4o_cofig.sh were fine.
+
+Adjust the input_nml necessary for the inflation with the desired values, e.g.
+- inf_damping = 0.9, 0.9 
+- inf_sd_max_change = 1.05, 1.05 
+- ens_size = <ENSEMBLE SIZE>
+- num_output_state_members = <ENSEMBLE SIZE>
+- num_output_obs_members   = <ENSEMBLE SIZE>
+
+Where <ENSEMBLE SIZE> is the number of members you had chosen.
+
+### Assimilation run
+If you want to get the most actual scripts, you may run the line below to copy the most actual scripts to the desired experiment directory (unique parameter of the script): 
+
+```
+cd /work/cmcc/de34824/work/PROFESSIONAL_land_assimilate_opt && ./update_TESTGSWP.bash ./work_d4o/TEST_GSWP && cd ./work_d4o/TEST_GSWP 
+```
+
+If you are using another CASE name, just copy the newest script as the content of the file /update_TESTGSWP.bash does.
+
+Run the assimilation, step “0”:
+
+```
+cd ./work_d4o/TEST_GSWP 
+./assimilate.csh $PWD 0 
+```
+
+where the $PWD refers to an environment variable that gets the current directory
+Verify if the assimilation is complete in  ${experiment path}/run/tmp. For that, go to that directory.
+Should have the db files, i.e.:
+  2000-01-02-00000_LAI.db  2000-01-02-00000_SM.db   2000-01-03-00000_SC.db  catalog.db
+  2000-01-02-00000_SC.db   2000-01-03-00000_LAI.db  2000-01-03-00000_SM.db
+
+Confirm if the assimilation files are ok: 
+```
+module load intel-2021.6.0/sqlite/3.40.0-v3tky 
+alias sqlite="sqlite3 -readonly -batch -init /dev/null -nullvalue NULL -box" 
+
+sqlite 2000-01-02-00000_SM.db \
+"select id,reportype,entryno,kind,\
+  (select distinct description from toc \
+    where kind=body.kind) as description, 
+obsvalue, prior_mean, posterior_mean, qc, dart_qc, member, prior, posterior \
+  from hdr \
+  join body on id=body.hdr_id \
+  join ens on id=ens.hdr_id and entryno=body_entryno \
+ where description in ('LPRM_SOIL_MOISTURE') \
+ limit 50" 
+```
+
+This select will return only if there were at least 8 cycles. 
+
+Done, the first assimilation cycle is ready. 
+
+#### More cycles runs
+
+This process could be achieved by the use of the land_cycles.sh script
+( TODO )

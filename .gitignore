@@ -40,3 +40,4 @@
 # debug information files
 *.dwo
 land/datain/
+spreads/d4o/build.*.source.me

@@ -104,7 +104,7 @@ After the d4o installation (above), source the file as shown in the message in t
 
 Then ...
 ```
-cd ./work_dart/DART/models/clm/shell_scripts/cesm2_3 
+cd <LAND_SYSTEM_ROOT>/work_dart/DART/models/clm/shell_scripts/cesm2_3 
 ```
 
 
@@ -148,7 +148,7 @@ If the experiment build was successful, **ignore the instructions that appeared*
 
 Start by:
 ```
-cd ./work_d4o/TEST_GSWP
+cd <LAND_SYSTEM_ROOT>/work_d4o/TEST_GSWP
 ./case.submit 	
 ```
 

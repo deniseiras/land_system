@@ -1,28 +1,32 @@
 # land_system
 Repository for running the Land spreads d4o system in Cassandra Supercomputer. 
-Includes and manages all repos necessary for running, as d4o, CMCC-CM and DART, that was not managed anymore in JUNO.
+
+Includes and manages all repos necessary for running: spreads, CMCC-CM and DART, that was not being managed in repositories in JUNO (Check the Repository Structure Section)
+
+The idea is to maintain all this repositories in this one. If some change, applied in here, needed to be applied in the original repositories, the change must be applied mannually.
 
 
-## System instalation
+## System instalation (Spreads - d4o)
 
-### d4o installation
+Download the code preferably in the the folder /work/cmcc/$USER , to avoid changing some configuration parameters.
+```
+/work/cmcc/$USER
+git clone https://github.com/deniseiras/land_system.git
+```
+This will download the system in the land_system folder.
 
 Enter in the d4o root folder
 ```
-cd spreads/d4o
+cd land_system/spreads/d4o
 ````
 
-OPTIONAL: Update the `branch` variable if needed (i.e., a second installation), because this variable is used in the installation directory definition. (check build.cassandra file)
-```
-export branch=d4o_cassandra
-```
-
-**Note the installed libraries in the installation directories have static linkin to the current directory (....spreads/d40). It means you cannot move the land_system root directory or others inside spreads folder**
+OPTIONAL: Update the `branch` variable if needed (i.e., a second installation) in the `build.cassandra` file, because this variable is used in the installation directory definition.
 
 Then, compile all the d4o, including libraries:
 ```
 make cassandra
 ```
+**Note the installed libraries in the installation directories have static linkin to the current directory (spreads/d4o). It means you cannot move the land_system root directory or others inside spreads folder, otherwise will you find problems when recompiling or running the system**
 
 In case of sucess, you will see a message like :
 
@@ -36,40 +40,56 @@ Then, source the file as shown in the message to proceed with the running.
 
 ## Repository structure:
 
-- land
-  - datain: Input data folder. Empty in here.
+```
+.
+├── CMCC-CM
+│   ├── ccs_config
+│   ├── cime_config
+│   └── ...
+├── land
+│   └── datain
+├── PROFESSIONAL_land_assimilate_opt
+├── spreads
+│   ├── d4o
+│   ├── spreads_ui
+│   └── ...
+├── work_d4o
+└── work_dart
+    └── DART
+```
 
-- spreads
-  - d4o
-    - original git source: branch d4o-land - https://github.com/lgggoncalves/SPREADS.git
-    - modified files for Cassandra porting:
-      - ECMWF/eckit-1.19.0-Source/src/eckit/utils/Optional.h
-      - Makefile 
-      - build.cassandra
-      - build.cassandra.INTEL.source.me
-      - load-modules-d4o.cassandra
-  - spreads_ui: ecflow structure
+Details of the origin source files and files updated during the migration:
 
+- land/datain
+  - Input data folder. Empty in here. You must copy your datain inside this     structure or remove the datain dir and create a link to your datain.
 
-- users_home_cmcc_cp1
-  - CMCC-CM
-    - original git source: branch cmcc-cm - git@github.com:CMCC-Foundation/CMCC-CM.git 
-    - cime_config
-      - cime_config/testlist_allactive.xml
-      - cime_config/config_pes.xml
-  - CMCC-CM
-    - ccs_config 
-      - original git source: branch cmcc-cm_cp1 - https://github.com/CMCC-Foundation/ccs_config_cmcc
-      - machines/config_batch.xml
-      - machines/config_machines.xml
-      - machines/config_workflow.xml
-      - machines/cmake_macros/intel_cassandra.cmake
+- spreads/d4o
+   - original git source: branch d4o-land - https://github.com/lgggoncalves/SPREADS.git
+   - modified files for Cassandra porting:
+     - ECMWF/eckit-1.19.0-Source/src/eckit/utils/Optional.h
+     - Makefile 
+     - build.cassandra
+     - build.cassandra.INTEL.source.me
+     - load-modules-d4o.cassandra
+- spreads/spreads_ui: 
+   - ecflow structure (TODO in future if needed)
+
+- CMCC-CM
+  - original git source: branch cmcc-cm - https://github.com/CMCC-Foundation/CMCC-CM.git
+- CMCC-CM/cime_config
+    - cime_config/testlist_allactive.xml
+    - cime_config/config_pes.xml
+- CMCC-CM/ccs_config 
+    - sub repository: branch cmcc-cm_cp1 - https://github.com/CMCC-Foundation/ccs_config_cmcc
+    - machines/config_batch.xml
+    - machines/config_machines.xml
+    - machines/config_workflow.xml
+    - machines/cmake_macros/intel_cassandra.cmake
      
 - work_d4o
   - experiments output folder
 
-- work_dart
-  - DART
+- work_dart/DART
     - original git source: branch main - https://github.com/NCAR/DART.git
 
 ## System execution using EC Flow (TODO)
@@ -88,30 +108,32 @@ cd ./work_dart/DART/models/clm/shell_scripts/cesm2_3
 ```
 
 
-Copy the templates using a new name for your experiment, i.e TEST_GSWP :
+Copy the templates using a new name for your experiment, i.e **TEST_GSWP** (can be different than the experiment name defined after in the variable `CASE`) :
 ```
-cp ./work_dart/DART/models/clm/shell_scripts/cesm2_3/spreads/d4o/DART_params_d4o_template_GSWP.csh ./DART_params_d40_TEST_GSWP.csh 
-cp ./work_dart/DART/models/clm/shell_scripts/cesm2_3/spreads/d4o/CLM5_CMCC_d4o_template_GSWP ./CLM5_CMCC_d4o_TEST_GSWP
+cp ./spreads/d4o/DART_params_d4o_template_GSWP.csh ./DART_params_d4o_TEST_GSWP.csh 
+cp ./spreads/d4o/CLM5_CMCC_d4o_template_GSWP ./CLM5_CMCC_d4o_TEST_GSWP
 ```
 
 Now, configure the experiment.  
 
-First, in `./DART_params_d40_TEST_GSWP.csh`, set the variables:
+First, in `./DART_params_d4o_TEST_GSWP.csh`, set the variables:
 - num_instances = the number of members (integer)
-- CASE = name of the experiment, in example: TEST_GSWP (select the variable in the in the corresponding place for the number of instances you are using)
-- ref* = refers to variables that compose the IC (i.e. refcase = d4o_all60_as, refyear = 2002) …
-- start_* = refers to the date of start of execution. It must exist a file named user_nml_datm_streams_<member_num>,  in the directory referred to in the variable SOURCEDIR, that points to the forcing netcdf files, which must have data from the day before the start dates
+- CASE = name of the experiment, in example: `TEST_GSWP`
+- ref* = refers to variables that compose the IC (i.e. refcase = d4o_all60_as, refyear = 2002 etc). 
+- stagedir = check the stage dir path, which uses the refcase variable.
+- start_* = refers to the date of start of execution. 
 - stop_n = days in a cycle
 - any other optional parameters 
 
-Now change file `CLM5_CMCC_d4o_TEST_GSWP`	:
-- to point for the file  DART_params_d40_TEST_GSWP.csh to source: source DART_params_d40_TEST_GSWP.csh
-- Change the line copy ${COPY} DARTXXXXXXXX.csh     ${caseroot}/DART_params.csh to DART_params_d40_TEST_GSWP.csh
-- number of tasks refers to the number of processes per member. (min = 1 ; max = number of cores per node).  I.e. , JUNO has 72 cores per node. Could use 36, i.e. More tasks may have more performance. Example.
+Now change in the file `CLM5_CMCC_d4o_TEST_GSWP`	:
+- change line `source DART_params_d4o_template_GSWP.csh` to point the file  `DART_params_d4o_TEST_GSWP.csh`
+- Change the destination of the line `${COPY} DART_params_d4o_template_GSWP.csh     ${caseroot}/DART_params.csh ` for `DART_params_d40_TEST_GSWP.csh`
+- number of tasks (Optional, already tunned for Cassandra): refers to the number of processes per member. (min = 1 ; max = number of cores per node).  I.e. , JUNO has 72 cores per node. Could use 36, i.e. More tasks may have more performance. Example.
   - ./xmlchange NTASKS=36 
   - ./xmlchange NTASKS_LND=36 
 
-Check the forcings pointed by the SOURCEDIR variable: check the files in that directory. Check the files user_nl related to the members you’re using.
+Check the forcings pointed by the `SOURCEDIR` variable: check the files in that directory. Check the files named `user_nl*` related to the members you’re using.
+It must exist a file named `user_nml_datm_streams_<member_num>`,  in the directory referred to in the variable *SOURCEDIR* inside file `CLM5_CMCC_d4o_TEST_GSWP`, that points to the forcing netcdf files, which must have data from the day before the start date.
 
 #### 2. Experiment construction
 

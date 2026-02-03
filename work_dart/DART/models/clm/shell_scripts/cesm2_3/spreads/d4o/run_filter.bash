@@ -1,19 +1,14 @@
 #!/bin/bash
-#BSUB -n 1080
-#BSUB -R "span[ptile=72]" 
-#BSUB -q p_short
-#BSUB -W 00:20
-#BSUB -P R000
-##BSUB -x 
-#BSUB -J land_d4o
-#BSUB -o assimilate.out.%J
-#BSUB -e assimilate.err.%J
-#BSUB -app spreads_filter
-#BSUB -I
 
 echo "run filter on Juno"
 
-source /data/cmcc/$USER/d4o/install/INTEL/source.me
+if ( "$machine" == "juno" ) then
+    source /data/cmcc/$USER/d4o/install/INTEL/source.me
+else # cassandra
+    # TODO - check the vars exported in juno above
+    source /work/cmcc/de34824/spreads/d4o/load-modules-d4o.cassandra
+endif 
+
 
 set -xeu
 
@@ -104,7 +99,7 @@ echo "0" > filter.flag
 
 printenv > env.out.$LSB_JOBID
 pwd
-#ls -ltra
+# TODO - check if this is needed
 ldd ./filter || :
 rc=0
 
@@ -127,6 +122,5 @@ fi
 
 
 pwd
-#ls -ltr
 
 exit $rc

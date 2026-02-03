@@ -87,7 +87,7 @@ setenv off_inst 0
 
 setenv use_SourceMods TRUE
 #setenv SourceModDir   /work/cmcc/lg07622/land/work/clm5/externals/SourceMods_release-cesm2.2.01/SourceMods
-setenv SourceModDir  /work/cmcc/de34824/land/datain/SourceMods_release-cesm2.3_lgg/SourceMods
+setenv SourceModDir  /work/cmcc/$USER/land_system/land/datain/SourceMods_release-cesm2.3_lgg/SourceMods
 #setenv SourceModDir  /work/cmcc/spreads-lnd/land/datain/SourceMods_release-cesm2.3_lgg/SourceMods
 
 # ==============================================================================
@@ -111,11 +111,9 @@ setenv SourceModDir  /work/cmcc/de34824/land/datain/SourceMods_release-cesm2.3_l
 #              invoked to move these files to permanent storage.
 
 setenv cesmdata         /glade/p/cesmdata/cseg/inputdata
-setenv cesmroot         /work/cmcc/de34824/users_home_cmcc_cp1/CMCC-CM
-#setenv cesmroot         /users_home/cmcc/dp16116/CMCC-CM_v9
-#setenv cesmroot         /work/cmcc/lg07622/land/cesm_dart
-setenv caseroot         /work/cmcc/de34824/work_d4o/${CASE}
-setenv cime_output_root /work/cmcc/de34824/work_d4o/${CASE}
+setenv cesmroot         /work/cmcc/$USER/land_system/CMCC-CM
+setenv caseroot         /work/cmcc/$USER/land_system/work_d4o/${CASE}
+setenv cime_output_root /work/cmcc/$USER/land_system/work_d4o/${CASE}
 setenv rundir           ${cime_output_root}/run
 setenv exeroot          ${cime_output_root}/bld
 setenv archdir          ${cime_output_root}/archive
@@ -129,8 +127,8 @@ setenv archdir          ${cime_output_root}/archive
 #              month. 'baseobsdir' will be inserted into the appropriate scripts.
 # ==============================================================================
 
-setenv dartroot               /work/cmcc/de34824/work_dart/DART
-setenv baseobsdir             /work/cmcc/de34824/land/datain/observations/ESA_CCI_SM/obs/all
+setenv dartroot               /work/cmcc/$USER/land_system/work_dart/DART
+setenv baseobsdir             /work/cmcc/$USER/land_system/land/datain/observations/ESA_CCI_SM/obs/all
 setenv pmo_input_baseobsdir   /glade/p/cisl/dares/Observations/land/pmo/input
 setenv pmo_output_baseobsdir  /glade/p/cisl/dares/Observations/land/pmo/output
 
@@ -161,7 +159,7 @@ setenv refdate      ${refyear}-${refmon}-${refday}
 setenv reftimestamp ${refyear}-${refmon}-${refday}-${reftod}
 
 # the stagedir below was generated after a initial run using the stagedir above
-setenv stagedir /work/cmcc/de34824/work_d4o/${refcase}/run
+setenv stagedir /work/cmcc/$USER/land_system/work_d4o/${refcase}/run
 #setenv stagedir "/work/cmcc/spreads-lnd/land/archive/d4o_all60_as/restart_2001-01-15"
 #setenv stagedir /work/cmcc/lg07622/land/datain/refcase/2015/cmcc
 # In a hybrid configuration, you can set the startdate to whatever you want.
@@ -218,7 +216,7 @@ setenv stream_year_last  2001
 #setenv project      P86850054
 #setenv machine      cheyenne
 setenv project      0575
-setenv mach      juno
+setenv mach      cassandra
 
 # The CESM compile step takes enough resource that Cheyenne requires a wrapper
 # If your platform does not have this restriction, set BUILD_WRAPPER to '' 

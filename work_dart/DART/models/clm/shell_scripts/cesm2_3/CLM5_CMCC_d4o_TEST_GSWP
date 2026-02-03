@@ -22,7 +22,7 @@
 # of the CESM code, etc. There are still some variables that are logically
 # defined in this script, as well as some specifics about the CLM namelists.
 
-source DART_params_d40_TEST_GSWP.csh
+source DART_params_d4o_TEST_GSWP.csh
 
 # Prevent accidental removal of an experiment.
 # If you want to replace the experiment, you have to manually
@@ -98,7 +98,7 @@ ${cesmroot}/cime/scripts/create_newcase  --res  ${resolution} \
 
 set ThisFileName = $0:t
 ${COPY} $ThisFileName       ${caseroot}/${ThisFileName}.original
-${COPY} DART_params_d40_TEST_GSWP.csh ${caseroot}/DART_params.csh
+${COPY} DART_params_d4o_template_GSWP.csh     ${caseroot}/DART_params_d4o_TEST_GSWP.csh
 ${COPY} CESM_DART_config    ${caseroot}
 
 #${COPY} run_filter.bash ${caseroot}/run/.
@@ -188,6 +188,9 @@ endif
 ./xmlchange RUN_STARTDATE=${startdate}
 ./xmlchange START_TOD=${start_tod}
 
+# pnetcdf is default
+./xmlchange PIO_TYPENAME=pnetcdf
+./xmlchange PIO_STRIDE=18
 
 # Task layout:
 # Set the nodes_per_instance below to match your case.
@@ -208,8 +211,6 @@ endif
 @ lnd_tasks = -1 * ${nodes_per_instance}
 @ esp_tasks = -1 * ${nodes_per_instance}
 
-# DMAE nodes_per_instance = -2 - why ?
-
 ./xmlchange ROOTPE_ATM=0,NTHRDS_ATM=$nthreads,NTASKS_ATM=$atm_tasks
 ./xmlchange ROOTPE_CPL=0,NTHRDS_CPL=$nthreads,NTASKS_CPL=$cpl_tasks
 ./xmlchange ROOTPE_OCN=0,NTHRDS_OCN=$nthreads,NTASKS_OCN=$ocn_tasks
@@ -224,79 +225,17 @@ endif
 ./xmlchange --subgroup case.run --id JOB_WALLCLOCK_TIME --val ${run_time}
 
 
-# JUNO
 #./xmlchange NTASKS=72
 #./xmlchange NTASKS_LND=72
 
 #AV27223 NTASKS = tasks number per member (min = 1 ; max = number of cores per node)
 #AV27223 More tasks can be related with more performance
 
-# ./xmlchange NTASKS=28         # ex 84 = 3nodes * 112 procs per node /4members
-# ./xmlchange NTASKS_LND=28       
-
-./xmlchange NTASKS=28
-# ./xmlchange NTASKS_LND=28     # 26*4 = 112       
-# ./xmlchange NTASKS_ATM=1      # 1x4 = 4
-# ./xmlchange NTASKS_CPL=1      # 1x4 = 4
-# ./xmlchange NTASKS_OCN=1      # 1x4 = 4 - not used ?     
-# ./xmlchange NTASKS_WAV=1      # 1x4 = 4 - not used ?
-# ./xmlchange NTASKS_GLC=1      # 1x4 = 4 - not used ?
-# ./xmlchange NTASKS_ICE=1      # 1x4 = 4 - not used ?
-# ./xmlchange NTASKS_ROF=1      # 1x4 = 4 - not used ?
-# ./xmlchange NTASKS_ESP=1      # 1x4 = 4 - not used ?
-# #                             TOTAL = 144
+./xmlchange NTASKS=36
+./xmlchange NTASKS_LND=36
 
 
 #./xmlchange DATM_CPLHIST_DIR=/work/cmcc/lg07622/land/forcing
-
-# HSM tests 08/10 
-./xmlchange PIO_STRIDE=7
-# ./xmlchange PIO_STRIDE_CPL=112
-# ./xmlchange PIO_STRIDE_ATM=112
-# ./xmlchange PIO_STRIDE_LND=112
-# ./xmlchange PIO_STRIDE_ICE=112
-# ./xmlchange PIO_STRIDE_OCN=112   
-# ./xmlchange PIO_STRIDE_ROF=112
-# ./xmlchange PIO_STRIDE_GLC=112
-# ./xmlchange PIO_STRIDE_WAV=112
-# ./xmlchange PIO_STRIDE_ESP=112
-
-./xmlchange PIO_TYPENAME=pnetcdf
-# ./xmlchange PIO_TYPENAME_CPL='pnetcdf'
-# ./xmlchange PIO_TYPENAME_CPL='pnetcdf'
-# ./xmlchange PIO_TYPENAME_ATM='pnetcdf'
-# ./xmlchange PIO_TYPENAME_LND='pnetcdf'
-# ./xmlchange PIO_TYPENAME_ICE='pnetcdf'
-# ./xmlchange PIO_TYPENAME_OCN='pnetcdf'
-# ./xmlchange PIO_TYPENAME_ROF='pnetcdf'
-# ./xmlchange PIO_TYPENAME_GLC='pnetcdf'
-# ./xmlchange PIO_TYPENAME_WAV='pnetcdf'
-# ./xmlchange PIO_TYPENAME_ESP='pnetcdf'
-
-
-./xmlchange PIO_NUMTASKS=-99
-# ./xmlchange PIO_NUMTASKS_CPL=-99
-# ./xmlchange PIO_NUMTASKS_ATM=-99
-# ./xmlchange PIO_NUMTASKS_LND=-99
-# ./xmlchange PIO_NUMTASKS_ICE=-99
-# ./xmlchange PIO_NUMTASKS_OCN=-99
-# ./xmlchange PIO_NUMTASKS_ROF=-99
-# ./xmlchange PIO_NUMTASKS_GLC=-99
-# ./xmlchange PIO_NUMTASKS_WAV=-99
-# ./xmlchange PIO_NUMTASKS_ESP=-99
-
-./xmlchange PIO_REARRANGER=2
-# ./xmlchange PIO_REARRANGER_CPL=2
-# ./xmlchange PIO_REARRANGER_ATM=2
-# ./xmlchange PIO_REARRANGER_LND=2
-# ./xmlchange PIO_REARRANGER_ICE=2
-# ./xmlchange PIO_REARRANGER_OCN=2
-# ./xmlchange PIO_REARRANGER_ROF=2
-# ./xmlchange PIO_REARRANGER_GLC=2
-# ./xmlchange PIO_REARRANGER_WAV=2
-# ./xmlchange PIO_REARRANGER_ESP=2
-
-
 
 echo "setting up the case ... "
 

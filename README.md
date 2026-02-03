@@ -127,7 +127,7 @@ First, in `./DART_params_d4o_TEST_GSWP.csh`, set the variables:
 
 Now change in the file `CLM5_CMCC_d4o_TEST_GSWP`	:
 - change line `source DART_params_d4o_template_GSWP.csh` to point the file  `DART_params_d4o_TEST_GSWP.csh`
-- Change the destination of the line `${COPY} DART_params_d4o_template_GSWP.csh     ${caseroot}/DART_params.csh ` for `DART_params_d40_TEST_GSWP.csh`
+- Change the source file of the line `${COPY} <SOURCE> ${caseroot}/DART_params.csh ` for `DART_params_d4o_template_GSWP.csh`
 - number of tasks (Optional, already tunned for Cassandra): refers to the number of processes per member. (min = 1 ; max = number of cores per node).  I.e. , JUNO has 72 cores per node. Could use 36, i.e. More tasks may have more performance. Example.
   - ./xmlchange NTASKS=36 
   - ./xmlchange NTASKS_LND=36 
@@ -155,8 +155,7 @@ cd <LAND_SYSTEM_ROOT>/work_d4o/TEST_GSWP
 Check cesm.stdout.<JOBID> for errors and  cesm.stderr.<JOBID> for errors. The error below is not an error actually, ignore it. (TODO fix) 
 
   ERROR: Model did not complete - see ./work_d4o/TEST_GSWP/run/drv.log.528704.250306-110110 
-  
-The actual log files are named drv_<MEMBER>.<JOBID>* . Check them.
+
 
 Also, check in the run dir:
 - ESMF_Profile.summary was created
@@ -171,7 +170,8 @@ Also, check in the run dir:
 
 With everything ok, copy the d4o_config: 
 ```
-cp ./work_dart/DART/models/clm/shell_scripts/cesm2_3/spreads/d4o/d4o_config_template.sh ./work_d4o/TEST_GSWP/d4o_config.sh
+cd <LAND_SYSTEM_ROOT>/work_d4o/TEST_GSWP
+cp <LAND_SYSTEM_ROOT>/work_dart/DART/models/clm/shell_scripts/cesm2_3/spreads/d4o/d4o_config_template.sh ./d4o_config.sh
 ````
 
 Edit d4o_config.sh and change the variable `firstda` according with the date of the beginning of the run and `ens_dir`="ens_NN" , where NN is the number of members. 
@@ -195,13 +195,6 @@ Adjust the input_nml necessary for the inflation with the desired values, e.g.
 Where <ENSEMBLE SIZE> is the number of members you had chosen.
 
 ### Assimilation run
-If you want to get the most actual scripts, you may run the line below to copy the most actual scripts to the desired experiment directory (unique parameter of the script): 
-
-```
-cd /work/cmcc/de34824/work/PROFESSIONAL_land_assimilate_opt && ./update_TESTGSWP.bash ./work_d4o/TEST_GSWP && cd ./work_d4o/TEST_GSWP 
-```
-
-If you are using another CASE name, just copy the newest script as the content of the file /update_TESTGSWP.bash does.
 
 Run the assimilation, step “0”:
 

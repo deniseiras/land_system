@@ -116,7 +116,7 @@ end
 set LONGNAME = ${dartroot}/assimilation_code/programs/gen_sampling_err_table/work
 ${COPY} ${LONGNAME}/sampling_error_correction_table.nc         ${RUNDIR} || exit 3
 #${COPY} ${dartroot}/models/clm/shell_scripts/cesm2_3/assimilate.csh    . || exit 3
-${COPY} ${dartroot}/models/clm/shell_scripts/cesm2_3/perfect_model.csh . || exit 3
+# ${COPY} ${dartroot}/models/clm/shell_scripts/cesm2_3/perfect_model.csh . || exit 3
 
 # ==============================================================================
 # Stage the DART executables in the CESM execution root directory: EXEROOT
@@ -154,11 +154,14 @@ else
    exit 4
 fi
 
-${COPY} ${dartroot}/models/clm/work/perfect_model_obs      ${EXEROOT}
-${COPY} ${dartroot}/models/clm/work/filter                 ${EXEROOT}
-${COPY} ${dartroot}/models/clm/work/clm_to_dart            ${EXEROOT}
-${COPY} ${dartroot}/models/clm/work/dart_to_clm            ${EXEROOT}
-${COPY} ${dartroot}/models/clm/work/fill_inflation_restart ${EXEROOT}
+# "DMAE - TODO - why the copies below ? are failing when running d4o_config, but ignored"
+# "These files are already copied in some part of the build the process "
+
+# ${COPY} ${dartroot}/models/clm/work/perfect_model_obs      ${EXEROOT}
+# ${COPY} ${dartroot}/models/clm/work/filter                 ${EXEROOT}
+# ${COPY} ${dartroot}/models/clm/work/clm_to_dart            ${EXEROOT}
+# ${COPY} ${dartroot}/models/clm/work/dart_to_clm            ${EXEROOT}
+# ${COPY} ${dartroot}/models/clm/work/fill_inflation_restart ${EXEROOT}
 
 exit 0
 

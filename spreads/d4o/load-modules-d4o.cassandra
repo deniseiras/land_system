@@ -1,7 +1,11 @@
+#!/bin/bash
+
 module purge
 unset LIBRARY_PATH
 
-module load --auto anaconda/3-2024.10-1
+# Anaconda not working with xmlquery 
+# check if needed in cassandra for compiling spreads
+# module load --auto anaconda/3-2024.10-1
 module load --auto oneapi-2025.0.4/2025.0.4-bwtfc
 module load --auto oneapi-2025.0.4/impi-2021.14.2/2021.14.2-e7cvt
 module load --auto oneapi-2025.0.4/intel-oneapi-runtime/2025.0.4-dflrt

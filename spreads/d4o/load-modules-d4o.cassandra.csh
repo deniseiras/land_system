@@ -3,6 +3,8 @@
 module purge
 unsetenv LIBRARY_PATH
 
+# Anaconda not working with xmlquery 
+# check if needed in cassandra for compiling spreads
 module load --auto anaconda/3-2024.10-1
 module load --auto oneapi-2025.0.4/2025.0.4-bwtfc
 module load --auto oneapi-2025.0.4/impi-2021.14.2/2021.14.2-e7cvt

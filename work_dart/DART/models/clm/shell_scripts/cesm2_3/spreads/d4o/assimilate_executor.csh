@@ -18,9 +18,10 @@
 # author            version     comments
 # Luis Gustavo      none        Original version
 # Denis Eiras       1.0.0       Paralelized version - firtst github version
+# Denis Eiras       1.1.0       Cassandra version
+set verbose
+set echo
 
-# set verbose
-# set echo
 
 echo "`date` -- BEGIN CLM_ASSIMILATE_EXECUTOR benchmark"
 
@@ -46,8 +47,24 @@ if ( "$machine" == "juno" ) then
    module load --auto intel-2021.6.0/libjpeg-turbo/2.1.4-tk73d
    setenv LIBRARY_PATH ":$LD_LIBRARY_PATH" # without this line the build.juno does not find -ljpeg f.ex.
 else  # cassandra
-   # TODO - parametrize this
-   source /work/cmcc/de34824/spreads/d4o/load-modules-d4o.cassandra
+   # FIX need ? error using xml query with anaconda/3-2024.10-1
+   # module load --auto anaconda/3-2024.10-1.  
+   
+   # module load --auto anaconda/3-2024.10-1
+   module load --auto oneapi-2025.0.4/2025.0.4-bwtfc
+   module load --auto oneapi-2025.0.4/impi-2021.14.2/2021.14.2-e7cvt
+   module load --auto oneapi-2025.0.4/intel-oneapi-runtime/2025.0.4-dflrt
+   module load --auto oneapi-2025.0.4/autoconf/2.72-vnerg
+   module load --auto oneapi-2025.0.4/libszip/2.1.1-jawpw
+   module load --auto oneapi-2025.0.4/sqlite/3.46.0-cuoh5
+   module load --auto oneapi-2025.0.4/jasper/4.2.4-us3na
+   module load --auto oneapi-2025.0.4/libjpeg-turbo/3.0.3-h24zj
+   module load --auto oneapi-2025.0.4/libunwind/1.8.1-qgmuc
+   module load --auto gcc-11.4.1/gcc-runtime/11.4.1-pewvn
+   # Perl (new stack ships base perl, DBI/DBD::SQLite are bundled)
+   module load --auto gcc-11.4.1/perl/5.32.1-xel5x
+   module load --auto oneapi-2025.0.4/intel-oneapi-tbb/2022.0.0-uw267
+   setenv LIBRARY_PATH ":$LD_LIBRARY_PATH" # without this line the build.juno does not find -ljpeg f.ex.
 endif
 module -t list
    
@@ -134,10 +151,10 @@ set dpart = `printf %04d"-"%02d"-"%02d    ${LND_YEAR} ${LND_MONTH} ${LND_DAY}`
 # TODO check / improve ddir
 # JUNO - EXPS > 2003 must use the spreads-lnd dir -- confirm that cassandra uses lg07622 data below - not copied yet frim spreads-lnd
 # set ddir = /work/cmcc/lg07622/land/datain/d4o/datastore/ens_${dens}/${dpart}
-if ( $machine | grep juno > /dev/null ) then
+if ( "$machine" == "juno" ) then
    set ddir = /work/cmcc/spreads-lnd/land/datain/d4o/datastore/ens_${dens}/${dpart}
 else
-   set ddir = /work/cmcc/de34824/land/datain/d4o/datastore/ens_${dens}/${dpart}
+   set ddir = ${CASEROOT}/../land/datain/d4o/datastore/ens_${dens}/${dpart}
 endif
 
 
@@ -396,21 +413,21 @@ set  REPARTITION = `echo $REPARTITION | sed -e "s/=//g"`
 echo "`date` -- BEGIN DART_TO_CLM benchmark"
 
 if ($REPARTITION != 0) then
-unlink clm_vector_history   
+   unlink clm_vector_history   
 
-     #${EXEROOT}/dart_to_clm >& /dev/null
-     ./run_dart_to_clm_snow.bash ${CASE} ${LND_DATE_EXT}
+   #${EXEROOT}/dart_to_clm >& /dev/null
+   ./run_dart_to_clm_snow.bash ${CASE} ${LND_DATE_EXT}
 
-     if ($status != 0) then
-        echo "ERROR: dart_to_clm failed for ..."
-        exit 7
-     endif
-     
-     foreach LIST (clm_restart.nc clm_vector_history.nc dart_posterior.nc \
-              dart_posterior_vector.nc )
+   if ($status != 0) then
+      echo "ERROR: dart_to_clm failed for ..."
+      exit 7
+   endif
+   
+   foreach LIST (clm_restart.nc clm_vector_history.nc dart_posterior.nc \
+            dart_posterior_vector.nc )
 
-             unlink $LIST
-     end
+      unlink $LIST
+   end
 
 else
 

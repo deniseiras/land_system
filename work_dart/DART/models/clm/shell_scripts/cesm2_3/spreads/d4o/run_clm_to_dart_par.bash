@@ -26,10 +26,10 @@ export RUNDIR=$4             # diretório de execução
 #
 
 # TODO check / improve: directory must be generic for all machines
-if ( $machine | grep juno > /dev/null ) then
+if [ "$machine" == "juno" ]; then
     export base_ram_disk="/work/cmcc/spreads-lnd"
 else
-    export base_ram_disk="/work/cmcc/de34824"
+    export base_ram_disk="/work/cmcc/$USER"
 fi
 
 export restart_files_mask="${CASE}.clm2_*.r.${LND_DATE_EXT}.nc"
@@ -121,7 +121,8 @@ if [ "${ens_members_found}" -lt "${ENS_MEMBERS_REQ}" ]; then
     exit 1
 fi
 
-if ( "$machine" == "juno" ) then
+d4o_branch=${d4o_branch:-d4o_cassandra}
+if [ "$machine" == "juno" ]; then
     # sources the same modules at assimilate_executor, plus /data/cmcc/de34824/d4o/install/INTEL/source.me
     # which exports a lot of env vars - e.g. below - confirm if needed in cassandra and ... 
     source /users_home/cmcc/lg07622/modules_juno.me
@@ -130,9 +131,9 @@ if ( "$machine" == "juno" ) then
     # module load intel-2021.6.0/cdo-threadsafe/2.1.1-lyjsw
     # module load intel-2021.6.0/ncview/2.1.8-sds5t
 else # cassandra
-    # TODO - check the vars exported in juno above
-    source /work/cmcc/de34824/spreads/d4o/load-modules-d4o.cassandra
-endif 
+    # check the d4o branch where is d4o installed
+    source /data/cmcc/$USER/$d4o_branch/install/INTEL/source.me
+fi
 
 # TODO - Spread across all nodes evenly to improve performance. 
 # This was reached before using blaunch, but now, its not possible because blaunch spreads across all processes

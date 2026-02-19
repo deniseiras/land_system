@@ -231,9 +231,13 @@ endif
 #AV27223 NTASKS = tasks number per member (min = 1 ; max = number of cores per node)
 #AV27223 More tasks can be related with more performance
 
-./xmlchange NTASKS=36
-./xmlchange NTASKS_LND=36
+# JUNO
+# ./xmlchange NTASKS=36
+# ./xmlchange NTASKS_LND=36
 
+# Cassandra - To test .. tested model with 36 
+./xmlchange NTASKS=56
+./xmlchange NTASKS_LND=56
 
 #./xmlchange DATM_CPLHIST_DIR=/work/cmcc/lg07622/land/forcing
 

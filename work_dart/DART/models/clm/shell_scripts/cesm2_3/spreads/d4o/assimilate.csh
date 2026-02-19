@@ -41,7 +41,6 @@ endif
 setenv CASEROOT $1
 setenv ASSIMILATION_CYCLE $2
 
-
 # xmlquery must be executed in $CASEROOT.
 cd ${CASEROOT}
 setenv CASE           `./xmlquery CASE        --value`
@@ -71,7 +70,17 @@ if ( "$machine" == "juno" ) then
         < ./assimilate_executor.csh
 else  
     echo "Submitting to cassandra" 
-    bsub < /work/cmcc/de34824/lsf_tests/arch_parallel.lsf
+    # bsub < /work/cmcc/de34824/lsf_tests/arch_parallel.lsf.  - test
+    bsub -K \
+        -P 0575 \
+        -J "${CASE}" \
+        -o "${LOGFILE}" \
+        -e "${LOGFILE}" \
+        -x \
+        -n "${TOTALPES}" \
+        -R "span[ptile=${TASKS_PER_NODE}]" \
+        -q p_short \
+        < ./assimilate_executor.csh
 endif
 
 

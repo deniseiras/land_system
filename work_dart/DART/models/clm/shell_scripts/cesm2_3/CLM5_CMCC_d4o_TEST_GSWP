@@ -98,7 +98,7 @@ ${cesmroot}/cime/scripts/create_newcase  --res  ${resolution} \
 
 set ThisFileName = $0:t
 ${COPY} $ThisFileName       ${caseroot}/${ThisFileName}.original
-${COPY} DART_params_d4o_template_GSWP.csh     ${caseroot}/DART_params_d4o_TEST_GSWP.csh
+${COPY} DART_params_d4o_template_GSWP.csh ${caseroot}/DART_params.csh
 ${COPY} CESM_DART_config    ${caseroot}
 
 #${COPY} run_filter.bash ${caseroot}/run/.

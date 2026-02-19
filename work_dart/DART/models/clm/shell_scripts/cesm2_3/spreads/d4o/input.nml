@@ -135,7 +135,7 @@
 
 &ensemble_manager_nml
    layout                  = 2
-   tasks_per_node          = 72
+   tasks_per_node          = 56
    /
 
 

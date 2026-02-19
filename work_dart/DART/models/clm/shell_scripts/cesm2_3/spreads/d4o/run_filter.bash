@@ -1,13 +1,19 @@
 #!/bin/bash
 
-echo "run filter on Juno"
-
-if ( "$machine" == "juno" ) then
-    source /data/cmcc/$USER/d4o/install/INTEL/source.me
+echo "run filter on $machine"
+d4o_branch=${d4o_branch:-d4o_cassandra}
+if [ "$machine" == "juno" ]; then
+    # sources the same modules at assimilate_executor, plus /data/cmcc/de34824/d4o/install/INTEL/source.me
+    # which exports a lot of env vars - e.g. below - confirm if needed in cassandra and ... 
+    source /users_home/cmcc/lg07622/modules_juno.me
+    # ... includes the below
+    # source /data/cmcc/${USER}/d4o/install/INTEL/source.me
+    # module load intel-2021.6.0/cdo-threadsafe/2.1.1-lyjsw
+    # module load intel-2021.6.0/ncview/2.1.8-sds5t
 else # cassandra
-    # TODO - check the vars exported in juno above
-    source /work/cmcc/de34824/spreads/d4o/load-modules-d4o.cassandra
-endif 
+    # check the d4o branch where is d4o installed
+    source /data/cmcc/$USER/$d4o_branch/install/INTEL/source.me
+fi
 
 
 set -xeu
@@ -32,7 +38,10 @@ export I_MPI_JOB_TIMEOUT_SIGNAL=6
 
 npes=$LSB_MAX_NUM_PROCESSORS
 echo "Number of processes to be used: $npes"
-export LAUNCHCMD="mpirun -np $npes -bind-to core -prepend-rank" # binding to cores, plus prepending rank# for stdout/stderr outputs
+# JUNO
+# export LAUNCHCMD="mpirun -np $npes -bind-to core -prepend-rank" # binding to cores, plus prepending rank# for stdout/stderr outputs
+# CASSANDRA
+export LAUNCHCMD="mpirun -np $npes -prepend-rank" # binding to cores, plus prepending rank# for stdout/stderr outputs
 export OMP_NUM_THREADS=1 # No OpenMP seen (yet) for SPREADS
 #export KMP_AFFINITY="verbose,granularity=core,respect,scatter"
 export KMP_AFFINITY=disabled
@@ -104,9 +113,9 @@ ldd ./filter || :
 rc=0
 
 if [[ "${MPIP:-}" = "" ]] ; then
-   /usr/bin/time -v ${LAUNCHCMD} ./filter > output.log.$LSB_JOBID 2>&1 || rc=$?
+   time ${LAUNCHCMD} ./filter > output.log.$LSB_JOBID 2>&1 || rc=$?
 else
-    /usr/bin/time -v ${LAUNCHCMD} env LD_PRELOAD=/users_home/cmcc/ss35621/mpiP/INTEL/lib/libmpiP.so ./filter > output.log.$LSB_JOBID 2>&1 || rc=$?
+   time ${LAUNCHCMD} env LD_PRELOAD=/users_home/cmcc/ss35621/mpiP/INTEL/lib/libmpiP.so ./filter > output.log.$LSB_JOBID 2>&1 || rc=$?
 fi
 
 #echo "`date` -- END FILTER"

@@ -56,7 +56,7 @@ cp -f ${dd4o}/filter.dir/filter ${droot}/run/.
 if [ $adopt == "scg" -o $adopt == "all" ]; then
   echo "Assimilating snow cover fraction"
   cp -f ${dorigin}/run_dart_to_clm_snow.bash ${droot}/run/.
-  cp -f ${dorigin}/assimilate_par.csh ${droot}/assimilate.csh
+  # cp -f ${dorigin}/assimilate_par.csh ${droot}/assimilate.csh
   #if [ ! -d ${droot}/run/tmp ]; then mkdir ${droot}/run/tmp; fi
 fi
 

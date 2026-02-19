@@ -8,7 +8,7 @@ The idea is to maintain all this repositories in this one. If some change, appli
 
 ## System instalation (Spreads - d4o)
 
-Download the code preferably in the the folder /work/cmcc/$USER , to avoid changing some configuration parameters.
+Download the code **preferably** in the the folder /work/cmcc/$USER , to avoid changing some configuration parameters.
 ```
 /work/cmcc/$USER
 git clone https://github.com/deniseiras/land_system.git
@@ -31,16 +31,33 @@ make cassandra
 In case of sucess, you will see a message like :
 
 ```txt
-===> To initialize your d4o-environment under INTEL : source /data/cmcc/<USER>/<BRANCH>install/INTEL/source.me
+===> To initialize your d4o-environment under INTEL : source /data/cmcc/<USER>/<BRANCH>/install/INTEL/source.me
 + exit 0
 >>> Build log now in the <YOUR_ROOT>/land_system/spreads/d4o/.build-log.INTEL.1234567890.txt
 ```
 
 Then, source the file as shown in the message to proceed with the running.
 
+Compile flattened/clm/fill_inflation_restart.dir:
+```
+cd <YOUR_ROOT>/land_system/spreads/d4o/flattened/clm/fill_inflation_restart.dir
+make clean
+make -j 8
+```
+Compile flattened/clm/filter.dir:
+```
+cd <YOUR_ROOT>/land_system/spreads/d4o/flattened/clm/filter.dir
+make clean
+make -j 8
+```
+
+
+
+
 ## Repository structure:
 
 ```
+Source files
 .
 ├── CMCC-CM
 │   ├── ccs_config
@@ -56,6 +73,13 @@ Then, source the file as shown in the message to proceed with the running.
 ├── work_d4o
 └── work_dart
     └── DART
+
+Install files
+/data
+└──cmcc
+    └──<USER>
+        └──<BRANCH>
+            └──install
 ```
 
 Details of the origin source files and files updated during the migration:
@@ -70,7 +94,7 @@ Details of the origin source files and files updated during the migration:
      - Makefile 
      - build.cassandra
      - build.cassandra.INTEL.source.me
-     - load-modules-d4o.cassandra
+     - load-modules-d4o.cassandra*
 - spreads/spreads_ui: 
    - ecflow structure (TODO in future if needed)
 
@@ -128,9 +152,9 @@ First, in `./DART_params_d4o_TEST_GSWP.csh`, set the variables:
 Now change in the file `CLM5_CMCC_d4o_TEST_GSWP`	:
 - change line `source DART_params_d4o_template_GSWP.csh` to point the file  `DART_params_d4o_TEST_GSWP.csh`
 - Change the source file of the line `${COPY} <SOURCE> ${caseroot}/DART_params.csh ` for `DART_params_d4o_template_GSWP.csh`
-- number of tasks (Optional, already tunned for Cassandra): refers to the number of processes per member. (min = 1 ; max = number of cores per node).  I.e. , JUNO has 72 cores per node. Could use 36, i.e. More tasks may have more performance. Example.
-  - ./xmlchange NTASKS=36 
-  - ./xmlchange NTASKS_LND=36 
+- number of tasks (Optional, already tunned for Cassandra): refers to the number of processes per member. (min = 1 ; max = number of cores per node).  I.e. , Cassandra has 112 cores per node. Could use 56, i.e. More tasks may have more performance. Example.
+  - ./xmlchange NTASKS=56 
+  - ./xmlchange NTASKS_LND=56 
 
 Check the forcings pointed by the `SOURCEDIR` variable: check the files in that directory. Check the files named `user_nl*` related to the members you’re using.
 It must exist a file named `user_nml_datm_streams_<member_num>`,  in the directory referred to in the variable *SOURCEDIR* inside file `CLM5_CMCC_d4o_TEST_GSWP`, that points to the forcing netcdf files, which must have data from the day before the start date.
@@ -142,7 +166,7 @@ Run the script to build the experiment
 ./CLM5_CMCC_d4o_TEST_GSWP
 ```
 
-If the experiment build was successful, **ignore the instructions that appeared** (need to fix)
+If the experiment build was successful, **ignore the instructions that appeared** (this message need to be fixed)
 
 #### 3. Model run
 
@@ -199,7 +223,6 @@ Where <ENSEMBLE SIZE> is the number of members you had chosen.
 Run the assimilation, step “0”:
 
 ```
-cd ./work_d4o/TEST_GSWP 
 ./assimilate.csh $PWD 0 
 ```
 

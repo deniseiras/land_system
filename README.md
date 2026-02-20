@@ -239,12 +239,14 @@ where the `$PWD` refers to an environment variable that gets the current directo
 
 Verify if the assimilation is complete in  `${experiment path}/run/tmp`. For that, go to that directory. Should have the db files, i.e.:
 
-  2000-01-02-00000_LAI.db  2000-01-02-00000_SM.db   2000-01-03-00000_SC.db  catalog.db
-  2000-01-02-00000_SC.db   2000-01-03-00000_LAI.db  2000-01-03-00000_SM.db
+  2000-01-02-00000_LAI.db  
+  2000-01-02-00000_SC.db  
+  2000-01-02-00000_SM.db   
+  catalog.db
 
-Confirm if the assimilation files are ok: 
+Confirm the assimilation in the db: 
 ```
-module load intel-2021.6.0/sqlite/3.40.0-v3tky 
+module load oneapi-2025.0.4/sqlite/3.46.0-cuoh5
 alias sqlite="sqlite3 -readonly -batch -init /dev/null -nullvalue NULL -box" 
 
 sqlite 2000-01-02-00000_SM.db \

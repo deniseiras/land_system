@@ -1,5 +1,5 @@
-# land_system
-Repository for running the Land spreads d4o system in Cassandra Supercomputer. 
+# Land System
+Repository for running the Land spreads d4o system in Cassandra Supercomputer (initially) . 
 
 Includes and manages all repos necessary for running: spreads, CMCC-CM and DART, that was not being managed in repositories in JUNO (Check the Repository Structure Section)
 
@@ -50,9 +50,18 @@ cd <YOUR_ROOT>/land_system/spreads/d4o/flattened/clm/filter.dir
 make clean
 make -j 8
 ```
-
-
-
+Compile flattened/clm/clm_to_dart.dir:
+```
+cd <YOUR_ROOT>/land_system/spreads/d4o/flattened/clm/clm_to_dart.dir
+make clean
+make -j 8
+```
+Compile flattened/clm/dart_to_clm.dir:
+```
+cd <YOUR_ROOT>/land_system/spreads/d4o/flattened/clm/dart_to_clm.dir
+make clean
+make -j 8 
+```
 
 ## Repository structure:
 
@@ -65,7 +74,6 @@ Source files
 │   └── ...
 ├── land
 │   └── datain
-├── PROFESSIONAL_land_assimilate_opt
 ├── spreads
 │   ├── d4o
 │   ├── spreads_ui
@@ -151,7 +159,8 @@ First, in `./DART_params_d4o_TEST_GSWP.csh`, set the variables:
 
 Now change in the file `CLM5_CMCC_d4o_TEST_GSWP`	:
 - change line `source DART_params_d4o_template_GSWP.csh` to point the file  `DART_params_d4o_TEST_GSWP.csh`
-- Change the source file of the line `${COPY} <SOURCE> ${caseroot}/DART_params.csh ` for `DART_params_d4o_template_GSWP.csh`
+- Change the `<SOURCE>` file from the line:
+ `${COPY} <SOURCE> ${caseroot}/DART_params.csh ` for your file, i.e. `DART_params_d4o_TEST_GSWP.csh`
 - number of tasks (Optional, already tunned for Cassandra): refers to the number of processes per member. (min = 1 ; max = number of cores per node).  I.e. , Cassandra has 112 cores per node. Could use 56, i.e. More tasks may have more performance. Example.
   - ./xmlchange NTASKS=56 
   - ./xmlchange NTASKS_LND=56 
@@ -166,7 +175,7 @@ Run the script to build the experiment
 ./CLM5_CMCC_d4o_TEST_GSWP
 ```
 
-If the experiment build was successful, **ignore the instructions that appeared** (this message need to be fixed)
+If the experiment build was successful, proceed to the next step.
 
 #### 3. Model run
 
@@ -226,9 +235,10 @@ Run the assimilation, step “0”:
 ./assimilate.csh $PWD 0 
 ```
 
-where the $PWD refers to an environment variable that gets the current directory
-Verify if the assimilation is complete in  ${experiment path}/run/tmp. For that, go to that directory.
-Should have the db files, i.e.:
+where the `$PWD` refers to an environment variable that gets the current directory.
+
+Verify if the assimilation is complete in  `${experiment path}/run/tmp`. For that, go to that directory. Should have the db files, i.e.:
+
   2000-01-02-00000_LAI.db  2000-01-02-00000_SM.db   2000-01-03-00000_SC.db  catalog.db
   2000-01-02-00000_SC.db   2000-01-03-00000_LAI.db  2000-01-03-00000_SM.db
 
@@ -252,8 +262,3 @@ obsvalue, prior_mean, posterior_mean, qc, dart_qc, member, prior, posterior \
 This select will return only if there were at least 8 cycles. 
 
 Done, the first assimilation cycle is ready. 
-
-#### More cycles runs
-
-This process could be achieved by the use of the land_cycles.sh script
-( TODO )

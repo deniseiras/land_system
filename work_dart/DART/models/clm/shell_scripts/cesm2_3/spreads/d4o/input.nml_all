@@ -30,7 +30,7 @@
    perturbation_amplitude       = 0.2
    async                    = 0
    adv_ens_command          = 'cannot_advance_clm'
-   ens_size                 = 30
+   ens_size                 = 4
    obs_sequence_in_name     = 'obs_seq.out'
    obs_sequence_out_name    = 'obs_seq.final'
    input_state_file_list    = 'restart_files.txt',
@@ -45,8 +45,8 @@
    first_obs_seconds        = -1
    last_obs_days            = -1
    last_obs_seconds         = -1
-   num_output_state_members = 30
-   num_output_obs_members   = 30
+   num_output_state_members = 4
+   num_output_obs_members   = 4
    output_interval          = 1
    num_groups               = 1
    compute_posterior        = .true.
@@ -135,7 +135,7 @@
 
 &ensemble_manager_nml
    layout                  = 2
-   tasks_per_node          = 72
+   tasks_per_node          = 56
    /
 
 

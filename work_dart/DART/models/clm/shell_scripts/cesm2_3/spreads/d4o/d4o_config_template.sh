@@ -1,42 +1,57 @@
 #!/bin/bash
-#
 
-# Change the 4 parameters below accordingly your necessities
 # The land_system_work was created to work with the structure below:
 # 
+# Source files
+# .
+# ├── CMCC-CM
+# │   ├── ccs_config
+# │   ├── cime_config
+# │   └── ...
 # ├── land
 # │   └── datain
-# ├── CMCC-CM
+# ├── spreads
+# │   ├── d4o
+# │   ├── spreads_ui
+# │   └── ...
 # ├── work_d4o
-# │   ├── d4o_all60_as
-# │   ├── d4o_m04_v01_cassandra
-# |   ...  
 # └── work_dart
 #     └── DART
 
+# Install files
+# /data
+# └──cmcc
+#     └──<USER>
+#         └──<BRANCH>
+#             └──install
 
-set -x
 
-# the dobs and spreads are outside this structure
-
-land_system_root_dir=/work/cmcc/$USER/land_system
-dobs=${land_system_root_dir}/land/datain/d4o
-dd4o=${land_system_root_dir}/spreads/d4o/flattened/clm
-
+# Change the 4 parameters below accordingly your necessities
 # ==========================================================
-
-dorigin=${land_system_root_dir}/work_dart/DART/models/clm/shell_scripts/cesm2_3/spreads/d4o
-
 firstda="2000-01-02"
 nens="04" #number of members
 droot=`pwd`
 adopt="all" # sm scg lai all
+set -x
+# ==========================================================
+
+land_system_root_dir=/work/cmcc/$USER/land_system
+dobs=${land_system_root_dir}/land/datain/d4o
+dd4o=${land_system_root_dir}/spreads/d4o/flattened/clm
+dorigin=${land_system_root_dir}/work_dart/DART/models/clm/shell_scripts/cesm2_3/spreads/d4o
+
+
 echo $droot
 
 ./CESM_DART_config
 ./xmlchange CONTINUE_RUN=TRUE
 
-# Updated from PROFESSIONAL_land_assimilate_opt.git 
+# The files below were updated for Cassandra. In Juno, the files comes from 
+# the repository PROFESSIONAL_land_assimilate_opt.git.
+# In the future, maybe the PROFESSIONAL_land_assimilate_opt.git must be ignored and
+# this repository (land_system) must be used as the main repository for the assimilation 
+# scripts for JUNO and Cassandra.
+
 cp -f ${dorigin}/assimilate.csh ${droot}/.
 cp -f ${dorigin}/assimilate_executor.csh ${droot}/.
 cp -f ${dorigin}/run_clm_to_dart_par.bash ${droot}/run/.

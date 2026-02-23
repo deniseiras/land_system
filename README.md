@@ -8,9 +8,9 @@ The idea is to maintain all this repositories in this one. If some change, appli
 
 ## System instalation (Spreads - d4o)
 
-Download the code **preferably** in the the folder /work/cmcc/$USER , to avoid changing some configuration parameters.
+Download the code in the the folder /work/cmcc/$USER , to avoid changing some configuration parameters.
 ```
-/work/cmcc/$USER
+cd /work/cmcc/$USER
 git clone https://github.com/deniseiras/land_system.git
 ```
 This will download the system in the land_system folder.
@@ -93,7 +93,7 @@ Install files
 Details of the origin source files and files updated during the migration:
 
 - land/datain
-  - Input data folder. Empty in here. You must copy your datain inside this     structure or remove the datain dir and create a link to your datain.
+  - Input data folder. Empty in here. You must copy your datain inside this structure or remove the datain dir and create a link to your datain.
 
 - spreads/d4o
    - original git source: branch d4o-land - https://github.com/lgggoncalves/SPREADS.git
@@ -127,6 +127,8 @@ Details of the origin source files and files updated during the migration:
 ## System execution using EC Flow (TODO)
 
 ## System execution using scripts
+
+First, you must copy your input data inside `<LAND_SYSTEM_ROOT>/land/datain` or remove the datain dir and create a link to your input data.
 
 ### Building and running the CLM model
 
